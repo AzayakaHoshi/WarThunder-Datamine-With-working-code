@@ -1,0 +1,108 @@
+bombGun:b=yes
+preset_cost:i=50
+shotFreq:r=10.0
+sound:t="weapon.bombgun"
+mesh:t="toon_fab_100sv"
+
+tags{
+  antiTankBomb:b=yes
+}
+
+bomb{
+  mass:r=103.5
+  explosiveType:t="tnt"
+  explosiveMass:r=25.02
+  bombType:t="he_bomb"
+  bombName:t="fab100_43"
+  caliber:r=0.273
+  length:r=1.033
+  distFromCmToStab:r=0.4
+  dragCx:r=0.04
+  sound:t="weapon.bomb_mid"
+  explosionFx:t="bomb_expl_100kg"
+  explosionPatchRadius:r=5.0
+  waterExplosionEffect:t="water_explosion_big"
+  hitPowerMult:r=1.0
+  nearHitPower:p2=1.0, 50.0
+  midHitPower:p2=0.9, 400.0
+  farHitPower:p2=0.1, 1000.0
+  endHitPower:p2=0.01, 1500.0
+  relativeVelHitShift:p2=300.0, 1000.0
+  nearArmorPower:p2=10.0, 50.0
+  midArmorPower:p2=7.0, 400.0
+  farArmorPower:p2=0.2, 700.0
+  relativeVelArmorShift:p2=200.0, 1000.0
+
+  pressureDamage{
+    damageType:t="pressure"
+  }
+
+  DamageParts{
+
+    body{
+      hp:r=25.0
+      armorClass:t="tank_structural_steel"
+      armorThickness:r=5.0
+      explosionArmorQuality:r=1.0
+      shatterArmorQuality:r=1.0
+    }
+  }
+
+  DamageEffects{
+
+    part{
+      name:t="body"
+
+      onHit{
+        shellState:t="inFlight"
+        expl:r=1.0
+      }
+
+      onHit{
+        shellState:t="onUnit"
+        damageType:t="generic"
+        expl:r=0.2
+        break:r=0.8
+        damage:r=3.0
+        fHitCritical:b=yes
+      }
+
+      onHit{
+        shellState:t="onUnit"
+        damageType:t="generic"
+        expl:r=0.5
+        break:r=0.5
+        damage:r=30.0
+        fHitCritical:b=yes
+      }
+
+      onHit{
+        shellState:t="onUnit"
+        damageType:t="explosion"
+        expl:r=0.8
+        break:r=0.2
+        damage:r=50.0
+        fHitCritical:b=yes
+      }
+
+      onHit{
+        shellState:t="onUnit"
+        damageType:t="cumulative"
+        expl:r=1.0
+        damage:r=100.0
+        fHitCritical:b=yes
+      }
+
+      onKill{
+        shellState:t="inFlight"
+        destruction:r=1.0
+      }
+
+      onKill{
+        shellState:t="onUnit"
+        expl:r=1.0
+        fHitCritical:b=yes
+      }
+    }
+  }
+}

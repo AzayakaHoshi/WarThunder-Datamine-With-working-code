@@ -1,0 +1,2167 @@
+type:t="radar"
+name:t="Cyrano-IV"
+showMissileLaunchZone:b=yes
+showMissileDgftLaunchZone:b=yes
+
+transivers{
+
+  pulse{
+    sideLobesAttenuation:r=-22.0
+    power:r=300.0
+    band:i=8
+    rcs:r=5.0
+    range:r=55000.0
+    rangeMax:r=100000.0
+    timeGainControl:b=yes
+    multipathEffect:p4=0.0, 1.0, 60.0, 0.0
+
+    antenna{
+      angleHalfSens:r=3.0
+      sideLobesSensitivity:r=-30.0
+    }
+  }
+
+  mti{
+    sideLobesAttenuation:r=-22.0
+    power:r=300.0
+    band:i=8
+    rcs:r=5.0
+    range:r=20000.0
+    rangeMax:r=100000.0
+    timeGainControl:b=yes
+
+    antenna{
+      angleHalfSens:r=3.0
+      sideLobesSensitivity:r=-30.0
+    }
+  }
+}
+
+scanPatterns{
+
+  searchWide4Bars{
+    type:t="pyramide"
+    azimuthLimits:p2=-60.0, 60.0
+    elevationLimits:p2=-32.0, 28.0
+    rollStabLimit:r=80.0
+    pitchStabLimit:r=32.0
+    period:r=4.8
+    width:r=60.0
+    barHeight:r=2.0
+    barsCount:i=4
+    rowMajor:b=yes
+    barsOneWay:b=no
+    centerElevation:r=-1.0
+  }
+
+  searchNarrow4Bars{
+    type:t="pyramide"
+    azimuthLimits:p2=-60.0, 60.0
+    elevationLimits:p2=-32.0, 28.0
+    rollStabLimit:r=80.0
+    pitchStabLimit:r=32.0
+    period:r=2.4
+    width:r=30.0
+    barHeight:r=2.0
+    barsCount:i=4
+    rowMajor:b=yes
+    barsOneWay:b=no
+    centerElevation:r=-1.0
+  }
+
+  bvrLockSearch{
+    type:t="pyramide"
+    azimuthLimits:p2=-60.0, 60.0
+    elevationLimits:p2=-32.0, 28.0
+    rollStabLimit:r=80.0
+    pitchStabLimit:r=32.0
+    period:r=0.6
+    width:r=7.0
+    barHeight:r=2.0
+    barsCount:i=4
+    rowMajor:b=yes
+    barsOneWay:b=no
+    indicate:b=yes
+  }
+
+  boresightLock{
+    type:t="cone"
+    azimuthLimits:p2=-60.0, 60.0
+    elevationLimits:p2=-45.0, 45.0
+    period:r=0.5
+    width:r=2.0
+    indicate:b=yes
+  }
+
+  track{
+    type:t="no"
+    azimuthLimits:p2=-60.0, 60.0
+    elevationLimits:p2=-45.0, 45.0
+  }
+}
+
+signals{
+
+  pulseSearch{
+    dynamicRange:p2=40.0, 15.0
+    groundClutter:b=yes
+    aircraftAsTarget:b=yes
+    friendFoeId:b=yes
+
+    distance{
+      presents:b=yes
+      minValue:r=300.0
+      maxValue:r=111000.0
+      width:r=300.0
+    }
+  }
+
+  pulseTrack{
+    dynamicRange:p2=40.0, 15.0
+    groundClutter:b=yes
+    aircraftAsTarget:b=yes
+    angularAccuracy:r=0.05
+    distanceAccuracy:r=15.0
+    track:b=yes
+
+    distance{
+      presents:b=yes
+      minValue:r=300.0
+      maxValue:r=111000.0
+      width:r=300.0
+    }
+  }
+
+  mtiSearch{
+    dynamicRange:p2=40.0, 12.0
+    groundClutter:b=no
+    aircraftAsTarget:b=yes
+    friendFoeId:b=yes
+    absDopplerSpeed:b=yes
+    mainBeamDopplerSpeed:b=yes
+
+    distance{
+      presents:b=yes
+      minValue:r=300.0
+      maxValue:r=45000.0
+      width:r=300.0
+    }
+
+    dopplerSpeed{
+      presents:b=yes
+      minValue:r=30.0
+      maxValue:r=1500.0
+      signalWidthMin:r=2.0
+      width:r=0.0
+    }
+  }
+
+  mtiTrack{
+    dynamicRange:p2=40.0, 12.0
+    groundClutter:b=no
+    aircraftAsTarget:b=yes
+    angularAccuracy:r=0.05
+    distanceAccuracy:r=15.0
+    absDopplerSpeed:b=yes
+    mainBeamDopplerSpeed:b=yes
+    track:b=yes
+
+    distance{
+      presents:b=yes
+      minValue:r=300.0
+      maxValue:r=45000.0
+      width:r=300.0
+    }
+
+    dopplerSpeed{
+      presents:b=yes
+      minValue:r=20.0
+      maxValue:r=1500.0
+      signalWidthMin:r=2.0
+      width:r=0.0
+    }
+  }
+}
+
+scanPatternSets{
+
+  search{
+    scanPattern1:t="searchWide4Bars"
+    scanPattern2:t="searchNarrow4Bars"
+  }
+
+  acmLock{
+    scanPattern1:t="boresightLock"
+  }
+}
+
+scopeRangeSets{
+
+  pulseSearch{
+    range1:r=27750.0
+    range2:r=64750.0
+    range3:r=111000.0
+    range4:r=12950.0
+  }
+
+  mtiSearch{
+    range1:r=27750.0
+    range2:r=12950.0
+  }
+
+  acm{
+    range1:r=11000.0
+  }
+}
+
+fsms{
+
+  main{
+    stateInit:t="init"
+
+    actionsTemplates{
+
+      init{
+
+        setEnabled{
+          value:b=no
+        }
+
+        setTargetDesignationRange{
+          azimuthRange:p2=-60.0, 60.0
+          elevationRange:p2=-32.0, 28.0
+          distanceRange:p2=500.0, 65000.0
+          distanceWidth:r=2000.0
+          distanceRelWidthMin:r=0.05
+        }
+
+        setFsmActive{
+          fsm:t="searchModes"
+          active:b=yes
+        }
+      }
+
+      setStandbySearchModeCommon{
+
+        setCenterAzimuth{
+          source:t="constant"
+          value:r=0.0
+        }
+
+        setCenterElevation{
+          source:t="constant"
+          value:r=0.0
+        }
+
+        setFsmActive{
+          fsm:t="searchModes"
+          active:b=yes
+        }
+      }
+
+      setStandbyModeCommon{
+
+        setStandbySearchModeCommon{
+        }
+
+        setEnabled{
+          value:b=no
+        }
+
+        setScanPatternSet{
+          scanPatternSet:t="search"
+        }
+      }
+
+      resetStandbyMode{
+
+        setFsmActive{
+          fsm:t="searchModes"
+          active:b=no
+        }
+      }
+
+      setSearchModeCommon{
+
+        setStandbySearchModeCommon{
+        }
+
+        setEnabled{
+          value:b=yes
+        }
+
+        setCueEnabled{
+          value:b=yes
+          updateActiveTargetUnderCue:b=no
+        }
+
+        setScanPatternSet{
+          scanPatternSet:t="search"
+        }
+
+        setFsmActive{
+          fsm:t="search"
+          active:b=yes
+        }
+      }
+
+      resetSearchMode{
+
+        clearTargets{
+        }
+
+        setFsmActive{
+          fsm:t="search"
+          active:b=no
+        }
+
+        setFsmActive{
+          fsm:t="searchModes"
+          active:b=no
+        }
+
+        setCueEnabled{
+          value:b=no
+        }
+      }
+
+      setBvrLockModeCommon{
+
+        setEnabled{
+          value:b=yes
+        }
+
+        setScanPatternSet{
+        }
+
+        resetScanPhase{
+        }
+      }
+
+      setBvrLockMode{
+
+        setBvrLockModeCommon{
+        }
+
+        setFsmActive{
+          fsm:t="bvrLock"
+          active:b=yes
+        }
+
+        setDistGatePos{
+          source:t="targetDesignation"
+          width:r=5000.0
+        }
+
+        setScanPattern{
+          scanPattern:t="bvrLockSearch"
+        }
+
+        setCenterAzimuth{
+          source:t="targetDesignation"
+        }
+      }
+
+      designatedTargetSearch{
+
+        designateTargetUnderCue{
+          type:i=0
+          self:b=yes
+          sensorIndex:i=0
+        }
+
+        designateActiveDetectedTarget{
+          type:i=0
+          self:b=yes
+          sensorIndex:i=0
+        }
+      }
+
+      resetBvrLockMode{
+
+        setFsmActive{
+          fsm:t="bvrLock"
+          active:b=no
+        }
+      }
+
+      setTrackMode{
+
+        setEnabled{
+          value:b=yes
+        }
+
+        setScanPatternSet{
+        }
+
+        setScanPattern{
+          scanPattern:t="track"
+        }
+
+        addTargetOfInterest{
+        }
+
+        setLastTargetOfInterestActive{
+        }
+
+        updateActiveTargetOfInterest{
+        }
+
+        setCenterAzimuth{
+          source:t="activeTargetOfInterest"
+        }
+
+        setCenterElevation{
+          source:t="activeTargetOfInterest"
+        }
+
+        setDistGatePos{
+          source:t="activeTargetOfInterest"
+          width:r=0.0
+        }
+
+        setRelSpeedGatePos{
+          source:t="activeTargetOfInterest"
+          width:r=0.0
+        }
+
+        setFsmActive{
+          fsm:t="trackModes"
+          active:b=yes
+        }
+
+        setIllumination{
+          illumination:b=yes
+        }
+      }
+
+      resetTrackMode{
+
+        clearTargetsOfInterest{
+        }
+
+        setFsmActive{
+          fsm:t="trackModes"
+          active:b=no
+        }
+
+        setIllumination{
+          illumination:b=no
+        }
+      }
+
+      setAcmLockMode{
+
+        setEnabled{
+          value:b=yes
+        }
+
+        resetScanPhase{
+        }
+
+        setScanPatternSet{
+          scanPatternSet:t="acmLock"
+        }
+
+        setCenterAzimuth{
+          source:t="constant"
+          value:r=0.0
+        }
+
+        setCenterElevation{
+          source:t="constant"
+          value:r=0.0
+        }
+
+        setFsmActive{
+          fsm:t="acmLock"
+          active:b=yes
+        }
+
+        setDistGatePos{
+          source:t="constRange"
+          pos:r=5750.0
+          width:r=10500.0
+        }
+
+        setScopeRangeSet{
+          scopeRangeSet:t="acm"
+        }
+
+        setTransiver{
+          transiver:t="pulse"
+        }
+
+        setSignal{
+          signal:t="pulseTrack"
+        }
+
+        setModeName{
+          name:t="PD ACM"
+        }
+      }
+
+      resetAcmLockMode{
+
+        setFsmActive{
+          fsm:t="acmLock"
+          active:b=no
+        }
+      }
+
+      setPulseStandbyMode{
+
+        setStandbyModeCommon{
+        }
+
+        setTransiver{
+          transiver:t="pulse"
+        }
+
+        setSignal{
+          signal:t="pulseSearch"
+        }
+
+        setScopeRangeSet{
+          scopeRangeSet:t="pulseSearch"
+        }
+
+        setModeName{
+          name:t="standby"
+        }
+      }
+
+      setMtiStandbyMode{
+
+        setStandbyModeCommon{
+        }
+
+        setScanPatternSet{
+          scanPatternSet:t="search"
+        }
+
+        setTransiver{
+          transiver:t="mti"
+        }
+
+        setSignal{
+          signal:t="mtiSearch"
+        }
+
+        setScopeRangeSet{
+          scopeRangeSet:t="mtiSearch"
+        }
+
+        setModeName{
+          name:t="MTI standby"
+        }
+      }
+
+      setPulseSearchMode{
+
+        setSearchModeCommon{
+        }
+
+        setTransiver{
+          transiver:t="pulse"
+        }
+
+        setSignal{
+          signal:t="pulseSearch"
+        }
+
+        setScopeRangeSet{
+          scopeRangeSet:t="pulseSearch"
+        }
+
+        setModeName{
+          name:t="search"
+        }
+      }
+
+      setMtiSearchMode{
+
+        setSearchModeCommon{
+        }
+
+        setTransiver{
+          transiver:t="mti"
+        }
+
+        setSignal{
+          signal:t="mtiSearch"
+        }
+
+        setScopeRangeSet{
+          scopeRangeSet:t="mtiSearch"
+        }
+
+        setModeName{
+          name:t="MTI search"
+        }
+      }
+
+      setPulseBvrLockMode{
+
+        setBvrLockMode{
+        }
+
+        setModeName{
+          name:t="acquisition"
+        }
+      }
+
+      setMtiBvrLockMode{
+
+        setBvrLockMode{
+        }
+
+        setModeName{
+          name:t="MTI acquisition"
+        }
+      }
+
+      setPulseAcmLockParams{
+
+        setTransiver{
+          transiver:t="pulse"
+        }
+
+        setSignal{
+          signal:t="pulseTrack"
+        }
+
+        setModeName{
+          name:t="ACM"
+        }
+      }
+
+      setMtiAcmLockParams{
+
+        setTransiver{
+          transiver:t="mti"
+        }
+
+        setSignal{
+          signal:t="mtiTrack"
+        }
+
+        setModeName{
+          name:t="MTI ACM"
+        }
+      }
+    }
+
+    transitions{
+
+      init{
+        stateFrom:t="init"
+        event:t="init"
+        stateTo:t="standby"
+
+        actions{
+
+          init{
+          }
+        }
+      }
+
+      standbyToSearch{
+        stateFrom:t="standby"
+        command:t="switch"
+        event:t="enable"
+        stateTo:t="search"
+
+        actions{
+
+          doCustomActionTemplate{
+            fsm:t="main"
+            name:t="resetStandbyMode"
+          }
+
+          doCustomActionTemplate{
+            fsm:t="main"
+            name:t="setSearchMode"
+          }
+        }
+      }
+
+      searchToStandby{
+        stateFrom:t="search"
+        command:t="switch"
+        event:t="disable"
+        stateTo:t="standby"
+
+        actions{
+
+          doCustomActionTemplate{
+            fsm:t="main"
+            name:t="resetSearchMode"
+          }
+
+          doCustomActionTemplate{
+            fsm:t="main"
+            name:t="setStandbyMode"
+          }
+        }
+      }
+
+      bvrLock{
+        stateFrom:t="search"
+        command:t="selectTarget"
+
+        actions{
+
+          doCustomActionTemplate{
+            fsm:t="main"
+            name:t="designateTarget"
+          }
+        }
+      }
+
+      checkDesignationType0{
+        stateFrom:t="search"
+        command:t="designateTarget"
+        stateTo:t="checkDesignationType0"
+
+        actions{
+
+          checkDesignationTypeEquals{
+            value:i=0
+          }
+        }
+      }
+
+      bvrLockResponce{
+        stateFrom:t="checkDesignationType0"
+        event:t="designationTypeEquals"
+        stateTo:t="bvrLock"
+
+        actions{
+
+          doCustomActionTemplate{
+            fsm:t="main"
+            name:t="resetSearchMode"
+          }
+
+          doCustomActionTemplate{
+            fsm:t="main"
+            name:t="setBvrLockMode"
+          }
+        }
+      }
+
+      returnToSearchMode{
+        stateFrom:t="checkDesignationType0"
+        event:t="designationTypeNotEquals"
+        stateTo:t="search"
+      }
+
+      bvrLockToBvrTrack{
+        stateFrom:t="bvrLock"
+        event:t="targetDetected"
+        stateTo:t="bvrTrack"
+
+        actions{
+
+          doCustomActionTemplate{
+            fsm:t="main"
+            name:t="resetBvrLockMode"
+          }
+
+          doCustomActionTemplate{
+            fsm:t="main"
+            name:t="setBvrTrackMode"
+          }
+        }
+      }
+
+      failedBvrLock{
+        stateFrom:t="bvrLock"
+        event:t="scanFinished"
+        stateTo:t="search"
+
+        actions{
+
+          doCustomActionTemplate{
+            fsm:t="main"
+            name:t="resetBvrLockMode"
+          }
+
+          doCustomActionTemplate{
+            fsm:t="main"
+            name:t="setSearchMode"
+          }
+        }
+      }
+
+      finishedBvrTrack{
+        stateFrom:t="bvrTrack"
+        event:t="targetsOfInterestCleanup"
+        command:t="selectTarget"
+        stateTo:t="search"
+
+        actions{
+
+          doCustomActionTemplate{
+            fsm:t="main"
+            name:t="resetBvrTrackMode"
+          }
+
+          doCustomActionTemplate{
+            fsm:t="main"
+            name:t="setSearchMode"
+          }
+        }
+      }
+
+      updateStandbyMode{
+        stateFrom:t="standby"
+        event:t="fsmActivate"
+
+        actions{
+
+          doCustomActionTemplate{
+            fsm:t="main"
+            name:t="resetStandbyMode"
+          }
+
+          doCustomActionTemplate{
+            fsm:t="main"
+            name:t="setStandbyMode"
+          }
+        }
+      }
+
+      updateSearchMode{
+        stateFrom:t="search"
+        event:t="fsmActivate"
+
+        actions{
+
+          doCustomActionTemplate{
+            fsm:t="main"
+            name:t="resetSearchMode"
+          }
+
+          doCustomActionTemplate{
+            fsm:t="main"
+            name:t="setSearchMode"
+          }
+        }
+      }
+
+      switchScanPattern{
+        stateFrom:t="standby"
+        stateFrom:t="search"
+        stateFrom:t="acmLock"
+        command:t="scanPatternSwitch"
+
+        actions{
+
+          setNextScanPattern{
+          }
+        }
+      }
+
+      switchScopeRange{
+        command:t="rangeSwitch"
+
+        actions{
+
+          setNextScopeRange{
+          }
+        }
+      }
+
+      searchToAcmLock{
+        stateFrom:t="search"
+        command:t="acmSwitch"
+        stateTo:t="acmLock"
+
+        actions{
+
+          doCustomActionTemplate{
+            fsm:t="main"
+            name:t="resetSearchMode"
+          }
+
+          doCustomActionTemplate{
+            fsm:t="main"
+            name:t="setAcmLockMode"
+          }
+
+          setFsmActive{
+            fsm:t="acmLockModesLocker"
+            active:b=yes
+          }
+        }
+      }
+
+      standbyToAcmLock{
+        stateFrom:t="standby"
+        command:t="selectTarget"
+        command:t="acmSwitch"
+        stateTo:t="acmLock"
+
+        actions{
+
+          doCustomActionTemplate{
+            fsm:t="main"
+            name:t="resetStandbyMode"
+          }
+
+          doCustomActionTemplate{
+            fsm:t="main"
+            name:t="setAcmLockMode"
+          }
+
+          setFsmActive{
+            fsm:t="acmLockModesLocker"
+            active:b=yes
+          }
+        }
+      }
+
+      acmLockToAcmTrack{
+        stateFrom:t="acmLock"
+        event:t="targetDetected"
+        stateTo:t="acmTrack"
+
+        actions{
+
+          doCustomActionTemplate{
+            fsm:t="main"
+            name:t="resetAcmLockMode"
+          }
+
+          doCustomActionTemplate{
+            fsm:t="main"
+            name:t="setAcmTrackMode"
+          }
+        }
+      }
+
+      acmLockToStandby{
+        stateFrom:t="acmLock"
+        command:t="selectTarget"
+        stateTo:t="standby"
+
+        actions{
+
+          doCustomActionTemplate{
+            fsm:t="main"
+            name:t="resetAcmLockMode"
+          }
+
+          doCustomActionTemplate{
+            fsm:t="main"
+            name:t="setStandbyMode"
+          }
+
+          setFsmActive{
+            fsm:t="acmLockModesLocker"
+            active:b=no
+          }
+        }
+      }
+
+      acmLockToSearch{
+        stateFrom:t="acmLock"
+        command:t="acmSwitch"
+        stateTo:t="search"
+
+        actions{
+
+          doCustomActionTemplate{
+            fsm:t="main"
+            name:t="resetAcmLockMode"
+          }
+
+          doCustomActionTemplate{
+            fsm:t="main"
+            name:t="setSearchMode"
+          }
+
+          setFsmActive{
+            fsm:t="acmLockModesLocker"
+            active:b=no
+          }
+        }
+      }
+
+      acmTrackToAcmLock{
+        stateFrom:t="acmTrack"
+        event:t="targetsOfInterestCleanup"
+        stateTo:t="acmLock"
+
+        actions{
+
+          doCustomActionTemplate{
+            fsm:t="main"
+            name:t="resetAcmTrackMode"
+          }
+
+          doCustomActionTemplate{
+            fsm:t="main"
+            name:t="setAcmLockMode"
+          }
+        }
+      }
+
+      acmTrackToStandby{
+        stateFrom:t="acmTrack"
+        command:t="selectTarget"
+        stateTo:t="standby"
+
+        actions{
+
+          doCustomActionTemplate{
+            fsm:t="main"
+            name:t="resetAcmTrackMode"
+          }
+
+          doCustomActionTemplate{
+            fsm:t="main"
+            name:t="setStandbyMode"
+          }
+
+          setFsmActive{
+            fsm:t="acmLockModesLocker"
+            active:b=no
+          }
+        }
+      }
+
+      acmTrackToSearch{
+        stateFrom:t="acmTrack"
+        command:t="acmSwitch"
+        stateTo:t="search"
+
+        actions{
+
+          doCustomActionTemplate{
+            fsm:t="main"
+            name:t="resetAcmTrackMode"
+          }
+
+          doCustomActionTemplate{
+            fsm:t="main"
+            name:t="setSearchMode"
+          }
+
+          setFsmActive{
+            fsm:t="acmLockModesLocker"
+            active:b=no
+          }
+        }
+      }
+    }
+  }
+
+  searchModes{
+    stateInit:t="init"
+
+    transitions{
+
+      initToPulse{
+        stateFrom:t="init"
+        event:t="fsmActivate"
+        stateTo:t="pulse"
+
+        actions{
+
+          setCustomActionTemplate{
+            fsm:t="main"
+            name:t="setStandbyMode"
+            actionTemplateName:t="setPulseStandbyMode"
+          }
+
+          setCustomActionTemplate{
+            fsm:t="main"
+            name:t="resetStandbyMode"
+            actionTemplateName:t="resetStandbyMode"
+          }
+
+          setCustomActionTemplate{
+            fsm:t="main"
+            name:t="setSearchMode"
+            actionTemplateName:t="setPulseSearchMode"
+          }
+
+          setCustomActionTemplate{
+            fsm:t="main"
+            name:t="resetSearchMode"
+            actionTemplateName:t="resetSearchMode"
+          }
+
+          setCustomActionTemplate{
+            fsm:t="main"
+            name:t="setBvrLockMode"
+            actionTemplateName:t="setPulseBvrLockMode"
+          }
+
+          setCustomActionTemplate{
+            fsm:t="main"
+            name:t="resetBvrLockMode"
+            actionTemplateName:t="resetBvrLockMode"
+          }
+
+          setCustomActionTemplate{
+            fsm:t="main"
+            name:t="designateTarget"
+            actionTemplateName:t="designatedTargetSearch"
+          }
+
+          setCustomActionTemplate{
+            fsm:t="main"
+            name:t="setAcmLockMode"
+            actionTemplateName:t="setAcmLockMode"
+          }
+
+          setCustomActionTemplate{
+            fsm:t="main"
+            name:t="resetAcmLockMode"
+            actionTemplateName:t="resetAcmLockMode"
+          }
+
+          setCustomActionTemplate{
+            fsm:t="main"
+            name:t="setPrimaryMode"
+            actionTemplateName:t="setPulseAcmLockParams"
+          }
+
+          setCustomActionTemplate{
+            fsm:t="main"
+            name:t="setSecondaryMode"
+            actionTemplateName:t="setMtiAcmLockParams"
+          }
+
+          setCustomActionTemplate{
+            fsm:t="main"
+            name:t="setBvrTrackMode"
+            actionTemplateName:t="setTrackMode"
+          }
+
+          setCustomActionTemplate{
+            fsm:t="main"
+            name:t="resetBvrTrackMode"
+            actionTemplateName:t="resetTrackMode"
+          }
+
+          setCustomActionTemplate{
+            fsm:t="main"
+            name:t="setAcmTrackMode"
+            actionTemplateName:t="setTrackMode"
+          }
+
+          setCustomActionTemplate{
+            fsm:t="main"
+            name:t="resetAcmTrackMode"
+            actionTemplateName:t="resetTrackMode"
+          }
+        }
+      }
+
+      pulseToMti{
+        stateFrom:t="pulse"
+        command:t="modeSwitch"
+        stateTo:t="mti"
+
+        actions{
+
+          setCustomActionTemplate{
+            fsm:t="main"
+            name:t="setStandbyMode"
+            actionTemplateName:t="setMtiStandbyMode"
+          }
+
+          setCustomActionTemplate{
+            fsm:t="main"
+            name:t="setSearchMode"
+            actionTemplateName:t="setMtiSearchMode"
+          }
+
+          setCustomActionTemplate{
+            fsm:t="main"
+            name:t="setBvrLockMode"
+            actionTemplateName:t="setMtiBvrLockMode"
+          }
+
+          setCustomActionTemplate{
+            fsm:t="main"
+            name:t="setPrimaryMode"
+            actionTemplateName:t="setMtiAcmLockParams"
+          }
+
+          setCustomActionTemplate{
+            fsm:t="main"
+            name:t="setSecondaryMode"
+            actionTemplateName:t="setPulseAcmLockParams"
+          }
+
+          setCustomActionTemplate{
+            fsm:t="main"
+            name:t="resetSearchMode"
+            actionTemplateName:t="resetSearchMode"
+          }
+
+          setFsmActive{
+            fsm:t="main"
+            active:b=no
+          }
+
+          setFsmActive{
+            fsm:t="main"
+            active:b=yes
+          }
+        }
+      }
+
+      checkMtiRalt{
+        stateFrom:t="mti"
+        event:t="update"
+
+        actions{
+
+          checkRalt{
+            operation:t="greater"
+            value:r=6000.0
+          }
+        }
+      }
+
+      mtiToPulse{
+        stateFrom:t="mti"
+        command:t="modeSwitch"
+        event:t="raltCheckOk"
+        stateTo:t="pulse"
+
+        actions{
+
+          setCustomActionTemplate{
+            fsm:t="main"
+            name:t="setStandbyMode"
+            actionTemplateName:t="setPulseStandbyMode"
+          }
+
+          setCustomActionTemplate{
+            fsm:t="main"
+            name:t="setSearchMode"
+            actionTemplateName:t="setPulseSearchMode"
+          }
+
+          setCustomActionTemplate{
+            fsm:t="main"
+            name:t="setBvrLockMode"
+            actionTemplateName:t="setPulseBvrLockMode"
+          }
+
+          setCustomActionTemplate{
+            fsm:t="main"
+            name:t="setPrimaryMode"
+            actionTemplateName:t="setPulseAcmLockParams"
+          }
+
+          setCustomActionTemplate{
+            fsm:t="main"
+            name:t="setSecondaryMode"
+            actionTemplateName:t="setMtiAcmLockParams"
+          }
+
+          setCustomActionTemplate{
+            fsm:t="main"
+            name:t="resetSearchMode"
+            actionTemplateName:t="resetSearchMode"
+          }
+
+          setFsmActive{
+            fsm:t="main"
+            active:b=no
+          }
+
+          setFsmActive{
+            fsm:t="main"
+            active:b=yes
+          }
+        }
+      }
+    }
+  }
+
+  search{
+    stateInit:t="search"
+
+    transitions{
+
+      scan{
+        event:t="update"
+
+        actions{
+
+          scan{
+          }
+
+          setCenterAzimuth{
+            source:t="constant"
+            value:r=0.0
+          }
+
+          setCenterAzimuth{
+            source:t="designationCue"
+          }
+
+          setCenterElevation{
+            source:t="constant"
+            value:r=0.0
+          }
+
+          setCenterElevation{
+            source:t="designationCue"
+          }
+        }
+      }
+
+      detect{
+        event:t="targetInSight"
+
+        actions{
+
+          setDistGatePos{
+            source:t="continuousScale"
+            width:r=0.0
+          }
+
+          setRelSpeedGatePos{
+            source:t="continuousScale"
+            width:r=0.0
+          }
+
+          detectTarget{
+          }
+        }
+      }
+
+      addTarget{
+        event:t="targetDetected"
+
+        actions{
+
+          addTarget{
+          }
+
+          updateActiveDetectedTarget{
+          }
+        }
+      }
+
+      switchSelectedTarget{
+        command:t="switchTarget"
+
+        actions{
+
+          setNextDetectedTargetActive{
+          }
+        }
+      }
+
+      setCueAzimuth{
+        command:t="cueAxisX"
+
+        actions{
+
+          setCueAzimuth{
+          }
+        }
+      }
+
+      setCueDist{
+        command:t="cueAxisY"
+
+        actions{
+
+          setCueDist{
+          }
+
+          setCueDopplerSpeed{
+          }
+        }
+      }
+
+      setCueElevation{
+        command:t="cueAxisZ"
+
+        actions{
+
+          setCueElevation{
+          }
+        }
+      }
+
+      setSelectedTarget{
+        command:t="switchToTarget"
+
+        actions{
+
+          setDetectedTargetActive{
+          }
+        }
+      }
+    }
+  }
+
+  bvrLock{
+    stateInit:t="lock"
+
+    transitions{
+
+      scan{
+        event:t="update"
+
+        actions{
+
+          scan{
+          }
+        }
+      }
+
+      detect{
+        event:t="targetInSight"
+
+        actions{
+
+          detectTarget{
+            ignoreOwnWeapon:b=yes
+            rangeMult:r=1.0
+          }
+        }
+      }
+    }
+  }
+
+  acmLockModes{
+    stateInit:t="init"
+
+    transitions{
+
+      init{
+        event:t="fsmActivate"
+        stateTo:t="primary"
+
+        actions{
+
+          doCustomActionTemplate{
+            fsm:t="main"
+            name:t="setPrimaryMode"
+          }
+        }
+      }
+
+      primaryToPrimaryStandby{
+        stateFrom:t="primary"
+        event:t="targetDetected"
+        stateTo:t="primaryStandby"
+      }
+
+      secondaryToSecondaryStandby{
+        stateFrom:t="secondary"
+        event:t="targetDetected"
+        stateTo:t="secondaryStandby"
+      }
+
+      primaryStandbyToPrimary{
+        stateFrom:t="primaryStandby"
+        event:t="targetsOfInterestCleanup"
+        stateTo:t="primary"
+
+        actions{
+
+          doCustomActionTemplate{
+            fsm:t="main"
+            name:t="setPrimaryMode"
+          }
+        }
+      }
+
+      secondaryStandbyToSecondary{
+        stateFrom:t="secondaryStandby"
+        event:t="targetsOfInterestCleanup"
+        stateTo:t="secondary"
+
+        actions{
+
+          doCustomActionTemplate{
+            fsm:t="main"
+            name:t="setSecondaryMode"
+          }
+        }
+      }
+
+      primaryToSecondary{
+        stateFrom:t="primary"
+        command:t="modeSwitch"
+        stateTo:t="secondary"
+
+        actions{
+
+          doCustomActionTemplate{
+            fsm:t="main"
+            name:t="setSecondaryMode"
+          }
+        }
+      }
+
+      secondaryToPrimary{
+        stateFrom:t="secondary"
+        command:t="modeSwitch"
+        stateTo:t="primary"
+
+        actions{
+
+          doCustomActionTemplate{
+            fsm:t="main"
+            name:t="setPrimaryMode"
+          }
+        }
+      }
+    }
+  }
+
+  acmLockModesLocker{
+    stateInit:t="init"
+
+    transitions{
+
+      activate{
+        event:t="fsmActivate"
+        stateTo:t="pulseMti"
+
+        actions{
+
+          setFsmActive{
+            fsm:t="acmLockModes"
+            active:b=yes
+          }
+        }
+      }
+
+      deactivatePulseMti{
+        stateFrom:t="pulseMti"
+        event:t="fsmDeactivate"
+
+        actions{
+
+          setFsmActive{
+            fsm:t="acmLockModes"
+            active:b=no
+          }
+        }
+      }
+
+      checkPulseOnly{
+        stateFrom:t="pulseMti"
+        event:t="update"
+
+        actions{
+
+          checkRalt{
+            operation:t="greater"
+            value:r=6000.0
+          }
+        }
+      }
+
+      pulseMtiToPulseOnly{
+        stateFrom:t="pulseMti"
+        event:t="raltCheckOk"
+        stateTo:t="pulseOnly"
+
+        actions{
+
+          setFsmActive{
+            fsm:t="acmLockModes"
+            active:b=no
+          }
+
+          setTransiver{
+            transiver:t="pulse"
+          }
+
+          setSignal{
+            signal:t="pulseTrack"
+          }
+
+          setModeName{
+            name:t="ACM"
+          }
+        }
+      }
+
+      checkPulseMti{
+        stateFrom:t="pulseOnly"
+        event:t="update"
+
+        actions{
+
+          checkRalt{
+            operation:t="less"
+            value:r=6000.0
+          }
+        }
+      }
+
+      pulseOnlyToPulseMti{
+        stateFrom:t="pulseOnly"
+        event:t="raltCheckOk"
+        stateTo:t="pulseMti"
+
+        actions{
+
+          setFsmActive{
+            fsm:t="acmLockModes"
+            active:b=yes
+          }
+        }
+      }
+    }
+  }
+
+  acmLock{
+    stateInit:t="lock"
+
+    transitions{
+
+      scan{
+        event:t="update"
+
+        actions{
+
+          scan{
+          }
+        }
+      }
+
+      detect{
+        event:t="targetInSight"
+
+        actions{
+
+          detectTarget{
+            ignoreOwnWeapon:b=yes
+            rangeMult:r=1.0
+          }
+        }
+      }
+    }
+  }
+
+  track{
+    stateInit:t="init"
+
+    actionsTemplates{
+
+      setPulseTrack{
+
+        setTransiver{
+          transiver:t="pulse"
+        }
+
+        setSignal{
+          signal:t="pulseTrack"
+        }
+      }
+
+      setMtiTrack{
+
+        setTransiver{
+          transiver:t="mti"
+        }
+
+        setSignal{
+          signal:t="mtiTrack"
+        }
+      }
+
+      track{
+
+        updateActiveTargetOfInterest{
+
+          dirFilter{
+          }
+
+          distFilter{
+          }
+
+          dopplerSpeedFilter{
+          }
+        }
+
+        setCenterAzimuth{
+          source:t="activeTargetOfInterest"
+        }
+
+        setCenterElevation{
+          source:t="activeTargetOfInterest"
+        }
+
+        setDistGatePos{
+          source:t="activeTargetOfInterest"
+          width:r=0.0
+        }
+
+        setRelSpeedGatePos{
+          source:t="activeTargetOfInterest"
+          width:r=0.0
+        }
+      }
+
+      extrapolate{
+
+        extrapolateTargetsOfInterest{
+        }
+
+        clearTargetsOfInterest{
+          timeOut:r=3.0
+          dirRateLim:r=1.0
+        }
+
+        setCenterAzimuth{
+          source:t="activeTargetOfInterest"
+        }
+
+        setCenterElevation{
+          source:t="activeTargetOfInterest"
+        }
+
+        setDistGatePos{
+          source:t="activeTargetOfInterest"
+          width:r=0.0
+        }
+
+        setRelSpeedGatePos{
+          source:t="activeTargetOfInterest"
+          width:r=0.0
+        }
+      }
+    }
+
+    transitions{
+
+      start{
+        event:t="fsmActivate"
+        stateTo:t="pulse"
+
+        actions{
+
+          setPulseTrack{
+          }
+
+          setModeName{
+            name:t="track"
+          }
+        }
+      }
+
+      tryDetectPulse{
+        stateFrom:t="pulseTry"
+        event:t="update"
+
+        actions{
+
+          setPulseTrack{
+          }
+
+          detectTarget{
+            ignoreOwnWeapon:b=yes
+            rangeMult:r=1.0
+          }
+        }
+      }
+
+      mtiOkTryDetectPulse{
+        stateFrom:t="mtiOkPulseTry"
+        event:t="update"
+
+        actions{
+
+          setPulseTrack{
+          }
+
+          detectTarget{
+            ignoreOwnWeapon:b=yes
+            rangeMult:r=1.0
+          }
+
+          setMtiTrack{
+          }
+        }
+      }
+
+      tryDetectMti{
+        stateFrom:t="mtiTry"
+        event:t="update"
+
+        actions{
+
+          setMtiTrack{
+          }
+
+          detectTarget{
+            ignoreOwnWeapon:b=yes
+            rangeMult:r=1.0
+          }
+
+          setPulseTrack{
+          }
+        }
+      }
+
+      detect{
+        stateFrom:t="pulse"
+        stateFrom:t="mti"
+        event:t="update"
+
+        actions{
+
+          detectTarget{
+            ignoreOwnWeapon:b=yes
+            rangeMult:r=1.0
+          }
+        }
+      }
+
+      trackPulse{
+        stateFrom:t="pulse"
+        event:t="targetDetected"
+
+        actions{
+
+          track{
+          }
+        }
+      }
+
+      startTrackPulse{
+        stateFrom:t="pulseTry"
+        stateFrom:t="mtiOkPulseTry"
+        event:t="targetDetected"
+        stateTo:t="pulse"
+
+        actions{
+
+          setPulseTrack{
+          }
+
+          track{
+          }
+
+          setModeName{
+            name:t="track"
+          }
+        }
+      }
+
+      trackMti{
+        stateFrom:t="mti"
+        event:t="targetDetected"
+        stateTo:t="mtiOkPulseTry"
+
+        actions{
+
+          track{
+          }
+        }
+      }
+
+      startTrackMti{
+        stateFrom:t="mtiTry"
+        event:t="targetDetected"
+        stateTo:t="mti"
+
+        actions{
+
+          setMtiTrack{
+          }
+
+          track{
+          }
+
+          setModeName{
+            name:t="MTI track"
+          }
+        }
+      }
+
+      pulseToMti{
+        stateFrom:t="pulse"
+        stateFrom:t="pulseTry"
+        event:t="targetNotDetected"
+        stateTo:t="mtiTry"
+
+        actions{
+
+          extrapolate{
+          }
+        }
+      }
+
+      backToMti{
+        stateFrom:t="mtiOkPulseTry"
+        event:t="targetNotDetected"
+        stateTo:t="mtiTry"
+
+        actions{
+
+          extrapolate{
+          }
+        }
+      }
+
+      mtiToPulse{
+        stateFrom:t="mti"
+        event:t="targetNotDetected"
+        stateTo:t="pulseTry"
+
+        actions{
+
+          extrapolate{
+          }
+        }
+      }
+
+      mtiTryToPulse{
+        stateFrom:t="mtiTry"
+        event:t="targetNotDetected"
+        stateTo:t="pulseTry"
+
+        actions{
+
+          extrapolate{
+          }
+
+          setModeName{
+            name:t="track memory"
+          }
+        }
+      }
+    }
+  }
+
+  pulseTrack{
+    stateInit:t="track"
+
+    transitions{
+
+      activate{
+        event:t="fsmActivate"
+
+        actions{
+
+          setTransiver{
+            transiver:t="pulse"
+          }
+
+          setSignal{
+            signal:t="pulseTrack"
+          }
+
+          setModeName{
+            name:t="track"
+          }
+        }
+      }
+
+      detect{
+        event:t="update"
+
+        actions{
+
+          detectTarget{
+            ignoreOwnWeapon:b=yes
+            rangeMult:r=1.0
+          }
+        }
+      }
+
+      track{
+        event:t="targetDetected"
+
+        actions{
+
+          updateActiveTargetOfInterest{
+
+            dirFilter{
+            }
+
+            distFilter{
+            }
+
+            dopplerSpeedFilter{
+            }
+          }
+
+          setCenterAzimuth{
+            source:t="activeTargetOfInterest"
+          }
+
+          setCenterElevation{
+            source:t="activeTargetOfInterest"
+          }
+
+          setDistGatePos{
+            source:t="activeTargetOfInterest"
+            width:r=0.0
+          }
+
+          setRelSpeedGatePos{
+            source:t="activeTargetOfInterest"
+            width:r=0.0
+          }
+        }
+      }
+
+      extrapolate{
+        event:t="targetNotDetected"
+
+        actions{
+
+          extrapolateTargetsOfInterest{
+          }
+
+          clearTargetsOfInterest{
+            timeOut:r=3.0
+            dirRateLim:r=1.0
+          }
+
+          setCenterAzimuth{
+            source:t="activeTargetOfInterest"
+          }
+
+          setCenterElevation{
+            source:t="activeTargetOfInterest"
+          }
+
+          setDistGatePos{
+            source:t="activeTargetOfInterest"
+            width:r=0.0
+          }
+
+          setRelSpeedGatePos{
+            source:t="activeTargetOfInterest"
+            width:r=0.0
+          }
+        }
+      }
+    }
+  }
+
+  trackModes{
+    stateInit:t="init"
+
+    transitions{
+
+      activate{
+        event:t="fsmActivate"
+        stateTo:t="pulseMti"
+
+        actions{
+
+          setFsmActive{
+            fsm:t="track"
+            active:b=yes
+          }
+        }
+      }
+
+      deactivatePulseMti{
+        stateFrom:t="pulseMti"
+        event:t="fsmDeactivate"
+
+        actions{
+
+          setFsmActive{
+            fsm:t="track"
+            active:b=no
+          }
+        }
+      }
+
+      deactivatePulseOnly{
+        stateFrom:t="pulseOnly"
+        event:t="fsmDeactivate"
+
+        actions{
+
+          setFsmActive{
+            fsm:t="pulseTrack"
+            active:b=no
+          }
+        }
+      }
+
+      checkPulseOnly{
+        stateFrom:t="pulseMti"
+        event:t="update"
+
+        actions{
+
+          checkRalt{
+            operation:t="greater"
+            value:r=6000.0
+          }
+        }
+      }
+
+      pulseMtiToPulseOnly{
+        stateFrom:t="pulseMti"
+        event:t="raltCheckOk"
+        stateTo:t="pulseOnly"
+
+        actions{
+
+          setFsmActive{
+            fsm:t="track"
+            active:b=no
+          }
+
+          setFsmActive{
+            fsm:t="pulseTrack"
+            active:b=yes
+          }
+        }
+      }
+
+      checkPulseMti{
+        stateFrom:t="pulseOnly"
+        event:t="update"
+
+        actions{
+
+          checkRalt{
+            operation:t="less"
+            value:r=6000.0
+          }
+        }
+      }
+
+      pulseOnlyToPulseMti{
+        stateFrom:t="pulseOnly"
+        event:t="raltCheckOk"
+        stateTo:t="pulseMti"
+
+        actions{
+
+          setFsmActive{
+            fsm:t="pulseTrack"
+            active:b=no
+          }
+
+          setFsmActive{
+            fsm:t="track"
+            active:b=yes
+          }
+        }
+      }
+    }
+  }
+}

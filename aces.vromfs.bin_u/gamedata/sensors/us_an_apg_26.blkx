@@ -1,0 +1,405 @@
+type:t="radar"
+name:t="AN/APG-26"
+
+transivers{
+
+  track{
+    sideLobesAttenuation:r=-20.0
+    pulsePower:r=50000.0
+    pulseWidth:r=0.0
+    prf:r=2450.0
+    band:i=8
+    rcs:r=3.0
+    range:r=10000.0
+    rangeMax:r=4000.0
+    multipathEffect:p4=0.0, 1.0, 60.0, 0.0
+
+    antenna{
+      angleHalfSens:r=4.7
+      sideLobesSensitivity:r=-26.0
+    }
+  }
+}
+
+scanPatterns{
+
+  lock{
+    type:t="cone"
+    azimuthLimits:p2=-60.0, 60.0
+    elevationLimits:p2=-60.0, 60.0
+    period:r=0.25
+    width:r=4.7
+    indicate:b=yes
+  }
+
+  track{
+    type:t="no"
+    azimuthLimits:p2=-60.0, 60.0
+    elevationLimits:p2=-60.0, 60.0
+  }
+}
+
+signals{
+
+  track{
+    groundClutter:b=yes
+    aircraftAsTarget:b=yes
+    angularAccuracy:r=0.08
+    distanceAccuracy:r=22.0
+    track:b=yes
+
+    distance{
+      presents:b=yes
+      minValue:r=150.0
+      maxValue:r=4000.0
+    }
+  }
+}
+
+fsms{
+
+  main{
+    stateInit:t="init"
+
+    actionsTemplates{
+
+      init{
+
+        setEnabled{
+          value:b=no
+        }
+
+        setTransiver{
+          transiver:t="track"
+        }
+
+        setSignal{
+          signal:t="track"
+        }
+      }
+
+      setStandbyMode{
+
+        setModeName{
+          name:t="standby"
+        }
+
+        setEnabled{
+          value:b=no
+        }
+
+        setScanPattern{
+          scanPattern:t="lock"
+        }
+
+        setCenterAzimuth{
+          source:t="constant"
+          value:r=0.0
+        }
+
+        clearTargetsOfInterest{
+        }
+      }
+
+      setLockMode{
+
+        setModeName{
+          name:t="acquisition"
+        }
+
+        setEnabled{
+          value:b=yes
+        }
+
+        setScanPattern{
+          scanPattern:t="lock"
+        }
+
+        resetScanPhase{
+        }
+
+        setCenterAzimuth{
+          source:t="constant"
+          value:r=0.0
+        }
+
+        clearTargetsOfInterest{
+        }
+
+        setFsmActive{
+          fsm:t="lock"
+          active:b=yes
+        }
+
+        setCenterElevation{
+          source:t="constant"
+          value:r=0.0
+        }
+
+        setDistGatePos{
+          source:t="constRange"
+          pos:r=2000.0
+          width:r=4000.0
+        }
+      }
+
+      setTrackMode{
+
+        setModeName{
+          name:t="track"
+        }
+
+        setEnabled{
+          value:b=yes
+        }
+
+        setWeaponDetectionAllowance{
+          source:t="const"
+          value:b=yes
+        }
+
+        setDesignatedTarget{
+          set:b=no
+        }
+
+        setScanPattern{
+          scanPattern:t="track"
+        }
+
+        clearTargetsOfInterest{
+        }
+
+        addTargetOfInterest{
+        }
+
+        setLastTargetOfInterestActive{
+        }
+
+        updateActiveTargetOfInterest{
+        }
+
+        setCenterAzimuth{
+          source:t="activeTargetOfInterest"
+        }
+
+        setCenterElevation{
+          source:t="activeTargetOfInterest"
+        }
+
+        setDistGatePos{
+          source:t="activeTargetOfInterest"
+          width:r=0.0
+        }
+
+        setRelSpeedGatePos{
+          source:t="activeTargetOfInterest"
+          width:r=0.0
+        }
+
+        setFsmActive{
+          fsm:t="track"
+          active:b=yes
+        }
+      }
+    }
+
+    transitions{
+
+      switchOn{
+        stateFrom:t="init"
+        event:t="init"
+        stateTo:t="standby"
+
+        actions{
+
+          init{
+          }
+
+          setStandbyMode{
+          }
+        }
+      }
+
+      lock{
+        stateFrom:t="standby"
+        command:t="selectTarget"
+        command:t="acmSwitch"
+        stateTo:t="lock"
+
+        actions{
+
+          setLockMode{
+          }
+        }
+      }
+
+      track{
+        stateFrom:t="lock"
+        event:t="targetDetected"
+        stateTo:t="track"
+
+        actions{
+
+          setFsmActive{
+            fsm:t="lock"
+            active:b=no
+          }
+
+          setTrackMode{
+          }
+        }
+      }
+
+      track{
+        stateFrom:t="lock"
+        stateFrom:t="track"
+        command:t="selectTarget"
+        command:t="acmSwitch"
+        event:t="disable"
+        stateTo:t="standby"
+
+        actions{
+
+          setFsmActive{
+            fsm:t="lock"
+            active:b=no
+          }
+
+          setFsmActive{
+            fsm:t="track"
+            active:b=no
+          }
+
+          setStandbyMode{
+          }
+        }
+      }
+
+      finishedTrack{
+        stateFrom:t="track"
+        event:t="targetsOfInterestCleanup"
+        stateTo:t="lock"
+
+        actions{
+
+          setFsmActive{
+            fsm:t="track"
+            active:b=no
+          }
+
+          setLockMode{
+          }
+        }
+      }
+    }
+  }
+
+  lock{
+    stateInit:t="lock"
+
+    transitions{
+
+      scan{
+        event:t="update"
+
+        actions{
+
+          scan{
+          }
+        }
+      }
+
+      detect{
+        event:t="targetInSight"
+
+        actions{
+
+          detectTarget{
+            ignoreOwnWeapon:b=yes
+            rangeMult:r=1.0
+          }
+        }
+      }
+    }
+  }
+
+  track{
+    stateInit:t="track"
+
+    transitions{
+
+      detect{
+        event:t="update"
+
+        actions{
+
+          detectTarget{
+            ignoreOwnWeapon:b=yes
+            rangeMult:r=1.0
+          }
+        }
+      }
+
+      track{
+        event:t="targetDetected"
+
+        actions{
+
+          updateActiveTargetOfInterest{
+          }
+
+          setCenterAzimuth{
+            source:t="activeTargetOfInterest"
+          }
+
+          setCenterElevation{
+            source:t="activeTargetOfInterest"
+          }
+
+          setDistGatePos{
+            source:t="activeTargetOfInterest"
+            width:r=0.0
+          }
+
+          setRelSpeedGatePos{
+            source:t="activeTargetOfInterest"
+            width:r=0.0
+          }
+        }
+      }
+
+      extrapolate{
+        event:t="targetNotDetected"
+
+        actions{
+
+          extrapolateTargetsOfInterest{
+          }
+
+          clearTargetsOfInterest{
+            timeOut:r=1.0
+            dirRateLim:r=1.0
+          }
+
+          setCenterAzimuth{
+            source:t="activeTargetOfInterest"
+          }
+
+          setCenterElevation{
+            source:t="activeTargetOfInterest"
+          }
+
+          setDistGatePos{
+            source:t="activeTargetOfInterest"
+            width:r=0.0
+          }
+
+          setRelSpeedGatePos{
+            source:t="activeTargetOfInterest"
+            width:r=0.0
+          }
+        }
+      }
+    }
+  }
+}
