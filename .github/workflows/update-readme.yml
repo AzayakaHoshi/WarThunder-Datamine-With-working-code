@@ -13,11 +13,12 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
       with:
-        fetch-depth: 0  # Fetch full history to ensure a clean pull
+        fetch-depth: 0  # Ensure full history for proper pull
 
     - name: Fetch latest changes from remote
       run: |
         git fetch origin main
+        git checkout main
 
     - name: Get new version from version file
       id: get_new_version
@@ -54,9 +55,12 @@ jobs:
           echo "<sub>*Last version: $LAST_VERSION*</sub>" >> README.md
         fi
 
-        # Logging to ensure file changes
-        echo "README updated:"
+        # Check if README has actually changed
+        echo "README after change:"
         cat README.md
+
+        # Check for staged changes
+        git status
 
     - name: Pull latest changes from remote
       run: |
@@ -71,5 +75,6 @@ jobs:
     - name: Commit and push changes
       run: |
         git add README.md version_store.txt
+        git status  # Ensure changes are staged
         git commit -m "Update README with new version and store current version" || true
         git push origin main --force
