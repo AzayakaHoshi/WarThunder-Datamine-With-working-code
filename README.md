@@ -1,3 +1,3 @@
 # War Thunder Datamine
 
-Current Version: testw22wsw
+Current Version: {{VERSION}}
