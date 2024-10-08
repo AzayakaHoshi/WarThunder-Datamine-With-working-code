@@ -20,16 +20,20 @@ jobs:
         echo "New Version: $NEW_VERSION"
         echo "::set-output name=new_version::$NEW_VERSION"
 
-    - name: Read current version from README
-      id: get_current_version
+    - name: Create or read current version from version_store.txt
+      id: get_last_version
       run: |
-        CURRENT_VERSION=$(grep -oP 'Current Version: \K[0-9.]+' README.md || echo "Unknown")
-        echo "Current Version: $CURRENT_VERSION"
-        echo "::set-output name=current_version::$CURRENT_VERSION"
+        if [ ! -f version_store.txt ]; then
+          echo "No version store file found. Creating one."
+          echo "Unknown" > version_store.txt
+        fi
+        LAST_VERSION=$(cat version_store.txt)
+        echo "Last Version: $LAST_VERSION"
+        echo "::set-output name=last_version::$LAST_VERSION"
 
     - name: Update README with new and last version
       run: |
-        echo "Updating README with New Version: ${{ steps.get_new_version.outputs.new_version }} and Last Version: ${{ steps.get_current_version.outputs.current_version }}"
+        echo "Updating README with New Version: ${{ steps.get_new_version.outputs.new_version }} and Last Version: ${{ steps.get_last_version.outputs.last_version }}"
         
         # Replace current version with new version
         awk '/Current Version:/ {print "Current Version: '"${{ steps.get_new_version.outputs.new_version }}"'"; next}1' README.md > temp.md
@@ -37,17 +41,20 @@ jobs:
 
         # Add or update last version
         if grep -q "Last Version" README.md; then
-          awk '/Last Version:/ {print "Last Version: '"${{ steps.get_current_version.outputs.current_version }}"'"; next}1' README.md > temp.md
+          awk '/Last Version:/ {print "Last Version: '"${{ steps.get_last_version.outputs.last_version }}"'"; next}1' README.md > temp.md
         else
-          echo "Last Version: ${{ steps.get_current_version.outputs.current_version }}" >> README.md
+          echo "Last Version: ${{ steps.get_last_version.outputs.last_version }}" >> README.md
         fi
         mv temp.md README.md
+
+    - name: Update version_store.txt with new version
+      run: |
+        echo "${{ steps.get_new_version.outputs.new_version }}" > version_store.txt
 
     - name: Commit changes
       run: |
         git config --global user.name 'github-actions[bot]'
         git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-        git add README.md
-        git commit -m "Update README with new version"
+        git add README.md version_store.txt
+        git commit -m "Update README with new version and store current version"
         git push
-
