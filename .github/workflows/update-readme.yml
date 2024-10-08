@@ -20,24 +20,13 @@ jobs:
           echo "Version: $VERSION"
           echo "::set-output name=version::$VERSION"
 
-      - name: Check if README.md needs updating
-        id: check_readme
-        run: |
-          if grep -q "$VERSION" README.md; then
-            echo "README is already up to date."
-            echo "::set-output name=needs_update::false"
-          else
-            echo "README needs to be updated."
-            echo "::set-output name=needs_update::true"
-          fi
-
       - name: Update README.md with version
-        if: steps.check_readme.outputs.needs_update == 'true'
         run: |
+          VERSION=$(cat aces.vromfs.bin_u/version)
+          # Replace placeholder {{VERSION}} with the version from the file
           sed -i "s/{{VERSION}}/$VERSION/g" README.md
 
       - name: Commit changes
-        if: steps.check_readme.outputs.needs_update == 'true'
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
