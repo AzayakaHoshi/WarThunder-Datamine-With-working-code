@@ -46,14 +46,18 @@ jobs:
           echo "<sub>*Last version: $LAST_VERSION*</sub>" >> README.md
         fi
 
+    - name: Pull latest changes from remote
+      run: |
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+        git pull --rebase
+
     - name: Update version_store.txt with new version
       run: |
         echo "${{ steps.get_new_version.outputs.new_version }}" > version_store.txt
 
     - name: Commit changes
       run: |
-        git config --global user.name 'github-actions[bot]'
-        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
         git add README.md version_store.txt
         git commit -m "Update README with new version and store current version"
         git push
