@@ -17,7 +17,9 @@ jobs:
       id: get_version
       run: |
         NEW_VERSION=$(cat aces.vromfs.bin_u/version)
-        echo "::set-output name=new_version::$NEW_VERSION"
+        # Escape special characters for sed
+        NEW_VERSION_ESCAPED=$(echo "$NEW_VERSION" | sed -e 's/[\/&]/\\&/g')
+        echo "::set-output name=new_version::$NEW_VERSION_ESCAPED"
 
     - name: Extract last version from README
       id: get_last_version
