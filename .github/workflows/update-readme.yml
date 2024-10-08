@@ -27,12 +27,17 @@ jobs:
 
     - name: Update README with new and last version
       run: |
-        sed -i "s/Current Version:.*/Current Version: ${{ steps.get_version.outputs.new_version }}/" README.md
+        # Write new README with updated version
+        awk '/Current Version:/ {print "Current Version: '"${{ steps.get_version.outputs.new_version }}"'"; next}1' README.md > temp.md
+        mv temp.md README.md
+        
+        # Append last version
         if grep -q "Last Version" README.md; then
-          sed -i "s/Last Version:.*/Last Version: ${{ steps.get_last_version.outputs.last_version }}/" README.md
+          awk '/Last Version:/ {print "Last Version: '"${{ steps.get_last_version.outputs.last_version }}"'"; next}1' README.md > temp.md
         else
           echo "Last Version: ${{ steps.get_last_version.outputs.last_version }}" >> README.md
         fi
+        mv temp.md README.md
 
     - name: Commit changes
       run: |
