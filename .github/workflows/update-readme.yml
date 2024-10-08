@@ -2,78 +2,36 @@ name: Update README with Version
 
 on:
   push:
-    paths:
-      - "aces.vromfs.bin_u/version"
+    branches:
+      - main  # Adjust this based on your default branch
 
 jobs:
   update-readme:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-      with:
-        fetch-depth: 0  # Ensure full history for proper pull
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    - name: Fetch latest changes from remote
-      run: |
-        git fetch origin main
-        git checkout main
+      - name: Read version from aces.vromfs.bin_u/version
+        id: get_version
+        run: |
+          VERSION=$(cat aces.vromfs.bin_u/version)
+          echo "Version: $VERSION"
+          echo "::set-output name=version::$VERSION"
 
-    - name: Stash changes if any
-      run: |
-        git stash
+      - name: Update README.md with version
+        run: |
+          VERSION=$(cat aces.vromfs.bin_u/version)
+          # Replace placeholder {{VERSION}} with the version from the file
+          sed -i "s/{{VERSION}}/$VERSION/g" README.md
 
-    - name: Get new version from version file
-      id: get_new_version
-      run: |
-        NEW_VERSION=$(cat aces.vromfs.bin_u/version)
-        echo "New Version: $NEW_VERSION"
-        echo "::set-output name=new_version::$NEW_VERSION"
-
-    - name: Create or read version_store.txt
-      id: get_last_version
-      run: |
-        if [ ! -f version_store.txt ]; then
-          echo "Unknown" > version_store.txt
-        fi
-        LAST_VERSION=$(cat version_store.txt)
-        echo "Last Version: $LAST_VERSION"
-        echo "::set-output name=last_version::$LAST_VERSION"
-
-    - name: Update README with versions
-      run: |
-        NEW_VERSION=${{ steps.get_new_version.outputs.new_version }}
-        LAST_VERSION=${{ steps.get_last_version.outputs.last_version }}
-
-        echo "Updating README with New Version: $NEW_VERSION and Last Version: $LAST_VERSION"
-        
-        # Update Current Version
-        sed -i "s/Current Version:.*/Current Version: $NEW_VERSION<br>/" README.md
-
-        # Update Last Version or append it
-        if grep -q "Last version:" README.md; then
-          sed -i "s|<sub>.*Last version:.*</sub>|<sub>*Last version: $LAST_VERSION*</sub>|" README.md
-        else
-          echo "<sub>*Last version: $LAST_VERSION*</sub>" >> README.md
-        fi
-
-        git add README.md version_store.txt
-
-        echo "README after change:"
-        cat README.md
-
-    - name: Pull latest changes from remote
-      run: |
-        git config --global user.name 'github-actions[bot]'
-        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-        git pull origin main --rebase || git reset --hard origin/main
-
-    - name: Apply stashed changes
-      run: |
-        git stash pop || true
-
-    - name: Commit and push changes
-      run: |
-        git commit -m "Update README with new version and store current version" || true
-        git push origin main --force
+      - name: Commit changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          git commit -m "Update README.md with version $VERSION"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
