@@ -12,6 +12,8 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
+      with:
+        fetch-depth: 0  # Ensure the full history is fetched
 
     - name: Get new version from version file
       id: get_new_version
@@ -35,10 +37,10 @@ jobs:
         NEW_VERSION=${{ steps.get_new_version.outputs.new_version }}
         LAST_VERSION=${{ steps.get_last_version.outputs.last_version }}
 
-        # Update Current Version in README.md, leave the rest of the file unchanged
+        # Update Current Version in README.md
         sed -i "s/Current Version:.*/Current Version: $NEW_VERSION<br>/" README.md
 
-        # Add or update Last Version as subtext in README.md, leave the rest unchanged
+        # Add or update Last Version as subtext
         if grep -q "Last version:" README.md; then
           sed -i "s|<sub>.*Last version:.*</sub>|<sub>*Last version: $LAST_VERSION*</sub>|" README.md
         else
@@ -46,11 +48,11 @@ jobs:
           echo "<sub>*Last version: $LAST_VERSION*</sub>" >> README.md
         fi
 
-    - name: Pull latest changes from remote
+    - name: Pull latest changes from remote with rebase
       run: |
         git config --global user.name 'github-actions[bot]'
         git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-        git pull --rebase
+        git pull --rebase origin main || true  # Force rebase, allow failures
 
     - name: Update version_store.txt with new version
       run: |
@@ -59,5 +61,5 @@ jobs:
     - name: Commit changes
       run: |
         git add README.md version_store.txt
-        git commit -m "Update README with new version and store current version"
-        git push
+        git commit -m "Update README with new version and store current version" || true  # Skip commit if nothing to commit
+        git push || true  # Allow failures if push fails due to conflicts
