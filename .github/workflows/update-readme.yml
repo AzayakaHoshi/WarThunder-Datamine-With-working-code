@@ -20,17 +20,13 @@ jobs:
           echo "Version: $VERSION"
           echo "::set-output name=version::$VERSION"
 
-      - name: Extract current version from README.md
-        id: readme_version
-        run: |
-          # Using grep with a more flexible pattern to capture the version in README.md
-          CURRENT_VERSION=$(grep -oP 'Version:\s*\K\d+\.\d+\.\d+' README.md || echo "none")
-          echo "Current version in README.md: $CURRENT_VERSION"
-          echo "::set-output name=current_version::$CURRENT_VERSION"
-
       - name: Check if README.md needs updating
         id: check_readme
         run: |
+          CURRENT_VERSION_LINE=$(grep -E '^Current Version: ' README.md)
+          CURRENT_VERSION=$(echo "$CURRENT_VERSION_LINE" | sed 's/Current Version: //')
+          echo "Current version in README: $CURRENT_VERSION"
+          
           if [ "$CURRENT_VERSION" = "$VERSION" ]; then
             echo "README is already up to date."
             echo "::set-output name=needs_update::false"
@@ -39,16 +35,11 @@ jobs:
             echo "::set-output name=needs_update::true"
           fi
 
-      - name: Debug output (for troubleshooting)
-        run: |
-          echo "Extracted current version: ${{ steps.readme_version.outputs.current_version }}"
-          echo "New version from version file: ${{ steps.get_version.outputs.version }}"
-
-      - name: Update README.md with version
+      - name: Update README.md with new version
         if: steps.check_readme.outputs.needs_update == 'true'
         run: |
-          # Replace the current version with the new version in README.md
-          sed -i "s/Version: $CURRENT_VERSION/Version: $VERSION/g" README.md
+          # Replace the version number after 'Current Version:'
+          sed -i "s/^Current Version: .*/Current Version: $VERSION/" README.md
 
       - name: Commit changes
         if: steps.check_readme.outputs.needs_update == 'true'
