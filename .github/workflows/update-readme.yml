@@ -8,24 +8,33 @@ on:
 jobs:
   update-readme:
     runs-on: ubuntu-latest
+
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Get version from version file
+    - name: Get current version from version file
       id: get_version
       run: |
-        VERSION=$(cat aces.vromfs.bin_u/version)
-        echo "::set-output name=version::$VERSION"
+        NEW_VERSION=$(cat aces.vromfs.bin_u/version)
+        echo "::set-output name=new_version::$NEW_VERSION"
 
-    - name: Update README
+    - name: Extract last version from README
+      id: get_last_version
       run: |
-        sed -i 's/Current Version:.*/Current Version: '"${{ steps.get_version.outputs.version }}"'/' README.md
+        LAST_VERSION=$(grep -oP 'Last Version: \K[0-9.]+' README.md || echo "N/A")
+        echo "::set-output name=last_version::$LAST_VERSION"
+
+    - name: Update README with new and last version
+      run: |
+        sed -i 's/Current Version:.*/Current Version: '"${{ steps.get_version.outputs.new_version }}"'/' README.md
+        sed -i '/Last Version:/d' README.md
+        echo "Last Version: ${{ steps.get_last_version.outputs.last_version }}" >> README.md
 
     - name: Commit changes
       run: |
         git config --global user.name 'github-actions[bot]'
         git config --global user.email 'github-actions[bot]@users.noreply.github.com'
         git add README.md
-        git commit -m "Update README with version"
+        git commit -m "Update README with new version"
         git push
