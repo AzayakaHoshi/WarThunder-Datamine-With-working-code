@@ -22,14 +22,17 @@ jobs:
     - name: Extract last version from README
       id: get_last_version
       run: |
-        LAST_VERSION=$(grep -oP 'Last Version: \K[0-9.]+' README.md || echo "N/A")
+        LAST_VERSION=$(grep -oP 'Current Version: \K[0-9.]+' README.md || echo "N/A")
         echo "::set-output name=last_version::$LAST_VERSION"
 
     - name: Update README with new and last version
       run: |
         sed -i 's/Current Version:.*/Current Version: '"${{ steps.get_version.outputs.new_version }}"'/' README.md
-        sed -i '/Last Version:/d' README.md
-        echo "Last Version: ${{ steps.get_last_version.outputs.last_version }}" >> README.md
+        if grep -q "Last Version" README.md; then
+          sed -i 's/Last Version:.*/Last Version: '"${{ steps.get_last_version.outputs.last_version }}"'/' README.md
+        else
+          echo "Last Version: ${{ steps.get_last_version.outputs.last_version }}" >> README.md
+        fi
 
     - name: Commit changes
       run: |
