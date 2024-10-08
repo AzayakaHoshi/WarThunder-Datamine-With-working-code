@@ -1,4 +1,4 @@
 # War Thunder Datamine
 
-Current Version: test5<br>
-<sub>*Last version: test2*</sub>
+Current Version: test6<br>
+<sub>*Last version: test5*</sub>
