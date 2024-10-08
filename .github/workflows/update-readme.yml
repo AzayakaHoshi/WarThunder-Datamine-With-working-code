@@ -23,23 +23,19 @@ jobs:
       - name: Check if README.md needs updating
         id: check_readme
         run: |
-          CURRENT_VERSION_LINE=$(grep -E '^Current Version: ' README.md)
-          CURRENT_VERSION=$(echo "$CURRENT_VERSION_LINE" | sed 's/Current Version: //')
-          echo "Current version in README: $CURRENT_VERSION"
-          
+          CURRENT_VERSION=$(grep -Po '(?<=Current Version: )[0-9.]+' README.md)
           if [ "$CURRENT_VERSION" = "$VERSION" ]; then
-            echo "README is already up to date."
+            echo "README is already up to date with version $VERSION."
             echo "::set-output name=needs_update::false"
           else
-            echo "README needs to be updated."
+            echo "README needs to be updated. Current version is $CURRENT_VERSION, new version is $VERSION."
             echo "::set-output name=needs_update::true"
           fi
 
       - name: Update README.md with new version
         if: steps.check_readme.outputs.needs_update == 'true'
         run: |
-          # Replace the version number after 'Current Version:'
-          sed -i "s/^Current Version: .*/Current Version: $VERSION/" README.md
+          sed -i "s/Current Version: [0-9.]*/Current Version: $VERSION/" README.md
 
       - name: Commit changes
         if: steps.check_readme.outputs.needs_update == 'true'
