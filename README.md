@@ -1,4 +1,4 @@
 # War Thunder Datamine
 
-Current Version: test1
-Last Version: N/A
+Current Version: test3
+Last Version: Unknown
