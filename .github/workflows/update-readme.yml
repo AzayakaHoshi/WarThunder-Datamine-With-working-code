@@ -13,9 +13,9 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
       with:
-        fetch-depth: 0  # Fetch full history for proper pull
+        fetch-depth: 0  # Fetch full history to ensure a clean pull
 
-    - name: Fetch latest changes
+    - name: Fetch latest changes from remote
       run: |
         git fetch origin main
 
@@ -23,6 +23,7 @@ jobs:
       id: get_new_version
       run: |
         NEW_VERSION=$(cat aces.vromfs.bin_u/version)
+        echo "New Version: $NEW_VERSION"
         echo "::set-output name=new_version::$NEW_VERSION"
 
     - name: Create or read version_store.txt
@@ -32,6 +33,7 @@ jobs:
           echo "Unknown" > version_store.txt
         fi
         LAST_VERSION=$(cat version_store.txt)
+        echo "Last Version: $LAST_VERSION"
         echo "::set-output name=last_version::$LAST_VERSION"
 
     - name: Update README with versions
@@ -39,6 +41,9 @@ jobs:
         NEW_VERSION=${{ steps.get_new_version.outputs.new_version }}
         LAST_VERSION=${{ steps.get_last_version.outputs.last_version }}
 
+        # Logging
+        echo "Updating README with New Version: $NEW_VERSION and Last Version: $LAST_VERSION"
+        
         # Update Current Version
         sed -i "s/Current Version:.*/Current Version: $NEW_VERSION<br>/" README.md
 
@@ -48,6 +53,10 @@ jobs:
         else
           echo "<sub>*Last version: $LAST_VERSION*</sub>" >> README.md
         fi
+
+        # Logging to ensure file changes
+        echo "README updated:"
+        cat README.md
 
     - name: Pull latest changes from remote
       run: |
