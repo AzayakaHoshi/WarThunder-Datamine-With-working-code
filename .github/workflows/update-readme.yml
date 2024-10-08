@@ -12,47 +12,55 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
+      with:
+        fetch-depth: 0  # Fetch full history for proper pull
+
+    - name: Fetch latest changes
+      run: |
+        git fetch origin main
 
     - name: Get new version from version file
       id: get_new_version
       run: |
         NEW_VERSION=$(cat aces.vromfs.bin_u/version)
-        echo "New Version: $NEW_VERSION"
         echo "::set-output name=new_version::$NEW_VERSION"
 
-    - name: Create or read current version from version_store.txt
+    - name: Create or read version_store.txt
       id: get_last_version
       run: |
         if [ ! -f version_store.txt ]; then
           echo "Unknown" > version_store.txt
         fi
         LAST_VERSION=$(cat version_store.txt)
-        echo "Last Version: $LAST_VERSION"
         echo "::set-output name=last_version::$LAST_VERSION"
 
-    - name: Update README with new and last version
+    - name: Update README with versions
       run: |
         NEW_VERSION=${{ steps.get_new_version.outputs.new_version }}
         LAST_VERSION=${{ steps.get_last_version.outputs.last_version }}
 
-        # Update Current Version in README.md
+        # Update Current Version
         sed -i "s/Current Version:.*/Current Version: $NEW_VERSION<br>/" README.md
 
-        # Add or update Last Version
+        # Update Last Version or append it
         if grep -q "Last version:" README.md; then
-          sed -i "s|<sub>.*Last version:.*</sub>|<sub>*Last version: $LAST_VERSION*</sub><br>|" README.md
+          sed -i "s|<sub>.*Last version:.*</sub>|<sub>*Last version: $LAST_VERSION*</sub>|" README.md
         else
-          echo "<sub>*Last version: $LAST_VERSION*</sub><br>" >> README.md
+          echo "<sub>*Last version: $LAST_VERSION*</sub>" >> README.md
         fi
+
+    - name: Pull latest changes from remote
+      run: |
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+        git pull origin main --rebase || git reset --hard origin/main
 
     - name: Update version_store.txt with new version
       run: |
         echo "${{ steps.get_new_version.outputs.new_version }}" > version_store.txt
 
-    - name: Commit changes
+    - name: Commit and push changes
       run: |
-        git config --global user.name 'github-actions[bot]'
-        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
         git add README.md version_store.txt
-        git commit -m "Update README with new version and store current version"
-        git push
+        git commit -m "Update README with new version and store current version" || true
+        git push origin main --force
