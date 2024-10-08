@@ -13,11 +13,6 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Setup
-      run: |
-        git config --global user.name 'github-actions[bot]'
-        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-        git pull
 
     - name: Get new version from version file
       id: get_new_version
@@ -57,6 +52,9 @@ jobs:
 
     - name: Commit changes
       run: |
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+        git pull
         git add README.md version_store.txt
         git commit -m "Update README with new version and store current version"
         git push
