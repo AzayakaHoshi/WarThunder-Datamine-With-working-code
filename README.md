@@ -1,4 +1,4 @@
 # War Thunder Datamine
 
-Current Version: test1 \n
-*Last Version:* test5
+Current Version: test2
+<sub>*Last version: test1*</sub>
