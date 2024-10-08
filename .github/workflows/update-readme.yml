@@ -20,6 +20,10 @@ jobs:
         git fetch origin main
         git checkout main
 
+    - name: Stash changes if any
+      run: |
+        git stash
+
     - name: Get new version from version file
       id: get_new_version
       run: |
@@ -54,21 +58,20 @@ jobs:
           echo "<sub>*Last version: $LAST_VERSION*</sub>" >> README.md
         fi
 
-        # Check if README has actually changed
+        git add README.md version_store.txt
+
         echo "README after change:"
         cat README.md
-
-        # Force add the file if necessary
-        git add -A README.md version_store.txt
-
-        # Check for staged changes
-        git status
 
     - name: Pull latest changes from remote
       run: |
         git config --global user.name 'github-actions[bot]'
         git config --global user.email 'github-actions[bot]@users.noreply.github.com'
         git pull origin main --rebase || git reset --hard origin/main
+
+    - name: Apply stashed changes
+      run: |
+        git stash pop || true
 
     - name: Commit and push changes
       run: |
