@@ -39,11 +39,12 @@ jobs:
         awk '/Current Version:/ {print "Current Version: '"${{ steps.get_new_version.outputs.new_version }}"'"; next}1' README.md > temp.md
         mv temp.md README.md
 
-        # Add or update last version
+        # Add or update last version as a subtext
         if grep -q "Last Version" README.md; then
-          awk '/Last Version:/ {print "Last Version: '"${{ steps.get_last_version.outputs.last_version }}"'"; next}1' README.md > temp.md
+          awk '/Last Version:/ {print "*Last Version:* '"${{ steps.get_last_version.outputs.last_version }}"'"; next}1' README.md > temp.md
         else
-          echo "Last Version: ${{ steps.get_last_version.outputs.last_version }}" >> README.md
+          echo "" >> README.md
+          echo "*Last Version:* ${{ steps.get_last_version.outputs.last_version }}" >> README.md
         fi
         mv temp.md README.md
 
