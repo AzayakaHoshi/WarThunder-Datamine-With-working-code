@@ -17,9 +17,7 @@ jobs:
       id: get_version
       run: |
         NEW_VERSION=$(cat aces.vromfs.bin_u/version)
-        # Escape special characters for sed
-        NEW_VERSION_ESCAPED=$(echo "$NEW_VERSION" | sed -e 's/[\/&]/\\&/g')
-        echo "::set-output name=new_version::$NEW_VERSION_ESCAPED"
+        echo "::set-output name=new_version::$NEW_VERSION"
 
     - name: Extract last version from README
       id: get_last_version
@@ -29,9 +27,9 @@ jobs:
 
     - name: Update README with new and last version
       run: |
-        sed -i 's/Current Version:.*/Current Version: '"${{ steps.get_version.outputs.new_version }}"'/' README.md
+        sed -i "s/Current Version:.*/Current Version: ${{ steps.get_version.outputs.new_version }}/" README.md
         if grep -q "Last Version" README.md; then
-          sed -i 's/Last Version:.*/Last Version: '"${{ steps.get_last_version.outputs.last_version }}"'/' README.md
+          sed -i "s/Last Version:.*/Last Version: ${{ steps.get_last_version.outputs.last_version }}/" README.md
         else
           echo "Last Version: ${{ steps.get_last_version.outputs.last_version }}" >> README.md
         fi
