@@ -1,3 +1,3 @@
 # War Thunder Datamine
 
-Current Version: test1
+Current Version: 2.39.0.28
