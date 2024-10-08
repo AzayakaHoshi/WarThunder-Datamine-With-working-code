@@ -42,7 +42,6 @@ jobs:
         NEW_VERSION=${{ steps.get_new_version.outputs.new_version }}
         LAST_VERSION=${{ steps.get_last_version.outputs.last_version }}
 
-        # Logging
         echo "Updating README with New Version: $NEW_VERSION and Last Version: $LAST_VERSION"
         
         # Update Current Version
@@ -59,6 +58,9 @@ jobs:
         echo "README after change:"
         cat README.md
 
+        # Force add the file if necessary
+        git add -A README.md version_store.txt
+
         # Check for staged changes
         git status
 
@@ -68,13 +70,7 @@ jobs:
         git config --global user.email 'github-actions[bot]@users.noreply.github.com'
         git pull origin main --rebase || git reset --hard origin/main
 
-    - name: Update version_store.txt with new version
-      run: |
-        echo "${{ steps.get_new_version.outputs.new_version }}" > version_store.txt
-
     - name: Commit and push changes
       run: |
-        git add README.md version_store.txt
-        git status  # Ensure changes are staged
         git commit -m "Update README with new version and store current version" || true
         git push origin main --force
