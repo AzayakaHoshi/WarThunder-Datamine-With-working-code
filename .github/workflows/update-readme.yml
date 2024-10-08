@@ -13,8 +13,8 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Get current version from version file
-      id: get_version
+    - name: Get new version from version file
+      id: get_new_version
       run: |
         NEW_VERSION=$(cat aces.vromfs.bin_u/version)
         echo "::set-output name=new_version::$NEW_VERSION"
@@ -22,16 +22,19 @@ jobs:
     - name: Read current version from README
       id: get_current_version
       run: |
-        CURRENT_VERSION=$(grep -oP 'Current Version: \K[0-9.]+' README.md || echo "N/A")
+        CURRENT_VERSION=$(grep -oP 'Current Version: \K[0-9.]+' README.md)
+        if [ -z "$CURRENT_VERSION" ]; then
+          CURRENT_VERSION="Unknown"
+        fi
         echo "::set-output name=current_version::$CURRENT_VERSION"
 
     - name: Update README with new and last version
       run: |
-        # Set the current version as the last version
-        awk '/Current Version:/ {print "Current Version: '"${{ steps.get_version.outputs.new_version }}"'"; next}1' README.md > temp.md
+        # Replace current version with new version
+        awk '/Current Version:/ {print "Current Version: '"${{ steps.get_new_version.outputs.new_version }}"'"; next}1' README.md > temp.md
         mv temp.md README.md
 
-        # Add or update the last version
+        # Add or update last version
         if grep -q "Last Version" README.md; then
           awk '/Last Version:/ {print "Last Version: '"${{ steps.get_current_version.outputs.current_version }}"'"; next}1' README.md > temp.md
         else
