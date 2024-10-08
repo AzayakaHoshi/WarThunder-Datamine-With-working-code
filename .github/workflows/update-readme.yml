@@ -24,7 +24,6 @@ jobs:
       id: get_last_version
       run: |
         if [ ! -f version_store.txt ]; then
-          echo "No version store file found. Creating one."
           echo "Unknown" > version_store.txt
         fi
         LAST_VERSION=$(cat version_store.txt)
@@ -33,20 +32,18 @@ jobs:
 
     - name: Update README with new and last version
       run: |
-        echo "Updating README with New Version: ${{ steps.get_new_version.outputs.new_version }} and Last Version: ${{ steps.get_last_version.outputs.last_version }}"
-        
-        # Replace current version with new version and add <br> after it
-        awk '/Current Version:/ {print "Current Version: '"${{ steps.get_new_version.outputs.new_version }}"'<br>"; next}1' README.md > temp.md
-        mv temp.md README.md
+        NEW_VERSION=${{ steps.get_new_version.outputs.new_version }}
+        LAST_VERSION=${{ steps.get_last_version.outputs.last_version }}
 
-        # Add or update last version as subtext
-        if grep -q "Last Version" README.md; then
-          awk '/Last Version:/ {print "<sub>*Last version: '"${{ steps.get_last_version.outputs.last_version }}"'*</sub>"; next}1' README.md > temp.md
+        # Update Current Version in README.md
+        sed -i "s/Current Version:.*/Current Version: $NEW_VERSION<br>/" README.md
+
+        # Add or update Last Version
+        if grep -q "Last version:" README.md; then
+          sed -i "s|<sub>.*Last version:.*</sub>|<sub>*Last version: $LAST_VERSION*</sub>|" README.md
         else
-          echo "" >> README.md
-          echo "<sub>*Last version: ${{ steps.get_last_version.outputs.last_version }}*</sub>" >> README.md
+          echo "<sub>*Last version: $LAST_VERSION*</sub>" >> README.md
         fi
-        mv temp.md README.md
 
     - name: Update version_store.txt with new version
       run: |
