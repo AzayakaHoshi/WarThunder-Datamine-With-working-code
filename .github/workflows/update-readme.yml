@@ -1,0 +1,31 @@
+name: Update README with Version
+
+on:
+  push:
+    paths:
+      - "aces.vromfs.bin_u/version"
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Get version from version file
+      id: get_version
+      run: |
+        VERSION=$(cat aces.vromfs.bin_u/version)
+        echo "::set-output name=version::$VERSION"
+
+    - name: Update README
+      run: |
+        sed -i 's/Current Version:.*/Current Version: '"${{ steps.get_version.outputs.version }}"'/' README.md
+
+    - name: Commit changes
+      run: |
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+        git add README.md
+        git commit -m "Update README with version"
+        git push
