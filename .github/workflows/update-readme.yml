@@ -13,7 +13,7 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
       with:
-        fetch-depth: 0  # Ensure full history is fetched
+        fetch-depth: 0  # Fetch full history for proper pull
 
     - name: Get new version from version file
       id: get_new_version
@@ -21,7 +21,7 @@ jobs:
         NEW_VERSION=$(cat aces.vromfs.bin_u/version)
         echo "::set-output name=new_version::$NEW_VERSION"
 
-    - name: Create or read current version from version_store.txt
+    - name: Create or read version_store.txt
       id: get_last_version
       run: |
         if [ ! -f version_store.txt ]; then
@@ -30,20 +30,22 @@ jobs:
         LAST_VERSION=$(cat version_store.txt)
         echo "::set-output name=last_version::$LAST_VERSION"
 
-    - name: Update README with new and last version
+    - name: Update README with versions
       run: |
         NEW_VERSION=${{ steps.get_new_version.outputs.new_version }}
         LAST_VERSION=${{ steps.get_last_version.outputs.last_version }}
 
+        # Update Current Version
         sed -i "s/Current Version:.*/Current Version: $NEW_VERSION<br>/" README.md
 
+        # Update Last Version or append it
         if grep -q "Last version:" README.md; then
           sed -i "s|<sub>.*Last version:.*</sub>|<sub>*Last version: $LAST_VERSION*</sub>|" README.md
         else
           echo "<sub>*Last version: $LAST_VERSION*</sub>" >> README.md
         fi
 
-    - name: Pull latest changes
+    - name: Pull latest changes from remote
       run: |
         git config --global user.name 'github-actions[bot]'
         git config --global user.email 'github-actions[bot]@users.noreply.github.com'
