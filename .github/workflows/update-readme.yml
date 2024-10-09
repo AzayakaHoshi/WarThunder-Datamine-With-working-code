@@ -31,21 +31,39 @@ jobs:
       - name: Check if README.md needs updating
         id: check_readme
         run: |
-          CURRENT_VERSION=$(grep -Po '(?<=\[)[0-9.]+' README.md)
-          echo "Current README version: $CURRENT_VERSION"
-          if [ "$CURRENT_VERSION" = "$VERSION" ]; then
-            echo "README is already up to date with version $VERSION."
-            echo "::set-output name=needs_update::false"
-          else
-            echo "README needs to be updated. Current version is $CURRENT_VERSION, new version is $VERSION."
+          # Debugging: Ensure the README file exists
+          if [ ! -f README.md ]; then
+            echo "README.md not found!"
+            exit 1
+          fi
+          
+          # Debugging: Output the first 10 lines of README.md to ensure it's being read
+          echo "README.md content preview:"
+          head -n 10 README.md
+          
+          # Try to extract the current version
+          CURRENT_VERSION=$(grep -Po '(?<=\[)[0-9.]+' README.md || true)
+          
+          # If no current version is found, output a message
+          if [ -z "$CURRENT_VERSION" ]; then
+            echo "No version found in README.md."
             echo "::set-output name=needs_update::true"
+          else
+            echo "Current README version: $CURRENT_VERSION"
+            if [ "$CURRENT_VERSION" = "$VERSION" ]; then
+              echo "README is already up to date with version $VERSION."
+              echo "::set-output name=needs_update::false"
+            else
+              echo "README needs to be updated. Current version is $CURRENT_VERSION, new version is $VERSION."
+              echo "::set-output name=needs_update::true"
+            fi
           fi
 
       - name: Update README.md with new version
         if: steps.check_readme.outputs.needs_update == 'true'
         run: |
           echo "Updating README.md with version $VERSION"
-          # Replace the version inside the link [1.1.1](aces.vromfs.bin_u/version)
+          # Replace the version inside the link [version](aces.vromfs.bin_u/version)
           sed -i "s/\[[0-9.]*\](aces.vromfs.bin_u\/version)/\[$VERSION\](aces.vromfs.bin_u\/version)/" README.md
           cat README.md  # Display the updated README for debugging
 
