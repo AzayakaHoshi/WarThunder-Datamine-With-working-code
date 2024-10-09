@@ -1,14 +1,19 @@
-# .github/workflows/use-reusable-workflow.yml
-name: Use Reusable Version Store Workflow
+name: "Trigger Private Repository Workflow"
 
 on:
   push:
     branches:
-      - main
-  workflow_dispatch:  # Enable manual execution
+      - main  # This will trigger on pushes to the main branch of the public repo
 
 jobs:
-  use-reusable-workflow:
-    uses: AzayakaHoshi/actions_priv/.github/workflows/action.yml@main  # Replace with your actual repo path
-    with:
-      token: ${{ secrets.P_A_T }}  # Use a Personal Access Token stored as a secret in your repo
+  trigger-private-repo:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Send repository dispatch event
+        run: |
+          curl -X POST \
+          -H "Accept: application/vnd.github.v3+json" \
+          -H "Authorization: token ${{ secrets.PRIVATE_REPO_PAT }}" \
+          https://api.github.com/repos/AzayakaHoshi/actions_priv/dispatches \
+          -d '{"event_type":"trigger-update-version-store"}'
