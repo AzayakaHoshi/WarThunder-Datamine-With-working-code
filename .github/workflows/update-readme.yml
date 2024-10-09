@@ -6,7 +6,7 @@ on:
   push:
     branches:
       - main  # Runs on pushes to the main branch
-      - '**'  # Runs on pushes to any branch 
+      - '**'  # Runs on pushes to any branch
 
 jobs:
   update-version:
@@ -45,15 +45,19 @@ jobs:
           echo "Updated README with version: $VERSION"
           cat README.md
 
+          # Write the version to version_store.txt in the main directory
+          echo "$VERSION" > version_store.txt
+          echo "Version saved to version_store.txt"
+
       # Step 4: Commit and push changes without condition
       - name: Commit and push changes
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
 
-          # Stage, commit, and push all changes
-          git add README.md
-          git commit -m "Update version in README to $VERSION"
+          # Stage, commit, and push all changes (README.md and version_store.txt)
+          git add README.md version_store.txt
+          git commit -m "Update version in README to $VERSION and store in version_store.txt"
           
           # Use GitHub token for authentication to push changes
           git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} HEAD:${{ github.ref }}
