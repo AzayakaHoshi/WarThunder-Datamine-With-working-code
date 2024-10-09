@@ -1,7 +1,7 @@
 # War Thunder Datamine
 
 ## Current Version
-Version: <sub>1.2.3</sub>
+Version: [1.1.1](aces.vromfs.bin_u/version)
 
 ## Description
 A detailed project description goes here.
