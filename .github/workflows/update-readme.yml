@@ -11,7 +11,7 @@ on:
 jobs:
   update-readme:
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
@@ -24,17 +24,13 @@ jobs:
     - name: Extract version and update README
       id: update_version
       run: |
-        # Define variables
         VERSION_FILE="aces.vromfs.bin_u/version"
         README_FILE="README.md"
         
-        # Extract version number from file
         VERSION=$(cat $VERSION_FILE)
 
-        # Replace the placeholder in the README file
         sed -i "s/\[.*\](aces.vromfs.bin_u\/version)/[$VERSION](aces.vromfs.bin_u\/version)/" $README_FILE
 
-        # Output version for testing step
         echo "::set-output name=version::$VERSION"
 
     - name: Test if README contains the correct version
@@ -51,10 +47,11 @@ jobs:
       run: |
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
-        
+
+        # Check if there are changes to commit
         if [ -n "$(git status --porcelain)" ]; then
           git add README.md
-          git commit -m "Update version in README to $VERSION"
+          git commit -m "Update version in README to ${{ steps.update_version.outputs.version }}"
           git push
         else
           echo "No changes to commit."
