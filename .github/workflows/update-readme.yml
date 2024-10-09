@@ -23,20 +23,11 @@ jobs:
         with:
           node-version: '16'
 
-      # Step 3: Read the version from file and update README
-      - name: Update README version
+      # Step 3: Read the version from file and compare with the stored version
+      - name: Compare versions
         run: |
           # Read the new version from aces.vromfs.bin_u/version
           NEW_VERSION=$(cat aces.vromfs.bin_u/version)
-
-          # Log current version
-          echo "New version: $NEW_VERSION"
-
-          # Check if the version file was successfully read
-          if [ -z "$NEW_VERSION" ]; then
-            echo "Version file is empty or missing. Exiting."
-            exit 1
-          fi
 
           # Check if version_store.txt exists and read the old version
           if [ -f version_store.txt ]; then
@@ -44,11 +35,22 @@ jobs:
             echo "Old version found: $OLD_VERSION"
           else
             OLD_VERSION="Not Available"
-            echo "No previous version found, this might be the first run."
+            echo "No previous version found, treating this as first run."
           fi
 
-          # Update the README.md with the new and old versions
-          # Replace the placeholder with the new version and the old version
+          # Compare the new and old versions
+          if [ "$NEW_VERSION" = "$OLD_VERSION" ]; then
+            echo "New version ($NEW_VERSION) is the same as the current version. Exiting."
+            exit 0  # Exit the job if the versions are the same
+          fi
+
+          # Log new version
+          echo "New version is different: $NEW_VERSION vs $OLD_VERSION. Proceeding with update."
+
+      # Step 4: Update README version and store the new version
+      - name: Update README version
+        run: |
+          # Replace the placeholder in README.md with the new and old versions
           sed -i "s/\[.*\](aces.vromfs.bin_u\/version)/\[$NEW_VERSION\](aces.vromfs.bin_u\/version)/g" README.md
           sed -i "s/\[.*\](version_store.txt)/\[$OLD_VERSION\](version_store.txt)/g" README.md
 
@@ -56,11 +58,11 @@ jobs:
           echo "Updated README with new version: $NEW_VERSION and old version: $OLD_VERSION"
           cat README.md
 
-          # Write the new version to version_store.txt for future runs
+          # Write the new version to version_store.txt
           echo "$NEW_VERSION" > version_store.txt
           echo "New version saved to version_store.txt"
 
-      # Step 4: Commit and push changes without condition
+      # Step 5: Commit and push changes if the version is updated
       - name: Commit and push changes
         run: |
           git config --global user.name 'github-actions[bot]'
