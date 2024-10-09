@@ -1,83 +1,67 @@
-name: Update README with Version
+name: Update README Version
 
 on:
   push:
     branches:
-      - main  # Adjust this based on your default branch
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   update-readme:
     runs-on: ubuntu-latest
-
+    
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+    - name: Checkout repository
+      uses: actions/checkout@v3
 
-      - name: Read version from aces.vromfs.bin_u/version
-        id: get_version
-        run: |
-          if [ ! -f aces.vromfs.bin_u/version ]; then
-            echo "Version file not found!"
-            exit 1
-          fi
-          VERSION=$(cat aces.vromfs.bin_u/version)
-          if [ -z "$VERSION" ]; then
-            echo "Version file is empty!"
-            exit 1
-          fi
-          echo "Version: $VERSION"
-          echo "::set-output name=version::$VERSION"
+    - name: Set up Node.js (optional, in case using node script)
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'
 
-      - name: Check if README.md needs updating
-        id: check_readme
-        run: |
-          if [ ! -f README.md ]; then
-            echo "README.md not found!"
-            exit 1
-          fi
-          
-          echo "README.md content preview:"
-          head -n 10 README.md
-          
-          # Try to extract the current version in the link format [X.X.X](aces.vromfs.bin_u/version)
-          CURRENT_VERSION=$(grep -Po '(?<=\[)[0-9.]+' README.md || true)
-          
-          if [ -z "$CURRENT_VERSION" ]; then
-            echo "No version found in README.md."
-            echo "::set-output name=needs_update::true"
-          else
-            echo "Current README version: $CURRENT_VERSION"
-            if [ "$CURRENT_VERSION" = "$VERSION" ]; then
-              echo "README is already up to date with version $VERSION."
-              echo "::set-output name=needs_update::false"
-            else
-              echo "README needs to be updated. Current version is $CURRENT_VERSION, new version is $VERSION."
-              echo "::set-output name=needs_update::true"
-            fi
-          fi
+    - name: Extract version and update README
+      id: update_version
+      run: |
+        # Define variables
+        VERSION_FILE="aces.vromfs.bin_u/version"
+        README_FILE="README.md"
+        
+        # Extract version number from file
+        VERSION=$(cat $VERSION_FILE)
 
-      - name: Update README.md with new version
-        if: steps.check_readme.outputs.needs_update == 'true'
-        run: |
-          echo "Updating README.md with version $VERSION"
-          sed -i "s/\[[0-9.]*\](aces.vromfs.bin_u\/version)/\[$VERSION\](aces.vromfs.bin_u\/version)/" README.md
-          
-          # Show the diff to check if the file was modified
-          git diff README.md || true
-          
-          # Check if there are any actual changes in README.md
-          if git diff --quiet README.md; then
-            echo "No changes detected in README.md, skipping commit."
-            exit 0
-          fi
-          
-      - name: Commit changes
-        if: steps.check_readme.outputs.needs_update == 'true'
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        # Replace the placeholder in the README file
+        sed -i "s/\[.*\](aces.vromfs.bin_u\/version)/[$VERSION](aces.vromfs.bin_u\/version)/" $README_FILE
+
+        # Output version for testing step
+        echo "::set-output name=version::$VERSION"
+
+        # Confirm change
+        echo "Updated README.md with version $VERSION"
+
+    - name: Test if README contains the correct version
+      run: |
+        # Retrieve the version from the previous step
+        VERSION=${{ steps.update_version.outputs.version }}
+        
+        # Verify if README contains the updated version link
+        if grep -q "\[$VERSION\](aces.vromfs.bin_u/version)" README.md; then
+          echo "README contains the correct version link."
+        else
+          echo "README does not contain the correct version link."
+          exit 1
+        fi
+
+    - name: Commit changes
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        
+        # Check if README has changes
+        if [ -n "$(git status --porcelain)" ]; then
           git add README.md
-          git commit -m "Update README.md with version $VERSION"
+          git commit -m "Update version in README to $VERSION"
           git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        else
+          echo "No changes to commit."
