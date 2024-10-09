@@ -26,28 +26,39 @@ jobs:
       # Step 3: Read the version from file and update README
       - name: Update README version
         run: |
-          # Read the version file
-          VERSION=$(cat aces.vromfs.bin_u/version)
+          # Read the new version from aces.vromfs.bin_u/version
+          NEW_VERSION=$(cat aces.vromfs.bin_u/version)
 
           # Log current version
-          echo "Read version: $VERSION"
+          echo "New version: $NEW_VERSION"
 
           # Check if the version file was successfully read
-          if [ -z "$VERSION" ]; then
+          if [ -z "$NEW_VERSION" ]; then
             echo "Version file is empty or missing. Exiting."
             exit 1
           fi
 
-          # Replace the placeholder in README.md
-          sed -i "s/\[.*\](aces.vromfs.bin_u\/version)/\[$VERSION\](aces.vromfs.bin_u\/version)/g" README.md
+          # Check if version_store.txt exists and read the old version
+          if [ -f version_store.txt ]; then
+            OLD_VERSION=$(cat version_store.txt)
+            echo "Old version found: $OLD_VERSION"
+          else
+            OLD_VERSION="Not Available"
+            echo "No previous version found, this might be the first run."
+          fi
+
+          # Update the README.md with the new and old versions
+          # Replace the placeholder with the new version and the old version
+          sed -i "s/\[.*\](aces.vromfs.bin_u\/version)/\[$NEW_VERSION\](aces.vromfs.bin_u\/version)/g" README.md
+          sed -i "s/\[.*\](version_store.txt)/\[$OLD_VERSION\](version_store.txt)/g" README.md
 
           # Log changes in README
-          echo "Updated README with version: $VERSION"
+          echo "Updated README with new version: $NEW_VERSION and old version: $OLD_VERSION"
           cat README.md
 
-          # Write the version to version_store.txt in the main directory
-          echo "$VERSION" > version_store.txt
-          echo "Version saved to version_store.txt"
+          # Write the new version to version_store.txt for future runs
+          echo "$NEW_VERSION" > version_store.txt
+          echo "New version saved to version_store.txt"
 
       # Step 4: Commit and push changes without condition
       - name: Commit and push changes
@@ -57,7 +68,7 @@ jobs:
 
           # Stage, commit, and push all changes (README.md and version_store.txt)
           git add README.md version_store.txt
-          git commit -m "Update version in README to $VERSION and store in version_store.txt"
+          git commit -m "Update version in README to $NEW_VERSION and store old version $OLD_VERSION"
           
           # Use GitHub token for authentication to push changes
           git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} HEAD:${{ github.ref }}
