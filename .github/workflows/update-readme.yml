@@ -3,7 +3,7 @@ name: Update README with Version
 on:
   push:
     branches:
-      - main
+      - main  # Adjust this based on your default branch
 
 jobs:
   update-readme:
@@ -31,11 +31,7 @@ jobs:
       - name: Check if README.md needs updating
         id: check_readme
         run: |
-          if ! grep -q "Current Version:" README.md; then
-            echo "Current Version line not found in README.md!"
-            exit 1
-          fi
-          CURRENT_VERSION=$(grep -Po '(?<=Current Version: )[0-9.]+' README.md)
+          CURRENT_VERSION=$(grep -Po '(?<=\[)[0-9.]+' README.md)
           echo "Current README version: $CURRENT_VERSION"
           if [ "$CURRENT_VERSION" = "$VERSION" ]; then
             echo "README is already up to date with version $VERSION."
@@ -49,7 +45,8 @@ jobs:
         if: steps.check_readme.outputs.needs_update == 'true'
         run: |
           echo "Updating README.md with version $VERSION"
-          sed -i "s/Current Version: [0-9.]*/Current Version: $VERSION/" README.md
+          # Replace the version inside the link [1.1.1](aces.vromfs.bin_u/version)
+          sed -i "s/\[[0-9.]*\](aces.vromfs.bin_u\/version)/\[$VERSION\](aces.vromfs.bin_u\/version)/" README.md
           cat README.md  # Display the updated README for debugging
 
       - name: Commit changes
