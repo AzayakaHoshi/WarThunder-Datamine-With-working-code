@@ -26,8 +26,10 @@ jobs:
       # Step 3: Read the version from file and update README
       - name: Update README version
         run: |
-          # Log current version
+          # Read the version file
           VERSION=$(cat aces.vromfs.bin_u/version)
+
+          # Log current version
           echo "Read version: $VERSION"
 
           # Check if the version file was successfully read
@@ -54,7 +56,7 @@ jobs:
             git add README.md
             git commit -m "Update version in README to $VERSION"
             
-            # Use GitHub token for authentication
+            # Use GitHub token for authentication to push changes
             git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} HEAD:${{ github.ref }}
           else
             echo "No changes to commit"
