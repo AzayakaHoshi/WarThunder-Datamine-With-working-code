@@ -34,29 +34,35 @@ jobs:
 
           # Check if version_store.txt exists and contains a valid version
           if [ -f version_store.txt ]; then
-            CURRENT_VERSION=$(cat version_store.txt | xargs)  # Remove any surrounding whitespace
+            OLD_VERSION=$(cat version_store.txt | xargs)  # This will be treated as the old version (strip any surrounding whitespace)
             
-            if [ -z "$CURRENT_VERSION" ]; then
+            if [ -z "$OLD_VERSION" ]; then
               echo "version_store.txt exists but is empty. Updating with the new version."
+              OLD_VERSION="Not Available"  # Default value if there's no old version
               echo "$NEW_VERSION" > version_store.txt
-            elif [ "$CURRENT_VERSION" != "$NEW_VERSION" ]; then
-              echo "The current version in version_store.txt is outdated: $CURRENT_VERSION. Updating with the new version."
+            elif [ "$OLD_VERSION" != "$NEW_VERSION" ]; then
+              echo "Updating version_store.txt with new version."
               echo "$NEW_VERSION" > version_store.txt
             else
-              echo "The current version in version_store.txt is already up-to-date: $CURRENT_VERSION."
+              echo "The current version in version_store.txt is already up-to-date: $OLD_VERSION."
             fi
           else
             echo "version_store.txt is missing. Creating and updating with the new version."
+            OLD_VERSION="Not Available"
             echo "$NEW_VERSION" > version_store.txt
           fi
 
-          # Update README.md if the version placeholder is outdated
+          # Update both current and old version placeholders in README.md
           if grep -q '\[.*\](aces.vromfs.bin_u/version)' README.md; then
-            echo "README.md version placeholder found. Checking for updates."
+            echo "Updating README.md with new and old versions."
             
-            # Update the placeholder in README.md with the new version
+            # Update the current version placeholder
             sed -i "s/\[.*\](aces.vromfs.bin_u\/version)/\[$NEW_VERSION\](aces.vromfs.bin_u\/version)/g" README.md
-            echo "README.md updated with new version: $NEW_VERSION"
+
+            # Update the old version placeholder
+            sed -i "s/\[.*\](version_store.txt)/\[$OLD_VERSION\](version_store.txt)/g" README.md
+
+            echo "README.md updated with new version: $NEW_VERSION and old version: $OLD_VERSION"
           else
             echo "README version placeholder is missing. Skipping README update."
           fi
@@ -75,7 +81,7 @@ jobs:
           if [[ $(git status --porcelain) ]]; then
             echo "Changes detected. Proceeding with commit."
             git add version_store.txt README.md
-            git commit -m "Update version to $NEW_VERSION in version_store.txt and README.md"
+            git commit -m "Update version to $NEW_VERSION in version_store.txt and README.md (old version: $OLD_VERSION)"
             
             # Use GitHub token for authentication to push changes
             git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} HEAD:${{ github.ref }}
