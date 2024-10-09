@@ -4,4 +4,4 @@
 Version: [5.1.4](aces.vromfs.bin_u/version)
 
 ## Description
-A detailed project description goes here.
+[![Update README Version](https://github.com/AzayakaHoshi/WarThunder-Datamine-With-working-code/actions/workflows/update-readme.yml/badge.svg)](https://github.com/AzayakaHoshi/WarThunder-Datamine-With-working-code/actions/workflows/update-readme.yml)
