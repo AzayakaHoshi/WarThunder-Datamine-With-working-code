@@ -37,15 +37,9 @@ jobs:
         # Output version for testing step
         echo "::set-output name=version::$VERSION"
 
-        # Confirm change
-        echo "Updated README.md with version $VERSION"
-
     - name: Test if README contains the correct version
       run: |
-        # Retrieve the version from the previous step
         VERSION=${{ steps.update_version.outputs.version }}
-        
-        # Verify if README contains the updated version link
         if grep -q "\[$VERSION\](aces.vromfs.bin_u/version)" README.md; then
           echo "README contains the correct version link."
         else
@@ -58,7 +52,6 @@ jobs:
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
         
-        # Check if README has changes
         if [ -n "$(git status --porcelain)" ]; then
           git add README.md
           git commit -m "Update version in README to $VERSION"
