@@ -31,20 +31,17 @@ jobs:
       - name: Check if README.md needs updating
         id: check_readme
         run: |
-          # Debugging: Ensure the README file exists
           if [ ! -f README.md ]; then
             echo "README.md not found!"
             exit 1
           fi
           
-          # Debugging: Output the first 10 lines of README.md to ensure it's being read
           echo "README.md content preview:"
           head -n 10 README.md
           
-          # Try to extract the current version
+          # Try to extract the current version in the link format [X.X.X](aces.vromfs.bin_u/version)
           CURRENT_VERSION=$(grep -Po '(?<=\[)[0-9.]+' README.md || true)
           
-          # If no current version is found, output a message
           if [ -z "$CURRENT_VERSION" ]; then
             echo "No version found in README.md."
             echo "::set-output name=needs_update::true"
@@ -63,10 +60,17 @@ jobs:
         if: steps.check_readme.outputs.needs_update == 'true'
         run: |
           echo "Updating README.md with version $VERSION"
-          # Replace the version inside the link [version](aces.vromfs.bin_u/version)
           sed -i "s/\[[0-9.]*\](aces.vromfs.bin_u\/version)/\[$VERSION\](aces.vromfs.bin_u\/version)/" README.md
-          cat README.md  # Display the updated README for debugging
-
+          
+          # Show the diff to check if the file was modified
+          git diff README.md || true
+          
+          # Check if there are any actual changes in README.md
+          if git diff --quiet README.md; then
+            echo "No changes detected in README.md, skipping commit."
+            exit 0
+          fi
+          
       - name: Commit changes
         if: steps.check_readme.outputs.needs_update == 'true'
         run: |
