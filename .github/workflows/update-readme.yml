@@ -1,96 +1,17 @@
-# .github/workflows/update-version-store.yml
+# .github/workflows/use-private-action.yml
+name: "Run Private Action"
 
-name: Update Version Store and README
-
-on:
-  push:
-    branches:
-      - main  # Runs on pushes to the main branch
-      - '**'  # Runs on pushes to any branch
+on: [push]
 
 jobs:
-  update-version:
+  run-private-action:
     runs-on: ubuntu-latest
-    
+
     steps:
-      # Step 1: Check out the repository
-      - name: Check out the repository
-        uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-      # Step 2: Set up Node.js (optional, for handling node-based scripts)
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
+      - name: Run private action
+        uses: AzayakaHoshi/actions_priv
         with:
-          node-version: '16'
-
-      # Step 3: Read the version from the file and check the state of placeholders and version store
-      - name: Check version and decide to update
-        run: |
-          # Read the new version from aces.vromfs.bin_u/version
-          NEW_VERSION=$(cat aces.vromfs.bin_u/version)
-
-          # Log the new version
-          echo "New version: $NEW_VERSION"
-
-          # Check if version_store.txt exists and contains a valid version
-          if [ -f version_store.txt ]; then
-            OLD_VERSION=$(cat version_store.txt | xargs)  # This will be treated as the old version (strip any surrounding whitespace)
-            
-            if [ -z "$OLD_VERSION" ]; then
-              echo "version_store.txt exists but is empty. Updating with the new version."
-              OLD_VERSION="Not Available"  # Default value if there's no old version
-              echo "$NEW_VERSION" > version_store.txt
-            elif [ "$OLD_VERSION" = "$NEW_VERSION" ]; then
-              echo "The new version is the same as the old version ($NEW_VERSION). Skipping update."
-              exit 0  # Exit the workflow without making any changes
-            else
-              echo "Updating version_store.txt with new version."
-              echo "$NEW_VERSION" > version_store.txt
-            fi
-          else
-            echo "version_store.txt is missing. Creating and updating with the new version."
-            OLD_VERSION="Not Available"
-            echo "$NEW_VERSION" > version_store.txt
-          fi
-
-          # Update both current and old version placeholders in README.md
-          if grep -q '\[.*\](aces.vromfs.bin_u/version)' README.md; then
-            echo "Updating README.md with new and old versions."
-            
-            # Update the current version placeholder
-            sed -i "s/\[.*\](aces.vromfs.bin_u\/version)/\[$NEW_VERSION\](aces.vromfs.bin_u\/version)/g" README.md
-
-            # Update the old version placeholder
-            sed -i "s/\[.*\](version_store.txt)/\[$OLD_VERSION\](version_store.txt)/g" README.md
-
-            echo "README.md updated with new version: $NEW_VERSION and old version: $OLD_VERSION"
-          else
-            echo "README version placeholder is missing. Skipping README update."
-          fi
-
-          # Debug: Log git status before commit to see if there are changes
-          echo "Git status before committing:"
-          git status
-
-      # Step 4: Commit and push changes (only if version_store.txt or README.md was updated)
-      - name: Commit and push changes if needed
-        run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-
-          # Check if there are any changes to commit
-          if [[ $(git status --porcelain) ]]; then
-            echo "Changes detected. Proceeding with commit."
-            git add version_store.txt README.md
-            git commit -m "Update versions in Readme and store old version in version_store"
-            
-            # Use GitHub token for authentication to push changes
-            git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} HEAD:${{ github.ref }}
-          else
-            echo "No changes detected. Skipping commit."
-          fi
-
-      # Step 5: Handle exit codes properly
-      - name: Always succeed
-        if: always()
-        run: echo "Job completed."
+          secret-token: ${{ secrets.P_A_T }}
