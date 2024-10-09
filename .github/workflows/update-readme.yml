@@ -1,6 +1,6 @@
 # .github/workflows/update-version-store.yml
 
-name: Update Version Store
+name: Update Version Store and README
 
 on:
   push:
@@ -23,7 +23,7 @@ jobs:
         with:
           node-version: '16'
 
-      # Step 3: Read the version from file and check the state of placeholders and version store
+      # Step 3: Read the version from the file and check the state of placeholders and version store
       - name: Check version and decide to update
         run: |
           # Read the new version from aces.vromfs.bin_u/version
@@ -50,17 +50,22 @@ jobs:
             echo "$NEW_VERSION" > version_store.txt
           fi
 
-          # Check if README.md contains the version placeholder
-          if ! grep -q '\[.*\](aces.vromfs.bin_u/version)' README.md; then
-            echo "README version placeholder is missing. Only updating version_store.txt."
-            echo "$NEW_VERSION" > version_store.txt
+          # Update README.md if the version placeholder is outdated
+          if grep -q '\[.*\](aces.vromfs.bin_u/version)' README.md; then
+            echo "README.md version placeholder found. Checking for updates."
+            
+            # Update the placeholder in README.md with the new version
+            sed -i "s/\[.*\](aces.vromfs.bin_u\/version)/\[$NEW_VERSION\](aces.vromfs.bin_u\/version)/g" README.md
+            echo "README.md updated with new version: $NEW_VERSION"
+          else
+            echo "README version placeholder is missing. Skipping README update."
           fi
 
           # Debug: Log git status before commit to see if there are changes
           echo "Git status before committing:"
           git status
 
-      # Step 4: Commit and push changes (only if version_store.txt was updated)
+      # Step 4: Commit and push changes (only if version_store.txt or README.md was updated)
       - name: Commit and push changes if needed
         run: |
           git config --global user.name 'github-actions[bot]'
@@ -69,8 +74,8 @@ jobs:
           # Check if there are any changes to commit
           if [[ $(git status --porcelain) ]]; then
             echo "Changes detected. Proceeding with commit."
-            git add version_store.txt
-            git commit -m "Update version_store.txt to new version: $NEW_VERSION"
+            git add version_store.txt README.md
+            git commit -m "Update version to $NEW_VERSION in version_store.txt and README.md"
             
             # Use GitHub token for authentication to push changes
             git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} HEAD:${{ github.ref }}
