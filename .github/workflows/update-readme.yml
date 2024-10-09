@@ -40,11 +40,12 @@ jobs:
               echo "version_store.txt exists but is empty. Updating with the new version."
               OLD_VERSION="Not Available"  # Default value if there's no old version
               echo "$NEW_VERSION" > version_store.txt
-            elif [ "$OLD_VERSION" != "$NEW_VERSION" ]; then
+            elif [ "$OLD_VERSION" = "$NEW_VERSION" ]; then
+              echo "The new version is the same as the old version ($NEW_VERSION). Skipping update."
+              exit 0  # Exit the workflow without making any changes
+            else
               echo "Updating version_store.txt with new version."
               echo "$NEW_VERSION" > version_store.txt
-            else
-              echo "The current version in version_store.txt is already up-to-date: $OLD_VERSION."
             fi
           else
             echo "version_store.txt is missing. Creating and updating with the new version."
@@ -81,7 +82,7 @@ jobs:
           if [[ $(git status --porcelain) ]]; then
             echo "Changes detected. Proceeding with commit."
             git add version_store.txt README.md
-            git commit -m "Updated versions in Readme and version_store(old version)"
+            git commit -m "Update version to $NEW_VERSION in version_store.txt and README.md (old version: $OLD_VERSION)"
             
             # Use GitHub token for authentication to push changes
             git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} HEAD:${{ github.ref }}
