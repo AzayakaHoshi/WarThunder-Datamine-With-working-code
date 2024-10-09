@@ -1,9 +1,9 @@
 # War Thunder Datamine
 
 ## Current Version
-Version: [1.1.4](aces.vromfs.bin_u/version)
+Version: [1.1.5](aces.vromfs.bin_u/version)
 ### Last Version
-Version: [1.1.3](version_store.txt)
+Version: [1.1.4](version_store.txt)
 
 ## Description
 Using [kotiq's wt-tools](https://github.com/kotiq/wt-tools) and automation to update this Repository
