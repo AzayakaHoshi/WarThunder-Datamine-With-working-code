@@ -3,7 +3,7 @@
 ## Current Version
 Version: [1.1.3](aces.vromfs.bin_u/version)
 ### Last Version
-Version: [1,1.0](version_store.txt)
+Version: [1.1.3](version_store.txt)
 
 ## Description
 Using [kotiq's wt-tools](https://github.com/kotiq/wt-tools) and automation to update this Repository
