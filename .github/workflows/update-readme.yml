@@ -45,15 +45,15 @@ jobs:
           echo "Updated README with version: $VERSION"
           cat README.md
 
-      # Step 4: Commit and push changes if README was updated
+      # Step 4: Commit and push changes without condition
       - name: Commit and push changes
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+          # Stage, commit, and push all changes
+          git add README.md
+          git commit -m "Update version in README to $VERSION"
           
-          # Check if there are changes and commit them
-            git add README.md
-            git commit -m "Update version in README to $VERSION"
-            
-            # Use GitHub token for authentication to push changes
-            git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} HEAD:${{ github.ref }}
+          # Use GitHub token for authentication to push changes
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} HEAD:${{ github.ref }}
