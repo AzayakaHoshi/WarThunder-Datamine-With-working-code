@@ -23,46 +23,48 @@ jobs:
         with:
           node-version: '16'
 
-      # Step 3: Read the version from file and compare with the stored version
-      - name: Compare versions
+      # Step 3: Read the version from file and compare with the current version
+      - name: Check version and decide to update
         run: |
           # Read the new version from aces.vromfs.bin_u/version
           NEW_VERSION=$(cat aces.vromfs.bin_u/version)
 
-          # Check if version_store.txt exists and read the old version
-          if [ -f version_store.txt ]; then
-            OLD_VERSION=$(cat version_store.txt)
-            echo "Old version found: $OLD_VERSION"
-          else
-            OLD_VERSION="Not Available"
-            echo "No previous version found, treating this as first run."
-          fi
-
-          # Compare the new and old versions
-          if [ "$NEW_VERSION" = "$OLD_VERSION" ]; then
-            echo "New version ($NEW_VERSION) is the same as the current version. Exiting."
-            exit 0  # Exit the job if the versions are the same
-          fi
-
           # Log new version
-          echo "New version is different: $NEW_VERSION vs $OLD_VERSION. Proceeding with update."
+          echo "New version: $NEW_VERSION"
 
-      # Step 4: Update README version and store the new version
-      - name: Update README version
+          # Check if version_store.txt exists and read the current version
+          if [ -f version_store.txt ]; then
+            CURRENT_VERSION=$(cat version_store.txt)
+            echo "Current version found: $CURRENT_VERSION"
+          else
+            CURRENT_VERSION="Not Available"
+            echo "No previous version found, treating as first run."
+          fi
+
+          # Compare the new version with the current version
+          if [ "$NEW_VERSION" = "$CURRENT_VERSION" ]; then
+            echo "New version is the same as the current version. No update needed."
+            exit 0  # Exit the job if no update is needed
+          else
+            echo "New version differs from current version. Proceeding with update."
+          fi
+
+      # Step 4: Update README and save new version if versions are different
+      - name: Update README and version_store.txt
         run: |
-          # Replace the placeholder in README.md with the new and old versions
+          # Replace the placeholder in README.md with the new version and old version
           sed -i "s/\[.*\](aces.vromfs.bin_u\/version)/\[$NEW_VERSION\](aces.vromfs.bin_u\/version)/g" README.md
-          sed -i "s/\[.*\](version_store.txt)/\[$OLD_VERSION\](version_store.txt)/g" README.md
+          sed -i "s/\[.*\](version_store.txt)/\[$CURRENT_VERSION\](version_store.txt)/g" README.md
 
           # Log changes in README
-          echo "Updated README with new version: $NEW_VERSION and old version: $OLD_VERSION"
+          echo "Updated README with new version: $NEW_VERSION and old version: $CURRENT_VERSION"
           cat README.md
 
-          # Write the new version to version_store.txt
+          # Write the new version to version_store.txt for future runs
           echo "$NEW_VERSION" > version_store.txt
           echo "New version saved to version_store.txt"
 
-      # Step 5: Commit and push changes if the version is updated
+      # Step 5: Commit and push changes
       - name: Commit and push changes
         run: |
           git config --global user.name 'github-actions[bot]'
@@ -70,7 +72,7 @@ jobs:
 
           # Stage, commit, and push all changes (README.md and version_store.txt)
           git add README.md version_store.txt
-          git commit -m "Update version in README to $NEW_VERSION and store old version $OLD_VERSION"
+          git commit -m "Update version in README to $NEW_VERSION and store old version $CURRENT_VERSION"
           
           # Use GitHub token for authentication to push changes
           git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} HEAD:${{ github.ref }}
