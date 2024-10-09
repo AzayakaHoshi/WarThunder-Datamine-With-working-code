@@ -32,13 +32,19 @@ jobs:
           # Log the new version
           echo "New version: $NEW_VERSION"
 
-          # Check if version_store.txt exists and is non-empty
-          if [ -f version_store.txt ] && [ -s version_store.txt ]; then
-            echo "version_store.txt exists and is not empty."
-            CURRENT_VERSION=$(cat version_store.txt)
-            echo "Current version found in version_store.txt: $CURRENT_VERSION"
+          # Check if version_store.txt exists
+          if [ -f version_store.txt ]; then
+            # Check if version_store.txt contains a valid version (non-empty, non-whitespace)
+            CURRENT_VERSION=$(cat version_store.txt | xargs)
+            
+            if [ -z "$CURRENT_VERSION" ]; then
+              echo "version_store.txt exists but is empty or contains only whitespace. Updating with the new version."
+              echo "$NEW_VERSION" > version_store.txt
+            else
+              echo "Current version found in version_store.txt: $CURRENT_VERSION"
+            fi
           else
-            echo "version_store.txt is missing or empty. Only updating the version store with the new version."
+            echo "version_store.txt is missing. Creating and updating with the new version."
             echo "$NEW_VERSION" > version_store.txt
           fi
 
