@@ -1,6 +1,6 @@
 # .github/workflows/update-readme-version.yml
 
-name: Update README Version
+name: Update Version Store
 
 on:
   push:
@@ -23,64 +23,42 @@ jobs:
         with:
           node-version: '16'
 
-      # Step 3: Read the version from file and compare with the current version
+      # Step 3: Read the version from file and check the state of placeholders and version store
       - name: Check version and decide to update
         run: |
           # Read the new version from aces.vromfs.bin_u/version
           NEW_VERSION=$(cat aces.vromfs.bin_u/version)
 
-          # Log new version
+          # Log the new version
           echo "New version: $NEW_VERSION"
 
-          # Check if version_store.txt exists and read the current version
-          if [ -f version_store.txt ]; then
+          # Check if version_store.txt exists and is non-empty
+          if [ -f version_store.txt ] && [ -s version_store.txt ]; then
+            echo "version_store.txt exists and is not empty."
             CURRENT_VERSION=$(cat version_store.txt)
-            echo "Current version found: $CURRENT_VERSION"
+            echo "Current version found in version_store.txt: $CURRENT_VERSION"
           else
-            CURRENT_VERSION="Not Available"
-            echo "No previous version found, treating as first run."
+            echo "version_store.txt is missing or empty. Only updating the version store with the new version."
+            echo "$NEW_VERSION" > version_store.txt
+            exit 0  # Exit since we only update version_store.txt
           fi
 
-          # Compare the new version with the current version
-          if [ "$NEW_VERSION" = "$CURRENT_VERSION" ]; then
-            echo "New version is the same as the current version. No update needed."
-            exit 0  # Exit the job if no update is needed
-          else
-            echo "New version differs from current version. Proceeding with update."
+          # Check if README.md contains the version placeholder
+          if ! grep -q '\[.*\](aces.vromfs.bin_u/version)' README.md; then
+            echo "README version placeholder is missing. Only updating version_store.txt."
+            echo "$NEW_VERSION" > version_store.txt
+            exit 0  # Exit since we only update version_store.txt
           fi
 
-      # Step 4: Update README and save new version if versions are different
-      - name: Update README and version_store.txt
-        run: |
-          # Debug: Log the content of the README before editing
-          echo "README.md content before update:"
-          cat README.md
-
-          # Replace the placeholder in README.md with the new version and old version
-          # Ensure that the sed command is correctly targeting the placeholders
-          sed -i "s/\[.*\](aces.vromfs.bin_u\/version)/\[$NEW_VERSION\](aces.vromfs.bin_u\/version)/g" README.md
-          sed -i "s/\[.*\](version_store.txt)/\[$CURRENT_VERSION\](version_store.txt)/g" README.md
-
-          # Debug: Log the content of the README after editing
-          echo "README.md content after update:"
-          cat README.md
-
-          # Write the new version to version_store.txt for future runs
-          echo "$NEW_VERSION" > version_store.txt
-
-          # Debug: Log the content of version_store.txt after update
-          echo "version_store.txt content:"
-          cat version_store.txt
-
-      # Step 5: Commit and push changes
+      # Step 4: Commit and push changes (only if version_store.txt was updated)
       - name: Commit and push changes
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
 
-          # Stage, commit, and push all changes (README.md and version_store.txt)
-          git add README.md version_store.txt
-          git commit -m "Update version in README to $NEW_VERSION and store old version $CURRENT_VERSION"
+          # Stage and commit the changes to version_store.txt
+          git add version_store.txt
+          git commit -m "Update version_store.txt to new version: $NEW_VERSION"
           
           # Use GitHub token for authentication to push changes
           git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} HEAD:${{ github.ref }}
