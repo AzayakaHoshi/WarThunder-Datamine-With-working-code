@@ -1,7 +1,7 @@
 # War Thunder Datamine
 
 ## Current Version
-Version: [1.1.1](aces.vromfs.bin_u/version)
+Version: [1.1.2](aces.vromfs.bin_u/version)
 ### Last Version
 Version: [1,1.0](version_store.txt)
 
