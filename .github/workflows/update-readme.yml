@@ -1,4 +1,4 @@
-# .github/workflows/update-readme-version.yml
+# .github/workflows/update-version-store.yml
 
 name: Update Version Store
 
@@ -40,25 +40,37 @@ jobs:
           else
             echo "version_store.txt is missing or empty. Only updating the version store with the new version."
             echo "$NEW_VERSION" > version_store.txt
-            exit 0  # Exit since we only update version_store.txt
           fi
 
           # Check if README.md contains the version placeholder
           if ! grep -q '\[.*\](aces.vromfs.bin_u/version)' README.md; then
             echo "README version placeholder is missing. Only updating version_store.txt."
             echo "$NEW_VERSION" > version_store.txt
-            exit 0  # Exit since we only update version_store.txt
           fi
 
+          # Debug: Log git status before commit to see if there are changes
+          echo "Git status before committing:"
+          git status
+
       # Step 4: Commit and push changes (only if version_store.txt was updated)
-      - name: Commit and push changes
+      - name: Commit and push changes if needed
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
 
-          # Stage and commit the changes to version_store.txt
-          git add version_store.txt
-          git commit -m "Update version_store.txt to new version: $NEW_VERSION"
-          
-          # Use GitHub token for authentication to push changes
-          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} HEAD:${{ github.ref }}
+          # Check if there are any changes to commit
+          if [[ $(git status --porcelain) ]]; then
+            echo "Changes detected. Proceeding with commit."
+            git add version_store.txt
+            git commit -m "Update version_store.txt to new version: $NEW_VERSION"
+            
+            # Use GitHub token for authentication to push changes
+            git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} HEAD:${{ github.ref }}
+          else
+            echo "No changes detected. Skipping commit."
+          fi
+
+      # Step 5: Handle exit codes properly
+      - name: Always succeed
+        if: always()
+        run: echo "Job completed."
