@@ -52,17 +52,25 @@ jobs:
       # Step 4: Update README and save new version if versions are different
       - name: Update README and version_store.txt
         run: |
+          # Debug: Log the content of the README before editing
+          echo "README.md content before update:"
+          cat README.md
+
           # Replace the placeholder in README.md with the new version and old version
+          # Ensure that the sed command is correctly targeting the placeholders
           sed -i "s/\[.*\](aces.vromfs.bin_u\/version)/\[$NEW_VERSION\](aces.vromfs.bin_u\/version)/g" README.md
           sed -i "s/\[.*\](version_store.txt)/\[$CURRENT_VERSION\](version_store.txt)/g" README.md
 
-          # Log changes in README
-          echo "Updated README with new version: $NEW_VERSION and old version: $CURRENT_VERSION"
+          # Debug: Log the content of the README after editing
+          echo "README.md content after update:"
           cat README.md
 
           # Write the new version to version_store.txt for future runs
           echo "$NEW_VERSION" > version_store.txt
-          echo "New version saved to version_store.txt"
+
+          # Debug: Log the content of version_store.txt after update
+          echo "version_store.txt content:"
+          cat version_store.txt
 
       # Step 5: Commit and push changes
       - name: Commit and push changes
