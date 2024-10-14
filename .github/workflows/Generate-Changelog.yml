@@ -11,32 +11,34 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
+      - name: Checkout Repository with Full History
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Fetch the entire commit history to ensure we capture everything
 
-      - name: Generate Changelog for Last 5 Relevant Commits
+      - name: Generate Changelog for All Relevant Commits
         run: |
           echo "Generating changelog for aces.vromfs.bin_u directory..."
 
           # Create a new changelog file
           echo "### Full Changelog:" > CHANGELOG.md
           echo "" >> CHANGELOG.md
-          echo "#### Changes in aces.vromfs.bin_u Directory (Last 2 Commits):" >> CHANGELOG.md
+          echo "#### Changes in aces.vromfs.bin_u Directory:" >> CHANGELOG.md
 
-          # Get the last two commit hashes that affected the aces.vromfs.bin_u directory
-          COMMIT_HASHES=$(git log --pretty=format:"%h" -n 5 -- aces.vromfs.bin_u)
+          # Get all commit hashes that affected the aces.vromfs.bin_u directory
+          COMMIT_HASHES=$(git log --pretty=format:"%h" -- aces.vromfs.bin_u)
 
-          # Extract the first and second commit hash
-          FIRST_COMMIT=$(echo "$COMMIT_HASHES" | sed -n '1p')
-          SECOND_COMMIT=$(echo "$COMMIT_HASHES" | sed -n '2p')
+          # Check if we have at least two commits
+          if [ $(echo "$COMMIT_HASHES" | wc -l) -ge 2 ]; then
+            # Extract the last two relevant commit hashes
+            FIRST_COMMIT=$(echo "$COMMIT_HASHES" | sed -n '1p')
+            SECOND_COMMIT=$(echo "$COMMIT_HASHES" | sed -n '2p')
 
-          # Debugging - Display the commit hashes
-          echo "First commit hash: $FIRST_COMMIT"
-          echo "Second commit hash: $SECOND_COMMIT"
+            # Debugging - Display the commit hashes
+            echo "First commit hash: $FIRST_COMMIT"
+            echo "Second commit hash: $SECOND_COMMIT"
 
-          # Check if two commits are available
-          if [ -n "$FIRST_COMMIT" ] && [ -n "$SECOND_COMMIT" ]; then
-            # Get the diffs between the two commits and append them to the changelog
+            # Generate diff between the last two commits
             git diff $SECOND_COMMIT..$FIRST_COMMIT -- aces.vromfs.bin_u > temp_diff.txt
 
             if [ -s temp_diff.txt ]; then
