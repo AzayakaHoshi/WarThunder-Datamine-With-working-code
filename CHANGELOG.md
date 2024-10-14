@@ -1,9 +1,9 @@
-### Full Changelog for aces.vromfs.bin_u
+### 📝 Full Changelog for aces.vromfs.bin_u
 
-#### Commit Details
+#### 🔄 Commit Details
 
-- **Commit 60e5a093**: test by Azayaka | Shinoa (pc) on 2024-10-14
-#### Changes Between the Two Commits
+- **Commit 60e5a093**: _test_ by Azayaka | Shinoa (pc) on 2024-10-14
+#### 📂 Changes Between the Last Two Commits
 
 D	aces.vromfs.bin_u/gamedata/countermeasures/an_alq_144.blkx
 D	aces.vromfs.bin_u/gamedata/countermeasures/an_vlq_8.blkx
