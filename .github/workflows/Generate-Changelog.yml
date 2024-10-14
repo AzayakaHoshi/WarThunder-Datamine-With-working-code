@@ -3,7 +3,7 @@ name: Generate Changelog
 on:
   push:
     branches:
-      - main
+      - main  # Change this if your default branch is named differently (e.g., 'master')
   workflow_dispatch:
 
 jobs:
@@ -11,18 +11,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Initialize and fetch the repository to enable git diff
+      # Automatically checkout the repository (no need to manually fetch)
       - name: Checkout Repository
-        run: |
-          git init
-          git remote add origin https://github.com/${{ github.repository }}.git
-          git fetch --depth=2
-          git checkout ${{ github.ref }}
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 2  # Only fetch the last two commits
 
       - name: Generate Changelog
         run: |
           echo "Generating changelog from aces.vromfs.bin_u directory..."
-          
+
           # Create a new changelog file
           echo "### Full Changelog:" > CHANGELOG.md
           echo "" >> CHANGELOG.md
@@ -30,7 +28,7 @@ jobs:
           # Check for changes only in the aces.vromfs.bin_u directory
           git diff HEAD~1 --name-only aces.vromfs.bin_u | grep -E '\.blkx$' | while read file; do
             echo "- **$file**:" >> CHANGELOG.md
-            
+
             # Get the diff for each changed file and format the changes
             git diff HEAD~1 -- $file | grep -E '^\+|^-|^[^ ]' | while read change; do
               echo "  - $change" >> CHANGELOG.md
