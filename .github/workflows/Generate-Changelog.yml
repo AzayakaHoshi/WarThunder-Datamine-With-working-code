@@ -11,12 +11,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Step to use the default checkout action to avoid manually setting up the repository
       - name: Checkout Repository
-        run: |
-          git init
-          git remote add origin https://github.com/${{ github.repository }}.git
-          git fetch origin
-          git checkout ${{ github.ref }}
+        uses: actions/checkout@v3
 
       - name: Generate Changelog
         run: |
@@ -45,4 +42,4 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add CHANGELOG.md
           git commit -m "Generated Changelog for aces.vromfs.bin_u [skip ci]"
-          git push origin ${{ github.ref }} --no-verify
+          git push origin HEAD:$(git rev-parse --abbrev-ref HEAD) --no-verify
