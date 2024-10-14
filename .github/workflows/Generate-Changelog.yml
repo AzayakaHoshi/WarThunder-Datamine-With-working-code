@@ -21,21 +21,16 @@ jobs:
       - name: Generate Changelog
         uses: TriPSs/conventional-changelog-action@v2
         with:
-          github-token: ${{ secrets.P_A_T }}  # Use the custom Personal Access Token
-          skip_version: true                  # Skip the version bump
-          output_file: CHANGELOG.md           # Output file for the changelog
-          preset: angular                     # Conventional commit preset to use
-          path: 'aces.vromfs.bin_u'           # Focus on the aces.vromfs.bin_u folder
+          github-token: ${{ secrets.P_A_T }}        # Use the custom Personal Access Token
+          output-file: CHANGELOG.md                 # Correct parameter name for output file
+          preset: angular                           # Conventional commit preset to use
+          skip-on-empty: true                       # Skip changelog generation if there are no relevant commits
 
-      # Step 3: Check if changelog has changed, then commit and push
+      # Step 3: Commit and Push the changelog
       - name: Commit and Push Changelog
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          if [ -n "$(git status --porcelain)" ]; then  # Check if there are changes
-            git add CHANGELOG.md
-            git commit -m "chore: updated changelog for aces.vromfs.bin_u"
-            git push origin HEAD:$(git rev-parse --abbrev-ref HEAD) --no-verify
-          else
-            echo "No changes to commit."
-          fi
+          git add CHANGELOG.md
+          git commit -m "chore: updated changelog for aces.vromfs.bin_u"
+          git push origin HEAD:$(git rev-parse --abbrev-ref HEAD) --no-verify
