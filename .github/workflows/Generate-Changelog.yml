@@ -14,7 +14,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Generate Changelog for Last 2 Relevant Commits
+      - name: Generate Changelog for Last 5 Relevant Commits
         run: |
           echo "Generating changelog for aces.vromfs.bin_u directory..."
 
@@ -24,11 +24,15 @@ jobs:
           echo "#### Changes in aces.vromfs.bin_u Directory (Last 2 Commits):" >> CHANGELOG.md
 
           # Get the last two commit hashes that affected the aces.vromfs.bin_u directory
-          COMMIT_HASHES=$(git log --pretty=format:"%h" -n 2 -- aces.vromfs.bin_u)
+          COMMIT_HASHES=$(git log --pretty=format:"%h" -n 5 -- aces.vromfs.bin_u)
 
           # Extract the first and second commit hash
           FIRST_COMMIT=$(echo "$COMMIT_HASHES" | sed -n '1p')
           SECOND_COMMIT=$(echo "$COMMIT_HASHES" | sed -n '2p')
+
+          # Debugging - Display the commit hashes
+          echo "First commit hash: $FIRST_COMMIT"
+          echo "Second commit hash: $SECOND_COMMIT"
 
           # Check if two commits are available
           if [ -n "$FIRST_COMMIT" ] && [ -n "$SECOND_COMMIT" ]; then
@@ -47,7 +51,7 @@ jobs:
 
           echo "---" >> CHANGELOG.md
 
-      - name: Commit Changelog
+      - name: Add and Commit Changes
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
