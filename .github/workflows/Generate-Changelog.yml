@@ -23,8 +23,13 @@ jobs:
           echo "" >> CHANGELOG.md
           echo "#### Detailed Changes in aces.vromfs.bin_u Directory:" >> CHANGELOG.md
 
-          # Get the list of changes (diffs) between the last commit and the one before it for the aces.vromfs.bin_u directory
-          git diff HEAD~1..HEAD -- aces.vromfs.bin_u > temp_diff.txt
+          # Check if there is more than one commit in the repository
+          if [ $(git rev-list --count HEAD) -gt 1 ]; then
+            # Get the list of changes (diffs) between the last commit and the one before it
+            git diff HEAD~1..HEAD -- aces.vromfs.bin_u > temp_diff.txt
+          else
+            echo "Only one commit in the repository. Cannot generate a diff." > temp_diff.txt
+          fi
 
           # Check if there are changes and append them to the changelog
           if [ -s temp_diff.txt ]; then
