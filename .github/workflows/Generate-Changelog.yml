@@ -25,12 +25,25 @@ jobs:
           echo "### Full Changelog:" > CHANGELOG.md
           echo "" >> CHANGELOG.md
 
-          # Check for changes only in the aces.vromfs.bin_u directory
+          # Find changes only in the aces.vromfs.bin_u directory for .blkx files
           git diff HEAD~1 --name-only aces.vromfs.bin_u | grep -E '\.blkx$' | while read file; do
             echo "- **$file**:" >> CHANGELOG.md
 
-            # Get the diff for each changed file and format the changes
-            git diff HEAD~1 -- $file | grep -E '^\+|^-|^[^ ]' | while read change; do
+            # Extract only added (+) and removed (-) lines, ignoring diff metadata
+            git diff HEAD~1 -- $file | grep -E '^\+[^+]|^\-[^-]' | while read change; do
+              echo "  - $change" >> CHANGELOG.md
+            done
+          done
+
+          echo "" >> CHANGELOG.md
+          echo "#### Weapon File Changes:" >> CHANGELOG.md
+
+          # Find changes for files containing 'user_cannon' and apply the same filter
+          git diff HEAD~1 --name-only aces.vromfs.bin_u | grep -E 'user_cannon' | while read file; do
+            echo "- **$file**:" >> CHANGELOG.md
+
+            # Extract only added (+) and removed (-) lines, ignoring diff metadata
+            git diff HEAD~1 -- $file | grep -E '^\+[^+]|^\-[^-]' | while read change; do
               echo "  - $change" >> CHANGELOG.md
             done
           done
@@ -38,11 +51,14 @@ jobs:
           echo "" >> CHANGELOG.md
           echo "---" >> CHANGELOG.md
 
-      # Commit the generated changelog
-      - name: Commit Changelog
+      - name: Commit Changelog (if there are changes)
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add CHANGELOG.md
-          git commit -m "Generated Changelog [skip ci]"
-          git push --no-verify
+          if [[ -n $(git status --porcelain) ]]; then
+            git config --global user.name "github-actions[bot]"
+            git config --global user.email "github-actions[bot]@users.noreply.github.com"
+            git add CHANGELOG.md
+            git commit -m "Generated Changelog [skip ci]"
+            git push --no-verify
+          else
+            echo "No changes to commit"
+          fi
