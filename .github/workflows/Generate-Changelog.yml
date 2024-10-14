@@ -11,38 +11,32 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # No external actions, just directly using the repository that is automatically checked out by GitHub
+      - name: Checkout Repository
+        run: |
+          git init
+          git remote add origin https://github.com/${{ github.repository }}.git
+          git fetch origin
+          git checkout ${{ github.ref }}
+
       - name: Generate Changelog
         run: |
-          echo "Generating changelog..."
-          git log --pretty=format:"- **%s** (%h) by %an on %ad" --date=short --no-merges > changes.txt
+          echo "Generating changelog for aces.vromfs.bin_u directory..."
 
+          # Create a new changelog file
           echo "### Full Changelog:" > CHANGELOG.md
           echo "" >> CHANGELOG.md
-          echo "#### Vehicle Changes:" >> CHANGELOG.md
+          echo "#### Commits Affecting aces.vromfs.bin_u Directory:" >> CHANGELOG.md
 
-          git diff HEAD~1 --name-only | grep -E '\.blkx$' | while read file; do
-            echo "" >> CHANGELOG.md
-            echo "- **$file**:" >> CHANGELOG.md
+          # Get the list of commits that affected the aces.vromfs.bin_u directory
+          git log --pretty=format:"- **%s** (%h) by %an on %ad" --date=short --no-merges -- aces.vromfs.bin_u > temp_log.txt
 
-            git diff HEAD~1 -- $file | grep -E '^\+|^-|^[^ ]' | while read change; do
-              echo "  - $change" >> CHANGELOG.md
-            done
-          done
+          # Check if there are relevant commits
+          if [ -s temp_log.txt ]; then
+              cat temp_log.txt >> CHANGELOG.md
+          else
+              echo "No changes in aces.vromfs.bin_u directory in recent commits." >> CHANGELOG.md
+          fi
 
-          echo "" >> CHANGELOG.md
-          echo "#### Weapon File Changes:" >> CHANGELOG.md
-
-          git diff HEAD~1 --name-only | grep -E 'user_cannon' | while read file; do
-            echo "" >> CHANGELOG.md
-            echo "- **$file**:" >> CHANGELOG.md
-
-            git diff HEAD~1 -- $file | grep -E '^\+|^-|^[^ ]' | while read change; do
-              echo "  - $change" >> CHANGELOG.md
-            done
-          done
-
-          echo "" >> CHANGELOG.md
           echo "---" >> CHANGELOG.md
 
       - name: Commit Changelog
@@ -50,5 +44,5 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add CHANGELOG.md
-          git commit -m "Generated Changelog [skip ci]"
-          git push --no-verify
+          git commit -m "Generated Changelog for aces.vromfs.bin_u [skip ci]"
+          git push origin ${{ github.ref }} --no-verify
