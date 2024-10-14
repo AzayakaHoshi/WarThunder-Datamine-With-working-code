@@ -1,4 +1,4 @@
-name: Generate Full Changelog for aces.vromfs.bin_u
+name: Generate Detailed Changelog for aces.vromfs.bin_u
 
 on:
   push:
@@ -14,21 +14,22 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Generate Changelog
+      - name: Generate Detailed Changelog
         run: |
-          echo "Generating changelog for aces.vromfs.bin_u directory..."
+          echo "Generating detailed changelog for aces.vromfs.bin_u directory..."
 
           # Create a new changelog file
           echo "### Full Changelog:" > CHANGELOG.md
           echo "" >> CHANGELOG.md
-          echo "#### Commits Affecting aces.vromfs.bin_u Directory:" >> CHANGELOG.md
+          echo "#### Detailed Changes in aces.vromfs.bin_u Directory:" >> CHANGELOG.md
 
-          # Get the list of all commits that affected the aces.vromfs.bin_u directory
-          git log --name-status --oneline -- aces.vromfs.bin_u > temp_log.txt
+          # Get the list of changes (diffs) between the last commit and the one before it for the aces.vromfs.bin_u directory
+          git diff HEAD~1..HEAD -- aces.vromfs.bin_u > temp_diff.txt
 
-          # Add the captured changes to CHANGELOG.md
-          if [ -s temp_log.txt ]; then
-              cat temp_log.txt >> CHANGELOG.md
+          # Check if there are changes and append them to the changelog
+          if [ -s temp_diff.txt ]; then
+              echo "Changes between the last two commits:" >> CHANGELOG.md
+              cat temp_diff.txt >> CHANGELOG.md
           else
               echo "No changes in aces.vromfs.bin_u directory in recent commits." >> CHANGELOG.md
           fi
@@ -40,5 +41,5 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add CHANGELOG.md
-          git commit -m "Generated Changelog for aces.vromfs.bin_u [skip ci]"
+          git commit -m "Generated Detailed Changelog for aces.vromfs.bin_u [skip ci]"
           git push origin HEAD:$(git rev-parse --abbrev-ref HEAD) --no-verify
