@@ -17,16 +17,15 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      # Step 2: Generate the changelog without requiring package.json
+      # Step 2: Generate the changelog using the custom PAT token
       - name: Generate Changelog
         uses: TriPSs/conventional-changelog-action@v2
         with:
-          version: 'v1.0.0'  # Manually set version if needed (or use other versioning strategies)
-          output_file: CHANGELOG.md
-          preset: angular  # Use 'angular' preset for conventional commits
-          path: 'aces.vromfs.bin_u'
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          skip_version: true  # Skip the need for package.json
+          github-token: ${{ secrets.P_A_T }}  # Use the custom Personal Access Token
+          skip_version: true                  # Skip the version bump to avoid needing package.json
+          output_file: CHANGELOG.md           # Output file for the changelog
+          preset: angular                     # Conventional commit preset to use
+          path: 'aces.vromfs.bin_u'           # Focus on the aces.vromfs.bin_u folder
 
       # Step 3: Commit and Push the changelog
       - name: Commit and Push Changelog
