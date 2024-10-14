@@ -17,18 +17,22 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      # Step 2: Generate the changelog
+      # Step 2: Read the version from aces.vromfs.bin_u/version
+      - name: Read Version from aces.vromfs.bin_u/version
+        id: read_version
+        run: echo "VERSION=$(cat aces.vromfs.bin_u/version)" >> $GITHUB_ENV
+
+      # Step 3: Generate the changelog using the version from the version file
       - name: Generate Changelog
         uses: TriPSs/conventional-changelog-action@v2
         with:
-          version: 'v1.0.0'              # Version of the release, can be dynamically updated
-          output_file: CHANGELOG.md       # Name of the output changelog file
-          preset: angular                 # Use 'angular' preset for conventional commits
-          path: 'aces.vromfs.bin_u'       # Focus on changes in the specific folder
-          commit_message: "chore: updated changelog for aces.vromfs.bin_u changes"
-          github-token: ${{ secrets.P_A_T }}  # Provide the GitHub token
+          version: ${{ env.VERSION }}       # Use the version from the version file
+          output_file: CHANGELOG.md         # Name of the output changelog file
+          preset: angular                   # Use 'angular' preset for conventional commits
+          path: 'aces.vromfs.bin_u'         # Focus on changes in the specific folder
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
-      # Step 3: Commit and Push the changelog
+      # Step 4: Commit and Push the changelog
       - name: Commit and Push Changelog
         run: |
           git config --global user.name "github-actions[bot]"
