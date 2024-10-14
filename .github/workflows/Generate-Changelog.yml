@@ -1,4 +1,4 @@
-name: Generate Detailed Changelog for aces.vromfs.bin_u
+name: Generate Changelog for aces.vromfs.bin_u
 
 on:
   push:
@@ -14,38 +14,43 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Generate Detailed Changelog
+      - name: Generate Changelog for Last 2 Relevant Commits
         run: |
-          echo "Generating detailed changelog for aces.vromfs.bin_u directory..."
+          echo "Generating changelog for aces.vromfs.bin_u directory..."
 
           # Create a new changelog file
           echo "### Full Changelog:" > CHANGELOG.md
           echo "" >> CHANGELOG.md
-          echo "#### Detailed Changes in aces.vromfs.bin_u Directory:" >> CHANGELOG.md
+          echo "#### Changes in aces.vromfs.bin_u Directory (Last 2 Commits):" >> CHANGELOG.md
 
-          # Check if there is more than one commit in the repository
-          if [ $(git rev-list --count HEAD) -gt 1 ]; then
-            # Get the list of changes (diffs) between the last commit and the one before it
-            git diff HEAD~1..HEAD -- aces.vromfs.bin_u > temp_diff.txt
-          else
-            echo "Only one commit in the repository. Cannot generate a diff." > temp_diff.txt
-          fi
+          # Get the last two commit hashes that affected the aces.vromfs.bin_u directory
+          COMMIT_HASHES=$(git log --pretty=format:"%h" -n 2 -- aces.vromfs.bin_u)
 
-          # Check if there are changes and append them to the changelog
-          if [ -s temp_diff.txt ]; then
+          # Extract the first and second commit hash
+          FIRST_COMMIT=$(echo "$COMMIT_HASHES" | sed -n '1p')
+          SECOND_COMMIT=$(echo "$COMMIT_HASHES" | sed -n '2p')
+
+          # Check if two commits are available
+          if [ -n "$FIRST_COMMIT" ] && [ -n "$SECOND_COMMIT" ]; then
+            # Get the diffs between the two commits and append them to the changelog
+            git diff $SECOND_COMMIT..$FIRST_COMMIT -- aces.vromfs.bin_u > temp_diff.txt
+
+            if [ -s temp_diff.txt ]; then
               echo "Changes between the last two commits:" >> CHANGELOG.md
               cat temp_diff.txt >> CHANGELOG.md
+            else
+              echo "No changes in aces.vromfs.bin_u directory between the last two commits." >> CHANGELOG.md
+            fi
           else
-              echo "No changes in aces.vromfs.bin_u directory in recent commits." >> CHANGELOG.md
+            echo "Not enough relevant commits found to generate a changelog." >> CHANGELOG.md
           fi
 
           echo "---" >> CHANGELOG.md
 
-      - name: Add and Commit Changes
+      - name: Commit Changelog
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add CHANGELOG.md  # Explicitly track the CHANGELOG.md
-          git add .  # Add any other untracked files if necessary
-          git commit -m "Generated Detailed Changelog for aces.vromfs.bin_u [skip ci]" || echo "No changes to commit."
+          git add CHANGELOG.md  # Add the changelog
+          git commit -m "Generated Changelog for aces.vromfs.bin_u [skip ci]" || echo "No changes to commit."
           git push origin HEAD:$(git rev-parse --abbrev-ref HEAD) --no-verify
