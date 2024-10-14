@@ -1,4 +1,4 @@
-name: Generate Changelog for aces.vromfs.bin_u
+name: Generate Readable Changelog for aces.vromfs.bin_u
 
 on:
   push:
@@ -16,47 +16,43 @@ jobs:
         with:
           fetch-depth: 0  # Fetch the entire commit history to ensure we capture everything
 
-      - name: Generate Changelog for All Relevant Commits
+      - name: Generate Readable Changelog
         run: |
           echo "Generating changelog for aces.vromfs.bin_u directory..."
 
           # Create a new changelog file
-          echo "### Full Changelog:" > CHANGELOG.md
+          echo "### Full Changelog for aces.vromfs.bin_u" > CHANGELOG.md
           echo "" >> CHANGELOG.md
-          echo "#### Changes in aces.vromfs.bin_u Directory:" >> CHANGELOG.md
 
-          # Get all commit hashes that affected the aces.vromfs.bin_u directory
+          # Get the last two commit hashes that affected the aces.vromfs.bin_u directory
           COMMIT_HASHES=$(git log --pretty=format:"%h" -- aces.vromfs.bin_u)
 
-          # Check if we have at least two commits
-          if [ $(echo "$COMMIT_HASHES" | wc -l) -ge 2 ]; then
-            # Extract the last two relevant commit hashes
-            FIRST_COMMIT=$(echo "$COMMIT_HASHES" | sed -n '1p')
-            SECOND_COMMIT=$(echo "$COMMIT_HASHES" | sed -n '2p')
+          # Extract the first and second commit hash
+          FIRST_COMMIT=$(echo "$COMMIT_HASHES" | sed -n '1p')
+          SECOND_COMMIT=$(echo "$COMMIT_HASHES" | sed -n '2p')
 
-            # Debugging - Display the commit hashes
-            echo "First commit hash: $FIRST_COMMIT"
-            echo "Second commit hash: $SECOND_COMMIT"
+          if [ -n "$FIRST_COMMIT" ] && [ -n "$SECOND_COMMIT" ]; then
+            # Add commit information
+            echo "#### Commit Details" >> CHANGELOG.md
+            echo "" >> CHANGELOG.md
+            git log --pretty=format:"- **Commit %h**: %s by %an on %ad" --date=short $SECOND_COMMIT..$FIRST_COMMIT -- aces.vromfs.bin_u >> CHANGELOG.md
 
-            # Generate diff between the last two commits
-            git diff $SECOND_COMMIT..$FIRST_COMMIT -- aces.vromfs.bin_u > temp_diff.txt
+            echo "" >> CHANGELOG.md
 
-            if [ -s temp_diff.txt ]; then
-              echo "Changes between the last two commits:" >> CHANGELOG.md
-              cat temp_diff.txt >> CHANGELOG.md
-            else
-              echo "No changes in aces.vromfs.bin_u directory between the last two commits." >> CHANGELOG.md
-            fi
+            # Generate diff summary for better readability (file names and brief changes)
+            echo "#### Changes Between the Two Commits" >> CHANGELOG.md
+            echo "" >> CHANGELOG.md
+            git diff --name-status $SECOND_COMMIT..$FIRST_COMMIT -- aces.vromfs.bin_u >> CHANGELOG.md
+
+            echo "---" >> CHANGELOG.md
           else
             echo "Not enough relevant commits found to generate a changelog." >> CHANGELOG.md
           fi
 
-          echo "---" >> CHANGELOG.md
-
-      - name: Add and Commit Changes
+      - name: Commit Changelog
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add CHANGELOG.md  # Add the changelog
-          git commit -m "Generated Changelog for aces.vromfs.bin_u [skip ci]" || echo "No changes to commit."
+          git commit -m "Generated Readable Changelog for aces.vromfs.bin_u [skip ci]" || echo "No changes to commit."
           git push origin HEAD:$(git rev-parse --abbrev-ref HEAD) --no-verify
