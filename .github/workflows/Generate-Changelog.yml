@@ -1,36 +1,50 @@
-name: Generate Changelog for aces.vromfs.bin_u
+name: Generate Changelog
 
 on:
   push:
-    paths:
-      - 'aces.vromfs.bin_u/**'  # Trigger when files in this directory are changed
     branches:
       - main
-  workflow_dispatch:  # Add manual trigger
+  workflow_dispatch:
 
 jobs:
   generate-changelog:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout the repository
+      # Initialize and fetch the repository to enable git diff
       - name: Checkout Repository
-        uses: actions/checkout@v3
+        run: |
+          git init
+          git remote add origin https://github.com/${{ github.repository }}.git
+          git fetch --depth=2
+          git checkout ${{ github.ref }}
 
-      # Step 2: Generate the changelog using the custom PAT token
       - name: Generate Changelog
-        uses: TriPSs/conventional-changelog-action@v2
-        with:
-          github-token: ${{ secrets.P_A_T }}        # Use the custom Personal Access Token
-          output-file: CHANGELOG.md                 # Correct parameter name for output file
-          preset: angular                           # Conventional commit preset to use
-          skip-on-empty: true                       # Skip changelog generation if there are no relevant commits
+        run: |
+          echo "Generating changelog from aces.vromfs.bin_u directory..."
+          
+          # Create a new changelog file
+          echo "### Full Changelog:" > CHANGELOG.md
+          echo "" >> CHANGELOG.md
 
-      # Step 3: Commit and Push the changelog
-      - name: Commit and Push Changelog
+          # Check for changes only in the aces.vromfs.bin_u directory
+          git diff HEAD~1 --name-only aces.vromfs.bin_u | grep -E '\.blkx$' | while read file; do
+            echo "- **$file**:" >> CHANGELOG.md
+            
+            # Get the diff for each changed file and format the changes
+            git diff HEAD~1 -- $file | grep -E '^\+|^-|^[^ ]' | while read change; do
+              echo "  - $change" >> CHANGELOG.md
+            done
+          done
+
+          echo "" >> CHANGELOG.md
+          echo "---" >> CHANGELOG.md
+
+      # Commit the generated changelog
+      - name: Commit Changelog
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add CHANGELOG.md
-          git commit -m "chore: updated changelog for aces.vromfs.bin_u"
-          git push origin HEAD:$(git rev-parse --abbrev-ref HEAD) --no-verify
+          git commit -m "Generated Changelog [skip ci]"
+          git push --no-verify
