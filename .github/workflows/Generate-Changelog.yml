@@ -1,4 +1,4 @@
-name: Generate Changelog
+name: Generate Full Changelog for aces.vromfs.bin_u
 
 on:
   push:
@@ -11,7 +11,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Use the GitHub-provided actions/checkout to get the repository content
       - name: Checkout Repository
         uses: actions/checkout@v3
 
@@ -24,10 +23,10 @@ jobs:
           echo "" >> CHANGELOG.md
           echo "#### Commits Affecting aces.vromfs.bin_u Directory:" >> CHANGELOG.md
 
-          # Get the list of commits that affected the aces.vromfs.bin_u directory
-          git log --pretty=format:"- **%s** (%h) by %an on %ad" --date=short --no-merges -- aces.vromfs.bin_u > temp_log.txt
+          # Get the list of all commits that affected the aces.vromfs.bin_u directory
+          git log --name-status --oneline -- aces.vromfs.bin_u > temp_log.txt
 
-          # Check if there are relevant commits
+          # Add the captured changes to CHANGELOG.md
           if [ -s temp_log.txt ]; then
               cat temp_log.txt >> CHANGELOG.md
           else
