@@ -1,4 +1,4 @@
-name: Generate Detailed and Readable Changelog for aces.vromfs.bin_u
+name: Generate Detailed Changelog with Old and New Values
 
 on:
   push:
@@ -16,7 +16,7 @@ jobs:
         with:
           fetch-depth: 0  # Fetch the entire commit history to ensure we capture everything
 
-      - name: Generate Readable Changelog
+      - name: Generate Changelog with Detailed Changes
         run: |
           echo "Generating changelog for aces.vromfs.bin_u directory..."
 
@@ -42,7 +42,9 @@ jobs:
             # Generate diff summary for better readability (file names and brief changes)
             echo "#### 📂 Changes Between the Last Two Commits" >> CHANGELOG.md
             echo "" >> CHANGELOG.md
-            git diff --name-status $SECOND_COMMIT..$FIRST_COMMIT -- aces.vromfs.bin_u >> CHANGELOG.md
+
+            # Output detailed changes with old/new values
+            git diff $SECOND_COMMIT..$FIRST_COMMIT -- aces.vromfs.bin_u | grep -E "^\+|^\-" | sed -e 's/^-/old: /' -e 's/^+/new: /' >> CHANGELOG.md
 
             echo "---" >> CHANGELOG.md
           else
@@ -54,5 +56,5 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add CHANGELOG.md  # Add the changelog
-          git commit -m "Generated Readable Changelog for aces.vromfs.bin_u [skip ci]" || echo "No changes to commit."
+          git commit -m "Generated Changelog for aces.vromfs.bin_u [skip ci]" || echo "No changes to commit."
           git push origin HEAD:$(git rev-parse --abbrev-ref HEAD) --no-verify
