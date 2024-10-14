@@ -1,4 +1,252 @@
 ### Full Changelog:
 
+- **aces.vromfs.bin_u/gamedata/countermeasures/an_alq_144.blkx**:
+  - diff --git a/aces.vromfs.bin_u/gamedata/countermeasures/an_alq_144.blkx b/aces.vromfs.bin_u/gamedata/countermeasures/an_alq_144.blkx
+  - new file mode 100644
+  - index 0000000..842fbb0
+  - --- /dev/null
+  - +++ b/aces.vromfs.bin_u/gamedata/countermeasures/an_alq_144.blkx
+  - @@ -0,0 +1,12 @@
+  - +type:t="ircm"
+  - +visibilityBand3:r=2.0
+  - +deceptionBand3:r=1.0
+  - +deceptionPolarAngle:r=2.0
+  - +frequency0:r=0.5
+  - +frequency1:r=1.0
+  - +frequency2:r=3.5
+  - +frequency3:r=6.0
+  - +azimuth:r=-180.0
+  - +elevation:r=65.0
+  - +azimuthSector:r=240.0
+  - +elevationSector:r=150.0
+  -  No newline at end of file
+- **aces.vromfs.bin_u/gamedata/countermeasures/an_vlq_8.blkx**:
+  - diff --git a/aces.vromfs.bin_u/gamedata/countermeasures/an_vlq_8.blkx b/aces.vromfs.bin_u/gamedata/countermeasures/an_vlq_8.blkx
+  - new file mode 100644
+  - index 0000000..40354cb
+  - --- /dev/null
+  - +++ b/aces.vromfs.bin_u/gamedata/countermeasures/an_vlq_8.blkx
+  - @@ -0,0 +1,13 @@
+  - +nameLocId:t="an_vlq_8a"
+  - +type:t="ircm"
+  - +visibilityBand4:r=0.5
+  - +deceptionBand4:r=1.0
+  - +deceptionPolarAngle:r=5.0
+  - +frequency0:r=0.5
+  - +frequency1:r=1.5
+  - +frequency2:r=4.0
+  - +frequency3:r=10.0
+  - +azimuth:r=0.0
+  - +elevation:r=0.0
+  - +azimuthSector:r=40.0
+  - +elevationSector:r=10.0
+  -  No newline at end of file
+- **aces.vromfs.bin_u/gamedata/countermeasures/eirel.blkx**:
+  - diff --git a/aces.vromfs.bin_u/gamedata/countermeasures/eirel.blkx b/aces.vromfs.bin_u/gamedata/countermeasures/eirel.blkx
+  - new file mode 100644
+  - index 0000000..d941de2
+  - --- /dev/null
+  - +++ b/aces.vromfs.bin_u/gamedata/countermeasures/eirel.blkx
+  - @@ -0,0 +1,12 @@
+  - +type:t="ircm"
+  - +visibilityBand4:r=0.5
+  - +deceptionBand4:r=1.0
+  - +deceptionPolarAngle:r=5.0
+  - +frequency0:r=0.5
+  - +frequency1:r=1.5
+  - +frequency2:r=4.0
+  - +frequency3:r=10.0
+  - +azimuth:r=0.0
+  - +elevation:r=0.0
+  - +azimuthSector:r=20.0
+  - +elevationSector:r=10.0
+  -  No newline at end of file
+- **aces.vromfs.bin_u/gamedata/countermeasures/jd_3_left.blkx**:
+  - diff --git a/aces.vromfs.bin_u/gamedata/countermeasures/jd_3_left.blkx b/aces.vromfs.bin_u/gamedata/countermeasures/jd_3_left.blkx
+  - new file mode 100644
+  - index 0000000..ce3f0a4
+  - --- /dev/null
+  - +++ b/aces.vromfs.bin_u/gamedata/countermeasures/jd_3_left.blkx
+  - @@ -0,0 +1,13 @@
+  - +nameLocId:t="jd_3"
+  - +type:t="ircm"
+  - +visibilityBand4:r=0.5
+  - +deceptionBand4:r=1.0
+  - +deceptionPolarAngle:r=5.0
+  - +frequency0:r=0.5
+  - +frequency1:r=1.5
+  - +frequency2:r=4.0
+  - +frequency3:r=10.0
+  - +azimuth:r=349.0
+  - +elevation:r=0.0
+  - +azimuthSector:r=22.0
+  - +elevationSector:r=5.0
+  -  No newline at end of file
+- **aces.vromfs.bin_u/gamedata/countermeasures/jd_3_right.blkx**:
+  - diff --git a/aces.vromfs.bin_u/gamedata/countermeasures/jd_3_right.blkx b/aces.vromfs.bin_u/gamedata/countermeasures/jd_3_right.blkx
+  - new file mode 100644
+  - index 0000000..c2a6a86
+  - --- /dev/null
+  - +++ b/aces.vromfs.bin_u/gamedata/countermeasures/jd_3_right.blkx
+  - @@ -0,0 +1,13 @@
+  - +nameLocId:t="jd_3"
+  - +type:t="ircm"
+  - +visibilityBand4:r=0.5
+  - +deceptionBand4:r=1.0
+  - +deceptionPolarAngle:r=5.0
+  - +frequency0:r=0.5
+  - +frequency1:r=1.5
+  - +frequency2:r=4.0
+  - +frequency3:r=10.0
+  - +azimuth:r=11.0
+  - +elevation:r=0.0
+  - +azimuthSector:r=22.0
+  - +elevationSector:r=5.0
+  -  No newline at end of file
+- **aces.vromfs.bin_u/gamedata/countermeasures/l_166.blkx**:
+  - diff --git a/aces.vromfs.bin_u/gamedata/countermeasures/l_166.blkx b/aces.vromfs.bin_u/gamedata/countermeasures/l_166.blkx
+  - new file mode 100644
+  - index 0000000..9c51c60
+  - --- /dev/null
+  - +++ b/aces.vromfs.bin_u/gamedata/countermeasures/l_166.blkx
+  - @@ -0,0 +1,12 @@
+  - +type:t="ircm"
+  - +visibilityBand3:r=2.0
+  - +deceptionBand3:r=1.0
+  - +deceptionPolarAngle:r=2.0
+  - +frequency0:r=0.5
+  - +frequency1:r=1.5
+  - +frequency2:r=4.0
+  - +frequency3:r=10.0
+  - +azimuth:r=-180.0
+  - +elevation:r=75.0
+  - +azimuthSector:r=240.0
+  - +elevationSector:r=150.0
+  -  No newline at end of file
+- **aces.vromfs.bin_u/gamedata/countermeasures/l_166_c1.blkx**:
+  - diff --git a/aces.vromfs.bin_u/gamedata/countermeasures/l_166_c1.blkx b/aces.vromfs.bin_u/gamedata/countermeasures/l_166_c1.blkx
+  - new file mode 100644
+  - index 0000000..e95c23e
+  - --- /dev/null
+  - +++ b/aces.vromfs.bin_u/gamedata/countermeasures/l_166_c1.blkx
+  - @@ -0,0 +1,12 @@
+  - +type:t="ircm"
+  - +visibilityBand3:r=2.0
+  - +deceptionBand3:r=1.0
+  - +deceptionPolarAngle:r=2.0
+  - +frequency0:r=0.5
+  - +frequency1:r=1.5
+  - +frequency2:r=4.0
+  - +frequency3:r=10.0
+  - +azimuth:r=-180.0
+  - +elevation:r=5.0
+  - +azimuthSector:r=140.0
+  - +elevationSector:r=130.0
+  -  No newline at end of file
+- **aces.vromfs.bin_u/gamedata/countermeasures/l_370.blkx**:
+  - diff --git a/aces.vromfs.bin_u/gamedata/countermeasures/l_370.blkx b/aces.vromfs.bin_u/gamedata/countermeasures/l_370.blkx
+  - new file mode 100644
+  - index 0000000..294e30b
+  - --- /dev/null
+  - +++ b/aces.vromfs.bin_u/gamedata/countermeasures/l_370.blkx
+  - @@ -0,0 +1,14 @@
+  - +type:t="ircm"
+  - +visibilityBand3:r=0.1
+  - +deceptionBand3:r=3.0
+  - +visibilityBand6:r=0.5
+  - +deceptionBand6:r=3.0
+  - +deceptionPolarAngle:r=5.0
+  - +frequency0:r=0.5
+  - +frequency1:r=1.5
+  - +frequency2:r=4.0
+  - +frequency3:r=10.0
+  - +azimuth:r=-180.0
+  - +elevation:r=-75.0
+  - +azimuthSector:r=360.0
+  - +elevationSector:r=150.0
+  -  No newline at end of file
+- **aces.vromfs.bin_u/gamedata/countermeasures/muss.blkx**:
+  - diff --git a/aces.vromfs.bin_u/gamedata/countermeasures/muss.blkx b/aces.vromfs.bin_u/gamedata/countermeasures/muss.blkx
+  - new file mode 100644
+  - index 0000000..7741ece
+  - --- /dev/null
+  - +++ b/aces.vromfs.bin_u/gamedata/countermeasures/muss.blkx
+  - @@ -0,0 +1,13 @@
+  - +nameLocId:t="muss"
+  - +type:t="ircm"
+  - +visibilityBand4:r=0.5
+  - +deceptionBand4:r=1.0
+  - +deceptionPolarAngle:r=5.0
+  - +frequency0:r=0.5
+  - +frequency1:r=1.5
+  - +frequency2:r=4.0
+  - +frequency3:r=10.0
+  - +azimuth:r=0.0
+  - +elevation:r=0.0
+  - +azimuthSector:r=40.0
+  - +elevationSector:r=10.0
+  -  No newline at end of file
+- **aces.vromfs.bin_u/gamedata/countermeasures/tshu_1.blkx**:
+  - diff --git a/aces.vromfs.bin_u/gamedata/countermeasures/tshu_1.blkx b/aces.vromfs.bin_u/gamedata/countermeasures/tshu_1.blkx
+  - new file mode 100644
+  - index 0000000..4b3d3c7
+  - --- /dev/null
+  - +++ b/aces.vromfs.bin_u/gamedata/countermeasures/tshu_1.blkx
+  - @@ -0,0 +1,12 @@
+  - +type:t="ircm"
+  - +visibilityBand4:r=0.5
+  - +deceptionBand4:r=1.0
+  - +deceptionPolarAngle:r=5.0
+  - +frequency0:r=0.5
+  - +frequency1:r=1.5
+  - +frequency2:r=4.0
+  - +frequency3:r=10.0
+  - +azimuth:r=0.0
+  - +elevation:r=0.0
+  - +azimuthSector:r=350.0
+  - +elevationSector:r=170.0
+  -  No newline at end of file
+- **aces.vromfs.bin_u/gamedata/countermeasures/tshu_1_left.blkx**:
+  - diff --git a/aces.vromfs.bin_u/gamedata/countermeasures/tshu_1_left.blkx b/aces.vromfs.bin_u/gamedata/countermeasures/tshu_1_left.blkx
+  - new file mode 100644
+  - index 0000000..38ecaca
+  - --- /dev/null
+  - +++ b/aces.vromfs.bin_u/gamedata/countermeasures/tshu_1_left.blkx
+  - @@ -0,0 +1,13 @@
+  - +nameLocId:t="shtora1"
+  - +type:t="ircm"
+  - +visibilityBand4:r=0.5
+  - +deceptionBand4:r=1.0
+  - +deceptionPolarAngle:r=5.0
+  - +frequency0:r=0.5
+  - +frequency1:r=1.5
+  - +frequency2:r=4.0
+  - +frequency3:r=10.0
+  - +azimuth:r=350.0
+  - +elevation:r=0.0
+  - +azimuthSector:r=20.0
+  - +elevationSector:r=4.0
+  -  No newline at end of file
+- **aces.vromfs.bin_u/gamedata/countermeasures/tshu_1_right.blkx**:
+  - diff --git a/aces.vromfs.bin_u/gamedata/countermeasures/tshu_1_right.blkx b/aces.vromfs.bin_u/gamedata/countermeasures/tshu_1_right.blkx
+  - new file mode 100644
+  - index 0000000..74b3949
+  - --- /dev/null
+  - +++ b/aces.vromfs.bin_u/gamedata/countermeasures/tshu_1_right.blkx
+  - @@ -0,0 +1,13 @@
+  - +nameLocId:t="shtora1"
+  - +type:t="ircm"
+  - +visibilityBand4:r=0.5
+  - +deceptionBand4:r=1.0
+  - +deceptionPolarAngle:r=5.0
+  - +frequency0:r=0.5
+  - +frequency1:r=1.5
+  - +frequency2:r=4.0
+  - +frequency3:r=10.0
+  - +azimuth:r=10.0
+  - +elevation:r=0.0
+  - +azimuthSector:r=20.0
+  - +elevationSector:r=4.0
+  -  No newline at end of file
 
 ---
