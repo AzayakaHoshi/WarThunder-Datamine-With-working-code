@@ -1,5 +1,169 @@
 ### Full Changelog:
 
+- **aces.vromfs.bin_u/gamedata/countermeasures/an_alq_144.blkx**:
+  - -type:t="ircm"
+  - -visibilityBand3:r=2.0
+  - -deceptionBand3:r=1.0
+  - -deceptionPolarAngle:r=2.0
+  - -frequency0:r=0.5
+  - -frequency1:r=1.0
+  - -frequency2:r=3.5
+  - -frequency3:r=6.0
+  - -azimuth:r=-180.0
+  - -elevation:r=65.0
+  - -azimuthSector:r=240.0
+  - -elevationSector:r=150.0
+- **aces.vromfs.bin_u/gamedata/countermeasures/an_vlq_8.blkx**:
+  - -nameLocId:t="an_vlq_8a"
+  - -type:t="ircm"
+  - -visibilityBand4:r=0.5
+  - -deceptionBand4:r=1.0
+  - -deceptionPolarAngle:r=5.0
+  - -frequency0:r=0.5
+  - -frequency1:r=1.5
+  - -frequency2:r=4.0
+  - -frequency3:r=10.0
+  - -azimuth:r=0.0
+  - -elevation:r=0.0
+  - -azimuthSector:r=40.0
+  - -elevationSector:r=10.0
+- **aces.vromfs.bin_u/gamedata/countermeasures/eirel.blkx**:
+  - -type:t="ircm"
+  - -visibilityBand4:r=0.5
+  - -deceptionBand4:r=1.0
+  - -deceptionPolarAngle:r=5.0
+  - -frequency0:r=0.5
+  - -frequency1:r=1.5
+  - -frequency2:r=4.0
+  - -frequency3:r=10.0
+  - -azimuth:r=0.0
+  - -elevation:r=0.0
+  - -azimuthSector:r=20.0
+  - -elevationSector:r=10.0
+- **aces.vromfs.bin_u/gamedata/countermeasures/jd_3_left.blkx**:
+  - -nameLocId:t="jd_3"
+  - -type:t="ircm"
+  - -visibilityBand4:r=0.5
+  - -deceptionBand4:r=1.0
+  - -deceptionPolarAngle:r=5.0
+  - -frequency0:r=0.5
+  - -frequency1:r=1.5
+  - -frequency2:r=4.0
+  - -frequency3:r=10.0
+  - -azimuth:r=349.0
+  - -elevation:r=0.0
+  - -azimuthSector:r=22.0
+  - -elevationSector:r=5.0
+- **aces.vromfs.bin_u/gamedata/countermeasures/jd_3_right.blkx**:
+  - -nameLocId:t="jd_3"
+  - -type:t="ircm"
+  - -visibilityBand4:r=0.5
+  - -deceptionBand4:r=1.0
+  - -deceptionPolarAngle:r=5.0
+  - -frequency0:r=0.5
+  - -frequency1:r=1.5
+  - -frequency2:r=4.0
+  - -frequency3:r=10.0
+  - -azimuth:r=11.0
+  - -elevation:r=0.0
+  - -azimuthSector:r=22.0
+  - -elevationSector:r=5.0
+- **aces.vromfs.bin_u/gamedata/countermeasures/l_166.blkx**:
+  - -type:t="ircm"
+  - -visibilityBand3:r=2.0
+  - -deceptionBand3:r=1.0
+  - -deceptionPolarAngle:r=2.0
+  - -frequency0:r=0.5
+  - -frequency1:r=1.5
+  - -frequency2:r=4.0
+  - -frequency3:r=10.0
+  - -azimuth:r=-180.0
+  - -elevation:r=75.0
+  - -azimuthSector:r=240.0
+  - -elevationSector:r=150.0
+- **aces.vromfs.bin_u/gamedata/countermeasures/l_166_c1.blkx**:
+  - -type:t="ircm"
+  - -visibilityBand3:r=2.0
+  - -deceptionBand3:r=1.0
+  - -deceptionPolarAngle:r=2.0
+  - -frequency0:r=0.5
+  - -frequency1:r=1.5
+  - -frequency2:r=4.0
+  - -frequency3:r=10.0
+  - -azimuth:r=-180.0
+  - -elevation:r=5.0
+  - -azimuthSector:r=140.0
+  - -elevationSector:r=130.0
+- **aces.vromfs.bin_u/gamedata/countermeasures/l_370.blkx**:
+  - -type:t="ircm"
+  - -visibilityBand3:r=0.1
+  - -deceptionBand3:r=3.0
+  - -visibilityBand6:r=0.5
+  - -deceptionBand6:r=3.0
+  - -deceptionPolarAngle:r=5.0
+  - -frequency0:r=0.5
+  - -frequency1:r=1.5
+  - -frequency2:r=4.0
+  - -frequency3:r=10.0
+  - -azimuth:r=-180.0
+  - -elevation:r=-75.0
+  - -azimuthSector:r=360.0
+  - -elevationSector:r=150.0
+- **aces.vromfs.bin_u/gamedata/countermeasures/muss.blkx**:
+  - -nameLocId:t="muss"
+  - -type:t="ircm"
+  - -visibilityBand4:r=0.5
+  - -deceptionBand4:r=1.0
+  - -deceptionPolarAngle:r=5.0
+  - -frequency0:r=0.5
+  - -frequency1:r=1.5
+  - -frequency2:r=4.0
+  - -frequency3:r=10.0
+  - -azimuth:r=0.0
+  - -elevation:r=0.0
+  - -azimuthSector:r=40.0
+  - -elevationSector:r=10.0
+- **aces.vromfs.bin_u/gamedata/countermeasures/tshu_1.blkx**:
+  - -type:t="ircm"
+  - -visibilityBand4:r=0.5
+  - -deceptionBand4:r=1.0
+  - -deceptionPolarAngle:r=5.0
+  - -frequency0:r=0.5
+  - -frequency1:r=1.5
+  - -frequency2:r=4.0
+  - -frequency3:r=10.0
+  - -azimuth:r=0.0
+  - -elevation:r=0.0
+  - -azimuthSector:r=350.0
+  - -elevationSector:r=170.0
+- **aces.vromfs.bin_u/gamedata/countermeasures/tshu_1_left.blkx**:
+  - -nameLocId:t="shtora1"
+  - -type:t="ircm"
+  - -visibilityBand4:r=0.5
+  - -deceptionBand4:r=1.0
+  - -deceptionPolarAngle:r=5.0
+  - -frequency0:r=0.5
+  - -frequency1:r=1.5
+  - -frequency2:r=4.0
+  - -frequency3:r=10.0
+  - -azimuth:r=350.0
+  - -elevation:r=0.0
+  - -azimuthSector:r=20.0
+  - -elevationSector:r=4.0
+- **aces.vromfs.bin_u/gamedata/countermeasures/tshu_1_right.blkx**:
+  - -nameLocId:t="shtora1"
+  - -type:t="ircm"
+  - -visibilityBand4:r=0.5
+  - -deceptionBand4:r=1.0
+  - -deceptionPolarAngle:r=5.0
+  - -frequency0:r=0.5
+  - -frequency1:r=1.5
+  - -frequency2:r=4.0
+  - -frequency3:r=10.0
+  - -azimuth:r=10.0
+  - -elevation:r=0.0
+  - -azimuthSector:r=20.0
+  - -elevationSector:r=4.0
 
 #### Weapon File Changes:
 
