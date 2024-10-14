@@ -26,7 +26,7 @@ jobs:
           # Check if there is more than one commit in the repository
           if [ $(git rev-list --count HEAD) -gt 1 ]; then
             # Get the list of changes (diffs) between the last commit and the one before it
-            git diff HEAD~5..HEAD -- aces.vromfs.bin_u > temp_diff.txt
+            git diff HEAD~1..HEAD -- aces.vromfs.bin_u > temp_diff.txt
           else
             echo "Only one commit in the repository. Cannot generate a diff." > temp_diff.txt
           fi
@@ -41,10 +41,11 @@ jobs:
 
           echo "---" >> CHANGELOG.md
 
-      - name: Commit Changelog
+      - name: Add and Commit Changes
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add CHANGELOG.md
-          git commit -m "Generated Detailed Changelog for aces.vromfs.bin_u [skip ci]"
+          git add CHANGELOG.md  # Explicitly track the CHANGELOG.md
+          git add .  # Add any other untracked files if necessary
+          git commit -m "Generated Detailed Changelog for aces.vromfs.bin_u [skip ci]" || echo "No changes to commit."
           git push origin HEAD:$(git rev-parse --abbrev-ref HEAD) --no-verify
