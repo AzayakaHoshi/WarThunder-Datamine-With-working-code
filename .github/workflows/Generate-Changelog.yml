@@ -27,11 +27,15 @@ jobs:
           preset: angular                     # Conventional commit preset to use
           path: 'aces.vromfs.bin_u'           # Focus on the aces.vromfs.bin_u folder
 
-      # Step 3: Commit and Push the changelog
+      # Step 3: Check if changelog has changed, then commit and push
       - name: Commit and Push Changelog
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add CHANGELOG.md
-          git commit -m "chore: updated changelog for aces.vromfs.bin_u"
-          git push origin HEAD:$(git rev-parse --abbrev-ref HEAD) --no-verify
+          if [ -n "$(git status --porcelain)" ]; then  # Check if there are changes
+            git add CHANGELOG.md
+            git commit -m "chore: updated changelog for aces.vromfs.bin_u"
+            git push origin HEAD:$(git rev-parse --abbrev-ref HEAD) --no-verify
+          else
+            echo "No changes to commit."
+          fi
