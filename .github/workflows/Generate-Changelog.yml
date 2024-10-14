@@ -1,4 +1,4 @@
-name: Generate Detailed Changelog with Old and New Values
+name: Generate Detailed and Readable Changelog for aces.vromfs.bin_u
 
 on:
   push:
@@ -23,38 +23,63 @@ jobs:
           # Create a new changelog file
           echo "### 📝 Full Changelog for aces.vromfs.bin_u" > CHANGELOG.md
           echo "" >> CHANGELOG.md
+          echo "#### 📂 Added Files:" >> CHANGELOG.md
+          echo "" >> CHANGELOG.md
 
-          # Get the last two commit hashes that affected the aces.vromfs.bin_u directory
-          COMMIT_HASHES=$(git log --pretty=format:"%h" -- aces.vromfs.bin_u)
-
-          # Extract the first and second commit hash
-          FIRST_COMMIT=$(echo "$COMMIT_HASHES" | sed -n '1p')
-          SECOND_COMMIT=$(echo "$COMMIT_HASHES" | sed -n '2p')
-
-          if [ -n "$FIRST_COMMIT" ] && [ -n "$SECOND_COMMIT" ]; then
-            # Add commit information
-            echo "#### 🔄 Commit Details" >> CHANGELOG.md
+          # Get the diff and filter for new files
+          git diff --name-status HEAD~1..HEAD -- aces.vromfs.bin_u | grep "^A" | cut -f2 | while read FILE; do
+            echo "- **$FILE**:" >> CHANGELOG.md
+            # Extract the content for each added file
+            grep -A1000 "^++ b/$FILE" | sed -n '/^new:/p' >> CHANGELOG.md
             echo "" >> CHANGELOG.md
-            git log --pretty=format:"- **Commit %h**: _%s_ by %an on %ad" --date=short $SECOND_COMMIT..$FIRST_COMMIT -- aces.vromfs.bin_u >> CHANGELOG.md
+          done
 
+          echo "---" >> CHANGELOG.md
+
+      - name: Commit ChHere's how you can implement a **readable and well-structured changelog** showing exactly what was added, formatted properly, using **grouped changes by file** and excluding redundant information like `old: -- /dev/null`.
+
+### Example Script to Generate a Readable Changelog:
+
+```yaml
+name: Generate Detailed and Readable Changelog for aces.vromfs.bin_u
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  generate-changelog:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository with Full History
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Fetch full commit history
+
+      - name: Generate Changelog with Detailed Changes
+        run: |
+          echo "### 📝 Full Changelog for aces.vromfs.bin_u" > CHANGELOG.md
+          echo "" >> CHANGELOG.md
+          echo "#### 📂 Added Files:" >> CHANGELOG.md
+          echo "" >> CHANGELOG.md
+
+          # Extract the list of added files in the directory
+          git diff --name-status HEAD~1..HEAD -- aces.vromfs.bin_u | grep "^A" | cut -f2 | while read FILE; do
+            echo "- **$FILE**:" >> CHANGELOG.md
+            # Parse the newly added file to format its contents properly
+            git show HEAD:$FILE | sed -n '/^[^#]/p' | sed 's/^/  - /' >> CHANGELOG.md
             echo "" >> CHANGELOG.md
+          done
 
-            # Generate diff summary for better readability (file names and brief changes)
-            echo "#### 📂 Changes Between the Last Two Commits" >> CHANGELOG.md
-            echo "" >> CHANGELOG.md
-
-            # Output detailed changes with old/new values
-            git diff $SECOND_COMMIT..$FIRST_COMMIT -- aces.vromfs.bin_u | grep -E "^\+|^\-" | sed -e 's/^-/old: /' -e 's/^+/new: /' >> CHANGELOG.md
-
-            echo "---" >> CHANGELOG.md
-          else
-            echo "❗ Not enough relevant commits found to generate a changelog." >> CHANGELOG.md
-          fi
+          echo "---" >> CHANGELOG.md
 
       - name: Commit Changelog
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add CHANGELOG.md  # Add the changelog
-          git commit -m "Generated Changelog for aces.vromfs.bin_u [skip ci]" || echo "No changes to commit."
+          git add CHANGELOG.md
+          git commit -m "Generated Readable Changelog for aces.vromfs.bin_u [skip ci]" || echo "No changes to commit."
           git push origin HEAD:$(git rev-parse --abbrev-ref HEAD) --no-verify
