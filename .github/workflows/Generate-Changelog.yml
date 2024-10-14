@@ -1,4 +1,4 @@
-name: Generate Readable Changelog for aces.vromfs.bin_u
+name: Generate Detailed and Readable Changelog for aces.vromfs.bin_u
 
 on:
   push:
@@ -21,7 +21,7 @@ jobs:
           echo "Generating changelog for aces.vromfs.bin_u directory..."
 
           # Create a new changelog file
-          echo "### Full Changelog for aces.vromfs.bin_u" > CHANGELOG.md
+          echo "### 📝 Full Changelog for aces.vromfs.bin_u" > CHANGELOG.md
           echo "" >> CHANGELOG.md
 
           # Get the last two commit hashes that affected the aces.vromfs.bin_u directory
@@ -33,20 +33,20 @@ jobs:
 
           if [ -n "$FIRST_COMMIT" ] && [ -n "$SECOND_COMMIT" ]; then
             # Add commit information
-            echo "#### Commit Details" >> CHANGELOG.md
+            echo "#### 🔄 Commit Details" >> CHANGELOG.md
             echo "" >> CHANGELOG.md
-            git log --pretty=format:"- **Commit %h**: %s by %an on %ad" --date=short $SECOND_COMMIT..$FIRST_COMMIT -- aces.vromfs.bin_u >> CHANGELOG.md
+            git log --pretty=format:"- **Commit %h**: _%s_ by %an on %ad" --date=short $SECOND_COMMIT..$FIRST_COMMIT -- aces.vromfs.bin_u >> CHANGELOG.md
 
             echo "" >> CHANGELOG.md
 
             # Generate diff summary for better readability (file names and brief changes)
-            echo "#### Changes Between the Two Commits" >> CHANGELOG.md
+            echo "#### 📂 Changes Between the Last Two Commits" >> CHANGELOG.md
             echo "" >> CHANGELOG.md
             git diff --name-status $SECOND_COMMIT..$FIRST_COMMIT -- aces.vromfs.bin_u >> CHANGELOG.md
 
             echo "---" >> CHANGELOG.md
           else
-            echo "Not enough relevant commits found to generate a changelog." >> CHANGELOG.md
+            echo "❗ Not enough relevant commits found to generate a changelog." >> CHANGELOG.md
           fi
 
       - name: Commit Changelog
