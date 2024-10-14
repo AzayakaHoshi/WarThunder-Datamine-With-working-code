@@ -1,85 +1,36 @@
-name: Generate Detailed and Readable Changelog for aces.vromfs.bin_u
+name: Generate Changelog for aces.vromfs.bin_u
 
 on:
   push:
+    paths:
+      - 'aces.vromfs.bin_u/**'  # Only trigger when files in this directory are changed
     branches:
       - main
-  workflow_dispatch:
 
 jobs:
   generate-changelog:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository with Full History
+      # Step 1: Checkout the repository
+      - name: Checkout Repository
         uses: actions/checkout@v3
+
+      # Step 2: Generate the changelog
+      - name: Generate Changelog
+        uses: TriPSs/conventional-changelog-action@v2
         with:
-          fetch-depth: 0  # Fetch the entire commit history to ensure we capture everything
+          version: 'v1.0.0'              # Version of the release, can be dynamically updated
+          output_file: CHANGELOG.md       # Name of the output changelog file
+          preset: angular                 # Use 'angular' preset for conventional commits
+          path: 'aces.vromfs.bin_u'       # Focus on changes in the specific folder
+          commit_message: "chore: updated changelog for aces.vromfs.bin_u changes"
 
-      - name: Generate Changelog with Detailed Changes
-        run: |
-          echo "Generating changelog for aces.vromfs.bin_u directory..."
-
-          # Create a new changelog file
-          echo "### 📝 Full Changelog for aces.vromfs.bin_u" > CHANGELOG.md
-          echo "" >> CHANGELOG.md
-          echo "#### 📂 Added Files:" >> CHANGELOG.md
-          echo "" >> CHANGELOG.md
-
-          # Get the diff and filter for new files
-          git diff --name-status HEAD~1..HEAD -- aces.vromfs.bin_u | grep "^A" | cut -f2 | while read FILE; do
-            echo "- **$FILE**:" >> CHANGELOG.md
-            # Extract the content for each added file
-            grep -A1000 "^++ b/$FILE" | sed -n '/^new:/p' >> CHANGELOG.md
-            echo "" >> CHANGELOG.md
-          done
-
-          echo "---" >> CHANGELOG.md
-
-      - name: Commit ChHere's how you can implement a **readable and well-structured changelog** showing exactly what was added, formatted properly, using **grouped changes by file** and excluding redundant information like `old: -- /dev/null`.
-
-### Example Script to Generate a Readable Changelog:
-
-```yaml
-name: Generate Detailed and Readable Changelog for aces.vromfs.bin_u
-
-on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
-
-jobs:
-  generate-changelog:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout Repository with Full History
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0  # Fetch full commit history
-
-      - name: Generate Changelog with Detailed Changes
-        run: |
-          echo "### 📝 Full Changelog for aces.vromfs.bin_u" > CHANGELOG.md
-          echo "" >> CHANGELOG.md
-          echo "#### 📂 Added Files:" >> CHANGELOG.md
-          echo "" >> CHANGELOG.md
-
-          # Extract the list of added files in the directory
-          git diff --name-status HEAD~1..HEAD -- aces.vromfs.bin_u | grep "^A" | cut -f2 | while read FILE; do
-            echo "- **$FILE**:" >> CHANGELOG.md
-            # Parse the newly added file to format its contents properly
-            git show HEAD:$FILE | sed -n '/^[^#]/p' | sed 's/^/  - /' >> CHANGELOG.md
-            echo "" >> CHANGELOG.md
-          done
-
-          echo "---" >> CHANGELOG.md
-
-      - name: Commit Changelog
+      # Step 3: Commit and push the changelog
+      - name: Commit and Push Changelog
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add CHANGELOG.md
-          git commit -m "Generated Readable Changelog for aces.vromfs.bin_u [skip ci]" || echo "No changes to commit."
+          git commit -m "chore: updated changelog for aces.vromfs.bin_u"
           git push origin HEAD:$(git rev-parse --abbrev-ref HEAD) --no-verify
