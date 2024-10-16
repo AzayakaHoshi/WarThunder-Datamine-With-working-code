@@ -11,18 +11,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Automatically checkout the repository (no need to manually fetch)
+      # Increase the fetch depth to capture more commits
       - name: Checkout Repository
         uses: actions/checkout@v3
         with:
-          fetch-depth: 10  # Fetch the last 10 commits to ensure we can find non-bot commits
+          fetch-depth: 50  # Fetch the last 50 commits to ensure we can find non-bot commits
 
       - name: Find Last Human Commit
         id: last_human_commit
         run: |
           # Find the most recent commit not authored by the bot
           last_human_commit=$(git log --pretty=format:"%H" --max-count=1 --invert-grep --author="github-actions[bot]" -- aces.vromfs.bin_u)
-          echo "Last human commit: $last_human_commit"
+          
+          # If no human commits are found, fallback to HEAD~3
+          if [ -z "$last_human_commit" ]; then
+            echo "No valid human commits found, falling back to HEAD~3."
+            last_human_commit="HEAD~3"
+          fi
+
+          echo "Using commit: $last_human_commit"
           echo "::set-output name=last_human_commit::$last_human_commit"
 
       - name: Generate Changelog
@@ -33,14 +40,8 @@ jobs:
           echo "### Full Changelog:" > CHANGELOG.md
           echo "" >> CHANGELOG.md
 
-          # Get the commit ID of the last human commit
+          # Get the commit ID of the last human commit or fallback commit
           last_human_commit=${{ steps.last_human_commit.outputs.last_human_commit }}
-
-          # Ensure we found a valid human commit, otherwise exit
-          if [ -z "$last_human_commit" ]; then
-            echo "No valid human commits found."
-            exit 0
-          fi
 
           # Debugging: Output the detected diff
           echo "Changes detected between $last_human_commit and HEAD:"
@@ -55,6 +56,32 @@ jobs:
 
           # Get the list of changes in the aces.vromfs.bin_u directory between the last human commit and HEAD
           git diff --name-only $last_human_commit HEAD -- aces.vromfs.bin_u | grep -E '\.blkx$' | while read file; do
+            echo "- **$file**:" >> CHANGELOG.md
+
+            # Extract added lines and group them under "Added"
+            if git diff $last_human_commit HEAD -- $file | grep -q '^\+'; then
+              echo "  **Added**:" >> CHANGELOG.md
+              git diff $last_human_commit HEAD -- $file | grep -E '^\+[^+]' | while read change; do
+                echo "    $change" >> CHANGELOG.md
+              done
+              echo "" >> CHANGELOG.md
+            fi
+
+            # Extract removed lines and group them under "Removed"
+            if git diff $last_human_commit HEAD -- $file | grep -q '^\-'; then
+              echo "  **Removed**:" >> CHANGELOG.md
+              git diff $last_human_commit HEAD -- $file | grep -E '^\-[^-]' | while read change; do
+                echo "    $change" >> CHANGELOG.md
+              done
+              echo "" >> CHANGELOG.md
+            fi
+
+            # Ensure there is an empty line after the file block
+            echo "" >> CHANGELOG.md
+          done
+
+          # Now look for changes in files containing 'user_cannon'
+          git diff --name-only $last_human_commit HEAD -- aces.vromfs.bin_u | grep -E 'user_cannon' | while read file; do
             echo "- **$file**:" >> CHANGELOG.md
 
             # Extract added lines and group them under "Added"
