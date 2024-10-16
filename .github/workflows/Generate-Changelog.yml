@@ -15,7 +15,14 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
         with:
-          fetch-depth: 2  # Only fetch the last two commits
+          fetch-depth: 10  # Fetch the last 10 commits to ensure we can find non-bot commits
+
+      - name: Find Last Human Commit
+        id: last_human_commit
+        run: |
+          # Find the most recent commit not authored by the bot
+          last_human_commit=$(git log --pretty=format:"%H" --max-count=1 --skip=0 --invert-grep --author="github-actions[bot]" -- aces.vromfs.bin_u)
+          echo "::set-output name=last_human_commit::$last_human_commit"
 
       - name: Generate Changelog
         run: |
@@ -25,23 +32,26 @@ jobs:
           echo "### Full Changelog:" > CHANGELOG.md
           echo "" >> CHANGELOG.md
 
-          # Get the list of changes in the aces.vromfs.bin_u directory between HEAD and HEAD~1
-          git diff --name-only HEAD~1 HEAD -- aces.vromfs.bin_u | grep -E '\.blkx$' | while read file; do
+          # Get the commit ID of the last human commit
+          last_human_commit=${{ steps.last_human_commit.outputs.last_human_commit }}
+
+          # Get the list of changes in the aces.vromfs.bin_u directory between the last human commit and HEAD
+          git diff --name-only $last_human_commit HEAD -- aces.vromfs.bin_u | grep -E '\.blkx$' | while read file; do
             echo "- **$file**:" >> CHANGELOG.md
 
             # Extract added lines and group them under "Added"
-            if git diff HEAD~1 HEAD -- $file | grep -q '^\+'; then
+            if git diff $last_human_commit HEAD -- $file | grep -q '^\+'; then
               echo "  **Added**:" >> CHANGELOG.md
-              git diff HEAD~1 HEAD -- $file | grep -E '^\+[^+]' | while read change; do
+              git diff $last_human_commit HEAD -- $file | grep -E '^\+[^+]' | while read change; do
                 echo "    $change" >> CHANGELOG.md
               done
               echo "" >> CHANGELOG.md
             fi
 
             # Extract removed lines and group them under "Removed"
-            if git diff HEAD~1 HEAD -- $file | grep -q '^\-'; then
+            if git diff $last_human_commit HEAD -- $file | grep -q '^\-'; then
               echo "  **Removed**:" >> CHANGELOG.md
-              git diff HEAD~1 HEAD -- $file | grep -E '^\-[^-]' | while read change; do
+              git diff $last_human_commit HEAD -- $file | grep -E '^\-[^-]' | while read change; do
                 echo "    $change" >> CHANGELOG.md
               done
               echo "" >> CHANGELOG.md
@@ -52,44 +62,10 @@ jobs:
           done
 
           # Now look for changes in files containing 'user_cannon'
-          git diff --name-only HEAD~1 HEAD -- aces.vromfs.bin_u | grep -E 'user_cannon' | while read file; do
+          git diff --name-only $last_human_commit HEAD -- aces.vromfs.bin_u | grep -E 'user_cannon' | while read file; do
             echo "- **$file**:" >> CHANGELOG.md
 
             # Extract added lines and group them under "Added"
-            if git diff HEAD~1 HEAD -- $file | grep -q '^\+'; then
+            if git diff $last_human_commit HEAD -- $file | grep -q '^\+'; then
               echo "  **Added**:" >> CHANGELOG.md
-              git diff HEAD~1 HEAD -- $file | grep -E '^\+[^+]' | while read change; do
-                echo "    $change" >> CHANGELOG.md
-              done
-              echo "" >> CHANGELOG.md
-            fi
-
-            # Extract removed lines and group them under "Removed"
-            if git diff HEAD~1 HEAD -- $file | grep -q '^\-'; then
-              echo "  **Removed**:" >> CHANGELOG.md
-              git diff HEAD~1 HEAD -- $file | grep -E '^\-[^-]' | while read change; do
-                echo "    $change" >> CHANGELOG.md
-              done
-              echo "" >> CHANGELOG.md
-            fi
-
-            # Ensure there is an empty line after the file block
-            echo "" >> CHANGELOG.md
-          done
-
-          echo "---" >> CHANGELOG.md
-
-      # Commit the generated changelog
-      - name: Commit Changelog (if there are changes)
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Use the GitHub token for authentication
-        run: |
-          if [[ -n $(git status --porcelain) ]]; then
-            git config --global user.name "github-actions[bot]"
-            git config --global user.email "github-actions[bot]@users.noreply.github.com"
-            git add CHANGELOG.md
-            git commit -m "Generated Changelog [skip ci]"
-            git push --no-verify
-          else
-            echo "No changes to commit"
-          fi
+              git diff $last_human_commit HEAD -- $file | grep -E '^\+[^+]' |
