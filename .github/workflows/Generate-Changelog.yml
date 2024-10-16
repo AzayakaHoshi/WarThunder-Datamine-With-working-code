@@ -25,76 +25,64 @@ jobs:
           echo "### Full Changelog:" > CHANGELOG.md
           echo "" >> CHANGELOG.md
 
-          # Get the list of commits affecting the aces.vromfs.bin_u directory
-          commits=$(git log --format="%H" HEAD~1..HEAD -- aces.vromfs.bin_u)
+          # Get the list of changes in the aces.vromfs.bin_u directory between HEAD and HEAD~1
+          git diff --name-only HEAD~1 HEAD -- aces.vromfs.bin_u | grep -E '\.blkx$' | while read file; do
+            echo "- **$file**:" >> CHANGELOG.md
 
-          if [ -z "$commits" ]; then
-            echo "No changes detected in aces.vromfs.bin_u"
-            exit 0
-          fi
-
-          # Iterate over each commit affecting aces.vromfs.bin_u and generate the changelog
-          for commit in $commits; do
-            echo "Processing commit $commit..."
-
-            # Find changes in the .blkx files
-            git diff-tree --no-commit-id --name-only -r $commit | grep -E '\.blkx$' | while read file; do
-              echo "- **$file**:" >> CHANGELOG.md
-
-              # Extract added lines and group them under "Added"
-              if git show $commit -- $file | grep -q '^\+'; then
-                echo "  **Added**:" >> CHANGELOG.md
-                git show $commit -- $file | grep -E '^\+[^+]' | while read change; do
-                  echo "    $change" >> CHANGELOG.md
-                done
-                echo "" >> CHANGELOG.md
-              fi
-
-              # Extract removed lines and group them under "Removed"
-              if git show $commit -- $file | grep -q '^\-'; then
-                echo "  **Removed**:" >> CHANGELOG.md
-                git show $commit -- $file | grep -E '^\-[^-]' | while read change; do
-                  echo "    $change" >> CHANGELOG.md
-                done
-                echo "" >> CHANGELOG.md
-              fi
-
-              # Ensure there is an empty line after the file block
+            # Extract added lines and group them under "Added"
+            if git diff HEAD~1 HEAD -- $file | grep -q '^\+'; then
+              echo "  **Added**:" >> CHANGELOG.md
+              git diff HEAD~1 HEAD -- $file | grep -E '^\+[^+]' | while read change; do
+                echo "    $change" >> CHANGELOG.md
+              done
               echo "" >> CHANGELOG.md
-            done
+            fi
 
-            # Find changes in weapon files (containing 'user_cannon')
-            git diff-tree --no-commit-id --name-only -r $commit | grep -E 'user_cannon' | while read file; do
-              echo "- **$file**:" >> CHANGELOG.md
-
-              # Extract added lines and group them under "Added"
-              if git show $commit -- $file | grep -q '^\+'; then
-                echo "  **Added**:" >> CHANGELOG.md
-                git show $commit -- $file | grep -E '^\+[^+]' | while read change; do
-                  echo "    $change" >> CHANGELOG.md
-                done
-                echo "" >> CHANGELOG.md
-              fi
-
-              # Extract removed lines and group them under "Removed"
-              if git show $commit -- $file | grep -q '^\-'; then
-                echo "  **Removed**:" >> CHANGELOG.md
-                git show $commit -- $file | grep -E '^\-[^-]' | while read change; do
-                  echo "    $change" >> CHANGELOG.md
-                done
-                echo "" >> CHANGELOG.md
-              fi
-
-              # Ensure there is an empty line after the file block
+            # Extract removed lines and group them under "Removed"
+            if git diff HEAD~1 HEAD -- $file | grep -q '^\-'; then
+              echo "  **Removed**:" >> CHANGELOG.md
+              git diff HEAD~1 HEAD -- $file | grep -E '^\-[^-]' | while read change; do
+                echo "    $change" >> CHANGELOG.md
+              done
               echo "" >> CHANGELOG.md
-            done
+            fi
 
+            # Ensure there is an empty line after the file block
+            echo "" >> CHANGELOG.md
+          done
+
+          # Now look for changes in files containing 'user_cannon'
+          git diff --name-only HEAD~1 HEAD -- aces.vromfs.bin_u | grep -E 'user_cannon' | while read file; do
+            echo "- **$file**:" >> CHANGELOG.md
+
+            # Extract added lines and group them under "Added"
+            if git diff HEAD~1 HEAD -- $file | grep -q '^\+'; then
+              echo "  **Added**:" >> CHANGELOG.md
+              git diff HEAD~1 HEAD -- $file | grep -E '^\+[^+]' | while read change; do
+                echo "    $change" >> CHANGELOG.md
+              done
+              echo "" >> CHANGELOG.md
+            fi
+
+            # Extract removed lines and group them under "Removed"
+            if git diff HEAD~1 HEAD -- $file | grep -q '^\-'; then
+              echo "  **Removed**:" >> CHANGELOG.md
+              git diff HEAD~1 HEAD -- $file | grep -E '^\-[^-]' | while read change; do
+                echo "    $change" >> CHANGELOG.md
+              done
+              echo "" >> CHANGELOG.md
+            fi
+
+            # Ensure there is an empty line after the file block
             echo "" >> CHANGELOG.md
           done
 
           echo "---" >> CHANGELOG.md
 
+      # Commit the generated changelog
       - name: Commit Changelog (if there are changes)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Use the GitHub token for authentication
         run: |
           if [[ -n $(git status --porcelain) ]]; then
             git config --global user.name "github-actions[bot]"
