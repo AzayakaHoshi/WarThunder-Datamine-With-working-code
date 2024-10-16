@@ -54,16 +54,15 @@ jobs:
           # Append a timestamp to the changelog to force a change (for debugging)
           echo "Timestamp: $(date)" >> CHANGELOG.md
 
-          # Get the list of changes in the aces.vromfs.bin_u directory between the last human commit and HEAD
+          # Process changes in .blkx files
           git diff --name-only $last_human_commit HEAD -- aces.vromfs.bin_u | grep -E '\.blkx$' | while read file; do
             echo "- **$file**:" >> CHANGELOG.md
 
             # Extract added lines and group them under "Added"
             if git diff $last_human_commit HEAD -- $file | grep -q '^\+'; then
               echo "  **Added**:" >> CHANGELOG.md
-              git diff $last_human_commit HEAD -- $file | grep -E '^\+[^+]' | while read change; do
-                # Format each change on a new line
-                echo "    $change" | sed 's/^+//' >> CHANGELOG.md
+              git diff $last_human_commit HEAD -- $file | grep -E '^\+' | sed 's/^+//' | while read change; do
+                echo "    $change" >> CHANGELOG.md
               done
               echo "" >> CHANGELOG.md
             fi
@@ -71,9 +70,8 @@ jobs:
             # Extract removed lines and group them under "Removed"
             if git diff $last_human_commit HEAD -- $file | grep -q '^\-'; then
               echo "  **Removed**:" >> CHANGELOG.md
-              git diff $last_human_commit HEAD -- $file | grep -E '^\-[^-]' | while read change; do
-                # Format each change on a new line
-                echo "    $change" | sed 's/^-//' >> CHANGELOG.md
+              git diff $last_human_commit HEAD -- $file | grep -E '^\-' | sed 's/^-[^-]//' | while read change; do
+                echo "    $change" >> CHANGELOG.md
               done
               echo "" >> CHANGELOG.md
             fi
@@ -82,16 +80,15 @@ jobs:
             echo "" >> CHANGELOG.md
           done
 
-          # Now look for changes in files containing 'user_cannon'
+          # Process changes in files containing 'user_cannon'
           git diff --name-only $last_human_commit HEAD -- aces.vromfs.bin_u | grep -E 'user_cannon' | while read file; do
             echo "- **$file**:" >> CHANGELOG.md
 
             # Extract added lines and group them under "Added"
             if git diff $last_human_commit HEAD -- $file | grep -q '^\+'; then
               echo "  **Added**:" >> CHANGELOG.md
-              git diff $last_human_commit HEAD -- $file | grep -E '^\+[^+]' | while read change; do
-                # Format each change on a new line
-                echo "    $change" | sed 's/^+//' >> CHANGELOG.md
+              git diff $last_human_commit HEAD -- $file | grep -E '^\+' | sed 's/^+//' | while read change; do
+                echo "    $change" >> CHANGELOG.md
               done
               echo "" >> CHANGELOG.md
             fi
@@ -99,9 +96,8 @@ jobs:
             # Extract removed lines and group them under "Removed"
             if git diff $last_human_commit HEAD -- $file | grep -q '^\-'; then
               echo "  **Removed**:" >> CHANGELOG.md
-              git diff $last_human_commit HEAD -- $file | grep -E '^\-[^-]' | while read change; do
-                # Format each change on a new line
-                echo "    $change" | sed 's/^-//' >> CHANGELOG.md
+              git diff $last_human_commit HEAD -- $file | grep -E '^\-' | sed 's/^-[^-]//' | while read change; do
+                echo "    $change" >> CHANGELOG.md
               done
               echo "" >> CHANGELOG.md
             fi
