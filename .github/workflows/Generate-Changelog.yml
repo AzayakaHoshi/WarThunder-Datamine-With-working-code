@@ -21,7 +21,8 @@ jobs:
         id: last_human_commit
         run: |
           # Find the most recent commit not authored by the bot
-          last_human_commit=$(git log --pretty=format:"%H" --max-count=1 --skip=0 --invert-grep --author="github-actions[bot]" -- aces.vromfs.bin_u)
+          last_human_commit=$(git log --pretty=format:"%H" --max-count=1 --invert-grep --author="github-actions[bot]" -- aces.vromfs.bin_u)
+          echo "Last human commit: $last_human_commit"
           echo "::set-output name=last_human_commit::$last_human_commit"
 
       - name: Generate Changelog
@@ -34,6 +35,16 @@ jobs:
 
           # Get the commit ID of the last human commit
           last_human_commit=${{ steps.last_human_commit.outputs.last_human_commit }}
+
+          # Ensure we found a valid human commit, otherwise exit
+          if [ -z "$last_human_commit" ]; then
+            echo "No valid human commits found."
+            exit 0
+          fi
+
+          # Debugging: Output the detected diff
+          echo "Changes detected between $last_human_commit and HEAD:"
+          git diff --name-only $last_human_commit HEAD -- aces.vromfs.bin_u
 
           # Get the list of changes in the aces.vromfs.bin_u directory between the last human commit and HEAD
           git diff --name-only $last_human_commit HEAD -- aces.vromfs.bin_u | grep -E '\.blkx$' | while read file; do
@@ -89,11 +100,19 @@ jobs:
 
           echo "---" >> CHANGELOG.md
 
+          # Debugging: Output the contents of the changelog
+          echo "Generated CHANGELOG.md:"
+          cat CHANGELOG.md
+
       # Commit the generated changelog
       - name: Commit Changelog (if there are changes)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Use the GitHub token for authentication
         run: |
+          # Debugging: Check for changes before committing
+          echo "Checking for changes..."
+          git status
+          
           if [[ -n $(git status --porcelain) ]]; then
             git config --global user.name "github-actions[bot]"
             git config --global user.email "github-actions[bot]@users.noreply.github.com"
