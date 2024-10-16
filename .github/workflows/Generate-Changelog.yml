@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Increase the fetch depth to capture more commits
+      # Automatically checkout the repository (no need to manually fetch)
       - name: Checkout Repository
         uses: actions/checkout@v3
         with:
@@ -62,7 +62,8 @@ jobs:
             if git diff $last_human_commit HEAD -- $file | grep -q '^\+'; then
               echo "  **Added**:" >> CHANGELOG.md
               git diff $last_human_commit HEAD -- $file | grep -E '^\+[^+]' | while read change; do
-                echo "    $change" >> CHANGELOG.md
+                # Format each change on a new line
+                echo "    $change" | sed 's/^+//' >> CHANGELOG.md
               done
               echo "" >> CHANGELOG.md
             fi
@@ -71,7 +72,8 @@ jobs:
             if git diff $last_human_commit HEAD -- $file | grep -q '^\-'; then
               echo "  **Removed**:" >> CHANGELOG.md
               git diff $last_human_commit HEAD -- $file | grep -E '^\-[^-]' | while read change; do
-                echo "    $change" >> CHANGELOG.md
+                # Format each change on a new line
+                echo "    $change" | sed 's/^-//' >> CHANGELOG.md
               done
               echo "" >> CHANGELOG.md
             fi
@@ -88,7 +90,8 @@ jobs:
             if git diff $last_human_commit HEAD -- $file | grep -q '^\+'; then
               echo "  **Added**:" >> CHANGELOG.md
               git diff $last_human_commit HEAD -- $file | grep -E '^\+[^+]' | while read change; do
-                echo "    $change" >> CHANGELOG.md
+                # Format each change on a new line
+                echo "    $change" | sed 's/^+//' >> CHANGELOG.md
               done
               echo "" >> CHANGELOG.md
             fi
@@ -97,7 +100,8 @@ jobs:
             if git diff $last_human_commit HEAD -- $file | grep -q '^\-'; then
               echo "  **Removed**:" >> CHANGELOG.md
               git diff $last_human_commit HEAD -- $file | grep -E '^\-[^-]' | while read change; do
-                echo "    $change" >> CHANGELOG.md
+                # Format each change on a new line
+                echo "    $change" | sed 's/^-//' >> CHANGELOG.md
               done
               echo "" >> CHANGELOG.md
             fi
