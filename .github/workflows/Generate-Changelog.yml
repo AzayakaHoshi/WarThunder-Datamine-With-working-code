@@ -26,7 +26,7 @@ jobs:
           echo "" >> CHANGELOG.md
 
           # Find changes only in the aces.vromfs.bin_u directory for .blkx files
-          git diff HEAD~1 --name-only aces.vromfs.bin_u | grep -E '\.blkx$' | while read file; do
+          git diff HEAD~3 --name-only aces.vromfs.bin_u | grep -E '\.blkx$' | while read file; do
             echo "- **$file**:" >> CHANGELOG.md
             echo "" >> CHANGELOG.md
 
@@ -86,12 +86,13 @@ jobs:
 
       - name: Commit Changelog (if there are changes)
         run: |
-          # if [[ -n $(git status --porcelain) ]]; then
+           if [[ -n $(git status --porcelain) ]]; then
             git config --global user.name "github-actions[bot]"
             git config --global user.email "github-actions[bot]@users.noreply.github.com"
             git add CHANGELOG.md
             git commit -m "Generated Changelog [skip ci]"
             git push --no-verify
-          # else
+            else
             echo "No changes to commit"
-          # fi
+            fi
+ 
