@@ -1,23 +1,24 @@
 ### Full Changelog:
 
-Timestamp: Wed Oct 16 21:20:28 UTC 2024
-- **aces.vromfs.bin_u/gamedata/countermeasures/muss.blkx**:
+Timestamp: Wed Oct 16 21:22:48 UTC 2024
+- **aces.vromfs.bin_u/gamedata/countermeasures/tshu_1.blkx**:
   **Added**:
+    ++ b/aces.vromfs.bin_u/gamedata/countermeasures/tshu_1.blkx
+    type:t="ircm"
+    visibilityBand4:r=0.5
+    deceptionBand4:r=1.0
+    deceptionPolarAngle:r=5.0
+    frequency0:r=0.5
+    frequency1:r=1.5
+    frequency2:r=4.0
+    frequency3:r=10.0
+    azimuth:r=0.0
+    elevation:r=0.0
+    azimuthSector:r=350.0
+    elevationSector:r=170.0
 
   **Removed**:
-    -nameLocId:t="muss"
-    -type:t="ircm"
-    -visibilityBand4:r=0.5
-    -deceptionBand4:r=1.0
-    -deceptionPolarAngle:r=5.0
-    -frequency0:r=0.5
-    -frequency1:r=1.5
-    -frequency2:r=4.0
-    -frequency3:r=10.0
-    -azimuth:r=0.0
-    -elevation:r=0.0
-    -azimuthSector:r=40.0
-    -elevationSector:r=10.0
+    --- /dev/null
 
 
 ---
