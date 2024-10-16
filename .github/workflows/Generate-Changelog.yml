@@ -46,34 +46,15 @@ jobs:
           echo "Changes detected between $last_human_commit and HEAD:"
           git diff --name-only $last_human_commit HEAD -- aces.vromfs.bin_u
 
+          # Output the full diff (for debugging purposes)
+          echo "Full diff between $last_human_commit and HEAD:"
+          git diff $last_human_commit HEAD -- aces.vromfs.bin_u
+
+          # Append a timestamp to the changelog to force a change (for debugging)
+          echo "Timestamp: $(date)" >> CHANGELOG.md
+
           # Get the list of changes in the aces.vromfs.bin_u directory between the last human commit and HEAD
           git diff --name-only $last_human_commit HEAD -- aces.vromfs.bin_u | grep -E '\.blkx$' | while read file; do
-            echo "- **$file**:" >> CHANGELOG.md
-
-            # Extract added lines and group them under "Added"
-            if git diff $last_human_commit HEAD -- $file | grep -q '^\+'; then
-              echo "  **Added**:" >> CHANGELOG.md
-              git diff $last_human_commit HEAD -- $file | grep -E '^\+[^+]' | while read change; do
-                echo "    $change" >> CHANGELOG.md
-              done
-              echo "" >> CHANGELOG.md
-            fi
-
-            # Extract removed lines and group them under "Removed"
-            if git diff $last_human_commit HEAD -- $file | grep -q '^\-'; then
-              echo "  **Removed**:" >> CHANGELOG.md
-              git diff $last_human_commit HEAD -- $file | grep -E '^\-[^-]' | while read change; do
-                echo "    $change" >> CHANGELOG.md
-              done
-              echo "" >> CHANGELOG.md
-            fi
-
-            # Ensure there is an empty line after the file block
-            echo "" >> CHANGELOG.md
-          done
-
-          # Now look for changes in files containing 'user_cannon'
-          git diff --name-only $last_human_commit HEAD -- aces.vromfs.bin_u | grep -E 'user_cannon' | while read file; do
             echo "- **$file**:" >> CHANGELOG.md
 
             # Extract added lines and group them under "Added"
