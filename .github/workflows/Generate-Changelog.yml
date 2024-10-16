@@ -1,9 +1,10 @@
+### Updated Workflow with `diff` Code Blocks:
 name: Generate Changelog
 
 on:
   push:
     branches:
-      - main  # Change this if your default branch is named differently (e.g., 'master')
+      - main
   workflow_dispatch:
 
 jobs:
@@ -11,125 +12,57 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Automatically checkout the repository (no need to manually fetch)
       - name: Checkout Repository
         uses: actions/checkout@v3
         with:
-          fetch-depth: 50  # Fetch the last 50 commits to ensure we can find non-bot commits
+          fetch-depth: 50
 
       - name: Find Last Human Commit
         id: last_human_commit
         run: |
-          # Find the most recent commit not authored by the bot
           last_human_commit=$(git log --pretty=format:"%H" --max-count=1 --invert-grep --author="github-actions[bot]" -- aces.vromfs.bin_u)
-          
-          # If no human commits are found, fallback to HEAD~3
           if [ -z "$last_human_commit" ]; then
-            echo "No valid human commits found, falling back to HEAD~3."
             last_human_commit="HEAD~3"
           fi
-
-          echo "Using commit: $last_human_commit"
           echo "::set-output name=last_human_commit::$last_human_commit"
 
       - name: Generate Changelog
         run: |
-          echo "Generating changelog from aces.vromfs.bin_u directory..."
+          echo "Generating changelog..."
 
-          # Create a new changelog file
+          # Create the changelog file with the diff language tag
           echo "### Full Changelog:" > CHANGELOG.md
           echo "" >> CHANGELOG.md
 
-          # Get the commit ID of the last human commit or fallback commit
           last_human_commit=${{ steps.last_human_commit.outputs.last_human_commit }}
 
-          # Debugging: Output the detected diff
-          echo "Changes detected between $last_human_commit and HEAD:"
-          git diff --name-only $last_human_commit HEAD -- aces.vromfs.bin_u
-
-          # Output the full diff (for debugging purposes)
-          echo "Full diff between $last_human_commit and HEAD:"
-          git diff $last_human_commit HEAD -- aces.vromfs.bin_u
-
-          # Process changes in .blkx files
           git diff --name-only $last_human_commit HEAD -- aces.vromfs.bin_u | grep -E '\.blkx$' | while read file; do
-            # Print file name with a new line after it
             echo "- **$file**:" >> CHANGELOG.md
-            echo "" >> CHANGELOG.md  # Add an empty line after the file name
-
-            # Extract added lines and group them under "Added"
-            if git diff $last_human_commit HEAD -- $file | grep -q '^\+'; then
-              echo "  **Added**:" >> CHANGELOG.md
-              git diff $last_human_commit HEAD -- $file | grep -E '^\+' | grep -v '/dev/null' | sed 's/^+//' | while read change; do
-                # Format each added change with green color
-                echo "    - <span style='color:green;'>$change</span>" >> CHANGELOG.md
-              done
-              echo "" >> CHANGELOG.md
-            fi
-
-            # Extract removed lines and group them under "Removed"
-            if git diff $last_human_commit HEAD -- $file | grep -q '^\-'; then
-              echo "  **Removed**:" >> CHANGELOG.md
-              git diff $last_human_commit HEAD -- $file | grep -E '^\-' | grep -v '/dev/null' | sed 's/^-[^-]//' | while read change; do
-                # Format each removed change with red color
-                echo "    - <span style='color:red;'>$change</span>" >> CHANGELOG.md
-              done
-              echo "" >> CHANGELOG.md
-            fi
-
-            # Ensure there is an empty line after the file block
             echo "" >> CHANGELOG.md
-          done
 
-          # Process changes in files containing 'user_cannon'
-          git diff --name-only $last_human_commit HEAD -- aces.vromfs.bin_u | grep -E 'user_cannon' | while read file; do
-            # Print file name with a new line after it
-            echo "- **$file**:" >> CHANGELOG.md
-            echo "" >> CHANGELOG.md  # Add an empty line after the file name
+            echo '```diff' >> CHANGELOG.md
 
-            # Extract added lines and group them under "Added"
-            if git diff $last_human_commit HEAD -- $file | grep -q '^\+'; then
-              echo "  **Added**:" >> CHANGELOG.md
-              git diff $last_human_commit HEAD -- $file | grep -E '^\+' | grep -v '/dev/null' | sed 's/^+//' | while read change; do
-                # Format each added change with green color
-                echo "    - <span style='color:green;'>$change</span>" >> CHANGELOG.md
-              done
-              echo "" >> CHANGELOG.md
-            fi
+            # Added lines
+            git diff $last_human_commit HEAD -- $file | grep -E '^\+' | grep -v '/dev/null' | sed 's/^+//' | while read change; do
+              echo "+ $change" >> CHANGELOG.md
+            done
 
-            # Extract removed lines and group them under "Removed"
-            if git diff $last_human_commit HEAD -- $file | grep -q '^\-'; then
-              echo "  **Removed**:" >> CHANGELOG.md
-              git diff $last_human_commit HEAD -- $file | grep -E '^\-' | grep -v '/dev/null' | sed 's/^-[^-]//' | while read change; do
-                # Format each removed change with red color
-                echo "    - <span style='color:red;'>$change</span>" >> CHANGELOG.md
-              done
-              echo "" >> CHANGELOG.md
-            fi
+            # Removed lines
+            git diff $last_human_commit HEAD -- $file | grep -E '^\-' | grep -v '/dev/null' | sed 's/^-//' | while read change; do
+              echo "- $change" >> CHANGELOG.md
+            done
 
-            # Ensure there is an empty line after the file block
+            echo '```' >> CHANGELOG.md
             echo "" >> CHANGELOG.md
           done
 
           echo "---" >> CHANGELOG.md
 
-          # Debugging: Output the contents of the changelog
-          echo "Generated CHANGELOG.md:"
-          cat CHANGELOG.md
-
-      # Commit the generated changelog
-      - name: Commit Changelog (if there are changes)
+      - name: Commit Changelog
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Use the GitHub token for authentication
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # Debugging: Check for changes before committing
-          echo "Checking for changes..."
-          git status
-          
-          # Force adding the CHANGELOG.md to ensure it's committed
           git add CHANGELOG.md
-          git status
-
           if [[ -n $(git status --porcelain) ]]; then
             git config --global user.name "github-actions[bot]"
             git config --global user.email "github-actions[bot]@users.noreply.github.com"
@@ -137,4 +70,3 @@ jobs:
             git push --no-verify
           else
             echo "No changes to commit"
-          fi
