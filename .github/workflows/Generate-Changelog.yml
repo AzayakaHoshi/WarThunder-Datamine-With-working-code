@@ -53,24 +53,26 @@ jobs:
 
           # Process changes in .blkx files
           git diff --name-only $last_human_commit HEAD -- aces.vromfs.bin_u | grep -E '\.blkx$' | while read file; do
+            # Print file name with a new line after it
             echo "- **$file**:" >> CHANGELOG.md
+            echo "" >> CHANGELOG.md  # Add an empty line after the file name
 
             # Extract added lines and group them under "Added"
             if git diff $last_human_commit HEAD -- $file | grep -q '^\+'; then
-              echo "  **Added**:<br>" >> CHANGELOG.md
-              git diff $last_human_commit HEAD -- $file | grep -E '^\+' | sed 's/^+//' | while read change; do
-                # Format each change using <br> for new lines
-                echo "    $change<br>" >> CHANGELOG.md
+              echo "  **Added**:" >> CHANGELOG.md
+              git diff $last_human_commit HEAD -- $file | grep -E '^\+' | grep -v '/dev/null' | sed 's/^+//' | while read change; do
+                # Format each change as a Markdown list item
+                echo "    - $change" >> CHANGELOG.md
               done
               echo "" >> CHANGELOG.md
             fi
 
             # Extract removed lines and group them under "Removed"
             if git diff $last_human_commit HEAD -- $file | grep -q '^\-'; then
-              echo "  **Removed**:<br>" >> CHANGELOG.md
-              git diff $last_human_commit HEAD -- $file | grep -E '^\-' | sed 's/^-[^-]//' | while read change; do
-                # Format each change using <br> for new lines
-                echo "    $change<br>" >> CHANGELOG.md
+              echo "  **Removed**:" >> CHANGELOG.md
+              git diff $last_human_commit HEAD -- $file | grep -E '^\-' | grep -v '/dev/null' | sed 's/^-[^-]//' | while read change; do
+                # Format each change as a Markdown list item
+                echo "    - $change" >> CHANGELOG.md
               done
               echo "" >> CHANGELOG.md
             fi
@@ -81,24 +83,26 @@ jobs:
 
           # Process changes in files containing 'user_cannon'
           git diff --name-only $last_human_commit HEAD -- aces.vromfs.bin_u | grep -E 'user_cannon' | while read file; do
+            # Print file name with a new line after it
             echo "- **$file**:" >> CHANGELOG.md
+            echo "" >> CHANGELOG.md  # Add an empty line after the file name
 
             # Extract added lines and group them under "Added"
             if git diff $last_human_commit HEAD -- $file | grep -q '^\+'; then
-              echo "  **Added**:<br>" >> CHANGELOG.md
-              git diff $last_human_commit HEAD -- $file | grep -E '^\+' | sed 's/^+//' | while read change; do
-                # Format each change using <br> for new lines
-                echo "    $change<br>" >> CHANGELOG.md
+              echo "  **Added**:" >> CHANGELOG.md
+              git diff $last_human_commit HEAD -- $file | grep -E '^\+' | grep -v '/dev/null' | sed 's/^+//' | while read change; do
+                # Format each change as a Markdown list item
+                echo "    - $change" >> CHANGELOG.md
               done
               echo "" >> CHANGELOG.md
             fi
 
             # Extract removed lines and group them under "Removed"
             if git diff $last_human_commit HEAD -- $file | grep -q '^\-'; then
-              echo "  **Removed**:<br>" >> CHANGELOG.md
-              git diff $last_human_commit HEAD -- $file | grep -E '^\-' | sed 's/^-[^-]//' | while read change; do
-                # Format each change using <br> for new lines
-                echo "    $change<br>" >> CHANGELOG.md
+              echo "  **Removed**:" >> CHANGELOG.md
+              git diff $last_human_commit HEAD -- $file | grep -E '^\-' | grep -v '/dev/null' | sed 's/^-[^-]//' | while read change; do
+                # Format each change as a Markdown list item
+                echo "    - $change" >> CHANGELOG.md
               done
               echo "" >> CHANGELOG.md
             fi
