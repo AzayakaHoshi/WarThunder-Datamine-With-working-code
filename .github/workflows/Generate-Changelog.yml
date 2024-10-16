@@ -51,27 +51,26 @@ jobs:
           echo "Full diff between $last_human_commit and HEAD:"
           git diff $last_human_commit HEAD -- aces.vromfs.bin_u
 
-          # Append a timestamp to the changelog to force a change (for debugging)
-          echo "Timestamp: $(date)" >> CHANGELOG.md
-
           # Process changes in .blkx files
           git diff --name-only $last_human_commit HEAD -- aces.vromfs.bin_u | grep -E '\.blkx$' | while read file; do
             echo "- **$file**:" >> CHANGELOG.md
 
             # Extract added lines and group them under "Added"
             if git diff $last_human_commit HEAD -- $file | grep -q '^\+'; then
-              echo "  **Added**:" >> CHANGELOG.md
+              echo "  **Added**:<br>" >> CHANGELOG.md
               git diff $last_human_commit HEAD -- $file | grep -E '^\+' | sed 's/^+//' | while read change; do
-                echo "    $change" >> CHANGELOG.md
+                # Format each change using <br> for new lines
+                echo "    $change<br>" >> CHANGELOG.md
               done
               echo "" >> CHANGELOG.md
             fi
 
             # Extract removed lines and group them under "Removed"
             if git diff $last_human_commit HEAD -- $file | grep -q '^\-'; then
-              echo "  **Removed**:" >> CHANGELOG.md
+              echo "  **Removed**:<br>" >> CHANGELOG.md
               git diff $last_human_commit HEAD -- $file | grep -E '^\-' | sed 's/^-[^-]//' | while read change; do
-                echo "    $change" >> CHANGELOG.md
+                # Format each change using <br> for new lines
+                echo "    $change<br>" >> CHANGELOG.md
               done
               echo "" >> CHANGELOG.md
             fi
@@ -86,18 +85,20 @@ jobs:
 
             # Extract added lines and group them under "Added"
             if git diff $last_human_commit HEAD -- $file | grep -q '^\+'; then
-              echo "  **Added**:" >> CHANGELOG.md
+              echo "  **Added**:<br>" >> CHANGELOG.md
               git diff $last_human_commit HEAD -- $file | grep -E '^\+' | sed 's/^+//' | while read change; do
-                echo "    $change" >> CHANGELOG.md
+                # Format each change using <br> for new lines
+                echo "    $change<br>" >> CHANGELOG.md
               done
               echo "" >> CHANGELOG.md
             fi
 
             # Extract removed lines and group them under "Removed"
             if git diff $last_human_commit HEAD -- $file | grep -q '^\-'; then
-              echo "  **Removed**:" >> CHANGELOG.md
+              echo "  **Removed**:<br>" >> CHANGELOG.md
               git diff $last_human_commit HEAD -- $file | grep -E '^\-' | sed 's/^-[^-]//' | while read change; do
-                echo "    $change" >> CHANGELOG.md
+                # Format each change using <br> for new lines
+                echo "    $change<br>" >> CHANGELOG.md
               done
               echo "" >> CHANGELOG.md
             fi
