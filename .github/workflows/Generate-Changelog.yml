@@ -36,9 +36,8 @@ jobs:
         run: |
           echo "Generating changelog from aces.vromfs.bin_u directory..."
 
-          # Create a new changelog file with the diff language tag
+          # Create a new changelog file
           echo "### Full Changelog:" > CHANGELOG.md
-          echo "\`\`\`diff" >> CHANGELOG.md  # Start the diff block
           echo "" >> CHANGELOG.md
 
           # Get the commit ID of the last human commit or fallback commit
@@ -46,25 +45,31 @@ jobs:
 
           # Process changes in .blkx files
           git diff --name-only $last_human_commit HEAD -- aces.vromfs.bin_u | grep -E '\.blkx$' | while read file; do
-            # Print file name with a new line after it
+            # Print file name
             echo "- **$file**:" >> CHANGELOG.md
             echo "" >> CHANGELOG.md  # Add an empty line after the file name
 
-            # Extract added lines and group them under "Added"
+            # Extract added lines and format them with the diff tag
             if git diff $last_human_commit HEAD -- $file | grep -q '^\+'; then
+              echo "  **Added**:" >> CHANGELOG.md
+              echo "\`\`\`diff" >> CHANGELOG.md  # Start the diff block for added lines
               git diff $last_human_commit HEAD -- $file | grep -E '^\+' | grep -v '/dev/null' | sed 's/^+//' | while read change; do
                 # Format each added change with a + symbol for diff
                 echo "+ $change" >> CHANGELOG.md
               done
+              echo "\`\`\`" >> CHANGELOG.md  # Close the diff block for added lines
               echo "" >> CHANGELOG.md
             fi
 
-            # Extract removed lines and group them under "Removed"
+            # Extract removed lines and format them with the diff tag
             if git diff $last_human_commit HEAD -- $file | grep -q '^\-'; then
+              echo "  **Removed**:" >> CHANGELOG.md
+              echo "\`\`\`diff" >> CHANGELOG.md  # Start the diff block for removed lines
               git diff $last_human_commit HEAD -- $file | grep -E '^\-' | grep -v '/dev/null' | sed 's/^-[^-]//' | while read change; do
                 # Format each removed change with a - symbol for diff
                 echo "- $change" >> CHANGELOG.md
               done
+              echo "\`\`\`" >> CHANGELOG.md  # Close the diff block for removed lines
               echo "" >> CHANGELOG.md
             fi
 
@@ -74,25 +79,31 @@ jobs:
 
           # Process changes in files containing 'user_cannon'
           git diff --name-only $last_human_commit HEAD -- aces.vromfs.bin_u | grep -E 'user_cannon' | while read file; do
-            # Print file name with a new line after it
+            # Print file name
             echo "- **$file**:" >> CHANGELOG.md
             echo "" >> CHANGELOG.md  # Add an empty line after the file name
 
-            # Extract added lines and group them under "Added"
+            # Extract added lines and format them with the diff tag
             if git diff $last_human_commit HEAD -- $file | grep -q '^\+'; then
+              echo "  **Added**:" >> CHANGELOG.md
+              echo "\`\`\`diff" >> CHANGELOG.md  # Start the diff block for added lines
               git diff $last_human_commit HEAD -- $file | grep -E '^\+' | grep -v '/dev/null' | sed 's/^+//' | while read change; do
                 # Format each added change with a + symbol for diff
                 echo "+ $change" >> CHANGELOG.md
               done
+              echo "\`\`\`" >> CHANGELOG.md  # Close the diff block for added lines
               echo "" >> CHANGELOG.md
             fi
 
-            # Extract removed lines and group them under "Removed"
+            # Extract removed lines and format them with the diff tag
             if git diff $last_human_commit HEAD -- $file | grep -q '^\-'; then
+              echo "  **Removed**:" >> CHANGELOG.md
+              echo "\`\`\`diff" >> CHANGELOG.md  # Start the diff block for removed lines
               git diff $last_human_commit HEAD -- $file | grep -E '^\-' | grep -v '/dev/null' | sed 's/^-[^-]//' | while read change; do
                 # Format each removed change with a - symbol for diff
                 echo "- $change" >> CHANGELOG.md
               done
+              echo "\`\`\`" >> CHANGELOG.md  # Close the diff block for removed lines
               echo "" >> CHANGELOG.md
             fi
 
@@ -100,7 +111,6 @@ jobs:
             echo "" >> CHANGELOG.md
           done
 
-          echo "\`\`\`" >> CHANGELOG.md  # Close the diff block
           echo "---" >> CHANGELOG.md
 
           # Debugging: Output the contents of the changelog
