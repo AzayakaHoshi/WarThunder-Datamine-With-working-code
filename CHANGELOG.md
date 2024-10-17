@@ -4,16 +4,16 @@
 
   **Added**:
 ```diff
-+ frequency1:r=2.5
-+ frequency3:r=10.0
-+ elevation:r=2.0
++ frequency1:r=4.5
++ frequency3:r=20.0
++ elevation:r=0.0
 ```
 
   **Removed**:
 ```diff
-- requency1:r=4.5
-- requency3:r=20.0
-- levation:r=0.0
+- requency1:r=2.5
+- requency3:r=10.0
+- levation:r=2.0
 ```
 
 
@@ -21,16 +21,16 @@
 
   **Added**:
 ```diff
-+ frequency1:r=2.5
-+ frequency2:r=6.0
-+ frequency3:r=30.0
++ frequency1:r=4.5
++ frequency2:r=2.0
++ frequency3:r=10.0
 ```
 
   **Removed**:
 ```diff
-- requency1:r=4.5
-- requency2:r=2.0
-- requency3:r=10.0
+- requency1:r=2.5
+- requency2:r=6.0
+- requency3:r=30.0
 ```
 
 
