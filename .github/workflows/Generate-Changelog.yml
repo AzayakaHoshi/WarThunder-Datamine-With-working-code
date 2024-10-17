@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Automatically checkout the repository
+      # Automatically checkout the repository (no need to manually fetch)
       - name: Checkout Repository
         uses: actions/checkout@v3
         with:
@@ -45,27 +45,28 @@ jobs:
 
           # Process changes in .blkx files
           git diff --name-only $last_human_commit HEAD -- aces.vromfs.bin_u | grep -E '\.blkx$' | while read file; do
-            # Print file name once
+            # Print file name
             echo "- **$file**:" >> CHANGELOG.md
             echo "" >> CHANGELOG.md  # Add an empty line after the file name
 
-            # Extract added lines, format them with the diff tag
+            # Extract added lines, filtering out file metadata like 'b/...'
             if git diff $last_human_commit HEAD -- $file | grep -q '^\+'; then
               echo "  **Added**:" >> CHANGELOG.md
               echo "\`\`\`diff" >> CHANGELOG.md  # Start the diff block for added lines
-              git diff $last_human_commit HEAD -- $file | grep -E '^\+' | grep -v '/dev/null' | sed 's/^+//' | while read change; do
-                echo "+ $change" >> CHANGELOG.md  # Add the change
+              git diff $last_human_commit HEAD -- $file | grep -E '^\+' | grep -vE '^(\+\+\+|\+\ b/)' | sed 's/^+//' | while read change; do
+                # Filter out unwanted file metadata
+                echo "+ $change" >> CHANGELOG.md
               done
               echo "\`\`\`" >> CHANGELOG.md  # Close the diff block for added lines
               echo "" >> CHANGELOG.md
             fi
 
-            # Extract removed lines, format them with the diff tag
+            # Extract removed lines, filtering out file metadata like 'a/...'
             if git diff $last_human_commit HEAD -- $file | grep -q '^\-'; then
               echo "  **Removed**:" >> CHANGELOG.md
               echo "\`\`\`diff" >> CHANGELOG.md  # Start the diff block for removed lines
-              git diff $last_human_commit HEAD -- $file | grep -E '^\-' | grep -v '/dev/null' | sed 's/^-[^-]//' | while read change; do
-                echo "- $change" >> CHANGELOG.md  # Remove the change
+              git diff $last_human_commit HEAD -- $file | grep -E '^\-' | grep -vE '^(\-\-\-|a/)' | sed 's/^-[^-]//' | while read change; do
+                echo "- $change" >> CHANGELOG.md
               done
               echo "\`\`\`" >> CHANGELOG.md  # Close the diff block for removed lines
               echo "" >> CHANGELOG.md
