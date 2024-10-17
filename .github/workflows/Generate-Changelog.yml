@@ -65,7 +65,7 @@ jobs:
             if git diff $last_human_commit HEAD -- $file | grep -q '^\-'; then
               echo "  **Removed**:" >> CHANGELOG.md
               echo "\`\`\`diff" >> CHANGELOG.md  # Start the diff block for removed lines
-              git diff $last_human_commit HEAD -- $file | grep -E '^\-' | grep -vE '^(\-\-\-|a/)' | sed 's/^-[^-]//' | while read change; do
+              git diff $last_human_commit HEAD -- $file | grep -E '^\-' | grep -vE '^(\-\-\-|a/)' | sed 's/^-//' | while read change; do
                 echo "- $change" >> CHANGELOG.md
               done
               echo "\`\`\`" >> CHANGELOG.md  # Close the diff block for removed lines
