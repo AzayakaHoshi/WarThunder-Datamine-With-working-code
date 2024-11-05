@@ -314,6 +314,34 @@ controlDevices{
     node:t="bone_roll_driver_r_04"
     absoluteValue:b=yes
   }
+
+  device{
+    type:t="steeringWheel"
+    turnSpeed:r=0.2
+    node:t="bone_roll_driver_l_05"
+    absoluteValue:b=yes
+  }
+
+  device{
+    type:t="steeringWheel"
+    turnSpeed:r=0.2
+    node:t="bone_roll_driver_l_06"
+    absoluteValue:b=yes
+  }
+
+  device{
+    type:t="steeringWheel"
+    turnSpeed:r=0.2
+    node:t="bone_roll_driver_l_07"
+    absoluteValue:b=yes
+  }
+
+  device{
+    type:t="steeringWheel"
+    turnSpeed:r=0.2
+    node:t="bone_roll_driver_l_08"
+    absoluteValue:b=yes
+  }
 }
 
 DamageParts{
@@ -784,9 +812,15 @@ DamageParts{
       armorThrough:r=3.0
     }
 
+    fire_control_system_01_dm{
+      hp:r=60.0
+      armorThrough:r=3.0
+    }
+
     power_system_dm{
       hp:r=60.0
       armorThrough:r=15.0
+      fireParamsPreset:t="powersystem_internal"
     }
   }
 
@@ -2389,6 +2423,69 @@ DamageEffects{
       cut:r=1.0
     }
   }
+
+  part{
+    name:t="power_system_dm"
+
+    onHit{
+      damageType:t="cumulative"
+      fire:r=0.2
+      damage:r=75.0
+      fHitCritical:b=yes
+    }
+
+    onHit{
+      damageType:t="explosion"
+      fire:r=0.3
+      damage:r=30.0
+      fHitCritical:b=yes
+    }
+
+    onHit{
+      damageType:t="generic"
+      fire:r=0.05
+      damage:r=20.0
+      fHitCritical:b=yes
+    }
+
+    onHit{
+      damageType:t="generic"
+      fire:r=0.1
+      damage:r=70.0
+      fHitCritical:b=yes
+    }
+
+    onHit{
+      damageType:t="generic"
+      fire:r=0.3
+      damage:r=200.0
+      fHitCritical:b=yes
+    }
+
+    onHit{
+      damageType:t="generic"
+      fire:r=0.4
+      damage:r=300.0
+      fHitCritical:b=yes
+    }
+
+    onHit{
+      damageType:t="fire"
+      fire:r=0.1
+    }
+
+    onKill{
+      fire:r=1.0
+      fHitCritical:b=yes
+
+      action{
+        kill:b=yes
+        type:t="secondaryDamage"
+        part:t="electronic_equipment_dm"
+        part:t="fire_control_system_dm"
+      }
+    }
+  }
 }
 
 tank_crew{
@@ -2582,20 +2679,6 @@ gunConvergence{
   horizontal:b=yes
 }
 
-chainIK{
-
-  points{
-
-    point{
-      nameTemplate:t="bone_roll_02"
-    }
-
-    point{
-      nameTemplate:t="bone_roll_03"
-    }
-  }
-}
-
 sound{
   EngineName:t="engine_mctav6"
   TrackSoundPath:t="tanks/engines_tanks"
@@ -2634,6 +2717,8 @@ commonWeapons{
     defaultPitch:r=0.0
     barrelDP:t="gun_barrel_dm"
     breechDP:t="cannon_breech_dm"
+    stabilizerDmPart:t="fire_control_system_dm"
+    stabilizerDmPart:t="power_system_dm"
     speedYaw:r=57.0
     speedPitch:r=45.0
     rotationAnimScale:t="gun_rotate_01:CRS"
@@ -2657,6 +2742,11 @@ commonWeapons{
       gun:t="bone_gun"
       gunnerDm:t="gunner_dm"
       secondGunnerDm:t="commander_dm"
+      verDriveDm:t="drive_turret_v_dm"
+      verDriveDm:t="fire_control_system_dm"
+      horDriveDm:t="drive_turret_h_dm"
+      horDriveDm:t="fire_control_system_dm"
+      shootingDmPart:t="fire_control_system_dm"
       rotatedTurret:t="bone_turret"
 
       linkedAnimPart{
@@ -2701,6 +2791,8 @@ commonWeapons{
     ammoDpGenFmt:t="ammo_turret_%02d_dm"
     recoilMultiplier:r=0.1
     barrelDP:t="gun_barrel_02_dm"
+    stabilizerDmPart:t="fire_control_system_dm"
+    stabilizerDmPart:t="power_system_dm"
     createGunEffects:b=yes
     defaultYaw:r=0.0
     defaultPitch:r=0.0
@@ -2716,6 +2808,7 @@ commonWeapons{
     AttackMaxDistance:r=10000.0
     AttackMaxRadius:r=10000.0
     AttackMaxHeight:r=4000.0
+    AttackMinHeight:r=0.0
     accuracyAir:r=1.5
     accuracyGnd:r=0.0
     errMeasureVel:r=0.0
@@ -2731,6 +2824,11 @@ commonWeapons{
       gun:t="bone_gun"
       gunnerDm:t="gunner_dm"
       secondGunnerDm:t="commander_dm"
+      verDriveDm:t="drive_turret_v_dm"
+      verDriveDm:t="fire_control_system_dm"
+      horDriveDm:t="drive_turret_h_dm"
+      horDriveDm:t="fire_control_system_dm"
+      shootingDmPart:t="fire_control_system_dm"
       rotatedTurret:t="bone_turret"
     }
 
@@ -2762,7 +2860,7 @@ commonWeapons{
   Weapon{
     trigger:t="gunner5"
     triggerGroup:t="smoke"
-    blk:t="gameData/Weapons/groundModels_weapons/76mm_modern_smoke_grenade_launcher.blk"
+    blk:t="gameData/Weapons/groundModels_weapons/66mm_modern_us_smoke_grenade_launcher.blk"
     weaponType:t="rockets"
     useEmitter:b=yes
     emitter:t="emtr_mortar_flame_01"
@@ -2845,6 +2943,7 @@ sensors{
     blk:t="gameData/sensors/us_lav_ad_track.blk"
     turretIndex:i=0
     dmPart:t="optic_gun_dm"
+    dmPart:t="fire_control_system_dm"
   }
 }
 
@@ -2913,6 +3012,13 @@ VehiclePhys{
     dampeningRelaxationRatio:r=0.15
     dampeningCompressionRatio:r=0.05
     brokenWheelSteeringDeflection:r=-15.0
+
+    steeringNodes{
+      wheel_r_01:t="bone_wheel_r_01"
+      wheel_l_01:t="bone_wheel_l_01"
+      wheel_r_02:t="bone_wheel_r_02"
+      wheel_l_02:t="bone_wheel_l_02"
+    }
 
     steeringDeflection{
       wheel_l_01:r=25.0
@@ -2997,6 +3103,419 @@ VehiclePhys{
   }
 }
 
+PhysSys{
+  find:t="^bone_suspension_(._\d\d)$"
+
+  points{
+
+    suspension{
+      name:t="bone_suspension_$1"
+    }
+
+    wheel{
+      name:t="bone_wheel_$1"
+      limitMin:p3=-1.0, -1.0, 0.0
+      limitMax:p3=1.0, 1.0, 0.0
+    }
+  }
+
+  constraints{
+
+    edge{
+      from:t="suspension"
+      to:t="wheel"
+    }
+  }
+}
+
+chainIK{
+
+  points{
+
+    point{
+      nameTemplate:t="bone_roll_01_01"
+    }
+
+    point{
+      nameTemplate:t="bone_roll_01_02"
+    }
+  }
+
+  points{
+
+    point{
+      nameTemplate:t="bone_roll_02_01"
+    }
+
+    point{
+      nameTemplate:t="bone_roll_02_02"
+    }
+  }
+
+  points{
+
+    point{
+      nameTemplate:t="bone_roll_03_01"
+    }
+
+    point{
+      nameTemplate:t="bone_roll_03_02"
+    }
+  }
+
+  points{
+
+    point{
+      nameTemplate:t="bone_roll_04_01"
+    }
+
+    point{
+      nameTemplate:t="bone_roll_04_02"
+    }
+  }
+
+  points{
+
+    point{
+      nameTemplate:t="bone_roll_05_01"
+    }
+
+    point{
+      nameTemplate:t="bone_roll_05_02"
+    }
+  }
+
+  points{
+
+    point{
+      nameTemplate:t="bone_roll_06_01"
+    }
+
+    point{
+      nameTemplate:t="bone_roll_06_02"
+    }
+  }
+
+  points{
+
+    point{
+      nameTemplate:t="bone_roll_07_01"
+    }
+
+    point{
+      nameTemplate:t="bone_roll_07_02"
+    }
+  }
+
+  points{
+
+    point{
+      nameTemplate:t="bone_roll_08_01"
+    }
+
+    point{
+      nameTemplate:t="bone_roll_08_02"
+    }
+  }
+
+  points{
+
+    point{
+      nameTemplate:t="bone_roll_09_01"
+    }
+
+    point{
+      nameTemplate:t="bone_roll_09_02"
+    }
+  }
+
+  points{
+
+    point{
+      nameTemplate:t="bone_roll_10_01"
+    }
+
+    point{
+      nameTemplate:t="bone_roll_10_02"
+    }
+  }
+
+  points{
+
+    point{
+      nameTemplate:t="bone_roll_11_01"
+    }
+
+    point{
+      nameTemplate:t="bone_roll_11_02"
+    }
+  }
+
+  points{
+
+    point{
+      nameTemplate:t="bone_roll_12_01"
+    }
+
+    point{
+      nameTemplate:t="bone_roll_12_02"
+    }
+  }
+
+  points{
+
+    point{
+      nameTemplate:t="bone_roll_13_01"
+    }
+
+    point{
+      nameTemplate:t="bone_roll_13_02"
+    }
+  }
+
+  points{
+
+    point{
+      nameTemplate:t="bone_roll_14_01"
+    }
+
+    point{
+      nameTemplate:t="bone_roll_14_02"
+    }
+  }
+
+  points{
+
+    point{
+      nameTemplate:t="bone_roll_15_01"
+    }
+
+    point{
+      nameTemplate:t="bone_roll_15_02"
+    }
+  }
+
+  points{
+
+    point{
+      nameTemplate:t="bone_roll_16_01"
+    }
+
+    point{
+      nameTemplate:t="bone_roll_16_02"
+    }
+  }
+
+  points{
+
+    point{
+      nameTemplate:t="bone_roll_17_01"
+    }
+
+    point{
+      nameTemplate:t="bone_roll_17_02"
+    }
+  }
+
+  points{
+
+    point{
+      nameTemplate:t="bone_roll_18_01"
+    }
+
+    point{
+      nameTemplate:t="bone_roll_18_02"
+    }
+  }
+
+  points{
+
+    point{
+      nameTemplate:t="bone_roll_19_01"
+    }
+
+    point{
+      nameTemplate:t="bone_roll_19_02"
+    }
+  }
+
+  points{
+
+    point{
+      nameTemplate:t="bone_roll_20_01"
+    }
+
+    point{
+      nameTemplate:t="bone_roll_20_02"
+    }
+  }
+
+  points{
+
+    point{
+      nameTemplate:t="bone_roll_21_01"
+    }
+
+    point{
+      nameTemplate:t="bone_roll_21_02"
+    }
+  }
+
+  points{
+
+    point{
+      nameTemplate:t="bone_roll_22_01"
+    }
+
+    point{
+      nameTemplate:t="bone_roll_22_02"
+    }
+  }
+
+  points{
+
+    point{
+      nameTemplate:t="bone_roll_23_01"
+    }
+
+    point{
+      nameTemplate:t="bone_roll_23_02"
+    }
+  }
+
+  points{
+
+    point{
+      nameTemplate:t="bone_roll_24_01"
+    }
+
+    point{
+      nameTemplate:t="bone_roll_24_02"
+    }
+  }
+
+  points{
+
+    point{
+      nameTemplate:t="bone_roll_25_01"
+    }
+
+    point{
+      nameTemplate:t="bone_roll_25_02"
+    }
+  }
+
+  points{
+
+    point{
+      nameTemplate:t="bone_roll_26_01"
+    }
+
+    point{
+      nameTemplate:t="bone_roll_26_02"
+    }
+  }
+
+  points{
+
+    point{
+      nameTemplate:t="bone_roll_27_01"
+    }
+
+    point{
+      nameTemplate:t="bone_roll_27_02"
+    }
+  }
+
+  points{
+
+    point{
+      nameTemplate:t="bone_roll_28_01"
+    }
+
+    point{
+      nameTemplate:t="bone_roll_28_02"
+    }
+  }
+
+  points{
+
+    point{
+      nameTemplate:t="bone_roll_29_01"
+    }
+
+    point{
+      nameTemplate:t="bone_roll_29_02"
+    }
+  }
+
+  points{
+
+    point{
+      nameTemplate:t="bone_roll_30_01"
+    }
+
+    point{
+      nameTemplate:t="bone_roll_30_02"
+    }
+  }
+
+  points{
+
+    point{
+      nameTemplate:t="bone_roll_31_01"
+    }
+
+    point{
+      nameTemplate:t="bone_roll_31_02"
+    }
+  }
+
+  points{
+
+    point{
+      nameTemplate:t="bone_roll_32_01"
+    }
+
+    point{
+      nameTemplate:t="bone_roll_32_02"
+    }
+  }
+
+  points{
+
+    point{
+      nameTemplate:t="bone_roll_33_01"
+    }
+
+    point{
+      nameTemplate:t="bone_roll_33_02"
+    }
+  }
+
+  points{
+
+    point{
+      nameTemplate:t="bone_roll_34_01"
+    }
+
+    point{
+      nameTemplate:t="bone_roll_34_02"
+    }
+  }
+
+  points{
+
+    point{
+      nameTemplate:t="bone_roll_35_01"
+    }
+
+    point{
+      nameTemplate:t="bone_roll_35_02"
+    }
+  }
+}
+
 repairParts{
 
   wheel_l_01_dm{
@@ -3063,6 +3582,7 @@ repairParts{
 unitFx{
 
   event{
+    lifetime:r=120.0
     name:t="engine_fire"
 
     fx{
@@ -3083,6 +3603,7 @@ unitFx{
 
   event{
     name:t="ammo_fire"
+    lifetime:r=9.0
 
     fx{
       name:t="tank_ammo_fire"
@@ -3269,7 +3790,7 @@ unitFx{
 
   event{
     name:t="total_fire"
-    lifetime:r=60.0
+    lifetime:r=40.0
 
     fx{
       name:t="tank_fire_big"
@@ -3449,6 +3970,7 @@ unitFx{
 
   event{
     name:t="fuel_exterior"
+    lifetime:r=15.0
 
     fx{
       name:t="tank_ex_fuel_explosion"
@@ -3458,6 +3980,7 @@ unitFx{
 
   event{
     name:t="fuel_internal"
+    lifetime:r=15.0
 
     fx{
       name:t="tank_ex_fuel_explosion"
@@ -3467,6 +3990,7 @@ unitFx{
 
   event{
     name:t="hydraulic_internal"
+    lifetime:r=10.0
 
     fx{
       name:t="tank_ex_fuel_explosion"
@@ -3476,6 +4000,7 @@ unitFx{
 
   event{
     name:t="powersystem_internal"
+    lifetime:r=10.0
 
     fx{
       name:t="tank_ex_fuel_explosion"
@@ -3485,6 +4010,7 @@ unitFx{
 
   event{
     name:t="powersystem_exterior"
+    lifetime:r=10.0
 
     fx{
       name:t="tank_ex_fuel_explosion"
@@ -3494,7 +4020,7 @@ unitFx{
 
   event{
     name:t="big_bang"
-    lifetime:r=10.0
+    lifetime:r=20.0
 
     fx{
       name:t="tank_explosion"
@@ -3516,7 +4042,7 @@ unitFx{
 
   event{
     name:t="big_bang"
-    lifetime:r=10.0
+    lifetime:r=20.0
 
     fx{
       name:t="tank_explosion"
@@ -3538,7 +4064,7 @@ unitFx{
 
   event{
     name:t="big_bang"
-    lifetime:r=10.0
+    lifetime:r=20.0
 
     fx{
       name:t="tank_explosion_small"
@@ -3555,7 +4081,7 @@ unitFx{
 
   event{
     name:t="big_bang"
-    lifetime:r=10.0
+    lifetime:r=20.0
 
     fx{
       name:t="tank_explosion_ammo"
@@ -3577,7 +4103,7 @@ unitFx{
 
   event{
     name:t="big_bang"
-    lifetime:r=10.0
+    lifetime:r=20.0
 
     fx{
       name:t="tank_explosion_ammo_small"
@@ -3599,7 +4125,7 @@ unitFx{
 
   event{
     name:t="full_expl"
-    lifetime:r=10.0
+    lifetime:r=20.0
 
     fx{
       name:t="explosion_ship_big"
@@ -3696,6 +4222,7 @@ unitFx{
 
   event{
     name:t="engine_overheat"
+    lifetime:r=5.0
 
     fx{
       name:t="tank_radiator_steam"
@@ -4070,6 +4597,8 @@ modifications{
           defaultPitch:r=0.0
           barrelDP:t="gun_barrel_dm"
           breechDP:t="cannon_breech_dm"
+          stabilizerDmPart:t="fire_control_system_dm"
+          stabilizerDmPart:t="power_system_dm"
           speedYaw:r=57.0
           speedPitch:r=45.0
           rotationAnimScale:t="gun_rotate_01:CRS"
@@ -4093,6 +4622,11 @@ modifications{
             gun:t="bone_gun"
             gunnerDm:t="gunner_dm"
             secondGunnerDm:t="commander_dm"
+            verDriveDm:t="drive_turret_v_dm"
+            verDriveDm:t="fire_control_system_dm"
+            horDriveDm:t="drive_turret_h_dm"
+            horDriveDm:t="fire_control_system_dm"
+            shootingDmPart:t="fire_control_system_dm"
             rotatedTurret:t="bone_turret"
 
             linkedAnimPart{
@@ -4137,6 +4671,8 @@ modifications{
           ammoDpGenFmt:t="ammo_turret_%02d_dm"
           recoilMultiplier:r=0.1
           barrelDP:t="gun_barrel_01_dm"
+          stabilizerDmPart:t="fire_control_system_dm"
+          stabilizerDmPart:t="power_system_dm"
           createGunEffects:b=yes
           defaultYaw:r=0.0
           defaultPitch:r=0.0
@@ -4152,6 +4688,7 @@ modifications{
           AttackMaxDistance:r=10000.0
           AttackMaxRadius:r=10000.0
           AttackMaxHeight:r=4000.0
+          AttackMinHeight:r=0.0
           accuracyAir:r=1.5
           accuracyGnd:r=0.0
           errMeasureVel:r=0.0
@@ -4167,6 +4704,11 @@ modifications{
             gun:t="bone_gun"
             gunnerDm:t="gunner_dm"
             secondGunnerDm:t="commander_dm"
+            verDriveDm:t="drive_turret_v_dm"
+            verDriveDm:t="fire_control_system_dm"
+            horDriveDm:t="drive_turret_h_dm"
+            horDriveDm:t="fire_control_system_dm"
+            shootingDmPart:t="fire_control_system_dm"
             rotatedTurret:t="bone_turret"
 
             linkedAnimPart{
@@ -4238,6 +4780,11 @@ modifications{
             gun:t="bone_gun"
             gunnerDm:t="gunner_dm"
             secondGunnerDm:t="commander_dm"
+            verDriveDm:t="drive_turret_v_dm"
+            verDriveDm:t="fire_control_system_dm"
+            horDriveDm:t="drive_turret_h_dm"
+            horDriveDm:t="fire_control_system_dm"
+            shootingDmPart:t="fire_control_system_dm"
             rotatedTurret:t="bone_turret"
           }
 
@@ -4250,7 +4797,7 @@ modifications{
         Weapon{
           trigger:t="gunner5"
           triggerGroup:t="smoke"
-          blk:t="gameData/Weapons/groundModels_weapons/76mm_modern_smoke_grenade_launcher.blk"
+          blk:t="gameData/Weapons/groundModels_weapons/66mm_modern_us_smoke_grenade_launcher.blk"
           weaponType:t="rockets"
           useEmitter:b=yes
           emitter:t="emtr_mortar_flame_01"
@@ -4372,10 +4919,12 @@ modifications{
           blk:t="gameData/sensors/us_lav_ad_track.blk"
           turretIndex:i=0
           dmPart:t="optic_gun_dm"
+          dmPart:t="fire_control_system_dm"
         }
 
         sensor{
           blk:t="gameData/sensors/LaserDesignatorSensor.blk"
+          dmPart:t="fire_control_system_dm"
         }
       }
     }
@@ -4484,6 +5033,17 @@ skin{
   replace_tex{
     from:t="us_camo_olive*"
     to:t="usa_modern_summer_verdant*"
+  }
+}
+
+skin{
+  name:t="us_camo_modern_winter_tan"
+  nameLocId:t="skin/us_camo_modern_winter_tan"
+  descLocId:t="skin/us_camo_modern_winter_tan/desc"
+
+  replace_tex{
+    from:t="us_camo_olive*"
+    to:t="us_camo_modern_winter_tan*"
   }
 }
 

@@ -167,6 +167,34 @@ controlDevices{
     node:t="bone_roll_driver_r_04"
     absoluteValue:b=yes
   }
+
+  device{
+    type:t="steeringWheel"
+    turnSpeed:r=0.2
+    node:t="bone_roll_driver_l_05"
+    absoluteValue:b=yes
+  }
+
+  device{
+    type:t="steeringWheel"
+    turnSpeed:r=0.2
+    node:t="bone_roll_driver_l_06"
+    absoluteValue:b=yes
+  }
+
+  device{
+    type:t="steeringWheel"
+    turnSpeed:r=0.2
+    node:t="bone_roll_driver_l_07"
+    absoluteValue:b=yes
+  }
+
+  device{
+    type:t="steeringWheel"
+    turnSpeed:r=0.2
+    node:t="bone_roll_driver_l_08"
+    absoluteValue:b=yes
+  }
 }
 
 DamageParts{
@@ -272,6 +300,12 @@ DamageParts{
     }
 
     composite_armor_hull_16_dm{
+      armorThickness:r=5.0
+      armorClass:t="RHA_tank"
+      hidableInXrayViewer:b=yes
+    }
+
+    composite_armor_hull_17_dm{
       armorThickness:r=5.0
       armorClass:t="RHA_tank"
       hidableInXrayViewer:b=yes
@@ -854,6 +888,11 @@ DamageParts{
     }
 
     fire_control_system_dm{
+      hp:r=60.0
+      armorThrough:r=3.0
+    }
+
+    fire_control_system_01_dm{
       hp:r=60.0
       armorThrough:r=3.0
     }
@@ -2516,6 +2555,18 @@ xray_viewer_data{
     }
   }
 
+  armorArrayHull{
+    xrayDmPart:t="composite_armor_hull_17_dm"
+    titleLoc:t="RHA_tank"
+
+    armorArrayText{
+
+      layer{
+        dmPart:t="composite_armor_hull_17_dm"
+      }
+    }
+  }
+
   armorArrayTurret{
     xrayDmPart:t="composite_armor_hull_02_dm"
     titleLoc:t="grille_air"
@@ -3322,26 +3373,82 @@ VehiclePhys{
 }
 
 PhysSys{
-  find:t="^bone_suspension_(._\d\d)$"
 
-  points{
+  group{
+    find:t="bone_suspension_(\w)_(\d+)$"
 
-    suspension{
-      name:t="bone_suspension_$1"
+    points{
+
+      lever{
+        limitMin:p3=0.0, 0.0, 0.0
+        limitMax:p3=0.0, 0.0, 0.0
+        name:t="bone_suspension_$1_$2"
+      }
+
+      suspension_01_01{
+        limitMin:p3=-1.0, -1.0, 0.0
+        limitMax:p3=1.0, 1.0, 0.0
+        name:t="bone_suspension_$1_$2_01"
+      }
+
+      wheel{
+
+        searchChildren{
+          occurence:i=1
+          limitMin:p3=-1.0, -1.0, 0.0
+          limitMax:p3=1.0, 1.0, 0.0
+          parent:t="lever"
+          find:t="bone_wheel_"
+        }
+      }
     }
 
-    wheel{
-      name:t="bone_wheel_$1"
-      limitMin:p3=-1.0, -1.0, 0.0
-      limitMax:p3=1.0, 1.0, 0.0
+    constraints{
+
+      edge{
+        to:t="wheel"
+        from:t="lever"
+        moveNodes:b=no
+      }
+
+      edge{
+        moveNodes:b=no
+        moveSecond:b=no
+        to:t="wheel"
+        from:t="suspension_01_01"
+      }
     }
   }
 
-  constraints{
+  group{
+    find:t="bone_suspension_(\w)_back_(\d+)$"
 
-    edge{
-      from:t="suspension"
-      to:t="wheel"
+    points{
+
+      lever{
+        limitMin:p3=0.0, 0.0, 0.0
+        limitMax:p3=0.0, 0.0, 0.0
+        name:t="bone_suspension_$1_back_$2"
+      }
+
+      wheel{
+
+        searchChildren{
+          occurence:i=1
+          limitMin:p3=-1.0, -1.0, 0.0
+          limitMax:p3=1.0, 1.0, 0.0
+          parent:t="lever"
+          find:t="bone_wheel_"
+        }
+      }
+    }
+
+    constraints{
+
+      edge{
+        to:t="wheel"
+        from:t="lever"
+      }
     }
   }
 }
@@ -3800,6 +3907,7 @@ repairParts{
 unitFx{
 
   event{
+    lifetime:r=120.0
     name:t="engine_fire"
 
     fx{
@@ -3820,6 +3928,7 @@ unitFx{
 
   event{
     name:t="ammo_fire"
+    lifetime:r=9.0
 
     fx{
       name:t="tank_ammo_fire"
@@ -4006,7 +4115,7 @@ unitFx{
 
   event{
     name:t="total_fire"
-    lifetime:r=60.0
+    lifetime:r=40.0
 
     fx{
       name:t="tank_fire_big"
@@ -4186,6 +4295,7 @@ unitFx{
 
   event{
     name:t="fuel_exterior"
+    lifetime:r=15.0
 
     fx{
       name:t="tank_ex_fuel_explosion"
@@ -4195,6 +4305,7 @@ unitFx{
 
   event{
     name:t="fuel_internal"
+    lifetime:r=15.0
 
     fx{
       name:t="tank_ex_fuel_explosion"
@@ -4204,6 +4315,7 @@ unitFx{
 
   event{
     name:t="hydraulic_internal"
+    lifetime:r=10.0
 
     fx{
       name:t="tank_ex_fuel_explosion"
@@ -4213,6 +4325,7 @@ unitFx{
 
   event{
     name:t="powersystem_internal"
+    lifetime:r=10.0
 
     fx{
       name:t="tank_ex_fuel_explosion"
@@ -4222,6 +4335,7 @@ unitFx{
 
   event{
     name:t="powersystem_exterior"
+    lifetime:r=10.0
 
     fx{
       name:t="tank_ex_fuel_explosion"
@@ -4231,7 +4345,7 @@ unitFx{
 
   event{
     name:t="big_bang"
-    lifetime:r=10.0
+    lifetime:r=20.0
 
     fx{
       name:t="tank_explosion"
@@ -4253,7 +4367,7 @@ unitFx{
 
   event{
     name:t="big_bang"
-    lifetime:r=10.0
+    lifetime:r=20.0
 
     fx{
       name:t="tank_explosion"
@@ -4275,7 +4389,7 @@ unitFx{
 
   event{
     name:t="big_bang"
-    lifetime:r=10.0
+    lifetime:r=20.0
 
     fx{
       name:t="tank_explosion_small"
@@ -4292,7 +4406,7 @@ unitFx{
 
   event{
     name:t="big_bang"
-    lifetime:r=10.0
+    lifetime:r=20.0
 
     fx{
       name:t="tank_explosion_ammo"
@@ -4314,7 +4428,7 @@ unitFx{
 
   event{
     name:t="big_bang"
-    lifetime:r=10.0
+    lifetime:r=20.0
 
     fx{
       name:t="tank_explosion_ammo_small"
@@ -4336,7 +4450,7 @@ unitFx{
 
   event{
     name:t="full_expl"
-    lifetime:r=10.0
+    lifetime:r=20.0
 
     fx{
       name:t="explosion_ship_big"
@@ -4433,6 +4547,7 @@ unitFx{
 
   event{
     name:t="engine_overheat"
+    lifetime:r=5.0
 
     fx{
       name:t="tank_radiator_steam"
@@ -4484,6 +4599,10 @@ ammoStowages{
 
     shells{
       autoLoad:b=yes
+      fireEvent:t="ammo_fire"
+      explosionEvent:t="ammo_explosion"
+      wreckedPartId:i=0
+      autoloader:t="autoloader_dm"
 
       ammo_turret_01_dm{
         count:i=1
@@ -5063,6 +5182,17 @@ skin{
   replace_tex{
     from:t="us_camo_olive*"
     to:t="usa_modern_summer_verdant*"
+  }
+}
+
+skin{
+  name:t="us_camo_modern_winter_tan"
+  nameLocId:t="skin/us_camo_modern_winter_tan"
+  descLocId:t="skin/us_camo_modern_winter_tan/desc"
+
+  replace_tex{
+    from:t="us_camo_olive*"
+    to:t="us_camo_modern_winter_tan*"
   }
 }
 

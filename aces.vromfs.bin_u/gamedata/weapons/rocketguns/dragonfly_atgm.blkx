@@ -35,7 +35,6 @@ rocket{
   operatedDist:r=2000.0
   rangeMax:r=2000.0
   loadFactorMax:r=15.0
-  autoaimEnabled:b=no
   guidanceType:t="ir"
   guidanceSfx:t="alarm_con_scan"
   hitPower:r=260.0
@@ -43,12 +42,20 @@ rocket{
   explodeTreshold:r=0.1
   explosiveType:t="hta"
   explosiveMass:r=1.8
-  maxDeltaAngle:r=0.02
   dragCx:r=0.0035
   spawnExplosionFx:b=no
   spawnExplosionWreckage:b=no
+  distanceFuse:b=no
+  rendinstDamageRadius:r=2.0
+  aiGroundOnly:b=no
+  aiAirOnly:b=no
+  hasTracerTrail:b=yes
+  tracerTrailEmitter:p3=0.0, 0.0, 0.0
+  amountPerTier:r=4.0
+  iconType:t="atgm_type_pars3_x4"
+  maxDeltaAngle:r=0.02
   explosionEffect:t="explosion_midair_medium"
-  groundCollisionEffect:t="explosion_midair_small"
+  groundCollisionEffect:t="hit_59_80mm_dirt_he"
   ricochetEffect:t="hit_59_80mm_metal_ap"
   waterCollisionEffect:t="hit_59_80mm_water"
   explosionPatchRadius:r=3.4
@@ -61,7 +68,6 @@ rocket{
   smokeEffect2:t=""
   hazeEffect:t="haze_missile"
   endSmokeViscosity:r=0.05
-  distanceFuse:b=no
   hitPowerMult:r=1.0
   nearHitPower:p2=1.0, 50.0
   midHitPower:p2=0.9, 400.0
@@ -72,13 +78,6 @@ rocket{
   midArmorPower:p2=7.0, 400.0
   farArmorPower:p2=0.2, 700.0
   relativeVelArmorShift:p2=200.0, 1000.0
-  rendinstDamageRadius:r=2.0
-  aiGroundOnly:b=no
-  aiAirOnly:b=no
-  hasTracerTrail:b=yes
-  tracerTrailEmitter:p3=0.0, 0.0, 0.0
-  amountPerTier:r=4.0
-  iconType:t="atgm_type_pars3_x4"
 
   arcadeProp{
     finsAoaHor:r=0.3
@@ -108,6 +107,7 @@ rocket{
       constantDesignationSourceTypeMask:i=0
       groundVehiclesAsTarget:b=yes
       surfaceAsTarget:b=yes
+      boundaryTrack:b=yes
     }
 
     guidanceAutopilot{
@@ -132,26 +132,132 @@ rocket{
     ArmorPower10000m:p2=4.0, 10000.0
   }
 
-  collisions{
+  damage{
 
-    steel{
-      fx:t="explosion_midair_small"
-      ricochetFx:t="hit_81_105mm_metal_ap"
+    damage{
+
+      explosive{
+        radius:r=0.3
+        offset:r=0.2
+      }
+
+      shatter{
+        useRealShatters:b=yes
+        countPortion:r=0.22
+
+        segment{
+          radiusScale:r=0.3
+          penetrationScale:r=2.0
+          damageScale:r=1.5
+          angles:p2=0.0, 5.0
+          countPortion:r=0.01
+          onHitChanceMultFire:r=10.0
+        }
+
+        segment{
+          radiusScale:r=0.15
+          penetrationScale:r=2.0
+          damageScale:r=1.0
+          angles:p2=0.0, 29.0
+          countPortion:r=0.03
+          onHitChanceMultFire:r=10.0
+        }
+
+        segment{
+          radiusScale:r=1.0
+          penetrationScale:r=1.0
+          damageScale:r=1.0
+          angles:p2=30.0, 69.0
+          countPortion:r=0.235
+        }
+
+        segment{
+          radiusScale:r=0.25
+          penetrationScale:r=1.7
+          damageScale:r=1.5
+          angles:p2=70.0, 110.0
+          countPortion:r=0.075
+          onHitChanceMultFire:r=50.0
+        }
+
+        segment{
+          radiusScale:r=1.0
+          penetrationScale:r=1.0
+          damageScale:r=1.0
+          angles:p2=111.0, 180.0
+          countPortion:r=0.15
+        }
+
+        segment{
+          radiusScale:r=1.0
+          penetrationScale:r=1.0
+          damageScale:r=1.0
+          angles:p2=181.0, 249.0
+          countPortion:r=0.15
+        }
+
+        segment{
+          radiusScale:r=0.25
+          penetrationScale:r=1.7
+          damageScale:r=1.5
+          angles:p2=250.0, 290.0
+          countPortion:r=0.075
+          onHitChanceMultFire:r=50.0
+        }
+
+        segment{
+          radiusScale:r=1.0
+          penetrationScale:r=1.0
+          damageScale:r=1.0
+          angles:p2=291.0, 329.0
+          countPortion:r=0.235
+        }
+
+        segment{
+          radiusScale:r=0.15
+          penetrationScale:r=2.0
+          damageScale:r=1.0
+          angles:p2=330.0, 359.0
+          countPortion:r=0.03
+          onHitChanceMultFire:r=10.0
+        }
+
+        segment{
+          radiusScale:r=0.3
+          penetrationScale:r=2.0
+          damageScale:r=1.5
+          angles:p2=355.0, 359.0
+          countPortion:r=0.01
+          onHitChanceMultFire:r=10.0
+        }
+      }
     }
 
-    armor{
-      fx:t="explosion_midair_small"
-      ricochetFx:t="hit_81_105mm_metal_ap"
+    shatterDamage{
+      breachConeAngle:r=45.0
     }
 
-    buildings{
-      fx:t="explosion_midair_small"
-      ricochetFx:t="hit_106_132mm_stone_ap"
+    explosive{
+      radius:r=0.15
+      offset:r=0.2
     }
+  }
 
-    wood{
-      fx:t="explosion_midair_small"
-      ricochetFx:t="hit_106_132mm_wood_ap"
+  cumulativeDamage{
+    armorPower:r=1000.0
+    distance:r=7.5
+    damage:r=900.0
+    onHitChanceMultFire:r=25.0
+  }
+
+  tracerTrail{
+    smokeEffect:t=""
+    hazeEffect:t=""
+
+    visual{
+      traceFreq:i=1
+      tracer:t="100mmRed"
+      trail:t="noTrail"
     }
   }
 
@@ -300,6 +406,25 @@ rocket{
     }
   }
 
+  collisions{
+
+    steel{
+      fx:t="explosion_midair_tiny"
+    }
+
+    armor{
+      fx:t="explosion_midair_tiny"
+    }
+
+    buildings{
+      fx:t="explosion_midair_tiny"
+    }
+
+    wood{
+      fx:t="explosion_midair_tiny"
+    }
+  }
+
   DamageParts{
 
     body{
@@ -371,135 +496,6 @@ rocket{
         break:r=0.9
         fHitCritical:b=yes
       }
-    }
-  }
-
-  damage{
-
-    damage{
-
-      explosive{
-        radius:r=0.3
-        offset:r=0.2
-      }
-
-      shatter{
-        useRealShatters:b=yes
-        countPortion:r=0.22
-
-        segment{
-          radiusScale:r=0.3
-          penetrationScale:r=2.0
-          damageScale:r=1.5
-          angles:p2=0.0, 5.0
-          countPortion:r=0.01
-          onHitChanceMultFire:r=10.0
-        }
-
-        segment{
-          radiusScale:r=0.15
-          penetrationScale:r=2.0
-          damageScale:r=1.0
-          angles:p2=0.0, 29.0
-          countPortion:r=0.03
-          onHitChanceMultFire:r=10.0
-        }
-
-        segment{
-          radiusScale:r=1.0
-          penetrationScale:r=1.0
-          damageScale:r=1.0
-          angles:p2=30.0, 69.0
-          countPortion:r=0.235
-        }
-
-        segment{
-          radiusScale:r=0.25
-          penetrationScale:r=1.7
-          damageScale:r=1.5
-          angles:p2=70.0, 110.0
-          countPortion:r=0.075
-          onHitChanceMultFire:r=50.0
-        }
-
-        segment{
-          radiusScale:r=1.0
-          penetrationScale:r=1.0
-          damageScale:r=1.0
-          angles:p2=111.0, 180.0
-          countPortion:r=0.15
-        }
-
-        segment{
-          radiusScale:r=1.0
-          penetrationScale:r=1.0
-          damageScale:r=1.0
-          angles:p2=181.0, 249.0
-          countPortion:r=0.15
-        }
-
-        segment{
-          radiusScale:r=0.25
-          penetrationScale:r=1.7
-          damageScale:r=1.5
-          angles:p2=250.0, 290.0
-          countPortion:r=0.075
-          onHitChanceMultFire:r=50.0
-        }
-
-        segment{
-          radiusScale:r=1.0
-          penetrationScale:r=1.0
-          damageScale:r=1.0
-          angles:p2=291.0, 329.0
-          countPortion:r=0.235
-        }
-
-        segment{
-          radiusScale:r=0.15
-          penetrationScale:r=2.0
-          damageScale:r=1.0
-          angles:p2=330.0, 359.0
-          countPortion:r=0.03
-          onHitChanceMultFire:r=10.0
-        }
-
-        segment{
-          radiusScale:r=0.3
-          penetrationScale:r=2.0
-          damageScale:r=1.5
-          angles:p2=355.0, 359.0
-          countPortion:r=0.01
-          onHitChanceMultFire:r=10.0
-        }
-      }
-    }
-
-    shatterDamage{
-      breachConeAngle:r=45.0
-    }
-
-    explosive{
-      radius:r=0.15
-      offset:r=0.2
-    }
-  }
-
-  cumulativeDamage{
-    armorPower:r=1000.0
-    distance:r=7.5
-    damage:r=900.0
-    onHitChanceMultFire:r=25.0
-  }
-
-  tracerTrail{
-    smokeEffect:t=""
-    hazeEffect:t=""
-
-    visual{
-      traceFreq:i=1
-      tracer:t="100mmRed"
-      trail:t="noTrail"
     }
   }
 }

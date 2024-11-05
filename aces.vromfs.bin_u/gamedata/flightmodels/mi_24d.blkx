@@ -1626,8 +1626,18 @@ weapon_presets{
   }
 
   preset{
+    name:t="mi_24d_ub32_9m17m"
+    blk:t="gameData/flightModels/weaponPresets/mi_24d_ub32_9m17m.blk"
+  }
+
+  preset{
     name:t="mi_24d_s_24"
     blk:t="gameData/flightModels/weaponPresets/mi_24d_s_24.blk"
+  }
+
+  preset{
+    name:t="mi_24d_s_24_9m17m"
+    blk:t="gameData/flightModels/weaponPresets/mi_24d_s_24_9m17m.blk"
   }
 
   preset{
@@ -1641,13 +1651,28 @@ weapon_presets{
   }
 
   preset{
+    name:t="mi_24d_4xfab250_9m17m"
+    blk:t="gameData/flightModels/weaponPresets/mi_24d_4xfab250_9m17m.blk"
+  }
+
+  preset{
     name:t="mi_24d_2xfab500"
     blk:t="gameData/flightModels/weaponPresets/mi_24d_2xfab500.blk"
   }
 
   preset{
+    name:t="mi_24d_2xfab500_9m17m"
+    blk:t="gameData/flightModels/weaponPresets/mi_24d_2xfab500_9m17m.blk"
+  }
+
+  preset{
     name:t="mi_24d_upk_23_250"
     blk:t="gameData/flightModels/weaponPresets/mi_24d_upk_23_250.blk"
+  }
+
+  preset{
+    name:t="mi_24d_upk_23_250_9m17m"
+    blk:t="gameData/flightModels/weaponPresets/mi_24d_upk_23_250_9m17m.blk"
   }
 }
 
@@ -1808,9 +1833,94 @@ WeaponSlots{
     }
 
     WeaponPreset{
+      name:t="gun_yak_b_exhaust_common"
+
+      ShowNodes{
+        node:t="fuse2"
+        node:t="fuse4"
+      }
+
+      Weapon{
+        dummy:b=yes
+        trigger:t="gunner0"
+        triggerGroup:t="primary"
+        blk:t="gameData/Weapons/dummy_weapon.blk"
+        emitter:t="optic1_gun"
+        defaultYaw:r=0.0
+        defaultPitch:r=0.0
+        speedYaw:r=25.0
+        speedPitch:r=25.0
+        parkInDeadzone:b=no
+        aimForOperatedShell:b=yes
+
+        turret{
+          head:t="optic1_turret"
+          gun:t="optic1_gun"
+          mainTurret:b=yes
+          ballisticTargeting:b=yes
+        }
+
+        limits{
+          yaw:p2=-50.0, 50.0
+          pitch:p2=-40.0, 20.0
+        }
+      }
+
+      Weapon{
+        trigger:t="gunner0"
+        blk:t="gameData/Weapons/gunYaK_B.blk"
+        emitter:t="flare1"
+        flash:t="flare1"
+        shell:t="emtr_shellrejection1"
+        dm:t="gunner1_dm"
+        gunnerDm:t="gunner1_dm"
+        gunDm:t="gun1_dm"
+        partsDP:t="gun1_dm"
+        bullets:i=1470
+        recoilOffset:r=0.0
+        rotationAnimScale:t="gun_rotate_01:CRS"
+        parkInDeadzone:b=no
+
+        turret{
+          head:t="turret1"
+          gun:t="gun1"
+          barrel:t="gun_barrel1"
+          mainTurret:b=yes
+          ballisticTargeting:b=yes
+        }
+
+        limits{
+          yaw:p2=-60.0, 60.0
+          pitch:p2=-60.0, 20.0
+        }
+      }
+
+      Weapon{
+        trigger:t="countermeasures"
+        blk:t="gameData/Weapons/rocketGuns/countermeasure_split_launcher_jet.blk"
+        emitter:t="emtr_flare1"
+        bullets:i=64
+        external:b=yes
+        separate:b=no
+        bulletsCartridge:i=1
+      }
+
+      Weapon{
+        trigger:t="countermeasures"
+        blk:t="gameData/Weapons/rocketGuns/countermeasure_split_launcher_jet.blk"
+        emitter:t="emtr_flare2"
+        bullets:i=64
+        external:b=yes
+        separate:b=no
+        bulletsCartridge:i=1
+      }
+    }
+
+    WeaponPreset{
       name:t="gun_yak_ltc_full_common"
 
       ShowNodes{
+        node:t="fuse2"
         node:t="fuse4"
         node:t="lipa"
       }
@@ -3102,22 +3212,54 @@ modifications{
     tier:i=2
   }
 
+  heli_screen_exhaust_device{
+    turn_it_off:b=no
+    invertEnableLogic:b=no
+    group:t="countermeasures"
+    tier:i=1
+
+    effects{
+      enginesInfraRedBrightnessMult:r=0.7
+
+      commonWeapons{
+
+        Weapon{
+          slot:i=0
+          preset:t="gun_yak_b_exhaust_common"
+        }
+      }
+    }
+  }
+
   countermeasures_launcher_chaff{
   }
 
   countermeasures_belt_pack{
     modClass:t="weapon"
     turn_it_off:b=no
+    reqModification:t="heli_screen_exhaust_device"
     invertEnableLogic:b=no
     group:t="countermeasures"
-    tier:i=1
+    tier:i=2
+
+    effects{
+      enginesInfraRedBrightnessMult:r=0.7
+
+      commonWeapons{
+
+        Weapon{
+          slot:i=0
+          preset:t="gun_yak_b_exhaust_common"
+        }
+      }
+    }
   }
 
   heli_counterMeasures{
     turn_it_off:b=no
     invertEnableLogic:b=no
     reqModification:t="countermeasures_belt_pack"
-    tier:i=2
+    tier:i=3
     group:t="countermeasures"
 
     effects{
@@ -3141,7 +3283,7 @@ modifications{
 
   heli_night_vision_system{
     prevModification:t="countermeasures_belt_pack"
-    tier:i=3
+    tier:i=4
     modClass:t="weapon"
 
     effects{
