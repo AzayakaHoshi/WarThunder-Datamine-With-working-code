@@ -36,9 +36,6 @@ type:t="typeLightTank"
 rearmSmokeTimeOnField:r=60.0
 canReloadNonGuns:b=yes
 radarCanLockTargetFromTPV:b=no
-customClassIco:t="!#ui/gameuiskin#image_in_progress_ico.svg"
-customImage:t="!#ui/unitskin#image_in_progress"
-customTooltipImage:t="ui/aircrafts/image_in_progress"
 
 controlDevices{
 
@@ -336,7 +333,27 @@ DamageParts{
     }
 
     turret_06_back_dm{
-      armorThickness:r=5.0
+      armorThickness:r=20.0
+    }
+
+    turret_08_side_dm{
+      armorThickness:r=10.0
+    }
+
+    turret_09_top_dm{
+      armorThickness:r=20.0
+    }
+
+    turret_09_bottom_dm{
+      armorThickness:r=10.0
+    }
+
+    turret_08_bottom_dm{
+      armorThickness:r=4.0
+    }
+
+    turret_09_side_dm{
+      armorThickness:r=4.0
     }
   }
 
@@ -420,6 +437,22 @@ DamageParts{
     gun_mask_04_dm{
       armorThickness:r=60.0
     }
+
+    turret_08_top_dm{
+      armorThickness:r=4.0
+    }
+
+    turret_08_front_dm{
+      armorThickness:r=4.0
+    }
+
+    gun_mask_03_dm{
+      armorThickness:r=4.0
+    }
+
+    gun_mask_01_dm{
+      armorThickness:r=4.0
+    }
   }
 
   optics{
@@ -502,6 +535,15 @@ DamageParts{
     }
 
     ex_armor_02_dm{
+    }
+
+    ex_decor_07_dm{
+    }
+
+    ex_decor_13_dm{
+    }
+
+    ex_decor_14_dm{
     }
   }
 
@@ -625,19 +667,7 @@ DamageParts{
     spall_liner_06_dm{
     }
 
-    spall_liner_07_dm{
-    }
-
     spall_liner_08_dm{
-    }
-
-    spall_liner_09_dm{
-    }
-
-    spall_liner_10_dm{
-    }
-
-    spall_liner_11_dm{
     }
 
     spall_liner_12_dm{
@@ -859,6 +889,7 @@ DamageParts{
     power_system_dm{
       hp:r=60.0
       armorThrough:r=15.0
+      fireParamsPreset:t="powersystem_internal"
     }
   }
 
@@ -2490,6 +2521,69 @@ DamageEffects{
       cut:r=1.0
     }
   }
+
+  part{
+    name:t="power_system_dm"
+
+    onHit{
+      damageType:t="cumulative"
+      fire:r=0.2
+      damage:r=75.0
+      fHitCritical:b=yes
+    }
+
+    onHit{
+      damageType:t="explosion"
+      fire:r=0.3
+      damage:r=30.0
+      fHitCritical:b=yes
+    }
+
+    onHit{
+      damageType:t="generic"
+      fire:r=0.05
+      damage:r=20.0
+      fHitCritical:b=yes
+    }
+
+    onHit{
+      damageType:t="generic"
+      fire:r=0.1
+      damage:r=70.0
+      fHitCritical:b=yes
+    }
+
+    onHit{
+      damageType:t="generic"
+      fire:r=0.3
+      damage:r=200.0
+      fHitCritical:b=yes
+    }
+
+    onHit{
+      damageType:t="generic"
+      fire:r=0.4
+      damage:r=300.0
+      fHitCritical:b=yes
+    }
+
+    onHit{
+      damageType:t="fire"
+      fire:r=0.1
+    }
+
+    onKill{
+      fire:r=1.0
+      fHitCritical:b=yes
+
+      action{
+        kill:b=yes
+        type:t="secondaryDamage"
+        part:t="electronic_equipment_dm"
+        part:t="fire_control_system_dm"
+      }
+    }
+  }
 }
 
 tank_crew{
@@ -2528,20 +2622,12 @@ MetaParts{
     part:t="gunner_02_dm"
     part:t="loader_01_dm"
     part:t="loader_02_dm"
-    part:t="radio_station_dm"
-    part:t="drive_turret_v_dm"
     part:t="drive_turret_h_dm"
     part:t="drive_turret_v_01_dm"
     part:t="drive_turret_h_01_dm"
     part:t="drive_turret_v_02_dm"
     part:t="drive_turret_h_02_dm"
-    part:t="transmission_dm"
     part:t="ammo_turret_dm"
-    part:t="ammo_turret_01_dm"
-    part:t="ammo_turret_02_dm"
-    part:t="ammo_turret_03_dm"
-    part:t="ammo_turret_04_dm"
-    part:t="ammo_turret_05_dm"
     part:t="ammo_turret_06_dm"
     part:t="ammo_turret_07_dm"
     part:t="ammo_turret_08_dm"
@@ -2765,6 +2851,11 @@ commonWeapons{
       barrel:t="bone_gun_barrel"
       gunnerDm:t="gunner_dm"
       secondGunnerDm:t="commander_dm"
+      verDriveDm:t="drive_turret_v_dm"
+      verDriveDm:t="fire_control_system_dm"
+      horDriveDm:t="drive_turret_h_dm"
+      horDriveDm:t="fire_control_system_dm"
+      shootingDmPart:t="fire_control_system_dm"
     }
 
     limits{
@@ -2835,7 +2926,10 @@ commonWeapons{
       gunnerDm:t="gunner_dm"
       secondGunnerDm:t="commander_dm"
       verDriveDm:t="drive_turret_v_dm"
+      verDriveDm:t="fire_control_system_dm"
       horDriveDm:t="drive_turret_h_dm"
+      horDriveDm:t="fire_control_system_dm"
+      shootingDmPart:t="fire_control_system_dm"
     }
 
     limits{
@@ -3519,14 +3613,6 @@ repairParts{
   }
 }
 
-commanderView{
-  aimModeAvailable:b=yes
-  optics:t="commander_optics_square"
-  zoomOutFov:r=18.5
-  zoomInFov:r=5.54
-  sightSize:p2=0.355, 0.25
-}
-
 unitFx{
 
   event{
@@ -3918,7 +4004,7 @@ unitFx{
 
   event{
     name:t="fuel_exterior"
-    lifetime:r=15.0
+    lifetime:r=50.0
 
     fx{
       name:t="tank_ex_fuel_explosion"
@@ -3928,7 +4014,7 @@ unitFx{
 
   event{
     name:t="fuel_internal"
-    lifetime:r=15.0
+    lifetime:r=50.0
 
     fx{
       name:t="tank_ex_fuel_explosion"
@@ -3938,7 +4024,7 @@ unitFx{
 
   event{
     name:t="hydraulic_internal"
-    lifetime:r=10.0
+    lifetime:r=30.0
 
     fx{
       name:t="tank_ex_fuel_explosion"
@@ -3948,7 +4034,7 @@ unitFx{
 
   event{
     name:t="powersystem_internal"
-    lifetime:r=10.0
+    lifetime:r=30.0
 
     fx{
       name:t="tank_ex_fuel_explosion"
@@ -3958,7 +4044,7 @@ unitFx{
 
   event{
     name:t="powersystem_exterior"
-    lifetime:r=10.0
+    lifetime:r=30.0
 
     fx{
       name:t="tank_ex_fuel_explosion"
@@ -4327,11 +4413,13 @@ modifications{
           blk:t="gameData/Weapons/groundModels_weapons/30mm_Bushmaster_2_Mk_44_user_cannon.blk"
           emitter:t="bone_gun_barrel"
           flash:t="emtr_gun_flame"
-          recoilOffset:r=0.7
+          recoilOffset:r=0.09
           defaultYaw:r=0.0
           defaultPitch:r=0.0
           barrelDP:t="gun_barrel_dm"
           breechDP:t="cannon_breech_dm"
+          stabilizerDmPart:t="fire_control_system_dm"
+          stabilizerDmPart:t="power_system_dm"
           jammedReloadTime:r=8.0
           speedYaw:r=53.0
           speedPitch:r=28.0
@@ -4360,6 +4448,11 @@ modifications{
             barrel:t="bone_gun_barrel"
             gunnerDm:t="gunner_dm"
             secondGunnerDm:t="commander_dm"
+            verDriveDm:t="drive_turret_v_dm"
+            verDriveDm:t="fire_control_system_dm"
+            horDriveDm:t="drive_turret_h_dm"
+            horDriveDm:t="fire_control_system_dm"
+            shootingDmPart:t="fire_control_system_dm"
           }
 
           limits{
@@ -4369,13 +4462,12 @@ modifications{
 
           limitsTable{
             lim1:p4=-180.0, -174.0, 0.0, 45.0
-            lim2:p4=-174.0, -160.0, 10.0, 45.0
-            lim3:p4=-160.0, -150.0, 0.0, 45.0
-            lim3:p4=-150.0, -115.0, -2.0, 45.0
+            lim2:p4=-174.0, -140.0, -2.0, 45.0
+            lim3:p4=-140.0, -115.0, -6.0, 45.0
             lim4:p4=-115.0, 112.0, -10.0, 45.0
-            lim5:p4=112.0, 156.0, -2.0, 45.0
-            lim6:p4=156.0, 175.0, 30.0, 45.0
-            lim6:p4=175.0, 180.0, 0.0, 45.0
+            lim4:p4=112.0, 140.0, -6.0, 45.0
+            lim5:p4=140.0, 174.0, -2.0, 45.0
+            lim6:p4=174.0, 180.0, 0.0, 45.0
           }
 
           gunStabilizer{
@@ -4430,7 +4522,10 @@ modifications{
             gunnerDm:t="gunner_dm"
             secondGunnerDm:t="commander_dm"
             verDriveDm:t="drive_turret_v_dm"
+            verDriveDm:t="fire_control_system_dm"
             horDriveDm:t="drive_turret_h_dm"
+            horDriveDm:t="fire_control_system_dm"
+            shootingDmPart:t="fire_control_system_dm"
           }
 
           limits{
@@ -4527,6 +4622,9 @@ modifications{
       allowSupportPlane:b=no
     }
   }
+}
+
+nightVision{
 }
 
 supportPlane{

@@ -7,13 +7,14 @@ gearSinkRangeC:r=0.16
 haveCCIPForBombs:b=yes
 gyroSight:b=yes
 haveCCRPForBombs:b=yes
-ilsF15a:b=yes
+ilsF117:b=yes
 mfdCamTads:b=yes
 laserDesignator:b=yes
 havePointOfInterestDesignator:b=yes
-radarCrossSectionAspectMultFront:r=0.0028
-radarCrossSectionAspectMultSide:r=0.0005
-radarCrossSectionAspectMultRear:r=0.5
+haveOpticTurret:b=yes
+radarCrossSectionAspectMultFront:r=0.0024
+radarCrossSectionAspectMultSide:r=0.0028
+radarCrossSectionAspectMultRear:r=0.0283
 engineInfraRedBrightnessAspectMultFront:r=0.0006
 engineInfraRedBrightnessAspectMultSide:r=0.06
 engineInfraRedBrightnessAspectMultRear:r=0.5
@@ -1897,8 +1898,6 @@ cockpit{
   sightInFov:r=1.0
   headPos:p3=5.23, 1.28, 0.0
   headPosOnShooting:p3=5.33, 1.28, 0.0
-  hasAirCannonIlsMode:b=yes
-  isDoubleBulletImpactLine:b=yes
   shadowSphereMultiplier:r=2.0
   gunLightRadiusMul:r=0.05
   lightPos:p3=6.592, 1.135, 0.0
@@ -1964,13 +1963,14 @@ cockpit{
     clock_min:p2=0.0, 60.0
     clock_sec:p2=0.0, 60.0
     rpm:p2=0.0, 13200.0
+    rpm1:p2=0.0, 13200.0
     oil_pressure:p2=0.0, 120.0
     oil_pressure1:p2=0.0, 120.0
-    water_temperature:p2=200.0, 1400.0
-    water_temperature1:p2=200.0, 1400.0
+    water_temperature:p2=0.0, 1000.0
+    water_temperature1:p2=0.0, 1000.0
     fuel_pressure:p2=0.0, 15.0
-    fuel_consume:p2=0.0, 350.0
-    fuel_consume1:p2=0.0, 350.0
+    fuel_consume:p2=0.0, 757.6
+    fuel_consume1:p2=0.0, 757.6
     fuel:p2=0.0, 1134.0
     weapon_lock_lamp_flags1:i=6
     weapon_lock_lamp_flags2:i=8
@@ -1983,10 +1983,6 @@ cockpit{
 
       page{
         type:t="ils_duplicate"
-      }
-
-      page{
-        type:t="ils_on_camera"
       }
 
       page{
@@ -2004,10 +2000,6 @@ cockpit{
       page{
         type:t="ils_duplicate"
       }
-
-      page{
-        type:t="ils_on_camera"
-      }
     }
 
     display{
@@ -2017,13 +2009,11 @@ cockpit{
       page{
         type:t="thermal"
         turretIdx:i=0
-        scale:r=0.95
       }
 
       page{
         type:t="target_tracking"
         turretIdx:i=0
-        scale:r=0.95
       }
     }
 
@@ -2037,7 +2027,7 @@ cockpit{
         brightnessMult:r=3.5
         ilsColor:c=10, 255, 10, 120
         bloomForce:r=0.115
-        lineWidthScale:r=0.6
+        lineWidthScale:r=1.0
       }
     }
   }
@@ -2066,20 +2056,13 @@ nightVision{
     resolution:ip2=500, 300
     noiseFactor:r=0.05
   }
-
-  sightTPodThermal{
-    resolution:ip2=500, 300
-    noiseFactor:r=0.05
-    index:i=1
-  }
 }
 
 gunnerOpticFps{
-  pos:p3=2.6, -0.2, 0.0
+  pos:p3=0.6, -0.2, 0.0
   head:t="optic1_turret"
+  angularLimits:p4=-15.0, 15.0, -140.0, -5.0
   crosshairPreset:t="test_crosshair"
-  angularLimits:p4=-35.0, 35.0, -154.0, 34.0
-  opticType:t=""
 }
 
 sensors{
@@ -2091,6 +2074,7 @@ sensors{
 
   sensor{
     blk:t="gameData/sensors/LaserDesignatorSensor.blk"
+    node:t="optic1_gun"
   }
 }
 
@@ -2120,13 +2104,13 @@ weapon_presets{
   }
 
   preset{
-    name:t="f_117_gbu_12"
-    blk:t="gameData/FlightModels/weaponPresets/f_117_gbu_12.blk"
+    name:t="f_117_gbu_16"
+    blk:t="gameData/FlightModels/weaponPresets/f_117_gbu_16.blk"
   }
 
   preset{
-    name:t="f_117_gbu_16"
-    blk:t="gameData/FlightModels/weaponPresets/f_117_gbu_16.blk"
+    name:t="f_117_gbu_27"
+    blk:t="gameData/FlightModels/weaponPresets/f_117_gbu_27.blk"
   }
 
   preset{
@@ -2160,7 +2144,6 @@ WeaponSlots{
 
     WeaponPreset{
       name:t="default_common"
-      hasTargetingPod:b=yes
 
       Weapon{
         dummy:b=yes
@@ -2243,7 +2226,6 @@ WeaponSlots{
     WeaponPreset{
       iconType:t="guided_bomb_middle_laser"
       name:t="gbu12"
-      reqModification:t="us_gbu_12"
 
       Weapon{
         trigger:t="guided bombs"
@@ -2280,6 +2262,22 @@ WeaponSlots{
       Weapon{
         trigger:t="guided bombs"
         blk:t="gameData/Weapons/BombGuns/us_gbu_10_paveway_2.blk"
+        emitter:t="gbu_10_001"
+        bullets:i=1
+        external:b=no
+        separate:b=yes
+        machLimit:r=1.01
+      }
+    }
+
+    WeaponPreset{
+      iconType:t="guided_bomb_heavy_middle_laser"
+      name:t="gbu27"
+      reqModification:t="us_gbu_27"
+
+      Weapon{
+        trigger:t="guided bombs"
+        blk:t="gameData/Weapons/BombGuns/us_2000lb_gbu_27.blk"
         emitter:t="gbu_10_001"
         bullets:i=1
         external:b=no
@@ -2374,7 +2372,6 @@ WeaponSlots{
     WeaponPreset{
       iconType:t="guided_bomb_middle_laser"
       name:t="gbu12"
-      reqModification:t="us_gbu_12"
 
       Weapon{
         trigger:t="guided bombs"
@@ -2411,6 +2408,22 @@ WeaponSlots{
       Weapon{
         trigger:t="guided bombs"
         blk:t="gameData/Weapons/BombGuns/us_gbu_10_paveway_2.blk"
+        emitter:t="gbu_10_002"
+        bullets:i=1
+        external:b=no
+        separate:b=yes
+        machLimit:r=1.01
+      }
+    }
+
+    WeaponPreset{
+      iconType:t="guided_bomb_heavy_middle_laser"
+      name:t="gbu27"
+      reqModification:t="us_gbu_27"
+
+      Weapon{
+        trigger:t="guided bombs"
+        blk:t="gameData/Weapons/BombGuns/us_2000lb_gbu_27.blk"
         emitter:t="gbu_10_002"
         bullets:i=1
         external:b=no
@@ -2721,21 +2734,21 @@ modifications{
     reqModification:t="us_1000lb_mk83"
   }
 
-  us_gbu_12{
-    modClass:t="weapon"
+  us_gbu_16{
     tier:i=1
+    modClass:t="weapon"
   }
 
-  us_gbu_16{
-    reqModification:t="us_gbu_12"
+  us_gbu_27{
+    reqModification:t="us_gbu_16"
     tier:i=2
     modClass:t="weapon"
   }
 
   us_gbu_10{
-    reqModification:t="us_gbu_16"
+    reqModification:t="us_gbu_27"
     modClass:t="weapon"
-    tier:i=4
+    tier:i=3
   }
 }
 
@@ -2781,10 +2794,14 @@ bailout{
 cutting{
   _emtr_break_wing0_l_from:p3=-0.323251, -0.226895, 2.96873
   _emtr_break_wing0_l_to:p3=-0.323251, -0.226895, 3.3184
+  emtr_break_wing1_l_from:p3=-0.323251, -0.226895, 4.88668
+  emtr_break_wing1_l_to:p3=-0.323251, -0.226895, 5.00934
   emtr_break_wing2_l_from:p3=-0.323251, -0.226895, 5.23603
   emtr_break_wing2_l_to:p3=-0.323251, -0.226895, 5.79232
   _emtr_break_wing0_r_from:p3=-0.323251, -0.226895, -2.96873
   _emtr_break_wing0_r_to:p3=-0.323251, -0.226895, -3.3184
+  emtr_break_wing1_r_from:p3=-0.323251, -0.226895, -4.88668
+  emtr_break_wing1_r_to:p3=-0.323251, -0.226895, -5.00934
   emtr_break_wing2_r_from:p3=-0.323251, -0.226895, -5.23603
   emtr_break_wing2_r_to:p3=-0.323251, -0.226895, -5.79232
   emtr_break_wing_tail:p3=-7.70661, 0.0, 0.0

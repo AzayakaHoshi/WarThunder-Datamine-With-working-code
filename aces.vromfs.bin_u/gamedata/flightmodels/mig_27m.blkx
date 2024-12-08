@@ -2287,13 +2287,14 @@ cockpit{
     band8:b=yes
     detectTracking:b=yes
     targetTracking:b=no
-    searchRangeFinder:b=no
-    trackRangeFinder:b=yes
-    launchRangeFinder:b=yes
+    targetRangeFinder:b=yes
     targetRange:p2=5000.0, 50000.0
     friendFoeId:b=yes
+    targetHoldTime:r=1.0
     mandatoryRecognition:b=yes
+    priorityTargetSelection:b=yes
     rangeLamps:ip2=19, 4
+    lampsTimeOut:r=1.0
 
     receivers{
 
@@ -2400,6 +2401,7 @@ cockpit{
 
       group{
         name:t="AI pulse"
+        priority:i=3
         type:t="AN/APS-6"
         type:t="AN/APS-19"
         type:t="AN/APS-21"
@@ -2467,6 +2469,7 @@ cockpit{
         track:b=yes
         launch:b=no
         detectLaunch:b=yes
+        priority:i=3
         type:t="AN/APQ-51"
         type:t="AN/APQ-72"
         type:t="AN/APQ-120"
@@ -2480,6 +2483,7 @@ cockpit{
       group{
         name:t="AI PD"
         detectLaunch:b=yes
+        priority:i=2
         type:t="AN/APG-66"
         type:t="AN/APG-68"
         type:t="AN/APG-63"
@@ -2490,6 +2494,7 @@ cockpit{
         type:t="N019"
         type:t="N001"
         type:t="N010"
+        type:t="V004"
         type:t="ELTA EL/M-2001B"
         type:t="PS-37"
         type:t="PS-05"
@@ -2503,13 +2508,14 @@ cockpit{
 
       group{
         name:t="A/D"
+        priority:i=1
         type:t="1RL34"
         type:t="AN/VPS-2"
         type:t="M-247 TA"
         type:t="ESD RA-20 S"
+        type:t="TriAD TA"
         type:t="ADATS TA"
         type:t="ASRAD TA"
-        type:t="TriAD TA"
       }
 
       group{
@@ -2518,6 +2524,7 @@ cockpit{
         track:b=no
         launch:b=yes
         detectLaunch:b=yes
+        priority:i=0
         type:t="AN/APQ-51"
         type:t="AN/APQ-72"
         type:t="AN/APQ-120"
@@ -2566,42 +2573,36 @@ cockpit{
       typeLamp{
         group:t="AI pulse CW on"
         lamp:i=47
-        trackLamp:i=41
-        launchLamp:i=41
+        priorityLamp:i=41
       }
 
       typeLamp{
         group:t="A/D"
         lamp:i=48
-        trackLamp:i=42
-        launchLamp:i=42
+        priorityLamp:i=42
       }
 
       typeLamp{
         lamp:i=49
-        trackLamp:i=43
-        launchLamp:i=43
+        priorityLamp:i=43
       }
 
       typeLamp{
         lamp:i=50
-        trackLamp:i=44
-        launchLamp:i=44
+        priorityLamp:i=44
       }
 
       typeLamp{
         group:t="AI PD"
         lamp:i=51
-        trackLamp:i=45
-        launchLamp:i=45
+        priorityLamp:i=45
       }
 
       typeLamp{
         group:t="AI pulse"
         group:t="AI pulse CW off"
         lamp:i=52
-        trackLamp:i=46
-        launchLamp:i=46
+        priorityLamp:i=46
       }
     }
 
@@ -2610,88 +2611,101 @@ cockpit{
       directionLamp{
         receiver:i=0
         lamp:i=24
-        trackLamp:i=34
-        launchLamp:i=34
+        priorityLamp:i=34
       }
 
       directionLamp{
         receiver:i=1
         lamp:i=23
-        trackLamp:i=33
-        launchLamp:i=33
+        priorityLamp:i=33
       }
 
       directionLamp{
         receiver:i=2
         lamp:i=22
-        trackLamp:i=32
-        launchLamp:i=32
+        priorityLamp:i=32
       }
 
       directionLamp{
         receiver:i=3
         lamp:i=21
-        trackLamp:i=31
-        launchLamp:i=31
+        priorityLamp:i=31
       }
 
       directionLamp{
         receiver:i=4
         lamp:i=20
-        trackLamp:i=30
-        launchLamp:i=30
+        priorityLamp:i=30
       }
 
       directionLamp{
         receiver:i=5
         lamp:i=25
-        trackLamp:i=36
-        launchLamp:i=36
+        priorityLamp:i=36
       }
 
       directionLamp{
         receiver:i=6
         lamp:i=26
-        trackLamp:i=37
-        launchLamp:i=37
+        priorityLamp:i=37
       }
 
       directionLamp{
         receiver:i=7
         lamp:i=27
-        trackLamp:i=38
-        launchLamp:i=38
+        priorityLamp:i=38
       }
 
       directionLamp{
         receiver:i=8
         lamp:i=28
-        trackLamp:i=39
-        launchLamp:i=39
+        priorityLamp:i=39
       }
 
       directionLamp{
         receiver:i=9
         lamp:i=29
-        trackLamp:i=40
-        launchLamp:i=40
+        priorityLamp:i=40
       }
 
       directionLamp{
         receiver:i=10
-        trackLamp:i=1
-        launchLamp:i=1
+        priorityLamp:i=1
       }
 
       directionLamp{
         receiver:i=11
-        trackLamp:i=2
-        launchLamp:i=2
+        priorityLamp:i=2
+      }
+    }
+
+    typePriorities{
+
+      typePriority{
+        priority:i=0
+        group:t="AI pulse CW on"
+      }
+
+      typePriority{
+        priority:i=1
+        group:t="A/D"
+      }
+
+      typePriority{
+        priority:i=2
+        group:t="AI PD"
+      }
+
+      typePriority{
+        priority:i=3
+        group:t="AI pulse"
+        group:t="AI pulse CW off"
       }
     }
 
     modeLamps{
       trackLamp:i=0
+      priorityLamp:i=3
       launchLamp:i=0
       launchLampBlinkingPeriod:r=0.25
     }

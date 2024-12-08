@@ -12,12 +12,14 @@ haveCCIPForGun:b=yes
 haveCCIPForBombs:b=yes
 haveCCRPForBombs:b=yes
 haveCCRPForGun:b=yes
-ilsEP17:b=yes
 havePointOfInterestDesignator:b=yes
 hasPointOfInterestMemory:b=yes
+ilsEP17:b=yes
+rwrIndicator:t="Ar830"
+hmdJas39:b=yes
+mfdCamTads:b=yes
 isBwOpticSight:b=yes
 needTpsNightVision:b=yes
-hmdJas39:b=yes
 isMetricHmd:b=no
 isMetricIls:b=no
 hasHelmetDesignator:b=yes
@@ -2240,7 +2242,7 @@ default_skin{
 }
 
 ikPilot{
-  model:t="pilot_sweden_late_char"
+  model:t="usaf_pilot_1977_1991_char"
   maxHeadHorAngle:r=60.0
   maxHeadDownAngle:r=60.0
   maxHeadUpAngle:r=10.0
@@ -2308,7 +2310,7 @@ cockpit{
   sightFov:r=1.0
   headPos:p3=4.85, 0.583, 0.0
   headPosOnShooting:p3=4.95, 0.583, 0.0
-  hmdBlockIlsArea:p4=0.37, 0.37, 0.63, 0.63
+  hmdBlockIlsArea:p4=0.15, -0.5, 0.73, 0.85
   mfdTextureSize:ip2=1024, 1024
   hmdEnabledByDefault:b=yes
   shadowSphereMultiplier:r=2.0
@@ -2371,7 +2373,7 @@ cockpit{
 
       page{
         type:t="thermal"
-        turretIdx:i=0
+        turretIdx:i=1
       }
 
       page{
@@ -2382,7 +2384,7 @@ cockpit{
       page{
         type:t="radar"
         customRadar:t="jas39radar"
-        font:t="mirage_ils"
+        font:t="jas39"
       }
 
       page{
@@ -2413,7 +2415,7 @@ cockpit{
       page{
         type:t="radar"
         customRadar:t="jas39radar"
-        font:t="mirage_ils"
+        font:t="jas39"
       }
     }
 
@@ -2427,7 +2429,7 @@ cockpit{
       page{
         type:t="radar"
         customRadar:t="jas39radar"
-        font:t="mirage_ils"
+        font:t="jas39"
       }
 
       page{
@@ -2492,15 +2494,55 @@ cockpit{
   }
 }
 
+nightVision{
+
+  sightThermal{
+    resolution:ip2=500, 300
+    noiseFactor:r=0.05
+    index:i=1
+  }
+
+  sightTPodThermal{
+    resolution:ip2=800, 600
+    noiseFactor:r=0.04
+    index:i=2
+  }
+
+  gunnerIr{
+    resolution:ip2=1600, 1200
+    lightMult:r=9.0
+    ghosting:r=0.6
+    noiseFactor:r=0.2
+  }
+
+  pilotIr{
+    resolution:ip2=1600, 1200
+    lightMult:r=9.0
+    ghosting:r=0.6
+    noiseFactor:r=0.2
+  }
+}
+
 gunnerOpticFps{
 
-  TV{
+  TV1{
     pos:p3=2.6, -0.15, 0.0
     head:t="optic1_turret"
     crosshairPreset:t="test_crosshair"
     angularLimits:p4=-30.0, 30.0, -30.0, 30.0
     opticType:t="tv"
-    turretNo:i=0
+    turretNo:i=1
+  }
+
+  TV2{
+    pos:p3=2.6, -0.15, 0.0
+    head:t="optic1_turret"
+    crosshairPreset:t="test_crosshair"
+    angularLimits:p4=-30.0, 30.0, -30.0, 30.0
+    opticType:t="tv"
+    turretNo:i=1
+    nvIndex:i=1
+    name:t="AGM65G"
   }
 
   Target{
@@ -2509,17 +2551,8 @@ gunnerOpticFps{
     crosshairPreset:t="test_crosshair"
     angularLimits:p4=-89.0, 89.0, -154.0, 34.0
     opticType:t="targeting"
-    turretNo:i=0
-    nvIndex:i=1
-  }
-}
-
-nightVision{
-
-  sightTPodThermal{
-    resolution:ip2=800, 600
-    noiseFactor:r=0.04
-    index:i=1
+    turretNo:i=1
+    nvIndex:i=2
   }
 }
 
@@ -2531,7 +2564,7 @@ sensors{
   }
 
   sensor{
-    blk:t="gameData/sensors/swd_ar830.blk"
+    blk:t="gameData/sensors/swd_bow_21.blk"
   }
 
   sensor{
@@ -2647,6 +2680,11 @@ weapon_presets{
   preset{
     name:t="saab_jas39c_south_africa_gbu_38"
     blk:t="gameData/FlightModels/weaponPresets/saab_jas39c_south_africa_gbu_38.blk"
+  }
+
+  preset{
+    name:t="saab_jas39c_south_africa_gbu_39"
+    blk:t="gameData/FlightModels/weaponPresets/saab_jas39c_south_africa_gbu_39.blk"
   }
 }
 
@@ -3079,7 +3117,7 @@ WeaponSlots{
     WeaponPreset{
       iconType:t="guided_bomb_middle_jdam"
       name:t="us_gbu_38"
-      reqModification:t="us_500lb_mk82_gbu38_jdam"
+      reqModification:t="us_mk82_gbu38_gbu39"
 
       ShowNodes{
         node:t="pylon_1"
@@ -3167,9 +3205,28 @@ WeaponSlots{
     }
 
     WeaponPreset{
+      iconType:t="glide_guided_bomb_small_jdam_group_x4"
+      name:t="us_gbu_39_slot2"
+      reqModification:t="us_mk82_gbu38_gbu39"
+
+      ShowNodes{
+        node:t="pylon_1"
+      }
+
+      Weapon{
+        trigger:t="guided bombs"
+        blk:t="gameData/Weapons/containers/bru_61_bomb_pylon_gbu_39_x4.blk"
+        emitter:t="alkan_tsc_001"
+        external:b=yes
+        separate:b=yes
+        machLimit:r=1.01
+      }
+    }
+
+    WeaponPreset{
       iconType:t="bombs_middle_group_x2"
       name:t="mk_82_x2"
-      reqModification:t="us_500lb_mk82_gbu38_jdam"
+      reqModification:t="us_mk82_gbu38_gbu39"
 
       ShowNodes{
         node:t="pylon_1"
@@ -3189,7 +3246,7 @@ WeaponSlots{
     WeaponPreset{
       iconType:t="bombs_middle_high_drag_group_x2"
       name:t="mk_82_snakeye_x2"
-      reqModification:t="us_500lb_mk82_gbu38_jdam"
+      reqModification:t="us_mk82_gbu38_gbu39"
 
       ShowNodes{
         node:t="pylon_1"
@@ -3454,7 +3511,7 @@ WeaponSlots{
     WeaponPreset{
       iconType:t="guided_bomb_middle_jdam"
       name:t="us_gbu_38"
-      reqModification:t="us_500lb_mk82_gbu38_jdam"
+      reqModification:t="us_mk82_gbu38_gbu39"
 
       ShowNodes{
         node:t="pylon_2"
@@ -3592,9 +3649,28 @@ WeaponSlots{
     }
 
     WeaponPreset{
+      iconType:t="glide_guided_bomb_small_jdam_group_x4"
+      name:t="us_gbu_39_slot3"
+      reqModification:t="us_mk82_gbu38_gbu39"
+
+      ShowNodes{
+        node:t="pylon_2"
+      }
+
+      Weapon{
+        trigger:t="guided bombs"
+        blk:t="gameData/Weapons/containers/bru_61_bomb_pylon_gbu_39_x4.blk"
+        emitter:t="alkan_tsc_002"
+        external:b=yes
+        separate:b=yes
+        machLimit:r=1.01
+      }
+    }
+
+    WeaponPreset{
       iconType:t="bombs_middle_group_x2"
       name:t="mk_82_x2"
-      reqModification:t="us_500lb_mk82_gbu38_jdam"
+      reqModification:t="us_mk82_gbu38_gbu39"
 
       ShowNodes{
         node:t="pylon_2"
@@ -3614,7 +3690,7 @@ WeaponSlots{
     WeaponPreset{
       iconType:t="bombs_middle_high_drag_group_x2"
       name:t="mk_82_snakeye_x2"
-      reqModification:t="us_500lb_mk82_gbu38_jdam"
+      reqModification:t="us_mk82_gbu38_gbu39"
 
       ShowNodes{
         node:t="pylon_2"
@@ -3970,7 +4046,7 @@ WeaponSlots{
     WeaponPreset{
       iconType:t="guided_bomb_middle_jdam"
       name:t="us_gbu_38"
-      reqModification:t="us_500lb_mk82_gbu38_jdam"
+      reqModification:t="us_mk82_gbu38_gbu39"
 
       ShowNodes{
         node:t="pylon_4"
@@ -4108,9 +4184,28 @@ WeaponSlots{
     }
 
     WeaponPreset{
+      iconType:t="glide_guided_bomb_small_jdam_group_x4"
+      name:t="us_gbu_39_slot6"
+      reqModification:t="us_mk82_gbu38_gbu39"
+
+      ShowNodes{
+        node:t="pylon_4"
+      }
+
+      Weapon{
+        trigger:t="guided bombs"
+        blk:t="gameData/Weapons/containers/bru_61_bomb_pylon_gbu_39_x4.blk"
+        emitter:t="alkan_tsc_003"
+        external:b=yes
+        separate:b=yes
+        machLimit:r=1.01
+      }
+    }
+
+    WeaponPreset{
       iconType:t="bombs_middle_group_x2"
       name:t="mk_82_x2"
-      reqModification:t="us_500lb_mk82_gbu38_jdam"
+      reqModification:t="us_mk82_gbu38_gbu39"
 
       ShowNodes{
         node:t="pylon_4"
@@ -4130,7 +4225,7 @@ WeaponSlots{
     WeaponPreset{
       iconType:t="bombs_middle_high_drag_group_x2"
       name:t="mk_82_snakeye_x2"
-      reqModification:t="us_500lb_mk82_gbu38_jdam"
+      reqModification:t="us_mk82_gbu38_gbu39"
 
       ShowNodes{
         node:t="pylon_4"
@@ -4422,7 +4517,7 @@ WeaponSlots{
     WeaponPreset{
       iconType:t="guided_bomb_middle_jdam"
       name:t="us_gbu_38"
-      reqModification:t="us_500lb_mk82_gbu38_jdam"
+      reqModification:t="us_mk82_gbu38_gbu39"
 
       ShowNodes{
         node:t="pylon_5"
@@ -4510,9 +4605,28 @@ WeaponSlots{
     }
 
     WeaponPreset{
+      iconType:t="glide_guided_bomb_small_jdam_group_x4"
+      name:t="us_gbu_39_slot7"
+      reqModification:t="us_mk82_gbu38_gbu39"
+
+      ShowNodes{
+        node:t="pylon_5"
+      }
+
+      Weapon{
+        trigger:t="guided bombs"
+        blk:t="gameData/Weapons/containers/bru_61_bomb_pylon_gbu_39_x4.blk"
+        emitter:t="alkan_tsc_004"
+        external:b=yes
+        separate:b=yes
+        machLimit:r=1.01
+      }
+    }
+
+    WeaponPreset{
       iconType:t="bombs_middle_group_x2"
       name:t="mk_82_x2"
-      reqModification:t="us_500lb_mk82_gbu38_jdam"
+      reqModification:t="us_mk82_gbu38_gbu39"
 
       ShowNodes{
         node:t="pylon_5"
@@ -4532,7 +4646,7 @@ WeaponSlots{
     WeaponPreset{
       iconType:t="bombs_middle_high_drag_group_x2"
       name:t="mk_82_snakeye_x2"
-      reqModification:t="us_500lb_mk82_gbu38_jdam"
+      reqModification:t="us_mk82_gbu38_gbu39"
 
       ShowNodes{
         node:t="pylon_5"
@@ -4773,38 +4887,6 @@ modifications{
     tier:i=3
   }
 
-  heli_night_vision_system{
-    tier:i=4
-    modClass:t="weapon"
-    prevModification:t="akan_85_new_gun"
-
-    effects{
-
-      nightVision{
-
-        gunnerIr{
-          resolution:ip2=1920, 1080
-          lightMult:r=10.0
-          ghosting:r=0.7
-          noiseFactor:r=0.15
-        }
-
-        pilotIr{
-          resolution:ip2=1920, 1080
-          lightMult:r=10.0
-          ghosting:r=0.7
-          noiseFactor:r=0.15
-        }
-
-        sightTPodThermal{
-          resolution:ip2=800, 600
-          noiseFactor:r=0.04
-          index:i=1
-        }
-      }
-    }
-  }
-
   us_aim_9l{
     tier:i=1
     modClass:t="weapon"
@@ -4822,13 +4904,13 @@ modifications{
     modClass:t="weapon"
   }
 
-  us_500lb_mk82_gbu38_jdam{
+  us_mk82_gbu38_gbu39{
     modClass:t="weapon"
     tier:i=1
   }
 
   us_1000lb_mk83_gbu31_jdam{
-    reqModification:t="us_500lb_mk82_gbu38_jdam"
+    reqModification:t="us_mk82_gbu38_gbu39"
     modClass:t="weapon"
     tier:i=2
   }

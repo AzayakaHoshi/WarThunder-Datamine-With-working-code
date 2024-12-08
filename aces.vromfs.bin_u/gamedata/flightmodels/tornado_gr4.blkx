@@ -14,16 +14,15 @@ haveCCIPForBombs:b=yes
 gyroSight:b=yes
 haveCCIPForGun:b=yes
 haveCCRPForBombs:b=yes
-ilsTornado:b=yes
 haveCCRPForGun:b=yes
 haveOpticTurret:b=yes
-isBwOpticSight:b=yes
-hmdVtas:b=yes
-hasHelmetDesignator:b=yes
 havePointOfInterestDesignator:b=yes
+hasHelmetDesignator:b=yes
+ilsTornado:b=yes
+rwrIndicator:t="ARI-18241"
+hmdTornado:b=yes
 needTpsNightVision:b=yes
 hasPointOfInterestMemory:b=yes
-rwrIndicator:t="ARI-23333"
 type:t="typeFighter"
 simplifiedJoyAileronMult:r=1.0
 simplifiedJoyElevatorMult:r=1.0
@@ -43,17 +42,10 @@ fightAiBehaviour:t="assault"
 laserDesignator:b=yes
 autopilotImpl:t="FBW"
 paratrooper:t="usa_irvin_5000_ejection_para"
-customClassIco:t="!#ui/gameuiskin#image_in_progress_ico.svg"
-customImage:t="!#ui/unitskin#image_in_progress"
-customTooltipImage:t="ui/aircrafts/image_in_progress"
 
 DamageParts{
 
   armor10{
-
-    cannon1_dm{
-      hp:r=15.0
-    }
 
     cannon2_dm{
       hp:r=15.0
@@ -539,10 +531,6 @@ DamageEffects{
 
   part{
     name:t="airbrake_r_dm"
-  }
-
-  part{
-    name:t="cannon1_dm"
   }
 
   part{
@@ -2715,7 +2703,7 @@ DamageEffects{
 }
 
 ikPilot{
-  model:t="pilot_italy_late_char"
+  model:t="usaf_pilot_1977_1991_char"
   maxHeadHorAngle:r=60.0
   maxHeadDownAngle:r=60.0
   maxHeadUpAngle:r=10.0
@@ -2763,7 +2751,7 @@ ikPilot{
 }
 
 ikPilot{
-  model:t="pilot_italy_late_char"
+  model:t="usaf_pilot_1977_1991_char"
   maxHeadHorAngle:r=60.0
   maxHeadDownAngle:r=60.0
   maxHeadUpAngle:r=10.0
@@ -2826,15 +2814,15 @@ Sound{
 }
 
 cockpit{
-  targetingPodFov:p2=18.0, 1.5
-  sightInFov:r=1.5
-  sightOutFov:r=18.0
+  targetingPodFov:p2=24.0, 0.77
+  sightInFov:r=0.77
+  sightOutFov:r=24.0
   sightFov:r=1.0
   headPos:p3=4.222, 0.605, -0.0065
   headPosOnShooting:p3=4.322, 0.605, -0.0065
   hasAirCannonIlsMode:b=yes
   hmdEnabledByDefault:b=yes
-  hmdBlockIlsArea:p4=0.2, 0.2, 0.63, 0.63
+  hmdBlockIlsArea:p4=0.45, -0.4, 0.55, 0.6
   mirror:b=yes
   mirrorPos:p3=4.606, 0.665, 0.0
   mirrorNorm:p3=-1.0, 0.05, 0.0
@@ -2885,7 +2873,7 @@ cockpit{
     aviahorizon_pitch:p2=-80.0, 80.0
     aviahorizon_roll:p2=-180.0, 180.0
     aoa:p2=-1.0, 23.0
-    aoa_indexer1:p2=15.0, 90.0
+    aoa_indexer1:p2=14.0, 90.0
     compass:p2=0.0, 360.0
     compass1:p2=0.0, 360.0
     clock_hour:p2=0.0, 12.0
@@ -2927,6 +2915,16 @@ cockpit{
       textureArea:p4=0.0, 0.0, 0.5, 0.5
 
       page{
+        type:t="thermal"
+        turretIdx:i=0
+      }
+
+      page{
+        type:t="target_tracking"
+        turretIdx:i=0
+      }
+
+      page{
         type:t="map"
       }
     }
@@ -2937,8 +2935,6 @@ cockpit{
       page{
         type:t="rwr"
         scale:r=1.15
-        circleCnt:i=2
-        centralMark:t="cross"
       }
     }
 
@@ -2970,16 +2966,30 @@ cockpit{
 
 nightVision{
 
-  sightThermal{
-    resolution:ip2=500, 300
-    noiseFactor:r=0.05
-    index:i=2
+  gunnerIr{
+    resolution:ip2=1920, 1080
+    lightMult:r=10.0
+    ghosting:r=0.7
+    noiseFactor:r=0.15
+  }
+
+  pilotIr{
+    resolution:ip2=1920, 1080
+    lightMult:r=10.0
+    ghosting:r=0.7
+    noiseFactor:r=0.15
   }
 
   sightTPodThermal{
-    resolution:ip2=800, 600
+    resolution:ip2=1200, 800
     noiseFactor:r=0.04
     index:i=1
+  }
+
+  sightThermal{
+    resolution:ip2=800, 600
+    noiseFactor:r=0.04
+    index:i=2
   }
 }
 
@@ -3012,7 +3022,7 @@ gunnerOpticFps{
     angularLimits:p4=-89.0, 89.0, -149.0, 29.0
     opticType:t="targeting"
     turretNo:i=0
-    nvIndex:i=2
+    nvIndex:i=1
   }
 }
 
@@ -3195,7 +3205,7 @@ WeaponSlots{
         blk:t="gameData/Weapons/cannon_mauser_bk_27.blk"
         emitter:t="flare1"
         flash:t="flare1"
-        dm:t="cannon1_dm"
+        dm:t="cannon2_dm"
         bullets:i=180
         spread:r=1.1
         traceOffset:i=1
@@ -3232,10 +3242,10 @@ WeaponSlots{
       Weapon{
         trigger:t="countermeasures"
         blk:t="gameData/Weapons/rocketGuns/countermeasure_chaff_only_large.blk"
-        emitter:t="emtr_inversion_r"
+        emitter:t="emtr_inversion_l"
         bullets:i=600
         external:b=yes
-        separate:b=no
+        separate:b=yes
         bulletsCartridge:i=1
         order:i=1
       }
@@ -3254,7 +3264,7 @@ WeaponSlots{
       Weapon{
         trigger:t="countermeasures"
         blk:t="gameData/Weapons/rocketGuns/countermeasure_split_launcher_jet_add_pod.blk"
-        emitter:t="emtr_flare4"
+        emitter:t="emtr_flare3"
         bullets:i=80
         external:b=yes
         separate:b=no
@@ -3277,7 +3287,7 @@ WeaponSlots{
       Weapon{
         trigger:t="countermeasures"
         blk:t="gameData/Weapons/rocketGuns/countermeasure_split_launcher_jet_add_pod.blk"
-        emitter:t="emtr_flare3"
+        emitter:t="emtr_flare4"
         bullets:i=80
         external:b=yes
         separate:b=no
@@ -3288,7 +3298,7 @@ WeaponSlots{
       sensors{
 
         sensor{
-          blk:t="gameData/sensors/us_an_aar_47.blk"
+          blk:t="gameData/sensors/us_an_aar_57_terma.blk"
         }
       }
     }
@@ -3522,7 +3532,7 @@ WeaponSlots{
 
       Weapon{
         trigger:t="atgm"
-        blk:t="gameData/Weapons/BombGuns/uk_pgm_500.blk"
+        blk:t="gameData/Weapons/BombGuns/uk_pgm_500_iir.blk"
         external:b=yes
         separate:b=yes
         emitter:t="bomb_pgm_500_1"
@@ -3541,7 +3551,7 @@ WeaponSlots{
 
       Weapon{
         trigger:t="atgm"
-        blk:t="gameData/Weapons/BombGuns/uk_pgm_2000.blk"
+        blk:t="gameData/Weapons/BombGuns/uk_pgm_2000_iir.blk"
         external:b=yes
         separate:b=yes
         emitter:t="bomb_pgm_2000_1"
@@ -3564,7 +3574,7 @@ WeaponSlots{
 
       Weapon{
         trigger:t="fuel tanks"
-        blk:t="gameData/Weapons/drop_tank/uk_1500l_tornado_gr1_1.blk"
+        blk:t="gameData/Weapons/drop_tank/uk_1500l_tornado_gr4_1.blk"
         emitter:t="bomb1_ld"
         bullets:i=1
         external:b=yes
@@ -3586,7 +3596,7 @@ WeaponSlots{
     WeaponPreset{
       iconType:t="flir_container"
       name:t="litening"
-      reqModification:t="gr_litening_pod"
+      reqModification:t="gr_litening_iii_pod"
       hasTargetingPod:b=yes
       removeGunnerOpticFps:i=0
 
@@ -3599,7 +3609,7 @@ WeaponSlots{
 
       Weapon{
         trigger:t="targetingPod"
-        blk:t="gameData/Weapons/equipment/gr_litening_pod_targeting_pod.blk"
+        blk:t="gameData/Weapons/equipment/gr_litening_iii_targeting_pod.blk"
         emitter:t="litening_2_pod"
         bullets:i=1
         order:i=7
@@ -3760,7 +3770,7 @@ WeaponSlots{
 
       Weapon{
         trigger:t="atgm"
-        blk:t="gameData/Weapons/BombGuns/uk_pgm_500.blk"
+        blk:t="gameData/Weapons/BombGuns/uk_pgm_500_iir.blk"
         external:b=yes
         separate:b=yes
         emitter:t="bomb_pgm_500_2"
@@ -3815,7 +3825,7 @@ WeaponSlots{
 
       Weapon{
         trigger:t="atgm"
-        blk:t="gameData/Weapons/BombGuns/uk_pgm_2000.blk"
+        blk:t="gameData/Weapons/BombGuns/uk_pgm_2000_iir.blk"
         external:b=yes
         separate:b=yes
         emitter:t="bomb_pgm_2000_2"
@@ -4029,6 +4039,31 @@ WeaponSlots{
         separate:b=yes
         emitter:t="bomb5_ld"
         bullets:i=1
+        order:i=9
+      }
+
+      DependentWeaponPreset{
+        slot:i=4
+        preset:t="litening"
+      }
+    }
+
+    WeaponPreset{
+      iconType:t="guided_bomb_large_laser"
+      name:t="fr_mk13_fuse5"
+      reqModification:t="uk_mk_13_18"
+
+      ShowNodes{
+        node:t="pylon_bomb3"
+      }
+
+      Weapon{
+        trigger:t="guided bombs"
+        blk:t="gameData/Weapons/BombGuns/fr_mk13.blk"
+        emitter:t="bomb5_ld"
+        bullets:i=1
+        external:b=yes
+        separate:b=yes
         order:i=9
       }
 
@@ -4896,6 +4931,21 @@ WeaponSlots{
         slot:i=6
         preset:t="fr_mk13_fuse_centr"
       }
+
+      BannedWeaponPreset{
+        slot:i=8
+        preset:t="pgm_500_fuse2"
+      }
+
+      BannedWeaponPreset{
+        slot:i=8
+        preset:t="pgm_2000_fuse2"
+      }
+
+      BannedWeaponPreset{
+        slot:i=8
+        preset:t="us_2000lb_gbu_24_fuse4"
+      }
     }
   }
 
@@ -5083,7 +5133,7 @@ WeaponSlots{
 
       Weapon{
         trigger:t="atgm"
-        blk:t="gameData/Weapons/BombGuns/uk_pgm_500.blk"
+        blk:t="gameData/Weapons/BombGuns/uk_pgm_500_iir.blk"
         external:b=yes
         separate:b=yes
         emitter:t="bomb_pgm_500_3"
@@ -5138,7 +5188,7 @@ WeaponSlots{
 
       Weapon{
         trigger:t="atgm"
-        blk:t="gameData/Weapons/BombGuns/uk_pgm_2000.blk"
+        blk:t="gameData/Weapons/BombGuns/uk_pgm_2000_iir.blk"
         external:b=yes
         separate:b=yes
         emitter:t="bomb_pgm_2000_3"
@@ -5495,7 +5545,7 @@ WeaponSlots{
 
       Weapon{
         trigger:t="atgm"
-        blk:t="gameData/Weapons/BombGuns/uk_pgm_500.blk"
+        blk:t="gameData/Weapons/BombGuns/uk_pgm_500_iir.blk"
         external:b=yes
         separate:b=yes
         emitter:t="bomb_pgm_500_4"
@@ -5514,7 +5564,7 @@ WeaponSlots{
 
       Weapon{
         trigger:t="atgm"
-        blk:t="gameData/Weapons/BombGuns/uk_pgm_2000.blk"
+        blk:t="gameData/Weapons/BombGuns/uk_pgm_2000_iir.blk"
         external:b=yes
         separate:b=yes
         emitter:t="bomb_pgm_2000_4"
@@ -5537,7 +5587,7 @@ WeaponSlots{
 
       Weapon{
         trigger:t="fuel tanks"
-        blk:t="gameData/Weapons/drop_tank/uk_1500l_tornado_gr1_2.blk"
+        blk:t="gameData/Weapons/drop_tank/uk_1500l_tornado_gr4_2.blk"
         emitter:t="pylon_tsc_2"
         bullets:i=1
         external:b=yes
@@ -5626,10 +5676,10 @@ WeaponSlots{
       Weapon{
         trigger:t="countermeasures"
         blk:t="gameData/Weapons/rocketGuns/countermeasure_chaff_only_large.blk"
-        emitter:t="emtr_inversion_l"
+        emitter:t="emtr_inversion_r"
         bullets:i=600
         external:b=yes
-        separate:b=no
+        separate:b=yes
         bulletsCartridge:i=1
         order:i=2
       }
@@ -5648,7 +5698,7 @@ WeaponSlots{
       Weapon{
         trigger:t="countermeasures"
         blk:t="gameData/Weapons/rocketGuns/countermeasure_split_launcher_jet_add_pod.blk"
-        emitter:t="emtr_flare4"
+        emitter:t="emtr_flare6"
         bullets:i=80
         external:b=yes
         separate:b=no
@@ -5660,7 +5710,7 @@ WeaponSlots{
       Weapon{
         trigger:t="countermeasures"
         blk:t="gameData/Weapons/rocketGuns/countermeasure_split_launcher_jet_add_pod.blk"
-        emitter:t="emtr_flare5"
+        emitter:t="emtr_flare8"
         bullets:i=80
         external:b=yes
         separate:b=no
@@ -5671,7 +5721,7 @@ WeaponSlots{
       Weapon{
         trigger:t="countermeasures"
         blk:t="gameData/Weapons/rocketGuns/countermeasure_split_launcher_jet_add_pod.blk"
-        emitter:t="emtr_flare3"
+        emitter:t="emtr_flare7"
         bullets:i=80
         external:b=yes
         separate:b=no
@@ -5682,7 +5732,7 @@ WeaponSlots{
       sensors{
 
         sensor{
-          blk:t="gameData/sensors/us_an_aar_47.blk"
+          blk:t="gameData/sensors/us_an_aar_57_terma.blk"
         }
       }
     }
@@ -5888,46 +5938,8 @@ modifications{
     modClass:t="armor"
   }
 
-  heli_night_vision_system{
-    modClass:t="armor"
-    tier:i=3
-    prevModification:t="f_4c_g_suit"
-
-    effects{
-
-      nightVision{
-
-        gunnerIr{
-          resolution:ip2=1920, 1080
-          lightMult:r=10.0
-          ghosting:r=0.7
-          noiseFactor:r=0.15
-        }
-
-        pilotIr{
-          resolution:ip2=1920, 1080
-          lightMult:r=10.0
-          ghosting:r=0.7
-          noiseFactor:r=0.15
-        }
-
-        sightTPodThermal{
-          resolution:ip2=800, 600
-          noiseFactor:r=0.04
-          index:i=1
-        }
-
-        sightThermal{
-          resolution:ip2=500, 300
-          noiseFactor:r=0.05
-          index:i=2
-        }
-      }
-    }
-  }
-
   air_extinguisher{
-    prevModification:t="heli_night_vision_system"
+    prevModification:t="f_4c_g_suit"
     tier:i=4
     modClass:t="armor"
     invertEnableLogic:b=no
@@ -5959,14 +5971,14 @@ modifications{
     tier:i=1
   }
 
-  gr_litening_pod{
+  gr_litening_iii_pod{
     prevModification:t="sea_hawk_2x1000lb"
     modClass:t="weapon"
     tier:i=2
   }
 
   uk_mk_13_18{
-    reqModification:t="gr_litening_pod"
+    reqModification:t="gr_litening_iii_pod"
     tier:i=3
     modClass:t="weapon"
   }
@@ -5978,7 +5990,7 @@ modifications{
   }
 
   uk_paveway_iv{
-    reqModification:t="gr_litening_pod"
+    reqModification:t="gr_litening_iii_pod"
     tier:i=2
     modClass:t="weapon"
   }
@@ -6150,8 +6162,8 @@ AfterBurner0{
     colorOverDepthNoiseSpeed:r=2.0
     colorIntensityNoiseStrength:r=2.0
     colorIntensityNoiseSpeed:r=40.0
-    minStartingRingHeight:r=1.4
-    maxStartingRingHeight:r=1.4
+    minStartingRingHeight:r=0.5
+    maxStartingRingHeight:r=0.5
     ringIntensity:r=2.0
     ringFrequency:r=11.3097
 

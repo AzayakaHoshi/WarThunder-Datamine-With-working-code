@@ -43,9 +43,8 @@ smokeScreenOffset:p3=-3.0, 0.0, 2.0
 smokeScreenDmPart:t="engine_dm"
 smokeScreenFxType:t="tank_smokescreen"
 smokeScreenFx:t="smokescreen_no_therm_small"
-customClassIco:t="!#ui/gameuiskin#image_in_progress_ico.svg"
-customImage:t="!#ui/unitskin#image_in_progress"
-customTooltipImage:t="ui/aircrafts/image_in_progress"
+smokeVisibilityType1:t="visual"
+smokeVisibilityType2:t="optic"
 
 DamageParts{
   formatVersion:i=2
@@ -221,6 +220,10 @@ DamageParts{
       armorThickness:r=127.0
       variableThickness:b=yes
     }
+
+    turret_05_bottom_dm{
+      armorThickness:r=10.0
+    }
   }
 
   turret_special_front_armor{
@@ -275,6 +278,11 @@ DamageParts{
 
     turret_03_side_dm{
       armorThickness:r=100.0
+      variableThickness:b=yes
+    }
+
+    turret_09_back_dm{
+      armorThickness:r=40.0
       variableThickness:b=yes
     }
   }
@@ -358,6 +366,18 @@ DamageParts{
     }
 
     ex_decor_r_10_dm{
+    }
+
+    ex_decor_r_01_dm{
+    }
+
+    ex_decor_l_01_dm{
+    }
+
+    ex_decor_l_12_dm{
+    }
+
+    ex_decor_r_12_dm{
     }
 
     ex_armor_body_r_09_dm{
@@ -2687,10 +2707,10 @@ commonWeapons{
     defaultPitch:r=0.0
     barrelDP:t="gun_barrel_dm"
     breechDP:t="cannon_breech_dm"
-    speedYaw:r=24.0
-    speedPitch:r=4.0
+    speedYaw:r=34.0
+    speedPitch:r=15.0
     fireConeAngle:r=1.0
-    bullets:i=57
+    bullets:i=40
     salvoAmount:r=100.0
     ChainfireTime:r=0.0
     DelayAfterShoot:r=5.0
@@ -2895,6 +2915,32 @@ commonWeapons{
       lim6:p4=75.0, 89.0, -7.0, 50.0
       lim7:p4=89.0, 102.0, 10.0, 50.0
       lim8:p4=102.0, 120.0, 1.0, 50.0
+    }
+  }
+
+  Weapon{
+    trigger:t="gunner4"
+    triggerGroup:t="commander"
+    blk:t="gameData/Weapons/dummy_weapon.blk"
+    emitter:t="bone_commander_sight_v"
+    speedYaw:r=0.0
+    speedPitch:r=0.0
+    defaultYaw:r=0.0
+    defaultPitch:r=0.0
+    parkInDeadzone:b=no
+
+    turret{
+      head:t="bone_turret"
+      gun:t="bone_commander_sight_v"
+      gunnerDm:t="commander_dm"
+      verDriveDm:t="commander_panoramic_sight_dm"
+      horDriveDm:t="drive_turret_h_dm"
+      rotatedTurret:t="bone_turret"
+    }
+
+    limits{
+      yaw:p2=-180.0, 180.0
+      pitch:p2=-9.0, 19.0
     }
   }
 }
@@ -3452,7 +3498,7 @@ unitFx{
 
   event{
     name:t="fuel_exterior"
-    lifetime:r=15.0
+    lifetime:r=50.0
 
     fx{
       name:t="tank_ex_fuel_explosion"
@@ -3462,7 +3508,7 @@ unitFx{
 
   event{
     name:t="fuel_internal"
-    lifetime:r=15.0
+    lifetime:r=50.0
 
     fx{
       name:t="tank_ex_fuel_explosion"
@@ -3472,7 +3518,7 @@ unitFx{
 
   event{
     name:t="hydraulic_internal"
-    lifetime:r=10.0
+    lifetime:r=30.0
 
     fx{
       name:t="tank_ex_fuel_explosion"
@@ -3482,7 +3528,7 @@ unitFx{
 
   event{
     name:t="powersystem_internal"
-    lifetime:r=10.0
+    lifetime:r=30.0
 
     fx{
       name:t="tank_ex_fuel_explosion"
@@ -3492,7 +3538,7 @@ unitFx{
 
   event{
     name:t="powersystem_exterior"
-    lifetime:r=10.0
+    lifetime:r=30.0
 
     fx{
       name:t="tank_ex_fuel_explosion"
@@ -3730,10 +3776,10 @@ commanderView{
 }
 
 cockpit{
-  zoomOutFov:r=10.0
-  zoomInFov:r=9.21
-  sightFov:r=5.0
-  sightName:t="telescope_m105c"
+  zoomOutFov:r=14.772
+  zoomInFov:r=6.14
+  sightFov:r=4.5
+  sightName:t="merkava_mk_3c_gunner_sight"
   headPos:p3=0.0, 3.7, -8.8
   headPosOnShooting:p3=-0.5, 3.7, 0.4
   detectionHeight:r=3.14
@@ -3789,7 +3835,33 @@ modifications{
   tank_engine_smoke_screen_system{
   }
 
-  modern_tank_laser_rangefinder{
+  laser_rangefinder_lws{
+    tier:i=3
+    modClass:t="firepower"
+
+    effects{
+      rangefinderMounted:b=yes
+      isLaser:b=yes
+      distanceError:p4=1.0, 1.0, 5.0, 10.0
+      distanceThresholdMin:p4=1000.0, 3000.0, 5000.0, 9999.0
+      distanceThresholdMax:p4=1000.0, 3000.0, 5000.0, 9999.0
+      distanceErrorRealistic:p4=1.0, 1.0, 5.0, 10.0
+      distanceThresholdMinRealistic:p4=1000.0, 3000.0, 5000.0, 9999.0
+      distanceThresholdMaxRealistic:p4=1000.0, 3000.0, 5000.0, 9999.0
+      timeMeasurementRange:p2=0.5, 0.5
+      rcostAddParam:r=0.98
+
+      sensors{
+
+        sensor{
+          blk:t="gameData/sensors/LaserDesignatorSensor.blk"
+        }
+
+        sensor{
+          blk:t="gameData/sensors/it_ralm-101.blk"
+        }
+      }
+    }
   }
 
   120mm_NATO_HE_FS{
@@ -3819,10 +3891,10 @@ modifications{
           defaultPitch:r=0.0
           barrelDP:t="gun_barrel_dm"
           breechDP:t="cannon_breech_dm"
-          speedYaw:r=24.0
-          speedPitch:r=4.0
+          speedYaw:r=34.0
+          speedPitch:r=15.0
           fireConeAngle:r=1.0
-          bullets:i=57
+          bullets:i=40
           salvoAmount:r=100.0
           ChainfireTime:r=0.0
           DelayAfterShoot:r=5.0
@@ -4031,6 +4103,32 @@ modifications{
         }
 
         Weapon{
+          trigger:t="gunner4"
+          triggerGroup:t="commander"
+          blk:t="gameData/Weapons/dummy_weapon.blk"
+          emitter:t="bone_commander_sight_v"
+          speedYaw:r=0.0
+          speedPitch:r=0.0
+          defaultYaw:r=0.0
+          defaultPitch:r=0.0
+          parkInDeadzone:b=no
+
+          turret{
+            head:t="bone_turret"
+            gun:t="bone_commander_sight_v"
+            gunnerDm:t="commander_dm"
+            verDriveDm:t="commander_panoramic_sight_dm"
+            horDriveDm:t="drive_turret_h_dm"
+            rotatedTurret:t="bone_turret"
+          }
+
+          limits{
+            yaw:p2=-180.0, 180.0
+            pitch:p2=-9.0, 19.0
+          }
+        }
+
+        Weapon{
           trigger:t="gunner5"
           triggerGroup:t="smoke"
           blk:t="gameData/Weapons/groundModels_weapons/66mm_modern_us_smoke_grenade_launcher.blk"
@@ -4110,6 +4208,24 @@ modifications{
         }
       }
     }
+  }
+}
+
+nightVision{
+  nightVisionDmPart:t="fire_control_system_dm"
+
+  commanderViewIr{
+    resolution:ip2=800, 600
+    lightMult:r=8.0
+    ghosting:r=0.75
+    noiseFactor:r=0.2
+  }
+
+  driverIr{
+    resolution:ip2=800, 600
+    lightMult:r=5.0
+    ghosting:r=0.6
+    noiseFactor:r=0.2
   }
 }
 
@@ -4201,10 +4317,6 @@ ammoStowages{
       ammo_body_04_dm{
         count:i=1
       }
-    }
-
-    shells{
-      reloadTimeMult:r=1.28
 
       ammo_body_05_dm{
         count:i=1
@@ -4229,6 +4341,10 @@ ammoStowages{
       ammo_body_10_dm{
         count:i=1
       }
+    }
+
+    shells{
+      reloadTimeMult:r=1.28
 
       ammo_body_11_dm{
         count:i=1

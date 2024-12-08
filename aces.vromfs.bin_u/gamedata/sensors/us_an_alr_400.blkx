@@ -1,5 +1,5 @@
 type:t="rwr"
-name:t="AN/ALR-400"
+name:t="ALR-400"
 power:r=250.0
 txAngle:p2=5.0, 15.0
 txSidelobes:r=-30.0
@@ -19,17 +19,18 @@ detectTracking:b=yes
 detectLaunch:b=no
 targetTracking:b=yes
 matchSector:r=10.0
-targetSuperResolution:b=no
+targetSuperResolution:b=yes
 trackedTargetsMax:i=12
 targetRangeFinder:b=yes
 targetRange:p2=5000.0, 50000.0
 friendFoeId:b=yes
 signalHoldTime:r=5.0
 targetHoldTime:r=5.0
-newTargetHoldTime:r=5.0
+newTargetHoldTime:r=3.0
 mandatoryRecognition:b=no
 band2:b=yes
 band3:b=yes
+band10:b=yes
 
 receivers{
 
@@ -66,6 +67,13 @@ groups{
   }
 
   group{
+    name:t="9K33"
+    detectLaunch:b=yes
+    type:t="9K33 TA"
+    type:t="9K33 TT"
+  }
+
+  group{
     name:t="Roland"
     detectLaunch:b=yes
     type:t="Roland TT"
@@ -85,10 +93,12 @@ groups{
     type:t="EDR 110"
     type:t="DR-VC-1A"
     type:t="PGZ-09 TA"
+    type:t="1RS1"
     type:t="1RL34"
     type:t="AN/VPS-2"
     type:t="M-247 TA"
     type:t="ESD RA-20 S"
+    type:t="TriAD TA"
     type:t="1RL33"
     type:t="1RL114 TT"
     type:t="Marconi S-400"
@@ -118,7 +128,7 @@ groups{
   }
 
   group{
-    name:t="Fighter"
+    name:t="AI"
     type:t="AN/APG-30"
     type:t="AN/ASG-14"
     type:t="AN/ASG-19"
@@ -177,6 +187,7 @@ groups{
     type:t="N019"
     type:t="N001"
     type:t="N010"
+    type:t="V004"
     type:t="ELTA EL/M-2001B"
     type:t="PS-37"
     type:t="PS-05"
@@ -223,10 +234,10 @@ groups{
 
   group{
     name:t="MiG-29"
+    detectLaunch:b=yes
     search:b=yes
     track:b=yes
     launch:b=no
-    detectLaunch:b=yes
     type:t="N019"
     type:t="N001"
     type:t="N010"
@@ -241,6 +252,24 @@ groups{
     type:t="N019"
     type:t="N001"
     type:t="N010"
+  }
+
+  group{
+    name:t="Su-34"
+    detectLaunch:b=yes
+    search:b=yes
+    track:b=yes
+    launch:b=no
+    type:t="V004"
+  }
+
+  group{
+    name:t="Su-34 LAUNCH"
+    detectLaunch:b=yes
+    search:b=no
+    track:b=no
+    launch:b=yes
+    type:t="V004"
   }
 
   group{
@@ -438,11 +467,13 @@ groups{
   }
 
   group{
-    name:t="SAM"
-    detectLaunch:b=yes
+    name:t="ADATS"
     type:t="ADATS TA"
+  }
+
+  group{
+    name:t="ASRAD"
     type:t="ASRAD TA"
-    type:t="TriAD TA"
   }
 
   group{
@@ -451,10 +482,46 @@ groups{
   }
 
   group{
+    name:t="2S6"
+    detectLaunch:b=yes
+    type:t="1RL114 TA"
+    type:t="1RL114 TT"
+    type:t="PGZ-09 TA"
+    type:t="PGZ-09 TT"
+  }
+
+  group{
+    name:t="S1"
+    type:t="1RS1"
+  }
+
+  group{
     name:t="ARH"
     detectTracking:b=yes
     detectLaunch:b=yes
     type:t="weapon"
+  }
+
+  group{
+    name:t="AH-64"
+    type:t="AN/APG-78"
+  }
+
+  group{
+    name:t="Ka-52"
+    type:t="RN-01 Arbalet"
+  }
+
+  group{
+    name:t="Mi-28"
+    type:t="N-025"
+  }
+
+  group{
+    name:t="S1"
+    detectLaunch:b=yes
+    type:t="1RS1"
+    type:t="1RS2"
   }
 }
 
@@ -468,6 +535,11 @@ targetsDirectionGroups{
   targetsDirectionGroup{
     text:t="9K3"
     group:t="9K330"
+  }
+
+  targetsDirectionGroup{
+    text:t="93"
+    group:t="9K33"
   }
 
   targetsDirectionGroup{
@@ -491,12 +563,12 @@ targetsDirectionGroups{
   }
 
   targetsDirectionGroup{
-    text:t="F"
-    group:t="Fighter"
+    text:t="hud/rwr_threat_ai"
+    group:t="AI"
   }
 
   targetsDirectionGroup{
-    text:t="A"
+    text:t="hud/rwr_threat_attacker"
     group:t="Attacker"
   }
 
@@ -515,6 +587,12 @@ targetsDirectionGroups{
     text:t="M29"
     group:t="MiG-29"
     group:t="MiG-29 LAUNCH"
+  }
+
+  targetsDirectionGroup{
+    text:t="S34"
+    group:t="Su-34"
+    group:t="Su-34 LAUNCH"
   }
 
   targetsDirectionGroup{
@@ -582,82 +660,47 @@ targetsDirectionGroups{
   }
 
   targetsDirectionGroup{
-    text:t="SAM"
-    group:t="SAM"
+    text:t="2S6"
+    group:t="2S6"
+  }
+
+  targetsDirectionGroup{
+    text:t="S1"
+    group:t="S1"
+  }
+
+  targetsDirectionGroup{
+    text:t="ADS"
+    group:t="ADATS"
+  }
+
+  targetsDirectionGroup{
+    text:t="ASR"
+    group:t="ASRAD"
   }
 
   targetsDirectionGroup{
     text:t="MSL"
     group:t="ARH"
   }
-}
 
-targetsPresenceGroups{
-
-  targetsPresenceGroup{
-    text:t="hud/rwr_threat_ai_track"
-    search:b=no
-    track:b=yes
-    launch:b=yes
-    group:t="Fighter"
-    group:t="Attacker"
-    group:t="MiG-21"
-    group:t="MiG-23"
-    group:t="MiG-29"
-    group:t="F-4"
-    group:t="F-5"
-    group:t="F-14"
-    group:t="F-15"
-    group:t="F-16"
-    group:t="F-18"
-    group:t="Tornado F"
-    group:t="Mirage 2000"
-    group:t="J-39"
-    group:t="MiG-23 LAUNCH"
-    group:t="MiG-29 LAUNCH"
-    group:t="F-4 LAUNCH"
-    group:t="F-14 LAUNCH"
-    group:t="F-15 LAUNCH"
-    group:t="F-16 LAUNCH"
-    group:t="F-18 LAUNCH"
-    group:t="Tornado F LAUNCH"
-    group:t="Mirage 2000 LAUNCH"
-    group:t="J-39 LAUNCH"
-    group:t="ARH"
+  targetsDirectionGroup{
+    text:t="A64"
+    group:t="AH-64"
   }
 
-  targetsPresenceGroup{
-    text:t="hud/rwr_threat_aaa_track"
-    search:b=no
-    track:b=yes
-    launch:b=yes
-    group:t="AAA"
+  targetsDirectionGroup{
+    text:t="K52"
+    group:t="Ka-52"
   }
 
-  targetsPresenceGroup{
-    text:t="hud/rwr_threat_sam_track"
-    search:b=no
-    track:b=yes
-    launch:b=yes
-    group:t="S-125"
-    group:t="9K330"
-    group:t="Roland"
+  targetsDirectionGroup{
+    text:t="M28"
+    group:t="Mi-28"
   }
 
-  targetsPresenceGroup{
-    text:t="hud/rwr_threat_cw"
-    search:b=no
-    track:b=yes
-    launch:b=yes
-    group:t="MiG-23 LAUNCH"
-    group:t="MiG-29 LAUNCH"
-    group:t="F-4 LAUNCH"
-    group:t="F-14 LAUNCH"
-    group:t="F-15 LAUNCH"
-    group:t="F-16 LAUNCH"
-    group:t="F-18 LAUNCH"
-    group:t="Tornado F LAUNCH"
-    group:t="Mirage 2000 LAUNCH"
-    group:t="J-39 LAUNCH"
+  targetsDirectionGroup{
+    text:t="S1"
+    group:t="S1"
   }
 }

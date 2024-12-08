@@ -14,11 +14,12 @@ haveCCIPForBombs:b=yes
 gyroSight:b=yes
 haveCCIPForGun:b=yes
 haveCCRPForBombs:b=yes
-ilsTornado:b=yes
-isBwOpticSight:b=yes
 haveCCRPForGun:b=yes
 hasOpticTurret:b=yes
 havePointOfInterestDesignator:b=yes
+ilsTornado:b=yes
+rwrIndicator:t="ARI-18241"
+isBwOpticSight:b=yes
 type:t="typeFighter"
 simplifiedJoyAileronMult:r=1.0
 simplifiedJoyElevatorMult:r=1.0
@@ -2707,7 +2708,7 @@ DamageEffects{
 }
 
 ikPilot{
-  model:t="pilot_italy_late_char"
+  model:t="usaf_pilot_1977_1991_char"
   maxHeadHorAngle:r=60.0
   maxHeadDownAngle:r=60.0
   maxHeadUpAngle:r=10.0
@@ -2755,7 +2756,7 @@ ikPilot{
 }
 
 ikPilot{
-  model:t="pilot_italy_late_char"
+  model:t="usaf_pilot_1977_1991_char"
   maxHeadHorAngle:r=60.0
   maxHeadDownAngle:r=60.0
   maxHeadUpAngle:r=10.0
@@ -2875,6 +2876,7 @@ cockpit{
     aviahorizon_pitch:p2=-80.0, 80.0
     aviahorizon_roll:p2=-180.0, 180.0
     aoa:p2=-1.0, 23.0
+    aoa_indexer1:p2=14.0, 90.0
     compass:p2=0.0, 360.0
     compass1:p2=0.0, 360.0
     clock_hour:p2=0.0, 12.0
@@ -2926,8 +2928,6 @@ cockpit{
       page{
         type:t="rwr"
         scale:r=1.15
-        circleCnt:i=2
-        centralMark:t="cross"
       }
     }
 
@@ -3030,6 +3030,11 @@ weapon_presets{
   preset{
     name:t="tornado_ids_assta1_gbu_24"
     blk:t="gameData/FlightModels/weaponPresets/tornado_ids_assta1_gbu_24.blk"
+  }
+
+  preset{
+    name:t="tornado_ids_assta1_gbu_54b"
+    blk:t="gameData/FlightModels/weaponPresets/tornado_ids_assta1_gbu_54b.blk"
   }
 
   preset{
@@ -3165,10 +3170,10 @@ WeaponSlots{
       Weapon{
         trigger:t="countermeasures"
         blk:t="gameData/Weapons/rocketGuns/countermeasure_chaff_only_large.blk"
-        emitter:t="emtr_inversion_r"
+        emitter:t="emtr_inversion_l"
         bullets:i=600
         external:b=yes
-        separate:b=no
+        separate:b=yes
         bulletsCartridge:i=1
       }
     }
@@ -3297,6 +3302,31 @@ WeaponSlots{
       Weapon{
         trigger:t="guided bombs"
         blk:t="gameData/Weapons/BombGuns/us_gbu_16_paveway_2.blk"
+        emitter:t="bomb1_ld"
+        bullets:i=1
+        external:b=yes
+        separate:b=yes
+        machLimit:r=1.01
+      }
+
+      DependentWeaponPreset{
+        slot:i=4
+        preset:t="litening_pod"
+      }
+    }
+
+    WeaponPreset{
+      iconType:t="guided_bomb_middle_jdam"
+      name:t="500lbs_gbu_54b_slot3"
+      reqModification:t="gr_assta_3_0_gbu54b"
+
+      ShowNodes{
+        node:t="pylon_bomb2"
+      }
+
+      Weapon{
+        trigger:t="guided bombs"
+        blk:t="gameData/Weapons/BombGuns/us_500lb_gbu_54b.blk"
         emitter:t="bomb1_ld"
         bullets:i=1
         external:b=yes
@@ -3572,6 +3602,32 @@ WeaponSlots{
         emitter:t="pylon_tsc_5"
       }
     }
+
+    WeaponPreset{
+      iconType:t="guided_bomb_middle_jdam"
+      name:t="500lbs_gbu_54b_slot5"
+      reqModification:t="gr_assta_3_0_gbu54b"
+
+      ShowNodes{
+        node:t="pylon_bomb3"
+        node:t="pylon_bomb3_lap"
+      }
+
+      Weapon{
+        trigger:t="guided bombs"
+        machLimit:r=1.01
+        external:b=yes
+        separate:b=yes
+        blk:t="gameData/Weapons/BombGuns/us_500lb_gbu_54b.blk"
+        emitter:t="bomb9_ld"
+        bullets:i=1
+      }
+
+      DependentWeaponPreset{
+        slot:i=4
+        preset:t="litening_pod"
+      }
+    }
   }
 
   WeaponSlot{
@@ -3787,6 +3843,82 @@ WeaponSlots{
         preset:t="1000lbs_mk83_air_x2"
       }
     }
+
+    WeaponPreset{
+      iconType:t="guided_bomb_middle_jdam"
+      name:t="500lbs_gbu_54b_slot6"
+      reqModification:t="gr_assta_3_0_gbu54b"
+
+      ShowNodes{
+        node:t="pylon_bomb4"
+        node:t="pylon_bomb4_lap"
+      }
+
+      Weapon{
+        trigger:t="guided bombs"
+        machLimit:r=1.01
+        external:b=yes
+        separate:b=yes
+        blk:t="gameData/Weapons/BombGuns/us_500lb_gbu_54b.blk"
+        emitter:t="bomb11_ld"
+        bullets:i=1
+      }
+
+      DependentWeaponPreset{
+        slot:i=4
+        preset:t="litening_pod"
+      }
+
+      BannedWeaponPreset{
+        slot:i=4
+        preset:t="1000lbs_mk83_x2"
+      }
+
+      BannedWeaponPreset{
+        slot:i=5
+        preset:t="1000lbs_mk83_x2"
+      }
+
+      BannedWeaponPreset{
+        slot:i=7
+        preset:t="1000lbs_mk83_x2_slot7"
+      }
+
+      BannedWeaponPreset{
+        slot:i=8
+        preset:t="1000lbs_mk83_x2"
+      }
+
+      BannedWeaponPreset{
+        slot:i=4
+        preset:t="1000lbs_mk83_air_x2"
+      }
+
+      BannedWeaponPreset{
+        slot:i=5
+        preset:t="1000lbs_mk83_air_x2"
+      }
+
+      BannedWeaponPreset{
+        slot:i=7
+        preset:t="1000lbs_mk83_air_x2_slot7"
+      }
+
+      BannedWeaponPreset{
+        slot:i=8
+        preset:t="1000lbs_mk83_air_x2"
+      }
+
+      BannedWeaponPreset{
+        slot:i=8
+        preset:t="1000lb_gbu_16"
+      }
+
+      BannedWeaponPreset{
+        slot:i=8
+        preset:t="us_2000lb_gbu_24"
+      }
+    }
   }
 
   WeaponSlot{
@@ -3912,6 +4044,36 @@ WeaponSlots{
         separate:b=yes
         blk:t="gameData/Weapons/containers/uk_tsc_1000_mk83_air_x2.blk"
         emitter:t="pylon_tsc_6"
+      }
+
+      BannedWeaponPreset{
+        slot:i=8
+        preset:t="us_2000lb_gbu_24"
+      }
+    }
+
+    WeaponPreset{
+      iconType:t="guided_bomb_middle_jdam"
+      name:t="500lbs_gbu_54b_slot7"
+      reqModification:t="gr_assta_3_0_gbu54b"
+
+      ShowNodes{
+        node:t="pylon_bomb5"
+      }
+
+      Weapon{
+        trigger:t="guided bombs"
+        machLimit:r=1.01
+        external:b=yes
+        separate:b=yes
+        blk:t="gameData/Weapons/BombGuns/us_500lb_gbu_54b.blk"
+        emitter:t="bomb10_ld"
+        bullets:i=1
+      }
+
+      DependentWeaponPreset{
+        slot:i=4
+        preset:t="litening_pod"
       }
 
       BannedWeaponPreset{
@@ -4108,6 +4270,32 @@ WeaponSlots{
         preset:t="1000lbs_mk83_default_slot7"
       }
     }
+
+    WeaponPreset{
+      iconType:t="guided_bomb_middle_jdam"
+      name:t="500lbs_gbu_54b_slot8"
+      reqModification:t="gr_assta_3_0_gbu54b"
+
+      ShowNodes{
+        node:t="pylon_bomb5"
+        node:t="pylon_bomb5_lap"
+      }
+
+      Weapon{
+        trigger:t="guided bombs"
+        blk:t="gameData/Weapons/BombGuns/us_500lb_gbu_54b.blk"
+        emitter:t="bomb4_ld"
+        bullets:i=1
+        external:b=yes
+        separate:b=yes
+        machLimit:r=1.01
+      }
+
+      DependentWeaponPreset{
+        slot:i=4
+        preset:t="litening_pod"
+      }
+    }
   }
 
   WeaponSlot{
@@ -4221,6 +4409,31 @@ WeaponSlots{
     }
 
     WeaponPreset{
+      iconType:t="guided_bomb_middle_jdam"
+      name:t="500lbs_gbu_54b_slot9"
+      reqModification:t="gr_assta_3_0_gbu54b"
+
+      ShowNodes{
+        node:t="pylon_bomb6"
+      }
+
+      Weapon{
+        trigger:t="guided bombs"
+        blk:t="gameData/Weapons/BombGuns/us_500lb_gbu_54b.blk"
+        emitter:t="bomb2_ld"
+        bullets:i=1
+        external:b=yes
+        separate:b=yes
+        machLimit:r=1.01
+      }
+
+      DependentWeaponPreset{
+        slot:i=4
+        preset:t="litening_pod"
+      }
+    }
+
+    WeaponPreset{
       iconType:t="ptb"
       name:t="ptb_2"
       showInWeaponMenu:b=yes
@@ -4302,10 +4515,10 @@ WeaponSlots{
       Weapon{
         trigger:t="countermeasures"
         blk:t="gameData/Weapons/rocketGuns/countermeasure_chaff_only_large.blk"
-        emitter:t="emtr_inversion_l"
+        emitter:t="emtr_inversion_r"
         bullets:i=600
         external:b=yes
-        separate:b=no
+        separate:b=yes
         bulletsCartridge:i=1
       }
     }
@@ -4551,13 +4764,7 @@ modifications{
     tier:i=3
   }
 
-  us_1000lb_mk83{
-    modClass:t="weapon"
-    tier:i=1
-  }
-
   gr_litening_pod{
-    prevModification:t="us_1000lb_mk83"
     modClass:t="weapon"
     tier:i=2
   }
@@ -4572,6 +4779,17 @@ modifications{
     reqModification:t="us_gbu_16"
     tier:i=4
     modClass:t="weapon"
+  }
+
+  us_1000lb_mk83{
+    modClass:t="weapon"
+    tier:i=1
+  }
+
+  gr_assta_3_0_gbu54b{
+    reqModification:t="gr_litening_pod"
+    modClass:t="weapon"
+    tier:i=2
   }
 }
 
@@ -4689,8 +4907,8 @@ AfterBurner0{
     colorOverDepthNoiseSpeed:r=2.0
     colorIntensityNoiseStrength:r=2.0
     colorIntensityNoiseSpeed:r=40.0
-    minStartingRingHeight:r=1.4
-    maxStartingRingHeight:r=1.4
+    minStartingRingHeight:r=0.5
+    maxStartingRingHeight:r=0.5
     ringIntensity:r=2.0
     ringFrequency:r=11.3097
 

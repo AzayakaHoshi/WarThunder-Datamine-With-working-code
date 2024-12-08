@@ -43,7 +43,7 @@ radarAnimPitchVar:t="radar_drive2"
 type:t="typeSPAA"
 autoSightDistanceCorrection:b=yes
 drowningCheckHeightMultiplier:r=0.45
-rearmTimeOnField:r=45.0
+rearmSmokeTimeOnField:r=60.0
 canReloadNonGuns:b=yes
 smokeScreenActivateTime:r=5.0
 smokeScreenEffectTime:r=7.0
@@ -52,6 +52,8 @@ smokeScreenOffset:p3=-3.0, 0.0, 2.0
 smokeScreenDmPart:t="engine_dm"
 smokeScreenFxType:t="tank_smokescreen"
 smokeScreenFx:t="smokescreen_no_therm_small"
+smokeVisibilityType1:t="visual"
+smokeVisibilityType2:t="optic"
 aimPointOffset:p3=0.0, -0.75, 0.0
 
 DamageParts{
@@ -140,6 +142,12 @@ DamageParts{
     }
 
     composite_armor_hull_04_dm{
+      armorThickness:r=5.0
+      hidableInViewer:b=yes
+      hidableInXrayViewer:b=yes
+    }
+
+    composite_armor_hull_05_dm{
       armorThickness:r=5.0
       hidableInViewer:b=yes
       hidableInXrayViewer:b=yes
@@ -602,6 +610,7 @@ DamageParts{
     power_system_dm{
       hp:r=60.0
       armorThrough:r=15.0
+      fireParamsPreset:t="powersystem_internal"
     }
   }
 
@@ -2252,6 +2261,69 @@ DamageEffects{
       }
     }
   }
+
+  part{
+    name:t="power_system_dm"
+
+    onHit{
+      damageType:t="cumulative"
+      fire:r=0.2
+      damage:r=75.0
+      fHitCritical:b=yes
+    }
+
+    onHit{
+      damageType:t="explosion"
+      fire:r=0.3
+      damage:r=30.0
+      fHitCritical:b=yes
+    }
+
+    onHit{
+      damageType:t="generic"
+      fire:r=0.05
+      damage:r=20.0
+      fHitCritical:b=yes
+    }
+
+    onHit{
+      damageType:t="generic"
+      fire:r=0.1
+      damage:r=70.0
+      fHitCritical:b=yes
+    }
+
+    onHit{
+      damageType:t="generic"
+      fire:r=0.3
+      damage:r=200.0
+      fHitCritical:b=yes
+    }
+
+    onHit{
+      damageType:t="generic"
+      fire:r=0.4
+      damage:r=300.0
+      fHitCritical:b=yes
+    }
+
+    onHit{
+      damageType:t="fire"
+      fire:r=0.1
+    }
+
+    onKill{
+      fire:r=1.0
+      fHitCritical:b=yes
+
+      action{
+        kill:b=yes
+        type:t="secondaryDamage"
+        part:t="electronic_equipment_dm"
+        part:t="fire_control_system_dm"
+      }
+    }
+  }
 }
 
 tank_crew{
@@ -2335,6 +2407,8 @@ commonWeapons{
     defaultPitch:r=0.0
     barrelDP:t="gun_barrel_01_dm"
     breechDP:t="cannon_breech_01_dm"
+    stabilizerDmPart:t="fire_control_system_dm"
+    stabilizerDmPart:t="power_system_dm"
     speedYaw:r=80.0
     speedPitch:r=60.0
     bullets:i=258
@@ -2359,7 +2433,10 @@ commonWeapons{
       barrel:t="bone_gun_barrel_01"
       gunnerDm:t="gunner_dm"
       verDriveDm:t="drive_turret_v_dm"
+      verDriveDm:t="fire_control_system_dm"
       horDriveDm:t="drive_turret_h_dm"
+      horDriveDm:t="fire_control_system_dm"
+      shootingDmPart:t="fire_control_system_dm"
 
       linkedAnimPart{
         verNode:t="gun_mask_top_anim"
@@ -2419,6 +2496,8 @@ commonWeapons{
     defaultPitch:r=0.0
     barrelDP:t="gun_barrel_02_dm"
     breechDP:t="cannon_breech_02_dm"
+    stabilizerDmPart:t="fire_control_system_dm"
+    stabilizerDmPart:t="power_system_dm"
     speedYaw:r=80.0
     speedPitch:r=60.0
     bullets:i=258
@@ -2445,7 +2524,10 @@ commonWeapons{
       barrel:t="bone_gun_barrel_02"
       gunnerDm:t="gunner_dm"
       verDriveDm:t="drive_turret_v_dm"
+      verDriveDm:t="fire_control_system_dm"
       horDriveDm:t="drive_turret_h_dm"
+      horDriveDm:t="fire_control_system_dm"
+      shootingDmPart:t="fire_control_system_dm"
     }
 
     limits{
@@ -2493,6 +2575,8 @@ commonWeapons{
     defaultPitch:r=0.0
     barrelDP:t="gun_barrel_03_dm"
     breechDP:t="cannon_breech_03_dm"
+    stabilizerDmPart:t="fire_control_system_dm"
+    stabilizerDmPart:t="power_system_dm"
     speedYaw:r=80.0
     speedPitch:r=60.0
     bullets:i=258
@@ -2519,7 +2603,10 @@ commonWeapons{
       barrel:t="bone_gun_barrel_03"
       gunnerDm:t="gunner_dm"
       verDriveDm:t="drive_turret_v_dm"
+      verDriveDm:t="fire_control_system_dm"
       horDriveDm:t="drive_turret_h_dm"
+      horDriveDm:t="fire_control_system_dm"
+      shootingDmPart:t="fire_control_system_dm"
     }
 
     limits{
@@ -2567,6 +2654,8 @@ commonWeapons{
     defaultPitch:r=0.0
     barrelDP:t="gun_barrel_04_dm"
     breechDP:t="cannon_breech_04_dm"
+    stabilizerDmPart:t="fire_control_system_dm"
+    stabilizerDmPart:t="power_system_dm"
     speedYaw:r=80.0
     speedPitch:r=60.0
     bullets:i=258
@@ -2593,7 +2682,10 @@ commonWeapons{
       barrel:t="bone_gun_barrel_04"
       gunnerDm:t="gunner_dm"
       verDriveDm:t="drive_turret_v_dm"
+      verDriveDm:t="fire_control_system_dm"
       horDriveDm:t="drive_turret_h_dm"
+      horDriveDm:t="fire_control_system_dm"
+      shootingDmPart:t="fire_control_system_dm"
     }
 
     limits{
@@ -2664,10 +2756,12 @@ commonWeapons{
       head:t="bone_gun_01"
       gun:t="bone_gun_01"
       gunnerDm:t="gunner_dm"
-      gunnerDm:t="gunner_dm"
       dependOnParent:b=no
       yawParentScale:r=0.0
       pitchParentScale:r=0.9
+      verDriveDm:t="fire_control_system_dm"
+      horDriveDm:t="fire_control_system_dm"
+      shootingDmPart:t="fire_control_system_dm"
     }
 
     limits{
@@ -2700,12 +2794,14 @@ sensors{
     designationFromBody:b=yes
     designationTurretIndex:i=0
     dmPart:t="antenna_target_location_dm"
+    dmPart:t="electronic_equipment_dm"
   }
 
   sensor{
     blk:t="gameData/sensors/sam_tv_ir_track.blk"
     turretIndex:i=0
     dmPart:t="optic_gun_dm"
+    dmPart:t="electronic_equipment_dm"
   }
 }
 
@@ -3273,7 +3369,7 @@ unitFx{
 
   event{
     name:t="fuel_exterior"
-    lifetime:r=15.0
+    lifetime:r=50.0
 
     fx{
       name:t="tank_ex_fuel_explosion"
@@ -3283,7 +3379,7 @@ unitFx{
 
   event{
     name:t="fuel_internal"
-    lifetime:r=15.0
+    lifetime:r=50.0
 
     fx{
       name:t="tank_ex_fuel_explosion"
@@ -3293,7 +3389,7 @@ unitFx{
 
   event{
     name:t="hydraulic_internal"
-    lifetime:r=10.0
+    lifetime:r=30.0
 
     fx{
       name:t="tank_ex_fuel_explosion"
@@ -3303,7 +3399,7 @@ unitFx{
 
   event{
     name:t="powersystem_internal"
-    lifetime:r=10.0
+    lifetime:r=30.0
 
     fx{
       name:t="tank_ex_fuel_explosion"
@@ -3313,7 +3409,7 @@ unitFx{
 
   event{
     name:t="powersystem_exterior"
-    lifetime:r=10.0
+    lifetime:r=30.0
 
     fx{
       name:t="tank_ex_fuel_explosion"
@@ -3603,6 +3699,7 @@ modifications{
     effects{
       rangefinderMounted:b=yes
       isLaser:b=yes
+      rangefinderDmPart:t="fire_control_system_dm"
       distanceError:p4=1.0, 1.0, 5.0, 10.0
       distanceThresholdMin:p4=1000.0, 3000.0, 5000.0, 9999.0
       distanceThresholdMax:p4=1000.0, 3000.0, 5000.0, 9999.0
@@ -3620,20 +3717,24 @@ modifications{
           designationFromBody:b=yes
           designationTurretIndex:i=0
           dmPart:t="antenna_target_location_dm"
+          dmPart:t="electronic_equipment_dm"
         }
 
         sensor{
           blk:t="gameData/sensors/sam_tv_ir_track.blk"
           turretIndex:i=0
           dmPart:t="optic_gun_dm"
+          dmPart:t="electronic_equipment_dm"
         }
 
         sensor{
           blk:t="gameData/sensors/LaserBeamRidingSensor.blk"
+          dmPart:t="electronic_equipment_dm"
         }
 
         sensor{
           blk:t="gameData/sensors/LaserDesignatorSensor.blk"
+          dmPart:t="electronic_equipment_dm"
         }
       }
     }
@@ -3679,6 +3780,8 @@ modifications{
           defaultPitch:r=0.0
           barrelDP:t="gun_barrel_01_dm"
           breechDP:t="cannon_breech_01_dm"
+          stabilizerDmPart:t="fire_control_system_dm"
+          stabilizerDmPart:t="power_system_dm"
           speedYaw:r=80.0
           speedPitch:r=60.0
           bullets:i=258
@@ -3703,7 +3806,10 @@ modifications{
             barrel:t="bone_gun_barrel_01"
             gunnerDm:t="gunner_dm"
             verDriveDm:t="drive_turret_v_dm"
+            verDriveDm:t="fire_control_system_dm"
             horDriveDm:t="drive_turret_h_dm"
+            horDriveDm:t="fire_control_system_dm"
+            shootingDmPart:t="fire_control_system_dm"
 
             linkedAnimPart{
               verNode:t="gun_mask_top_anim"
@@ -3763,6 +3869,8 @@ modifications{
           defaultPitch:r=0.0
           barrelDP:t="gun_barrel_02_dm"
           breechDP:t="cannon_breech_02_dm"
+          stabilizerDmPart:t="fire_control_system_dm"
+          stabilizerDmPart:t="power_system_dm"
           speedYaw:r=80.0
           speedPitch:r=60.0
           bullets:i=258
@@ -3789,7 +3897,10 @@ modifications{
             barrel:t="bone_gun_barrel_02"
             gunnerDm:t="gunner_dm"
             verDriveDm:t="drive_turret_v_dm"
+            verDriveDm:t="fire_control_system_dm"
             horDriveDm:t="drive_turret_h_dm"
+            horDriveDm:t="fire_control_system_dm"
+            shootingDmPart:t="fire_control_system_dm"
           }
 
           limits{
@@ -3837,6 +3948,8 @@ modifications{
           defaultPitch:r=0.0
           barrelDP:t="gun_barrel_03_dm"
           breechDP:t="cannon_breech_03_dm"
+          stabilizerDmPart:t="fire_control_system_dm"
+          stabilizerDmPart:t="power_system_dm"
           speedYaw:r=80.0
           speedPitch:r=60.0
           bullets:i=258
@@ -3863,7 +3976,10 @@ modifications{
             barrel:t="bone_gun_barrel_03"
             gunnerDm:t="gunner_dm"
             verDriveDm:t="drive_turret_v_dm"
+            verDriveDm:t="fire_control_system_dm"
             horDriveDm:t="drive_turret_h_dm"
+            horDriveDm:t="fire_control_system_dm"
+            shootingDmPart:t="fire_control_system_dm"
           }
 
           limits{
@@ -3911,6 +4027,8 @@ modifications{
           defaultPitch:r=0.0
           barrelDP:t="gun_barrel_04_dm"
           breechDP:t="cannon_breech_04_dm"
+          stabilizerDmPart:t="fire_control_system_dm"
+          stabilizerDmPart:t="power_system_dm"
           speedYaw:r=80.0
           speedPitch:r=60.0
           bullets:i=258
@@ -3937,7 +4055,10 @@ modifications{
             barrel:t="bone_gun_barrel_04"
             gunnerDm:t="gunner_dm"
             verDriveDm:t="drive_turret_v_dm"
+            verDriveDm:t="fire_control_system_dm"
             horDriveDm:t="drive_turret_h_dm"
+            horDriveDm:t="fire_control_system_dm"
+            shootingDmPart:t="fire_control_system_dm"
           }
 
           limits{
@@ -4008,10 +4129,12 @@ modifications{
             head:t="bone_gun_01"
             gun:t="bone_gun_01"
             gunnerDm:t="gunner_dm"
-            gunnerDm:t="gunner_dm"
             dependOnParent:b=no
             yawParentScale:r=0.0
             pitchParentScale:r=0.9
+            verDriveDm:t="fire_control_system_dm"
+            horDriveDm:t="fire_control_system_dm"
+            shootingDmPart:t="fire_control_system_dm"
           }
 
           limits{
@@ -4107,6 +4230,24 @@ modifications{
         }
       }
     }
+  }
+}
+
+nightVision{
+  nightVisionDmPart:t="fire_control_system_dm"
+
+  commanderViewIr{
+    resolution:ip2=1600, 1200
+    lightMult:r=9.0
+    ghosting:r=0.6
+    noiseFactor:r=0.2
+  }
+
+  driverIr{
+    resolution:ip2=800, 600
+    lightMult:r=5.0
+    ghosting:r=0.6
+    noiseFactor:r=0.2
   }
 }
 

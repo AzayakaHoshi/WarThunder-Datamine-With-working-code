@@ -27,6 +27,30 @@ transivers{
       }
     }
   }
+
+  ACM{
+    sideLobesAttenuation:r=-20.0
+    power:r=500.0
+    band:i=9
+    rcs:r=5.0
+    range:r=50000.0
+    rangeMax:r=150000.0
+    timeGainControl:b=yes
+    multipathEffect:p4=0.0, 1.0, 60.0, 0.0
+
+    antenna{
+
+      azimuth{
+        angleHalfSens:r=1.8
+        sideLobesSensitivity:r=-28.0
+      }
+
+      elevation{
+        angleHalfSens:r=2.8
+        sideLobesSensitivity:r=-28.0
+      }
+    }
+  }
 }
 
 scanPatterns{
@@ -78,7 +102,7 @@ scanPatterns{
     azimuthLimits:p2=-60.0, 60.0
     elevationLimits:p2=-45.0, 30.0
     period:r=0.25
-    width:r=0.1
+    width:r=1.0
     indicate:b=yes
   }
 
@@ -501,6 +525,10 @@ fsms{
         setFsmActive{
           fsm:t="lock"
           active:b=yes
+        }
+
+        setTransiver{
+          transiver:t="ACM"
         }
 
         setSignal{

@@ -8,9 +8,8 @@ exhaustFx:t="tank_exhaust_med"
 damagedExhaustFx:t="tank_broken_exhaust"
 thermalExhaustFx:t="tank_exhaust_nightvision"
 dustFx:t=""
-rearmTimeOnField:r=70.0
 canReloadNonGuns:b=yes
-canReloadNonGuns:b=yes
+rearmSmokeTimeOnField:r=60.0
 support_unit_class:t="structures/ussr_152mm_d1"
 support_unit_tag:t="artillery"
 useSimpleDeathConditionsAndEffects:b=no
@@ -39,7 +38,6 @@ waterBreakerAnimVar:t="bmp_2_break_water_action"
 waterBreakerToggleTime:r=4.0
 type:t="typeLightTank"
 cruiseVelocity:r=3.0
-rearmSmokeTimeOnField:r=60.0
 smokeScreenActivateTime:r=5.0
 smokeScreenEffectTime:r=7.0
 smokeScreenRad:r=12.0
@@ -47,6 +45,8 @@ smokeScreenOffset:p3=-3.0, 0.0, 2.0
 smokeScreenDmPart:t="engine_dm"
 smokeScreenFxType:t="tank_smokescreen"
 smokeScreenFx:t="smokescreen_no_therm_small"
+smokeVisibilityType1:t="visual"
+smokeVisibilityType2:t="optic"
 
 DamageParts{
   formatVersion:i=2
@@ -239,21 +239,6 @@ DamageParts{
     }
 
     optic_body_01_dm{
-      armorThickness:r=3.0
-      hp:r=20.0
-    }
-
-    optic_body_02_dm{
-      armorThickness:r=3.0
-      hp:r=20.0
-    }
-
-    optic_body_03_dm{
-      armorThickness:r=3.0
-      hp:r=20.0
-    }
-
-    optic_body_04_dm{
       armorThickness:r=3.0
       hp:r=20.0
     }
@@ -751,6 +736,7 @@ DamageParts{
     power_system_dm{
       hp:r=60.0
       armorThrough:r=15.0
+      fireParamsPreset:t="powersystem_internal"
     }
   }
 
@@ -2468,6 +2454,68 @@ DamageEffects{
       }
     }
   }
+
+  part{
+    name:t="power_system_dm"
+
+    onHit{
+      damageType:t="cumulative"
+      fire:r=0.2
+      damage:r=75.0
+      fHitCritical:b=yes
+    }
+
+    onHit{
+      damageType:t="explosion"
+      fire:r=0.3
+      damage:r=30.0
+      fHitCritical:b=yes
+    }
+
+    onHit{
+      damageType:t="generic"
+      fire:r=0.05
+      damage:r=20.0
+      fHitCritical:b=yes
+    }
+
+    onHit{
+      damageType:t="generic"
+      fire:r=0.1
+      damage:r=70.0
+      fHitCritical:b=yes
+    }
+
+    onHit{
+      damageType:t="generic"
+      fire:r=0.3
+      damage:r=200.0
+      fHitCritical:b=yes
+    }
+
+    onHit{
+      damageType:t="generic"
+      fire:r=0.4
+      damage:r=300.0
+      fHitCritical:b=yes
+    }
+
+    onHit{
+      damageType:t="fire"
+      fire:r=0.1
+    }
+
+    onKill{
+      fire:r=1.0
+      fHitCritical:b=yes
+
+      action{
+        kill:b=yes
+        type:t="secondaryDamage"
+        part:t="fire_control_system_dm"
+      }
+    }
+  }
 }
 
 tank_crew{
@@ -2658,12 +2706,14 @@ commonWeapons{
     shellCasingImpulse:p3=6.0, 0.0, 0.5
     shellCasingImpulseOffset:r=0.04
     linkShellCasingToGun:b=yes
-    recoilOffset:r=0.045
+    recoilOffset:r=0.03
     jammedReloadTime:r=15.0
     defaultYaw:r=0.0
     defaultPitch:r=0.0
     barrelDP:t="gun_barrel_dm"
     breechDP:t="cannon_breech_dm"
+    stabilizerDmPart:t="fire_control_system_dm"
+    stabilizerDmPart:t="power_system_dm"
     speedYaw:r=30.0
     speedPitch:r=35.0
     fireConeAngle:r=1.0
@@ -2691,6 +2741,11 @@ commonWeapons{
       barrel:t="bone_gun_barrel"
       gunnerDm:t="gunner_dm"
       secondGunnerDm:t="commander_dm"
+      verDriveDm:t="drive_turret_v_dm"
+      verDriveDm:t="fire_control_system_dm"
+      horDriveDm:t="drive_turret_h_dm"
+      horDriveDm:t="fire_control_system_dm"
+      shootingDmPart:t="fire_control_system_dm"
 
       linkedAnimPart{
         verNode:t="bone_gun_roller_02"
@@ -2765,6 +2820,11 @@ commonWeapons{
       gun:t="bone_mg_gun_twin_01"
       gunnerDm:t="gunner_dm"
       secondGunnerDm:t="commander_dm"
+      verDriveDm:t="drive_turret_v_dm"
+      verDriveDm:t="fire_control_system_dm"
+      horDriveDm:t="drive_turret_h_dm"
+      horDriveDm:t="fire_control_system_dm"
+      shootingDmPart:t="fire_control_system_dm"
     }
 
     limits{
@@ -2817,6 +2877,7 @@ commonWeapons{
       gun:t="bone_gun_02"
       gunnerDm:t="gunner_dm"
       secondGunnerDm:t="commander_dm"
+      shootingDmPart:t="fire_control_system_dm"
     }
 
     limits{
@@ -3571,7 +3632,7 @@ unitFx{
 
   event{
     name:t="fuel_exterior"
-    lifetime:r=15.0
+    lifetime:r=50.0
 
     fx{
       name:t="tank_ex_fuel_explosion"
@@ -3581,7 +3642,7 @@ unitFx{
 
   event{
     name:t="fuel_internal"
-    lifetime:r=15.0
+    lifetime:r=50.0
 
     fx{
       name:t="tank_ex_fuel_explosion"
@@ -3591,7 +3652,7 @@ unitFx{
 
   event{
     name:t="hydraulic_internal"
-    lifetime:r=10.0
+    lifetime:r=30.0
 
     fx{
       name:t="tank_ex_fuel_explosion"
@@ -3601,7 +3662,7 @@ unitFx{
 
   event{
     name:t="powersystem_internal"
-    lifetime:r=10.0
+    lifetime:r=30.0
 
     fx{
       name:t="tank_ex_fuel_explosion"
@@ -3611,7 +3672,7 @@ unitFx{
 
   event{
     name:t="powersystem_exterior"
-    lifetime:r=10.0
+    lifetime:r=30.0
 
     fx{
       name:t="tank_ex_fuel_explosion"
@@ -4037,38 +4098,6 @@ modifications{
     image:t="#ui/gameuiskin#tank_reinforcement_ussr"
   }
 
-  night_vision_system{
-    tier:i=2
-    modClass:t="protection"
-
-    effects{
-
-      nightVision{
-
-        gunnerIr{
-          resolution:ip2=800, 600
-          lightMult:r=8.0
-          ghosting:r=0.75
-          noiseFactor:r=0.2
-        }
-
-        commanderViewIr{
-          resolution:ip2=800, 600
-          lightMult:r=8.0
-          ghosting:r=0.75
-          noiseFactor:r=0.2
-        }
-
-        driverIr{
-          resolution:ip2=800, 600
-          lightMult:r=5.0
-          ghosting:r=0.7
-          noiseFactor:r=0.2
-        }
-      }
-    }
-  }
-
   tank_smoke_screen_system_mod{
     modClass:t="protection"
     tier:i=4
@@ -4090,12 +4119,14 @@ modifications{
           shellCasingImpulse:p3=6.0, 0.0, 0.5
           shellCasingImpulseOffset:r=0.04
           linkShellCasingToGun:b=yes
-          recoilOffset:r=0.045
+          recoilOffset:r=0.03
           jammedReloadTime:r=15.0
           defaultYaw:r=0.0
           defaultPitch:r=0.0
           barrelDP:t="gun_barrel_dm"
           breechDP:t="cannon_breech_dm"
+          stabilizerDmPart:t="fire_control_system_dm"
+          stabilizerDmPart:t="power_system_dm"
           speedYaw:r=30.0
           speedPitch:r=35.0
           fireConeAngle:r=1.0
@@ -4123,6 +4154,11 @@ modifications{
             barrel:t="bone_gun_barrel"
             gunnerDm:t="gunner_dm"
             secondGunnerDm:t="commander_dm"
+            verDriveDm:t="drive_turret_v_dm"
+            verDriveDm:t="fire_control_system_dm"
+            horDriveDm:t="drive_turret_h_dm"
+            horDriveDm:t="fire_control_system_dm"
+            shootingDmPart:t="fire_control_system_dm"
 
             linkedAnimPart{
               verNode:t="bone_gun_roller_02"
@@ -4197,6 +4233,11 @@ modifications{
             gun:t="bone_mg_gun_twin_01"
             gunnerDm:t="gunner_dm"
             secondGunnerDm:t="commander_dm"
+            verDriveDm:t="drive_turret_v_dm"
+            verDriveDm:t="fire_control_system_dm"
+            horDriveDm:t="drive_turret_h_dm"
+            horDriveDm:t="fire_control_system_dm"
+            shootingDmPart:t="fire_control_system_dm"
           }
 
           limits{
@@ -4249,6 +4290,7 @@ modifications{
             gun:t="bone_gun_02"
             gunnerDm:t="gunner_dm"
             secondGunnerDm:t="commander_dm"
+            shootingDmPart:t="fire_control_system_dm"
           }
 
           limits{
@@ -4461,6 +4503,30 @@ modifications{
     disableModEffects{
       allowSupportPlane:b=no
     }
+  }
+}
+
+nightVision{
+
+  gunnerIr{
+    resolution:ip2=800, 600
+    lightMult:r=8.0
+    ghosting:r=0.75
+    noiseFactor:r=0.2
+  }
+
+  commanderViewIr{
+    resolution:ip2=800, 600
+    lightMult:r=8.0
+    ghosting:r=0.75
+    noiseFactor:r=0.2
+  }
+
+  driverIr{
+    resolution:ip2=800, 600
+    lightMult:r=5.0
+    ghosting:r=0.7
+    noiseFactor:r=0.2
   }
 }
 

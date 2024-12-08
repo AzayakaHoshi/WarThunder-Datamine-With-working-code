@@ -2,7 +2,6 @@ type:t="radar"
 name:t="V004"
 showMissileLaunchZone:b=yes
 showMissileDgftLaunchZone:b=yes
-canMoveCamera:b=yes
 weaponTargetsMax:i=4
 launchedMissilesPredictedPositionsMax:i=4
 
@@ -13,13 +12,21 @@ transivers{
     power:r=1000.0
     band:i=8
     rcs:r=3.0
-    range:r=96000.0
-    rangeMax:r=120000.0
+    range:r=120000.0
+    rangeMax:r=150000.0
     multipathEffect:p4=0.0, 1.0, 60.0, 0.0
 
     antenna{
-      angleHalfSens:r=3.5
-      sideLobesSensitivity:r=-35.0
+
+      azimuth{
+        angleHalfSens:r=1.8
+        sideLobesSensitivity:r=-35.0
+      }
+
+      elevation{
+        angleHalfSens:r=2.7
+        sideLobesSensitivity:r=-35.0
+      }
     }
   }
 
@@ -28,13 +35,21 @@ transivers{
     power:r=1000.0
     band:i=8
     rcs:r=3.0
-    range:r=120000.0
-    rangeMax:r=150000.0
+    range:r=140000.0
+    rangeMax:r=170000.0
     multipathEffect:p4=0.0, 1.0, 60.0, 0.0
 
     antenna{
-      angleHalfSens:r=3.5
-      sideLobesSensitivity:r=-35.0
+
+      azimuth{
+        angleHalfSens:r=1.8
+        sideLobesSensitivity:r=-35.0
+      }
+
+      elevation{
+        angleHalfSens:r=2.7
+        sideLobesSensitivity:r=-35.0
+      }
     }
   }
 
@@ -50,12 +65,12 @@ transivers{
     antenna{
 
       azimuth{
-        angleHalfSens:r=0.5
+        angleHalfSens:r=1.8
         sideLobesSensitivity:r=-50.0
       }
 
       elevation{
-        angleHalfSens:r=3.5
+        angleHalfSens:r=2.7
         sideLobesSensitivity:r=-50.0
       }
     }
@@ -79,9 +94,9 @@ scanPatterns{
     elevationLimits:p2=-60.0, 60.0
     rollStabLimit:r=90.0
     pitchStabLimit:r=60.0
-    period:r=0.5
+    period:r=0.9233
     width:r=15.0
-    barHeight:r=3.0
+    barHeight:r=2.5
     barsCount:i=4
     rowMajor:b=yes
     preciseMinor:b=yes
@@ -93,10 +108,10 @@ scanPatterns{
     elevationLimits:p2=-60.0, 60.0
     rollStabLimit:r=90.0
     pitchStabLimit:r=60.0
-    period:r=2.0
+    period:r=1.8466
     width:r=30.0
-    barHeight:r=3.0
-    barsCount:i=8
+    barHeight:r=2.5
+    barsCount:i=4
     rowMajor:b=yes
     preciseMinor:b=yes
   }
@@ -107,9 +122,9 @@ scanPatterns{
     elevationLimits:p2=-60.0, 60.0
     rollStabLimit:r=90.0
     pitchStabLimit:r=60.0
-    period:r=3.0
-    width:r=45.0
-    barHeight:r=3.0
+    period:r=3.6932
+    width:r=30.0
+    barHeight:r=2.5
     barsCount:i=8
     rowMajor:b=yes
     preciseMinor:b=yes
@@ -122,9 +137,9 @@ scanPatterns{
     rollStabLimit:r=90.0
     pitchStabLimit:r=60.0
     period:r=0.1
-    width:r=4.0
-    barHeight:r=3.0
-    barsCount:i=4
+    width:r=2.0
+    barHeight:r=2.5
+    barsCount:i=6
     rowMajor:b=yes
     indicate:b=yes
   }
@@ -136,8 +151,8 @@ scanPatterns{
     rollStabLimit:r=90.0
     pitchStabLimit:r=60.0
     period:r=0.1
-    width:r=4.0
-    barHeight:r=3.0
+    width:r=2.0
+    barHeight:r=2.5
     barsCount:i=2
     rowMajor:b=yes
     indicate:b=yes
@@ -149,10 +164,10 @@ scanPatterns{
     elevationLimits:p2=-60.0, 60.0
     period:r=0.2
     width:r=25.0
-    barHeight:r=2.5
-    barsCount:i=2
+    barHeight:r=1.5
+    barsCount:i=4
     rowMajor:b=no
-    centerElevation:r=0.0
+    centerElevation:r=12.5
     indicate:b=yes
   }
 
@@ -161,7 +176,7 @@ scanPatterns{
     azimuthLimits:p2=-60.0, 60.0
     elevationLimits:p2=-60.0, 60.0
     period:r=0.1
-    width:r=2.0
+    width:r=1.5
     indicate:b=yes
   }
 
@@ -173,7 +188,7 @@ scanPatterns{
     pitchStabLimit:r=60.0
     period:r=0.1
     width:r=10.0
-    barHeight:r=2.5
+    barHeight:r=1.5
     barsCount:i=8
     rowMajor:b=yes
     indicate:b=yes
@@ -1077,6 +1092,26 @@ fsms{
 
         setModeName{
           name:t="TWS GTM search"
+        }
+      }
+
+      setMprfBvrLockMode{
+
+        setBvrLockMode{
+        }
+
+        setModeName{
+          name:t="PD acquisition"
+        }
+      }
+
+      setHprfBvrLockMode{
+
+        setBvrLockMode{
+        }
+
+        setModeName{
+          name:t="PD HDN acquisition"
         }
       }
 
@@ -2124,6 +2159,8 @@ fsms{
 
       scan{
         event:t="update"
+        stateFrom:t="track"
+        stateTo:t="search"
 
         actions{
 
@@ -2134,7 +2171,7 @@ fsms{
           }
 
           clearTargetsOfInterest{
-            timeOut:r=8.0
+            timeOut:r=4.0
           }
 
           setCueToActiveTargetOfInterest{
@@ -2190,6 +2227,7 @@ fsms{
 
       addTarget{
         event:t="targetDetected"
+        stateFrom:t="search"
 
         actions{
 
@@ -2276,64 +2314,64 @@ fsms{
           }
         }
       }
+
+      scanTrack{
+        stateFrom:t="search"
+        event:t="update"
+        stateTo:t="track"
+
+        actions{
+
+          scan{
+            periodMult:r=0.01
+          }
+
+          extrapolateTargetsOfInterest{
+          }
+
+          clearTargetsOfInterest{
+            timeOut:r=4.0
+          }
+
+          setCueToActiveTargetOfInterest{
+          }
+        }
+      }
+
+      addTargetTrack{
+        stateFrom:t="track"
+        event:t="targetDetected"
+
+        actions{
+
+          updateTargetOfInterest{
+            limit:i=10
+            onlyExisting:b=yes
+            radius:r=1000.0
+            dopplerSpeedGateMaxTime:r=8.0
+          }
+
+          updateActiveDetectedTarget{
+          }
+
+          setCueToActiveTargetOfInterest{
+          }
+        }
+      }
     }
   }
 
   bvrLock{
     stateInit:t="lock"
 
-    actionsTemplates{
-
-      setMprfLock{
-
-        setTransiver{
-          transiver:t="mprf"
-        }
-
-        setSignal{
-          signal:t="mprfSearch"
-        }
-      }
-
-      setHprfLock{
-
-        setTransiver{
-          transiver:t="hprf"
-        }
-
-        setSignal{
-          signal:t="hprfSearch"
-        }
-      }
-    }
-
     transitions{
-
-      init{
-        event:t="fsmActivate"
-
-        actions{
-
-          setMprfLock{
-          }
-        }
-      }
 
       scan{
         event:t="update"
 
         actions{
 
-          setMprfLock{
-          }
-
           scan{
-          }
-
-          scan{
-          }
-
-          setHprfLock{
           }
         }
       }
@@ -2343,20 +2381,9 @@ fsms{
 
         actions{
 
-          setMprfLock{
-          }
-
           detectTarget{
             ignoreOwnWeapon:b=yes
             rangeMult:r=1.0
-          }
-
-          detectTarget{
-            ignoreOwnWeapon:b=yes
-            rangeMult:r=1.0
-          }
-
-          setHprfLock{
           }
         }
       }

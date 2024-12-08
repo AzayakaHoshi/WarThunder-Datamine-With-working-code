@@ -14,11 +14,12 @@ haveCCIPForBombs:b=yes
 gyroSight:b=yes
 haveCCIPForGun:b=yes
 haveCCRPForBombs:b=yes
-ilsTornado:b=yes
-isBwOpticSight:b=yes
 haveCCRPForGun:b=yes
 hasOpticTurret:b=yes
 havePointOfInterestDesignator:b=yes
+ilsTornado:b=yes
+rwrIndicator:t="ARI-18241"
+isBwOpticSight:b=yes
 needTpsNightVision:b=yes
 type:t="typeFighter"
 simplifiedJoyAileronMult:r=1.0
@@ -2708,7 +2709,7 @@ DamageEffects{
 }
 
 ikPilot{
-  model:t="pilot_italy_late_char"
+  model:t="usaf_pilot_1977_1991_char"
   maxHeadHorAngle:r=60.0
   maxHeadDownAngle:r=60.0
   maxHeadUpAngle:r=10.0
@@ -2756,7 +2757,7 @@ ikPilot{
 }
 
 ikPilot{
-  model:t="pilot_italy_late_char"
+  model:t="usaf_pilot_1977_1991_char"
   maxHeadHorAngle:r=60.0
   maxHeadDownAngle:r=60.0
   maxHeadUpAngle:r=10.0
@@ -2876,6 +2877,7 @@ cockpit{
     aviahorizon_pitch:p2=-80.0, 80.0
     aviahorizon_roll:p2=-180.0, 180.0
     aoa:p2=-1.0, 23.0
+    aoa_indexer1:p2=14.0, 90.0
     compass:p2=0.0, 360.0
     compass1:p2=0.0, 360.0
     clock_hour:p2=0.0, 12.0
@@ -2927,8 +2929,6 @@ cockpit{
       page{
         type:t="rwr"
         scale:r=1.15
-        circleCnt:i=2
-        centralMark:t="cross"
       }
     }
 
@@ -2958,14 +2958,6 @@ cockpit{
   }
 }
 
-nightVision{
-
-  sightTPodThermal{
-    resolution:ip2=500, 300
-    noiseFactor:r=0.05
-  }
-}
-
 gunnerOpticFps{
 
   Target{
@@ -2985,6 +2977,29 @@ gunnerOpticFps{
     angularLimits:p4=-38.0, 38.0, -55.0, 38.0
     opticType:t="tv"
     turretNo:i=1
+  }
+}
+
+nightVision{
+
+  gunnerIr{
+    resolution:ip2=1920, 1080
+    lightMult:r=10.0
+    ghosting:r=0.7
+    noiseFactor:r=0.15
+  }
+
+  pilotIr{
+    resolution:ip2=1920, 1080
+    lightMult:r=10.0
+    ghosting:r=0.7
+    noiseFactor:r=0.15
+  }
+
+  sightThermal{
+    resolution:ip2=500, 300
+    noiseFactor:r=0.05
+    index:i=2
   }
 }
 
@@ -3182,10 +3197,10 @@ WeaponSlots{
       Weapon{
         trigger:t="countermeasures"
         blk:t="gameData/Weapons/rocketGuns/countermeasure_chaff_only_large.blk"
-        emitter:t="emtr_inversion_r"
+        emitter:t="emtr_inversion_l"
         bullets:i=600
         external:b=yes
-        separate:b=no
+        separate:b=yes
         bulletsCartridge:i=1
       }
     }
@@ -5025,10 +5040,10 @@ WeaponSlots{
       Weapon{
         trigger:t="countermeasures"
         blk:t="gameData/Weapons/rocketGuns/countermeasure_chaff_only_large.blk"
-        emitter:t="emtr_inversion_l"
+        emitter:t="emtr_inversion_r"
         bullets:i=600
         external:b=yes
-        separate:b=no
+        separate:b=yes
         bulletsCartridge:i=1
       }
     }
@@ -5240,40 +5255,8 @@ modifications{
     modClass:t="armor"
   }
 
-  heli_night_vision_system{
-    modClass:t="armor"
-    tier:i=3
-    prevModification:t="f_4c_g_suit"
-
-    effects{
-
-      nightVision{
-
-        gunnerIr{
-          resolution:ip2=1920, 1080
-          lightMult:r=10.0
-          ghosting:r=0.7
-          noiseFactor:r=0.15
-        }
-
-        pilotIr{
-          resolution:ip2=1920, 1080
-          lightMult:r=10.0
-          ghosting:r=0.7
-          noiseFactor:r=0.15
-        }
-
-        sightThermal{
-          resolution:ip2=500, 300
-          noiseFactor:r=0.05
-          index:i=2
-        }
-      }
-    }
-  }
-
   air_extinguisher{
-    prevModification:t="heli_night_vision_system"
+    prevModification:t="f_4c_g_suit"
     tier:i=4
     modClass:t="armor"
     invertEnableLogic:b=no
@@ -5450,8 +5433,8 @@ AfterBurner0{
     colorOverDepthNoiseSpeed:r=2.0
     colorIntensityNoiseStrength:r=2.0
     colorIntensityNoiseSpeed:r=40.0
-    minStartingRingHeight:r=1.4
-    maxStartingRingHeight:r=1.4
+    minStartingRingHeight:r=0.5
+    maxStartingRingHeight:r=0.5
     ringIntensity:r=2.0
     ringFrequency:r=11.3097
 

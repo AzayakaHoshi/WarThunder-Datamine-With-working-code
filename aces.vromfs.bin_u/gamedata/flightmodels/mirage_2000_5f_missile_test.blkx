@@ -2177,7 +2177,7 @@ DamageEffects{
 }
 
 ikPilot{
-  model:t="pilot_france_late_char"
+  model:t="usaf_pilot_1977_1991_char"
   maxHeadHorAngle:r=60.0
   maxHeadDownAngle:r=60.0
   maxHeadUpAngle:r=10.0
@@ -2246,7 +2246,7 @@ cockpit{
   headPos:p3=4.0, 0.54, 0.0
   headPosOnShooting:p3=4.1, 0.54, 0.0
   collimatorSize:r=0.2
-  hmdBlockIlsArea:p4=0.37, 0.37, 0.63, 0.63
+  hmdBlockIlsArea:p4=0.25, -0.4, 0.65, 0.75
   hmdEnabledByDefault:b=yes
   mirror:b=yes
   mirrorPos:p3=4.35, 0.69, 0.0
@@ -2332,14 +2332,23 @@ cockpit{
 
       page{
         type:t="rwr"
-        scale:r=0.6
-        circleCnt:i=1
-        centralMark:t="cross"
+
+        grid{
+          scale:r=1.3
+          lineWidthScale:r=0.8
+          fontScale:r=0.8
+        }
+
+        object{
+          scale:r=0.8
+          lineWidthScale:r=0.4
+          fontScale:r=0.4
+        }
       }
     }
 
     display{
-      textureArea:p4=0.25, 0.565, 0.5, 0.935
+      textureArea:p4=0.25, 0.5, 0.5, 1.0
       cameraFromTargetingPod:b=yes
 
       page{
@@ -2348,7 +2357,7 @@ cockpit{
         aviahorizon_pitch{
           texture:t="su_mfd_ahorizon"
           arrowTex:t="su_mfd_ahorizon_scale"
-          position:p2=256.0, 180.0
+          position:p2=256.0, 240.0
           backgroundTexCoord:p4=0.11, 0.0, 0.89, 0.89
           arrowTexCoord:p4=0.0, 0.4, 1.0, 0.6
           size:p2=256.0, 256.0
@@ -2360,7 +2369,7 @@ cockpit{
 
         aviahorizon_roll{
           texture:t="su_mfd_ahorizon"
-          position:p2=256.0, 180.0
+          position:p2=256.0, 240.0
           arrowTexCoord:p4=0.2, 0.9, 0.8, 1.0
           size:p2=256.0, 256.0
           notDrawBackground:b=yes
@@ -2383,9 +2392,18 @@ cockpit{
 
       page{
         type:t="rwr"
-        scale:r=0.6
-        circleCnt:i=1
-        centralMark:t="cross"
+
+        grid{
+          scale:r=1.3
+          lineWidthScale:r=0.8
+          fontScale:r=0.8
+        }
+
+        object{
+          scale:r=0.8
+          lineWidthScale:r=0.4
+          fontScale:r=0.4
+        }
       }
     }
 
@@ -2558,6 +2576,29 @@ gunnerOpticFps{
   }
 }
 
+nightVision{
+
+  gunnerIr{
+    resolution:ip2=1920, 1080
+    lightMult:r=10.0
+    ghosting:r=0.7
+    noiseFactor:r=0.15
+  }
+
+  pilotIr{
+    resolution:ip2=1920, 1080
+    lightMult:r=10.0
+    ghosting:r=0.7
+    noiseFactor:r=0.15
+  }
+
+  sightThermal{
+    resolution:ip2=1200, 800
+    noiseFactor:r=0.04
+    index:i=2
+  }
+}
+
 sensors{
 
   sensor{
@@ -2606,14 +2647,6 @@ fireParams{
 arcadeOverride{
   maxSpeedMultiplier:r=1.01
   wepOverspeed:r=1.05
-}
-
-nightVision{
-
-  sightTPodThermal{
-    resolution:ip2=800, 600
-    noiseFactor:r=0.05
-  }
 }
 
 wiki{
@@ -2761,38 +2794,6 @@ modifications{
     prevModification:t="MAW_system_heli_false_thermal_targets_large"
     tier:i=2
     modClass:t="armor"
-  }
-
-  heli_night_vision_system{
-    tier:i=3
-    modClass:t="armor"
-    prevModification:t="f_4c_g_suit"
-
-    effects{
-
-      nightVision{
-
-        gunnerIr{
-          resolution:ip2=1920, 1080
-          lightMult:r=10.0
-          ghosting:r=0.7
-          noiseFactor:r=0.15
-        }
-
-        pilotIr{
-          resolution:ip2=1920, 1080
-          lightMult:r=10.0
-          ghosting:r=0.7
-          noiseFactor:r=0.15
-        }
-
-        sightThermal{
-          resolution:ip2=1200, 800
-          noiseFactor:r=0.05
-          index:i=2
-        }
-      }
-    }
   }
 
   air_extinguisher{
@@ -3055,15 +3056,17 @@ lerxVapors{
     exitTangentWidth:p2=-0.5, 0.5
     exitPointHeight:p2=0.0, 0.5
     exitPointWidth:p2=-1.0, 2.0
-    maxRadius:p2=0.05, 0.3
+    maxRadius:p2=0.05, 0.2
     minRadius:p2=0.05, 0.18
     noiseParms:p2=0.1, 0.5
     smoothIntensityParams:p3=1.0, 0.8, 0.2
     density:r=1.0
     intensityMult:r=7.0
-    criticalAOA:p4=5.0, 20.0, 35.0, 45.0
+    criticalAOA:p4=9.0, 25.0, 35.0, 45.0
     absoluteCriticalAOS:p2=2.0, 30.0
     absoluteCriticalAOA:p2=5.0, 40.0
+    endPositionNoiseStrength:r=0.0
+    endPositionNoiseSpeed:r=1.0
   }
 
   lerxVapor{
@@ -3075,15 +3078,61 @@ lerxVapors{
     exitTangentWidth:p2=0.5, -0.5
     exitPointHeight:p2=0.0, 0.5
     exitPointWidth:p2=1.0, -2.0
-    maxRadius:p2=0.05, 0.3
+    maxRadius:p2=0.05, 0.2
     minRadius:p2=0.05, 0.18
     noiseParms:p2=0.1, 0.5
     smoothIntensityParams:p3=1.0, 0.8, 0.2
     density:r=1.0
     intensityMult:r=7.0
-    criticalAOA:p4=5.0, 20.0, 35.0, 45.0
+    criticalAOA:p4=9.0, 25.0, 35.0, 45.0
     absoluteCriticalAOS:p2=2.0, 30.0
     absoluteCriticalAOA:p2=5.0, 40.0
+    endPositionNoiseStrength:r=0.0
+    endPositionNoiseSpeed:r=1.0
+  }
+
+  lerxVapor{
+    entryPoint:p3=2.0, -0.3, 1.2
+    exitPoint:p3=-1.5, 0.0, 2.0
+    entryTangent:p3=1.0, -0.1, 1.6
+    exitTangent:p3=-0.2, -0.1, 1.8
+    exitTangentHeight:p2=0.0, 0.0
+    exitTangentWidth:p2=0.0, 0.0
+    exitPointHeight:p2=0.0, 0.5
+    exitPointWidth:p2=-0.5, 0.5
+    maxRadius:p2=0.1, 0.4
+    minRadius:p2=0.1, 0.15
+    noiseParms:p2=0.1, 0.8
+    smoothIntensityParams:p3=0.748, 1.194, 0.295
+    density:r=1.0
+    intensityMult:r=2.0
+    criticalAOA:p4=5.0, 25.0, 35.0, 40.0
+    absoluteCriticalAOS:p2=2.0, 30.0
+    absoluteCriticalAOA:p2=5.0, 40.0
+    endPositionNoiseStrength:r=0.0
+    endPositionNoiseSpeed:r=1.0
+  }
+
+  lerxVapor{
+    entryPoint:p3=2.0, -0.3, -1.2
+    exitPoint:p3=-1.5, 0.0, -2.0
+    entryTangent:p3=1.0, -0.1, -1.6
+    exitTangent:p3=-0.2, -0.1, -1.8
+    exitTangentHeight:p2=0.0, 0.0
+    exitTangentWidth:p2=-0.0, -0.0
+    exitPointHeight:p2=0.0, 0.5
+    exitPointWidth:p2=0.5, -0.5
+    maxRadius:p2=0.1, 0.4
+    minRadius:p2=0.1, 0.15
+    noiseParms:p2=0.1, 0.8
+    smoothIntensityParams:p3=0.748, 1.194, 0.295
+    density:r=1.0
+    intensityMult:r=2.0
+    criticalAOA:p4=5.0, 25.0, 35.0, 40.0
+    absoluteCriticalAOS:p2=2.0, 30.0
+    absoluteCriticalAOA:p2=5.0, 40.0
+    endPositionNoiseStrength:r=0.0
+    endPositionNoiseSpeed:r=1.0
   }
 }
 

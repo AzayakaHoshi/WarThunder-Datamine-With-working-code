@@ -13,9 +13,11 @@ haveCCRPForGun:b=yes
 havePointOfInterestDesignator:b=yes
 isBwOpticSight:b=yes
 laserDesignator:b=yes
-ilsF15a:b=yes
+ilsF15e:b=yes
 hmdF16c:b=yes
 rwrIndicator:t="TEWS"
+mfdCamTads:b=yes
+needTpsNightVision:b=yes
 hasHelmetDesignator:b=yes
 helmetDesignatorZone0:p3=-40.0, -50.0, 50.0
 helmetDesignatorZone1:p3=-20.0, -30.0, 50.0
@@ -43,9 +45,6 @@ fireParamsPreset:t="2400kph"
 fightAiBehaviour:t="assault"
 autopilotImpl:t="FBW"
 paratrooper:t="usa_irvin_5000_ejection_para"
-customClassIco:t="!#ui/gameuiskin#image_in_progress_ico.svg"
-customImage:t="!#ui/unitskin#image_in_progress"
-customTooltipImage:t="ui/aircrafts/image_in_progress"
 
 DamageParts{
 
@@ -2526,11 +2525,11 @@ cockpit{
   sightOutFov:r=5.87
   sightFov:r=1.0
   mfdTextureSize:ip2=1024, 1024
-  headPos:p3=5.945, 1.615, 0.0
-  headPosOnShooting:p3=6.045, 1.615, 0.0
+  headPos:p3=5.945, 1.595, 0.0
+  headPosOnShooting:p3=6.045, 1.595, 0.0
   hasAirCannonIlsMode:b=yes
   isDoubleBulletImpactLine:b=yes
-  hmdBlockIlsArea:p4=0.37, 0.37, 0.63, 0.63
+  hmdBlockIlsArea:p4=0.15, -0.5, 0.73, 0.85
   hmdEnabledByDefault:b=yes
   mirror:b=yes
   mirrorPos:p3=6.39, 1.591, 0.0
@@ -2563,12 +2562,13 @@ cockpit{
     throttle:p2=0.0, 1.0
     throttle1:p2=0.0, 1.0
     trimmer:p2=-1.0, 1.0
+    trimmer_indicator:p2=-1.0, 1.0
     weapon2:p2=0.0, 1.0
     weapon3:p2=0.0, 1.0
     gears:p2=0.0, 1.0
     gear_fixed:b=yes
     flaps:p2=0.0, 1.0
-    flaps_fixed:b=no
+    flaps_fixed:b=yes
     speed:p2=0.0, 514.444
     speed_01:p2=0.0, 514.444
     mach:p2=0.6, 3.0
@@ -2580,19 +2580,12 @@ cockpit{
     altitude_hour:p2=0.0, 10000.0
     altitude_min:p2=0.0, 1000.0
     altitude1_10k:p2=0.0, 100000.0
-    altitude1_min:p2=0.0, 1000.0
-    altitude2_10k:p2=0.0, 100000.0
-    altitude2_hour:p2=0.0, 10000.0
-    altitude2_min:p2=0.0, 1000.0
-    altitude3_min:p2=0.0, 1000.0
     radio_altitude:p2=0.0, 1000.0
     altitude_koef:r=3.28
     bank:p2=-8.0, 8.0
     turn:p2=-0.23562, 0.23562
     aviahorizon_pitch:p2=-80.0, 80.0
     aviahorizon_roll:p2=-180.0, 180.0
-    aviahorizon_pitch1:p2=-80.0, 80.0
-    aviahorizon_roll1:p2=-180.0, 180.0
     aoa:p2=-5.0, 35.0
     clock_hour:p2=0.0, 12.0
     clock_min:p2=0.0, 60.0
@@ -2622,8 +2615,35 @@ cockpit{
 
     display{
       textureArea:p4=0.0, 0.0, 0.5, 0.5
-      monoDisplayColor:p3=0.1, 0.25, 0.1
       cameraFromShell:b=yes
+
+      page{
+        type:t="radar"
+        font:t="usa_ils"
+        scale:r=0.9
+        hideBackground:b=yes
+        hasAviaHorizont:b=yes
+        hideBeam:b=no
+        beamShape:t="caret"
+        targetForm:t="square"
+        fontScale:r=0.65
+        lineColor:ip3=0, 255, 7
+        modeColor:ip3=0, 255, 7
+        verAngleColor:ip3=0, 255, 7
+        horAngleColor:ip3=0, 255, 7
+        scaleColor:ip3=0, 255, 7
+        targetColor:ip3=0, 255, 7
+        netRowCnt:i=4
+        netColor:ip3=0, 255, 7
+        hideWeaponIndication:b=yes
+        centerRadar:b=yes
+        showCueHeights:b=yes
+      }
+
+      page{
+        type:t="thermal"
+        turretIdx:i=0
+      }
 
       page{
         type:t="target_tracking"
@@ -2631,9 +2651,82 @@ cockpit{
       }
 
       page{
+        type:t="ils_duplicate"
+      }
+
+      page{
+        type:t="rwr"
+
+        grid{
+          scale:r=1.0
+          lineWidthScale:r=0.8
+          fontScale:r=0.8
+        }
+
+        object{
+          scale:r=1.2
+          lineWidthScale:r=0.5
+          fontScale:r=0.5
+        }
+      }
+    }
+
+    display{
+      textureArea:p4=0.5, 0.5, 1.0, 1.0
+      cameraFromTargetingPod:b=yes
+
+      page{
+        type:t="thermal"
+        turretIdx:i=0
+      }
+
+      page{
+        type:t="target_tracking"
+        turretIdx:i=0
+      }
+
+      page{
+        type:t="custom"
+        pageName:t="f15cWpn"
+      }
+
+      page{
+        type:t="rwr"
+
+        grid{
+          scale:r=1.0
+          lineWidthScale:r=0.8
+          fontScale:r=0.8
+        }
+
+        object{
+          scale:r=1.2
+          lineWidthScale:r=0.5
+          fontScale:r=0.5
+        }
+      }
+
+      page{
         type:t="radar"
+        font:t="usa_ils"
         scale:r=0.9
-        hideRadarBackground:b=yes
+        hideBackground:b=yes
+        hasAviaHorizont:b=yes
+        hideBeam:b=no
+        beamShape:t="caret"
+        targetForm:t="square"
+        fontScale:r=0.65
+        lineColor:ip3=0, 255, 7
+        modeColor:ip3=0, 255, 7
+        verAngleColor:ip3=0, 255, 7
+        horAngleColor:ip3=0, 255, 7
+        scaleColor:ip3=0, 255, 7
+        targetColor:ip3=0, 255, 7
+        netRowCnt:i=4
+        netColor:ip3=0, 255, 7
+        hideWeaponIndication:b=yes
+        centerRadar:b=yes
+        showCueHeights:b=yes
       }
 
       page{
@@ -2642,11 +2735,34 @@ cockpit{
     }
 
     display{
-      textureArea:p4=0.5, 0.5, 1.0, 1.0
+      textureArea:p4=0.0, 0.5, 0.5, 1.0
 
       page{
         type:t="rwr"
-        scale:r=1.15
+
+        grid{
+          scale:r=1.0
+          lineWidthScale:r=0.8
+          fontScale:r=0.8
+        }
+
+        object{
+          scale:r=1.2
+          lineWidthScale:r=0.5
+          fontScale:r=0.5
+        }
+      }
+
+      page{
+        type:t="map"
+      }
+    }
+
+    display{
+      textureArea:p4=0.5, 0.0, 1.0, 0.5
+
+      page{
+        type:t="digital_devices"
       }
     }
 
@@ -2655,13 +2771,96 @@ cockpit{
 
       page{
         type:t="plane_ils"
-        ilsSize:p2=0.22, 0.22
+        ilsSize:p2=0.34, 0.34
         ilsOffsetForce:r=0.0
         brightnessMult:r=3.5
         ilsColor:c=10, 255, 10, 120
         bloomForce:r=0.115
         lineWidthScale:r=0.6
       }
+    }
+  }
+
+  digitalDevices{
+
+    REL_RPM_L{
+      pos:p2=0.0, 0.0
+      size:p2=0.5, 0.25
+      color:ip3=0, 255, 0
+      fontSize:i=100
+      value:t="relative_rpm"
+      format:t="%.1f"
+      padding:p2=20.0, 0.0
+    }
+
+    REL_RPM_R{
+      pos:p2=0.5, 0.0
+      size:p2=0.5, 0.25
+      color:ip3=0, 255, 0
+      fontSize:i=100
+      value:t="relative_rpm1"
+      format:t="%.1f"
+      padding:p2=20.0, 0.0
+    }
+
+    EGT_L{
+      pos:p2=0.0, 0.25
+      size:p2=0.5, 0.25
+      color:ip3=0, 255, 0
+      fontSize:i=100
+      value:t="water_temperature"
+      format:t="%d"
+      padding:p2=20.0, 0.0
+    }
+
+    EGT_L{
+      pos:p2=0.5, 0.25
+      size:p2=0.5, 0.25
+      color:ip3=0, 255, 0
+      fontSize:i=100
+      value:t="water_temperature1"
+      format:t="%d"
+      padding:p2=20.0, 0.0
+    }
+
+    RPM_L{
+      pos:p2=0.0, 0.5
+      size:p2=0.5, 0.25
+      color:ip3=0, 255, 0
+      fontSize:i=100
+      value:t="rpm"
+      format:t="%d"
+      padding:p2=20.0, 0.0
+    }
+
+    RPM_R{
+      pos:p2=0.5, 0.5
+      size:p2=0.5, 0.25
+      color:ip3=0, 255, 0
+      fontSize:i=100
+      value:t="rpm1"
+      format:t="%d"
+      padding:p2=20.0, 0.0
+    }
+
+    OIL_PRESS_L{
+      pos:p2=0.0, 0.75
+      size:p2=0.5, 0.25
+      color:ip3=0, 255, 0
+      fontSize:i=100
+      value:t="oil_pressure"
+      format:t="%d"
+      padding:p2=20.0, 0.0
+    }
+
+    OIL_PRESS_R{
+      pos:p2=0.5, 0.75
+      size:p2=0.5, 0.25
+      color:ip3=0, 255, 0
+      fontSize:i=100
+      value:t="oil_pressure1"
+      format:t="%d"
+      padding:p2=20.0, 0.0
     }
   }
 
@@ -2718,6 +2917,20 @@ nightVision{
     noiseFactor:r=0.04
     index:i=2
   }
+
+  gunnerIr{
+    resolution:ip2=1600, 1200
+    lightMult:r=9.0
+    ghosting:r=0.6
+    noiseFactor:r=0.2
+  }
+
+  pilotIr{
+    resolution:ip2=1600, 1200
+    lightMult:r=9.0
+    ghosting:r=0.6
+    noiseFactor:r=0.2
+  }
 }
 
 gunnerOpticFps{
@@ -2729,7 +2942,16 @@ gunnerOpticFps{
     angularLimits:p4=-30.0, 30.0, -30.0, 30.0
     opticType:t="tv"
     turretNo:i=0
-    nvIndex:i=1
+  }
+
+  TV{
+    pos:p3=2.6, -0.15, 0.0
+    head:t="optic1_turret"
+    crosshairPreset:t="test_crosshair"
+    angularLimits:p4=-30.0, 30.0, -30.0, 30.0
+    opticType:t="tv"
+    turretNo:i=0
+    nvIndex:i=0
   }
 
   Target{
@@ -2776,6 +2998,11 @@ weapon_presets{
   preset{
     name:t="f_15i_raam_aim_120"
     blk:t="gameData/FlightModels/weaponPresets/f_15i_raam_aim_120.blk"
+  }
+
+  preset{
+    name:t="f_15i_raam_aim_120_ltc"
+    blk:t="gameData/FlightModels/weaponPresets/f_15i_raam_aim_120_ltc.blk"
   }
 
   preset{
@@ -2842,6 +3069,7 @@ WeaponSlots{
 
   HideNodes{
     node:t="chaff_cap"
+    node:t="chaff_cap_tail"
     node:t="pylon_1"
     node:t="lau_7_001"
     node:t="lau_7_002"
@@ -2851,6 +3079,8 @@ WeaponSlots{
     node:t="us_lau_129aa_004"
     node:t="pylon_3"
     node:t="pylon_3_holder"
+    node:t="adu578_adapter_001"
+    node:t="adu578_adapter_002"
     node:t="pylon_2"
     node:t="lau_7_003"
     node:t="lau_7_004"
@@ -2901,8 +3131,10 @@ WeaponSlots{
     node:t="us_lantirn_pod_anaaq14"
     node:t="optic2_turret"
     node:t="optic2_gun"
-    node:t="chaff_cap_l"
-    node:t="chaff_cap_r"
+    node:t="pylon_1_aim_9_l"
+    node:t="pylon_1_aim_9_r"
+    node:t="pylon_2_aim_9_l"
+    node:t="pylon_2_aim_9_r"
   }
 
   HideDmParts{
@@ -2948,12 +3180,12 @@ WeaponSlots{
 
       Weapon{
         trigger:t="cannon"
-        blk:t="gameData/Weapons/cannonM61A1.blk"
+        blk:t="gameData/Weapons/cannonM61A1_pgu_28_f15.blk"
         emitter:t="flare1"
         flash:t="flare1"
         dm:t="cannon1_dm"
         rotationAnimScale:t="gun_rotate_01:CRS"
-        bullets:i=940
+        bullets:i=512
         spread:r=1.0
         counterIndex:i=1
         counterIndex:i=2
@@ -2994,6 +3226,7 @@ WeaponSlots{
       ShowNodes{
         node:t="pylon_1"
         node:t="lau_7_001"
+        node:t="pylon_1_aim_9_l"
       }
 
       Weapon{
@@ -3013,6 +3246,7 @@ WeaponSlots{
       ShowNodes{
         node:t="pylon_1"
         node:t="lau_7_001"
+        node:t="pylon_1_aim_9_l"
       }
 
       Weapon{
@@ -3027,18 +3261,19 @@ WeaponSlots{
 
     WeaponPreset{
       iconType:t="missile_type_f_air_to_air_midrange"
-      name:t="aim_120a_slot1"
-      reqModification:t="us_aim_120a"
+      name:t="aim_120b_slot1"
+      reqModification:t="us_aim_120b"
 
       ShowNodes{
         node:t="pylon_1"
         node:t="lau_7_001"
+        node:t="pylon_1_aim_9_l"
       }
 
       Weapon{
         trigger:t="aam"
-        blk:t="gameData/Weapons/rocketGuns/us_aim_120a.blk"
-        emitter:t="aim_9_001"
+        blk:t="gameData/Weapons/rocketGuns/us_aim_120b.blk"
+        emitter:t="aim_120a_001"
         bullets:i=1
         external:b=yes
         separate:b=yes
@@ -3127,7 +3362,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=1
-        preset:t="aim_120a_slot1"
+        preset:t="aim_120b_slot1"
       }
 
       BannedWeaponPreset{
@@ -3142,7 +3377,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=3
-        preset:t="aim_120a_slot3_default"
+        preset:t="aim_120b_slot3_default"
       }
     }
 
@@ -3163,6 +3398,7 @@ WeaponSlots{
         external:b=yes
         separate:b=yes
         machLimit:r=1.01
+        dragCx:r=0.02
       }
 
       DependentWeaponPreset{
@@ -3182,7 +3418,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=1
-        preset:t="aim_120a_slot1"
+        preset:t="aim_120b_slot1"
       }
 
       BannedWeaponPreset{
@@ -3197,7 +3433,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=3
-        preset:t="aim_120a_slot3_default"
+        preset:t="aim_120b_slot3_default"
       }
     }
 
@@ -3237,7 +3473,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=1
-        preset:t="aim_120a_slot1"
+        preset:t="aim_120b_slot1"
       }
 
       BannedWeaponPreset{
@@ -3252,7 +3488,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=3
-        preset:t="aim_120a_slot3_default"
+        preset:t="aim_120b_slot3_default"
       }
     }
 
@@ -3288,7 +3524,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=1
-        preset:t="aim_120a_slot1"
+        preset:t="aim_120b_slot1"
       }
 
       BannedWeaponPreset{
@@ -3303,7 +3539,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=3
-        preset:t="aim_120a_slot3_default"
+        preset:t="aim_120b_slot3_default"
       }
     }
 
@@ -3367,11 +3603,32 @@ WeaponSlots{
         bullets:i=1
         external:b=yes
         separate:b=yes
+        dragCx:r=0.028
       }
 
       DependentWeaponPreset{
         slot:i=12
         preset:t="ptb_right"
+      }
+
+      BannedWeaponPreset{
+        slot:i=4
+        preset:t="aim_7m_slot4"
+      }
+
+      BannedWeaponPreset{
+        slot:i=4
+        preset:t="aim_7m_tank_slot4"
+      }
+
+      BannedWeaponPreset{
+        slot:i=10
+        preset:t="aim_7m_slot10"
+      }
+
+      BannedWeaponPreset{
+        slot:i=10
+        preset:t="aim_7m_tank_slot10"
       }
     }
   }
@@ -3389,6 +3646,7 @@ WeaponSlots{
       ShowNodes{
         node:t="pylon_1"
         node:t="lau_7_002"
+        node:t="pylon_1_aim_9_r"
       }
 
       Weapon{
@@ -3409,6 +3667,7 @@ WeaponSlots{
       ShowNodes{
         node:t="pylon_1"
         node:t="lau_7_002"
+        node:t="pylon_1_aim_9_r"
       }
 
       Weapon{
@@ -3423,17 +3682,18 @@ WeaponSlots{
 
     WeaponPreset{
       iconType:t="missile_type_f_air_to_air_midrange"
-      name:t="aim_120a_slot3_default"
+      name:t="aim_120b_slot3_default"
 
       ShowNodes{
         node:t="pylon_1"
         node:t="lau_7_002"
+        node:t="pylon_1_aim_9_r"
       }
 
       Weapon{
         trigger:t="aam"
-        blk:t="gameData/Weapons/rocketGuns/us_aim_120a_default.blk"
-        emitter:t="aim_9_002"
+        blk:t="gameData/Weapons/rocketGuns/us_aim_120b_default.blk"
+        emitter:t="aim_120a_002"
         bullets:i=1
         external:b=yes
         separate:b=yes
@@ -3448,7 +3708,7 @@ WeaponSlots{
     notUseforDisbalanceCalculation:b=yes
 
     WeaponPreset{
-      iconType:t="missile_type_b_air_to_air_midrange_group"
+      iconType:t="missile_air_to_air_midrange_special_group"
       name:t="aim_7m_slot4"
       reqModification:t="us_aim_7m"
 
@@ -3478,6 +3738,7 @@ WeaponSlots{
 
       ShowNodes{
         node:t="fuel_tank1"
+        node:t="fuel_tank2"
         node:t="pylon_10"
         node:t="pylon_10_rocket_locks"
       }
@@ -3500,25 +3761,25 @@ WeaponSlots{
         separate:b=yes
       }
 
-      DependentWeaponPreset{
-        slot:i=5
-        preset:t="fueltank_fuse_slot5"
+      BannedWeaponPreset{
+        slot:i=10
+        preset:t="aim_7m_slot10"
       }
 
-      DependentWeaponPreset{
-        slot:i=9
-        preset:t="fueltank_fuse_slot9"
+      BannedWeaponPreset{
+        slot:i=10
+        preset:t="aim_120b_slot10"
       }
     }
 
     WeaponPreset{
       iconType:t="missile_type_f_air_to_air_midrange_group"
-      name:t="aim_120a_slot4"
-      reqModification:t="us_aim_120a"
+      name:t="aim_120b_slot4"
+      reqModification:t="us_aim_120b"
 
       Weapon{
         trigger:t="aam"
-        blk:t="gameData/Weapons/rocketGuns/us_aim_120a.blk"
+        blk:t="gameData/Weapons/rocketGuns/us_aim_120b.blk"
         emitter:t="aim_7e_003"
         bullets:i=1
         external:b=yes
@@ -3527,7 +3788,7 @@ WeaponSlots{
 
       Weapon{
         trigger:t="aam"
-        blk:t="gameData/Weapons/rocketGuns/us_aim_120a.blk"
+        blk:t="gameData/Weapons/rocketGuns/us_aim_120b.blk"
         emitter:t="aim_7e_001"
         bullets:i=1
         external:b=yes
@@ -3537,18 +3798,19 @@ WeaponSlots{
 
     WeaponPreset{
       iconType:t="ptb_fuse_missile_type_f_air_to_air_midrange_group_x2"
-      name:t="aim_120a_tank_slot4"
-      reqModification:t="us_aim_120a"
+      name:t="aim_120b_tank_slot4"
+      reqModification:t="us_aim_120b"
 
       ShowNodes{
         node:t="fuel_tank1"
+        node:t="fuel_tank2"
         node:t="pylon_10"
         node:t="pylon_10_rocket_locks"
       }
 
       Weapon{
         trigger:t="aam"
-        blk:t="gameData/Weapons/rocketGuns/us_aim_120a.blk"
+        blk:t="gameData/Weapons/rocketGuns/us_aim_120b.blk"
         emitter:t="aim_7e_007"
         bullets:i=1
         external:b=yes
@@ -3557,21 +3819,21 @@ WeaponSlots{
 
       Weapon{
         trigger:t="aam"
-        blk:t="gameData/Weapons/rocketGuns/us_aim_120a.blk"
+        blk:t="gameData/Weapons/rocketGuns/us_aim_120b.blk"
         emitter:t="aim_7e_005"
         bullets:i=1
         external:b=yes
         separate:b=yes
       }
 
-      DependentWeaponPreset{
-        slot:i=5
-        preset:t="fueltank_fuse_slot5"
+      BannedWeaponPreset{
+        slot:i=10
+        preset:t="aim_7m_slot10"
       }
 
-      DependentWeaponPreset{
-        slot:i=9
-        preset:t="fueltank_fuse_slot9"
+      BannedWeaponPreset{
+        slot:i=10
+        preset:t="aim_120b_slot10"
       }
     }
   }
@@ -3602,11 +3864,7 @@ WeaponSlots{
         bullets:i=1
         external:b=yes
         jettisonable:b=no
-      }
-
-      DependentWeaponPreset{
-        slot:i=9
-        preset:t="fueltank_fuse_slot9"
+        dragCx:r=0.028
       }
 
       BannedWeaponPreset{
@@ -3621,12 +3879,12 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_slot4"
+        preset:t="aim_120b_slot4"
       }
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_tank_slot4"
+        preset:t="aim_120b_tank_slot4"
       }
 
       BannedWeaponPreset{
@@ -3636,7 +3894,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_slot10"
+        preset:t="aim_120b_slot10"
       }
 
       BannedWeaponPreset{
@@ -3646,14 +3904,13 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_tank_slot10"
+        preset:t="aim_120b_tank_slot10"
       }
     }
 
     WeaponPreset{
       iconType:t="bombs_ptb_fuse_middle_group_x6"
       name:t="us_mk82_x6_tank_slot5_fuel_tank"
-      reqModification:t="us_500lb_mk82_gbu38_jdam"
 
       ShowNodes{
         node:t="pylon_4"
@@ -3680,6 +3937,7 @@ WeaponSlots{
         bullets:i=1
         external:b=yes
         jettisonable:b=no
+        dragCx:r=0.028
       }
 
       Weapon{
@@ -3754,12 +4012,12 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_slot4"
+        preset:t="aim_120b_slot4"
       }
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_tank_slot4"
+        preset:t="aim_120b_tank_slot4"
       }
 
       BannedWeaponPreset{
@@ -3769,7 +4027,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_slot10"
+        preset:t="aim_120b_slot10"
       }
 
       BannedWeaponPreset{
@@ -3779,7 +4037,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_tank_slot10"
+        preset:t="aim_120b_tank_slot10"
       }
     }
 
@@ -3812,6 +4070,7 @@ WeaponSlots{
         bullets:i=1
         external:b=yes
         jettisonable:b=no
+        dragCx:r=0.028
       }
 
       Weapon{
@@ -3886,12 +4145,12 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_slot4"
+        preset:t="aim_120b_slot4"
       }
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_tank_slot4"
+        preset:t="aim_120b_tank_slot4"
       }
 
       BannedWeaponPreset{
@@ -3901,7 +4160,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_slot10"
+        preset:t="aim_120b_slot10"
       }
 
       BannedWeaponPreset{
@@ -3911,14 +4170,13 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_tank_slot10"
+        preset:t="aim_120b_tank_slot10"
       }
     }
 
     WeaponPreset{
       iconType:t="bombs_middle_group_x6"
       name:t="us_mk82_x6_tank_slot5"
-      reqModification:t="us_500lb_mk82_gbu38_jdam"
 
       ShowNodes{
         node:t="pylon_4"
@@ -4005,12 +4263,12 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_slot4"
+        preset:t="aim_120b_slot4"
       }
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_tank_slot4"
+        preset:t="aim_120b_tank_slot4"
       }
 
       BannedWeaponPreset{
@@ -4020,7 +4278,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_slot10"
+        preset:t="aim_120b_slot10"
       }
 
       BannedWeaponPreset{
@@ -4030,7 +4288,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_tank_slot10"
+        preset:t="aim_120b_tank_slot10"
       }
     }
 
@@ -4124,12 +4382,12 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_slot4"
+        preset:t="aim_120b_slot4"
       }
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_tank_slot4"
+        preset:t="aim_120b_tank_slot4"
       }
 
       BannedWeaponPreset{
@@ -4139,7 +4397,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_slot10"
+        preset:t="aim_120b_slot10"
       }
 
       BannedWeaponPreset{
@@ -4149,7 +4407,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_tank_slot10"
+        preset:t="aim_120b_tank_slot10"
       }
     }
 
@@ -4182,6 +4440,7 @@ WeaponSlots{
         bullets:i=1
         external:b=yes
         jettisonable:b=no
+        dragCx:r=0.028
       }
 
       Weapon{
@@ -4216,12 +4475,12 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_slot4"
+        preset:t="aim_120b_slot4"
       }
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_tank_slot4"
+        preset:t="aim_120b_tank_slot4"
       }
 
       BannedWeaponPreset{
@@ -4231,7 +4490,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_slot10"
+        preset:t="aim_120b_slot10"
       }
 
       BannedWeaponPreset{
@@ -4241,7 +4500,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_tank_slot10"
+        preset:t="aim_120b_tank_slot10"
       }
     }
 
@@ -4295,12 +4554,12 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_slot4"
+        preset:t="aim_120b_slot4"
       }
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_tank_slot4"
+        preset:t="aim_120b_tank_slot4"
       }
 
       BannedWeaponPreset{
@@ -4310,7 +4569,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_slot10"
+        preset:t="aim_120b_slot10"
       }
 
       BannedWeaponPreset{
@@ -4320,7 +4579,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_tank_slot10"
+        preset:t="aim_120b_tank_slot10"
       }
     }
 
@@ -4353,6 +4612,7 @@ WeaponSlots{
         bullets:i=1
         external:b=yes
         jettisonable:b=no
+        dragCx:r=0.028
       }
 
       Weapon{
@@ -4387,12 +4647,12 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_slot4"
+        preset:t="aim_120b_slot4"
       }
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_tank_slot4"
+        preset:t="aim_120b_tank_slot4"
       }
 
       BannedWeaponPreset{
@@ -4402,7 +4662,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_slot10"
+        preset:t="aim_120b_slot10"
       }
 
       BannedWeaponPreset{
@@ -4412,12 +4672,12 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_tank_slot10"
+        preset:t="aim_120b_tank_slot10"
       }
     }
 
     WeaponPreset{
-      iconType:t="bombs_heavy_middle_drag_group"
+      iconType:t="bombs_heavy_high_drag_group"
       name:t="us_mk84_air_tank_slot5"
       reqModification:t="us_2000lb_mk84_gbu31_jdam"
 
@@ -4466,12 +4726,12 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_slot4"
+        preset:t="aim_120b_slot4"
       }
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_tank_slot4"
+        preset:t="aim_120b_tank_slot4"
       }
 
       BannedWeaponPreset{
@@ -4481,7 +4741,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_slot10"
+        preset:t="aim_120b_slot10"
       }
 
       BannedWeaponPreset{
@@ -4491,7 +4751,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_tank_slot10"
+        preset:t="aim_120b_tank_slot10"
       }
     }
 
@@ -4524,6 +4784,7 @@ WeaponSlots{
         bullets:i=1
         external:b=yes
         jettisonable:b=no
+        dragCx:r=0.028
       }
 
       Weapon{
@@ -4583,12 +4844,12 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_slot4"
+        preset:t="aim_120b_slot4"
       }
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_tank_slot4"
+        preset:t="aim_120b_tank_slot4"
       }
 
       BannedWeaponPreset{
@@ -4598,7 +4859,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_slot10"
+        preset:t="aim_120b_slot10"
       }
 
       BannedWeaponPreset{
@@ -4608,7 +4869,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_tank_slot10"
+        preset:t="aim_120b_tank_slot10"
       }
     }
 
@@ -4641,6 +4902,7 @@ WeaponSlots{
         bullets:i=1
         external:b=yes
         jettisonable:b=no
+        dragCx:r=0.028
       }
 
       Weapon{
@@ -4651,6 +4913,7 @@ WeaponSlots{
         external:b=yes
         separate:b=yes
         machLimit:r=1.01
+        dragCx:r=0.02
       }
 
       DependentWeaponPreset{
@@ -4670,12 +4933,12 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_slot4"
+        preset:t="aim_120b_slot4"
       }
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_tank_slot4"
+        preset:t="aim_120b_tank_slot4"
       }
 
       BannedWeaponPreset{
@@ -4685,7 +4948,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_slot10"
+        preset:t="aim_120b_slot10"
       }
 
       BannedWeaponPreset{
@@ -4695,7 +4958,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_tank_slot10"
+        preset:t="aim_120b_tank_slot10"
       }
     }
 
@@ -4728,6 +4991,7 @@ WeaponSlots{
         bullets:i=1
         external:b=yes
         jettisonable:b=no
+        dragCx:r=0.028
       }
 
       Weapon{
@@ -4767,12 +5031,12 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_slot4"
+        preset:t="aim_120b_slot4"
       }
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_tank_slot4"
+        preset:t="aim_120b_tank_slot4"
       }
 
       BannedWeaponPreset{
@@ -4782,7 +5046,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_slot10"
+        preset:t="aim_120b_slot10"
       }
 
       BannedWeaponPreset{
@@ -4792,12 +5056,12 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_tank_slot10"
+        preset:t="aim_120b_tank_slot10"
       }
     }
 
     WeaponPreset{
-      iconType:t="guided_bomb_middle_jdam_group_x3"
+      iconType:t="bombs_ptb_fuse_guided_bomb_middle_jdam_group_x3"
       name:t="us_gbu_38_slot5_fuel_tank"
       reqModification:t="us_500lb_mk82_gbu38_jdam"
 
@@ -4825,6 +5089,7 @@ WeaponSlots{
         bullets:i=1
         external:b=yes
         jettisonable:b=no
+        dragCx:r=0.028
       }
 
       Weapon{
@@ -4850,37 +5115,7 @@ WeaponSlots{
       Weapon{
         trigger:t="guided bombs"
         blk:t="gameData/Weapons/BombGuns/us_500lb_gbu38_usaf.blk"
-        emitter:t="250lb_mk_81_001"
-        bullets:i=1
-        external:b=yes
-        separate:b=yes
-        machLimit:r=1.01
-      }
-
-      Weapon{
-        trigger:t="guided bombs"
-        blk:t="gameData/Weapons/BombGuns/us_500lb_gbu38_usaf.blk"
-        emitter:t="250lb_mk_81_003"
-        bullets:i=1
-        external:b=yes
-        separate:b=yes
-        machLimit:r=1.01
-      }
-
-      Weapon{
-        trigger:t="guided bombs"
-        blk:t="gameData/Weapons/BombGuns/us_500lb_gbu38_usaf.blk"
         emitter:t="250lb_mk_81_006"
-        bullets:i=1
-        external:b=yes
-        separate:b=yes
-        machLimit:r=1.01
-      }
-
-      Weapon{
-        trigger:t="guided bombs"
-        blk:t="gameData/Weapons/BombGuns/us_500lb_gbu38_usaf.blk"
-        emitter:t="250lb_mk_81_002"
         bullets:i=1
         external:b=yes
         separate:b=yes
@@ -4899,12 +5134,12 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_slot4"
+        preset:t="aim_120b_slot4"
       }
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_tank_slot4"
+        preset:t="aim_120b_tank_slot4"
       }
 
       BannedWeaponPreset{
@@ -4914,7 +5149,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_slot10"
+        preset:t="aim_120b_slot10"
       }
 
       BannedWeaponPreset{
@@ -4924,7 +5159,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_tank_slot10"
+        preset:t="aim_120b_tank_slot10"
       }
     }
 
@@ -4957,6 +5192,7 @@ WeaponSlots{
         bullets:i=1
         external:b=yes
         jettisonable:b=no
+        dragCx:r=0.028
       }
 
       Weapon{
@@ -4991,12 +5227,12 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_slot4"
+        preset:t="aim_120b_slot4"
       }
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_tank_slot4"
+        preset:t="aim_120b_tank_slot4"
       }
 
       BannedWeaponPreset{
@@ -5006,7 +5242,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_slot10"
+        preset:t="aim_120b_slot10"
       }
 
       BannedWeaponPreset{
@@ -5016,7 +5252,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_tank_slot10"
+        preset:t="aim_120b_tank_slot10"
       }
     }
 
@@ -5049,6 +5285,7 @@ WeaponSlots{
         bullets:i=1
         external:b=yes
         jettisonable:b=no
+        dragCx:r=0.028
       }
 
       Weapon{
@@ -5081,12 +5318,12 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_slot4"
+        preset:t="aim_120b_slot4"
       }
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_tank_slot4"
+        preset:t="aim_120b_tank_slot4"
       }
 
       BannedWeaponPreset{
@@ -5096,7 +5333,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_slot10"
+        preset:t="aim_120b_slot10"
       }
 
       BannedWeaponPreset{
@@ -5106,7 +5343,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_tank_slot10"
+        preset:t="aim_120b_tank_slot10"
       }
     }
 
@@ -5185,12 +5422,12 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_slot4"
+        preset:t="aim_120b_slot4"
       }
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_tank_slot4"
+        preset:t="aim_120b_tank_slot4"
       }
 
       BannedWeaponPreset{
@@ -5200,7 +5437,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_slot10"
+        preset:t="aim_120b_slot10"
       }
 
       BannedWeaponPreset{
@@ -5210,7 +5447,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_tank_slot10"
+        preset:t="aim_120b_tank_slot10"
       }
     }
 
@@ -5240,6 +5477,7 @@ WeaponSlots{
         external:b=yes
         separate:b=yes
         machLimit:r=1.01
+        dragCx:r=0.02
       }
 
       DependentWeaponPreset{
@@ -5259,12 +5497,12 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_slot4"
+        preset:t="aim_120b_slot4"
       }
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_tank_slot4"
+        preset:t="aim_120b_tank_slot4"
       }
 
       BannedWeaponPreset{
@@ -5274,7 +5512,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_slot10"
+        preset:t="aim_120b_slot10"
       }
 
       BannedWeaponPreset{
@@ -5284,7 +5522,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_tank_slot10"
+        preset:t="aim_120b_tank_slot10"
       }
     }
 
@@ -5343,12 +5581,12 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_slot4"
+        preset:t="aim_120b_slot4"
       }
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_tank_slot4"
+        preset:t="aim_120b_tank_slot4"
       }
 
       BannedWeaponPreset{
@@ -5358,7 +5596,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_slot10"
+        preset:t="aim_120b_slot10"
       }
 
       BannedWeaponPreset{
@@ -5368,7 +5606,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_tank_slot10"
+        preset:t="aim_120b_tank_slot10"
       }
     }
 
@@ -5413,37 +5651,7 @@ WeaponSlots{
       Weapon{
         trigger:t="guided bombs"
         blk:t="gameData/Weapons/BombGuns/us_500lb_gbu38_usaf.blk"
-        emitter:t="250lb_mk_81_001"
-        bullets:i=1
-        external:b=yes
-        separate:b=yes
-        machLimit:r=1.01
-      }
-
-      Weapon{
-        trigger:t="guided bombs"
-        blk:t="gameData/Weapons/BombGuns/us_500lb_gbu38_usaf.blk"
-        emitter:t="250lb_mk_81_003"
-        bullets:i=1
-        external:b=yes
-        separate:b=yes
-        machLimit:r=1.01
-      }
-
-      Weapon{
-        trigger:t="guided bombs"
-        blk:t="gameData/Weapons/BombGuns/us_500lb_gbu38_usaf.blk"
         emitter:t="250lb_mk_81_006"
-        bullets:i=1
-        external:b=yes
-        separate:b=yes
-        machLimit:r=1.01
-      }
-
-      Weapon{
-        trigger:t="guided bombs"
-        blk:t="gameData/Weapons/BombGuns/us_500lb_gbu38_usaf.blk"
-        emitter:t="250lb_mk_81_002"
         bullets:i=1
         external:b=yes
         separate:b=yes
@@ -5462,12 +5670,12 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_slot4"
+        preset:t="aim_120b_slot4"
       }
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_tank_slot4"
+        preset:t="aim_120b_tank_slot4"
       }
 
       BannedWeaponPreset{
@@ -5477,7 +5685,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_slot10"
+        preset:t="aim_120b_slot10"
       }
 
       BannedWeaponPreset{
@@ -5487,7 +5695,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_tank_slot10"
+        preset:t="aim_120b_tank_slot10"
       }
     }
 
@@ -5541,12 +5749,12 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_slot4"
+        preset:t="aim_120b_slot4"
       }
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_tank_slot4"
+        preset:t="aim_120b_tank_slot4"
       }
 
       BannedWeaponPreset{
@@ -5556,7 +5764,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_slot10"
+        preset:t="aim_120b_slot10"
       }
 
       BannedWeaponPreset{
@@ -5566,7 +5774,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_tank_slot10"
+        preset:t="aim_120b_tank_slot10"
       }
     }
 
@@ -5618,12 +5826,12 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_slot4"
+        preset:t="aim_120b_slot4"
       }
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_tank_slot4"
+        preset:t="aim_120b_tank_slot4"
       }
 
       BannedWeaponPreset{
@@ -5633,7 +5841,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_slot10"
+        preset:t="aim_120b_slot10"
       }
 
       BannedWeaponPreset{
@@ -5643,7 +5851,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_tank_slot10"
+        preset:t="aim_120b_tank_slot10"
       }
     }
   }
@@ -5666,9 +5874,7 @@ WeaponSlots{
         node:t="us_lantirn_pod_anaaq14"
         node:t="optic2_turret"
         node:t="optic2_gun"
-      }
-
-      ShowNodes{
+        node:t="chaff_cap_l1"
         node:t="chaff_cap_l"
       }
 
@@ -5677,6 +5883,7 @@ WeaponSlots{
         blk:t="gameData/Weapons/equipment/an_aaq_25_lantirn.blk"
         emitter:t="fuel_tank1"
         bullets:i=1
+        dragCx:r=0.035
       }
 
       sensors{
@@ -5687,7 +5894,7 @@ WeaponSlots{
 
         sensor{
           blk:t="gameData/sensors/ir_tracker_tgp.blk"
-          node:t="optic1_gun"
+          node:t="optic2_gun"
         }
       }
     }
@@ -5695,6 +5902,11 @@ WeaponSlots{
     WeaponPreset{
       iconType:t="ltc"
       name:t="ltc_left"
+
+      HideNodes{
+        node:t="chaff_cap_l1"
+        node:t="chaff_cap_l"
+      }
 
       Weapon{
         trigger:t="countermeasures"
@@ -5800,6 +6012,7 @@ WeaponSlots{
         external:b=yes
         separate:b=yes
         machLimit:r=1.01
+        dragCx:r=0.02
       }
 
       DependentWeaponPreset{
@@ -5831,6 +6044,27 @@ WeaponSlots{
       DependentWeaponPreset{
         slot:i=6
         preset:t="lantirn"
+      }
+    }
+
+    WeaponPreset{
+      iconType:t="guided_bomb_middle_jdam"
+      name:t="us_gbu_38_slot7"
+      reqModification:t="us_500lb_mk82_gbu38_jdam"
+
+      ShowNodes{
+        node:t="pylon_3"
+        node:t="pylon_3_holder"
+      }
+
+      Weapon{
+        trigger:t="guided bombs"
+        blk:t="gameData/Weapons/BombGuns/us_500lb_gbu38_usaf.blk"
+        emitter:t="us_2000lb_gbu_8_002"
+        bullets:i=1
+        external:b=yes
+        separate:b=yes
+        machLimit:r=1.01
       }
     }
 
@@ -5875,6 +6109,7 @@ WeaponSlots{
         bullets:i=1
         external:b=yes
         separate:b=yes
+        dragCx:r=0.028
       }
     }
 
@@ -5908,6 +6143,10 @@ WeaponSlots{
     WeaponPreset{
       iconType:t="ltc"
       name:t="ltc_right"
+
+      HideNodes{
+        node:t="chaff_cap_r"
+      }
 
       Weapon{
         trigger:t="countermeasures"
@@ -5947,11 +6186,7 @@ WeaponSlots{
         bullets:i=1
         external:b=yes
         jettisonable:b=no
-      }
-
-      DependentWeaponPreset{
-        slot:i=5
-        preset:t="fueltank_fuse_slot5"
+        dragCx:r=0.028
       }
 
       BannedWeaponPreset{
@@ -5966,12 +6201,12 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_slot4"
+        preset:t="aim_120b_slot4"
       }
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_tank_slot4"
+        preset:t="aim_120b_tank_slot4"
       }
 
       BannedWeaponPreset{
@@ -5981,7 +6216,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_slot10"
+        preset:t="aim_120b_slot10"
       }
 
       BannedWeaponPreset{
@@ -5991,14 +6226,13 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_tank_slot10"
+        preset:t="aim_120b_tank_slot10"
       }
     }
 
     WeaponPreset{
       iconType:t="bombs_ptb_fuse_middle_group_x6"
       name:t="us_mk82_x6_tank_slot9_fuel_tank"
-      reqModification:t="us_500lb_mk82_gbu38_jdam"
 
       ShowNodes{
         node:t="pylon_7"
@@ -6024,6 +6258,7 @@ WeaponSlots{
         bullets:i=1
         external:b=yes
         jettisonable:b=no
+        dragCx:r=0.028
       }
 
       Weapon{
@@ -6098,12 +6333,12 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_slot4"
+        preset:t="aim_120b_slot4"
       }
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_tank_slot4"
+        preset:t="aim_120b_tank_slot4"
       }
 
       BannedWeaponPreset{
@@ -6113,7 +6348,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_slot10"
+        preset:t="aim_120b_slot10"
       }
 
       BannedWeaponPreset{
@@ -6123,7 +6358,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_tank_slot10"
+        preset:t="aim_120b_tank_slot10"
       }
     }
 
@@ -6156,6 +6391,7 @@ WeaponSlots{
         bullets:i=1
         external:b=yes
         jettisonable:b=no
+        dragCx:r=0.028
       }
 
       Weapon{
@@ -6230,12 +6466,12 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_slot4"
+        preset:t="aim_120b_slot4"
       }
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_tank_slot4"
+        preset:t="aim_120b_tank_slot4"
       }
 
       BannedWeaponPreset{
@@ -6245,7 +6481,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_slot10"
+        preset:t="aim_120b_slot10"
       }
 
       BannedWeaponPreset{
@@ -6255,14 +6491,13 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_tank_slot10"
+        preset:t="aim_120b_tank_slot10"
       }
     }
 
     WeaponPreset{
       iconType:t="bombs_middle_group_x6"
       name:t="us_mk82_x6_tank_slot9"
-      reqModification:t="us_500lb_mk82_gbu38_jdam"
 
       ShowNodes{
         node:t="pylon_7"
@@ -6349,12 +6584,12 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_slot4"
+        preset:t="aim_120b_slot4"
       }
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_tank_slot4"
+        preset:t="aim_120b_tank_slot4"
       }
 
       BannedWeaponPreset{
@@ -6364,7 +6599,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_slot10"
+        preset:t="aim_120b_slot10"
       }
 
       BannedWeaponPreset{
@@ -6374,7 +6609,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_tank_slot10"
+        preset:t="aim_120b_tank_slot10"
       }
     }
 
@@ -6468,12 +6703,12 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_slot4"
+        preset:t="aim_120b_slot4"
       }
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_tank_slot4"
+        preset:t="aim_120b_tank_slot4"
       }
 
       BannedWeaponPreset{
@@ -6483,7 +6718,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_slot10"
+        preset:t="aim_120b_slot10"
       }
 
       BannedWeaponPreset{
@@ -6493,7 +6728,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_tank_slot10"
+        preset:t="aim_120b_tank_slot10"
       }
     }
 
@@ -6526,6 +6761,7 @@ WeaponSlots{
         bullets:i=1
         external:b=yes
         jettisonable:b=no
+        dragCx:r=0.028
       }
 
       Weapon{
@@ -6560,12 +6796,12 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_slot4"
+        preset:t="aim_120b_slot4"
       }
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_tank_slot4"
+        preset:t="aim_120b_tank_slot4"
       }
 
       BannedWeaponPreset{
@@ -6575,7 +6811,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_slot10"
+        preset:t="aim_120b_slot10"
       }
 
       BannedWeaponPreset{
@@ -6585,7 +6821,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_tank_slot10"
+        preset:t="aim_120b_tank_slot10"
       }
     }
 
@@ -6639,12 +6875,12 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_slot4"
+        preset:t="aim_120b_slot4"
       }
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_tank_slot4"
+        preset:t="aim_120b_tank_slot4"
       }
 
       BannedWeaponPreset{
@@ -6654,7 +6890,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_slot10"
+        preset:t="aim_120b_slot10"
       }
 
       BannedWeaponPreset{
@@ -6664,7 +6900,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_tank_slot10"
+        preset:t="aim_120b_tank_slot10"
       }
     }
 
@@ -6697,6 +6933,7 @@ WeaponSlots{
         bullets:i=1
         external:b=yes
         jettisonable:b=no
+        dragCx:r=0.028
       }
 
       Weapon{
@@ -6731,12 +6968,12 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_slot4"
+        preset:t="aim_120b_slot4"
       }
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_tank_slot4"
+        preset:t="aim_120b_tank_slot4"
       }
 
       BannedWeaponPreset{
@@ -6746,7 +6983,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_slot10"
+        preset:t="aim_120b_slot10"
       }
 
       BannedWeaponPreset{
@@ -6756,12 +6993,12 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_tank_slot10"
+        preset:t="aim_120b_tank_slot10"
       }
     }
 
     WeaponPreset{
-      iconType:t="bombs_heavy_middle_drag_group"
+      iconType:t="bombs_heavy_high_drag_group"
       name:t="us_mk84_air_tank_slot9"
       reqModification:t="us_2000lb_mk84_gbu31_jdam"
 
@@ -6810,12 +7047,12 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_slot4"
+        preset:t="aim_120b_slot4"
       }
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_tank_slot4"
+        preset:t="aim_120b_tank_slot4"
       }
 
       BannedWeaponPreset{
@@ -6825,7 +7062,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_slot10"
+        preset:t="aim_120b_slot10"
       }
 
       BannedWeaponPreset{
@@ -6835,7 +7072,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_tank_slot10"
+        preset:t="aim_120b_tank_slot10"
       }
     }
 
@@ -6868,6 +7105,7 @@ WeaponSlots{
         bullets:i=1
         external:b=yes
         jettisonable:b=no
+        dragCx:r=0.028
       }
 
       Weapon{
@@ -6927,12 +7165,12 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_slot4"
+        preset:t="aim_120b_slot4"
       }
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_tank_slot4"
+        preset:t="aim_120b_tank_slot4"
       }
 
       BannedWeaponPreset{
@@ -6942,7 +7180,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_slot10"
+        preset:t="aim_120b_slot10"
       }
 
       BannedWeaponPreset{
@@ -6952,7 +7190,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_tank_slot10"
+        preset:t="aim_120b_tank_slot10"
       }
     }
 
@@ -6985,6 +7223,7 @@ WeaponSlots{
         bullets:i=1
         external:b=yes
         jettisonable:b=no
+        dragCx:r=0.028
       }
 
       Weapon{
@@ -6995,6 +7234,7 @@ WeaponSlots{
         external:b=yes
         separate:b=yes
         machLimit:r=1.01
+        dragCx:r=0.02
       }
 
       DependentWeaponPreset{
@@ -7014,12 +7254,12 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_slot4"
+        preset:t="aim_120b_slot4"
       }
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_tank_slot4"
+        preset:t="aim_120b_tank_slot4"
       }
 
       BannedWeaponPreset{
@@ -7029,7 +7269,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_slot10"
+        preset:t="aim_120b_slot10"
       }
 
       BannedWeaponPreset{
@@ -7039,7 +7279,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_tank_slot10"
+        preset:t="aim_120b_tank_slot10"
       }
     }
 
@@ -7072,6 +7312,7 @@ WeaponSlots{
         bullets:i=1
         external:b=yes
         jettisonable:b=no
+        dragCx:r=0.028
       }
 
       Weapon{
@@ -7111,12 +7352,12 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_slot4"
+        preset:t="aim_120b_slot4"
       }
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_tank_slot4"
+        preset:t="aim_120b_tank_slot4"
       }
 
       BannedWeaponPreset{
@@ -7126,7 +7367,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_slot10"
+        preset:t="aim_120b_slot10"
       }
 
       BannedWeaponPreset{
@@ -7136,12 +7377,12 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_tank_slot10"
+        preset:t="aim_120b_tank_slot10"
       }
     }
 
     WeaponPreset{
-      iconType:t="guided_bomb_middle_jdam_group_x3"
+      iconType:t="bombs_ptb_fuse_guided_bomb_middle_jdam_group_x3"
       name:t="us_gbu_38_slot9_fuel_tank"
       reqModification:t="us_500lb_mk82_gbu38_jdam"
 
@@ -7169,6 +7410,7 @@ WeaponSlots{
         bullets:i=1
         external:b=yes
         jettisonable:b=no
+        dragCx:r=0.028
       }
 
       Weapon{
@@ -7194,37 +7436,7 @@ WeaponSlots{
       Weapon{
         trigger:t="guided bombs"
         blk:t="gameData/Weapons/BombGuns/us_500lb_gbu38_usaf.blk"
-        emitter:t="250lb_mk_81_012"
-        bullets:i=1
-        external:b=yes
-        separate:b=yes
-        machLimit:r=1.01
-      }
-
-      Weapon{
-        trigger:t="guided bombs"
-        blk:t="gameData/Weapons/BombGuns/us_500lb_gbu38_usaf.blk"
-        emitter:t="250lb_mk_81_014"
-        bullets:i=1
-        external:b=yes
-        separate:b=yes
-        machLimit:r=1.01
-      }
-
-      Weapon{
-        trigger:t="guided bombs"
-        blk:t="gameData/Weapons/BombGuns/us_500lb_gbu38_usaf.blk"
         emitter:t="250lb_mk_81_010"
-        bullets:i=1
-        external:b=yes
-        separate:b=yes
-        machLimit:r=1.01
-      }
-
-      Weapon{
-        trigger:t="guided bombs"
-        blk:t="gameData/Weapons/BombGuns/us_500lb_gbu38_usaf.blk"
-        emitter:t="250lb_mk_81_013"
         bullets:i=1
         external:b=yes
         separate:b=yes
@@ -7243,12 +7455,12 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_slot4"
+        preset:t="aim_120b_slot4"
       }
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_tank_slot4"
+        preset:t="aim_120b_tank_slot4"
       }
 
       BannedWeaponPreset{
@@ -7258,7 +7470,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_slot10"
+        preset:t="aim_120b_slot10"
       }
 
       BannedWeaponPreset{
@@ -7268,7 +7480,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_tank_slot10"
+        preset:t="aim_120b_tank_slot10"
       }
     }
 
@@ -7301,6 +7513,7 @@ WeaponSlots{
         bullets:i=1
         external:b=yes
         jettisonable:b=no
+        dragCx:r=0.028
       }
 
       Weapon{
@@ -7335,12 +7548,12 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_slot4"
+        preset:t="aim_120b_slot4"
       }
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_tank_slot4"
+        preset:t="aim_120b_tank_slot4"
       }
 
       BannedWeaponPreset{
@@ -7350,7 +7563,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_slot10"
+        preset:t="aim_120b_slot10"
       }
 
       BannedWeaponPreset{
@@ -7360,7 +7573,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_tank_slot10"
+        preset:t="aim_120b_tank_slot10"
       }
     }
 
@@ -7393,6 +7606,7 @@ WeaponSlots{
         bullets:i=1
         external:b=yes
         jettisonable:b=no
+        dragCx:r=0.028
       }
 
       Weapon{
@@ -7425,12 +7639,12 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_slot4"
+        preset:t="aim_120b_slot4"
       }
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_tank_slot4"
+        preset:t="aim_120b_tank_slot4"
       }
 
       BannedWeaponPreset{
@@ -7440,7 +7654,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_slot10"
+        preset:t="aim_120b_slot10"
       }
 
       BannedWeaponPreset{
@@ -7450,7 +7664,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_tank_slot10"
+        preset:t="aim_120b_tank_slot10"
       }
     }
 
@@ -7529,12 +7743,12 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_slot4"
+        preset:t="aim_120b_slot4"
       }
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_tank_slot4"
+        preset:t="aim_120b_tank_slot4"
       }
 
       BannedWeaponPreset{
@@ -7544,7 +7758,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_slot10"
+        preset:t="aim_120b_slot10"
       }
 
       BannedWeaponPreset{
@@ -7554,7 +7768,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_tank_slot10"
+        preset:t="aim_120b_tank_slot10"
       }
     }
 
@@ -7584,6 +7798,7 @@ WeaponSlots{
         external:b=yes
         separate:b=yes
         machLimit:r=1.01
+        dragCx:r=0.02
       }
 
       DependentWeaponPreset{
@@ -7603,12 +7818,12 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_slot4"
+        preset:t="aim_120b_slot4"
       }
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_tank_slot4"
+        preset:t="aim_120b_tank_slot4"
       }
 
       BannedWeaponPreset{
@@ -7618,7 +7833,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_slot10"
+        preset:t="aim_120b_slot10"
       }
 
       BannedWeaponPreset{
@@ -7628,7 +7843,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_tank_slot10"
+        preset:t="aim_120b_tank_slot10"
       }
     }
 
@@ -7687,12 +7902,12 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_slot4"
+        preset:t="aim_120b_slot4"
       }
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_tank_slot4"
+        preset:t="aim_120b_tank_slot4"
       }
 
       BannedWeaponPreset{
@@ -7702,7 +7917,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_slot10"
+        preset:t="aim_120b_slot10"
       }
 
       BannedWeaponPreset{
@@ -7712,7 +7927,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_tank_slot10"
+        preset:t="aim_120b_tank_slot10"
       }
     }
 
@@ -7757,37 +7972,7 @@ WeaponSlots{
       Weapon{
         trigger:t="guided bombs"
         blk:t="gameData/Weapons/BombGuns/us_500lb_gbu38_usaf.blk"
-        emitter:t="250lb_mk_81_012"
-        bullets:i=1
-        external:b=yes
-        separate:b=yes
-        machLimit:r=1.01
-      }
-
-      Weapon{
-        trigger:t="guided bombs"
-        blk:t="gameData/Weapons/BombGuns/us_500lb_gbu38_usaf.blk"
-        emitter:t="250lb_mk_81_014"
-        bullets:i=1
-        external:b=yes
-        separate:b=yes
-        machLimit:r=1.01
-      }
-
-      Weapon{
-        trigger:t="guided bombs"
-        blk:t="gameData/Weapons/BombGuns/us_500lb_gbu38_usaf.blk"
         emitter:t="250lb_mk_81_010"
-        bullets:i=1
-        external:b=yes
-        separate:b=yes
-        machLimit:r=1.01
-      }
-
-      Weapon{
-        trigger:t="guided bombs"
-        blk:t="gameData/Weapons/BombGuns/us_500lb_gbu38_usaf.blk"
-        emitter:t="250lb_mk_81_013"
         bullets:i=1
         external:b=yes
         separate:b=yes
@@ -7806,12 +7991,12 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_slot4"
+        preset:t="aim_120b_slot4"
       }
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_tank_slot4"
+        preset:t="aim_120b_tank_slot4"
       }
 
       BannedWeaponPreset{
@@ -7821,7 +8006,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_slot10"
+        preset:t="aim_120b_slot10"
       }
 
       BannedWeaponPreset{
@@ -7831,7 +8016,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_tank_slot10"
+        preset:t="aim_120b_tank_slot10"
       }
     }
 
@@ -7885,12 +8070,12 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_slot4"
+        preset:t="aim_120b_slot4"
       }
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_tank_slot4"
+        preset:t="aim_120b_tank_slot4"
       }
 
       BannedWeaponPreset{
@@ -7900,7 +8085,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_slot10"
+        preset:t="aim_120b_slot10"
       }
 
       BannedWeaponPreset{
@@ -7910,7 +8095,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_tank_slot10"
+        preset:t="aim_120b_tank_slot10"
       }
     }
 
@@ -7962,12 +8147,12 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_slot4"
+        preset:t="aim_120b_slot4"
       }
 
       BannedWeaponPreset{
         slot:i=4
-        preset:t="aim_120a_tank_slot4"
+        preset:t="aim_120b_tank_slot4"
       }
 
       BannedWeaponPreset{
@@ -7977,7 +8162,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_slot10"
+        preset:t="aim_120b_slot10"
       }
 
       BannedWeaponPreset{
@@ -7987,7 +8172,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=10
-        preset:t="aim_120a_tank_slot10"
+        preset:t="aim_120b_tank_slot10"
       }
     }
   }
@@ -8028,6 +8213,7 @@ WeaponSlots{
       reqModification:t="us_aim_7m"
 
       ShowNodes{
+        node:t="fuel_tank1"
         node:t="fuel_tank2"
         node:t="pylon_11"
         node:t="pylon_11_rocket_locks"
@@ -8050,16 +8236,26 @@ WeaponSlots{
         external:b=yes
         separate:b=yes
       }
+
+      BannedWeaponPreset{
+        slot:i=4
+        preset:t="aim_7m_slot4"
+      }
+
+      BannedWeaponPreset{
+        slot:i=4
+        preset:t="aim_120b_slot4"
+      }
     }
 
     WeaponPreset{
       iconType:t="missile_type_f_air_to_air_midrange_group"
-      name:t="aim_120a_slot10"
-      reqModification:t="us_aim_120a"
+      name:t="aim_120b_slot10"
+      reqModification:t="us_aim_120b"
 
       Weapon{
         trigger:t="aam"
-        blk:t="gameData/Weapons/rocketGuns/us_aim_120a.blk"
+        blk:t="gameData/Weapons/rocketGuns/us_aim_120b.blk"
         emitter:t="aim_7e_004"
         bullets:i=1
         external:b=yes
@@ -8068,7 +8264,7 @@ WeaponSlots{
 
       Weapon{
         trigger:t="aam"
-        blk:t="gameData/Weapons/rocketGuns/us_aim_120a.blk"
+        blk:t="gameData/Weapons/rocketGuns/us_aim_120b.blk"
         emitter:t="aim_7e_002"
         bullets:i=1
         external:b=yes
@@ -8078,10 +8274,11 @@ WeaponSlots{
 
     WeaponPreset{
       iconType:t="ptb_fuse_missile_type_f_air_to_air_midrange_group_x2"
-      name:t="aim_120a_tank_slot10"
-      reqModification:t="us_aim_120a"
+      name:t="aim_120b_tank_slot10"
+      reqModification:t="us_aim_120b"
 
       ShowNodes{
+        node:t="fuel_tank1"
         node:t="fuel_tank2"
         node:t="pylon_11"
         node:t="pylon_11_rocket_locks"
@@ -8089,7 +8286,7 @@ WeaponSlots{
 
       Weapon{
         trigger:t="aam"
-        blk:t="gameData/Weapons/rocketGuns/us_aim_120a.blk"
+        blk:t="gameData/Weapons/rocketGuns/us_aim_120b.blk"
         emitter:t="aim_7e_008"
         bullets:i=1
         external:b=yes
@@ -8098,11 +8295,21 @@ WeaponSlots{
 
       Weapon{
         trigger:t="aam"
-        blk:t="gameData/Weapons/rocketGuns/us_aim_120a.blk"
+        blk:t="gameData/Weapons/rocketGuns/us_aim_120b.blk"
         emitter:t="aim_7e_006"
         bullets:i=1
         external:b=yes
         separate:b=yes
+      }
+
+      BannedWeaponPreset{
+        slot:i=4
+        preset:t="aim_7m_slot4"
+      }
+
+      BannedWeaponPreset{
+        slot:i=4
+        preset:t="aim_120b_slot4"
       }
     }
   }
@@ -8120,6 +8327,7 @@ WeaponSlots{
       ShowNodes{
         node:t="pylon_2"
         node:t="lau_7_003"
+        node:t="pylon_2_aim_9_l"
       }
 
       Weapon{
@@ -8140,6 +8348,7 @@ WeaponSlots{
       ShowNodes{
         node:t="pylon_2"
         node:t="lau_7_003"
+        node:t="pylon_2_aim_9_l"
       }
 
       Weapon{
@@ -8154,17 +8363,18 @@ WeaponSlots{
 
     WeaponPreset{
       iconType:t="missile_type_f_air_to_air_midrange"
-      name:t="aim_120a_slot11_default"
+      name:t="aim_120b_slot11_default"
 
       ShowNodes{
         node:t="pylon_2"
         node:t="lau_7_003"
+        node:t="pylon_2_aim_9_l"
       }
 
       Weapon{
         trigger:t="aam"
-        blk:t="gameData/Weapons/rocketGuns/us_aim_120a_default.blk"
-        emitter:t="aim_9_003"
+        blk:t="gameData/Weapons/rocketGuns/us_aim_120b_default.blk"
+        emitter:t="aim_120a_003"
         bullets:i=1
         external:b=yes
         separate:b=yes
@@ -8253,7 +8463,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=11
-        preset:t="aim_120a_slot11_default"
+        preset:t="aim_120b_slot11_default"
       }
 
       BannedWeaponPreset{
@@ -8268,7 +8478,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=13
-        preset:t="aim_120a_slot13"
+        preset:t="aim_120b_slot13"
       }
     }
 
@@ -8289,6 +8499,7 @@ WeaponSlots{
         external:b=yes
         separate:b=yes
         machLimit:r=1.01
+        dragCx:r=0.02
       }
 
       DependentWeaponPreset{
@@ -8308,7 +8519,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=11
-        preset:t="aim_120a_slot11_default"
+        preset:t="aim_120b_slot11_default"
       }
 
       BannedWeaponPreset{
@@ -8323,7 +8534,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=13
-        preset:t="aim_120a_slot13"
+        preset:t="aim_120b_slot13"
       }
     }
 
@@ -8363,7 +8574,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=11
-        preset:t="aim_120a_slot11_default"
+        preset:t="aim_120b_slot11_default"
       }
 
       BannedWeaponPreset{
@@ -8378,7 +8589,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=13
-        preset:t="aim_120a_slot13"
+        preset:t="aim_120b_slot13"
       }
     }
 
@@ -8414,7 +8625,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=11
-        preset:t="aim_120a_slot11_default"
+        preset:t="aim_120b_slot11_default"
       }
 
       BannedWeaponPreset{
@@ -8429,7 +8640,7 @@ WeaponSlots{
 
       BannedWeaponPreset{
         slot:i=13
-        preset:t="aim_120a_slot13"
+        preset:t="aim_120b_slot13"
       }
     }
 
@@ -8493,11 +8704,32 @@ WeaponSlots{
         bullets:i=1
         external:b=yes
         separate:b=yes
+        dragCx:r=0.028
       }
 
       DependentWeaponPreset{
         slot:i=2
         preset:t="ptb_left"
+      }
+
+      BannedWeaponPreset{
+        slot:i=4
+        preset:t="aim_7m_slot4"
+      }
+
+      BannedWeaponPreset{
+        slot:i=4
+        preset:t="aim_7m_tank_slot4"
+      }
+
+      BannedWeaponPreset{
+        slot:i=10
+        preset:t="aim_7m_slot10"
+      }
+
+      BannedWeaponPreset{
+        slot:i=10
+        preset:t="aim_7m_tank_slot10"
       }
     }
   }
@@ -8514,6 +8746,7 @@ WeaponSlots{
       ShowNodes{
         node:t="pylon_2"
         node:t="lau_7_004"
+        node:t="pylon_2_aim_9_r"
       }
 
       Weapon{
@@ -8533,6 +8766,7 @@ WeaponSlots{
       ShowNodes{
         node:t="pylon_2"
         node:t="lau_7_004"
+        node:t="pylon_2_aim_9_r"
       }
 
       Weapon{
@@ -8547,18 +8781,19 @@ WeaponSlots{
 
     WeaponPreset{
       iconType:t="missile_type_f_air_to_air_midrange"
-      name:t="aim_120a_slot13"
-      reqModification:t="us_aim_120a"
+      name:t="aim_120b_slot13"
+      reqModification:t="us_aim_120b"
 
       ShowNodes{
         node:t="pylon_2"
         node:t="lau_7_004"
+        node:t="pylon_2_aim_9_r"
       }
 
       Weapon{
         trigger:t="aam"
-        blk:t="gameData/Weapons/rocketGuns/us_aim_120a.blk"
-        emitter:t="aim_9_004"
+        blk:t="gameData/Weapons/rocketGuns/us_aim_120b.blk"
+        emitter:t="aim_120a_004"
         bullets:i=1
         external:b=yes
         separate:b=yes
@@ -8928,7 +9163,7 @@ modifications{
     modClass:t="weapon"
   }
 
-  us_aim_120a{
+  us_aim_120b{
     reqModification:t="us_aim_9m"
     tier:i=4
     modClass:t="weapon"
@@ -8944,6 +9179,14 @@ user_skin{
 
   replace_tex{
     from:t="f_15i_raam_n*"
+  }
+}
+
+default_skin{
+
+  replace_tex{
+    from:t="us_610gal_drop_tank_dark_c*"
+    to:t="us_610gal_drop_tank_iaf_c*"
   }
 }
 
@@ -9077,7 +9320,7 @@ lerxVapors{
     noiseParms:p2=0.5, 1.0
     smoothIntensityParams:p3=1.0, 2.315, 0.175
     density:r=1.0
-    intensityMult:r=2.0
+    intensityMult:r=4.0
     criticalAOA:p4=5.0, 20.0, 35.0, 40.0
     absoluteCriticalAOS:p2=2.0, 30.0
     absoluteCriticalAOA:p2=5.0, 40.0
@@ -9097,7 +9340,7 @@ lerxVapors{
     noiseParms:p2=0.5, 1.0
     smoothIntensityParams:p3=1.0, 2.315, 0.175
     density:r=1.0
-    intensityMult:r=2.0
+    intensityMult:r=4.0
     criticalAOA:p4=5.0, 20.0, 35.0, 40.0
     absoluteCriticalAOS:p2=2.0, 30.0
     absoluteCriticalAOA:p2=5.0, 40.0
@@ -9107,7 +9350,7 @@ lerxVapors{
     entryPoint:p3=5.0, 0.75, 1.4
     exitPoint:p3=0.0, 1.2, 1.175
     entryTangent:p3=3.715, 1.2, 1.7
-    exitTangent:p3=2.062, 1.2, 0.207
+    exitTangent:p3=2.891, 1.2, 0.2
     exitTangentHeight:p2=0.0, 0.0
     exitTangentWidth:p2=0.0, 0.0
     exitPointHeight:p2=0.0, 0.0
@@ -9116,9 +9359,9 @@ lerxVapors{
     minRadius:p2=0.1, 0.3
     noiseParms:p2=0.0, 0.7
     smoothIntensityParams:p3=0.527, 1.408, 0.219
-    density:r=2.0
-    intensityMult:r=7.0
-    criticalAOA:p4=5.0, 15.0, 25.0, 35.0
+    density:r=1.0
+    intensityMult:r=4.0
+    criticalAOA:p4=7.0, 25.0, 29.0, 35.0
     absoluteCriticalAOS:p2=5.0, 8.0
     absoluteCriticalAOA:p2=5.0, 8.0
   }
@@ -9127,7 +9370,7 @@ lerxVapors{
     entryPoint:p3=5.0, 0.75, -1.4
     exitPoint:p3=0.0, 1.2, -1.175
     entryTangent:p3=3.715, 1.2, -1.7
-    exitTangent:p3=2.062, 1.2, -0.207
+    exitTangent:p3=2.891, 1.2, -0.2
     exitTangentHeight:p2=0.0, 0.0
     exitTangentWidth:p2=-0.0, -0.0
     exitPointHeight:p2=0.0, 0.0
@@ -9136,18 +9379,18 @@ lerxVapors{
     minRadius:p2=0.1, 0.3
     noiseParms:p2=0.0, 0.7
     smoothIntensityParams:p3=0.527, 1.408, 0.219
-    density:r=2.0
-    intensityMult:r=7.0
-    criticalAOA:p4=5.0, 15.0, 25.0, 35.0
+    density:r=1.0
+    intensityMult:r=4.0
+    criticalAOA:p4=7.0, 25.0, 29.0, 35.0
     absoluteCriticalAOS:p2=5.0, 8.0
     absoluteCriticalAOA:p2=5.0, 8.0
   }
 
   lerxVapor{
-    entryPoint:p3=2.258, 1.2, 1.031
-    exitPoint:p3=-3.0, 1.5, 1.824
-    entryTangent:p3=1.237, 1.2, 0.588
-    exitTangent:p3=-0.618, 1.4, 0.587
+    entryPoint:p3=2.4, 1.2, 0.9
+    exitPoint:p3=-1.756, 1.5, 0.618
+    entryTangent:p3=0.615, 1.2, 0.588
+    exitTangent:p3=-0.618, 1.4, 1.823
     exitTangentHeight:p2=0.5, 0.0
     exitTangentWidth:p2=0.5, -0.5
     exitPointHeight:p2=0.0, 1.0
@@ -9158,16 +9401,16 @@ lerxVapors{
     smoothIntensityParams:p3=1.0, 2.381, 0.253
     density:r=1.0
     intensityMult:r=3.0
-    criticalAOA:p4=5.0, 15.0, 25.0, 35.0
+    criticalAOA:p4=7.0, 25.0, 29.0, 35.0
     absoluteCriticalAOS:p2=2.0, 30.0
     absoluteCriticalAOA:p2=5.0, 40.0
   }
 
   lerxVapor{
-    entryPoint:p3=2.258, 1.2, -1.031
-    exitPoint:p3=-3.0, 1.5, -1.824
-    entryTangent:p3=1.237, 1.2, -0.588
-    exitTangent:p3=-0.618, 1.4, -0.587
+    entryPoint:p3=2.4, 1.2, -0.9
+    exitPoint:p3=-1.756, 1.5, -0.618
+    entryTangent:p3=0.615, 1.2, -0.588
+    exitTangent:p3=-0.618, 1.4, -1.823
     exitTangentHeight:p2=0.5, 0.0
     exitTangentWidth:p2=-0.5, 0.5
     exitPointHeight:p2=0.0, 1.0
@@ -9178,7 +9421,7 @@ lerxVapors{
     smoothIntensityParams:p3=1.0, 2.381, 0.253
     density:r=1.0
     intensityMult:r=3.0
-    criticalAOA:p4=5.0, 15.0, 25.0, 35.0
+    criticalAOA:p4=7.0, 25.0, 29.0, 35.0
     absoluteCriticalAOS:p2=2.0, 30.0
     absoluteCriticalAOA:p2=5.0, 40.0
   }

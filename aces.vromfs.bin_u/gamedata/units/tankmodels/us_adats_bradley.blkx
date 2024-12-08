@@ -38,9 +38,6 @@ destroysTrees:b=yes
 radarCanLockTargetFromTPV:b=no
 type:t="typeSPAA"
 autoSightDistanceCorrection:b=yes
-rearmSmokeTimeOnField:r=60.0
-canReloadNonGuns:b=yes
-rearmTimeOnField:r=120.0
 smokeScreenActivateTime:r=5.0
 smokeScreenEffectTime:r=7.0
 smokeScreenRad:r=12.0
@@ -48,6 +45,8 @@ smokeScreenOffset:p3=-3.0, 0.0, 2.0
 smokeScreenDmPart:t="engine_dm"
 smokeScreenFxType:t="tank_smokescreen"
 smokeScreenFx:t="smokescreen_no_therm_small"
+smokeVisibilityType1:t="visual"
+smokeVisibilityType2:t="optic"
 
 DamageParts{
   formatVersion:i=2
@@ -2560,6 +2559,49 @@ commonWeapons{
     }
   }
 
+  Weapon{
+    trigger:t="gunner3"
+    triggerGroup:t="coaxial"
+    blk:t="gameData/Weapons/groundModels_weapons/12_7mm_M3P_user_machinegun.blk"
+    emitter:t="bone_mg_aa_v"
+    flash:t="emtr_gun_flame_09"
+    useEmitter:b=yes
+    defaultYaw:r=0.0
+    defaultPitch:r=0.0
+    barrelDP:t="gun_barrel_02_dm"
+    speedYaw:r=70.0
+    speedPitch:r=60.0
+    fireConeAngle:r=1.0
+    bullets:i=600
+    isBulletBelt:b=yes
+    salvoAmount:r=100.0
+    ChainfireTime:r=0.0
+    DelayAfterShoot:r=5.0
+    AttackMaxDistance:r=1000.0
+    AttackMaxRadius:r=1000.0
+    AttackMaxHeight:r=1000.0
+    accuracyAir:r=0.0
+    accuracyGnd:r=1.5
+    errMeasureVel:r=0.0
+    errMeasureVelFast:r=0.0
+    errMeasureVelFwdShift:r=0.0
+    errMeasureVelDir:r=0.0
+    errTargettingOn100kmph:r=0.0
+    errTargetting:r=3.0
+    errExplTime:r=0.0
+
+    turret{
+      head:t="bone_gun_01"
+      gun:t="bone_gun_01"
+      gunnerDm:t="gunner_dm"
+    }
+
+    limits{
+      yaw:p2=-0.0, 0.0
+      pitch:p2=-0.0, 0.0
+    }
+  }
+
   animatedBones{
     node:t="antenna_target_location"
     node:t="antenna_target_location_mount"
@@ -3500,7 +3542,7 @@ unitFx{
 
   event{
     name:t="fuel_exterior"
-    lifetime:r=15.0
+    lifetime:r=50.0
 
     fx{
       name:t="tank_ex_fuel_explosion"
@@ -3510,7 +3552,7 @@ unitFx{
 
   event{
     name:t="fuel_internal"
-    lifetime:r=15.0
+    lifetime:r=50.0
 
     fx{
       name:t="tank_ex_fuel_explosion"
@@ -3520,7 +3562,7 @@ unitFx{
 
   event{
     name:t="hydraulic_internal"
-    lifetime:r=10.0
+    lifetime:r=30.0
 
     fx{
       name:t="tank_ex_fuel_explosion"
@@ -3530,7 +3572,7 @@ unitFx{
 
   event{
     name:t="powersystem_internal"
-    lifetime:r=10.0
+    lifetime:r=30.0
 
     fx{
       name:t="tank_ex_fuel_explosion"
@@ -3540,7 +3582,7 @@ unitFx{
 
   event{
     name:t="powersystem_exterior"
-    lifetime:r=10.0
+    lifetime:r=30.0
 
     fx{
       name:t="tank_ex_fuel_explosion"
@@ -3770,10 +3812,10 @@ unitFx{
 }
 
 cockpit{
-  zoomOutFov:r=12.29
-  zoomInFov:r=6.14
-  sightFov:r=5.0
-  sightName:t="merkava_sight"
+  zoomOutFov:r=24.7445
+  zoomInFov:r=4.093
+  sightFov:r=10.9976
+  sightName:t="tads_sight"
   headPos:p3=0.0, 4.7, -7.5
   headPosOnShooting:p3=0.7, 3.7, 0.6
   detectionHeight:r=3.8
@@ -3910,6 +3952,16 @@ modifications{
         }
       }
     }
+  }
+}
+
+nightVision{
+
+  driverIr{
+    resolution:ip2=800, 600
+    lightMult:r=5.0
+    ghosting:r=0.7
+    noiseFactor:r=0.2
   }
 }
 

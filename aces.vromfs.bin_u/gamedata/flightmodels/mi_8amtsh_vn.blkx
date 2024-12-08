@@ -2,7 +2,6 @@ model:t="mi_8amtsh_vn"
 fmFile:t="fm/mi_8amtsh_vn.blk"
 MetaPartsBlk:t="gameData/FlightModels/dm/metaparts/hellicopters_metaparts.blk"
 viewDistKInSight:r=6.0
-hasPointOfInterestMemory:b=no
 haveCCIPForRocket:b=yes
 haveCCIPForBombs:b=yes
 gyroSight:b=yes
@@ -30,9 +29,6 @@ damagePartsToCollisionPointsMapBlk:t="gameData/FlightModels/DM/dm_parts_to_colli
 damagePartsToWeaponsMapBlk:t="gameData/FlightModels/DM/dm_parts_to_weapons_map.blk"
 damagePartsToVisualEffectsMapBlk:t="gameData/FlightModels/DM/dm_parts_to_visual_effects_map.blk"
 damagePartsExcludeFromHoleBlk:t="gameData/FlightModels/DM/dm_parts_exclude_from_hole.blk"
-customClassIco:t="!#ui/gameuiskin#image_in_progress_ico.svg"
-customImage:t="!#ui/unitskin#image_in_progress"
-customTooltipImage:t="ui/aircrafts/image_in_progress"
 
 DamageParts{
 
@@ -1718,8 +1714,8 @@ cockpit{
   lightPos3:p3=4.7, 0.27, -0.52
   lightColor3:p3=1.8, 0.81, 1.1
   lightRadius3:r=0.05
-  zoomOutFov:r=1.1
-  zoomInFov:r=6.0
+  zoomOutFov:r=22.46
+  zoomInFov:r=7.37
   sightInFov:r=1.1
   sightOutFov:r=6.0
   sightFov:r=1.0
@@ -1786,14 +1782,6 @@ helicopter{
   propellerStrainCoeff:r=-0.01
 }
 
-nightVision{
-
-  sightThermal{
-    resolution:ip2=1920, 1080
-    noiseFactor:r=0.05
-  }
-}
-
 gunnerOpticFps{
   pos:p3=0.0, -0.4, 0.0
   head:t="optic2_turret"
@@ -1804,12 +1792,17 @@ gunnerOpticFps{
 sensors{
 
   sensor{
+    blk:t="gameData/sensors/su_vn_001.blk"
+    dmPart:t="radar_dm"
+  }
+
+  sensor{
     blk:t="gameData/sensors/ir_tracker.blk"
     node:t="optic2_gun"
   }
 
   sensor{
-    blk:t="gameData/sensors/su_spo-150.blk"
+    blk:t="gameData/sensors/su_spo-150-28m.blk"
   }
 
   sensor{
@@ -1880,18 +1873,13 @@ weapon_presets{
   }
 
   preset{
-    name:t="mi_8amtsh_vn_guv_8700"
-    blk:t="gameData/flightModels/weaponPresets/mi_8amtsh_vn_guv_8700.blk"
+    name:t="mi_8amtsh_vn_9m336"
+    blk:t="gameData/flightModels/weaponPresets/mi_8amtsh_vn_9m336.blk"
   }
 
   preset{
-    name:t="mi_8amtsh_vn_9m39"
-    blk:t="gameData/flightModels/weaponPresets/mi_8amtsh_vn_9m39.blk"
-  }
-
-  preset{
-    name:t="mi_8amtsh_vn_9m39_x2"
-    blk:t="gameData/flightModels/weaponPresets/mi_8amtsh_vn_9m39_x2.blk"
+    name:t="mi_8amtsh_vn_9m336_x2"
+    blk:t="gameData/flightModels/weaponPresets/mi_8amtsh_vn_9m336_x2.blk"
   }
 }
 
@@ -1994,16 +1982,16 @@ WeaponSlots{
         emitter:t="optic2_gun"
         defaultYaw:r=0.0
         defaultPitch:r=0.0
-        speedYaw:r=25.0
-        speedPitch:r=25.0
+        speedYaw:r=40.0
+        speedPitch:r=40.0
         parkInDeadzone:b=no
         aimForOperatedShell:b=yes
 
         turret{
           head:t="optic2_turret"
           gun:t="optic2_gun"
+          playerControllable:b=no
           mainTurret:b=yes
-          ballisticTargeting:b=yes
         }
 
         limits{
@@ -2079,7 +2067,7 @@ WeaponSlots{
     WeaponPreset{
       iconType:t="atgm_type2_x2_late"
       name:t="9m120_x2"
-      remotelyGuidedWeaponsMax:i=1
+      maxMissileSalvoTimeInterval:r=3.0
 
       Weapon{
         trigger:t="atgm"
@@ -2094,7 +2082,7 @@ WeaponSlots{
       iconType:t="atgm_type1_x4_late"
       name:t="9m120_x4"
       reqModification:t="mi_35_9M120_4"
-      remotelyGuidedWeaponsMax:i=1
+      maxMissileSalvoTimeInterval:r=3.0
 
       Weapon{
         trigger:t="atgm"
@@ -2163,107 +2151,30 @@ WeaponSlots{
     }
 
     WeaponPreset{
-      iconType:t="doublebarreled_box"
-      name:t="upk250"
-      reqModification:t="il_28sh_upk23_gunpod"
-
-      ShowNodes{
-        node:t="su_bd3_57krv_l_upor"
-        node:t="upk_23_250_b001"
-      }
-
-      ShowDmParts{
-        node:t="cover3_dm"
-        node:t="cannon1_dm"
-      }
+      iconType:t="missile_air_to_air_group"
+      name:t="9m336"
+      reqModification:t="mi_8_9M336"
 
       Weapon{
-        trigger:t="additional gun"
-        blk:t="gameData/Weapons/cannonGSh_23L.blk"
-        emitter:t="flare2"
-        flash:t="flare2"
-        bullets:i=250
-        spread:r=1.5
-        traceOffset:i=1
-        counterIndex:i=1
+        trigger:t="aam"
+        blk:t="gameData/Weapons/containers/amtsh_9m336_2x_verba.blk"
+        emitter:t="9m39_tpk_001"
         external:b=yes
-        dm:t="cannon1_dm"
+        separate:b=yes
       }
     }
 
     WeaponPreset{
-      iconType:t="multibarrel_guv_gun"
-      name:t="guv_8700_slot1"
-      reqModification:t="su_guv_8700"
-
-      ShowNodes{
-        node:t="su_bd3_57krv_l_upor"
-        node:t="guv_8700_gunpod_001"
-        node:t="guv_8700_gunpod_001_mgun1"
-        node:t="guv_8700_gunpod_001_mgun2"
-        node:t="guv_8700_gunpod_001_mgun3"
-      }
-
-      ShowDmParts{
-        node:t="cover9_dm"
-        node:t="mgun1_dm"
-        node:t="mgun2_dm"
-        node:t="mgun3_dm"
-      }
+      iconType:t="missile_air_to_air_group_x4"
+      name:t="9m336_x2"
+      reqModification:t="mi_8_9M336"
 
       Weapon{
-        trigger:t="additional gun"
-        blk:t="gameData/Weapons/gunGShG_guv.blk"
-        emitter:t="flare15"
-        flash:t="flare15"
-        bullets:i=1800
-        spread:r=1.5
-        traceOffset:i=1
-        counterIndex:i=3
+        trigger:t="aam"
+        blk:t="gameData/Weapons/containers/amtsh_9m336_4x_verba.blk"
+        emitter:t="9m39_tpk_001"
         external:b=yes
-        dm:t="mgun1_dm"
-        rotationAnimScale:t="gun_rotate_01:CRS"
-        shell:t="emtr_shellrejection1"
-      }
-
-      Weapon{
-        trigger:t="additional gun"
-        blk:t="gameData/Weapons/gunYaK_B_guv.blk"
-        emitter:t="flare14"
-        flash:t="flare14"
-        bullets:i=750
-        spread:r=1.5
-        traceOffset:i=1
-        counterIndex:i=2
-        external:b=yes
-        dm:t="mgun2_dm"
-        rotationAnimScale:t="gun_rotate_01:CRS"
-        shell:t="emtr_shellrejection1"
-      }
-
-      Weapon{
-        trigger:t="additional gun"
-        blk:t="gameData/Weapons/gunGShG_guv.blk"
-        emitter:t="flare16"
-        flash:t="flare16"
-        bullets:i=1800
-        spread:r=1.5
-        traceOffset:i=1
-        counterIndex:i=3
-        external:b=yes
-        dm:t="mgun3_dm"
-        rotationAnimScale:t="gun_rotate_01:CRS"
-        shell:t="emtr_shellrejection1"
-      }
-
-      BannedWeaponPreset{
-        slot:i=2
-        preset:t="guv_8700_slot2"
-      }
-
-      BannedWeaponPreset{
-        slot:i=3
-        preset:t="guv_8700_slot3"
+        separate:b=yes
       }
     }
   }
@@ -2405,34 +2316,6 @@ WeaponSlots{
     }
 
     WeaponPreset{
-      iconType:t="missile_air_to_air_group"
-      name:t="9m39_x2"
-      reqModification:t="mi_35_9M39"
-
-      Weapon{
-        trigger:t="aam"
-        blk:t="gameData/Weapons/containers/amtsh_9m39_2x_igla.blk"
-        emitter:t="9m39_tpk_002"
-        external:b=yes
-        separate:b=yes
-      }
-    }
-
-    WeaponPreset{
-      iconType:t="missile_air_to_air_group_x4"
-      name:t="9m39"
-      reqModification:t="mi_35_9M39"
-
-      Weapon{
-        trigger:t="aam"
-        blk:t="gameData/Weapons/containers/amtsh_9m39_4x_igla.blk"
-        emitter:t="9m39_tpk_002"
-        external:b=yes
-        separate:b=yes
-      }
-    }
-
-    WeaponPreset{
       iconType:t="doublebarreled_box"
       name:t="upk250"
       reqModification:t="il_28sh_upk23_gunpod"
@@ -2460,105 +2343,12 @@ WeaponSlots{
         dm:t="cannon2_dm"
       }
     }
-
-    WeaponPreset{
-      iconType:t="multibarrel_guv_gun"
-      name:t="guv_8700_slot2"
-      reqModification:t="su_guv_8700"
-
-      ShowNodes{
-        node:t="su_bd3_57krv_l1_upor"
-        node:t="guv_8700_gunpod_002"
-        node:t="guv_8700_gunpod_002_mgun1"
-        node:t="guv_8700_gunpod_002_mgun2"
-        node:t="guv_8700_gunpod_002_mgun3"
-      }
-
-      ShowDmParts{
-        node:t="cover10_dm"
-        node:t="mgun4_dm"
-        node:t="mgun5_dm"
-        node:t="mgun6_dm"
-      }
-
-      Weapon{
-        trigger:t="additional gun"
-        blk:t="gameData/Weapons/gunGShG_guv.blk"
-        emitter:t="flare18"
-        flash:t="flare18"
-        bullets:i=1800
-        spread:r=1.5
-        traceOffset:i=1
-        counterIndex:i=3
-        external:b=yes
-        dm:t="mgun4_dm"
-        rotationAnimScale:t="gun_rotate_01:CRS"
-        shell:t="emtr_shellrejection2"
-      }
-
-      Weapon{
-        trigger:t="additional gun"
-        blk:t="gameData/Weapons/gunYaK_B_guv.blk"
-        emitter:t="flare17"
-        flash:t="flare17"
-        bullets:i=750
-        spread:r=1.5
-        traceOffset:i=1
-        counterIndex:i=2
-        external:b=yes
-        dm:t="mgun5_dm"
-        rotationAnimScale:t="gun_rotate_01:CRS"
-        shell:t="emtr_shellrejection2"
-      }
-
-      Weapon{
-        trigger:t="additional gun"
-        blk:t="gameData/Weapons/gunGShG_guv.blk"
-        emitter:t="flare19"
-        flash:t="flare19"
-        bullets:i=1800
-        spread:r=1.5
-        traceOffset:i=1
-        counterIndex:i=3
-        external:b=yes
-        dm:t="mgun6_dm"
-        rotationAnimScale:t="gun_rotate_01:CRS"
-        shell:t="emtr_shellrejection2"
-      }
-
-      BannedWeaponPreset{
-        slot:i=1
-        preset:t="guv_8700_slot1"
-      }
-
-      BannedWeaponPreset{
-        slot:i=3
-        preset:t="guv_8700_slot3"
-      }
-    }
   }
 
   WeaponSlot{
     index:i=3
     tier:i=7
     order:i=5
-
-    WeaponPreset{
-      iconType:t="nar_ap_large"
-      name:t="b8m1"
-
-      ShowNodes{
-        node:t="su_bd3_57krv_l2_upor"
-      }
-
-      Weapon{
-        trigger:t="rockets"
-        blk:t="gameData/Weapons/containers/b8m_20.blk"
-        emitter:t="b8_v20_003"
-        external:b=yes
-        machLimit:r=1.01
-      }
-    }
 
     WeaponPreset{
       iconType:t="bombs_small"
@@ -2616,134 +2406,12 @@ WeaponSlots{
         separate:b=yes
       }
     }
-
-    WeaponPreset{
-      iconType:t="doublebarreled_box"
-      name:t="upk250"
-      reqModification:t="il_28sh_upk23_gunpod"
-
-      ShowNodes{
-        node:t="su_bd3_57krv_l2_upor"
-        node:t="upk_23_250_b003"
-      }
-
-      ShowDmParts{
-        node:t="cover5_dm"
-        node:t="cannon3_dm"
-      }
-
-      Weapon{
-        trigger:t="additional gun"
-        blk:t="gameData/Weapons/cannonGSh_23L.blk"
-        emitter:t="flare6"
-        flash:t="flare6"
-        bullets:i=250
-        spread:r=1.5
-        traceOffset:i=1
-        counterIndex:i=1
-        external:b=yes
-        dm:t="cannon3_dm"
-      }
-    }
-
-    WeaponPreset{
-      iconType:t="multibarrel_guv_gun"
-      name:t="guv_8700_slot3"
-      reqModification:t="su_guv_8700"
-
-      ShowNodes{
-        node:t="su_bd3_57krv_l2_upor"
-        node:t="guv_8700_gunpod_003"
-        node:t="guv_8700_gunpod_003_mgun1"
-        node:t="guv_8700_gunpod_003_mgun2"
-        node:t="guv_8700_gunpod_003_mgun3"
-      }
-
-      ShowDmParts{
-        node:t="cover11_dm"
-        node:t="mgun7_dm"
-        node:t="mgun8_dm"
-        node:t="mgun9_dm"
-      }
-
-      Weapon{
-        trigger:t="additional gun"
-        blk:t="gameData/Weapons/gunGShG_guv.blk"
-        emitter:t="flare21"
-        flash:t="flare21"
-        bullets:i=1800
-        spread:r=1.5
-        traceOffset:i=1
-        counterIndex:i=3
-        external:b=yes
-        dm:t="mgun7_dm"
-        rotationAnimScale:t="gun_rotate_01:CRS"
-        shell:t="emtr_shellrejection3"
-      }
-
-      Weapon{
-        trigger:t="additional gun"
-        blk:t="gameData/Weapons/gunYaK_B_guv.blk"
-        emitter:t="flare20"
-        flash:t="flare20"
-        bullets:i=750
-        spread:r=1.5
-        traceOffset:i=1
-        counterIndex:i=2
-        external:b=yes
-        dm:t="mgun8_dm"
-        rotationAnimScale:t="gun_rotate_01:CRS"
-        shell:t="emtr_shellrejection3"
-      }
-
-      Weapon{
-        trigger:t="additional gun"
-        blk:t="gameData/Weapons/gunGShG_guv.blk"
-        emitter:t="flare22"
-        flash:t="flare22"
-        bullets:i=1800
-        spread:r=1.5
-        traceOffset:i=1
-        counterIndex:i=3
-        external:b=yes
-        dm:t="mgun9_dm"
-        rotationAnimScale:t="gun_rotate_01:CRS"
-        shell:t="emtr_shellrejection3"
-      }
-
-      BannedWeaponPreset{
-        slot:i=1
-        preset:t="guv_8700_slot1"
-      }
-
-      BannedWeaponPreset{
-        slot:i=2
-        preset:t="guv_8700_slot2"
-      }
-    }
   }
 
   WeaponSlot{
     index:i=4
     tier:i=5
     order:i=6
-
-    WeaponPreset{
-      iconType:t="nar_ap_large"
-      name:t="b8m1"
-
-      ShowNodes{
-        node:t="su_bd3_57krv_r2_upor"
-      }
-
-      Weapon{
-        trigger:t="rockets"
-        blk:t="gameData/Weapons/containers/b8m_20.blk"
-        emitter:t="b8_v20_004"
-        external:b=yes
-        machLimit:r=1.01
-      }
-    }
 
     WeaponPreset{
       iconType:t="bombs_small"
@@ -2799,111 +2467,6 @@ WeaponSlots{
         bullets:i=1
         external:b=yes
         separate:b=yes
-      }
-    }
-
-    WeaponPreset{
-      iconType:t="doublebarreled_box"
-      name:t="upk250"
-      reqModification:t="il_28sh_upk23_gunpod"
-
-      ShowNodes{
-        node:t="su_bd3_57krv_r2_upor"
-        node:t="upk_23_250_b004"
-      }
-
-      ShowDmParts{
-        node:t="cover6_dm"
-        node:t="cannon4_dm"
-      }
-
-      Weapon{
-        trigger:t="additional gun"
-        blk:t="gameData/Weapons/cannonGSh_23L.blk"
-        emitter:t="flare8"
-        flash:t="flare8"
-        bullets:i=250
-        spread:r=1.5
-        traceOffset:i=1
-        counterIndex:i=1
-        external:b=yes
-        dm:t="cannon4_dm"
-      }
-    }
-
-    WeaponPreset{
-      iconType:t="multibarrel_guv_gun"
-      name:t="guv_8700_slot4"
-      reqModification:t="su_guv_8700"
-
-      ShowNodes{
-        node:t="su_bd3_57krv_r2_upor"
-        node:t="guv_8700_gunpod_004"
-        node:t="guv_8700_gunpod_004_mgun1"
-        node:t="guv_8700_gunpod_004_mgun2"
-        node:t="guv_8700_gunpod_004_mgun3"
-      }
-
-      ShowDmParts{
-        node:t="cover12_dm"
-        node:t="mgun10_dm"
-        node:t="mgun11_dm"
-        node:t="mgun12_dm"
-      }
-
-      Weapon{
-        trigger:t="additional gun"
-        blk:t="gameData/Weapons/gunGShG_guv.blk"
-        emitter:t="flare24"
-        flash:t="flare24"
-        bullets:i=1800
-        spread:r=1.5
-        traceOffset:i=1
-        counterIndex:i=3
-        external:b=yes
-        dm:t="mgun10_dm"
-        rotationAnimScale:t="gun_rotate_01:CRS"
-        shell:t="emtr_shellrejection4"
-      }
-
-      Weapon{
-        trigger:t="additional gun"
-        blk:t="gameData/Weapons/gunYaK_B_guv.blk"
-        emitter:t="flare23"
-        flash:t="flare23"
-        bullets:i=750
-        spread:r=1.5
-        traceOffset:i=1
-        counterIndex:i=2
-        external:b=yes
-        dm:t="mgun11_dm"
-        rotationAnimScale:t="gun_rotate_01:CRS"
-        shell:t="emtr_shellrejection4"
-      }
-
-      Weapon{
-        trigger:t="additional gun"
-        blk:t="gameData/Weapons/gunGShG_guv.blk"
-        emitter:t="flare25"
-        flash:t="flare25"
-        bullets:i=1800
-        spread:r=1.5
-        traceOffset:i=1
-        counterIndex:i=3
-        external:b=yes
-        dm:t="mgun12_dm"
-        rotationAnimScale:t="gun_rotate_01:CRS"
-        shell:t="emtr_shellrejection4"
-      }
-
-      BannedWeaponPreset{
-        slot:i=5
-        preset:t="guv_8700_slot5"
-      }
-
-      BannedWeaponPreset{
-        slot:i=6
-        preset:t="guv_8700_slot6"
       }
     }
   }
@@ -3045,34 +2608,6 @@ WeaponSlots{
     }
 
     WeaponPreset{
-      iconType:t="missile_air_to_air_group"
-      name:t="9m39_x2"
-      reqModification:t="mi_35_9M39"
-
-      Weapon{
-        trigger:t="aam"
-        blk:t="gameData/Weapons/containers/amtsh_9m39_2x_igla.blk"
-        emitter:t="9m39_tpk_005"
-        external:b=yes
-        separate:b=yes
-      }
-    }
-
-    WeaponPreset{
-      iconType:t="missile_air_to_air_group_x4"
-      name:t="9m39"
-      reqModification:t="mi_35_9M39"
-
-      Weapon{
-        trigger:t="aam"
-        blk:t="gameData/Weapons/containers/amtsh_9m39_4x_igla.blk"
-        emitter:t="9m39_tpk_005"
-        external:b=yes
-        separate:b=yes
-      }
-    }
-
-    WeaponPreset{
       iconType:t="doublebarreled_box"
       name:t="upk250"
       reqModification:t="il_28sh_upk23_gunpod"
@@ -3098,82 +2633,6 @@ WeaponSlots{
         counterIndex:i=1
         external:b=yes
         dm:t="cannon5_dm"
-      }
-    }
-
-    WeaponPreset{
-      iconType:t="multibarrel_guv_gun"
-      name:t="guv_8700_slot5"
-      reqModification:t="su_guv_8700"
-
-      ShowNodes{
-        node:t="su_bd3_57krv_r1_upor"
-        node:t="guv_8700_gunpod_005"
-        node:t="guv_8700_gunpod_005_mgun1"
-        node:t="guv_8700_gunpod_005_mgun2"
-        node:t="guv_8700_gunpod_005_mgun3"
-      }
-
-      ShowDmParts{
-        node:t="cover13_dm"
-        node:t="mgun13_dm"
-        node:t="mgun14_dm"
-        node:t="mgun15_dm"
-      }
-
-      Weapon{
-        trigger:t="additional gun"
-        blk:t="gameData/Weapons/gunGShG_guv.blk"
-        emitter:t="flare27"
-        flash:t="flare27"
-        bullets:i=1800
-        spread:r=1.5
-        traceOffset:i=1
-        counterIndex:i=3
-        external:b=yes
-        dm:t="mgun13_dm"
-        rotationAnimScale:t="gun_rotate_01:CRS"
-        shell:t="emtr_shellrejection5"
-      }
-
-      Weapon{
-        trigger:t="additional gun"
-        blk:t="gameData/Weapons/gunYaK_B_guv.blk"
-        emitter:t="flare26"
-        flash:t="flare26"
-        bullets:i=750
-        spread:r=1.5
-        traceOffset:i=1
-        counterIndex:i=2
-        external:b=yes
-        dm:t="mgun14_dm"
-        rotationAnimScale:t="gun_rotate_01:CRS"
-        shell:t="emtr_shellrejection5"
-      }
-
-      Weapon{
-        trigger:t="additional gun"
-        blk:t="gameData/Weapons/gunGShG_guv.blk"
-        emitter:t="flare28"
-        flash:t="flare28"
-        bullets:i=1800
-        spread:r=1.5
-        traceOffset:i=1
-        counterIndex:i=3
-        external:b=yes
-        dm:t="mgun15_dm"
-        rotationAnimScale:t="gun_rotate_01:CRS"
-        shell:t="emtr_shellrejection5"
-      }
-
-      BannedWeaponPreset{
-        slot:i=4
-        preset:t="guv_8700_slot4"
-      }
-
-      BannedWeaponPreset{
-        slot:i=6
-        preset:t="guv_8700_slot6"
       }
     }
   }
@@ -3203,7 +2662,7 @@ WeaponSlots{
     WeaponPreset{
       iconType:t="atgm_type2_x2_late"
       name:t="9m120_x2"
-      remotelyGuidedWeaponsMax:i=1
+      maxMissileSalvoTimeInterval:r=3.0
 
       Weapon{
         trigger:t="atgm"
@@ -3218,7 +2677,7 @@ WeaponSlots{
       iconType:t="atgm_type1_x4_late"
       name:t="9m120_x4"
       reqModification:t="mi_35_9M120_4"
-      remotelyGuidedWeaponsMax:i=1
+      maxMissileSalvoTimeInterval:r=3.0
 
       Weapon{
         trigger:t="atgm"
@@ -3283,111 +2742,6 @@ WeaponSlots{
         bullets:i=1
         external:b=yes
         separate:b=yes
-      }
-    }
-
-    WeaponPreset{
-      iconType:t="doublebarreled_box"
-      name:t="upk250"
-      reqModification:t="il_28sh_upk23_gunpod"
-
-      ShowNodes{
-        node:t="su_bd3_57krv_r_upor"
-        node:t="upk_23_250_b006"
-      }
-
-      ShowDmParts{
-        node:t="cover8_dm"
-        node:t="cannon6_dm"
-      }
-
-      Weapon{
-        trigger:t="additional gun"
-        blk:t="gameData/Weapons/cannonGSh_23L.blk"
-        emitter:t="flare29"
-        flash:t="flare29"
-        bullets:i=250
-        spread:r=1.5
-        traceOffset:i=1
-        counterIndex:i=1
-        external:b=yes
-        dm:t="cannon6_dm"
-      }
-    }
-
-    WeaponPreset{
-      iconType:t="multibarrel_guv_gun"
-      name:t="guv_8700_slot6"
-      reqModification:t="su_guv_8700"
-
-      ShowNodes{
-        node:t="su_bd3_57krv_r_upor"
-        node:t="guv_8700_gunpod_006"
-        node:t="guv_8700_gunpod_006_mgun1"
-        node:t="guv_8700_gunpod_006_mgun2"
-        node:t="guv_8700_gunpod_006_mgun3"
-      }
-
-      ShowDmParts{
-        node:t="cover14_dm"
-        node:t="mgun16_dm"
-        node:t="mgun17_dm"
-        node:t="mgun18_dm"
-      }
-
-      Weapon{
-        trigger:t="additional gun"
-        blk:t="gameData/Weapons/gunGShG_guv.blk"
-        emitter:t="flare30"
-        flash:t="flare30"
-        bullets:i=1800
-        spread:r=1.5
-        traceOffset:i=1
-        counterIndex:i=3
-        external:b=yes
-        dm:t="mgun16_dm"
-        rotationAnimScale:t="gun_rotate_01:CRS"
-        shell:t="emtr_shellrejection6"
-      }
-
-      Weapon{
-        trigger:t="additional gun"
-        blk:t="gameData/Weapons/gunYaK_B_guv.blk"
-        emitter:t="flare29"
-        flash:t="flare29"
-        bullets:i=750
-        spread:r=1.5
-        traceOffset:i=1
-        counterIndex:i=2
-        external:b=yes
-        dm:t="mgun17_dm"
-        rotationAnimScale:t="gun_rotate_01:CRS"
-        shell:t="emtr_shellrejection6"
-      }
-
-      Weapon{
-        trigger:t="additional gun"
-        blk:t="gameData/Weapons/gunGShG_guv.blk"
-        emitter:t="flare31"
-        flash:t="flare31"
-        bullets:i=1800
-        spread:r=1.5
-        traceOffset:i=1
-        counterIndex:i=3
-        external:b=yes
-        dm:t="mgun18_dm"
-        rotationAnimScale:t="gun_rotate_01:CRS"
-        shell:t="emtr_shellrejection6"
-      }
-
-      BannedWeaponPreset{
-        slot:i=4
-        preset:t="guv_8700_slot4"
-      }
-
-      BannedWeaponPreset{
-        slot:i=5
-        preset:t="guv_8700_slot5"
       }
     }
   }
@@ -4068,6 +3422,23 @@ user_skin{
   }
 }
 
+nightVision{
+
+  gunnerIr{
+    resolution:ip2=1920, 1080
+    lightMult:r=10.0
+    ghosting:r=0.7
+    noiseFactor:r=0.15
+  }
+
+  pilotIr{
+    resolution:ip2=1920, 1080
+    lightMult:r=10.0
+    ghosting:r=0.7
+    noiseFactor:r=0.15
+  }
+}
+
 modifications{
 
   new_compressor_jet{
@@ -4118,12 +3489,17 @@ modifications{
       sensors{
 
         sensor{
-          blk:t="gameData/sensors/ir_tracker.blk"
-          node:t="optic1_gun"
+          blk:t="gameData/sensors/su_vn_001.blk"
+          dmPart:t="radar_dm"
         }
 
         sensor{
-          blk:t="gameData/sensors/su_spo-150.blk"
+          blk:t="gameData/sensors/ir_tracker.blk"
+          node:t="optic2_gun"
+        }
+
+        sensor{
+          blk:t="gameData/sensors/su_spo-150-28m.blk"
         }
 
         sensor{
@@ -4136,12 +3512,14 @@ modifications{
 
         sensor{
           blk:t="gameData/sensors/LaserBeamRidingSensor.blk"
+          node:t="optic2_gun"
         }
       }
     }
   }
 
   heli_night_vision_system{
+    image:t="#ui/gameuiskin#thermal_sight"
     tier:i=3
     prevModification:t="MAW_system_heli_false_thermal_targets_large"
     modClass:t="armor"
@@ -4165,8 +3543,8 @@ modifications{
         }
 
         sightThermal{
-          resolution:ip2=1920, 1080
-          noiseFactor:r=0.05
+          resolution:ip2=800, 600
+          noiseFactor:r=0.04
         }
       }
     }
@@ -4218,21 +3596,6 @@ modifications{
     tier:i=4
   }
 
-  su_guv_8700{
-    tier:i=1
-    modClass:t="weapon"
-  }
-
-  gunGShG_new_gun{
-    reqModification:t="su_guv_8700"
-    tier:i=2
-  }
-
-  YaK-B_new_gun{
-    reqModification:t="gunGShG_new_gun"
-    tier:i=3
-  }
-
   zb_500{
     modClass:t="weapon"
     tier:i=1
@@ -4262,7 +3625,7 @@ modifications{
     tier:i=3
   }
 
-  mi_35_9M39{
+  mi_8_9M336{
     prevModification:t="mi_35_9M120_4"
     deactivationIsAllowed:b=no
     modClass:t="weapon"

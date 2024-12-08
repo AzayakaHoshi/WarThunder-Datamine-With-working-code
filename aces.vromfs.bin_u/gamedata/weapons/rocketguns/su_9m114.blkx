@@ -14,9 +14,9 @@ rocket{
   length:r=1.613
   CxK:r=2.05
   wingAreaMult:r=1.1
-  finsAoaHor:r=0.1
-  finsAoaVer:r=0.1
-  distFromCmToStab:r=0.05
+  finsAoaHor:r=0.125
+  finsAoaVer:r=0.125
+  distFromCmToStab:r=0.025
   mass:r=31.4
   massEnd:r=25.83
   massEnd1:r=21.58
@@ -88,53 +88,37 @@ rocket{
   guidance{
     launchSector:r=9.0
     controlConeFov:r=25.0
-    range:p2=1500.0, 5000.0
+    range:p2=400.0, 5000.0
     breakLockMaxTime:r=5.0
-    timeTableCorrection:p2=0.696, 0.829
+    timeTableCorrection:p2=0.644, 0.705
 
     lineOfSightAutopilot{
-      timeToGain0:p2=0.0, 0.0
-      timeToGain1:p2=0.28, 0.0
-      timeToGain2:p2=0.29, 0.1
-      timeToGain3:p2=1.7, 0.3
-      timeToGain4:p2=3.0, 1.0
-      crossDistToReqCrossVelMult:r=5.5
-      reqCrossVelRationMax:r=0.6
-      velDiffToReqAccelMult:r=9.0
+      timeOut:r=0.15
+      crossDistToReqCrossVelMult:r=1.585
+      reqCrossVelRationMax:r=0.75
+      velDiffToReqAccelMult:r=10.75
 
       accelControl{
         velFrameReference:b=yes
         baseIndSpeed:r=1800.0
-        reqAccelMax:r=10.0
-        accelControlProp:r=0.038
+        reqAccelMax:r=15.0
+        accelControlProp:r=0.0736
         accelControlIntg:r=0.0
-        accelControlDiff:r=0.0009
+        accelControlDiff:r=0.0018
         accelControlIntgLim:r=0.0
       }
     }
 
     table0{
-      altitude:r=100.0
-      fighterMach:p2=0.05, 0.2
-      targetMach:p2=0.05, 0.05
+      altitude:r=10.0
+      fighterMach:p2=0.15, 0.45
+      targetMach:p2=0.15, 0.15
       targetMach2Mult:r=-1.0
-      rangeMin:p4=429.468, 419.662, 414.741, 414.53
+      rangeMin:p4=100.0, 100.0, 100.0, 100.0
       rangeMax:p4=5000.0, 5000.0, 5000.0, 5000.0
-      rangeMaxAltDiff:p2=50.0, 0.0
-      timeMax:p4=14.5611, 13.9111, 13.5984, 13.0106
-      timeMaxAltDiff:p2=50.0, -0.000387192
-    }
-
-    table1{
-      altitude:r=2000.0
-      fighterMach:p2=0.05, 0.2
-      targetMach:p2=0.05, 0.05
-      targetMach2Mult:r=-1.0
-      rangeMin:p4=443.993, 439.048, 434.144, 429.141
-      rangeMax:p4=5000.0, 5000.0, 5000.0, 5000.0
-      rangeMaxAltDiff:p2=1000.0, 0.0
-      timeMax:p4=12.9064, 12.304, 12.0187, 11.4774
-      timeMaxAltDiff:p2=1000.0, -0.969319
+      rangeMaxAltDiff:p2=0.0, 0.0
+      timeMax:p4=14.6413, 12.8079, 12.808, 11.33
+      timeMaxAltDiff:p2=0.0, 0.0
     }
   }
 
@@ -219,6 +203,39 @@ rocket{
         break:r=0.9
         fHitCritical:b=yes
       }
+    }
+  }
+
+  collisions{
+
+    steel{
+      fx:t="explosion_midair_small"
+      ricochetFx:t="hit_81_105mm_metal_ap"
+    }
+
+    aluminum_armor{
+      fx:t="explosion_midair_small"
+      ricochetFx:t="hit_81_105mm_metal_ap"
+    }
+
+    tank_structural_steel{
+      fx:t="explosion_midair_small"
+      ricochetFx:t="hit_81_105mm_metal_ap"
+    }
+
+    armor{
+      fx:t="explosion_midair_small"
+      ricochetFx:t="hit_81_105mm_metal_ap"
+    }
+
+    buildings{
+      fx:t="explosion_midair_small"
+      ricochetFx:t="hit_106_132mm_stone_ap"
+    }
+
+    wood{
+      fx:t="explosion_midair_small"
+      ricochetFx:t="hit_106_132mm_wood_ap"
     }
   }
 
@@ -364,25 +381,6 @@ rocket{
 
     armorNPHiCal{
       fx:t="hit_12_18mm_metal_ap"
-    }
-  }
-
-  collisions{
-
-    steel{
-      fx:t="explosion_midair_tiny"
-    }
-
-    armor{
-      fx:t="explosion_midair_tiny"
-    }
-
-    buildings{
-      fx:t="explosion_midair_tiny"
-    }
-
-    wood{
-      fx:t="explosion_midair_tiny"
     }
   }
 
