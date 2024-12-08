@@ -2,9 +2,9 @@
 The Files will for now be from the dev server, dont expect every file to work/exist on the Live Server
 ##  Versions (Autoupdated)
 ### Current Version
-Version: [2.40.0.34](aces.vromfs.bin_u/version)
+Version: [2.41.0.62](aces.vromfs.bin_u/version)
 ### Last Version
-Version: [2.39.0.102](version_store.txt)
+Version: [2.40.0.34](version_store.txt)
 
 ## Description
 Using [kotiq's wt-tools](https://github.com/kotiq/wt-tools) and automation to update this Repository
