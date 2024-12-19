@@ -1,5 +1,5 @@
 # War Thunder Datamine
-The Files will for now be from the dev server, dont expect every file to work/exist on the Live Server
+Live server content updated to Storm Warning
 ##  Versions (Autoupdated)
 ### Current Version
 Version: [2.43.0.19](aces.vromfs.bin_u/version)
