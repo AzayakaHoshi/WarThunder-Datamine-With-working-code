@@ -52,6 +52,29 @@ transivers{
       }
     }
   }
+
+  gtm{
+    sideLobesAttenuation:r=-20.0
+    power:r=1200.0
+    band:i=8
+    rcs:r=40.0
+    range:r=23000.0
+    rangeMax:r=150000.0
+    multipathEffect:p4=0.0, 1.0, 60.0, 0.0
+
+    antenna{
+
+      azimuth{
+        angleHalfSens:r=1.0
+        sideLobesSensitivity:r=-50.0
+      }
+
+      elevation{
+        angleHalfSens:r=4.5
+        sideLobesSensitivity:r=-50.0
+      }
+    }
+  }
 }
 
 scanPatterns{
@@ -294,6 +317,56 @@ signals{
       maxValue:r=1500.0
       signalWidthMin:r=2.0
       width:r=20.0
+    }
+  }
+
+  gtmSearch{
+    groundClutter:b=no
+    aircraftAsTarget:b=no
+    groundVehiclesAsTarget:b=yes
+    angularAccuracy:r=0.0
+    distanceAccuracy:r=1.0
+    absDopplerSpeed:b=yes
+    mainBeamDopplerSpeed:b=yes
+
+    distance{
+      presents:b=yes
+      minValue:r=500.0
+      maxValue:r=150000.0
+      width:r=15.0
+    }
+
+    dopplerSpeed{
+      presents:b=yes
+      minValue:r=4.1156
+      maxValue:r=145.788
+      signalWidthMin:r=2.5
+      width:r=0.0
+    }
+  }
+
+  gtmTrack{
+    groundClutter:b=no
+    aircraftAsTarget:b=no
+    groundVehiclesAsTarget:b=yes
+    angularAccuracy:r=0.0
+    distanceAccuracy:r=1.0
+    absDopplerSpeed:b=yes
+    mainBeamDopplerSpeed:b=yes
+
+    distance{
+      presents:b=yes
+      minValue:r=500.0
+      maxValue:r=150000.0
+      width:r=15.0
+    }
+
+    dopplerSpeed{
+      presents:b=yes
+      minValue:r=4.1156
+      maxValue:r=145.788
+      signalWidthMin:r=2.5
+      width:r=0.0
     }
   }
 }
@@ -864,6 +937,110 @@ fsms{
           sensorIndex:i=0
         }
       }
+
+      setGtmStandbyMode{
+
+        setStandbyModeCommon{
+        }
+
+        setTransiver{
+          transiver:t="gtm"
+        }
+
+        setSignal{
+          signal:t="gtmSearch"
+        }
+
+        setScopeRangeSet{
+          scopeRangeSet:t="common"
+        }
+
+        setModeName{
+          name:t="GTM standby"
+        }
+      }
+
+      setGtmSearchMode{
+
+        setSearchModeCommon{
+        }
+
+        setTransiver{
+          transiver:t="gtm"
+        }
+
+        setSignal{
+          signal:t="gtmSearch"
+        }
+
+        setScopeRangeSet{
+          scopeRangeSet:t="common"
+        }
+
+        setModeName{
+          name:t="GTM search"
+        }
+      }
+
+      setGtmBvrLockMode{
+
+        setBvrLockModeCommon{
+        }
+
+        setFsmActive{
+          fsm:t="bvrLock"
+          active:b=yes
+        }
+
+        setScanPattern{
+          scanPattern:t="bvrLockSearch"
+        }
+
+        setTransiver{
+          transiver:t="gtm"
+        }
+
+        setSignal{
+          signal:t="gtmSearch"
+        }
+
+        setDistGatePos{
+          source:t="targetDesignation"
+          width:r=2000.0
+        }
+
+        setRelSpeedGatePos{
+          source:t="constRange"
+          pos:r=0.0
+          width:r=3000.0
+        }
+
+        setModeName{
+          name:t="GTM acquisition"
+        }
+      }
+
+      resetGtmBvrLockMode{
+
+        setFsmActive{
+          fsm:t="bvrLock"
+          active:b=no
+        }
+      }
+
+      setGtmBvrTrackMode{
+
+        setTrackMode{
+        }
+
+        setTransiver{
+          transiver:t="gtm"
+        }
+
+        setSignal{
+          signal:t="gtmTrack"
+        }
+      }
     }
 
     transitions{
@@ -1023,6 +1200,7 @@ fsms{
         stateFrom:t="bvrTrack"
         event:t="targetsOfInterestCleanup"
         command:t="selectTarget"
+        command:t="switch"
         stateTo:t="search"
 
         actions{
@@ -1035,6 +1213,25 @@ fsms{
           doCustomActionTemplate{
             fsm:t="main"
             name:t="setSearchMode"
+          }
+        }
+      }
+
+      finishBvrTrackAndSwitchOff{
+        stateFrom:t="bvrTrack"
+        event:t="disable"
+        stateTo:t="standby"
+
+        actions{
+
+          doCustomActionTemplate{
+            fsm:t="main"
+            name:t="resetBvrTrackMode"
+          }
+
+          doCustomActionTemplate{
+            fsm:t="main"
+            name:t="setStandbyMode"
           }
         }
       }
@@ -1159,6 +1356,7 @@ fsms{
       acmLockToStandby{
         stateFrom:t="acmLock"
         command:t="selectTarget"
+        event:t="disable"
         stateTo:t="standby"
 
         actions{
@@ -1178,6 +1376,7 @@ fsms{
       acmLockToSearch{
         stateFrom:t="acmLock"
         command:t="acmSwitch"
+        command:t="switch"
         stateTo:t="search"
 
         actions{
@@ -1216,6 +1415,7 @@ fsms{
       acmTrackToStandby{
         stateFrom:t="acmTrack"
         command:t="selectTarget"
+        event:t="disable"
         stateTo:t="standby"
 
         actions{
@@ -1235,6 +1435,7 @@ fsms{
       acmTrackToSearch{
         stateFrom:t="acmTrack"
         command:t="acmSwitch"
+        command:t="switch"
         stateTo:t="search"
 
         actions{
@@ -1979,8 +2180,74 @@ fsms{
         }
       }
 
-      lprfToMprf{
+      lprfToGtm{
         stateFrom:t="lprf"
+        command:t="modeSwitch"
+        stateTo:t="gtm"
+
+        actions{
+
+          setCustomActionTemplate{
+            fsm:t="main"
+            name:t="setStandbyMode"
+            actionTemplateName:t="setGtmStandbyMode"
+          }
+
+          setCustomActionTemplate{
+            fsm:t="main"
+            name:t="setSearchMode"
+            actionTemplateName:t="setGtmSearchMode"
+          }
+
+          setCustomActionTemplate{
+            fsm:t="main"
+            name:t="setBvrLockMode"
+            actionTemplateName:t="setGtmBvrLockMode"
+          }
+
+          setCustomActionTemplate{
+            fsm:t="main"
+            name:t="resetBvrLockMode"
+            actionTemplateName:t="resetGtmBvrLockMode"
+          }
+
+          setCustomActionTemplate{
+            fsm:t="main"
+            name:t="designateTarget"
+            actionTemplateName:t="designatedTargetSearch"
+          }
+
+          setCustomActionTemplate{
+            fsm:t="main"
+            name:t="setBvrTrackMode"
+            actionTemplateName:t="setGtmBvrTrackMode"
+          }
+
+          setCustomActionTemplate{
+            fsm:t="main"
+            name:t="resetSearchMode"
+            actionTemplateName:t="resetSearchMode"
+          }
+
+          doCustomActionTemplate{
+            fsm:t="main"
+            name:t="resetSearchMode"
+          }
+
+          setFsmActive{
+            fsm:t="main"
+            active:b=no
+          }
+
+          setFsmActive{
+            fsm:t="main"
+            active:b=yes
+          }
+        }
+      }
+
+      gtmToMprf{
+        stateFrom:t="gtm"
         command:t="modeSwitch"
         stateTo:t="mprf"
 
@@ -2006,8 +2273,31 @@ fsms{
 
           setCustomActionTemplate{
             fsm:t="main"
+            name:t="resetBvrLockMode"
+            actionTemplateName:t="resetBvrLockMode"
+          }
+
+          setCustomActionTemplate{
+            fsm:t="main"
+            name:t="designateTarget"
+            actionTemplateName:t="designatedTargetSearch"
+          }
+
+          setCustomActionTemplate{
+            fsm:t="main"
+            name:t="setBvrTrackMode"
+            actionTemplateName:t="setTrackMode"
+          }
+
+          setCustomActionTemplate{
+            fsm:t="main"
             name:t="resetSearchMode"
             actionTemplateName:t="resetSearchMode"
+          }
+
+          doCustomActionTemplate{
+            fsm:t="main"
+            name:t="resetSearchMode"
           }
 
           setFsmActive{

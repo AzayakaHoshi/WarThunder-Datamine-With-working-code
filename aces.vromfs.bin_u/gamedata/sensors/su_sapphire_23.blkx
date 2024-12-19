@@ -119,7 +119,7 @@ scanPatterns{
   irstSearch1{
     type:t="pyramide"
     azimuthLimits:p2=-30.0, 30.0
-    elevationLimits:p2=-14.5, 0.5
+    elevationLimits:p2=-16.0, 2.0
     rollStabLimit:r=70.0
     period:r=2.0
     centerElevation:r=-7.0
@@ -133,7 +133,7 @@ scanPatterns{
   irstSearch2{
     type:t="pyramide"
     azimuthLimits:p2=-30.0, 30.0
-    elevationLimits:p2=-5.0, 1.5
+    elevationLimits:p2=-7.5, 1.5
     rollStabLimit:r=70.0
     period:r=0.2
     centerElevation:r=-3.0
@@ -563,6 +563,11 @@ fsms{
           fsm:t="scanZoneAzimuth"
           active:b=no
         }
+
+        setFsmActive{
+          fsm:t="scanZoneElevation"
+          active:b=no
+        }
       }
 
       resetIrstStandbyMode{
@@ -583,6 +588,11 @@ fsms{
 
         setFsmActive{
           fsm:t="scanZoneAzimuth"
+          active:b=no
+        }
+
+        setFsmActive{
+          fsm:t="scanZoneElevation"
           active:b=no
         }
       }
@@ -675,6 +685,11 @@ fsms{
           active:b=yes
         }
 
+        setFsmActive{
+          fsm:t="scanZoneElevation"
+          active:b=yes
+        }
+
         setCustomActionTemplate{
           fsm:t="main"
           name:t="setRadarModeName"
@@ -700,6 +715,16 @@ fsms{
 
         setSignal{
           signal:t="irst"
+        }
+
+        setCenterAzimuth{
+          source:t="constant"
+          value:r=0.0
+        }
+
+        setCenterElevation{
+          source:t="constant"
+          value:r=0.0
         }
 
         setModeName{
@@ -1039,6 +1064,7 @@ fsms{
         stateFrom:t="bvrTrack"
         event:t="targetsOfInterestCleanup"
         command:t="selectTarget"
+        command:t="switch"
         stateTo:t="search"
 
         actions{
@@ -1051,6 +1077,25 @@ fsms{
           doCustomActionTemplate{
             fsm:t="main"
             name:t="setSearchMode"
+          }
+        }
+      }
+
+      finishBvrTrackAndSwitchOff{
+        stateFrom:t="bvrTrack"
+        event:t="disable"
+        stateTo:t="standby"
+
+        actions{
+
+          doCustomActionTemplate{
+            fsm:t="main"
+            name:t="resetBvrTrackMode"
+          }
+
+          doCustomActionTemplate{
+            fsm:t="main"
+            name:t="setStandbyMode"
           }
         }
       }
@@ -1902,15 +1947,6 @@ fsms{
 
           scan{
           }
-
-          setCenterElevation{
-            source:t="constant"
-            value:r=0.0
-          }
-
-          setCenterElevation{
-            source:t="designationCue"
-          }
         }
       }
 
@@ -2015,6 +2051,29 @@ fsms{
           }
 
           setCenterAzimuth{
+            source:t="designationCue"
+          }
+        }
+      }
+    }
+  }
+
+  scanZoneElevation{
+    stateInit:t="init"
+
+    transitions{
+
+      update{
+        event:t="update"
+
+        actions{
+
+          setCenterElevation{
+            source:t="constant"
+            value:r=0.0
+          }
+
+          setCenterElevation{
             source:t="designationCue"
           }
         }

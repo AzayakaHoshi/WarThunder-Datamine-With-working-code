@@ -1010,6 +1010,7 @@ fsms{
         stateFrom:t="bvrTrack"
         event:t="targetsOfInterestCleanup"
         command:t="selectTarget"
+        command:t="switch"
         stateTo:t="search"
 
         actions{
@@ -1022,6 +1023,25 @@ fsms{
           doCustomActionTemplate{
             fsm:t="main"
             name:t="setSearchMode"
+          }
+        }
+      }
+
+      finishBvrTrackAndSwitchOff{
+        stateFrom:t="bvrTrack"
+        event:t="disable"
+        stateTo:t="standby"
+
+        actions{
+
+          doCustomActionTemplate{
+            fsm:t="main"
+            name:t="resetBvrTrackMode"
+          }
+
+          doCustomActionTemplate{
+            fsm:t="main"
+            name:t="setStandbyMode"
           }
         }
       }
@@ -1146,6 +1166,7 @@ fsms{
       acmLockToStandby{
         stateFrom:t="acmLock"
         command:t="selectTarget"
+        event:t="disable"
         stateTo:t="standby"
 
         actions{
@@ -1165,6 +1186,7 @@ fsms{
       acmLockToSearch{
         stateFrom:t="acmLock"
         command:t="acmSwitch"
+        command:t="switch"
         stateTo:t="search"
 
         actions{
@@ -1203,6 +1225,7 @@ fsms{
       acmTrackToStandby{
         stateFrom:t="acmTrack"
         command:t="selectTarget"
+        event:t="disable"
         stateTo:t="standby"
 
         actions{
@@ -1222,6 +1245,7 @@ fsms{
       acmTrackToSearch{
         stateFrom:t="acmTrack"
         command:t="acmSwitch"
+        command:t="switch"
         stateTo:t="search"
 
         actions{

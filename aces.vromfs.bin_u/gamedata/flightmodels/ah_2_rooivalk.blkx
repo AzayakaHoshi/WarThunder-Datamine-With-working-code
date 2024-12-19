@@ -11,6 +11,7 @@ haveCCRPForGun:b=no
 haveCCRPForTurret:b=yes
 hasHelmetDesignator:b=yes
 hmdTopOwl:b=yes
+mfdCamTadsApache:b=yes
 rwrIndicator:t="AN/APR-39 MFD"
 gearSinkRangeLR:r=0.199
 gearSinkRangeC:r=0.167
@@ -1287,9 +1288,13 @@ Sound{
 }
 
 cockpit{
-  textToShowInCockpit:t="msg/textToShowInCockpit"
-  headPos:p3=1.88, -0.732, 0.0
-  headPosOnShooting:p3=1.88, -0.732, 0.0
+  headPos:p3=1.88, -0.448, 0.0
+  headPosOnShooting:p3=1.88, -0.448, 0.0
+  mirror:b=yes
+  mirrorPos:p3=2.528, -0.453, 0.0
+  mirrorNorm:p3=-1.0, 0.0, 0.0
+  mirrorNode:t="mirror"
+  mirrorNode:t="mirror1"
   lightPos:p3=2.6, -1.0, 0.0
   lightColor:p3=0.01, 0.6, 0.1
   lightRadius:r=0.4
@@ -1301,56 +1306,77 @@ cockpit{
   sightFov:r=0.001
 
   devices{
-    speed:p2=0.0, 257.222
+    stick_ailerons:p2=-1.0, 1.0
+    stick_elevator:p2=-1.0, 1.0
+    throttle:p2=0.0, 1.0
+    throttle_1:p2=0.0, 1.0
+    pedals:p2=-1.0, 1.0
+    pedals1:p2=-1.0, 1.0
+    pedals2:p2=-1.0, 1.0
+    pedals3:p2=-1.0, 1.0
+    pedals4:p2=-1.0, 1.0
+    pedals5:p2=-1.0, 1.0
+    pedals6:p2=-1.0, 1.0
+    pedals7:p2=-1.0, 1.0
+    speed:p2=0.0, 102.889
     bank:p2=-8.0, 8.0
-    turn:p2=-0.23562, 0.23562
-    vario:p2=-30.0, 30.0
+    vario:p2=-15.23, 15.23
+    vario1:p2=0.0, 12.69
+    compass:p2=0.0, 360.0
+    prop_rpm:p2=0.0, 275.0
     altitude_10k:p2=0.0, 100000.0
     altitude_hour:p2=0.0, 10000.0
     altitude_min:p2=0.0, 1000.0
     altitude_koef:r=3.28
-    aviahorizon_pitch:p2=-60.0, 60.0
+    aviahorizon_pitch:p2=-180.0, 180.0
     aviahorizon_roll:p2=-180.0, 180.0
-    compass:p2=0.0, 360.0
-    fuel:p2=0.0, 1277.625
-    rpm:p2=0.0, 4500.0
-    rpm1:p2=0.0, 4500.0
-    rpm2:p2=0.0, 4500.0
-    rpm3:p2=0.0, 4500.0
-    rpm_hour:p2=10000.0, 30000.0
-    rpm_min:p2=0.0, 1000.0
-    water_temperature:p2=0.0, 1000.0
-    manifold_pressure:p2=0.334, 2.507
-    manifold_pressure1:p2=0.334, 2.507
-    manifold_pressure2:p2=0.334, 2.507
-    manifold_pressure3:p2=0.334, 2.507
-    head_temperature:p2=0.0, 300.0
-    head_temperature1:p2=0.0, 300.0
-    head_temperature2:p2=0.0, 300.0
-    head_temperature3:p2=0.0, 300.0
-    oil_temperature:p2=-50.0, 150.0
-    oil_temperature1:p2=-50.0, 150.0
-    oil_temperature2:p2=-50.0, 150.0
-    oil_temperature3:p2=-50.0, 150.0
-    fuel_pressure:p2=0.0, 15.0
-    fuel_pressure1:p2=0.0, 15.0
-    fuel_pressure2:p2=0.0, 15.0
-    fuel_pressure3:p2=0.0, 15.0
-    oil_pressure:p2=0.0, 150.0
-    oil_pressure1:p2=0.0, 150.0
-    oil_pressure2:p2=0.0, 150.0
-    oil_pressure3:p2=0.0, 150.0
+    clock_hour:p2=0.0, 12.0
+    clock_min:p2=0.0, 60.0
+    clock_sec:p2=0.0, 60.0
   }
 
   multifunctionDisplays{
 
     display{
-      textureArea:p4=0.0, 0.5, 0.5, 1.0
-      monoDisplayColor:p3=0.4, 0.8, 0.4
+      textureArea:p4=0.0, 0.0, 0.5, 0.5
+
+      page{
+        type:t="thermal"
+        turretIdx:i=0
+      }
 
       page{
         type:t="target_tracking"
         turretIdx:i=0
+      }
+
+      page{
+        type:t="rwr"
+      }
+
+      page{
+        type:t="map"
+      }
+
+      page{
+        type:t="rwr"
+      }
+    }
+
+    display{
+      textureArea:p4=0.5, 0.0, 1.0, 0.5
+
+      page{
+        type:t="custom"
+        pageName:t="ah64Flt"
+      }
+
+      page{
+        type:t="rwr"
+      }
+
+      page{
+        type:t="map"
       }
 
       page{
@@ -1359,172 +1385,16 @@ cockpit{
       }
 
       page{
-        type:t="devices"
-
-        speed{
-          texture:t="us_mfd_speed"
-          position:p2=120.0, 160.0
-          arrowTexCoord:p4=0.0, 0.01, 0.01, 0.01
-          backgroundTexCoord:p4=0.32, 0.51, 0.61, 0.61
-          size:p2=79.0, 25.0
-          color:c=0, 255, 0, 255
-          valueTextSize:r=1.0
-          valueMul:r=0.54
-
-          ranges{
-            limits:p4=50.0, 100.0, -0.24, 0.3
-            limits:p4=100.0, 150.0, 0.3, 0.69
-            limits:p4=150.0, 200.0, 0.69, 1.0
-            limits:p4=200.0, 250.0, 1.0, 1.32
-          }
-        }
-
-        speed{
-          texture:t="us_mfd_speed"
-          position:p2=120.0, 110.0
-          arrowTexCoord:p4=0.0, 0.01, 0.01, 0.01
-          backgroundTexCoord:p4=0.0, 0.01, 0.0, 0.01
-          size:p2=1.0, 1.0
-          color:c=0, 255, 0, 255
-          valueTextSize:r=60.0
-          valueMul:r=0.54
-          notDrawBackground:b=yes
-
-          ranges{
-            limits:p4=50.0, 100.0, -0.24, 0.3
-            limits:p4=100.0, 150.0, 0.3, 0.69
-            limits:p4=150.0, 200.0, 0.69, 1.0
-            limits:p4=200.0, 250.0, 1.0, 1.32
-          }
-        }
-
-        vario{
-          texture:t="us_mfd_vario"
-          position:p2=552.0, 160.0
-          arrowTexCoord:p4=0.0, 0.01, 0.01, 0.01
-          backgroundTexCoord:p4=0.3, 0.22, 0.58, 0.3
-          size:p2=79.0, 25.0
-          color:c=0, 255, 0, 255
-          valueTextSize:r=1.0
-          valueMul:r=0.1969
-
-          ranges{
-            limits:p4=-6.0, -4.0, 0.05, 0.22
-            limits:p4=-4.0, -2.0, 0.22, 0.56
-            limits:p4=-2.0, -1.0, 0.56, 0.72
-            limits:p4=-1.0, 1.0, 0.72, 1.28
-            limits:p4=1.0, 2.0, 1.28, 1.44
-            limits:p4=2.0, 4.0, 1.44, 1.78
-            limits:p4=4.0, 6.0, 1.78, 1.95
-          }
-        }
-
-        vario{
-          texture:t="us_mfd_vario"
-          position:p2=552.0, 110.0
-          arrowTexCoord:p4=0.0, 0.01, 0.01, 0.01
-          backgroundTexCoord:p4=0.0, 0.01, 0.01, 0.01
-          size:p2=1.0, 1.0
-          color:c=0, 255, 0, 255
-          valueTextSize:r=60.0
-          valueMul:r=196.85
-
-          ranges{
-            limits:p4=-6.0, -4.0, 0.05, 0.22
-            limits:p4=-4.0, -2.0, 0.22, 0.56
-            limits:p4=-2.0, -1.0, 0.56, 0.72
-            limits:p4=-1.0, 1.0, 0.72, 1.28
-            limits:p4=1.0, 2.0, 1.28, 1.44
-            limits:p4=2.0, 4.0, 1.44, 1.78
-            limits:p4=4.0, 6.0, 1.78, 1.95
-          }
-        }
-
-        altitude_hour{
-          texture:t="us_mfd_altitude"
-          position:p2=552.0, 360.0
-          backgroundTexCoord:p4=0.37, 0.21, 0.54, 0.32
-          arrowTexCoord:p4=0.0, 0.01, 0.01, 0.01
-          size:p2=58.0, 30.0
-          color:c=0, 255, 255, 255
-          valueTextSize:r=1.0
-          notDrawBackground:b=no
-
-          ranges{
-            limits:p4=0.0, 1000.0, -0.5, 1.5
-          }
-        }
-
-        altitude_min{
-          texture:t="us_mfd_altitude"
-          position:p2=552.0, 402.0
-          backgroundTexCoord:p4=0.0, 0.01, 0.01, 0.01
-          arrowTexCoord:p4=0.0, 0.01, 0.01, 0.01
-          size:p2=1.0, 1.0
-          color:c=0, 255, 0, 255
-          valueTextSize:r=60.0
-          valueMul:r=3.2808
-          notDrawBackground:b=yes
-
-          ranges{
-            limits:p4=0.0, 1000.0, -0.5, 1.5
-          }
-        }
-
-        compass{
-          texture:t="us_mfd_compass"
-          position:p2=130.0, 402.0
-          backgroundTexCoord:p4=0.0, 0.01, 0.01, 0.01
-          arrowTexCoord:p4=0.0, 0.01, 0.01, 0.01
-          valueTextSize:r=60.0
-          color:c=0, 255, 0, 255
-          size:p2=1.0, 1.0
-          arrowSize:p2=1.0, 1.0
-
-          ranges{
-            limits:p4=0.0, 360.0, 0.0, -2.0
-          }
-        }
-
-        aviahorizon_pitch{
-          arrowTex:t="us_mfd_ahorizon_scale"
-          position:p2=340.0, 256.0
-          arrowTexCoord:p4=0.0, 0.4, 1.0, 0.6
-          size:p2=300.0, 300.0
-          notDrawBackground:b=no
-
-          ranges{
-            limits:p4=-90.0, 90.0, 0.35, -0.35
-          }
-        }
-
-        aviahorizon_roll{
-          texture:t="us_mfd_ahorizon_body"
-          position:p2=340.0, 256.0
-          backgroundTexCoord:p4=0.11, 0.0, 0.89, 0.89
-          size:p2=300.0, 300.0
-          notDrawBackground:b=no
-
-          ranges{
-            limits:p4=-180.0, 180.0, -1.0, 1.0
-          }
-        }
-
-        aviahorizon_roll{
-          texture:t="us_mfd_ahorizon"
-          position:p2=340.0, 256.0
-          arrowTexCoord:p4=0.2, 0.9, 0.8, 1.0
-          size:p2=300.0, 300.0
-          notDrawBackground:b=no
-
-          ranges{
-            limits:p4=-180.0, 180.0, -1.0, 1.0
-          }
-        }
+        type:t="target_tracking"
+        turretIdx:i=0
       }
+    }
+
+    display{
+      textureArea:p4=0.0, 0.5, 0.5, 1.0
 
       page{
-        type:t="rwr"
+        type:t="map"
       }
     }
 

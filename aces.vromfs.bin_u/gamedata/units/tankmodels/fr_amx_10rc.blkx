@@ -2827,6 +2827,51 @@ VehiclePhys{
   }
 }
 
+PhysSys{
+  find:t="bone_suspension_(\w)_(\d+)$"
+
+  points{
+
+    lever{
+      limitMin:p3=0.0, 0.0, 0.0
+      limitMax:p3=0.0, 0.0, 0.0
+      name:t="bone_suspension_$1_$2"
+    }
+
+    suspension_01_01{
+      limitMin:p3=-1.0, -1.0, 0.0
+      limitMax:p3=1.0, 1.0, 0.0
+      name:t="bone_suspension_$1_$2_01"
+    }
+
+    wheel{
+
+      searchChildren{
+        occurence:i=1
+        limitMin:p3=-1.0, -1.0, 0.0
+        limitMax:p3=1.0, 1.0, 0.0
+        find:t="bone_wheel_"
+        parent:t="lever"
+      }
+    }
+  }
+
+  constraints{
+
+    edge{
+      to:t="wheel"
+      from:t="lever"
+      moveNodes:b=no
+    }
+
+    edge{
+      to:t="wheel"
+      from:t="suspension_01_01"
+      moveNodes:b=no
+    }
+  }
+}
+
 repairParts{
 
   wheel_l_01_dm{

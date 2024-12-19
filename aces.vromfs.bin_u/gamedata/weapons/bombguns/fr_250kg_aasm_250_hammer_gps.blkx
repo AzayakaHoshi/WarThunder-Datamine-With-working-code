@@ -1,0 +1,386 @@
+rocketGun:b=yes
+preset_cost:i=20
+bullets:i=1
+shotFreq:r=1000.25
+sound:t="weapon.rocketgun_132"
+helicopterGroup:i=2
+mesh:t="fr_250kg_aasm_250_hammer_inertiel"
+mesh_deployed:t="fr_250kg_aasm_250_hammer_inertiel_deployed"
+
+tags{
+}
+
+rocket{
+  bulletName:t="fr_250kg_aasm_250_hammer_inertiel"
+  statType:t="hydra"
+  caliber:r=0.273
+  length:r=3.11
+  WdK:p3=2.5, 2.5, 2.5
+  CxK:r=1.25
+  wingAreaMult:r=2.0
+  finsAoaHor:r=0.2
+  finsAoaVer:r=0.2
+  distFromCmToStab:r=0.45
+  mass:r=330.0
+  massEnd:r=305.0
+  timeFire:r=30.0
+  force:r=1670.0
+  fireDelay:r=2.0
+  timeLife:r=250.0
+  thrustVectoringAngle:r=0.05
+  useStartSpeed:b=yes
+  startSpeed:r=0.0
+  machMax:r=1.0
+  maxSpeed:r=340.0
+  endSpeed:r=0.0
+  maxDistance:r=70000.0
+  minDistance:r=3000.0
+  rangeMax:r=60000.0
+  guidanceType:t="sns"
+  normalizationPreset:t="heat"
+  ricochetPreset:t="he"
+  groundRicochetPreset:t="bomb_ground"
+  secondaryShattersPreset:t="ap"
+  stabilityThreshold:r=0.5
+  stabilityCaliberToArmorThreshold:r=5.0
+  stabilityReductionAfterRicochet:r=0.3
+  stabilityReductionAfterPenetration:r=0.15
+  bulletType:t="he_bomb"
+  slopeEffectPreset:t="ap"
+  fresnel:p3=0.23, 0.1, 2.0
+  useEffectiveArmorThicknessForShatter:b=yes
+  explodeOnRendinst:b=yes
+  explosiveType:t="comp_h6"
+  explosiveMass:r=87.1
+  maxDeltaAngle:r=0.02
+  dragCx:r=0.025
+  spawnExplosionFx:b=no
+  spawnExplosionWreckage:b=no
+  explosionEffect:t="explosion_midair_rocket_big"
+  groundCollisionEffect:t="bomb_expl_200kg"
+  ricochetEffect:t="hit_59_80mm_metal_ap"
+  waterCollisionEffect:t="hit_59_80mm_water"
+  explosionPatchRadius:r=8.0
+  waterRicochetEffect:t="hit_81_105mm_water_ap"
+  groundRicochetEffect:t="hit_81_105mm_dirt_ap"
+  visualShattersWaterOffset:r=1.2
+  visualShattersGroundOffset:r=1.2
+  distanceFuse:b=no
+  effectOffset:p3=-1.9, -0.19, 0.0
+  rendinstDamageRadius:r=9.0
+  hitPowerMult:r=400.0
+  fuseDelayDist:r=0.1
+  explodeTreshold:r=0.1
+  fireEffect:t="fires_exhaust_jet_early_big"
+  smokeEffect:t="smoke_rocket_tail_light_huge"
+  smokeEffect2:t=""
+  hazeEffect:t="haze_missile"
+  endSmokeViscosity:r=0.05
+  price:r=3000.0
+  amountPerTier:r=1.0
+  iconType:t="missile_air_to_uni_large"
+
+  arcadeProp{
+    finsAoaHor:r=0.25
+    finsAoaVer:r=0.25
+  }
+
+  guidance{
+    angleMax:r=180.0
+    permanentlyActivated:b=yes
+    warmUpTime:r=1.0
+    acquisitionTime:r=0.1
+    workTime:r=3600.0
+    designationSourceTypeMask:i=1
+    constantDesignationSourceTypeMask:i=1
+    breakLockMaxTime:r=250.0
+
+    guidanceAutopilot{
+      loftEnabled:b=yes
+      loftElevation:r=5.0
+      loftTargetElevation:r=-80.0
+      loftAngleToAccelMult:r=0.75
+      loftTargetOmegaMax:r=2.25
+      timeToGain0:p2=1.0, 0.0
+      timeToGain1:p2=1.5, 3.0
+      timeToGain2:p2=10.0, 3.0
+      timeToGain3:p2=12.5, 1.0
+      baseIndSpeed:r=1800.0
+      propNavMult:r=4.0
+      reqAccelMax:r=15.0
+      accelControlProp:r=0.041
+      accelControlIntg:r=0.121
+      accelControlIntgLim:r=1.0
+      accelControlDiff:r=0.001
+    }
+  }
+
+  stabilityRicochetModifier{
+    mod1:p2=0.0, 0.5
+    mod2:p2=15.0, 0.7
+    mod3:p2=30.0, 0.99
+  }
+
+  pressureDamage{
+    damageType:t="pressure"
+  }
+
+  damage{
+
+    explosive{
+      offset:r=1.0
+    }
+  }
+
+  DamageParts{
+
+    body{
+      hp:r=50.0
+      armorClass:t="tank_structural_steel"
+      armorThickness:r=1.0
+    }
+  }
+
+  DamageEffects{
+
+    part{
+      name:t="body"
+
+      onHit{
+        shellState:t="inFlight"
+        expl:r=1.0
+      }
+
+      onHit{
+        shellState:t="onUnit"
+        damageType:t="generic"
+        expl:r=0.05
+        fire:r=0.45
+        break:r=0.5
+        damage:r=3.0
+        fHitCritical:b=yes
+      }
+
+      onHit{
+        shellState:t="onUnit"
+        damageType:t="generic"
+        expl:r=0.5
+        fire:r=0.3
+        break:r=0.2
+        damage:r=30.0
+        fHitCritical:b=yes
+      }
+
+      onHit{
+        shellState:t="onUnit"
+        damageType:t="explosion"
+        expl:r=0.45
+        fire:r=0.45
+        break:r=0.1
+        damage:r=50.0
+        fHitCritical:b=yes
+      }
+
+      onHit{
+        shellState:t="onUnit"
+        damageType:t="cumulative"
+        expl:r=0.4
+        fire:r=0.4
+        break:r=0.1
+        damage:r=100.0
+        fHitCritical:b=yes
+      }
+
+      onKill{
+        shellState:t="inFlight"
+        destruction:r=1.0
+      }
+
+      onKill{
+        shellState:t="onUnit"
+        expl:r=0.05
+        fire:r=0.05
+        break:r=0.9
+        fHitCritical:b=yes
+      }
+    }
+  }
+
+  shatterCollisions{
+    groundCollisionEffect:t="hit_12_18mm_dirt_ap"
+    waterCollisionEffect:t="hit_8_11mm_water"
+
+    default{
+      fx:t="hit_12_18mm_dirt_ap"
+    }
+
+    horLandMesh{
+      fx:t="hit_12_18mm_dirt_ap"
+    }
+
+    soil{
+      fx:t="hit_12_18mm_dirt_ap"
+    }
+
+    dirt{
+      fx:t="hit_12_18mm_dirt_ap"
+    }
+
+    road{
+      fx:t="hit_12_18mm_dirt_ap"
+    }
+
+    bricks_red{
+      fx:t="hit_12_18mm_red_brick_ap"
+    }
+
+    roadSoil{
+      fx:t="hit_12_18mm_dirt_ap"
+    }
+
+    sand{
+      fx:t="hit_12_18mm_sand_ap"
+    }
+
+    duneSand{
+      fx:t="hit_12_18mm_sand_ap"
+    }
+
+    roadSand{
+      fx:t="hit_12_18mm_sand_ap"
+    }
+
+    quickSand{
+      fx:t="hit_12_18mm_sand_ap"
+    }
+
+    snow{
+      fx:t="hit_12_18mm_snow_ap"
+    }
+
+    ice{
+      fx:t="hit_12_18mm_snow_ap"
+    }
+
+    roadSnow{
+      fx:t="hit_12_18mm_snow_ap"
+    }
+
+    snowLower{
+      fx:t="hit_12_18mm_snow_ap"
+    }
+
+    glass{
+      fx:t="hit_12_18mm_metal_ap"
+    }
+
+    wood{
+      fx:t="hit_12_18mm_wood_ap"
+    }
+
+    steel{
+      fx:t="hit_12_18mm_metal_ap"
+    }
+
+    metal{
+      fx:t="hit_12_18mm_metal_ap"
+    }
+
+    tank_structural_steel{
+      fx:t="hit_12_18mm_metal_ap"
+    }
+
+    aluminum_armor{
+      fx:t="hit_12_18mm_metal_ap"
+    }
+
+    tank_rubber_screens{
+      fx:t="hit_12_18mm_stone_ap"
+    }
+
+    buildings{
+      fx:t="hit_12_18mm_stone_ap"
+    }
+
+    verLandMesh{
+      fx:t="hit_12_18mm_stone_ap"
+    }
+
+    concrete{
+      fx:t="hit_12_18mm_stone_ap"
+    }
+
+    rocks{
+      fx:t="hit_12_18mm_stone_ap"
+    }
+
+    rocksSlippery{
+      fx:t="hit_12_18mm_stone_ap"
+    }
+
+    fabric{
+      fx:t="hit_12_18mm_stone_ap"
+    }
+
+    stone_snow{
+      fx:t="hit_12_18mm_snow_ap"
+    }
+
+    armorPierceLowCal{
+      fx:t="hit_12_18mm_metal_ap"
+    }
+
+    armorPierceMedCal{
+      fx:t="hit_12_18mm_metal_ap"
+    }
+
+    armorPierceHiCal{
+      fx:t="hit_12_18mm_metal_ap"
+    }
+
+    armorNPLowCal{
+      fx:t="hit_12_18mm_metal_ap"
+    }
+
+    armorNPMedCal{
+      fx:t="hit_12_18mm_metal_ap"
+    }
+
+    armorNPHiCal{
+      fx:t="hit_12_18mm_metal_ap"
+    }
+  }
+
+  collisions{
+
+    steel{
+      fx:t="explosion_midair_big"
+      ricochetFx:t="hit_81_105mm_metal_ap"
+    }
+
+    aluminum_armor{
+      fx:t="explosion_midair_big"
+      ricochetFx:t="hit_81_105mm_metal_ap"
+    }
+
+    tank_structural_steel{
+      fx:t="explosion_midair_big"
+      ricochetFx:t="hit_81_105mm_metal_ap"
+    }
+
+    armor{
+      fx:t="explosion_midair_big"
+      ricochetFx:t="hit_81_105mm_metal_ap"
+    }
+
+    buildings{
+      fx:t="explosion_midair_big"
+      ricochetFx:t="hit_106_132mm_stone_ap"
+    }
+
+    wood{
+      fx:t="explosion_midair_big"
+      ricochetFx:t="hit_106_132mm_wood_ap"
+    }
+  }
+}

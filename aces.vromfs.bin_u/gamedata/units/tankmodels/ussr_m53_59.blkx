@@ -2783,6 +2783,11 @@ VehiclePhys{
     dampeningCompressionRatio:r=0.15
     brokenWheelSteeringDeflection:r=-15.0
 
+    steeringNodes{
+      wheel_r_01:t="bone_wheel_r_01"
+      wheel_l_01:t="bone_wheel_l_01"
+    }
+
     steeringDeflection{
       wheel_l_01:r=35.0
       wheel_r_01:r=35.0
@@ -2818,6 +2823,171 @@ VehiclePhys{
       wheel_r_02:b=yes
       wheel_l_01:b=yes
       wheel_r_01:b=yes
+    }
+  }
+}
+
+PhysSys{
+
+  group{
+    find:t="bone_suspension_c_01"
+
+    points{
+
+      lever{
+        limitMin:p3=-1.0, -1.0, 0.0
+        limitMax:p3=1.0, 1.0, 0.0
+        name:t="bone_suspension_c_01"
+      }
+
+      wheel_r_01{
+
+        searchChildren{
+          occurence:i=1
+          limitMin:p3=-1.0, -1.0, 0.0
+          limitMax:p3=1.0, 1.0, 0.0
+          parent:t="lever"
+          find:t="bone_wheel_r_01"
+        }
+      }
+
+      wheel_l_01{
+
+        searchChildren{
+          occurence:i=1
+          limitMin:p3=-1.0, -1.0, 0.0
+          limitMax:p3=1.0, 1.0, 0.0
+          parent:t="lever"
+          find:t="bone_wheel_l_01"
+        }
+      }
+
+      suspension_l_02{
+        limitMin:p3=-0.5, -0.5, 0.0
+        limitMax:p3=0.5, 0.5, 0.0
+        name:t="bone_suspension_l_01_02"
+      }
+
+      suspension_r_02{
+        limitMin:p3=-0.5, -0.5, 0.0
+        limitMax:p3=0.5, 0.5, 0.0
+        name:t="bone_suspension_r_01_02"
+      }
+
+      suspension_l_03{
+        limitMin:p3=0.0, 0.0, 0.0
+        limitMax:p3=0.0, 0.0, 0.0
+        name:t="bone_suspension_l_01_03"
+      }
+
+      suspension_r_03{
+        limitMin:p3=0.0, 0.0, 0.0
+        limitMax:p3=0.0, 0.0, 0.0
+        name:t="bone_suspension_r_01_03"
+      }
+    }
+
+    constraints{
+
+      edge{
+        from:t="lever"
+        to:t="wheel_r_01"
+      }
+
+      edge{
+        from:t="lever"
+        to:t="wheel_l_01"
+      }
+
+      edge{
+        from:t="suspension_l_02"
+        to:t="wheel_l_01"
+        moveSecond:b=no
+      }
+
+      edge{
+        from:t="suspension_r_02"
+        to:t="wheel_r_01"
+        moveSecond:b=no
+      }
+
+      edge{
+        from:t="suspension_l_03"
+        to:t="suspension_l_02"
+      }
+
+      edge{
+        from:t="suspension_r_03"
+        to:t="suspension_r_02"
+      }
+
+      slider{
+        moveNodes:b=yes
+        rotateSecond:b=no
+        moveSecond:b=yes
+        moveOnly:b=no
+        point:t="lever"
+        from:t="wheel_l_01"
+        to:t="wheel_r_01"
+      }
+    }
+  }
+
+  group{
+    find:t="^bone_suspension_back_(\d+)$"
+
+    points{
+
+      lever{
+        limitMin:p3=0.0, -1.0, 0.0
+        limitMax:p3=0.0, 1.0, 0.0
+        name:t="bone_suspension_back_$1"
+      }
+
+      wheel_r_01{
+
+        searchChildren{
+          occurence:i=1
+          limitMin:p3=-1.0, -1.0, 0.0
+          limitMax:p3=1.0, 1.0, 0.0
+          parent:t="lever"
+          find:t="bone_wheel_"
+        }
+      }
+
+      wheel_l_01{
+
+        searchChildren{
+          occurence:i=2
+          limitMin:p3=-1.0, -1.0, 0.0
+          limitMax:p3=1.0, 1.0, 0.0
+          parent:t="lever"
+          find:t="bone_wheel_"
+        }
+      }
+    }
+
+    constraints{
+
+      edge{
+        to:t="wheel_r_01"
+        from:t="lever"
+      }
+
+      edge{
+        from:t="lever"
+        to:t="wheel_l_01"
+      }
+
+      slider{
+        moveNodes:b=yes
+        rotateSecond:b=no
+        moveSecond:b=yes
+        moveOnly:b=no
+        point:t="lever"
+        from:t="wheel_l_01"
+        to:t="wheel_r_01"
+      }
     }
   }
 }

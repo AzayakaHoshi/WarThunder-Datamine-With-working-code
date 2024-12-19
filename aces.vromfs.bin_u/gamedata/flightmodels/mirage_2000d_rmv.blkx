@@ -17,6 +17,7 @@ hasOpticTurret:b=yes
 isBwOpticSight:b=yes
 hasHelmetDesignator:b=yes
 hasHelmetDesignator:b=yes
+mfdCamDamocles:b=yes
 hmdA10c:b=yes
 ilsTCSFVE130:b=yes
 rwrIndicator:t="Serval"
@@ -2182,7 +2183,7 @@ DamageEffects{
 }
 
 ikPilot{
-  model:t="usaf_pilot_1977_1991_char"
+  model:t="usaf_pilot_1985_2011_jhmcs_char"
   maxHeadHorAngle:r=60.0
   maxHeadDownAngle:r=60.0
   maxHeadUpAngle:r=10.0
@@ -2230,7 +2231,7 @@ ikPilot{
 }
 
 ikPilot{
-  model:t="usaf_pilot_1977_1991_char"
+  model:t="usaf_pilot_1985_2011_jhmcs_char"
   maxHeadHorAngle:r=60.0
   maxHeadDownAngle:r=60.0
   maxHeadUpAngle:r=10.0
@@ -2438,25 +2439,25 @@ cockpit{
   }
 }
 
-sensors{
+nightVision{
 
-  sensor{
-    blk:t="gameData/sensors/fr_antilope_5_hmd.blk"
-    dmPart:t="radar_dm"
+  sightThermal{
+    resolution:ip2=1200, 800
+    noiseFactor:r=0.04
   }
 
-  sensor{
-    blk:t="gameData/sensors/ir_tracker_tgp.blk"
-    node:t="optic1_gun"
+  gunnerIr{
+    resolution:ip2=1600, 1200
+    lightMult:r=9.0
+    ghosting:r=0.6
+    noiseFactor:r=0.2
   }
 
-  sensor{
-    blk:t="gameData/sensors/fr_serval_rwr.blk"
-  }
-
-  sensor{
-    blk:t="gameData/sensors/LaserDesignatorSensor.blk"
-    node:t="optic1_gun"
+  pilotIr{
+    resolution:ip2=1600, 1200
+    lightMult:r=9.0
+    ghosting:r=0.6
+    noiseFactor:r=0.2
   }
 }
 
@@ -2481,25 +2482,25 @@ gunnerOpticFps{
   }
 }
 
-nightVision{
+sensors{
 
-  gunnerIr{
-    resolution:ip2=1920, 1080
-    lightMult:r=10.0
-    ghosting:r=0.7
-    noiseFactor:r=0.15
+  sensor{
+    blk:t="gameData/sensors/fr_antilope_5_hmd.blk"
+    dmPart:t="radar_dm"
   }
 
-  pilotIr{
-    resolution:ip2=1920, 1080
-    lightMult:r=10.0
-    ghosting:r=0.7
-    noiseFactor:r=0.15
+  sensor{
+    blk:t="gameData/sensors/ir_tracker_tgp.blk"
+    node:t="optic1_gun"
   }
 
-  sightThermal{
-    resolution:ip2=1200, 800
-    noiseFactor:r=0.04
+  sensor{
+    blk:t="gameData/sensors/fr_serval_rwr.blk"
+  }
+
+  sensor{
+    blk:t="gameData/sensors/LaserDesignatorSensor.blk"
+    node:t="optic1_gun"
   }
 }
 
@@ -2601,6 +2602,21 @@ weapon_presets{
   preset{
     name:t="mirage_2000d_rmv_as_30l"
     blk:t="gameData/FlightModels/weaponPresets/mirage_2000d_rmv_as_30l.blk"
+  }
+
+  preset{
+    name:t="mirage_2000d_rmv_aasm_250_sbu_38"
+    blk:t="gameData/FlightModels/weaponPresets/mirage_2000d_rmv_aasm_250_sbu_38.blk"
+  }
+
+  preset{
+    name:t="mirage_2000d_rmv_aasm_250_sbu_64"
+    blk:t="gameData/FlightModels/weaponPresets/mirage_2000d_rmv_aasm_250_sbu_64.blk"
+  }
+
+  preset{
+    name:t="mirage_2000d_rmv_aasm_250_sbu_54"
+    blk:t="gameData/FlightModels/weaponPresets/mirage_2000d_rmv_aasm_250_sbu_54.blk"
   }
 }
 
@@ -3220,6 +3236,71 @@ WeaponSlots{
         preset:t="damocles"
       }
     }
+
+    WeaponPreset{
+      iconType:t="missile_air_to_uni"
+      name:t="aasm_250_sbu_38_slot2"
+      reqModification:t="fr_aasm_250_sbu_38"
+
+      ShowNodes{
+        node:t="pylon_clb_lat_002"
+      }
+
+      Weapon{
+        trigger:t="atgm"
+        blk:t="gameData/Weapons/BombGuns/fr_250kg_aasm_250_hammer_gps.blk"
+        emitter:t="bomb7"
+        bullets:i=1
+        external:b=yes
+        separate:b=yes
+        machLimit:r=1.4
+      }
+    }
+
+    WeaponPreset{
+      iconType:t="missile_air_to_uni_middle"
+      name:t="aasm_250_sbu_64_slot2"
+      reqModification:t="fr_aasm_250_sbu_64"
+
+      ShowNodes{
+        node:t="pylon_clb_lat_002"
+      }
+
+      Weapon{
+        trigger:t="atgm"
+        blk:t="gameData/Weapons/BombGuns/fr_250kg_aasm_250_hammer_ir.blk"
+        emitter:t="bomb7"
+        bullets:i=1
+        external:b=yes
+        separate:b=yes
+        machLimit:r=1.4
+      }
+    }
+
+    WeaponPreset{
+      iconType:t="missile_air_to_uni_smal"
+      name:t="aasm_250_sbu_54_slot2"
+      reqModification:t="fr_aasm_250_sbu_54"
+
+      ShowNodes{
+        node:t="pylon_clb_lat_002"
+      }
+
+      Weapon{
+        trigger:t="atgm"
+        blk:t="gameData/Weapons/BombGuns/fr_250kg_aasm_250_hammer_laser.blk"
+        emitter:t="bomb7"
+        bullets:i=1
+        external:b=yes
+        separate:b=yes
+        machLimit:r=1.4
+      }
+
+      DependentWeaponPreset{
+        slot:i=5
+        preset:t="damocles"
+      }
+    }
   }
 
   WeaponSlot{
@@ -3479,6 +3560,71 @@ WeaponSlots{
 
       DependentWeaponPreset{
         slot:i=6
+        preset:t="damocles"
+      }
+    }
+
+    WeaponPreset{
+      iconType:t="missile_air_to_uni"
+      name:t="aasm_250_sbu_38_slot4"
+      reqModification:t="fr_aasm_250_sbu_38"
+
+      ShowNodes{
+        node:t="pylon_clb_503_001"
+      }
+
+      Weapon{
+        trigger:t="atgm"
+        blk:t="gameData/Weapons/BombGuns/fr_250kg_aasm_250_hammer_gps.blk"
+        emitter:t="bomb1"
+        bullets:i=1
+        external:b=yes
+        separate:b=yes
+        machLimit:r=1.4
+      }
+    }
+
+    WeaponPreset{
+      iconType:t="missile_air_to_uni_middle"
+      name:t="aasm_250_sbu_64_slot4"
+      reqModification:t="fr_aasm_250_sbu_64"
+
+      ShowNodes{
+        node:t="pylon_clb_503_001"
+      }
+
+      Weapon{
+        trigger:t="atgm"
+        blk:t="gameData/Weapons/BombGuns/fr_250kg_aasm_250_hammer_ir.blk"
+        emitter:t="bomb1"
+        bullets:i=1
+        external:b=yes
+        separate:b=yes
+        machLimit:r=1.4
+      }
+    }
+
+    WeaponPreset{
+      iconType:t="missile_air_to_uni_smal"
+      name:t="aasm_250_sbu_54_slot4"
+      reqModification:t="fr_aasm_250_sbu_54"
+
+      ShowNodes{
+        node:t="pylon_clb_503_001"
+      }
+
+      Weapon{
+        trigger:t="atgm"
+        blk:t="gameData/Weapons/BombGuns/fr_250kg_aasm_250_hammer_laser.blk"
+        emitter:t="bomb1"
+        bullets:i=1
+        external:b=yes
+        separate:b=yes
+        machLimit:r=1.4
+      }
+
+      DependentWeaponPreset{
+        slot:i=5
         preset:t="damocles"
       }
     }
@@ -3860,6 +4006,98 @@ WeaponSlots{
       BannedWeaponPreset{
         slot:i=6
         preset:t="pgm_500_slot6"
+      }
+    }
+
+    WeaponPreset{
+      iconType:t="missile_air_to_uni_group"
+      name:t="aasm_250_sbu_38_x2_slot5"
+      reqModification:t="fr_aasm_250_sbu_38"
+
+      ShowNodes{
+        node:t="pylon_central"
+      }
+
+      Weapon{
+        trigger:t="atgm"
+        blk:t="gameData/Weapons/containers/fr_auf2_sbu_38_x2.blk"
+        emitter:t="bomb3"
+        external:b=yes
+        separate:b=yes
+        machLimit:r=1.4
+      }
+
+      BannedWeaponPreset{
+        slot:i=4
+        preset:t="pgm_500_slot4"
+      }
+
+      BannedWeaponPreset{
+        slot:i=6
+        preset:t="pgm_500_slot6"
+      }
+    }
+
+    WeaponPreset{
+      iconType:t="missile_air_to_uni_middle_group"
+      name:t="aasm_250_sbu_64_x2_slot5"
+      reqModification:t="fr_aasm_250_sbu_64"
+
+      ShowNodes{
+        node:t="pylon_central"
+      }
+
+      Weapon{
+        trigger:t="atgm"
+        blk:t="gameData/Weapons/containers/fr_auf2_sbu_64_x2.blk"
+        emitter:t="bomb3"
+        external:b=yes
+        separate:b=yes
+        machLimit:r=1.4
+      }
+
+      BannedWeaponPreset{
+        slot:i=4
+        preset:t="pgm_500_slot4"
+      }
+
+      BannedWeaponPreset{
+        slot:i=6
+        preset:t="pgm_500_slot6"
+      }
+    }
+
+    WeaponPreset{
+      iconType:t="missile_air_to_uni_smal_group"
+      name:t="aasm_250_sbu_54_x2_slot5"
+      reqModification:t="fr_aasm_250_sbu_54"
+
+      ShowNodes{
+        node:t="pylon_central"
+      }
+
+      Weapon{
+        trigger:t="atgm"
+        blk:t="gameData/Weapons/containers/fr_auf2_sbu_54_x2.blk"
+        emitter:t="bomb3"
+        external:b=yes
+        separate:b=yes
+        machLimit:r=1.4
+      }
+
+      BannedWeaponPreset{
+        slot:i=4
+        preset:t="pgm_500_slot4"
+      }
+
+      BannedWeaponPreset{
+        slot:i=6
+        preset:t="pgm_500_slot6"
+      }
+
+      DependentWeaponPreset{
+        slot:i=5
+        preset:t="damocles"
       }
     }
 
@@ -4375,6 +4613,71 @@ WeaponSlots{
         preset:t="damocles"
       }
     }
+
+    WeaponPreset{
+      iconType:t="missile_air_to_uni"
+      name:t="aasm_250_sbu_38_slot8"
+      reqModification:t="fr_aasm_250_sbu_38"
+
+      ShowNodes{
+        node:t="pylon_clb_lat_003"
+      }
+
+      Weapon{
+        trigger:t="atgm"
+        blk:t="gameData/Weapons/BombGuns/fr_250kg_aasm_250_hammer_gps.blk"
+        emitter:t="bomb8"
+        bullets:i=1
+        external:b=yes
+        separate:b=yes
+        machLimit:r=1.4
+      }
+    }
+
+    WeaponPreset{
+      iconType:t="missile_air_to_uni_middle"
+      name:t="aasm_250_sbu_64_slot8"
+      reqModification:t="fr_aasm_250_sbu_64"
+
+      ShowNodes{
+        node:t="pylon_clb_lat_003"
+      }
+
+      Weapon{
+        trigger:t="atgm"
+        blk:t="gameData/Weapons/BombGuns/fr_250kg_aasm_250_hammer_ir.blk"
+        emitter:t="bomb8"
+        bullets:i=1
+        external:b=yes
+        separate:b=yes
+        machLimit:r=1.4
+      }
+    }
+
+    WeaponPreset{
+      iconType:t="missile_air_to_uni_smal"
+      name:t="aasm_250_sbu_54_slot8"
+      reqModification:t="fr_aasm_250_sbu_54"
+
+      ShowNodes{
+        node:t="pylon_clb_lat_003"
+      }
+
+      Weapon{
+        trigger:t="atgm"
+        blk:t="gameData/Weapons/BombGuns/fr_250kg_aasm_250_hammer_laser.blk"
+        emitter:t="bomb8"
+        bullets:i=1
+        external:b=yes
+        separate:b=yes
+        machLimit:r=1.4
+      }
+
+      DependentWeaponPreset{
+        slot:i=5
+        preset:t="damocles"
+      }
+    }
   }
 
   WeaponSlot{
@@ -4730,9 +5033,25 @@ modifications{
     reqModification:t="fr_damocles_pod"
   }
 
-  fr_pgm_500{
-    prevModification:t="fr_as_30l"
+  fr_aasm_250_sbu_38{
     reqModification:t="us_gbu_12_49"
+    modClass:t="weapon"
+    tier:i=2
+  }
+
+  fr_aasm_250_sbu_64{
+    reqModification:t="fr_aasm_250_sbu_38"
+    modClass:t="weapon"
+    tier:i=3
+  }
+
+  fr_aasm_250_sbu_54{
+    reqModification:t="fr_aasm_250_sbu_64"
+    modClass:t="weapon"
+    tier:i=4
+  }
+
+  fr_pgm_500{
     modClass:t="weapon"
     tier:i=2
   }
@@ -4880,7 +5199,7 @@ AfterBurner0{
       brightnessNoiseStrength:r=3.0
       brightnessNoiseSpeed:r=6.0
       ignitionTextureIntensity:r=1.0
-      ignitionBrightnessNoiseStrength:r=0.5
+      ignitionBrightnessNoiseStrength:r=0.1
       ignitionBrightnessNoiseSpeed:r=16.0
     }
   }

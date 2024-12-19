@@ -153,58 +153,6 @@ DamageParts{
       armorThickness:r=7.0
       hidableInXrayViewer:b=yes
     }
-
-    ex_armor_r_01_dm{
-      armorThickness:r=7.0
-    }
-
-    ex_armor_l_01_dm{
-      armorThickness:r=7.0
-    }
-
-    ex_decor_l_06_dm{
-      armorThickness:r=7.0
-    }
-
-    ex_decor_l_05_dm{
-      armorThickness:r=7.0
-    }
-
-    ex_decor_l_04_dm{
-      armorThickness:r=7.0
-    }
-
-    ex_decor_r_06_dm{
-      armorThickness:r=7.0
-    }
-
-    ex_decor_r_05_dm{
-      armorThickness:r=7.0
-    }
-
-    ex_decor_r_04_dm{
-      armorThickness:r=7.0
-    }
-
-    ex_decor_04_dm{
-      armorThickness:r=7.0
-    }
-
-    ex_decor_05_dm{
-      armorThickness:r=7.0
-    }
-
-    ex_decor_06_dm{
-      armorThickness:r=7.0
-    }
-
-    ex_decor_l_11_dm{
-      armorThickness:r=7.0
-    }
-
-    ex_decor_r_11_dm{
-      armorThickness:r=7.0
-    }
   }
 
   turret{
@@ -231,7 +179,7 @@ DamageParts{
     }
 
     turret_01_side_dm{
-      armorThickness:r=10.0
+      armorThickness:r=7.0
     }
 
     turret_01_back_dm{
@@ -288,6 +236,58 @@ DamageParts{
     hp:r=200.0
 
     antenna_target_tagging_dm{
+    }
+  }
+
+  body_shields{
+    armorClass:t="tank_structural_steel"
+    hp:r=200.0
+    armorThickness:r=4.0
+    hidableInViewer:b=yes
+    stopChanceOnDeadPart:r=0.0
+    createSecondaryShatters:b=no
+
+    ex_armor_r_01_dm{
+    }
+
+    ex_armor_l_01_dm{
+    }
+
+    ex_decor_l_06_dm{
+    }
+
+    ex_decor_l_05_dm{
+    }
+
+    ex_decor_l_04_dm{
+      armorClass:t="t_90_rubber_fabric_screens"
+      armorThickness:r=4.0
+    }
+
+    ex_decor_r_06_dm{
+    }
+
+    ex_decor_r_05_dm{
+    }
+
+    ex_decor_r_04_dm{
+      armorClass:t="t_90_rubber_fabric_screens"
+      armorThickness:r=4.0
+    }
+
+    ex_decor_04_dm{
+    }
+
+    ex_decor_05_dm{
+    }
+
+    ex_decor_06_dm{
+    }
+
+    ex_decor_l_11_dm{
+    }
+
+    ex_decor_r_11_dm{
     }
   }
 
@@ -516,6 +516,7 @@ DamageParts{
     power_system_dm{
       hp:r=60.0
       armorThrough:r=15.0
+      fireParamsPreset:t="powersystem_internal"
     }
   }
 
@@ -2171,6 +2172,70 @@ DamageEffects{
   }
 
   part{
+    name:t="power_system_dm"
+
+    onHit{
+      damageType:t="cumulative"
+      fire:r=0.2
+      damage:r=75.0
+      fHitCritical:b=yes
+    }
+
+    onHit{
+      damageType:t="explosion"
+      fire:r=0.3
+      damage:r=30.0
+      fHitCritical:b=yes
+    }
+
+    onHit{
+      damageType:t="generic"
+      fire:r=0.05
+      damage:r=20.0
+      fHitCritical:b=yes
+    }
+
+    onHit{
+      damageType:t="generic"
+      fire:r=0.1
+      damage:r=70.0
+      fHitCritical:b=yes
+    }
+
+    onHit{
+      damageType:t="generic"
+      fire:r=0.3
+      damage:r=200.0
+      fHitCritical:b=yes
+    }
+
+    onHit{
+      damageType:t="generic"
+      fire:r=0.4
+      damage:r=300.0
+      fHitCritical:b=yes
+    }
+
+    onHit{
+      damageType:t="fire"
+      fire:r=0.1
+    }
+
+    onKill{
+      fire:r=1.0
+      fHitCritical:b=yes
+
+      action{
+        kill:b=yes
+        type:t="secondaryDamage"
+        part:t="electronic_equipment_dm"
+        part:t="electronic_equipment_01_dm"
+        part:t="fire_control_system_dm"
+      }
+    }
+  }
+
+  part{
     name:t="ex_decor_l_06_dm"
 
     onKill{
@@ -2266,7 +2331,6 @@ commonWeapons{
     defaultYaw:r=0.0
     defaultPitch:r=0.0
     barrelDP:t="gun_barrel_dm"
-    brokenBarrelAllowShoot:b=no
     speedYaw:r=100.0
     speedPitch:r=50.0
     fireConeAngle:r=1.0
@@ -2295,7 +2359,10 @@ commonWeapons{
       gun:t="bone_gun"
       gunnerDm:t="gunner_dm"
       verDriveDm:t="drive_turret_v_dm"
+      verDriveDm:t="fire_control_system_dm"
       horDriveDm:t="drive_turret_h_dm"
+      horDriveDm:t="fire_control_system_dm"
+      shootingDmPart:t="fire_control_system_dm"
 
       linkedAnimPart{
         verNode:t="bone_roll_09"
@@ -2377,6 +2444,7 @@ sensors{
     blk:t="gameData/sensors/su_9s86.blk"
     turretIndex:i=0
     dmPart:t="antenna_target_tagging_dm"
+    dmPart:t="electronic_equipment_dm"
   }
 }
 

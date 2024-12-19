@@ -465,7 +465,7 @@ fsms{
           azimuthRange:p2=-40.0, 40.0
           azimuthWidth:r=5.0
           elevationLimits:p2=-40.0, 40.0
-          distanceRange:p2=0.0, 60000.0
+          distanceRange:p2=0.0, 70000.0
           distanceWidth:r=2000.0
           distanceRelWidthMin:r=0.05
         }
@@ -1482,6 +1482,7 @@ fsms{
         stateFrom:t="bvrTrack"
         event:t="targetsOfInterestCleanup"
         command:t="selectTarget"
+        command:t="switch"
         stateTo:t="search"
 
         actions{
@@ -1494,6 +1495,25 @@ fsms{
           doCustomActionTemplate{
             fsm:t="main"
             name:t="setSearchMode"
+          }
+        }
+      }
+
+      finishBvrTrackAndSwitchOff{
+        stateFrom:t="bvrTrack"
+        event:t="disable"
+        stateTo:t="standby"
+
+        actions{
+
+          doCustomActionTemplate{
+            fsm:t="main"
+            name:t="resetBvrTrackMode"
+          }
+
+          doCustomActionTemplate{
+            fsm:t="main"
+            name:t="setStandbyMode"
           }
         }
       }
@@ -1598,6 +1618,7 @@ fsms{
       acmLockToStandby{
         stateFrom:t="acmLock"
         command:t="selectTarget"
+        event:t="disable"
         stateTo:t="standby"
 
         actions{
@@ -1636,6 +1657,7 @@ fsms{
       acmTrackToStandby{
         stateFrom:t="acmTrack"
         command:t="selectTarget"
+        event:t="disable"
         stateTo:t="standby"
 
         actions{
@@ -1655,6 +1677,7 @@ fsms{
       acmTrackToSearch{
         stateFrom:t="acmTrack"
         command:t="acmSwitch"
+        command:t="switch"
         stateTo:t="search"
 
         actions{
@@ -1808,6 +1831,7 @@ fsms{
         stateFrom:t="hmdTrack"
         event:t="targetsOfInterestCleanup"
         command:t="selectTarget"
+        command:t="switch"
         stateTo:t="hmdStandby"
 
         actions{
@@ -1820,6 +1844,25 @@ fsms{
           doCustomActionTemplate{
             fsm:t="main"
             name:t="setHmdStandbyMode"
+          }
+        }
+      }
+
+      hmdTrackToStandby{
+        stateFrom:t="hmdTrack"
+        event:t="disable"
+        stateTo:t="standby"
+
+        actions{
+
+          doCustomActionTemplate{
+            fsm:t="main"
+            name:t="resetHmdTrackMode"
+          }
+
+          doCustomActionTemplate{
+            fsm:t="main"
+            name:t="setStandbyMode"
           }
         }
       }

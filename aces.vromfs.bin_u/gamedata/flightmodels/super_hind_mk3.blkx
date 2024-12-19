@@ -8,8 +8,8 @@ gyroSight:b=yes
 haveCCIPForGun:b=yes
 haveCCIPForTurret:b=yes
 haveCCRPForTurret:b=yes
-ilsASP17:b=yes
 mfdCamTadsApache:b=yes
+rwrIndicator:t="AN/APR-39/APR-42"
 hasPointOfInterestMemory:b=no
 gearSinkRangeLR:r=0.316
 gearSinkRangeC:r=0.25
@@ -1656,7 +1656,6 @@ Sound{
 }
 
 cockpit{
-  textToShowInCockpit:t="msg/textToShowInCockpit"
   headPos:p3=3.158, 0.115, 0.022
   headPosOnShooting:p3=3.158, 0.115, 0.022
   mirror:b=yes
@@ -1699,8 +1698,8 @@ cockpit{
     aviahorizon_roll:p2=-180.0, 180.0
     aviahorizon_pitch1:p2=-90.0, 90.0
     aviahorizon_roll1:p2=-180.0, 180.0
-    bank:p2=-8.0, 8.0
-    bank1:p2=-8.0, 8.0
+    bank:p2=-1.0, 1.0
+    bank1:p2=-1.0, 1.0
     turn:p2=-45.0, 45.0
     g_meter:p2=-2.0, 4.0
     g_meter_min:p2=-2.0, 4.0
@@ -1727,116 +1726,50 @@ cockpit{
     fuel:p2=0.0, 2500.0
     rpm:p2=0.0, 17250.0
     prop_rpm:p2=0.0, 275.0
+    gears_lamp:p2=0.0, 0.0
   }
 
   multifunctionDisplays{
 
     display{
-      textureArea:p4=0.0, 0.5, 0.5, 1.0
+      textureArea:p4=0.0, 0.0, 0.5, 0.5
 
       page{
-        type:t="devices"
+        type:t="custom"
+        pageName:t="ah64Flt"
+      }
 
-        speed{
-          texture:t="su_mfd_speed"
-          position:p2=120.0, 110.0
-          arrowTexCoord:p4=0.0, 0.93, 0.4, 0.97
-          backgroundTexCoord:p4=0.0, 0.0, 0.91, 0.89
-          size:p2=192.0, 192.0
-          color:c=255, 255, 0, 255
-          valueTextSize:r=30.0
+      page{
+        type:t="rwr"
+        scale:r=0.75
+      }
 
-          ranges{
-            limits:p4=0.0, 50.0, -0.5, -0.46
-            limits:p4=50.0, 100.0, -0.46, -0.26
-            limits:p4=100.0, 150.0, -0.26, 0.0
-            limits:p4=150.0, 250.0, 0.0, 0.5
-            limits:p4=250.0, 450.0, 0.5, 1.38
-          }
-        }
+      page{
+        type:t="thermal"
+        turretIdx:i=0
+      }
 
-        vario{
-          texture:t="su_mfd_vario"
-          position:p2=552.0, 110.0
-          arrowTexCoord:p4=0.0, 0.93, 0.4, 0.97
-          backgroundTexCoord:p4=0.0, 0.0, 0.89, 0.89
-          size:p2=192.0, 192.0
-          color:c=30, 30, 255, 255
-          valueTextSize:r=30.0
+      page{
+        type:t="target_tracking"
+        turretIdx:i=0
+      }
 
-          ranges{
-            limits:p4=-20.0, -10.0, 0.25, 0.5
-            limits:p4=-10.0, 10.0, 0.5, 1.5
-            limits:p4=10.0, 20.0, 1.5, 1.75
-          }
-        }
+      page{
+        type:t="map"
+      }
+    }
 
-        altitude_hour{
-          texture:t="su_mfd_altitude"
-          position:p2=552.0, 402.0
-          backgroundTexCoord:p4=0.0, 0.0, 0.89, 0.89
-          arrowTexCoord:p4=0.47, 0.92, 0.86, 1.0
-          size:p2=192.0, 192.0
+    display{
+      textureArea:p4=0.5, 0.0, 1.0, 0.5
 
-          ranges{
-            limits:p4=0.0, 10.0, -0.5, 1.5
-          }
-        }
+      page{
+        type:t="thermal"
+        turretIdx:i=0
+      }
 
-        altitude_min{
-          texture:t="su_mfd_altitude"
-          position:p2=552.0, 402.0
-          backgroundTexCoord:p4=0.0, 0.0, 0.89, 0.89
-          arrowTexCoord:p4=0.0, 0.93, 0.4, 0.97
-          size:p2=192.0, 192.0
-          color:c=30, 30, 255, 255
-          valueTextSize:r=30.0
-          notDrawBackground:b=yes
-
-          ranges{
-            limits:p4=0.0, 1000.0, -0.5, 1.5
-          }
-        }
-
-        compass{
-          texture:t="su_mfd_compass"
-          position:p2=130.0, 402.0
-          backgroundTexCoord:p4=0.0, 0.0, 0.5, 1.0
-          arrowTexCoord:p4=0.5, 0.0, 1.0, 1.0
-          size:p2=192.0, 192.0
-          color:c=30, 30, 255, 255
-          valueTextSize:r=30.0
-          arrowSize:p2=192.0, 192.0
-
-          ranges{
-            limits:p4=0.0, 360.0, 0.0, -2.0
-          }
-        }
-
-        aviahorizon_pitch{
-          texture:t="su_mfd_ahorizon"
-          arrowTex:t="su_mfd_ahorizon_scale"
-          position:p2=340.0, 256.0
-          backgroundTexCoord:p4=0.11, 0.0, 0.89, 0.89
-          arrowTexCoord:p4=0.0, 0.4, 1.0, 0.6
-          size:p2=180.0, 180.0
-
-          ranges{
-            limits:p4=-90.0, 90.0, 0.35, -0.35
-          }
-        }
-
-        aviahorizon_roll{
-          texture:t="su_mfd_ahorizon"
-          position:p2=340.0, 256.0
-          arrowTexCoord:p4=0.2, 0.9, 0.8, 1.0
-          size:p2=180.0, 180.0
-          notDrawBackground:b=yes
-
-          ranges{
-            limits:p4=-180.0, 180.0, -1.0, 1.0
-          }
-        }
+      page{
+        type:t="target_tracking"
+        turretIdx:i=0
       }
 
       page{
@@ -1844,133 +1777,13 @@ cockpit{
       }
 
       page{
-        type:t="thermal"
-        turretIdx:i=0
-      }
-
-      page{
-        type:t="target_tracking"
-        turretIdx:i=0
+        type:t="rwr"
+        scale:r=0.75
       }
     }
 
     display{
-      textureArea:p4=0.5, 0.5, 1.0, 1.0
-
-      page{
-        type:t="thermal"
-        turretIdx:i=0
-      }
-
-      page{
-        type:t="target_tracking"
-        turretIdx:i=0
-      }
-
-      page{
-        type:t="devices"
-
-        speed{
-          texture:t="su_mfd_speed"
-          position:p2=120.0, 110.0
-          arrowTexCoord:p4=0.0, 0.93, 0.4, 0.97
-          backgroundTexCoord:p4=0.0, 0.0, 0.91, 0.89
-          size:p2=192.0, 192.0
-          color:c=255, 255, 0, 255
-          valueTextSize:r=30.0
-
-          ranges{
-            limits:p4=0.0, 50.0, -0.5, -0.46
-            limits:p4=50.0, 100.0, -0.46, -0.26
-            limits:p4=100.0, 150.0, -0.26, 0.0
-            limits:p4=150.0, 250.0, 0.0, 0.5
-            limits:p4=250.0, 450.0, 0.5, 1.38
-          }
-        }
-
-        vario{
-          texture:t="su_mfd_vario"
-          position:p2=552.0, 110.0
-          arrowTexCoord:p4=0.0, 0.93, 0.4, 0.97
-          backgroundTexCoord:p4=0.0, 0.0, 0.89, 0.89
-          size:p2=192.0, 192.0
-          color:c=30, 30, 255, 255
-          valueTextSize:r=30.0
-
-          ranges{
-            limits:p4=-20.0, -10.0, 0.25, 0.5
-            limits:p4=-10.0, 10.0, 0.5, 1.5
-            limits:p4=10.0, 20.0, 1.5, 1.75
-          }
-        }
-
-        altitude_hour{
-          texture:t="su_mfd_altitude"
-          position:p2=552.0, 402.0
-          backgroundTexCoord:p4=0.0, 0.0, 0.89, 0.89
-          arrowTexCoord:p4=0.47, 0.92, 0.86, 1.0
-          size:p2=192.0, 192.0
-
-          ranges{
-            limits:p4=0.0, 10.0, -0.5, 1.5
-          }
-        }
-
-        altitude_min{
-          texture:t="su_mfd_altitude"
-          position:p2=552.0, 402.0
-          backgroundTexCoord:p4=0.0, 0.0, 0.89, 0.89
-          arrowTexCoord:p4=0.0, 0.93, 0.4, 0.97
-          size:p2=192.0, 192.0
-          color:c=30, 30, 255, 255
-          valueTextSize:r=30.0
-          notDrawBackground:b=yes
-
-          ranges{
-            limits:p4=0.0, 1000.0, -0.5, 1.5
-          }
-        }
-
-        compass{
-          texture:t="su_mfd_compass"
-          position:p2=130.0, 402.0
-          backgroundTexCoord:p4=0.0, 0.0, 0.5, 1.0
-          arrowTexCoord:p4=0.5, 0.0, 1.0, 1.0
-          size:p2=192.0, 192.0
-          color:c=30, 30, 255, 255
-          valueTextSize:r=30.0
-          arrowSize:p2=192.0, 192.0
-
-          ranges{
-            limits:p4=0.0, 360.0, 0.0, -2.0
-          }
-        }
-
-        aviahorizon_pitch{
-          texture:t="su_mfd_ahorizon"
-          arrowTex:t="su_mfd_ahorizon_scale"
-          position:p2=340.0, 256.0
-          backgroundTexCoord:p4=0.11, 0.0, 0.89, 0.89
-          arrowTexCoord:p4=0.0, 0.4, 1.0, 0.6
-          size:p2=180.0, 180.0
-
-          ranges{
-            limits:p4=-90.0, 90.0, 0.35, -0.35
-          }
-        }
-
-        aviahorizon_roll{
-          texture:t="su_mfd_ahorizon"
-          position:p2=340.0, 256.0
-          arrowTexCoord:p4=0.2, 0.9, 0.8, 1.0
-          size:p2=180.0, 180.0
-          notDrawBackground:b=yes
-
-          ranges{
-            limits:p4=-180.0, 180.0, -1.0, 1.0
-          }
-        }
-      }
+      textureArea:p4=0.0, 0.5, 0.5, 1.0
 
       page{
         type:t="map"
@@ -2019,7 +1832,7 @@ sensors{
   }
 
   sensor{
-    blk:t="gameData/sensors/su_spo-15lm.blk"
+    blk:t="gameData/sensors/sa_d_36.blk"
   }
 }
 
@@ -2419,28 +2232,13 @@ WeaponSlots{
     order:i=1
 
     WeaponPreset{
-      iconType:t="atgm_type2_x2"
+      iconType:t="atgm_type1_x4"
       name:t="zt_35_ingwe_default"
       maxMissileSalvoTimeInterval:r=3.0
 
       Weapon{
         trigger:t="atgm"
-        blk:t="gameData/Weapons/containers/zt_35_ingwe_x2_helicopter.blk"
-        emitter:t="ingwe_launcher_001"
-        external:b=yes
-        separate:b=yes
-      }
-    }
-
-    WeaponPreset{
-      iconType:t="atgm_type1_x4"
-      name:t="zt_35_ingwe"
-      reqModification:t="sa_zt_35_ingwe"
-      maxMissileSalvoTimeInterval:r=3.0
-
-      Weapon{
-        trigger:t="atgm"
-        blk:t="gameData/Weapons/containers/zt_35_ingwe_x4_helicopter.blk"
+        blk:t="gameData/Weapons/containers/zt_35_ingwe_x4_helicopter_default.blk"
         emitter:t="ingwe_launcher_001"
         external:b=yes
         separate:b=yes
@@ -2848,20 +2646,6 @@ WeaponSlots{
     index:i=6
     tier:i=3
     order:i=2
-
-    WeaponPreset{
-      iconType:t="atgm_type2_x2"
-      name:t="zt_35_ingwe_default"
-      maxMissileSalvoTimeInterval:r=3.0
-
-      Weapon{
-        trigger:t="atgm"
-        blk:t="gameData/Weapons/containers/zt_35_ingwe_x2_helicopter.blk"
-        emitter:t="ingwe_launcher_002"
-        external:b=yes
-        separate:b=yes
-      }
-    }
 
     WeaponPreset{
       iconType:t="atgm_type1_x4"

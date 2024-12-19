@@ -40,6 +40,21 @@ transivers{
       sideLobesSensitivity:r=-50.0
     }
   }
+
+  MTI{
+    sideLobesAttenuation:r=-20.0
+    power:r=100.0
+    band:i=10
+    rcs:r=40.0
+    range:r=8000.0
+    rangeMax:r=12000.0
+    multipathEffect:p4=0.0, 1.0, 60.0, 0.0
+
+    antenna{
+      angleHalfSens:r=0.5
+      sideLobesSensitivity:r=-50.0
+    }
+  }
 }
 
 scanPatterns{
@@ -114,6 +129,31 @@ signals{
       maxValue:r=8000.0
     }
   }
+
+  MTI{
+    groundClutter:b=no
+    groundMultipath:b=no
+    angularAccuracy:r=0.002
+    distanceAccuracy:r=1.0
+    aircraftAsTarget:b=yes
+    groundVehiclesAsTarget:b=yes
+    absDopplerSpeed:b=yes
+    mainBeamDopplerSpeed:b=yes
+
+    distance{
+      presents:b=yes
+      minValue:r=20.0
+      maxValue:r=8000.0
+    }
+
+    dopplerSpeed{
+      presents:b=yes
+      minValue:r=2.5
+      maxValue:r=110.0
+      signalWidthMin:r=2.5
+      width:r=0.0
+    }
+  }
 }
 
 scanPatternSets{
@@ -162,6 +202,11 @@ fsms{
 
         setScopeRangeSet{
           scopeRangeSet:t="common"
+        }
+
+        setFsmActive{
+          fsm:t="searchModes"
+          active:b=yes
         }
       }
 
@@ -726,6 +771,11 @@ fsms{
         setScanPatternSet{
           scanPatternSet:t="search"
         }
+
+        setFsmActive{
+          fsm:t="searchModes"
+          active:b=no
+        }
       }
 
       setSearchMode{
@@ -757,6 +807,11 @@ fsms{
           active:b=yes
         }
 
+        setFsmActive{
+          fsm:t="searchModes"
+          active:b=yes
+        }
+
         clearTargetsOfInterest{
         }
 
@@ -785,6 +840,11 @@ fsms{
 
         setFsmActive{
           fsm:t="search"
+          active:b=no
+        }
+
+        setFsmActive{
+          fsm:t="searchModes"
           active:b=no
         }
 
@@ -996,6 +1056,120 @@ fsms{
           setRelSpeedGatePos{
             source:t="activeTargetOfInterest"
             width:r=0.0
+          }
+        }
+      }
+    }
+  }
+
+  searchModes{
+    stateInit:t="init"
+
+    actionsTemplates{
+
+      setCommonSearchMode{
+
+        setModeName{
+          name:t="search"
+        }
+
+        setTransiver{
+          transiver:t="search"
+        }
+
+        setSignal{
+          signal:t="common"
+        }
+
+        setScanPatternSet{
+          scanPatternSet:t="search"
+        }
+
+        clearTargets{
+        }
+      }
+
+      setMTIMode{
+
+        setModeName{
+          name:t="MTI search"
+        }
+
+        setTransiver{
+          transiver:t="MTI"
+        }
+
+        setSignal{
+          signal:t="MTI"
+        }
+
+        setScanPatternSet{
+          scanPatternSet:t="search"
+        }
+
+        clearTargets{
+        }
+      }
+    }
+
+    transitions{
+
+      init{
+        stateFrom:t="init"
+        event:t="fsmActivate"
+        stateTo:t="search"
+
+        actions{
+
+          setCommonSearchMode{
+          }
+        }
+      }
+
+      showCommonSearchMode{
+        stateFrom:t="search"
+        event:t="fsmActivate"
+        stateTo:t="search"
+
+        actions{
+
+          setCommonSearchMode{
+          }
+        }
+      }
+
+      showMTI{
+        stateFrom:t="mti"
+        event:t="fsmActivate"
+        stateTo:t="mti"
+
+        actions{
+
+          setMTIMode{
+          }
+        }
+      }
+
+      switchToCommonSearchMode{
+        stateFrom:t="mti"
+        command:t="modeSwitch"
+        stateTo:t="search"
+
+        actions{
+
+          setCommonSearchMode{
+          }
+        }
+      }
+
+      switchToMTI{
+        stateFrom:t="search"
+        command:t="modeSwitch"
+        stateTo:t="mti"
+
+        actions{
+
+          setMTIMode{
           }
         }
       }

@@ -18,9 +18,9 @@ havePointOfInterestDesignator:b=yes
 hasPointOfInterestMemory:b=yes
 ilsASG23:b=yes
 isBwOpticSight:b=yes
-viewDistKInSight:r=6.0
 tpsCameraTargetOffsetAtZoom:p3=30.0, 20.0, 0.0
 tpsCameraOffset:p3=-3.8, 1.5, 0.0
+viewDistKInSight:r=6.0
 type:t="typeFighter"
 simplifiedJoyAileronMult:r=1.0
 simplifiedJoyElevatorMult:r=1.0
@@ -2953,6 +2953,22 @@ gunnerOpticFps{
   }
 }
 
+sensors{
+
+  sensor{
+    blk:t="gameData/sensors/us_an_apq_169.blk"
+    dmPart:t="radar_dm"
+  }
+
+  sensor{
+    blk:t="gameData/sensors/us_an_alr_2002_rwr.blk"
+  }
+
+  sensor{
+    blk:t="gameData/sensors/us_an_alr_2002_mlws.blk"
+  }
+}
+
 commonWeapons{
 
   Weapon{
@@ -3031,6 +3047,11 @@ weapon_presets{
   preset{
     name:t="f_111f_gbu_15_ir"
     blk:t="gameData/FlightModels/weaponPresets/f_111f_gbu_15_ir.blk"
+  }
+
+  preset{
+    name:t="f_111f_agm_130"
+    blk:t="gameData/FlightModels/weaponPresets/f_111f_agm_130.blk"
   }
 }
 
@@ -3249,6 +3270,11 @@ WeaponSlots{
       BannedWeaponPreset{
         slot:i=2
         preset:t="agm_65d_x3"
+      }
+
+      BannedWeaponPreset{
+        slot:i=2
+        preset:t="agm_130_slot2"
       }
     }
   }
@@ -3477,6 +3503,27 @@ WeaponSlots{
         separate:b=yes
         machLimit:r=1.01
         flapsRange:p2=0.0, 0.1
+      }
+    }
+
+    WeaponPreset{
+      iconType:t="guided_bomb_grey"
+      name:t="agm_130_slot2"
+      reqModification:t="us_agm_130"
+
+      ShowNodes{
+        node:t="pylon_pivot1_lapa"
+        node:t="pylon_pivot1"
+      }
+
+      Weapon{
+        trigger:t="atgm"
+        blk:t="gameData/Weapons/BombGuns/us_2000lb_agm_130a.blk"
+        emitter:t="bomb3_gbu"
+        bullets:i=1
+        external:b=no
+        separate:b=yes
+        machLimit:r=1.4
       }
     }
 
@@ -4467,6 +4514,27 @@ WeaponSlots{
     }
 
     WeaponPreset{
+      iconType:t="guided_bomb_grey"
+      name:t="agm_130_slot6"
+      reqModification:t="us_agm_130"
+
+      ShowNodes{
+        node:t="pylon_pivot4_lapa"
+        node:t="pylon_pivot4"
+      }
+
+      Weapon{
+        trigger:t="atgm"
+        blk:t="gameData/Weapons/BombGuns/us_2000lb_agm_130a.blk"
+        emitter:t="bomb6_gbu"
+        bullets:i=1
+        external:b=no
+        separate:b=yes
+        machLimit:r=1.4
+      }
+    }
+
+    WeaponPreset{
       iconType:t="missile_air_to_uni"
       name:t="agm_65d"
       reqModification:t="us_agm_65d"
@@ -4590,6 +4658,11 @@ WeaponSlots{
         slot:i=6
         preset:t="agm_65d_x3"
       }
+
+      BannedWeaponPreset{
+        slot:i=6
+        preset:t="agm_130_slot6"
+      }
     }
   }
 }
@@ -4600,22 +4673,6 @@ jetwash{
   timeToLive:r=45.0
   maxPower:r=6.0
   maxSegments:i=50
-}
-
-sensors{
-
-  sensor{
-    blk:t="gameData/sensors/us_an_apq_169.blk"
-    dmPart:t="radar_dm"
-  }
-
-  sensor{
-    blk:t="gameData/sensors/us_an_alr_2002_rwr.blk"
-  }
-
-  sensor{
-    blk:t="gameData/sensors/us_an_alr_2002_mlws.blk"
-  }
 }
 
 turbulence{
@@ -4823,8 +4880,14 @@ modifications{
 
   us_gbu_10_gbu_24{
     reqModification:t="us_gbu_12"
-    tier:i=4
+    tier:i=3
     modClass:t="weapon"
+  }
+
+  us_gbu_15v1{
+    modClass:t="weapon"
+    tier:i=4
+    reqModification:t="us_gbu_10_gbu_24"
   }
 
   us_500lb_mk82{
@@ -4844,11 +4907,11 @@ modifications{
     reqModification:t="us_750lb_m117a1"
   }
 
-  us_gbu_15v1{
-    modClass:t="weapon"
-    tier:i=4
+  us_agm_130{
     prevModification:t="us_2000lb_mk84"
-    reqModification:t="us_gbu_10_gbu_24"
+    reqModification:t="us_gbu_15v1"
+    tier:i=4
+    modClass:t="weapon"
   }
 
   us_aim_9l{
@@ -5017,7 +5080,7 @@ AfterBurner0{
       brightnessNoiseStrength:r=3.0
       brightnessNoiseSpeed:r=6.0
       ignitionTextureIntensity:r=0.8
-      ignitionBrightnessNoiseStrength:r=0.5
+      ignitionBrightnessNoiseStrength:r=0.05
       ignitionBrightnessNoiseSpeed:r=16.0
     }
   }
