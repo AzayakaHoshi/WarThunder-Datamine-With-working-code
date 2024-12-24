@@ -2,9 +2,9 @@
 Live server content updated to Storm Warning
 ##  Versions (Autoupdated)
 ### Current Version
-Version: [2.43.0.19](aces.vromfs.bin_u/version)
+Version: [2.43.0.30](aces.vromfs.bin_u/version)
 ### Last Version
-Version: [2.41.0.62](version_store.txt)
+Version: [2.43.0.19](version_store.txt)
 
 ## Description
 Using [kotiq's wt-tools](https://github.com/kotiq/wt-tools) and automation to update this Repository
