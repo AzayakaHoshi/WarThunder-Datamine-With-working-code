@@ -1,26 +1,10 @@
 ### Full Changelog:
 
-- **aces.vromfs.bin_u/config/collections.blkx**:
+- **aces.vromfs.bin_u/config/sound_studio.blkx**:
 
   **Added**:
 ```diff
-+ collection36{
-+ locId:t="collection/winter_tales_2025"
-+ reqFeature:t="Collection"
-+ 
-+ collectionItems{
-+ decal:t="befana_decal"
-+ decal:t="grilla_decal"
-+ decal:t="hans_trapp_decal"
-+ decal:t="jack_frost_decal"
-+ decal:t="krampus_decal"
-+ }
-+ 
-+ prize{
-+ decal:t="yule_cat_decal"
-+ }
-+ }
-+ 
++ country_colombia:t="Spanish"
 ```
 
   **Removed**:
@@ -28,1447 +12,20 @@
 ```
 
 
-- **aces.vromfs.bin_u/config/rendinst_dmg.blkx**:
+- **aces.vromfs.bin_u/gamedata/attachables/christmas_gnome_girl.blkx**:
 
   **Added**:
 ```diff
-```
-
-  **Removed**:
-```diff
-- dmPreset:t="unshootable_objects"
-```
-
-
-- **aces.vromfs.bin_u/config/workshop.blkx**:
-
-  **Added**:
-```diff
-+ winter_tales_2025_exchange{
-+ locId:t="collection/winter_tales_2025"
-+ reqFeature:t="DMMandPS4andXBOXAccount"
-+ 
-+ items{
-+ alwaysVisibleItem:i=760273
-+ alwaysVisibleItem:i=760274
-+ alwaysVisibleItem:i=760275
-+ alwaysVisibleItem:i=760276
-+ alwaysVisibleItem:i=760277
-+ }
-+ }
-+ 
-```
-
-  **Removed**:
-```diff
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/ef_2000_block_10.blkx**:
-
-  **Added**:
-```diff
-+ index:i=1
-+ TV{
-+ pos:p3=0.5, 1.5, 0.0
-+ head:t="cockpit"
-+ crosshairPreset:t="test_crosshair"
-+ angularLimits:p4=-30.0, 30.0, -30.0, 30.0
-+ opticType:t=""
-+ turretNo:i=0
-+ nvIndex:i=2
-+ }
-+ 
-+ nvIndex:i=1
-+ name:t="ef_2000_block_10_aim_9m"
-+ blk:t="gameData/FlightModels/weaponPresets/ef_2000_block_10_aim_9m.blk"
-+ }
-+ 
-+ preset{
-+ name:t="ef_2000_block_10_aim_9m_x2"
-+ blk:t="gameData/FlightModels/weaponPresets/ef_2000_block_10_aim_9m_x2.blk"
-+ reqModification:t="us_aim_9m"
-+ blk:t="gameData/Weapons/rocketGuns/us_aim9l_i_1_sidewinder.blk"
-+ 
-+ WeaponPreset{
-+ iconType:t="missile_type_f_air_to_air"
-+ name:t="aim_9m_default_slot1"
-+ 
-+ ShowNodes{
-+ node:t="pylon_2"
-+ }
-+ 
-+ Weapon{
-+ trigger:t="aam"
-+ blk:t="gameData/Weapons/rocketGuns/us_aim9m_sidewinder_default.blk"
-+ emitter:t="aim_9e_001"
-+ external:b=yes
-+ separate:b=yes
-+ bullets:i=1
-+ }
-+ }
-+ reqModification:t="us_aim_9m"
-+ reqModification:t="us_aim_9m"
-+ WeaponPreset{
-+ iconType:t="missile_type_f_air_to_air"
-+ name:t="aim_9m_slot2"
-+ reqModification:t="us_aim_9m"
-+ 
-+ ShowNodes{
-+ node:t="pylon_4"
-+ node:t="mfrl_001"
-+ }
-+ 
-+ HideNodes{
-+ node:t="pylon_4_off"
-+ }
-+ 
-+ Weapon{
-+ trigger:t="aam"
-+ blk:t="gameData/Weapons/rocketGuns/us_aim9m_sidewinder.blk"
-+ emitter:t="aim_9e_002"
-+ external:b=yes
-+ separate:b=yes
-+ bullets:i=1
-+ }
-+ }
-+ 
-+ WeaponPreset{
-+ iconType:t="missile_type_f_air_to_air_group"
-+ name:t="aim_9m_slot2_x2"
-+ reqModification:t="us_aim_9m"
-+ 
-+ ShowNodes{
-+ node:t="pylon_4"
-+ node:t="tmc_launcher_001"
-+ node:t="tmc_launcher_001_mfrl_l"
-+ node:t="tmc_launcher_001_mfrl_r"
-+ }
-+ 
-+ HideNodes{
-+ node:t="pylon_4_off"
-+ }
-+ 
-+ Weapon{
-+ trigger:t="aam"
-+ blk:t="gameData/Weapons/containers/tmc_eurofighter_aim_9m.blk"
-+ emitter:t="tmc_launcher_001"
-+ external:b=yes
-+ separate:b=yes
-+ }
-+ 
-+ BannedWeaponPreset{
-+ slot:i=3
-+ preset:t="paveway_iv_slot3_x2"
-+ }
-+ }
-+ 
-+ reqModification:t="us_aim_9m"
-+ reqModification:t="us_aim_9m"
-+ WeaponPreset{
-+ iconType:t="missile_type_f_air_to_air"
-+ name:t="aim_9m_slot12"
-+ reqModification:t="us_aim_9m"
-+ 
-+ ShowNodes{
-+ node:t="pylon_3"
-+ node:t="mfrl_002"
-+ }
-+ 
-+ HideNodes{
-+ node:t="pylon_3_off"
-+ }
-+ 
-+ Weapon{
-+ trigger:t="aam"
-+ blk:t="gameData/Weapons/rocketGuns/us_aim9m_sidewinder.blk"
-+ emitter:t="aim_9e_003"
-+ external:b=yes
-+ separate:b=yes
-+ bullets:i=1
-+ }
-+ }
-+ 
-+ WeaponPreset{
-+ iconType:t="missile_type_f_air_to_air_group"
-+ name:t="aim_9m_slot12_x2"
-+ reqModification:t="us_aim_9m"
-+ 
-+ ShowNodes{
-+ node:t="pylon_3"
-+ node:t="tmc_launcher_002"
-+ node:t="tmc_launcher_002_mfrl_l"
-+ node:t="tmc_launcher_002_mfrl_r"
-+ }
-+ 
-+ HideNodes{
-+ node:t="pylon_3_off"
-+ }
-+ 
-+ Weapon{
-+ trigger:t="aam"
-+ blk:t="gameData/Weapons/containers/tmc_eurofighter_aim_9m.blk"
-+ emitter:t="tmc_launcher_002"
-+ external:b=yes
-+ separate:b=yes
-+ }
-+ 
-+ BannedWeaponPreset{
-+ slot:i=11
-+ preset:t="paveway_iv_slot11_x2"
-+ }
-+ }
-+ 
-+ name:t="aim_9l_i_slot13"
-+ reqModification:t="us_aim_9m"
-+ blk:t="gameData/Weapons/rocketGuns/us_aim9l_i_1_sidewinder.blk"
-+ 
-+ WeaponPreset{
-+ iconType:t="missile_type_f_air_to_air"
-+ name:t="aim_9m_default_slot13"
-+ 
-+ ShowNodes{
-+ node:t="pylon_1"
-+ }
-+ 
-+ Weapon{
-+ trigger:t="aam"
-+ blk:t="gameData/Weapons/rocketGuns/us_aim9m_sidewinder_default.blk"
-+ emitter:t="aim_9e_004"
-+ external:b=yes
-+ separate:b=yes
-+ bullets:i=1
-+ }
-+ }
-+ us_aim_9m{
-+ reqModification:t="us_aim_9m"
-```
-
-  **Removed**:
-```diff
-- name:t="ef_2000_block_10_aim_9l_i"
-- blk:t="gameData/FlightModels/weaponPresets/ef_2000_block_10_aim_9l_i.blk"
-- blk:t="gameData/Weapons/rocketGuns/us_aim9l_i_1_sidewinder_default.blk"
-- reqModification:t="us_aim_9l_i_1"
-- reqModification:t="us_aim_9l_i_1"
-- reqModification:t="us_aim_9l_i_1"
-- reqModification:t="us_aim_9l_i_1"
-- name:t="aim_9l_i_default_slot13"
-- blk:t="gameData/Weapons/rocketGuns/us_aim9l_i_1_sidewinder_default.blk"
-- us_aim_9l_i_1{
-- reqModification:t="us_aim_9l_i_1"
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/f_111f.blkx**:
-
-  **Added**:
-```diff
-+ index:i=1
-+ index:i=2
-+ nvIndex:i=1
-+ nvIndex:i=1
-+ TV2{
-+ pos:p3=1.5, 0.0, 0.0
-+ head:t="optic2_turret"
-+ crosshairPreset:t="test_crosshair"
-+ angularLimits:p4=-38.0, 38.0, -55.0, 38.0
-+ opticType:t="tv"
-+ turretNo:i=0
-+ nvIndex:i=1
-+ name:t="GBU15V2"
-+ }
-+ 
-+ nvIndex:i=2
-+ 
-+ sensor{
-+ blk:t="gameData/sensors/ir_tracker_tgp.blk"
-+ node:t="optic2_gun"
-+ }
-+ blk:t="gameData/Weapons/BombGuns/us_2000lb_agm_130a_12.blk"
-+ external:b=yes
-+ blk:t="gameData/Weapons/BombGuns/us_2000lb_agm_130a_12.blk"
-+ external:b=yes
-```
-
-  **Removed**:
-```diff
-- blk:t="gameData/Weapons/BombGuns/us_2000lb_agm_130a.blk"
-- external:b=no
-- blk:t="gameData/Weapons/BombGuns/us_2000lb_agm_130a.blk"
-- external:b=no
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/f_15e.blkx**:
-
-  **Added**:
-```diff
-+ emitter:t="mer_001"
-+ blk:t="gameData/Weapons/BombGuns/us_2000lb_agm_130a_12.blk"
-+ blk:t="gameData/Weapons/BombGuns/us_2000lb_agm_130a_12.blk"
-```
-
-  **Removed**:
-```diff
-- emitter:t="us_2000lb_gbu_8_001"
-- blk:t="gameData/Weapons/BombGuns/us_2000lb_agm_130a.blk"
-- blk:t="gameData/Weapons/BombGuns/us_2000lb_agm_130a.blk"
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/fm/ef_2000_block_10.blkx**:
-
-  **Added**:
-```diff
-+ EmptyMass:r=11220.0
-```
-
-  **Removed**:
-```diff
-- EmptyMass:r=11300.0
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/fm/f_2000a.blkx**:
-
-  **Added**:
-```diff
-+ EmptyMass:r=11220.0
-```
-
-  **Removed**:
-```diff
-- EmptyMass:r=11300.0
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/fm/typhoon_fgr4.blkx**:
-
-  **Added**:
-```diff
-+ EmptyMass:r=11220.0
-```
-
-  **Removed**:
-```diff
-- EmptyMass:r=11300.0
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/rafale_c_f3.blkx**:
-
-  **Added**:
-```diff
-+ Weapon{
-+ trigger:t="countermeasures"
-+ blk:t="gameData/Weapons/rocketGuns/countermeasure_split_launcher_jet_maw.blk"
-+ emitter:t="emtr_flare2"
-+ bullets:i=18
-+ external:b=yes
-+ separate:b=yes
-+ bulletsCartridge:i=1
-+ }
-+ 
-+ Weapon{
-+ trigger:t="countermeasures"
-+ blk:t="gameData/Weapons/rocketGuns/countermeasure_split_launcher_jet_maw.blk"
-+ emitter:t="emtr_flare5"
-+ bullets:i=18
-+ external:b=yes
-+ separate:b=yes
-+ bulletsCartridge:i=1
-+ }
-+ 
-+ bullets:i=8
-+ bullets:i=8
-+ Weapon{
-+ trigger:t="countermeasures"
-+ blk:t="gameData/Weapons/rocketGuns/countermeasure_split_launcher_jet_maw.blk"
-+ emitter:t="emtr_flare2"
-+ bullets:i=18
-+ external:b=yes
-+ separate:b=yes
-+ bulletsCartridge:i=1
-+ }
-+ 
-+ Weapon{
-+ trigger:t="countermeasures"
-+ blk:t="gameData/Weapons/rocketGuns/countermeasure_split_launcher_jet_maw.blk"
-+ emitter:t="emtr_flare5"
-+ bullets:i=18
-+ external:b=yes
-+ separate:b=yes
-+ bulletsCartridge:i=1
-+ }
-+ 
-+ bullets:i=8
-+ bullets:i=8
-+ tier:i=12
-+ tier:i=11
-+ node:t="pylon_rafale_mica_aux_001"
-+ node:t="pylon_rafale_mica_aux_rail_001"
-+ emitter:t="rocket_mica_002"
-+ bullets:i=1
-+ }
-+ }
-+ }
-+ 
-+ WeaponSlot{
-+ index:i=3
-+ tier:i=10
-+ order:i=5
-+ 
-+ WeaponPreset{
-+ iconType:t="missile_type_f_air_to_air_midrange"
-+ name:t="mica_em_slot3"
-+ reqModification:t="fr_mica_em"
-+ 
-+ ShowNodes{
-+ node:t="pylon_rafale_mica_001"
-+ }
-+ 
-+ Weapon{
-+ trigger:t="aam"
-+ external:b=yes
-+ separate:b=yes
-+ blk:t="gameData/Weapons/rocketGuns/fr_mica_em.blk"
-+ name:t="us_500lb_mk_82_ldgp_x2_slot3"
-+ name:t="250kg_type_25c_x3_slot3"
-+ name:t="auf2_gbu_12_x2_slot3"
-+ name:t="auf2_gbu_22_x2_slot3"
-+ name:t="auf2_gbu_49_x2_slot3"
-+ name:t="us_gbu_16_slot3"
-+ name:t="us_gbu_24_slot3"
-+ name:t="us_gbu_12_x3_slot3"
-+ name:t="us_gbu_22_x3_slot3"
-+ name:t="us_gbu_49_x3_slot3"
-+ name:t="aasm_250_sbu_38_x3_slot3"
-+ name:t="aasm_250_sbu_64_x3_slot3"
-+ name:t="aasm_250_sbu_54_x3_slot3"
-+ index:i=4
-+ order:i=7
-+ index:i=5
-+ order:i=9
-+ name:t="mica_em_slot5"
-+ index:i=6
-+ order:i=11
-+ index:i=7
-+ order:i=12
-+ name:t="us_gbu_24_slot7"
-+ index:i=8
-+ order:i=10
-+ name:t="mica_em_slot8"
-+ index:i=9
-+ order:i=8
-+ index:i=10
-+ order:i=6
-+ name:t="mica_em_slot10"
-+ reqModification:t="fr_mica_em"
-+ blk:t="gameData/Weapons/rocketGuns/fr_mica_em.blk"
-+ name:t="us_500lb_mk_82_ldgp_x2_slot10"
-+ name:t="250kg_type_25c_x3_slot10"
-+ name:t="auf2_gbu_12_x2_slot10"
-+ name:t="auf2_gbu_22_x2_slot10"
-+ name:t="auf2_gbu_49_x2_slot10"
-+ name:t="us_gbu_16_slot10"
-+ name:t="us_gbu_24_slot10"
-+ name:t="us_gbu_12_x3_slot10"
-+ name:t="us_gbu_22_x3_slot10"
-+ name:t="us_gbu_49_x3_slot10"
-+ name:t="aasm_250_sbu_38_x3_slot10"
-+ name:t="aasm_250_sbu_64_x3_slot10"
-+ name:t="aasm_250_sbu_54_x3_slot10"
-+ index:i=11
-+ order:i=4
-+ 
-+ WeaponPreset{
-+ iconType:t="missile_type_f_air_to_air_midrange"
-+ name:t="mica_em_slot11_default"
-+ 
-+ ShowNodes{
-+ node:t="pylon_rafale_mica_aux_002"
-+ node:t="pylon_rafale_mica_aux_rail_002"
-+ }
-+ 
-+ Weapon{
-+ trigger:t="aam"
-+ external:b=yes
-+ separate:b=yes
-+ blk:t="gameData/Weapons/rocketGuns/fr_mica_em_default.blk"
-+ emitter:t="rocket_mica_007"
-+ bullets:i=1
-+ }
-+ }
-+ }
-+ 
-+ WeaponSlot{
-+ index:i=12
-+ tier:i=0
-+ name:t="r550_magic_2_slot12_default"
-+ name:t="mica_em_slot12"
-+ maw_countermeasures_launcher_chaff{
-+ }
-+ 
-```
-
-  **Removed**:
-```diff
-- bullets:i=16
-- bullets:i=16
-- bullets:i=16
-- bullets:i=16
-- tier:i=11
-- tier:i=10
-- node:t="pylon_rafale_mica_001"
-- name:t="us_500lb_mk_82_ldgp_x2_slot2"
-- name:t="250kg_type_25c_x3_slot2"
-- name:t="auf2_gbu_12_x2_slot2"
-- name:t="auf2_gbu_22_x2_slot2"
-- name:t="auf2_gbu_49_x2_slot2"
-- name:t="us_gbu_16_slot2"
-- name:t="us_gbu_24_slot2"
-- name:t="us_gbu_12_x3_slot2"
-- name:t="us_gbu_22_x3_slot2"
-- name:t="us_gbu_49_x3_slot2"
-- name:t="aasm_250_sbu_38_x3_slot2"
-- name:t="aasm_250_sbu_64_x3_slot2"
-- name:t="aasm_250_sbu_54_x3_slot2"
-- index:i=3
-- order:i=5
-- index:i=4
-- order:i=7
-- name:t="mica_em_slot4"
-- index:i=5
-- order:i=9
-- index:i=6
-- order:i=10
-- name:t="us_gbu_24_slot6"
-- index:i=7
-- order:i=8
-- name:t="mica_em_slot7"
-- index:i=8
-- order:i=6
-- index:i=9
-- order:i=4
-- name:t="mica_em_slot9_default"
-- blk:t="gameData/Weapons/rocketGuns/fr_mica_em_default.blk"
-- name:t="us_500lb_mk_82_ldgp_x2_slot9"
-- name:t="250kg_type_25c_x3_slot9"
-- name:t="auf2_gbu_12_x2_slot9"
-- name:t="auf2_gbu_22_x2_slot9"
-- name:t="auf2_gbu_49_x2_slot9"
-- name:t="us_gbu_16_slot9"
-- name:t="us_gbu_24_slot9"
-- name:t="us_gbu_12_x3_slot9"
-- name:t="us_gbu_22_x3_slot9"
-- name:t="us_gbu_49_x3_slot9"
-- name:t="aasm_250_sbu_38_x3_slot9"
-- name:t="aasm_250_sbu_64_x3_slot9"
-- name:t="aasm_250_sbu_54_x3_slot9"
-- index:i=10
-- name:t="r550_magic_2_slot10_default"
-- name:t="mica_em_slot10"
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/weaponpresets/alpha_jet_th_phase_1_default.blkx**:
-
-  **Added**:
-```diff
-+ preset:t="aim_9p4_deafult"
-+ preset:t="aim_9p4_deafult"
-```
-
-  **Removed**:
-```diff
-- preset:t="ptb_1"
-- preset:t="ptb_2"
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/weaponpresets/ef_2000_block_10_aim_9m.blkx**:
-
-  **Added**:
-```diff
-+ Weapon{
-+ slot:i=1
-+ preset:t="aim_9m_default_slot1"
-+ }
-+ 
-+ Weapon{
-+ slot:i=2
-+ preset:t="aim_9m_slot2"
-+ }
-+ 
-+ Weapon{
-+ slot:i=12
-+ preset:t="aim_9m_slot12"
-+ }
-+ 
-+ Weapon{
-+ slot:i=13
-+ preset:t="aim_9m_default_slot13"
-+ }
-```
-
-  **Removed**:
-```diff
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/weaponpresets/ef_2000_block_10_aim_9m_x2.blkx**:
-
-  **Added**:
-```diff
-+ Weapon{
-+ slot:i=1
-+ preset:t="aim_9m_default_slot1"
-+ }
-+ 
-+ Weapon{
-+ slot:i=2
-+ preset:t="aim_9m_slot2_x2"
-+ }
-+ 
-+ Weapon{
-+ slot:i=12
-+ preset:t="aim_9m_slot12_x2"
-+ }
-+ 
-+ Weapon{
-+ slot:i=13
-+ preset:t="aim_9m_default_slot13"
-+ }
-```
-
-  **Removed**:
-```diff
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/weaponpresets/ef_2000_block_10_default.blkx**:
-
-  **Added**:
-```diff
-+ preset:t="aim_9m_default_slot1"
-+ preset:t="aim_9m_default_slot13"
-```
-
-  **Removed**:
-```diff
-- preset:t="aim_9l_i_default_slot1"
-- preset:t="aim_9l_i_default_slot13"
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/weaponpresets/rafale_c_f3_aasm_250_sbu_38.blkx**:
-
-  **Added**:
-```diff
-+ slot:i=3
-+ preset:t="aasm_250_sbu_38_x3_slot3"
-+ slot:i=6
-+ slot:i=10
-+ preset:t="aasm_250_sbu_38_x3_slot10"
-```
-
-  **Removed**:
-```diff
-- slot:i=2
-- preset:t="aasm_250_sbu_38_x3_slot2"
-- slot:i=5
-- slot:i=9
-- preset:t="aasm_250_sbu_38_x3_slot9"
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/weaponpresets/rafale_c_f3_aasm_250_sbu_54.blkx**:
-
-  **Added**:
-```diff
-+ slot:i=3
-+ preset:t="aasm_250_sbu_54_x3_slot3"
-+ slot:i=6
-+ slot:i=10
-+ preset:t="aasm_250_sbu_54_x3_slot10"
-```
-
-  **Removed**:
-```diff
-- slot:i=2
-- preset:t="aasm_250_sbu_54_x3_slot2"
-- slot:i=5
-- slot:i=9
-- preset:t="aasm_250_sbu_54_x3_slot9"
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/weaponpresets/rafale_c_f3_aasm_250_sbu_64.blkx**:
-
-  **Added**:
-```diff
-+ slot:i=3
-+ preset:t="aasm_250_sbu_64_x3_slot3"
-+ slot:i=6
-+ slot:i=10
-+ preset:t="aasm_250_sbu_64_x3_slot10"
-```
-
-  **Removed**:
-```diff
-- slot:i=2
-- preset:t="aasm_250_sbu_64_x3_slot2"
-- slot:i=5
-- slot:i=9
-- preset:t="aasm_250_sbu_64_x3_slot9"
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/weaponpresets/rafale_c_f3_default.blkx**:
-
-  **Added**:
-```diff
-+ slot:i=4
-+ slot:i=7
-+ slot:i=9
-+ slot:i=11
-+ preset:t="mica_em_slot11_default"
-+ slot:i=12
-+ preset:t="r550_magic_2_slot12_default"
-```
-
-  **Removed**:
-```diff
-- slot:i=3
-- slot:i=6
-- slot:i=8
-- slot:i=9
-- preset:t="mica_em_slot9_default"
-- slot:i=10
-- preset:t="r550_magic_2_slot10_default"
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/weaponpresets/rafale_c_f3_gbu_12.blkx**:
-
-  **Added**:
-```diff
-+ slot:i=3
-+ preset:t="us_gbu_12_x3_slot3"
-+ slot:i=6
-+ slot:i=10
-+ preset:t="us_gbu_12_x3_slot10"
-```
-
-  **Removed**:
-```diff
-- slot:i=2
-- preset:t="us_gbu_12_x3_slot2"
-- slot:i=5
-- slot:i=9
-- preset:t="us_gbu_12_x3_slot9"
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/weaponpresets/rafale_c_f3_gbu_16.blkx**:
-
-  **Added**:
-```diff
-+ slot:i=3
-+ preset:t="us_gbu_16_slot3"
-+ slot:i=6
-+ slot:i=10
-+ preset:t="us_gbu_16_slot10"
-```
-
-  **Removed**:
-```diff
-- slot:i=2
-- preset:t="us_gbu_16_slot2"
-- slot:i=5
-- slot:i=9
-- preset:t="us_gbu_16_slot9"
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/weaponpresets/rafale_c_f3_gbu_22.blkx**:
-
-  **Added**:
-```diff
-+ slot:i=3
-+ preset:t="us_gbu_22_x3_slot3"
-+ slot:i=6
-+ slot:i=10
-+ preset:t="us_gbu_22_x3_slot10"
-```
-
-  **Removed**:
-```diff
-- slot:i=2
-- preset:t="us_gbu_22_x3_slot2"
-- slot:i=5
-- slot:i=9
-- preset:t="us_gbu_22_x3_slot9"
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/weaponpresets/rafale_c_f3_gbu_24.blkx**:
-
-  **Added**:
-```diff
-+ slot:i=3
-+ preset:t="us_gbu_24_slot3"
-+ slot:i=6
-+ slot:i=7
-+ preset:t="us_gbu_24_slot7"
-+ slot:i=10
-+ preset:t="us_gbu_24_slot10"
-```
-
-  **Removed**:
-```diff
-- slot:i=2
-- preset:t="us_gbu_24_slot2"
-- slot:i=5
-- slot:i=6
-- preset:t="us_gbu_24_slot6"
-- slot:i=9
-- preset:t="us_gbu_24_slot9"
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/weaponpresets/rafale_c_f3_gbu_49.blkx**:
-
-  **Added**:
-```diff
-+ slot:i=3
-+ preset:t="us_gbu_49_x3_slot3"
-+ slot:i=6
-+ slot:i=10
-+ preset:t="us_gbu_49_x3_slot10"
-```
-
-  **Removed**:
-```diff
-- slot:i=2
-- preset:t="us_gbu_49_x3_slot2"
-- slot:i=5
-- slot:i=9
-- preset:t="us_gbu_49_x3_slot9"
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/weaponpresets/rafale_c_f3_mica_em.blkx**:
-
-  **Added**:
-```diff
-+ slot:i=3
-+ preset:t="mica_em_slot3"
-+ slot:i=5
-+ preset:t="mica_em_slot5"
-+ slot:i=8
-+ preset:t="mica_em_slot8"
-+ }
-+ 
-+ Weapon{
-+ slot:i=11
-+ preset:t="mica_em_slot11_default"
-+ }
-+ 
-+ Weapon{
-+ slot:i=12
-+ preset:t="mica_em_slot12"
-```
-
-  **Removed**:
-```diff
-- slot:i=4
-- preset:t="mica_em_slot4"
-- slot:i=7
-- preset:t="mica_em_slot7"
-- slot:i=9
-- preset:t="mica_em_slot9_default"
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/weaponpresets/rafale_c_f3_r550.blkx**:
-
-  **Added**:
-```diff
-+ slot:i=12
-+ preset:t="r550_magic_2_slot12_default"
-```
-
-  **Removed**:
-```diff
-- slot:i=10
-- preset:t="r550_magic_2_slot10_default"
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/weaponpresets/rafale_c_f3_samp_mk82.blkx**:
-
-  **Added**:
-```diff
-+ slot:i=3
-+ preset:t="250kg_type_25c_x3_slot3"
-+ slot:i=10
-+ preset:t="250kg_type_25c_x3_slot10"
-```
-
-  **Removed**:
-```diff
-- slot:i=2
-- preset:t="250kg_type_25c_x3_slot2"
-- slot:i=9
-- preset:t="250kg_type_25c_x3_slot9"
-```
-
-
-- **aces.vromfs.bin_u/gamedata/sensors/fr_spectra_mlws.blkx**:
-
-  **Added**:
-```diff
-+ name:t="Thales SPECTRA DDM-NG"
-+ elevationWidth:r=180.0
-+ elevationWidth:r=180.0
-```
-
-  **Removed**:
-```diff
-- name:t="Thales SPECTRA"
-- elevationWidth:r=90.0
-- elevationWidth:r=90.0
-```
-
-
-- **aces.vromfs.bin_u/gamedata/sensors/fr_thales_rbe2.blkx**:
-
-  **Added**:
-```diff
-+ weaponTargetsMax:i=8
-+ launchedMissilesPredictedPositionsMax:i=8
-```
-
-  **Removed**:
-```diff
-- weaponTargetsMax:i=6
-- launchedMissilesPredictedPositionsMax:i=6
-```
-
-
-- **aces.vromfs.bin_u/gamedata/units/ships/uk_battleship_rodney.blkx**:
-
-  **Added**:
-```diff
-+ weight:r=0.6
-+ critWaterLevel:r=0.85
-+ critWaterLevel:r=0.85
-+ critWaterLevel:r=0.95
-+ critWaterLevel:r=0.95
-+ critWaterLevel:r=0.85
-+ critWaterLevel:r=0.85
-```
-
-  **Removed**:
-```diff
-- weight:r=0.5
-- critWaterLevel:r=0.5
-- critWaterLevel:r=0.5
-- critWaterLevel:r=0.6
-- critWaterLevel:r=0.6
-- critWaterLevel:r=0.8
-- critWaterLevel:r=0.8
-```
-
-
-- **aces.vromfs.bin_u/gamedata/units/tankmodels/fr_vbci.blkx**:
-
-  **Added**:
-```diff
-+ turret_10_top_dm{
-+ }
-+ 
-+ turret_07_side_dm{
-+ }
-+ }
-+ 
-+ inner_parts{
-+ armorThickness:r=5.0
-+ armorClass:t="RHA_tank"
-+ hidableInXrayViewer:b=yes
-+ 
-+ composite_armor_hull_05_dm{
-+ 
-+ armorArrayHull{
-+ xrayDmPart:t="composite_armor_hull_05_dm"
-+ titleLoc:t="RHA_tank_modern"
-+ 
-+ armorArrayText{
-+ 
-+ layer{
-+ dmPart:t="composite_armor_hull_05_dm"
-+ }
-+ }
-+ }
-+ maxRPM:r=2100.0
-+ sideGearRatio:r=0.88
-```
-
-  **Removed**:
-```diff
-- armorThickness:r=5.0
-- hidableInXrayViewer:b=yes
-- armorThickness:r=5.0
-- hidableInXrayViewer:b=yes
-- armorThickness:r=5.0
-- hidableInXrayViewer:b=yes
-- armorThickness:r=5.0
-- hidableInXrayViewer:b=yes
-- turret_10_top_dm{
-- }
-- 
-- turret_07_side_dm{
-- maxRPM:r=2400.0
-- sideGearRatio:r=1.0
-```
-
-
-- **aces.vromfs.bin_u/gamedata/units/tankmodels/germ_pzh_2000.blkx**:
-
-  **Added**:
-```diff
-+ replenishmentDelay:r=5.0
-+ replenishmentTime:r=5.0
-+ firstStage:b=yes
-+ }
-+ 
-+ shells{
-+ reloadTimeMult:r=1.5
-+ firstStage:b=yes
-+ }
-+ 
-+ charges{
-+ reloadTimeMult:r=1.5
-```
-
-  **Removed**:
-```diff
-- replenishmentDelay:r=8.0
-- replenishmentTime:r=10.0
-- autoLoad:b=yes
-- fireEvent:t="ammo_fire"
-- explosionEvent:t="ammo_explosion"
-- wreckedPartId:i=0
-- autoLoad:b=yes
-- fireParamsPreset:t="turret_bustle"
-- fatalFire:b=no
-- fatalExplosion:b=no
-```
-
-
-- **aces.vromfs.bin_u/gamedata/units/tankmodels/il_sholef.blkx**:
-
-  **Added**:
-```diff
-+ firstStage:b=yes
-+ }
-+ 
-+ shells{
-+ reloadTimeMult:r=1.5867
-+ fireEvent:t="ammo_fire"
-+ explosionEvent:t="ammo_explosion"
-+ wreckedPartId:i=0
-+ autoloader:t="autoloader_dm"
-+ reloadTimeMult:r=3.1733
-+ firstStage:b=yes
-+ }
-+ 
-+ charges{
-+ reloadTimeMult:r=1.5867
-+ fireEvent:t="ammo_fire"
-+ explosionEvent:t="ammo_explosion"
-+ wreckedPartId:i=0
-+ reloadTimeMult:r=3.1733
-```
-
-  **Removed**:
-```diff
-- autoLoad:b=yes
-- reloadTimeMult:r=2.0
-- autoLoad:b=yes
-- reloadTimeMult:r=2.0
-```
-
-
-- **aces.vromfs.bin_u/gamedata/units/tankmodels/it_pzh_2000_hu.blkx**:
-
-  **Added**:
-```diff
-+ replenishmentDelay:r=5.0
-+ replenishmentTime:r=5.0
-+ firstStage:b=yes
-+ }
-+ 
-+ shells{
-+ reloadTimeMult:r=1.5
-+ firstStage:b=yes
-+ }
-+ 
-+ charges{
-+ reloadTimeMult:r=1.5
-```
-
-  **Removed**:
-```diff
-- replenishmentDelay:r=8.0
-- replenishmentTime:r=10.0
-- autoLoad:b=yes
-- fireEvent:t="ammo_fire"
-- explosionEvent:t="ammo_explosion"
-- wreckedPartId:i=0
-- autoLoad:b=yes
-- fireParamsPreset:t="turret_bustle"
-- fatalFire:b=no
-- fatalExplosion:b=no
-```
-
-
-- **aces.vromfs.bin_u/gamedata/units/tankmodels/jp_icv_ifv_prototype.blkx**:
-
-  **Added**:
-```diff
-```
-
-  **Removed**:
-```diff
-- part:t="drive_turret_h_dm"
-```
-
-
-- **aces.vromfs.bin_u/gamedata/units/tankmodels/us_m56_scorpion.blkx**:
-
-  **Added**:
-```diff
-+ yaw:p2=-30.0, 30.0
-```
-
-  **Removed**:
-```diff
-- yaw:p2=-30.0, 15.0
-```
-
-
-- **aces.vromfs.bin_u/gamedata/units/tankmodels/ussr_bmd_4m.blkx**:
-
-  **Added**:
-```diff
-+ node:t="ex_decor_10"
-```
-
-  **Removed**:
-```diff
-```
-
-
-- **aces.vromfs.bin_u/gamedata/weapons/bombguns/su_kab_1500kr.blkx**:
-
-  **Added**:
-```diff
-+ boundaryTrack:b=yes
-```
-
-  **Removed**:
-```diff
-```
-
-
-- **aces.vromfs.bin_u/gamedata/weapons/bombguns/su_kab_500kr.blkx**:
-
-  **Added**:
-```diff
-+ boundaryTrack:b=yes
-```
-
-  **Removed**:
-```diff
-```
-
-
-- **aces.vromfs.bin_u/gamedata/weapons/bombguns/su_kab_500kr_e.blkx**:
-
-  **Added**:
-```diff
-+ boundaryTrack:b=yes
-```
-
-  **Removed**:
-```diff
-```
-
-
-- **aces.vromfs.bin_u/gamedata/weapons/bombguns/su_kab_500kr_m.blkx**:
-
-  **Added**:
-```diff
-+ boundaryTrack:b=yes
-```
-
-  **Removed**:
-```diff
-```
-
-
-- **aces.vromfs.bin_u/gamedata/weapons/bombguns/su_kab_50tv.blkx**:
-
-  **Added**:
-```diff
-+ boundaryTrack:b=yes
-```
-
-  **Removed**:
-```diff
-```
-
-
-- **aces.vromfs.bin_u/gamedata/weapons/bombguns/uk_pgm_2000.blkx**:
-
-  **Added**:
-```diff
-+ effectOffset:p3=-2.48, -0.25, 0.0
-+ boundaryTrack:b=yes
-```
-
-  **Removed**:
-```diff
-- effectOffset:p3=-2.0, -0.25, 0.0
-```
-
-
-- **aces.vromfs.bin_u/gamedata/weapons/bombguns/uk_pgm_2000_iir.blkx**:
-
-  **Added**:
-```diff
-+ effectOffset:p3=-2.48, -0.25, 0.0
-+ boundaryTrack:b=yes
-```
-
-  **Removed**:
-```diff
-- effectOffset:p3=-2.0, -0.25, 0.0
-```
-
-
-- **aces.vromfs.bin_u/gamedata/weapons/bombguns/uk_pgm_500.blkx**:
-
-  **Added**:
-```diff
-+ boundaryTrack:b=yes
-```
-
-  **Removed**:
-```diff
-```
-
-
-- **aces.vromfs.bin_u/gamedata/weapons/bombguns/uk_pgm_500_iir.blkx**:
-
-  **Added**:
-```diff
-+ boundaryTrack:b=yes
-```
-
-  **Removed**:
-```diff
-```
-
-
-- **aces.vromfs.bin_u/gamedata/weapons/bombguns/us_2000lb_agm_130a.blkx**:
-
-  **Added**:
-```diff
-+ effectOffset:p3=-2.0, -0.64, 0.0
-+ boundaryTrack:b=yes
-```
-
-  **Removed**:
-```diff
-- effectOffset:p3=-2.0, -0.59, 0.0
-```
-
-
-- **aces.vromfs.bin_u/gamedata/weapons/bombguns/us_2000lb_agm_130a_12.blkx**:
-
-  **Added**:
-```diff
-+ rocketGun:b=yes
-+ preset_cost:i=20
-+ mesh:t="us_2000lb_agm_130a"
-+ mesh_deployed:t="us_2000lb_agm_130a_animated"
-+ shellAnimChar:t="us_2000lb_agm_130a_animated_char"
-+ helicopterGroup:i=2
-+ bullets:i=1
-+ shotFreq:r=1000.25
-+ sound:t="weapon.rocketgun_132"
-+ 
-+ tags{
-+ }
-+ 
-+ rocket{
-+ bulletName:t="us_2000lb_agm_130a_12"
-+ statType:t="hydra"
-+ caliber:r=0.4572
-+ length:r=3.9243
-+ WdK:p3=2.5, 2.5, 2.5
-+ CxK:r=1.375
-+ brakeTime:p2=51.1, 52.5
-+ brakeCxK:r=0.0
-+ brakeArm:r=0.0
-+ wingAreaMult:r=3.25
-+ finsAoaHor:r=0.1512
-+ finsAoaVer:r=0.1512
-+ distFromCmToStab:r=0.6
-+ mass:r=1323.0
-+ massEnd:r=1188.0
-+ massEnd1:r=1140.0
-+ timeFire:r=45.0
-+ timeFire1:r=0.0
-+ force:r=6300.5
-+ force1:r=0.0
-+ fireDelay:r=6.0
-+ timeLife:r=300.0
-+ useStartSpeed:b=yes
-+ startSpeed:r=0.0
-+ machMax:r=1.0
-+ endSpeed:r=0.0
-+ maxDistance:r=70000.0
-+ minDistance:r=5000.0
-+ rangeMax:r=70000.0
-+ isHasTVChannel:b=yes
-+ opticSightFov:p2=30.0, 15.0
-+ guidanceType:t="ir"
-+ rollStabilization:b=yes
-+ rollStabilizationDelay:r=1.0
-+ dragCx:r=0.025
-+ normalizationPreset:t="heat"
-+ ricochetPreset:t="heat_fs"
-+ groundRicochetPreset:t="heat_fs"
-+ secondaryShattersPreset:t="ap"
-+ stabilityThreshold:r=0.5
-+ stabilityCaliberToArmorThreshold:r=5.0
-+ stabilityReductionAfterRicochet:r=0.3
-+ stabilityReductionAfterPenetration:r=0.15
-+ bulletType:t="heat_fs_tank"
-+ cumulativeSecondaryShattersPreset:t="heat_fs"
-+ explodeOnRendinst:b=yes
-+ fresnel:p3=0.23, 0.1, 2.0
-+ shellAnimation:t="video/shells_animations/heat_fs.ivf"
-+ explosiveType:t="comp_h6"
-+ explosiveMass:r=428.6
-+ maxDeltaAngle:r=0.02
-+ spawnExplosionFx:b=no
-+ spawnExplosionWreckage:b=no
-+ explosionEffect:t="explosion_midair_rocket_big"
-+ groundCollisionEffect:t="bomb_expl_1000kg"
-+ ricochetEffect:t="hit_59_80mm_metal_ap"
-+ waterCollisionEffect:t="hit_59_80mm_water"
-+ explosionPatchRadius:r=17.0
-+ waterRicochetEffect:t="hit_81_105mm_water_ap"
-+ groundRicochetEffect:t="hit_81_105mm_dirt_ap"
-+ visualShattersWaterOffset:r=1.2
-+ visualShattersGroundOffset:r=1.2
-+ distanceFuse:b=no
-+ effectOffset:p3=-2.0, -0.64, 0.0
-+ rendinstDamageRadius:r=9.0
-+ hitPowerMult:r=400.0
-+ fuseDelayDist:r=0.1
-+ explodeTreshold:r=0.1
-+ fireEffect:t="fires_exhaust_jet_early_med"
-+ smokeEffect:t="smoke_rocket_tail_light_big"
-+ smokeEffect2:t=""
-+ hazeEffect:t="haze_missile"
-+ endSmokeViscosity:r=0.05
-+ price:r=3000.0
-+ amountPerTier:r=1.0
-+ iconType:t="guided_bomb_heavy_laser"
-+ gunnerOpticsName:t="GBU15V2"
-+ 
-+ arcadeProp{
-+ finsAoaHor:r=0.16
-+ finsAoaVer:r=0.16
-+ }
-+ 
-+ guidance{
-+ warmUpTime:r=1.0
-+ acquisitionTime:r=0.1
-+ workTime:r=3600.0
-+ useTrippleClickLockInTpv:b=yes
-+ applyExtraDifficultyParameters:b=yes
-+ breakLockMaxTime:r=120.0
-+ uncageBeforeLaunch:b=yes
-+ 
-+ irSeeker{
-+ visibilityType:t="infraRed"
-+ rangeBand0:r=20000.0
-+ rangeMax:r=40000.0
-+ rangeSurface:r=40000.0
-+ fov:r=0.1
-+ gateWidth:r=0.1
-+ minAngleToSun:r=1.0
-+ lockAngleMax:r=30.0
-+ angleMax:r=54.0
-+ rateMax:r=2.5
-+ prolongationTimeMax:r=1.0
-+ designationSourceTypeMask:i=1
-+ constantDesignationSourceTypeMask:i=0
-+ aircraftAsTarget:b=no
-+ groundVehiclesAsTarget:b=yes
-+ surfaceAsTarget:b=yes
-+ boundaryTrack:b=yes
-+ rangeBand1:r=20000.0
-+ }
-+ 
-+ guidanceAutopilot{
-+ timeOut:r=1.5
-+ loftEnabled:b=yes
-+ loftElevation:r=10.0
-+ loftTargetElevation:r=-15.0
-+ loftAngleToAccelMult:r=10.0
-+ loftTargetOmegaMax:r=0.75
-+ baseIndSpeed:r=1800.0
-+ propNavMult:r=4.0
-+ reqAccelMax:r=2.5
-+ accelControlProp:r=0.0701
-+ accelControlIntg:r=0.09
-+ accelControlIntgLim:r=1.0
-+ accelControlDiff:r=0.0005
-+ }
-+ }
-+ 
-+ stabilityRicochetModifier{
-+ mod1:p2=0.0, 0.5
-+ mod2:p2=15.0, 0.7
-+ mod3:p2=30.0, 0.99
-+ }
-+ 
-+ pressureDamage{
-+ damageType:t="pressure"
-+ }
-+ 
-+ damage{
-+ 
-+ explosive{
-+ offset:r=1.0
-+ }
-+ }
++ bboxMult:r=0.1
++ breakFx:t="destruction_decorators_model_small"
++ mass:r=15.0
 + 
 + DamageParts{
 + 
 + body{
 + hp:r=50.0
 + armorClass:t="tank_structural_steel"
-+ armorThickness:r=1.0
++ armorThickness:r=0.01
 + }
 + }
 + 
@@ -1477,241 +34,76 @@
 + part{
 + name:t="body"
 + 
-+ onHit{
-+ shellState:t="inFlight"
-+ expl:r=1.0
++ onKill{
++ cut:r=1.0
++ }
++ }
++ }
+```
+
+  **Removed**:
+```diff
+- bboxMult:r=0.1
+```
+
+
+- **aces.vromfs.bin_u/gamedata/attachables/decor_hut_on_chicken_legs.blkx**:
+
+  **Added**:
+```diff
++ breakFx:t="destruction_decorators_model_small"
++ mass:r=15.0
 + }
 + 
-+ onHit{
-+ shellState:t="onUnit"
-+ damageType:t="generic"
-+ expl:r=0.05
-+ fire:r=0.45
-+ break:r=0.5
-+ damage:r=3.0
-+ fHitCritical:b=yes
++ DamageParts{
++ 
++ body{
++ hp:r=50.0
++ armorClass:t="tank_structural_steel"
++ armorThickness:r=0.01
++ }
 + }
 + 
-+ onHit{
-+ shellState:t="onUnit"
-+ damageType:t="generic"
-+ expl:r=0.5
-+ fire:r=0.3
-+ break:r=0.2
-+ damage:r=30.0
-+ fHitCritical:b=yes
-+ }
++ DamageEffects{
 + 
-+ onHit{
-+ shellState:t="onUnit"
-+ damageType:t="explosion"
-+ expl:r=0.45
-+ fire:r=0.45
-+ break:r=0.1
-+ damage:r=50.0
-+ fHitCritical:b=yes
-+ }
-+ 
-+ onHit{
-+ shellState:t="onUnit"
-+ damageType:t="cumulative"
-+ expl:r=0.4
-+ fire:r=0.4
-+ break:r=0.1
-+ damage:r=100.0
-+ fHitCritical:b=yes
-+ }
++ part{
++ name:t="body"
 + 
 + onKill{
-+ shellState:t="inFlight"
-+ destruction:r=1.0
++ cut:r=1.0
 + }
++ }
+```
+
+  **Removed**:
+```diff
+```
+
+
+- **aces.vromfs.bin_u/gamedata/attachables/decor_nutcraker.blkx**:
+
+  **Added**:
+```diff
++ animVarName:t="play_timer_anim"
++ breakFx:t="destruction_decorators_model_small"
++ mass:r=15.0
++ 
++ DamageParts{
++ 
++ body{
++ hp:r=50.0
++ armorClass:t="tank_structural_steel"
++ armorThickness:r=0.01
++ }
++ }
++ 
++ DamageEffects{
++ 
++ part{
++ name:t="body"
 + 
 + onKill{
-+ shellState:t="onUnit"
-+ expl:r=0.05
-+ fire:r=0.05
-+ break:r=0.9
-+ fHitCritical:b=yes
-+ }
-+ }
-+ }
-+ 
-+ shatterCollisions{
-+ groundCollisionEffect:t="hit_12_18mm_dirt_ap"
-+ waterCollisionEffect:t="hit_8_11mm_water"
-+ 
-+ default{
-+ fx:t="hit_12_18mm_dirt_ap"
-+ }
-+ 
-+ horLandMesh{
-+ fx:t="hit_12_18mm_dirt_ap"
-+ }
-+ 
-+ soil{
-+ fx:t="hit_12_18mm_dirt_ap"
-+ }
-+ 
-+ dirt{
-+ fx:t="hit_12_18mm_dirt_ap"
-+ }
-+ 
-+ road{
-+ fx:t="hit_12_18mm_dirt_ap"
-+ }
-+ 
-+ bricks_red{
-+ fx:t="hit_12_18mm_red_brick_ap"
-+ }
-+ 
-+ roadSoil{
-+ fx:t="hit_12_18mm_dirt_ap"
-+ }
-+ 
-+ sand{
-+ fx:t="hit_12_18mm_sand_ap"
-+ }
-+ 
-+ duneSand{
-+ fx:t="hit_12_18mm_sand_ap"
-+ }
-+ 
-+ roadSand{
-+ fx:t="hit_12_18mm_sand_ap"
-+ }
-+ 
-+ quickSand{
-+ fx:t="hit_12_18mm_sand_ap"
-+ }
-+ 
-+ snow{
-+ fx:t="hit_12_18mm_snow_ap"
-+ }
-+ 
-+ ice{
-+ fx:t="hit_12_18mm_snow_ap"
-+ }
-+ 
-+ roadSnow{
-+ fx:t="hit_12_18mm_snow_ap"
-+ }
-+ 
-+ snowLower{
-+ fx:t="hit_12_18mm_snow_ap"
-+ }
-+ 
-+ glass{
-+ fx:t="hit_12_18mm_metal_ap"
-+ }
-+ 
-+ wood{
-+ fx:t="hit_12_18mm_wood_ap"
-+ }
-+ 
-+ steel{
-+ fx:t="hit_12_18mm_metal_ap"
-+ }
-+ 
-+ metal{
-+ fx:t="hit_12_18mm_metal_ap"
-+ }
-+ 
-+ tank_structural_steel{
-+ fx:t="hit_12_18mm_metal_ap"
-+ }
-+ 
-+ aluminum_armor{
-+ fx:t="hit_12_18mm_metal_ap"
-+ }
-+ 
-+ tank_rubber_screens{
-+ fx:t="hit_12_18mm_stone_ap"
-+ }
-+ 
-+ buildings{
-+ fx:t="hit_12_18mm_stone_ap"
-+ }
-+ 
-+ verLandMesh{
-+ fx:t="hit_12_18mm_stone_ap"
-+ }
-+ 
-+ concrete{
-+ fx:t="hit_12_18mm_stone_ap"
-+ }
-+ 
-+ rocks{
-+ fx:t="hit_12_18mm_stone_ap"
-+ }
-+ 
-+ rocksSlippery{
-+ fx:t="hit_12_18mm_stone_ap"
-+ }
-+ 
-+ fabric{
-+ fx:t="hit_12_18mm_stone_ap"
-+ }
-+ 
-+ stone_snow{
-+ fx:t="hit_12_18mm_snow_ap"
-+ }
-+ 
-+ armorPierceLowCal{
-+ fx:t="hit_12_18mm_metal_ap"
-+ }
-+ 
-+ armorPierceMedCal{
-+ fx:t="hit_12_18mm_metal_ap"
-+ }
-+ 
-+ armorPierceHiCal{
-+ fx:t="hit_12_18mm_metal_ap"
-+ }
-+ 
-+ armorNPLowCal{
-+ fx:t="hit_12_18mm_metal_ap"
-+ }
-+ 
-+ armorNPMedCal{
-+ fx:t="hit_12_18mm_metal_ap"
-+ }
-+ 
-+ armorNPHiCal{
-+ fx:t="hit_12_18mm_metal_ap"
-+ }
-+ }
-+ 
-+ collisions{
-+ 
-+ steel{
-+ fx:t="explosion_midair_big"
-+ ricochetFx:t="hit_81_105mm_metal_ap"
-+ }
-+ 
-+ aluminum_armor{
-+ fx:t="explosion_midair_big"
-+ ricochetFx:t="hit_81_105mm_metal_ap"
-+ }
-+ 
-+ tank_structural_steel{
-+ fx:t="explosion_midair_big"
-+ ricochetFx:t="hit_81_105mm_metal_ap"
-+ }
-+ 
-+ armor{
-+ fx:t="explosion_midair_big"
-+ ricochetFx:t="hit_81_105mm_metal_ap"
-+ }
-+ 
-+ buildings{
-+ fx:t="explosion_midair_big"
-+ ricochetFx:t="hit_106_132mm_stone_ap"
-+ }
-+ 
-+ wood{
-+ fx:t="explosion_midair_big"
-+ ricochetFx:t="hit_106_132mm_wood_ap"
++ cut:r=1.0
 + }
 + }
 + }
@@ -1719,133 +111,179 @@
 
   **Removed**:
 ```diff
+- animVarName:t="play_timer_anim"
 ```
 
 
-- **aces.vromfs.bin_u/gamedata/weapons/bombguns/us_2000lb_gbu_15v1.blkx**:
+- **aces.vromfs.bin_u/gamedata/flightmodels/fm/f_15a.blkx**:
 
   **Added**:
 ```diff
-+ boundaryTrack:b=yes
++ UseTime:r=5.0
++ Power:r=2500.0
 ```
 
   **Removed**:
 ```diff
+- UseTime:r=0.0
+- Power:r=0.0
 ```
 
 
-- **aces.vromfs.bin_u/gamedata/weapons/bombguns/us_2000lb_gbu_15v2.blkx**:
+- **aces.vromfs.bin_u/gamedata/flightmodels/fm/f_15c_baz_msip.blkx**:
 
   **Added**:
 ```diff
-+ boundaryTrack:b=yes
++ UseTime:r=5.0
++ Power:r=2500.0
 ```
 
   **Removed**:
 ```diff
+- UseTime:r=0.0
+- Power:r=0.0
 ```
 
 
-- **aces.vromfs.bin_u/gamedata/weapons/bombguns/us_2000lb_gbu_15v21.blkx**:
+- **aces.vromfs.bin_u/gamedata/flightmodels/fm/f_15c_msip2.blkx**:
 
   **Added**:
 ```diff
-+ boundaryTrack:b=yes
++ UseTime:r=5.0
++ Power:r=2500.0
 ```
 
   **Removed**:
 ```diff
+- UseTime:r=0.0
+- Power:r=0.0
 ```
 
 
-- **aces.vromfs.bin_u/gamedata/weapons/bombguns/us_2000lb_gbu_15v22.blkx**:
+- **aces.vromfs.bin_u/gamedata/flightmodels/fm/f_15e.blkx**:
 
   **Added**:
 ```diff
-+ boundaryTrack:b=yes
++ UseTime:r=5.0
++ Power:r=2500.0
 ```
 
   **Removed**:
 ```diff
+- UseTime:r=0.0
+- Power:r=0.0
 ```
 
 
-- **aces.vromfs.bin_u/gamedata/weapons/bombguns/us_2000lb_gbu_8_hobos.blkx**:
+- **aces.vromfs.bin_u/gamedata/flightmodels/fm/f_15i_raam.blkx**:
 
   **Added**:
 ```diff
-+ boundaryTrack:b=yes
++ UseTime:r=5.0
++ Power:r=2500.0
 ```
 
   **Removed**:
 ```diff
+- UseTime:r=0.0
+- Power:r=0.0
 ```
 
 
-- **aces.vromfs.bin_u/gamedata/weapons/bombguns/us_agm_62a.blkx**:
+- **aces.vromfs.bin_u/gamedata/flightmodels/fm/f_15j.blkx**:
 
   **Added**:
 ```diff
-+ boundaryTrack:b=yes
++ UseTime:r=5.0
++ Power:r=2500.0
 ```
 
   **Removed**:
 ```diff
+- UseTime:r=0.0
+- Power:r=0.0
 ```
 
 
-- **aces.vromfs.bin_u/gamedata/weapons/bombguns/us_agm_62a_er.blkx**:
+- **aces.vromfs.bin_u/gamedata/flightmodels/fm/f_15j_kai.blkx**:
 
   **Added**:
 ```diff
-+ boundaryTrack:b=yes
++ UseTime:r=5.0
++ Power:r=2500.0
 ```
 
   **Removed**:
 ```diff
+- UseTime:r=0.0
+- Power:r=0.0
 ```
 
 
-- **aces.vromfs.bin_u/gamedata/weapons/groundmodels_weapons/155mm_l52_user_cannon.blkx**:
+- **aces.vromfs.bin_u/gamedata/flightmodels/kfir_c10_colombia.blkx**:
 
   **Added**:
 ```diff
-+ shotFreq:r=0.2
-+ speed:r=945.0
-+ speed:r=945.0
-+ speed:r=945.0
-+ speed:r=945.0
++ hmdBlockIlsArea:p4=0.47, -0.8, 0.55, 0.6
++ mfdTextureSize:ip2=1024, 1024
++ scale:r=0.85
++ blk:t="gameData/sensors/il_el_m_2052.blk"
++ preset{
++ name:t="kfir_c10_colombia_mk118"
++ blk:t="gameData/FlightModels/weaponPresets/kfir_c10_colombia_mk118.blk"
++ }
++ 
++ WeaponPreset{
++ iconType:t="bombs_heavy"
++ name:t="us_m118"
++ reqModification:t="us_3000lb_mk118"
++ 
++ Weapon{
++ trigger:t="bombs"
++ blk:t="gameData/Weapons/containers/pylon_kfir_central_us_3000lb_m118.blk"
++ emitter:t="pylon_central_3000lb"
++ bullets:i=1
++ external:b=yes
++ separate:b=yes
++ machLimit:r=1.01
++ }
++ }
++ 
++ us_3000lb_mk118{
++ modClass:t="weapon"
++ tier:i=4
++ prevModification:t="f4c_zuni"
++ reqModification:t="us_2000lb_mk84"
++ }
++ 
 ```
 
   **Removed**:
 ```diff
-- shotFreq:r=0.1
-- speed:r=563.0
-- speed:r=563.0
-- speed:r=580.0
-- speed:r=563.0
+- hmdBlockIlsArea:p4=0.47, 0.4, 0.55, 0.6
+- scale:r=1.0
+- blk:t="gameData/sensors/il_el_m_2032.blk"
 ```
 
 
-- **aces.vromfs.bin_u/gamedata/weapons/groundmodels_weapons/155mm_soltam_user_cannon.blkx**:
+- **aces.vromfs.bin_u/gamedata/flightmodels/rafale_c_f3.blkx**:
 
   **Added**:
 ```diff
-+ shotFreq:r=0.1334
++ hmdRafale:b=yes
 ```
 
   **Removed**:
 ```diff
-- shotFreq:r=0.084
+- hmdA10c:b=yes
 ```
 
 
-- **aces.vromfs.bin_u/gamedata/weapons/groundmodels_weapons/239mm_9m331_user_cannon.blkx**:
+- **aces.vromfs.bin_u/gamedata/flightmodels/saab_jas39a.blkx**:
 
   **Added**:
 ```diff
-+ beaconBand:i=5
-+ beaconBand:i=5
++ hmdBlockIlsArea:p4=0.15, 0.01, 0.73, 0.85
 ```
 
   **Removed**:
@@ -1853,12 +291,14 @@
 ```
 
 
-- **aces.vromfs.bin_u/gamedata/weapons/groundmodels_weapons/239mm_hq_17_user_cannon.blkx**:
+- **aces.vromfs.bin_u/gamedata/flightmodels/weaponpresets/kfir_c10_colombia_mk118.blkx**:
 
   **Added**:
 ```diff
-+ beaconBand:i=5
-+ beaconBand:i=5
++ Weapon{
++ slot:i=5
++ preset:t="us_m118"
++ }
 ```
 
   **Removed**:
@@ -1866,45 +306,4580 @@
 ```
 
 
-- **aces.vromfs.bin_u/gamedata/weapons/rocketguns/us_aim9l_i_1_sidewinder.blkx**:
+- **aces.vromfs.bin_u/gamedata/sensors/il_el_m_2052.blkx**:
 
   **Added**:
 ```diff
-+ fireEffect:t="fires_exhaust_jet_mach_discs_small"
-+ smokeEffect:t="smoke_rocket_tail_light"
-+ smokeEffect2:t=""
-+ hazeEffect:t="haze_missile"
-+ endSmokeViscosity:r=0.05
++ type:t="radar"
++ name:t="ELTA EL/M-2052"
++ showMissileLaunchZone:b=yes
++ showMissileDgftLaunchZone:b=yes
++ weaponTargetsMax:i=4
++ launchedMissilesPredictedPositionsMax:i=4
++ 
++ transivers{
++ 
++ mprf{
++ sideLobesAttenuation:r=-20.0
++ power:r=1000.0
++ band:i=8
++ rcs:r=5.0
++ range:r=100000.0
++ rangeMax:r=150000.0
++ multipathEffect:p4=0.0, 1.0, 60.0, 0.0
++ 
++ antenna{
++ 
++ azimuth{
++ angleHalfSens:r=1.8
++ sideLobesSensitivity:r=-35.0
++ }
++ 
++ elevation{
++ angleHalfSens:r=2.7
++ sideLobesSensitivity:r=-35.0
++ }
++ }
++ }
++ 
++ hprf{
++ sideLobesAttenuation:r=-20.0
++ power:r=1000.0
++ band:i=8
++ rcs:r=5.0
++ range:r=120000.0
++ rangeMax:r=170000.0
++ multipathEffect:p4=0.0, 1.0, 60.0, 0.0
++ 
++ antenna{
++ 
++ azimuth{
++ angleHalfSens:r=1.8
++ sideLobesSensitivity:r=-35.0
++ }
++ 
++ elevation{
++ angleHalfSens:r=2.7
++ sideLobesSensitivity:r=-35.0
++ }
++ }
++ }
++ 
++ GTM{
++ sideLobesAttenuation:r=-20.0
++ power:r=1000.0
++ band:i=8
++ rcs:r=40.0
++ range:r=30000.0
++ rangeMax:r=150000.0
++ multipathEffect:p4=0.0, 1.0, 60.0, 0.0
++ 
++ antenna{
++ 
++ azimuth{
++ angleHalfSens:r=1.8
++ sideLobesSensitivity:r=-50.0
++ }
++ 
++ elevation{
++ angleHalfSens:r=2.7
++ sideLobesSensitivity:r=-50.0
++ }
++ }
++ }
++ }
++ 
++ signals{
++ track:b=yes
++ 
++ mprfSearch{
++ groundClutter:b=no
++ aircraftAsTarget:b=yes
++ friendFoeId:b=yes
++ mainBeamNotchWidth:r=100.0
++ 
++ distance{
++ presents:b=yes
++ minValue:r=500.0
++ maxValue:r=150000.0
++ width:r=500.0
++ }
++ 
++ dopplerSpeed{
++ presents:b=yes
++ minValue:r=-900.0
++ maxValue:r=900.0
++ signalWidthMin:r=2.0
++ width:r=38.0
++ }
++ }
++ 
++ hprfSearch{
++ groundClutter:b=no
++ aircraftAsTarget:b=yes
++ friendFoeId:b=yes
++ mainBeamDopplerSpeed:b=yes
++ 
++ distance{
++ presents:b=yes
++ minValue:r=9000.0
++ maxValue:r=170000.0
++ width:r=3000.0
++ }
++ 
++ dopplerSpeed{
++ presents:b=yes
++ minValue:r=50.0
++ maxValue:r=1200.0
++ signalWidthMin:r=5.0
++ width:r=150.0
++ }
++ }
++ 
++ mprfTrack{
++ groundClutter:b=no
++ aircraftAsTarget:b=yes
++ angularAccuracy:r=0.05
++ distanceAccuracy:r=15.0
++ mainBeamNotchWidth:r=40.0
++ mainBeamNotchMaxElevation:r=3.5
++ track:b=yes
++ 
++ distance{
++ presents:b=yes
++ minValue:r=500.0
++ maxValue:r=150000.0
++ width:r=500.0
++ }
++ 
++ dopplerSpeed{
++ presents:b=yes
++ minValue:r=-900.0
++ maxValue:r=900.0
++ signalWidthMin:r=2.0
++ width:r=24.0
++ }
++ }
++ 
++ hprfTrack{
++ rangeFinder:b=yes
++ dopplerSpeedFinder:b=yes
++ dynamicRange:p2=40.0, 15.0
++ groundClutter:b=yes
++ aircraftAsTarget:b=yes
++ angularAccuracy:r=0.05
++ distanceAccuracy:r=15.0
++ absDopplerSpeed:b=no
++ mainBeamDopplerSpeed:b=no
++ track:b=yes
++ 
++ distance{
++ presents:b=yes
++ minValue:r=200.0
++ maxValue:r=170000.0
++ width:r=500.0
++ }
++ 
++ dopplerSpeed{
++ presents:b=yes
++ minValue:r=-1200.0
++ maxValue:r=1200.0
++ signalWidthMin:r=2.0
++ width:r=24.0
++ }
++ }
++ 
++ acmLock{
++ groundClutter:b=no
++ aircraftAsTarget:b=yes
++ angularAccuracy:r=0.05
++ distanceAccuracy:r=15.0
++ mainBeamNotchWidth:r=40.0
++ 
++ distance{
++ presents:b=yes
++ minValue:r=250.0
++ maxValue:r=200000.0
++ width:r=250.0
++ }
++ 
++ dopplerSpeed{
++ presents:b=yes
++ minValue:r=-900.0
++ maxValue:r=900.0
++ signalWidthMin:r=2.0
++ width:r=24.0
++ }
++ }
++ 
++ acmTrack{
++ groundClutter:b=no
++ aircraftAsTarget:b=yes
++ angularAccuracy:r=0.05
++ distanceAccuracy:r=15.0
++ mainBeamNotchWidth:r=40.0
++ mainBeamNotchMaxElevation:r=3.5
++ track:b=yes
++ 
++ distance{
++ presents:b=yes
++ minValue:r=250.0
++ maxValue:r=20000.0
++ width:r=250.0
++ }
++ 
++ dopplerSpeed{
++ presents:b=yes
++ minValue:r=-900.0
++ maxValue:r=900.0
++ signalWidthMin:r=2.0
++ width:r=24.0
++ }
++ }
++ 
++ GTMSearch{
++ groundClutter:b=no
++ aircraftAsTarget:b=no
++ groundVehiclesAsTarget:b=yes
++ angularAccuracy:r=0.0
++ distanceAccuracy:r=1.0
++ absDopplerSpeed:b=yes
++ mainBeamDopplerSpeed:b=yes
++ 
++ distance{
++ presents:b=yes
++ minValue:r=500.0
++ maxValue:r=200000.0
++ width:r=15.0
++ }
++ 
++ dopplerSpeed{
++ presents:b=yes
++ minValue:r=2.5
++ maxValue:r=1000.0
++ signalWidthMin:r=2.5
++ width:r=0.0
++ }
++ }
++ 
++ GTMTrack{
++ groundClutter:b=no
++ aircraftAsTarget:b=no
++ groundVehiclesAsTarget:b=yes
++ angularAccuracy:r=0.0
++ distanceAccuracy:r=1.0
++ absDopplerSpeed:b=yes
++ mainBeamDopplerSpeed:b=yes
++ 
++ distance{
++ presents:b=yes
++ minValue:r=500.0
++ maxValue:r=200000.0
++ width:r=15.0
++ }
++ 
++ dopplerSpeed{
++ presents:b=yes
++ minValue:r=1.5
++ maxValue:r=1000.0
++ signalWidthMin:r=2.5
++ width:r=0.0
++ }
++ }
++ }
++ 
++ illuminationTransmitter{
++ power:r=200.0
++ 
++ antenna{
++ angleHalfSens:r=10.0
++ sideLobesSensitivity:r=-30.0
++ }
++ }
++ 
++ scanPatterns{
++ 
++ searchAutoNarrow{
++ type:t="pyramide"
++ azimuthLimits:p2=-70.0, 70.0
++ elevationLimits:p2=-70.0, 70.0
++ rollStabLimit:r=90.0
++ pitchStabLimit:r=70.0
++ period:r=1.1432
++ width:r=10.0
++ barHeight:r=2.5
++ barsCount:i=8
++ rowMajor:b=yes
++ preciseMinor:b=yes
++ }
++ 
++ searchAutoMedium{
++ type:t="pyramide"
++ azimuthLimits:p2=-70.0, 70.0
++ elevationLimits:p2=-70.0, 70.0
++ rollStabLimit:r=90.0
++ pitchStabLimit:r=70.0
++ period:r=2.2047
++ width:r=20.0
++ barHeight:r=2.5
++ barsCount:i=8
++ rowMajor:b=yes
++ preciseMinor:b=yes
++ }
++ 
++ searchAutoWide{
++ type:t="pyramide"
++ azimuthLimits:p2=-70.0, 70.0
++ elevationLimits:p2=-70.0, 70.0
++ rollStabLimit:r=90.0
++ pitchStabLimit:r=70.0
++ period:r=3.8378
++ width:r=35.0
++ barHeight:r=2.5
++ barsCount:i=8
++ rowMajor:b=yes
++ preciseMinor:b=yes
++ }
++ 
++ bvrLockSearch{
++ type:t="pyramide"
++ azimuthLimits:p2=-70.0, 70.0
++ elevationLimits:p2=-70.0, 70.0
++ rollStabLimit:r=90.0
++ pitchStabLimit:r=70.0
++ period:r=0.1
++ width:r=2.0
++ barHeight:r=2.5
++ barsCount:i=6
++ rowMajor:b=yes
++ indicate:b=yes
++ }
++ 
++ bvrLockTws{
++ type:t="pyramide"
++ azimuthLimits:p2=-70.0, 70.0
++ elevationLimits:p2=-70.0, 70.0
++ rollStabLimit:r=90.0
++ pitchStabLimit:r=70.0
++ period:r=0.1
++ width:r=2.0
++ barHeight:r=2.5
++ barsCount:i=2
++ rowMajor:b=yes
++ indicate:b=yes
++ }
++ 
++ verticalLock{
++ type:t="pyramide"
++ azimuthLimits:p2=-70.0, 70.0
++ elevationLimits:p2=-70.0, 70.0
++ period:r=0.2
++ width:r=25.0
++ barHeight:r=1.5
++ barsCount:i=4
++ rowMajor:b=no
++ centerElevation:r=12.5
++ indicate:b=yes
++ }
++ 
++ boresightLock{
++ type:t="cone"
++ azimuthLimits:p2=-70.0, 70.0
++ elevationLimits:p2=-70.0, 70.0
++ period:r=0.1
++ width:r=1.5
++ indicate:b=yes
++ }
++ 
++ track{
++ type:t="no"
++ azimuthLimits:p2=-70.0, 70.0
++ elevationLimits:p2=-70.0, 70.0
++ }
++ 
++ hmdLock{
++ type:t="pyramide"
++ azimuthLimits:p2=-70.0, 70.0
++ elevationLimits:p2=-70.0, 70.0
++ period:r=0.2
++ width:r=0.75
++ barHeight:r=1.5
++ barsCount:i=2
++ rowMajor:b=yes
++ indicate:b=yes
++ hmd:b=yes
++ }
++ 
++ hmdTrack{
++ type:t="no"
++ azimuthLimits:p2=-70.0, 70.0
++ elevationLimits:p2=-70.0, 70.0
++ hmd:b=yes
++ }
++ }
++ 
++ scanPatternSets{
++ 
++ search{
++ scanPattern1:t="searchAutoMedium"
++ scanPattern2:t="searchAutoWide"
++ scanPattern3:t="searchAutoNarrow"
++ }
++ 
++ tws{
++ scanPattern1:t="searchAutoMedium"
++ scanPattern2:t="searchAutoWide"
++ scanPattern3:t="searchAutoNarrow"
++ }
++ 
++ acmLock{
++ scanPattern1:t="boresightLock"
++ scanPattern2:t="verticalLock"
++ }
++ 
++ hmdLock{
++ scanPattern1:t="hmdLock"
++ }
++ }
++ 
++ scopeRangeSets{
++ 
++ common{
++ range1:r=40000.0
++ range2:r=100000.0
++ range3:r=200000.0
++ range4:r=20000.0
++ }
++ 
++ gtm{
++ range1:r=20000.0
++ range2:r=40000.0
++ range3:r=100000.0
++ range4:r=200000.0
++ }
++ 
++ acm{
++ range1:r=20000.0
++ }
++ }
++ 
++ fsms{
++ 
++ main{
++ stateInit:t="init"
++ 
++ actionsTemplates{
++ 
++ init{
++ 
++ setEnabled{
++ value:b=no
++ }
++ 
++ setTargetDesignationRange{
++ azimuthRange:p2=-70.0, 70.0
++ azimuthWidth:r=5.0
++ elevationLimits:p2=-70.0, 70.0
++ distanceRange:p2=0.0, 170000.0
++ distanceWidth:r=2000.0
++ distanceRelWidthMin:r=0.05
++ }
++ 
++ setFsmActive{
++ fsm:t="searchModes"
++ active:b=yes
++ }
++ }
++ 
++ setStandbySearchModeCommon{
++ 
++ setCenterAzimuth{
++ source:t="constant"
++ value:r=0.0
++ }
++ 
++ setCenterElevation{
++ source:t="constant"
++ value:r=0.0
++ }
++ 
++ setScopeRangeSet{
++ scopeRangeSet:t="common"
++ }
++ 
++ setFsmActive{
++ fsm:t="searchModes"
++ active:b=yes
++ }
++ }
++ 
++ setStandbyModeCommon{
++ 
++ setStandbySearchModeCommon{
++ }
++ 
++ setEnabled{
++ value:b=no
++ }
++ }
++ 
++ resetStandbyMode{
++ 
++ setFsmActive{
++ fsm:t="searchModes"
++ active:b=no
++ }
++ }
++ 
++ resetSearchMode{
++ 
++ clearTargets{
++ }
++ 
++ setFsmActive{
++ fsm:t="search"
++ active:b=no
++ }
++ 
++ setFsmActive{
++ fsm:t="searchModes"
++ active:b=no
++ }
++ 
++ setCueEnabled{
++ value:b=no
++ }
++ }
++ 
++ setBvrLockModeCommon{
++ 
++ setEnabled{
++ value:b=yes
++ }
++ 
++ setScanPatternSet{
++ }
++ 
++ resetScanPhase{
++ }
++ }
++ 
++ setBvrLockMode{
++ 
++ setBvrLockModeCommon{
++ }
++ 
++ setFsmActive{
++ fsm:t="bvrLock"
++ active:b=yes
++ }
++ 
++ setDistGatePos{
++ source:t="targetDesignation"
++ width:r=2000.0
++ }
++ 
++ setRelSpeedGatePos{
++ source:t="constRange"
++ pos:r=0.0
++ width:r=3000.0
++ }
++ 
++ setScanPattern{
++ scanPattern:t="bvrLockSearch"
++ }
++ 
++ setCenterAzimuth{
++ source:t="targetDesignation"
++ }
++ }
++ 
++ designatedTargetSearch{
++ 
++ designateTargetUnderCue{
++ type:i=0
++ self:b=yes
++ sensorIndex:i=0
++ }
++ 
++ designateActiveDetectedTarget{
++ type:i=0
++ self:b=yes
++ sensorIndex:i=0
++ }
++ }
++ 
++ resetBvrLockMode{
++ 
++ setFsmActive{
++ fsm:t="bvrLock"
++ active:b=no
++ }
++ }
++ 
++ setTrackMode{
++ 
++ setEnabled{
++ value:b=yes
++ }
++ 
++ setScanPatternSet{
++ }
++ 
++ setScanPattern{
++ scanPattern:t="track"
++ }
++ 
++ addTargetOfInterest{
++ }
++ 
++ setLastTargetOfInterestActive{
++ }
++ 
++ updateActiveTargetOfInterest{
++ }
++ 
++ setCenterAzimuth{
++ source:t="activeTargetOfInterest"
++ }
++ 
++ setCenterElevation{
++ source:t="activeTargetOfInterest"
++ }
++ 
++ setDistGatePos{
++ source:t="activeTargetOfInterest"
++ width:r=0.0
++ }
++ 
++ setRelSpeedGatePos{
++ source:t="activeTargetOfInterest"
++ width:r=0.0
++ }
++ 
++ setFsmActive{
++ fsm:t="track"
++ active:b=yes
++ }
++ 
++ setFsmActive{
++ fsm:t="illumination"
++ active:b=yes
++ }
++ }
++ 
++ resetTrackMode{
++ 
++ clearTargetsOfInterest{
++ }
++ 
++ setFsmActive{
++ fsm:t="track"
++ active:b=no
++ }
++ 
++ setFsmActive{
++ fsm:t="illumination"
++ active:b=no
++ }
++ }
++ 
++ setAcmLockMode{
++ 
++ setEnabled{
++ value:b=yes
++ }
++ 
++ resetScanPhase{
++ }
++ 
++ setScanPatternSet{
++ scanPatternSet:t="acmLock"
++ }
++ 
++ setCenterAzimuth{
++ source:t="constant"
++ value:r=0.0
++ }
++ 
++ setCenterElevation{
++ source:t="constant"
++ value:r=0.0
++ }
++ 
++ setFsmActive{
++ fsm:t="acmLock"
++ active:b=yes
++ }
++ 
++ setDistGatePos{
++ source:t="constRange"
++ pos:r=10000.0
++ width:r=20000.0
++ }
++ 
++ setRelSpeedGatePos{
++ source:t="constRange"
++ pos:r=0.0
++ width:r=3000.0
++ }
++ 
++ setScopeRangeSet{
++ scopeRangeSet:t="acm"
++ }
++ 
++ setTransiver{
++ transiver:t="mprf"
++ }
++ 
++ setSignal{
++ signal:t="acmLock"
++ }
++ 
++ setModeName{
++ name:t="PD ACM"
++ }
++ }
++ 
++ resetAcmLockMode{
++ 
++ setFsmActive{
++ fsm:t="acmLock"
++ active:b=no
++ }
++ }
++ 
++ setHmdStandbyMode{
++ 
++ setEnabled{
++ value:b=no
++ }
++ 
++ clearTargetsOfInterest{
++ }
++ 
++ setScanPatternSet{
++ }
++ 
++ setScanPattern{
++ scanPattern:t="hmdLock"
++ }
++ 
++ resetScanPhase{
++ }
++ 
++ setDistGatePos{
++ source:t="constRange"
++ pos:r=10000.0
++ width:r=20000.0
++ }
++ 
++ setRelSpeedGatePos{
++ source:t="constRange"
++ pos:r=0.0
++ width:r=3000.0
++ }
++ 
++ setScopeRangeSet{
++ scopeRangeSet:t="acm"
++ }
++ 
++ setFsmActive{
++ fsm:t="helmetDesignation"
++ active:b=yes
++ }
++ 
++ setTransiver{
++ transiver:t="mprf"
++ }
++ 
++ setSignal{
++ signal:t="acmLock"
++ }
++ 
++ setModeName{
++ name:t="PD HMD"
++ }
++ }
++ 
++ resetHmdStandbyMode{
++ 
++ resetStandbyMode{
++ }
++ 
++ setFsmActive{
++ fsm:t="helmetDesignation"
++ active:b=no
++ }
++ }
++ 
++ setHmdLockMode{
++ 
++ setEnabled{
++ value:b=yes
++ }
++ 
++ clearTargetsOfInterest{
++ }
++ 
++ setScanPatternSet{
++ }
++ 
++ setScanPattern{
++ scanPattern:t="hmdLock"
++ }
++ 
++ resetScanPhase{
++ }
++ 
++ setDistGatePos{
++ source:t="constRange"
++ pos:r=10000.0
++ width:r=20000.0
++ }
++ 
++ setRelSpeedGatePos{
++ source:t="constRange"
++ pos:r=0.0
++ width:r=3000.0
++ }
++ 
++ setFsmActive{
++ fsm:t="acmLock"
++ active:b=yes
++ }
++ 
++ setFsmActive{
++ fsm:t="helmetDesignation"
++ active:b=yes
++ }
++ 
++ setScopeRangeSet{
++ scopeRangeSet:t="acm"
++ }
++ 
++ setTransiver{
++ transiver:t="mprf"
++ }
++ 
++ setSignal{
++ signal:t="acmLock"
++ }
++ 
++ setModeName{
++ name:t="PD HMD"
++ }
++ }
++ 
++ resetHmdLockMode{
++ 
++ resetAcmLockMode{
++ }
++ 
++ setFsmActive{
++ fsm:t="helmetDesignation"
++ active:b=no
++ }
++ }
++ 
++ setHmdTrackMode{
++ 
++ setTrackMode{
++ }
++ 
++ setScanPattern{
++ scanPattern:t="hmdTrack"
++ }
++ }
++ 
++ resetHmdTrackMode{
++ 
++ resetTrackMode{
++ }
++ }
++ 
++ setSearchStandbyModeCommon{
++ 
++ setStandbyModeCommon{
++ }
++ 
++ setScanPatternSet{
++ scanPatternSet:t="search"
++ }
++ }
++ 
++ setTwsStandbyModeCommon{
++ 
++ setStandbyModeCommon{
++ }
++ 
++ setScanPatternSet{
++ scanPatternSet:t="tws"
++ }
++ }
++ 
++ setSearchModeCommon{
++ 
++ setStandbySearchModeCommon{
++ }
++ 
++ setEnabled{
++ value:b=yes
++ }
++ 
++ setCueEnabled{
++ value:b=yes
++ updateActiveTargetUnderCue:b=no
++ }
++ 
++ setScanPatternSet{
++ scanPatternSet:t="search"
++ }
++ 
++ setFsmActive{
++ fsm:t="search"
++ active:b=yes
++ }
++ }
++ 
++ setTwsSearchModeCommon{
++ 
++ setStandbySearchModeCommon{
++ }
++ 
++ setEnabled{
++ value:b=yes
++ }
++ 
++ setCueEnabled{
++ value:b=yes
++ updateActiveTargetUnderCue:b=yes
++ }
++ 
++ setScanPatternSet{
++ scanPatternSet:t="tws"
++ }
++ 
++ setFsmActive{
++ fsm:t="tws"
++ active:b=yes
++ }
++ }
++ 
++ resetTwsMode{
++ 
++ clearTargets{
++ }
++ 
++ clearTargetsOfInterest{
++ }
++ 
++ setFsmActive{
++ fsm:t="tws"
++ active:b=no
++ }
++ 
++ setFsmActive{
++ fsm:t="searchModes"
++ active:b=no
++ }
++ 
++ setCueEnabled{
++ value:b=no
++ }
++ }
++ 
++ designatedTargetTws{
++ 
++ designateActiveDetectedTarget{
++ type:i=0
++ self:b=yes
++ sensorIndex:i=0
++ }
++ }
++ 
++ setTwsBvrLockMode{
++ 
++ setBvrLockModeCommon{
++ }
++ 
++ setFsmActive{
++ fsm:t="bvrLock"
++ active:b=yes
++ }
++ 
++ setDistGatePos{
++ source:t="targetDesignation"
++ }
++ 
++ setRelSpeedGatePos{
++ source:t="targetDesignation"
++ }
++ 
++ setScanPattern{
++ scanPattern:t="bvrLockTws"
++ }
++ 
++ setCenterAzimuth{
++ source:t="targetDesignation"
++ }
++ 
++ setCenterElevation{
++ source:t="targetDesignation"
++ }
++ 
++ setModeName{
++ name:t="TWS acquisition"
++ }
++ }
++ 
++ setMprfStandbyMode{
++ 
++ setSearchStandbyModeCommon{
++ }
++ 
++ setTransiver{
++ transiver:t="mprf"
++ }
++ 
++ setSignal{
++ signal:t="mprfSearch"
++ }
++ 
++ setModeName{
++ name:t="PD standby"
++ }
++ }
++ 
++ setHprfStandbyMode{
++ 
++ setSearchStandbyModeCommon{
++ }
++ 
++ setTransiver{
++ transiver:t="hprf"
++ }
++ 
++ setSignal{
++ signal:t="hprfSearch"
++ }
++ 
++ setModeName{
++ name:t="PD HDN standby"
++ }
++ }
++ 
++ setMprfTwsStandbyMode{
++ 
++ setTwsStandbyModeCommon{
++ }
++ 
++ setTransiver{
++ transiver:t="mprf"
++ }
++ 
++ setSignal{
++ signal:t="mprfSearch"
++ }
++ 
++ setModeName{
++ name:t="TWS standby"
++ }
++ }
++ 
++ setHprfTwsStandbyMode{
++ 
++ setSearchStandbyModeCommon{
++ }
++ 
++ setTransiver{
++ transiver:t="hprf"
++ }
++ 
++ setSignal{
++ signal:t="hprfSearch"
++ }
++ 
++ setModeName{
++ name:t="PD HDN standby"
++ }
++ }
++ 
++ setGtmStandbyMode{
++ 
++ setSearchStandbyModeCommon{
++ }
++ 
++ setTransiver{
++ transiver:t="GTM"
++ }
++ 
++ setSignal{
++ signal:t="GTMSearch"
++ }
++ 
++ setScopeRangeSet{
++ scopeRangeSet:t="gtm"
++ }
++ 
++ setModeName{
++ name:t="GTM standby"
++ }
++ }
++ 
++ setGtmTwsStandbyMode{
++ 
++ setSearchStandbyModeCommon{
++ }
++ 
++ setTransiver{
++ transiver:t="GTM"
++ }
++ 
++ setSignal{
++ signal:t="GTMSearch"
++ }
++ 
++ setScopeRangeSet{
++ scopeRangeSet:t="gtm"
++ }
++ 
++ setModeName{
++ name:t="GTM standby"
++ }
++ }
++ 
++ setMprfSearchMode{
++ 
++ setSearchModeCommon{
++ }
++ 
++ setTransiver{
++ transiver:t="mprf"
++ }
++ 
++ setSignal{
++ signal:t="mprfSearch"
++ }
++ 
++ setModeName{
++ name:t="PD search"
++ }
++ }
++ 
++ setHprfSearchMode{
++ 
++ setSearchModeCommon{
++ }
++ 
++ setTransiver{
++ transiver:t="hprf"
++ }
++ 
++ setSignal{
++ signal:t="hprfSearch"
++ }
++ 
++ setModeName{
++ name:t="PD HDN search"
++ }
++ }
++ 
++ setMprfTwsSearchMode{
++ 
++ setTwsSearchModeCommon{
++ }
++ 
++ setTransiver{
++ transiver:t="mprf"
++ }
++ 
++ setSignal{
++ signal:t="mprfSearch"
++ }
++ 
++ setModeName{
++ name:t="TWS search"
++ }
++ }
++ 
++ setHprfTwsSearchMode{
++ 
++ setTwsSearchModeCommon{
++ }
++ 
++ setTransiver{
++ transiver:t="hprf"
++ }
++ 
++ setSignal{
++ signal:t="hprfSearch"
++ }
++ 
++ setModeName{
++ name:t="TWS HDN search"
++ }
++ }
++ 
++ setGtmSearchMode{
++ 
++ setSearchModeCommon{
++ }
++ 
++ setTransiver{
++ transiver:t="GTM"
++ }
++ 
++ setSignal{
++ signal:t="GTMSearch"
++ }
++ 
++ setScopeRangeSet{
++ scopeRangeSet:t="gtm"
++ }
++ 
++ setModeName{
++ name:t="GTM search"
++ }
++ }
++ 
++ setGtmTwsSearchMode{
++ 
++ setTwsSearchModeCommon{
++ }
++ 
++ setTransiver{
++ transiver:t="GTM"
++ }
++ 
++ setSignal{
++ signal:t="GTMSearch"
++ }
++ 
++ setScopeRangeSet{
++ scopeRangeSet:t="gtm"
++ }
++ 
++ setModeName{
++ name:t="TWS GTM search"
++ }
++ }
++ 
++ setMprfBvrLockMode{
++ 
++ setBvrLockMode{
++ }
++ 
++ setModeName{
++ name:t="PD acquisition"
++ }
++ }
++ 
++ setHprfBvrLockMode{
++ 
++ setBvrLockMode{
++ }
++ 
++ setModeName{
++ name:t="PD HDN acquisition"
++ }
++ }
++ 
++ setGtmBvrLockMode{
++ 
++ setBvrLockModeCommon{
++ }
++ 
++ setFsmActive{
++ fsm:t="lock"
++ active:b=yes
++ }
++ 
++ setScanPattern{
++ scanPattern:t="bvrLockSearch"
++ }
++ 
++ setTransiver{
++ transiver:t="GTM"
++ }
++ 
++ setSignal{
++ signal:t="GTMSearch"
++ }
++ 
++ setDistGatePos{
++ source:t="targetDesignation"
++ width:r=2000.0
++ }
++ 
++ setRelSpeedGatePos{
++ source:t="constRange"
++ pos:r=0.0
++ width:r=3000.0
++ }
++ 
++ setModeName{
++ name:t="GTM acquisition"
++ }
++ }
++ 
++ setGtmTwsBvrLockMode{
++ 
++ setGtmBvrLockMode{
++ }
++ 
++ setModeName{
++ name:t="TWS GTM acquisition"
++ }
++ }
++ 
++ resetGtmBvrLockMode{
++ 
++ setFsmActive{
++ fsm:t="lock"
++ active:b=no
++ }
++ }
++ 
++ setGtmBvrTrackMode{
++ 
++ setTrackMode{
++ }
++ 
++ setTransiver{
++ transiver:t="GTM"
++ }
++ 
++ setSignal{
++ signal:t="GTMTrack"
++ }
++ }
++ 
++ setAcmTrackMode{
++ 
++ setTrackMode{
++ }
++ 
++ setTransiver{
++ transiver:t="mprf"
++ }
++ 
++ setSignal{
++ signal:t="acmTrack"
++ }
++ }
++ }
++ 
++ transitions{
++ 
++ init{
++ stateFrom:t="init"
++ event:t="init"
++ stateTo:t="standby"
++ 
++ actions{
++ 
++ init{
++ }
++ }
++ }
++ 
++ standbyToSearch{
++ stateFrom:t="standby"
++ command:t="switch"
++ event:t="enable"
++ stateTo:t="search"
++ 
++ actions{
++ 
++ doCustomActionTemplate{
++ fsm:t="main"
++ name:t="resetStandbyMode"
++ }
++ 
++ doCustomActionTemplate{
++ fsm:t="main"
++ name:t="setSearchMode"
++ }
++ }
++ }
++ 
++ searchToStandby{
++ stateFrom:t="search"
++ command:t="switch"
++ event:t="disable"
++ stateTo:t="standby"
++ 
++ actions{
++ 
++ doCustomActionTemplate{
++ fsm:t="main"
++ name:t="resetSearchMode"
++ }
++ 
++ doCustomActionTemplate{
++ fsm:t="main"
++ name:t="setStandbyMode"
++ }
++ }
++ }
++ 
++ bvrLock{
++ stateFrom:t="search"
++ command:t="selectTarget"
++ 
++ actions{
++ 
++ doCustomActionTemplate{
++ fsm:t="main"
++ name:t="designateTarget"
++ }
++ }
++ }
++ 
++ checkDesignationType0{
++ stateFrom:t="search"
++ command:t="designateTarget"
++ stateTo:t="checkDesignationType0"
++ 
++ actions{
++ 
++ checkDesignationTypeEquals{
++ value:i=0
++ }
++ }
++ }
++ 
++ bvrLockResponce{
++ stateFrom:t="checkDesignationType0"
++ event:t="designationTypeEquals"
++ stateTo:t="bvrLock"
++ 
++ actions{
++ 
++ doCustomActionTemplate{
++ fsm:t="main"
++ name:t="resetSearchMode"
++ }
++ 
++ doCustomActionTemplate{
++ fsm:t="main"
++ name:t="setBvrLockMode"
++ }
++ }
++ }
++ 
++ returnToSearchMode{
++ stateFrom:t="checkDesignationType0"
++ event:t="designationTypeNotEquals"
++ stateTo:t="search"
++ }
++ 
++ bvrLockToBvrTrack{
++ stateFrom:t="bvrLock"
++ event:t="targetDetected"
++ stateTo:t="bvrTrack"
++ 
++ actions{
++ 
++ doCustomActionTemplate{
++ fsm:t="main"
++ name:t="resetBvrLockMode"
++ }
++ 
++ doCustomActionTemplate{
++ fsm:t="main"
++ name:t="setBvrTrackMode"
++ }
++ }
++ }
++ 
++ failedBvrLock{
++ stateFrom:t="bvrLock"
++ event:t="scanFinished"
++ stateTo:t="search"
++ 
++ actions{
++ 
++ doCustomActionTemplate{
++ fsm:t="main"
++ name:t="resetBvrLockMode"
++ }
++ 
++ doCustomActionTemplate{
++ fsm:t="main"
++ name:t="setSearchMode"
++ }
++ }
++ }
++ 
++ finishedBvrTrack{
++ stateFrom:t="bvrTrack"
++ event:t="targetsOfInterestCleanup"
++ command:t="selectTarget"
++ command:t="switch"
++ stateTo:t="search"
++ 
++ actions{
++ 
++ doCustomActionTemplate{
++ fsm:t="main"
++ name:t="resetBvrTrackMode"
++ }
++ 
++ doCustomActionTemplate{
++ fsm:t="main"
++ name:t="setSearchMode"
++ }
++ }
++ }
++ 
++ finishBvrTrackAndSwitchOff{
++ stateFrom:t="bvrTrack"
++ event:t="disable"
++ stateTo:t="standby"
++ 
++ actions{
++ 
++ doCustomActionTemplate{
++ fsm:t="main"
++ name:t="resetBvrTrackMode"
++ }
++ 
++ doCustomActionTemplate{
++ fsm:t="main"
++ name:t="setStandbyMode"
++ }
++ }
++ }
++ 
++ updateStandbyMode{
++ stateFrom:t="standby"
++ event:t="fsmActivate"
++ 
++ actions{
++ 
++ doCustomActionTemplate{
++ fsm:t="main"
++ name:t="resetStandbyMode"
++ }
++ 
++ doCustomActionTemplate{
++ fsm:t="main"
++ name:t="setStandbyMode"
++ }
++ }
++ }
++ 
++ updateSearchMode{
++ stateFrom:t="search"
++ event:t="fsmActivate"
++ 
++ actions{
++ 
++ doCustomActionTemplate{
++ fsm:t="main"
++ name:t="resetSearchMode"
++ }
++ 
++ doCustomActionTemplate{
++ fsm:t="main"
++ name:t="setSearchMode"
++ }
++ }
++ }
++ 
++ switchScanPattern{
++ stateFrom:t="standby"
++ stateFrom:t="search"
++ stateFrom:t="acmLock"
++ command:t="scanPatternSwitch"
++ 
++ actions{
++ 
++ setNextScanPattern{
++ }
++ }
++ }
++ 
++ switchScopeRange{
++ command:t="rangeSwitch"
++ 
++ actions{
++ 
++ setNextScopeRange{
++ }
++ }
++ }
++ 
++ searchToAcmLock{
++ stateFrom:t="search"
++ command:t="acmSwitch"
++ stateTo:t="acmLock"
++ 
++ actions{
++ 
++ doCustomActionTemplate{
++ fsm:t="main"
++ name:t="resetSearchMode"
++ }
++ 
++ doCustomActionTemplate{
++ fsm:t="main"
++ name:t="setAcmLockMode"
++ }
++ }
++ }
++ 
++ acmLockToAcmTrack{
++ stateFrom:t="acmLock"
++ event:t="targetDetected"
++ stateTo:t="acmTrack"
++ 
++ actions{
++ 
++ doCustomActionTemplate{
++ fsm:t="main"
++ name:t="resetAcmLockMode"
++ }
++ 
++ doCustomActionTemplate{
++ fsm:t="main"
++ name:t="setAcmTrackMode"
++ }
++ }
++ }
++ 
++ acmLockToStandby{
++ stateFrom:t="acmLock"
++ command:t="selectTarget"
++ event:t="disable"
++ stateTo:t="standby"
++ 
++ actions{
++ 
++ doCustomActionTemplate{
++ fsm:t="main"
++ name:t="resetAcmLockMode"
++ }
++ 
++ doCustomActionTemplate{
++ fsm:t="main"
++ name:t="setStandbyMode"
++ }
++ }
++ }
++ 
++ acmTrackToAcmLock{
++ stateFrom:t="acmTrack"
++ event:t="targetsOfInterestCleanup"
++ stateTo:t="acmLock"
++ 
++ actions{
++ 
++ doCustomActionTemplate{
++ fsm:t="main"
++ name:t="resetAcmTrackMode"
++ }
++ 
++ doCustomActionTemplate{
++ fsm:t="main"
++ name:t="setAcmLockMode"
++ }
++ }
++ }
++ 
++ acmTrackToStandby{
++ stateFrom:t="acmTrack"
++ command:t="selectTarget"
++ event:t="disable"
++ stateTo:t="standby"
++ 
++ actions{
++ 
++ doCustomActionTemplate{
++ fsm:t="main"
++ name:t="resetAcmTrackMode"
++ }
++ 
++ doCustomActionTemplate{
++ fsm:t="main"
++ name:t="setStandbyMode"
++ }
++ }
++ }
++ 
++ acmTrackToSearch{
++ stateFrom:t="acmTrack"
++ command:t="acmSwitch"
++ command:t="switch"
++ stateTo:t="search"
++ 
++ actions{
++ 
++ doCustomActionTemplate{
++ fsm:t="main"
++ name:t="resetAcmTrackMode"
++ }
++ 
++ doCustomActionTemplate{
++ fsm:t="main"
++ name:t="setSearchMode"
++ }
++ }
++ }
++ 
++ standbyToAcmLock{
++ stateFrom:t="standby"
++ command:t="acmSwitch"
++ stateTo:t="acmLock"
++ 
++ actions{
++ 
++ doCustomActionTemplate{
++ fsm:t="main"
++ name:t="resetStandbyMode"
++ }
++ 
++ doCustomActionTemplate{
++ fsm:t="main"
++ name:t="setAcmLockMode"
++ }
++ }
++ }
++ 
++ standbyToHmdStandby{
++ stateFrom:t="standby"
++ command:t="selectTarget"
++ stateTo:t="hmdLock"
++ 
++ actions{
++ 
++ doCustomActionTemplate{
++ fsm:t="main"
++ name:t="resetStandbyMode"
++ }
++ 
++ doCustomActionTemplate{
++ fsm:t="main"
++ name:t="setHmdLockMode"
++ }
++ }
++ }
++ 
++ acmLockToHmdStandby{
++ stateFrom:t="acmLock"
++ command:t="acmSwitch"
++ stateTo:t="hmdStandby"
++ 
++ actions{
++ 
++ doCustomActionTemplate{
++ fsm:t="main"
++ name:t="resetAcmLockMode"
++ }
++ 
++ doCustomActionTemplate{
++ fsm:t="main"
++ name:t="setHmdStandbyMode"
++ }
++ }
++ }
++ 
++ hmdStandbyToSearch{
++ stateFrom:t="hmdStandby"
++ command:t="acmSwitch"
++ stateTo:t="search"
++ 
++ actions{
++ 
++ doCustomActionTemplate{
++ fsm:t="main"
++ name:t="resetHmdStandbyMode"
++ }
++ 
++ doCustomActionTemplate{
++ fsm:t="main"
++ name:t="setSearchMode"
++ }
++ }
++ }
++ 
++ hmdStandbyToHmdLock{
++ stateFrom:t="hmdStandby"
++ command:t="selectTarget"
++ stateTo:t="hmdLock"
++ 
++ actions{
++ 
++ doCustomActionTemplate{
++ fsm:t="main"
++ name:t="resetHmdStandbyMode"
++ }
++ 
++ doCustomActionTemplate{
++ fsm:t="main"
++ name:t="setHmdLockMode"
++ }
++ }
++ }
++ 
++ hmdLockToHmdTrack{
++ stateFrom:t="hmdLock"
++ event:t="targetDetected"
++ stateTo:t="hmdTrack"
++ 
++ actions{
++ 
++ doCustomActionTemplate{
++ fsm:t="main"
++ name:t="resetHmdLockMode"
++ }
++ 
++ doCustomActionTemplate{
++ fsm:t="main"
++ name:t="setHmdTrackMode"
++ }
++ }
++ }
++ 
++ hmdLockToHmdStandby{
++ stateFrom:t="hmdLock"
++ event:t="scanFinished"
++ stateTo:t="hmdStandby"
++ 
++ actions{
++ 
++ doCustomActionTemplate{
++ fsm:t="main"
++ name:t="resetHmdLockMode"
++ }
++ 
++ doCustomActionTemplate{
++ fsm:t="main"
++ name:t="setHmdStandbyMode"
++ }
++ }
++ }
++ 
++ hmdTrackToHmdStandby{
++ stateFrom:t="hmdTrack"
++ event:t="targetsOfInterestCleanup"
++ command:t="selectTarget"
++ command:t="switch"
++ stateTo:t="hmdStandby"
++ 
++ actions{
++ 
++ doCustomActionTemplate{
++ fsm:t="main"
++ name:t="resetHmdTrackMode"
++ }
++ 
++ doCustomActionTemplate{
++ fsm:t="main"
++ name:t="setHmdStandbyMode"
++ }
++ }
++ }
++ 
++ hmdTrackToStandby{
++ stateFrom:t="hmdTrack"
++ event:t="disable"
++ stateTo:t="standby"
++ 
++ actions{
++ 
++ doCustomActionTemplate{
++ fsm:t="main"
++ name:t="resetHmdTrackMode"
++ }
++ 
++ doCustomActionTemplate{
++ fsm:t="main"
++ name:t="setStandbyMode"
++ }
++ }
++ }
++ }
++ }
++ 
++ searchModes{
++ stateInit:t="init"
++ 
++ transitions{
++ 
++ initToMprf{
++ stateFrom:t="init"
++ event:t="fsmActivate"
++ stateTo:t="mprf"
++ 
++ actions{
++ 
++ setCustomActionTemplate{
++ fsm:t="main"
++ name:t="setHmdStandbyMode"
++ actionTemplateName:t="setHmdStandbyMode"
++ }
++ 
++ setCustomActionTemplate{
++ fsm:t="main"
++ name:t="resetHmdStandbyMode"
++ actionTemplateName:t="resetHmdStandbyMode"
++ }
++ 
++ setCustomActionTemplate{
++ fsm:t="main"
++ name:t="setHmdLockMode"
++ actionTemplateName:t="setHmdLockMode"
++ }
++ 
++ setCustomActionTemplate{
++ fsm:t="main"
++ name:t="resetHmdLockMode"
++ actionTemplateName:t="resetHmdLockMode"
++ }
++ 
++ setCustomActionTemplate{
++ fsm:t="main"
++ name:t="setHmdTrackMode"
++ actionTemplateName:t="setHmdTrackMode"
++ }
++ 
++ setCustomActionTemplate{
++ fsm:t="main"
++ name:t="resetHmdTrackMode"
++ actionTemplateName:t="resetHmdTrackMode"
++ }
++ 
++ setCustomActionTemplate{
++ fsm:t="main"
++ name:t="setStandbyMode"
++ actionTemplateName:t="setMprfStandbyMode"
++ }
++ 
++ setCustomActionTemplate{
++ fsm:t="main"
++ name:t="resetStandbyMode"
++ actionTemplateName:t="resetStandbyMode"
++ }
++ 
++ setCustomActionTemplate{
++ fsm:t="main"
++ name:t="setSearchMode"
++ actionTemplateName:t="setMprfSearchMode"
++ }
++ 
++ setCustomActionTemplate{
++ fsm:t="main"
++ name:t="resetSearchMode"
++ actionTemplateName:t="resetSearchMode"
++ }
++ 
++ setCustomActionTemplate{
++ fsm:t="main"
++ name:t="setBvrLockMode"
++ actionTemplateName:t="setBvrLockMode"
++ }
++ 
++ setCustomActionTemplate{
++ fsm:t="main"
++ name:t="resetBvrLockMode"
++ actionTemplateName:t="resetBvrLockMode"
++ }
++ 
++ setCustomActionTemplate{
++ fsm:t="main"
++ name:t="designateTarget"
++ actionTemplateName:t="designatedTargetSearch"
++ }
++ 
++ setCustomActionTemplate{
++ fsm:t="main"
++ name:t="setAcmLockMode"
++ actionTemplateName:t="setAcmLockMode"
++ }
++ 
++ setCustomActionTemplate{
++ fsm:t="main"
++ name:t="resetAcmLockMode"
++ actionTemplateName:t="resetAcmLockMode"
++ }
++ 
++ setCustomActionTemplate{
++ fsm:t="main"
++ name:t="setBvrTrackMode"
++ actionTemplateName:t="setTrackMode"
++ }
++ 
++ setCustomActionTemplate{
++ fsm:t="main"
++ name:t="resetBvrTrackMode"
++ actionTemplateName:t="resetTrackMode"
++ }
++ 
++ setCustomActionTemplate{
++ fsm:t="main"
++ name:t="setAcmTrackMode"
++ actionTemplateName:t="setAcmTrackMode"
++ }
++ 
++ setCustomActionTemplate{
++ fsm:t="main"
++ name:t="resetAcmTrackMode"
++ actionTemplateName:t="resetTrackMode"
++ }
++ }
++ }
++ 
++ mprfToMprfTws{
++ stateFrom:t="mprf"
++ command:t="modeSwitch"
++ stateTo:t="mprfTws"
++ 
++ actions{
++ 
++ setCustomActionTemplate{
++ fsm:t="main"
++ name:t="setStandbyMode"
++ actionTemplateName:t="setMprfTwsStandbyMode"
++ }
++ 
++ setCustomActionTemplate{
++ fsm:t="main"
++ name:t="setSearchMode"
++ actionTemplateName:t="setMprfTwsSearchMode"
++ }
++ 
++ setCustomActionTemplate{
++ fsm:t="main"
++ name:t="setBvrLockMode"
++ actionTemplateName:t="setTwsBvrLockMode"
++ }
++ 
++ setCustomActionTemplate{
++ fsm:t="main"
++ name:t="designateTarget"
++ actionTemplateName:t="designatedTargetSearch"
++ }
++ 
++ setCustomActionTemplate{
++ fsm:t="main"
++ name:t="resetSearchMode"
++ actionTemplateName:t="resetTwsMode"
++ }
++ 
++ doCustomActionTemplate{
++ fsm:t="main"
++ name:t="resetSearchMode"
++ }
++ 
++ setFsmActive{
++ fsm:t="main"
++ active:b=no
++ }
++ 
++ setFsmActive{
++ fsm:t="main"
++ active:b=yes
++ }
++ }
++ }
++ 
++ mprfTwsToHprf{
++ stateFrom:t="mprfTws"
++ command:t="modeSwitch"
++ stateTo:t="hprf"
++ 
++ actions{
++ 
++ setCustomActionTemplate{
++ fsm:t="main"
++ name:t="setStandbyMode"
++ actionTemplateName:t="setHprfStandbyMode"
++ }
++ 
++ setCustomActionTemplate{
++ fsm:t="main"
++ name:t="setSearchMode"
++ actionTemplateName:t="setHprfSearchMode"
++ }
++ 
++ setCustomActionTemplate{
++ fsm:t="main"
++ name:t="setBvrLockMode"
++ actionTemplateName:t="setBvrLockMode"
++ }
++ 
++ setCustomActionTemplate{
++ fsm:t="main"
++ name:t="designateTarget"
++ actionTemplateName:t="designatedTargetSearch"
++ }
++ 
++ setCustomActionTemplate{
++ fsm:t="main"
++ name:t="resetSearchMode"
++ actionTemplateName:t="resetSearchMode"
++ }
++ 
++ doCustomActionTemplate{
++ fsm:t="main"
++ name:t="resetSearchMode"
++ }
++ 
++ setFsmActive{
++ fsm:t="main"
++ active:b=no
++ }
++ 
++ setFsmActive{
++ fsm:t="main"
++ active:b=yes
++ }
++ }
++ }
++ 
++ hprfToHprfTws{
++ stateFrom:t="hprf"
++ command:t="modeSwitch"
++ stateTo:t="hprfTws"
++ 
++ actions{
++ 
++ setCustomActionTemplate{
++ fsm:t="main"
++ name:t="setStandbyMode"
++ actionTemplateName:t="setHprfTwsStandbyMode"
++ }
++ 
++ setCustomActionTemplate{
++ fsm:t="main"
++ name:t="setSearchMode"
++ actionTemplateName:t="setHprfTwsSearchMode"
++ }
++ 
++ setCustomActionTemplate{
++ fsm:t="main"
++ name:t="setBvrLockMode"
++ actionTemplateName:t="setTwsBvrLockMode"
++ }
++ 
++ setCustomActionTemplate{
++ fsm:t="main"
++ name:t="designateTarget"
++ actionTemplateName:t="designatedTargetSearch"
++ }
++ 
++ setCustomActionTemplate{
++ fsm:t="main"
++ name:t="resetSearchMode"
++ actionTemplateName:t="resetTwsMode"
++ }
++ 
++ doCustomActionTemplate{
++ fsm:t="main"
++ name:t="resetSearchMode"
++ }
++ 
++ setFsmActive{
++ fsm:t="main"
++ active:b=no
++ }
++ 
++ setFsmActive{
++ fsm:t="main"
++ active:b=yes
++ }
++ }
++ }
++ 
++ hprfTwsToGtm{
++ stateFrom:t="hprfTws"
++ command:t="modeSwitch"
++ stateTo:t="gtm"
++ 
++ actions{
++ 
++ setCustomActionTemplate{
++ fsm:t="main"
++ name:t="setStandbyMode"
++ actionTemplateName:t="setGtmStandbyMode"
++ }
++ 
++ setCustomActionTemplate{
++ fsm:t="main"
++ name:t="setSearchMode"
++ actionTemplateName:t="setGtmSearchMode"
++ }
++ 
++ setCustomActionTemplate{
++ fsm:t="main"
++ name:t="setBvrLockMode"
++ actionTemplateName:t="setGtmBvrLockMode"
++ }
++ 
++ setCustomActionTemplate{
++ fsm:t="main"
++ name:t="resetBvrLockMode"
++ actionTemplateName:t="resetGtmBvrLockMode"
++ }
++ 
++ setCustomActionTemplate{
++ fsm:t="main"
++ name:t="designateTarget"
++ actionTemplateName:t="designatedTargetSearch"
++ }
++ 
++ setCustomActionTemplate{
++ fsm:t="main"
++ name:t="setBvrTrackMode"
++ actionTemplateName:t="setGtmBvrTrackMode"
++ }
++ 
++ setCustomActionTemplate{
++ fsm:t="main"
++ name:t="resetSearchMode"
++ actionTemplateName:t="resetSearchMode"
++ }
++ 
++ doCustomActionTemplate{
++ fsm:t="main"
++ name:t="resetSearchMode"
++ }
++ 
++ setFsmActive{
++ fsm:t="main"
++ active:b=no
++ }
++ 
++ setFsmActive{
++ fsm:t="main"
++ active:b=yes
++ }
++ }
++ }
++ 
++ gtmToGtmTws{
++ stateFrom:t="gtm"
++ command:t="modeSwitch"
++ stateTo:t="gtmTws"
++ 
++ actions{
++ 
++ setCustomActionTemplate{
++ fsm:t="main"
++ name:t="setStandbyMode"
++ actionTemplateName:t="setGtmTwsStandbyMode"
++ }
++ 
++ setCustomActionTemplate{
++ fsm:t="main"
++ name:t="setSearchMode"
++ actionTemplateName:t="setGtmTwsSearchMode"
++ }
++ 
++ setCustomActionTemplate{
++ fsm:t="main"
++ name:t="setBvrLockMode"
++ actionTemplateName:t="setGtmTwsBvrLockMode"
++ }
++ 
++ setCustomActionTemplate{
++ fsm:t="main"
++ name:t="resetBvrLockMode"
++ actionTemplateName:t="resetGtmBvrLockMode"
++ }
++ 
++ setCustomActionTemplate{
++ fsm:t="main"
++ name:t="designateTarget"
++ actionTemplateName:t="designatedTargetSearch"
++ }
++ 
++ setCustomActionTemplate{
++ fsm:t="main"
++ name:t="setBvrTrackMode"
++ actionTemplateName:t="setGtmBvrTrackMode"
++ }
++ 
++ setCustomActionTemplate{
++ fsm:t="main"
++ name:t="resetSearchMode"
++ actionTemplateName:t="resetTwsMode"
++ }
++ 
++ doCustomActionTemplate{
++ fsm:t="main"
++ name:t="resetSearchMode"
++ }
++ 
++ setFsmActive{
++ fsm:t="main"
++ active:b=no
++ }
++ 
++ setFsmActive{
++ fsm:t="main"
++ active:b=yes
++ }
++ }
++ }
++ 
++ gtmTwsToMprf{
++ stateFrom:t="gtmTws"
++ command:t="modeSwitch"
++ stateTo:t="mprf"
++ 
++ actions{
++ 
++ setCustomActionTemplate{
++ fsm:t="main"
++ name:t="setStandbyMode"
++ actionTemplateName:t="setMprfStandbyMode"
++ }
++ 
++ setCustomActionTemplate{
++ fsm:t="main"
++ name:t="setSearchMode"
++ actionTemplateName:t="setMprfSearchMode"
++ }
++ 
++ setCustomActionTemplate{
++ fsm:t="main"
++ name:t="setBvrLockMode"
++ actionTemplateName:t="setBvrLockMode"
++ }
++ 
++ setCustomActionTemplate{
++ fsm:t="main"
++ name:t="resetBvrLockMode"
++ actionTemplateName:t="resetBvrLockMode"
++ }
++ 
++ setCustomActionTemplate{
++ fsm:t="main"
++ name:t="designateTarget"
++ actionTemplateName:t="designatedTargetSearch"
++ }
++ 
++ setCustomActionTemplate{
++ fsm:t="main"
++ name:t="setBvrTrackMode"
++ actionTemplateName:t="setTrackMode"
++ }
++ 
++ setCustomActionTemplate{
++ fsm:t="main"
++ name:t="resetSearchMode"
++ actionTemplateName:t="resetSearchMode"
++ }
++ 
++ doCustomActionTemplate{
++ fsm:t="main"
++ name:t="resetSearchMode"
++ }
++ 
++ setFsmActive{
++ fsm:t="main"
++ active:b=no
++ }
++ 
++ setFsmActive{
++ fsm:t="main"
++ active:b=yes
++ }
++ }
++ }
++ }
++ }
++ 
++ search{
++ stateInit:t="search"
++ 
++ transitions{
++ 
++ scan{
++ event:t="update"
++ 
++ actions{
++ 
++ scan{
++ }
++ 
++ setCenterAzimuth{
++ source:t="constant"
++ value:r=0.0
++ }
++ 
++ setCenterAzimuth{
++ source:t="designationCue"
++ }
++ 
++ setCenterElevation{
++ source:t="constant"
++ value:r=0.0
++ }
++ 
++ setCenterElevation{
++ source:t="designationCue"
++ }
++ }
++ }
++ 
++ detect{
++ event:t="targetInSight"
++ 
++ actions{
++ 
++ setDistGatePos{
++ source:t="continuousScale"
++ width:r=0.0
++ }
++ 
++ setRelSpeedGatePos{
++ source:t="continuousScale"
++ width:r=0.0
++ }
++ 
++ detectTarget{
++ }
++ }
++ }
++ 
++ addTarget{
++ event:t="targetDetected"
++ 
++ actions{
++ 
++ addTarget{
++ }
++ 
++ updateActiveDetectedTarget{
++ }
++ }
++ }
++ 
++ switchSelectedTarget{
++ command:t="switchTarget"
++ 
++ actions{
++ 
++ setNextDetectedTargetActive{
++ }
++ }
++ }
++ 
++ setCueAzimuth{
++ command:t="cueAxisX"
++ 
++ actions{
++ 
++ setCueAzimuth{
++ }
++ }
++ }
++ 
++ setCueDist{
++ command:t="cueAxisY"
++ 
++ actions{
++ 
++ setCueDist{
++ }
++ 
++ setCueDopplerSpeed{
++ }
++ }
++ }
++ 
++ setCueElevation{
++ command:t="cueAxisZ"
++ 
++ actions{
++ 
++ setCueElevation{
++ }
++ }
++ }
++ 
++ setSelectedTarget{
++ command:t="switchToTarget"
++ 
++ actions{
++ 
++ setDetectedTargetActive{
++ }
++ }
++ }
++ }
++ }
++ 
++ tws{
++ stateInit:t="search"
++ 
++ transitions{
++ 
++ scan{
++ event:t="update"
++ stateFrom:t="track"
++ stateTo:t="search"
++ 
++ actions{
++ 
++ scan{
++ }
++ 
++ extrapolateTargetsOfInterest{
++ }
++ 
++ clearTargetsOfInterest{
++ timeOut:r=4.0
++ }
++ 
++ setCueToActiveTargetOfInterest{
++ }
++ 
++ setCenterAzimuth{
++ source:t="constant"
++ value:r=0.0
++ }
++ 
++ setCenterAzimuth{
++ source:t="designationCue"
++ }
++ 
++ setCenterAzimuth{
++ source:t="activeTargetOfInterest"
++ }
++ 
++ setCenterElevation{
++ source:t="constant"
++ value:r=0.0
++ }
++ 
++ setCenterElevation{
++ source:t="designationCue"
++ }
++ 
++ setCenterElevation{
++ source:t="activeTargetOfInterest"
++ }
++ }
++ }
++ 
++ detect{
++ event:t="targetInSight"
++ 
++ actions{
++ 
++ setDistGatePos{
++ source:t="continuousScale"
++ width:r=0.0
++ }
++ 
++ setRelSpeedGatePos{
++ source:t="continuousScale"
++ width:r=0.0
++ }
++ 
++ detectTarget{
++ }
++ }
++ }
++ 
++ addTarget{
++ event:t="targetDetected"
++ stateFrom:t="search"
++ 
++ actions{
++ 
++ updateTargetOfInterest{
++ limit:i=10
++ radius:r=1000.0
++ dopplerSpeedGateMaxTime:r=8.0
++ }
++ 
++ updateActiveDetectedTarget{
++ }
++ 
++ setCueToActiveTargetOfInterest{
++ }
++ }
++ }
++ 
++ switchSelectedTarget{
++ command:t="switchTarget"
++ 
++ actions{
++ 
++ setNextDetectedTargetActive{
++ }
++ }
++ }
++ 
++ setCueAzimuth{
++ command:t="cueAxisX"
++ 
++ actions{
++ 
++ setCueAzimuth{
++ }
++ }
++ }
++ 
++ setCueDist{
++ command:t="cueAxisY"
++ 
++ actions{
++ 
++ setCueDist{
++ }
++ 
++ setCueDopplerSpeed{
++ }
++ }
++ }
++ 
++ setCueElevation{
++ command:t="cueAxisZ"
++ 
++ actions{
++ 
++ setCueElevation{
++ }
++ }
++ }
++ 
++ setSelectedTarget{
++ command:t="switchToTarget"
++ 
++ actions{
++ 
++ setDetectedTargetActive{
++ }
++ }
++ }
++ 
++ designateTarget{
++ command:t="selectTarget"
++ 
++ actions{
++ 
++ designateActiveDetectedTarget{
++ type:i=0
++ sensorIndex:i=1
++ }
++ 
++ designateTargetUnderCue{
++ type:i=0
++ sensorIndex:i=1
++ }
++ }
++ }
++ 
++ scanTrack{
++ stateFrom:t="search"
++ event:t="update"
++ stateTo:t="track"
++ 
++ actions{
++ 
++ scan{
++ periodMult:r=0.01
++ }
++ 
++ extrapolateTargetsOfInterest{
++ }
++ 
++ clearTargetsOfInterest{
++ timeOut:r=4.0
++ }
++ 
++ setCueToActiveTargetOfInterest{
++ }
++ }
++ }
++ 
++ addTargetTrack{
++ stateFrom:t="track"
++ event:t="targetDetected"
++ 
++ actions{
++ 
++ updateTargetOfInterest{
++ limit:i=10
++ onlyExisting:b=yes
++ radius:r=1000.0
++ dopplerSpeedGateMaxTime:r=8.0
++ }
++ 
++ updateActiveDetectedTarget{
++ }
++ 
++ setCueToActiveTargetOfInterest{
++ }
++ }
++ }
++ }
++ }
++ 
++ helmetDesignation{
++ stateInit:t="helmetDesignation"
++ 
++ actionsTemplates{
++ 
++ designateHelmetTargetDir{
++ 
++ designateHelmetTarget{
++ self:b=yes
++ }
++ 
++ setCenterAzimuth{
++ source:t="targetDesignation"
++ }
++ 
++ setCenterElevation{
++ source:t="targetDesignation"
++ }
++ }
++ }
++ 
++ transitions{
++ 
++ activate{
++ event:t="fsmActivate"
++ 
++ actions{
++ 
++ designateHelmetTargetDir{
++ }
++ }
++ }
++ 
++ updateDesignation{
++ event:t="update"
++ 
++ actions{
++ 
++ designateHelmetTargetDir{
++ }
++ }
++ }
++ }
++ }
++ 
++ bvrLock{
++ stateInit:t="lock"
++ 
++ transitions{
++ 
++ scan{
++ event:t="update"
++ 
++ actions{
++ 
++ scan{
++ }
++ }
++ }
++ 
++ detect{
++ event:t="targetInSight"
++ 
++ actions{
++ 
++ detectTarget{
++ ignoreOwnWeapon:b=yes
++ rangeMult:r=1.0
++ }
++ }
++ }
++ }
++ }
++ 
++ lock{
++ stateInit:t="lock"
++ 
++ transitions{
++ 
++ scan{
++ event:t="update"
++ 
++ actions{
++ 
++ scan{
++ }
++ }
++ }
++ 
++ detect{
++ event:t="targetInSight"
++ 
++ actions{
++ 
++ detectTarget{
++ ignoreOwnWeapon:b=yes
++ rangeMult:r=1.0
++ }
++ }
++ }
++ }
++ }
++ 
++ acmLock{
++ stateInit:t="lock"
++ 
++ transitions{
++ 
++ scan{
++ event:t="update"
++ 
++ actions{
++ 
++ scan{
++ }
++ }
++ }
++ 
++ detect{
++ event:t="targetInSight"
++ 
++ actions{
++ 
++ detectTarget{
++ ignoreOwnWeapon:b=yes
++ rangeMult:r=1.0
++ }
++ }
++ }
++ }
++ }
++ 
++ track{
++ stateInit:t="init"
++ 
++ actionsTemplates{
++ 
++ setMprfTrack{
++ 
++ setTransiver{
++ transiver:t="mprf"
++ }
++ 
++ setSignal{
++ signal:t="mprfTrack"
++ }
++ }
++ 
++ setHprfTrack{
++ 
++ setTransiver{
++ transiver:t="hprf"
++ }
++ 
++ setSignal{
++ signal:t="hprfTrack"
++ }
++ }
++ 
++ track{
++ 
++ updateActiveTargetOfInterest{
++ 
++ dirFilter{
++ }
++ 
++ distFilter{
++ }
++ 
++ dopplerSpeedFilter{
++ }
++ }
++ 
++ setCenterAzimuth{
++ source:t="activeTargetOfInterest"
++ }
++ 
++ setCenterElevation{
++ source:t="activeTargetOfInterest"
++ }
++ 
++ setDistGatePos{
++ source:t="activeTargetOfInterest"
++ width:r=0.0
++ }
++ 
++ setRelSpeedGatePos{
++ source:t="activeTargetOfInterest"
++ width:r=0.0
++ }
++ }
++ 
++ extrapolate{
++ 
++ extrapolateTargetsOfInterest{
++ }
++ 
++ clearTargetsOfInterest{
++ timeOut:r=3.0
++ dirRateLim:r=1.0
++ }
++ 
++ setCenterAzimuth{
++ source:t="activeTargetOfInterest"
++ }
++ 
++ setCenterElevation{
++ source:t="activeTargetOfInterest"
++ }
++ 
++ setDistGatePos{
++ source:t="activeTargetOfInterest"
++ width:r=0.0
++ }
++ 
++ setRelSpeedGatePos{
++ source:t="activeTargetOfInterest"
++ width:r=0.0
++ }
++ }
++ }
++ 
++ transitions{
++ 
++ start{
++ event:t="fsmActivate"
++ stateTo:t="mprf"
++ 
++ actions{
++ 
++ setMprfTrack{
++ }
++ 
++ setModeName{
++ name:t="PD track"
++ }
++ }
++ }
++ 
++ tryDetectMprf{
++ stateFrom:t="mprfTry"
++ event:t="update"
++ 
++ actions{
++ 
++ setMprfTrack{
++ }
++ 
++ detectTarget{
++ ignoreOwnWeapon:b=yes
++ rangeMult:r=1.0
++ }
++ }
++ }
++ 
++ hprfOkTryDetectMprf{
++ stateFrom:t="hprfOkMprfTry"
++ event:t="update"
++ 
++ actions{
++ 
++ setMprfTrack{
++ }
++ 
++ detectTarget{
++ ignoreOwnWeapon:b=yes
++ rangeMult:r=1.0
++ }
++ 
++ setHprfTrack{
++ }
++ }
++ }
++ 
++ tryDetectHprf{
++ stateFrom:t="hprfTry"
++ event:t="update"
++ 
++ actions{
++ 
++ setHprfTrack{
++ }
++ 
++ detectTarget{
++ ignoreOwnWeapon:b=yes
++ rangeMult:r=1.0
++ }
++ 
++ setMprfTrack{
++ }
++ }
++ }
++ 
++ detect{
++ event:t="update"
++ 
++ actions{
++ 
++ detectTarget{
++ ignoreOwnWeapon:b=yes
++ rangeMult:r=1.0
++ }
++ }
++ }
++ 
++ trackMprf{
++ stateFrom:t="mprf"
++ event:t="targetDetected"
++ 
++ actions{
++ 
++ track{
++ }
++ }
++ }
++ 
++ startTrackMprf{
++ stateFrom:t="mprfTry"
++ stateFrom:t="hprfOkMprfTry"
++ event:t="targetDetected"
++ stateTo:t="mprf"
++ 
++ actions{
++ 
++ setMprfTrack{
++ }
++ 
++ track{
++ }
++ 
++ setModeName{
++ name:t="PD track"
++ }
++ }
++ }
++ 
++ trackHprf{
++ stateFrom:t="hprf"
++ event:t="targetDetected"
++ stateTo:t="hprfOkMprfTry"
++ 
++ actions{
++ 
++ track{
++ }
++ }
++ }
++ 
++ trackHprf{
++ stateFrom:t="hprf"
++ event:t="targetDetected"
++ stateTo:t="mprfTry"
++ 
++ actions{
++ 
++ track{
++ }
++ 
++ setMprfTrack{
++ }
++ }
++ }
++ 
++ startTrackHprf{
++ stateFrom:t="hprfTry"
++ event:t="targetDetected"
++ stateTo:t="hprf"
++ 
++ actions{
++ 
++ setHprfTrack{
++ }
++ 
++ track{
++ }
++ 
++ setModeName{
++ name:t="PD HDN track"
++ }
++ }
++ }
++ 
++ mprfToHprf{
++ stateFrom:t="mprf"
++ stateFrom:t="mprfTry"
++ event:t="targetNotDetected"
++ stateTo:t="hprfTry"
++ 
++ actions{
++ 
++ extrapolate{
++ }
++ }
++ }
++ 
++ backToHprf{
++ stateFrom:t="hprfOkMprfTry"
++ event:t="targetNotDetected"
++ stateTo:t="hprfTry"
++ 
++ actions{
++ 
++ extrapolate{
++ }
++ }
++ }
++ 
++ hprfToMprf{
++ stateFrom:t="hprf"
++ event:t="targetNotDetected"
++ stateTo:t="mprfTry"
++ 
++ actions{
++ 
++ extrapolate{
++ }
++ }
++ }
++ 
++ hprfTryToMprf{
++ stateFrom:t="hprfTry"
++ event:t="targetNotDetected"
++ stateTo:t="mprfTry"
++ 
++ actions{
++ 
++ extrapolate{
++ }
++ 
++ setModeName{
++ name:t="track memory"
++ }
++ }
++ }
++ }
++ }
++ 
++ illumination{
++ stateInit:t="init"
++ 
++ transitions{
++ 
++ activate{
++ event:t="fsmActivate"
++ stateTo:t="active"
++ 
++ actions{
++ 
++ checkIlluminationTimeOut{
++ transiver:b=yes
++ pauseMax:r=20.0
++ }
++ }
++ }
++ 
++ deactivate{
++ event:t="fsmDeactivate"
++ stateTo:t="inactive"
++ 
++ actions{
++ 
++ setIllumination{
++ transiver:b=no
++ }
++ }
++ }
++ 
++ activateIllumination{
++ event:t="sarhMissileLaunch"
++ 
++ actions{
++ 
++ setIlluminationTimeOut{
++ timeOut:r=60.0
++ }
++ }
++ }
++ 
++ updateIllumination{
++ event:t="update"
++ 
++ actions{
++ 
++ checkIlluminationTimeOut{
++ transiver:b=yes
++ pauseMax:r=20.0
++ }
++ }
++ }
++ }
++ }
++ }
 ```
 
   **Removed**:
 ```diff
-- smokeEffect:t="smoke_rocket_tail_short"
-- smokeEffect2:t=""
-- hazeEffect:t="haze_missile"
-- endSmokeViscosity:r=0.05
-- fireEffect:t="fires_exhaust_jet_mach_discs_small"
 ```
 
 
-- **aces.vromfs.bin_u/gamedata/weapons/rocketguns/us_aim9l_i_1_sidewinder_default.blkx**:
+- **aces.vromfs.bin_u/gamedata/sensors/su_kopio.blkx**:
 
   **Added**:
 ```diff
-+ fireEffect:t="fires_exhaust_jet_mach_discs_small"
-+ smokeEffect:t="smoke_rocket_tail_light"
-+ smokeEffect2:t=""
-+ hazeEffect:t="haze_missile"
-+ endSmokeViscosity:r=0.05
++ width:r=3.0
++ barsCount:i=3
++ rowMajor:b=no
++ period:r=0.5
++ width:r=3.0
++ barsCount:i=3
++ rowMajor:b=no
 ```
 
   **Removed**:
 ```diff
-- smokeEffect:t="smoke_rocket_tail_short"
-- smokeEffect2:t=""
-- hazeEffect:t="haze_missile"
-- endSmokeViscosity:r=0.05
-- fireEffect:t="fires_exhaust_jet_mach_discs_small"
+- width:r=4.0
+- barsCount:i=4
+- rowMajor:b=yes
+- period:r=0.25
+- width:r=4.0
+- barsCount:i=2
+- rowMajor:b=yes
+```
+
+
+- **aces.vromfs.bin_u/gamedata/sensors/su_kopio_25.blkx**:
+
+  **Added**:
+```diff
++ width:r=3.0
++ barsCount:i=3
++ rowMajor:b=no
++ period:r=0.5
++ width:r=3.0
++ barsCount:i=3
++ rowMajor:b=no
+```
+
+  **Removed**:
+```diff
+- width:r=4.0
+- barsCount:i=4
+- rowMajor:b=yes
+- period:r=0.25
+- width:r=4.0
+- barsCount:i=2
+- rowMajor:b=yes
+```
+
+
+- **aces.vromfs.bin_u/gamedata/sensors/uk_captor_m_pirate.blkx**:
+
+  **Added**:
+```diff
++ distanceAccuracy:r=100.0
++ period:r=3.0
++ barHeight:r=1.5
++ barsCount:i=42
++ barsOneWay:b=yes
++ barHeight:r=1.5
++ barsCount:i=20
++ barsOneWay:b=yes
++ barHeight:r=2.0
++ barsCount:i=2
+```
+
+  **Removed**:
+```diff
+- distanceAccuracy:r=10.0
+- period:r=2.5
+- barHeight:r=4.0
+- barsCount:i=16
+- barsOneWay:b=no
+- rollStabLimit:r=90.0
+- pitchStabLimit:r=60.0
+- barHeight:r=3.75
+- barsCount:i=8
+- barsOneWay:b=no
+- rollStabLimit:r=90.0
+- pitchStabLimit:r=60.0
+- rollStabLimit:r=90.0
+- pitchStabLimit:r=60.0
+- barHeight:r=4.0
+- barsCount:i=1
+```
+
+
+- **aces.vromfs.bin_u/gamedata/units/ships/germ_battlecruiser_ersatz_yorck.blkx**:
+
+  **Added**:
+```diff
++ hp:r=2982.0
++ hp:r=3465.0
++ hp:r=2846.0
++ hp:r=645.0
++ hp:r=3969.0
++ hp:r=3500.0
++ hp:r=3500.0
++ 
++ ammunition_storage_shells_05_dm{
++ hp:r=3584.0
++ }
++ hp:r=5600.0
++ 
++ ammunition_storage_charges_05_dm{
++ hp:r=7259.0
++ }
++ hp:r=2461.0
++ hp:r=2461.0
++ }
++ 
++ ammunition_storage_aux_03_dm{
++ hp:r=2200.0
++ }
++ 
++ ammunition_storage_aux_04_dm{
++ hp:r=2200.0
++ }
++ 
++ ammunition_storage_aux_05_dm{
++ hp:r=2543.0
++ }
++ 
++ ammunition_storage_aux_06_dm{
++ hp:r=2543.0
++ }
++ 
++ ammunition_storage_aux_07_dm{
++ hp:r=2200.0
++ }
++ 
++ ammunition_storage_aux_08_dm{
++ hp:r=2200.0
++ }
++ 
++ ammunition_storage_aux_09_dm{
++ hp:r=2200.0
++ hp:r=15238.0
++ hp:r=12433.0
++ hp:r=12462.0
++ hp:r=10439.0
++ armor_cit_07_dm{
++ armorClass:t="ship_RGA"
++ armorThickness:r=100.0
++ hp:r=10000.0
++ }
++ 
++ armorThickness:r=20.0
++ armorThickness:r=20.0
++ armor_cit_03_dm{
++ armorThickness:r=60.0
++ hp:r=10000.0
++ }
++ 
++ armor_cit_19_dm{
++ armor_cit_25_dm{
++ armorThickness:r=50.0
++ armor_cit_26_dm{
++ armor_cit_27_dm{
++ armorThickness:r=40.0
++ hp:r=10000.0
++ }
++ 
++ armor_cit_28_dm{
++ armorThickness:r=60.0
++ hp:r=10000.0
++ }
++ 
++ armor_cit_22_dm{
++ armorThickness:r=25.0
++ hp:r=10000.0
++ }
++ 
++ 
++ armor_cit_24_dm{
++ armorClass:t="ship_RGA"
++ armorThickness:r=100.0
++ hp:r=10000.0
++ }
++ 
++ armor_cit_29_dm{
++ armorThickness:r=50.0
++ hp:r=10000.0
++ }
++ 
++ armor_cit_30_dm{
++ armorClass:t="ship_RGA"
++ armorThickness:r=100.0
++ hp:r=10000.0
++ }
++ 
++ armor_cit_31_dm{
++ armorClass:t="ship_RGA"
++ armorThickness:r=180.0
++ hp:r=10000.0
++ }
++ 
++ armor_cit_32_dm{
++ armorClass:t="ship_RGA"
++ armorThickness:r=150.0
++ hp:r=10000.0
++ }
++ armor_cit_l_03_dm{
++ hidableInViewer:b=no
++ armorThickness:r=60.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_l_04_dm{
++ hidableInViewer:b=no
++ armorThickness:r=60.0
++ hp:r=8500.0
++ }
++ 
++ armorThickness:r=70.0
++ armorThickness:r=70.0
++ 
++ fuel_tank_03_dm{
++ hp:r=5927.0
++ }
++ 
++ fuel_tank_04_dm{
++ hp:r=5944.0
++ }
++ 
++ fuel_tank_05_dm{
++ hp:r=6000.0
++ }
++ 
++ fuel_tank_06_dm{
++ hp:r=6000.0
++ }
++ 
++ coal_bunker_05_dm{
++ hp:r=3000.0
++ }
++ 
++ coal_bunker_06_dm{
++ hp:r=3000.0
++ }
++ crew:i=9
++ crew:i=62
++ crew:i=69
++ crew:i=88
++ crew:i=88
++ crew:i=69
++ crew:i=85
++ crew:i=101
++ crew:i=87
++ crew:i=81
++ count:i=90
++ }
++ }
++ 
++ shells{
++ entityMunition:t="shells"
++ fatalFire:b=no
++ fatalExplosion:b=no
++ damageEffect:t="ammunition_storage_shells"
++ 
++ ammunition_storage_shells_02_dm{
++ count:i=90
++ count:i=90
++ }
++ }
++ 
++ charges{
++ entityMunition:t="charges"
++ fatalFire:b=yes
++ damageEffect:t="ammunition_storage_charges"
++ 
++ ammunition_storage_charges_02_dm{
++ count:i=90
++ ammunition_storage_shells_03_dm{
++ ammunition_storage_charges_03_dm{
++ ammunition_storage_shells_04_dm{
++ ammunition_storage_charges_04_dm{
++ ammunition_storage_shells_05_dm{
++ ammunition_storage_charges_05_dm{
++ weaponTrigger:t="gunner10"
++ weaponTrigger:t="gunner12"
++ weaponTrigger:t="gunner14"
++ elevator:t="elevator_12_dm"
++ elevator:t="elevator_14_dm"
++ ammunition_storage_aux_07_dm{
++ count:i=900
++ weaponTrigger:t="gunner5"
++ weaponTrigger:t="gunner7"
++ weaponTrigger:t="gunner9"
++ entityMunition:t="aux"
++ fatalExplosion:b=no
++ fatalFire:b=no
++ fireParamsPreset:t="ship_ammo_fire_aux"
++ explosionEvent:t="ammo_aux_explosion_3"
++ fireEvent:t="ammo_aux_fire_3"
++ elevator:t="elevator_07_dm"
++ elevator:t="elevator_09_dm"
++ elevator:t="elevator_11_dm"
++ elevator:t="elevator_13_dm"
++ dstrElevatorDisablesShooting:b=no
++ splashRadiusConstraint:r=10.0
++ splashDamageConstraint:r=3000.0
++ shatterRadiusConstraint:r=1.0
++ 
++ gunpowderMassToSplashParams{
++ 
++ gunpowderMassToInnerRadius{
++ p1:p2=100.0, 1.0
++ p2:p2=10000.0, 2.0
++ }
++ 
++ gunpowderMassToOuterRadius{
++ p1:p2=100.0, 2.0
++ p2:p2=10000.0, 10.0
++ }
++ 
++ gunpowderMassToPenetration{
++ p1:p2=100.0, 13.5
++ p2:p2=500.0, 15.0
++ p3:p2=2000.0, 20.0
++ p4:p2=5000.0, 30.0
++ }
++ 
++ gunpowderMassToDamage{
++ p1:p2=100.0, 1000.0
++ p3:p2=10000.0, 5000.0
++ }
++ }
++ 
++ shells{
++ damageEffect:t="ammunition_storage_aux"
++ 
++ ammunition_storage_aux_08_dm{
++ count:i=900
++ }
++ }
++ }
++ 
++ ammo7{
++ weaponTrigger:t="gunner16"
++ weaponTrigger:t="gunner18"
++ entityMunition:t="aux"
++ fatalExplosion:b=no
++ fatalFire:b=no
++ fireParamsPreset:t="ship_ammo_fire_aux"
++ explosionEvent:t="ammo_aux_explosion_2"
++ fireEvent:t="ammo_aux_fire_2"
++ elevator:t="elevator_06_dm"
++ dstrElevatorDisablesShooting:b=no
++ splashRadiusConstraint:r=10.0
++ splashDamageConstraint:r=3000.0
++ shatterRadiusConstraint:r=1.0
++ 
++ gunpowderMassToSplashParams{
++ 
++ gunpowderMassToInnerRadius{
++ p1:p2=100.0, 1.0
++ p2:p2=10000.0, 2.0
++ }
++ 
++ gunpowderMassToOuterRadius{
++ p1:p2=100.0, 2.0
++ p2:p2=10000.0, 10.0
++ }
++ 
++ gunpowderMassToPenetration{
++ p1:p2=100.0, 13.5
++ p2:p2=500.0, 15.0
++ p3:p2=2000.0, 20.0
++ p4:p2=5000.0, 30.0
++ }
++ 
++ gunpowderMassToDamage{
++ p1:p2=100.0, 1000.0
++ p3:p2=10000.0, 5000.0
++ }
++ }
++ 
++ shells{
++ damageEffect:t="ammunition_storage_aux"
++ 
++ ammunition_storage_aux_01_dm{
++ count:i=100
++ }
++ }
++ 
++ shells{
++ damageEffect:t="ammunition_storage_aux"
++ 
++ ammunition_storage_aux_03_dm{
++ count:i=100
++ }
++ }
++ 
++ shells{
++ damageEffect:t="ammunition_storage_aux"
++ 
++ ammunition_storage_aux_05_dm{
++ count:i=100
++ }
++ }
++ }
++ 
++ ammo8{
++ weaponTrigger:t="gunner17"
++ weaponTrigger:t="gunner19"
++ entityMunition:t="aux"
++ fatalExplosion:b=no
++ fatalFire:b=no
++ fireParamsPreset:t="ship_ammo_fire_aux"
++ explosionEvent:t="ammo_aux_explosion_2"
++ fireEvent:t="ammo_aux_fire_2"
++ elevator:t="elevator_05_dm"
++ dstrElevatorDisablesShooting:b=no
++ splashRadiusConstraint:r=10.0
++ splashDamageConstraint:r=3000.0
++ shatterRadiusConstraint:r=1.0
++ 
++ gunpowderMassToSplashParams{
++ 
++ gunpowderMassToInnerRadius{
++ p1:p2=100.0, 1.0
++ p2:p2=10000.0, 2.0
++ }
++ 
++ gunpowderMassToOuterRadius{
++ p1:p2=100.0, 2.0
++ p2:p2=10000.0, 10.0
++ }
++ 
++ gunpowderMassToPenetration{
++ p1:p2=100.0, 13.5
++ p2:p2=500.0, 15.0
++ p3:p2=2000.0, 20.0
++ p4:p2=5000.0, 30.0
++ }
++ 
++ gunpowderMassToDamage{
++ p1:p2=100.0, 1000.0
++ p3:p2=10000.0, 5000.0
++ }
++ }
++ 
++ shells{
++ damageEffect:t="ammunition_storage_aux"
++ 
++ ammunition_storage_aux_02_dm{
++ count:i=100
++ }
++ }
++ 
++ shells{
++ damageEffect:t="ammunition_storage_aux"
++ 
++ ammunition_storage_aux_04_dm{
++ count:i=100
++ }
++ }
++ 
++ shells{
++ damageEffect:t="ammunition_storage_aux"
++ 
++ ammunition_storage_aux_06_dm{
++ count:i=100
++ }
++ }
++ }
++ 
++ ammo9{
++ ammunition_storage_aux_09_dm{
++ count:i=600
++ ammo10{
++ ammo11{
++ ammo12{
++ part{
++ partNo:t="ammunition_storage_charges_03_dm"
++ critWaterLevel:r=0.65
++ }
++ 
++ 
++ part{
++ partNo:t="ammunition_storage_shells_03_dm"
++ critWaterLevel:r=0.8
++ }
++ partNo:t="ammunition_storage_charges_04_dm"
++ partNo:t="ammunition_storage_shells_04_dm"
++ partNo:t="ammunition_storage_shells_05_dm"
++ partNo:t="ammunition_storage_charges_05_dm"
+```
+
+  **Removed**:
+```diff
+- hp:r=3226.0
+- hp:r=3500.0
+- hp:r=3037.0
+- hp:r=750.0
+- hp:r=4600.0
+- hp:r=4600.0
+- hp:r=4600.0
+- hp:r=7300.0
+- hp:r=2200.0
+- hp:r=2265.0
+- hp:r=15225.0
+- hp:r=12431.0
+- hp:r=12459.0
+- hp:r=10710.0
+- armor_cit_22_dm{
+- armorThickness:r=25.0
+- hp:r=10000.0
+- }
+- 
+- armorThickness:r=60.0
+- armorThickness:r=25.0
+- armor_cit_07_dm{
+- hidableInViewer:b=yes
+- armor_cit_03_dm{
+- armorThickness:r=60.0
+- armor_cit_19_dm{
+- armor_cit_l_20_dm{
+- armorClass:t="ship_structural_steel"
+- armorThickness:r=30.0
+- hp:r=8500.0
+- }
+- 
+- armor_cit_l_21_dm{
+- armorClass:t="ship_structural_steel"
+- armorThickness:r=30.0
+- hp:r=8500.0
+- }
+- 
+- armor_cit_l_22_dm{
+- armorClass:t="ship_structural_steel"
+- armorThickness:r=30.0
+- hp:r=8500.0
+- }
+- 
+- armor_cit_l_23_dm{
+- armorClass:t="ship_structural_steel"
+- armorThickness:r=30.0
+- hp:r=8500.0
+- }
+- 
+- armor_cit_l_24_dm{
+- armorClass:t="ship_structural_steel"
+- armorThickness:r=30.0
+- hp:r=8500.0
+- }
+- 
+- armor_cit_l_25_dm{
+- armorClass:t="ship_structural_steel"
+- armorThickness:r=30.0
+- hp:r=8500.0
+- }
+- 
+- armor_cit_r_20_dm{
+- armorClass:t="ship_structural_steel"
+- armorThickness:r=30.0
+- hp:r=8500.0
+- }
+- 
+- armor_cit_r_21_dm{
+- armorClass:t="ship_structural_steel"
+- armorThickness:r=30.0
+- hp:r=8500.0
+- }
+- 
+- armor_cit_r_22_dm{
+- armorClass:t="ship_structural_steel"
+- armorThickness:r=30.0
+- hp:r=8500.0
+- }
+- 
+- armor_cit_r_23_dm{
+- armorClass:t="ship_structural_steel"
+- armorThickness:r=30.0
+- hp:r=8500.0
+- }
+- 
+- armor_cit_r_24_dm{
+- armorClass:t="ship_structural_steel"
+- armorThickness:r=30.0
+- hp:r=8500.0
+- }
+- 
+- armor_cit_r_25_dm{
+- armorClass:t="ship_structural_steel"
+- armorThickness:r=30.0
+- hp:r=8500.0
+- }
+- 
+- armorThickness:r=100.0
+- armorThickness:r=100.0
+- armor_cit_l_14_dm{
+- armorThickness:r=15.0
+- hp:r=8500.0
+- }
+- 
+- armor_cit_l_15_dm{
+- armorThickness:r=15.0
+- hp:r=8500.0
+- }
+- 
+- armor_cit_l_16_dm{
+- armorThickness:r=15.0
+- hp:r=8500.0
+- }
+- 
+- armor_cit_l_17_dm{
+- armorThickness:r=15.0
+- hp:r=8500.0
+- }
+- 
+- armor_cit_l_18_dm{
+- armorThickness:r=15.0
+- hp:r=8500.0
+- }
+- 
+- armor_cit_l_19_dm{
+- armorThickness:r=15.0
+- hp:r=8500.0
+- }
+- 
+- armor_cit_r_14_dm{
+- armorThickness:r=15.0
+- hp:r=8500.0
+- }
+- 
+- armor_cit_r_15_dm{
+- armorThickness:r=15.0
+- hp:r=8500.0
+- }
+- 
+- armor_cit_r_16_dm{
+- armorThickness:r=15.0
+- hp:r=8500.0
+- }
+- 
+- armor_cit_r_17_dm{
+- armorThickness:r=15.0
+- hp:r=8500.0
+- }
+- 
+- armor_cit_r_18_dm{
+- armorThickness:r=15.0
+- hp:r=8500.0
+- }
+- 
+- armor_cit_r_19_dm{
+- armorThickness:r=15.0
+- hp:r=8500.0
+- }
+- 
+- crew:i=10
+- crew:i=61
+- crew:i=67
+- crew:i=85
+- crew:i=85
+- crew:i=67
+- crew:i=92
+- crew:i=100
+- crew:i=86
+- crew:i=86
+- count:i=180
+- count:i=180
+- ammunition_storage_shells_02_dm{
+- ammunition_storage_charges_02_dm{
+- ammunition_storage_shells_03_dm{
+- ammunition_storage_charges_03_dm{
+- ammunition_storage_shells_04_dm{
+- ammunition_storage_charges_04_dm{
+- weaponTrigger:t="gunner5"
+- weaponTrigger:t="gunner7"
+- weaponTrigger:t="gunner9"
+- weaponTrigger:t="gunner16"
+- weaponTrigger:t="gunner17"
+- weaponTrigger:t="gunner18"
+- weaponTrigger:t="gunner19"
+- elevator:t="elevator_05_dm"
+- elevator:t="elevator_06_dm"
+- elevator:t="elevator_07_dm"
+- elevator:t="elevator_09_dm"
+- ammunition_storage_aux_01_dm{
+- count:i=1500
+- weaponTrigger:t="gunner10"
+- weaponTrigger:t="gunner12"
+- weaponTrigger:t="gunner14"
+- elevator:t="elevator_11_dm"
+- elevator:t="elevator_12_dm"
+- elevator:t="elevator_15_dm"
+- elevator:t="elevator_16_dm"
+- ammunition_storage_aux_02_dm{
+- count:i=1500
+- ammo7{
+- ammo8{
+- ammo9{
+- partNo:t="ammunition_storage_charges_03_dm"
+- partNo:t="ammunition_storage_shells_03_dm"
+- partNo:t="ammunition_storage_shells_04_dm"
+- partNo:t="ammunition_storage_charges_04_dm"
+```
+
+
+- **aces.vromfs.bin_u/gamedata/units/ships/uk_battleship_rodney.blkx**:
+
+  **Added**:
+```diff
++ hp:r=6432.0
++ hp:r=5200.0
++ hp:r=5499.0
++ hp:r=1000.0
++ hp:r=872.0
++ hp:r=10338.0
++ hp:r=9905.0
++ hp:r=10231.0
++ hp:r=3000.0
++ hp:r=2520.0
++ hp:r=3000.0
++ hp:r=500.0
++ hp:r=500.0
++ hp:r=17900.0
++ hp:r=17900.0
++ hp:r=17900.0
++ hp:r=17900.0
++ hp:r=14470.0
++ hp:r=17900.0
++ hp:r=17900.0
++ hp:r=15332.0
++ armor_cit_25_dm{
++ armorThickness:r=228.6
++ hidableInViewer:b=yes
++ armorThickness:r=19.05
++ armorThickness:r=158.75
++ armorClass:t="ship_RGA"
++ armorClass:t="ship_RGA"
++ armorClass:t="ship_RGA"
++ armorThickness:r=381.0
++ armorThickness:r=330.2
++ armorThickness:r=317.5
++ armorThickness:r=304.8
++ armor_cit_01_dm{
++ armorThickness:r=25.4
++ armor_cit_02_dm{
++ armorThickness:r=25.4
++ hp:r=10000.0
++ }
++ 
++ armor_cit_12_dm{
++ armorThickness:r=101.6
++ hp:r=10000.0
++ }
++ 
++ armor_cit_13_dm{
++ armorThickness:r=19.05
++ hp:r=10000.0
++ }
++ 
++ armorThickness:r=107.95
++ armorThickness:r=107.95
++ armorThickness:r=25.4
++ armorThickness:r=25.4
++ armorThickness:r=25.4
++ armorThickness:r=25.4
++ armorThickness:r=25.4
++ armorThickness:r=25.4
++ armorThickness:r=25.0
++ fireProtectionHp:r=30.0
++ hp:r=1000.0
++ crew:i=12
++ crew:i=10
++ crew:i=91
++ crew:i=96
++ crew:i=121
++ crew:i=91
++ maxSpeed:r=11.85
++ row:p2=11.85, 32.5
+```
+
+  **Removed**:
+```diff
+- hp:r=6800.0
+- hp:r=6800.0
+- hp:r=5835.0
+- hp:r=637.0
+- hp:r=860.0
+- hp:r=10800.0
+- hp:r=10800.0
+- hp:r=10800.0
+- hp:r=2300.0
+- hp:r=2300.0
+- hp:r=2300.0
+- 
+- ammunition_storage_aux_06_dm{
+- hp:r=2300.0
+- }
+- 
+- ammunition_storage_aux_07_dm{
+- hp:r=2300.0
+- }
+- hp:r=543.0
+- hp:r=543.0
+- hp:r=11800.0
+- hp:r=12959.0
+- hp:r=11800.0
+- hp:r=11800.0
+- hp:r=11800.0
+- hp:r=12326.0
+- hp:r=12786.0
+- hp:r=11800.0
+- armor_cit_13_dm{
+- armorThickness:r=101.6
+- armorClass:t="ship_RHA"
+- armorClass:t="ship_RHA"
+- armorClass:t="ship_RHA"
+- armorClass:t="ship_RHA"
+- hp:r=10000.0
+- }
+- 
+- armor_cit_01_dm{
+- armorThickness:r=61.5
+- hp:r=10000.0
+- }
+- 
+- armor_cit_02_dm{
+- armorThickness:r=76.2
+- armorThickness:r=101.6
+- armorThickness:r=177.8
+- armorClass:t="ship_RHA"
+- armorClass:t="ship_RHA"
+- armorClass:t="ship_RHA"
+- armorClass:t="ship_RHA"
+- hp:r=10000.0
+- }
+- 
+- armor_cit_12_dm{
+- armorThickness:r=101.6
+- armorClass:t="ship_RHA"
+- armorClass:t="ship_RHA"
+- armorThickness:r=304.8
+- armorThickness:r=381.0
+- armorThickness:r=304.8
+- armorThickness:r=330.2
+- armor_cit_25_dm{
+- armorThickness:r=317.5
+- armorThickness:r=38.1
+- armorThickness:r=38.1
+- armorThickness:r=38.1
+- armorThickness:r=38.1
+- armorThickness:r=38.1
+- armorThickness:r=38.1
+- armorThickness:r=38.1
+- armorThickness:r=38.1
+- fireProtectionHp:r=5.0
+- genericDamageMult:r=1.0
+- explosionDamageMult:r=1.5
+- armorThickness:r=20.0
+- hp:r=700.0
+- crew:i=6
+- crew:i=6
+- crew:i=113
+- crew:i=97
+- crew:i=113
+- crew:i=86
+- maxSpeed:r=11.8
+- row:p2=11.8, 32.5
+```
+
+
+- **aces.vromfs.bin_u/gamedata/units/ships/ussr_battleship_arhangelsk.blkx**:
+
+  **Added**:
+```diff
++ 
++ ammunition_storage_aux_02_dm{
++ hp:r=3000.0
++ }
++ 
++ ammunition_storage_aux_03_dm{
++ hp:r=3000.0
++ }
++ 
++ ammunition_storage_aux_04_dm{
++ hp:r=2639.0
++ }
++ 
++ ammunition_storage_aux_05_dm{
++ hp:r=3000.0
++ }
++ armorThickness:r=76.0
++ armorThickness:r=25.0
++ armor_cit_69_dm{
++ armorClass:t="ship_RGA"
++ armorThickness:r=101.0
++ hp:r=10000.0
++ }
++ 
++ armorThickness:r=152.0
++ armorThickness:r=152.0
++ armorThickness:r=38.0
++ armorThickness:r=31.0
++ armorThickness:r=25.0
++ armor_cit_70_dm{
++ armorThickness:r=7.0
++ hp:r=10000.0
++ }
++ 
++ armorThickness:r=50.0
++ armorThickness:r=152.0
++ 
++ armor_cit_l_16_dm{
++ hidableInViewer:b=no
++ armorThickness:r=25.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_l_17_dm{
++ hidableInViewer:b=no
++ armorThickness:r=25.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_l_18_dm{
++ hidableInViewer:b=no
++ armorThickness:r=25.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_l_19_dm{
++ hidableInViewer:b=no
++ armorThickness:r=25.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_l_20_dm{
++ hidableInViewer:b=no
++ armorThickness:r=25.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_r_16_dm{
++ hidableInViewer:b=no
++ armorThickness:r=25.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_r_17_dm{
++ hidableInViewer:b=no
++ armorThickness:r=25.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_r_18_dm{
++ hidableInViewer:b=no
++ armorThickness:r=25.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_r_19_dm{
++ hidableInViewer:b=no
++ armorThickness:r=25.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_r_20_dm{
++ hidableInViewer:b=no
++ armorThickness:r=25.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_l_21_dm{
++ hidableInViewer:b=no
++ armorThickness:r=25.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_l_22_dm{
++ hidableInViewer:b=no
++ armorThickness:r=25.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_l_23_dm{
++ hidableInViewer:b=no
++ armorThickness:r=25.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_l_24_dm{
++ hidableInViewer:b=no
++ armorThickness:r=25.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_l_25_dm{
++ hidableInViewer:b=no
++ armorThickness:r=25.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_r_21_dm{
++ hidableInViewer:b=no
++ armorThickness:r=25.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_r_22_dm{
++ hidableInViewer:b=no
++ armorThickness:r=25.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_r_23_dm{
++ hidableInViewer:b=no
++ armorThickness:r=25.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_r_24_dm{
++ hidableInViewer:b=no
++ armorThickness:r=25.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_r_25_dm{
++ hidableInViewer:b=no
++ armorThickness:r=25.0
++ hp:r=8500.0
++ }
++ armorClass:t="ship_RHA"
+```
+
+  **Removed**:
+```diff
+- armorThickness:r=279.0
+- armorClass:t="ship_RGA"
+- armorThickness:r=76.0
+- rmorThickness:r=152.0
+- rmorThickness:r=152.0
+- armorThickness:r=60.0
+- armorThickness:r=50.0
+- armorThickness:r=32.0
+- hidableInViewer:b=yes
+- armorThickness:r=51.0
+- armorThickness:r=102.0
+- armorClass:t="ship_RGA"
+```
+
+
+- **aces.vromfs.bin_u/gamedata/units/tankmodels/fr_vbci.blkx**:
+
+  **Added**:
+```diff
++ Weapon{
++ trigger:t="gunner2"
++ triggerGroup:t="commander"
++ blk:t="gameData/Weapons/dummy_weapon.blk"
++ emitter:t="bone_commander_sight_v"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ parkInDeadzone:b=no
++ speedYaw:r=120.0
++ speedPitch:r=90.0
++ 
++ turret{
++ head:t="bone_commander_sight_h"
++ gun:t="bone_commander_sight_v"
++ gunnerDm:t="commander_dm"
++ verDriveDm:t="commander_panoramic_sight_dm"
++ horDriveDm:t="commander_panoramic_sight_dm"
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=no
++ forceEnabled:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=75.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=75.0
++ speedFromVehicleVerticalMult:r=-1.0
++ 
++ errorKPHToDegrees{
++ row:p2=5.0, 0.0
++ row:p2=45.0, 0.00015
++ row:p2=80.0, 0.0002
++ }
++ }
++ 
++ limits{
++ yaw:p2=-180.0, 180.0
++ pitch:p2=-9.0, 65.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner2"
++ triggerGroup:t="commander"
++ blk:t="gameData/Weapons/dummy_weapon.blk"
++ emitter:t="bone_commander_sight_v"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ parkInDeadzone:b=no
++ speedYaw:r=120.0
++ speedPitch:r=90.0
++ 
++ turret{
++ head:t="bone_commander_sight_h"
++ gun:t="bone_commander_sight_v"
++ gunnerDm:t="commander_dm"
++ verDriveDm:t="commander_panoramic_sight_dm"
++ horDriveDm:t="commander_panoramic_sight_dm"
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=no
++ forceEnabled:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=75.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=75.0
++ speedFromVehicleVerticalMult:r=-1.0
++ 
++ errorKPHToDegrees{
++ row:p2=5.0, 0.0
++ row:p2=45.0, 0.00015
++ row:p2=80.0, 0.0002
++ }
++ }
++ 
++ limits{
++ yaw:p2=-180.0, 180.0
++ pitch:p2=-9.0, 65.0
++ }
++ }
++ 
+```
+
+  **Removed**:
+```diff
+```
+
+
+- **aces.vromfs.bin_u/gamedata/units/tankmodels/germ_panzerjager_nashorn.blkx**:
+
+  **Added**:
+```diff
++ maxAdditionalPitch:r=0.0
+```
+
+  **Removed**:
+```diff
+```
+
+
+- **aces.vromfs.bin_u/gamedata/units/tankmodels/germ_pzh_2000.blkx**:
+
+  **Added**:
+```diff
++ drowningCheckHeightMultiplier:r=0.8075
++ dmgAngles{
++ hatch_06:p2=10.0, 65.0
++ hatch_07:p2=10.0, 65.0
++ }
++ 
++ topGearRadius:r=0.12
+```
+
+  **Removed**:
+```diff
+```
+
+
+- **aces.vromfs.bin_u/gamedata/units/tankmodels/it_pzh_2000_hu.blkx**:
+
+  **Added**:
+```diff
++ drowningCheckHeightMultiplier:r=0.8075
++ 
++ turret_05_back_dm{
++ }
++ 
++ turret_05_bottom_dm{
++ }
++ 
++ turret_05_side_dm{
++ }
++ 
++ turret_05_top_dm{
++ }
++ 
++ turret_06_top_dm{
++ }
++ 
++ turret_06_side_dm{
++ }
++ 
++ turret_06_bottom_dm{
++ }
++ 
++ turret_06_back_dm{
++ }
++ 
++ ex_armor_r_07_dm{
++ }
++ 
++ ex_armor_r_08_dm{
++ }
++ 
++ ex_armor_r_09_dm{
++ }
++ 
++ ex_armor_r_10_dm{
++ }
++ 
++ ex_armor_l_07_dm{
++ }
++ 
++ ex_armor_l_08_dm{
++ }
++ 
++ ex_armor_l_09_dm{
++ }
++ 
++ ex_armor_l_10_dm{
++ }
++ dmgAngles{
++ hatch_06:p2=10.0, 65.0
++ hatch_07:p2=10.0, 65.0
++ }
++ 
++ topGearRadius:r=0.12
++ 
++ hideNodes{
++ node:t="ex_armor_r_02"
++ node:t="ex_armor_r_03"
++ node:t="ex_armor_r_04"
++ node:t="ex_armor_r_05"
++ node:t="ex_armor_l_02"
++ node:t="ex_armor_l_03"
++ node:t="ex_armor_l_04"
++ node:t="ex_armor_l_05"
++ }
++ node:t="ex_decor_07_net"
++ node:t="ex_decor_18_net"
++ node:t="ex_armor_l_07"
++ node:t="ex_armor_l_08"
++ node:t="ex_armor_l_09"
++ node:t="ex_armor_l_10"
++ node:t="ex_armor_r_07"
++ node:t="ex_armor_r_08"
++ node:t="ex_armor_r_09"
++ node:t="ex_armor_r_10"
++ node:t="turret_05_back"
++ node:t="turret_05_bottom"
++ node:t="turret_05_side"
++ node:t="turret_05_top"
++ node:t="turret_06_back"
++ node:t="turret_06_bottom"
++ node:t="turret_06_side"
++ node:t="turret_06_top"
+```
+
+  **Removed**:
+```diff
+```
+
+
+- **aces.vromfs.bin_u/gamedata/units/tankmodels/us_rdf_lt.blkx**:
+
+  **Added**:
+```diff
++ EngineName:t="engine_m3_bradley"
+```
+
+  **Removed**:
+```diff
+- EngineName:t="engine_hstvl"
+```
+
+
+- **aces.vromfs.bin_u/gamedata/weapons/bombguns/su_fab_3000m_54.blkx**:
+
+  **Added**:
+```diff
++ bulletName:t="su_fab_3000m_54"
+```
+
+  **Removed**:
+```diff
+- bulletName:t="su_fab_3000_m54"
+```
+
+
+- **aces.vromfs.bin_u/gamedata/weapons/bombguns/su_grom_2.blkx**:
+
+  **Added**:
+```diff
++ bulletName:t="su_grom_2"
+```
+
+  **Removed**:
+```diff
+- bulletName:t="grom_2"
+```
+
+
+- **aces.vromfs.bin_u/gamedata/weapons/containers/pylon_kfir_central_us_3000lb_m118.blkx**:
+
+  **Added**:
+```diff
++ container:b=yes
++ mesh:t="pylon_kfir_central_3000lb"
++ useEmitter:b=yes
++ emitter:t="bomb2"
++ blk:t="gameData/Weapons/BombGuns/us_3000lb_m118.blk"
++ bullets:i=1
++ amountPerTier:i=1
+```
+
+  **Removed**:
+```diff
+```
+
+
+- **aces.vromfs.bin_u/gamedata/weapons/groundmodels_weapons/152mm_mim146.blkx**:
+
+  **Added**:
+```diff
++ loadFactorMax:r=42.0
++ reqAccelMax:r=42.0
+```
+
+  **Removed**:
+```diff
+- loadFactorMax:r=35.0
+- reqAccelMax:r=35.0
+```
+
+
+- **aces.vromfs.bin_u/gamedata/weapons/groundmodels_weapons/152mm_mim146_launcher_user_cannon.blkx**:
+
+  **Added**:
+```diff
++ loadFactorMax:r=42.0
++ reqAccelMax:r=42.0
++ loadFactorMax:r=42.0
++ reqAccelMax:r=42.0
+```
+
+  **Removed**:
+```diff
+- loadFactorMax:r=35.0
+- reqAccelMax:r=35.0
+- loadFactorMax:r=35.0
+- reqAccelMax:r=35.0
 ```
 
 
