@@ -1083,7 +1083,7 @@ fsms{
         }
 
         setFsmActive{
-          fsm:t="lock"
+          fsm:t="bvrLock"
           active:b=yes
         }
 
@@ -1128,7 +1128,7 @@ fsms{
       resetGtmBvrLockMode{
 
         setFsmActive{
-          fsm:t="lock"
+          fsm:t="bvrLock"
           active:b=no
         }
       }
@@ -2301,90 +2301,6 @@ fsms{
   }
 
   bvrLock{
-    stateInit:t="lock"
-
-    actionsTemplates{
-
-      setMprfLock{
-
-        setTransiver{
-          transiver:t="mprf"
-        }
-
-        setSignal{
-          signal:t="mprfSearch"
-        }
-      }
-
-      setHprfLock{
-
-        setTransiver{
-          transiver:t="hprf"
-        }
-
-        setSignal{
-          signal:t="hprfSearch"
-        }
-      }
-    }
-
-    transitions{
-
-      init{
-        event:t="fsmActivate"
-
-        actions{
-
-          setMprfLock{
-          }
-        }
-      }
-
-      scan{
-        event:t="update"
-
-        actions{
-
-          setMprfLock{
-          }
-
-          scan{
-          }
-
-          scan{
-          }
-
-          setHprfLock{
-          }
-        }
-      }
-
-      detect{
-        event:t="targetInSight"
-
-        actions{
-
-          setMprfLock{
-          }
-
-          detectTarget{
-            ignoreOwnWeapon:b=yes
-            rangeMult:r=1.0
-          }
-
-          detectTarget{
-            ignoreOwnWeapon:b=yes
-            rangeMult:r=1.0
-          }
-
-          setHprfLock{
-          }
-        }
-      }
-    }
-  }
-
-  lock{
     stateInit:t="lock"
 
     transitions{
