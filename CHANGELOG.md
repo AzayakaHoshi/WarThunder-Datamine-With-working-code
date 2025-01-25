@@ -4,7 +4,8 @@
 
   **Added**:
 ```diff
-+ cn_t_80ud_478be:i=140
++ fr_m46_patton:i=140
++ uk_shir_2:i=140
 ```
 
   **Removed**:
@@ -16,4471 +17,13 @@
 
   **Added**:
 ```diff
-+ wt_f_5c_pack:t="AC166790-BFF1-4304-9C6D-B8C3F2F24491"
-+ 2025_01_tank:t="unlocks/chapter/2025_01_tank"
++ login_layer_m46_france:r=8.0
++ login_layer_m46_france:t="loading_screen_m46_france"
++ battlepass_season18:t="battlepass_season18_purchased_main/name"
 ```
 
   **Removed**:
 ```diff
-- wt_f_5c_pack:t="E82898BB-B87D-4366-95A8-C340A7E4C272"
-```
-
-
-- **aces.vromfs.bin_u/config/hangar.blkx**:
-
-  **Added**:
-```diff
-+ level:t="levels/hangar_field.bin"
-+ hangarMission:t="gameData/scenes/hangar_field_mission.blk"
-+ env:t="14.5"
-+ weight:r=10.0
-+ country_usa:t="us_m1a1_hc_usmc"
-+ country_germany:t="germ_pzh_2000"
-+ country_ussr:t="ussr_object_140"
-+ country_britain:t="uk_challenger_2_megatron"
-+ country_japan:t="jp_tkx_prot"
-+ country_china:t="cn_plz_05"
-+ country_italy:t="it_pzh_2000_hu"
-+ country_france:t="fr_leopard_2a6nl"
-+ country_sweden:t="sw_leopard_2a6nl"
-+ country_israel:t="il_sabra_mk1"
-+ country_usa:t="us_rdf_lt"
-+ country_germany:t="germ_m44"
-+ country_ussr:t="ussr_bmd_4m"
-+ country_britain:t="uk_9a35_m"
-+ country_japan:t="jp_m44"
-+ country_china:t="cn_hq_17"
-+ country_italy:t="it_9a35_m"
-+ country_france:t="fr_vbci"
-+ country_sweden:t="sw_cv_90_mk4"
-+ country_israel:t="il_namer_tsrikhon"
-+ country_usa:t="f_15e"
-+ country_germany:t="ef_2000_block_10"
-+ country_ussr:t="su_33"
-+ country_britain:t="ef_2000_fgr4"
-+ country_japan:t="f_15j_kai"
-+ country_italy:t="ef_2000a"
-+ country_france:t="rafale_c_f3"
-+ country_china:t="j_10a"
-+ country_sweden:t="saab_ja37di"
-+ country_israel:t="f_15i_raam"
-+ }
-+ 
-+ mechanics{
-+ 
-+ country_usa{
-+ n:t="unit_hangar_technic_idle_"
-+ n:t="unit_hangar_technic_black_idle_"
-+ n:t="unit_hangar_technic_asian_idle_"
-+ }
-+ 
-+ country_germany{
-+ n:t="unit_hangar_technic_idle_"
-+ }
-+ 
-+ country_ussr{
-+ n:t="unit_hangar_technic_idle_"
-+ }
-+ 
-+ country_britain{
-+ n:t="unit_hangar_technic_idle_"
-+ n:t="unit_hangar_technic_black_idle_"
-+ }
-+ 
-+ country_japan{
-+ n:t="unit_hangar_technic_asian_idle_"
-+ }
-+ 
-+ country_italy{
-+ n:t="unit_hangar_technic_idle_"
-+ }
-+ 
-+ country_france{
-+ n:t="unit_hangar_technic_idle_"
-+ n:t="unit_hangar_technic_black_idle_"
-+ n:t="unit_hangar_technic_asian_idle_"
-+ }
-+ 
-+ country_china{
-+ n:t="unit_hangar_technic_asian_idle_"
-+ }
-+ 
-+ country_sweden{
-+ n:t="unit_hangar_technic_idle_"
-+ }
-+ 
-+ country_israel{
-+ n:t="unit_hangar_technic_idle_"
-+ }
-+ }
-+ 
-+ hangarEffects{
-+ checkHoliday:b=yes
-+ 
-+ hangarEffect{
-+ effect:t="misc_firework"
-+ areaMin:p3=-0.0, 70.0, 300.0
-+ areaMax:p3=200.0, 210.0, 900.0
-+ delay:p2=20.0, 40.0
-+ }
-+ 
-+ hangarEffect{
-+ effect:t="firework_score_ginger"
-+ areaMin:p3=-0.0, 70.0, 300.0
-+ areaMax:p3=200.0, 210.0, 900.0
-+ delay:p2=3.0, 6.0
-+ }
-+ 
-+ hangarEffect{
-+ effect:t="firework_score_turquoise"
-+ areaMin:p3=-0.0, 70.0, 300.0
-+ areaMax:p3=200.0, 210.0, 900.0
-+ delay:p2=4.0, 7.0
-+ }
-+ 
-+ hangarEffect{
-+ effect:t="misc_firework"
-+ areaMin:p3=-375.0, 70.0, -450.0
-+ areaMax:p3=175.0, 140.0, -250.0
-+ delay:p2=20.0, 40.0
-+ }
-+ 
-+ hangarEffect{
-+ effect:t="firework_score_ginger"
-+ areaMin:p3=-375.0, 70.0, -450.0
-+ areaMax:p3=175.0, 140.0, -250.0
-+ delay:p2=3.0, 6.0
-+ }
-+ 
-+ hangarEffect{
-+ effect:t="firework_score_turquoise"
-+ areaMin:p3=-375.0, 70.0, -450.0
-+ areaMax:p3=175.0, 140.0, -250.0
-+ delay:p2=4.0, 7.0
-+ }
-+ 
-+ hangarEffect{
-+ effect:t="misc_firework"
-+ areaMin:p3=-2200.0, 20.0, -100.0
-+ areaMax:p3=-2000.0, 200.0, 300.0
-+ delay:p2=20.0, 40.0
-+ }
-+ 
-+ hangarEffect{
-+ effect:t="firework_score_turquoise"
-+ areaMin:p3=-2200.0, 20.0, -100.0
-+ areaMax:p3=-2000.0, 200.0, 300.0
-+ delay:p2=3.0, 6.0
-+ }
-+ 
-+ hangarEffect{
-+ effect:t="firework_score_ginger"
-+ areaMin:p3=-2200.0, 20.0, -100.0
-+ areaMax:p3=-2000.0, 200.0, 300.0
-+ delay:p2=4.0, 7.0
-+ }
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="xp-55"
-+ weapon:t="xp-55_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_usa"
-+ rank:ip2=1, 2
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="btd-1"
-+ weapon:t="btd_1_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_usa"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="p-51d-20-na"
-+ weapon:t="p-51d-20_6xbazooka"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_usa"
-+ rank:ip2=2, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="a2d"
-+ weapon:t="a2d_10x500lbs"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_usa"
-+ rank:ip2=2, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="f-89b"
-+ weapon:t="f_89_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_usa"
-+ rank:ip2=4, 6
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="f-86f-35"
-+ weapon:t="f_86_hvar_rockets"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_usa"
-+ rank:ip2=4, 6
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="f-5c"
-+ weapon:t="f_5c_rockets_agm_12b"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_usa"
-+ rank:ip2=5, 7
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="a_10a_early"
-+ weapon:t="a_10a_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_usa"
-+ rank:ip2=4, 7
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="f-4s"
-+ weapon:t="f_4s_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_usa"
-+ rank:ip2=5, 7
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="av_8b_na"
-+ weapon:t="av_8b_plus_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_usa"
-+ rank:ip2=4, 7
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ah_64a_greece_usa"
-+ weapon:t="ah_64a_greece_usa_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_usa"
-+ rank:ip2=4, 7
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="f_20a"
-+ weapon:t="f_20a_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_usa"
-+ rank:ip2=5, 8
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="he_112b_1"
-+ weapon:t=""
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_germany"
-+ rank:ip2=1, 1
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ta_154a_1"
-+ weapon:t=""
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_germany"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="fw_190a_5_u14"
-+ weapon:t="fw_190a_5_f5b_torpedo"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_germany"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ju-288c"
-+ weapon:t="Ju-288C_2x1800kg"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_germany"
-+ rank:ip2=2, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="fiat_g91_r4_german"
-+ weapon:t="fiat_g91_r4_4xas20"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_germany"
-+ rank:ip2=4, 6
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ffa_p16"
-+ weapon:t="ffa_p16_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_germany"
-+ rank:ip2=4, 6
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="mig-21_bis_lazur"
-+ weapon:t="mig_21_bis_lazur_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_germany"
-+ rank:ip2=5, 8
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="tornado_ids_de_wtd61"
-+ weapon:t="tornado_ids_de_mfg_fr_mk13_air"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_germany"
-+ rank:ip2=5, 8
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="su_22m4_de_wtd61"
-+ weapon:t="su_22m4_de_wtd61_rocket_r60mk"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_germany"
-+ rank:ip2=5, 8
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="mi_24p_german_hfs80"
-+ weapon:t="mi_24p_german_rocket_c_8_ko"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_germany"
-+ rank:ip2=5, 7
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="i-153p"
-+ weapon:t="I153_rockets_rbs"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=1, 2
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="p-47d_ussr"
-+ weapon:t="P_47D_bombs"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="a_20g_30_ussr"
-+ weapon:t="a_20g_30_45_36_torpedo_x2"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="yak-3_vk107"
-+ weapon:t="Yak3_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=2, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="su_6_single"
-+ weapon:t="su_6_single_rs132"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=2, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="su-11"
-+ weapon:t="su_11_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=3, 5
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="mig-17_cuba"
-+ weapon:t="mig_17_2xr3s_rockets"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=4, 6
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="yak-38"
-+ weapon:t="yak_38_2x_r60"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=4, 7
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="su_25k"
-+ weapon:t="su_25k_sppu_22_b8m_r_60m"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=4, 7
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="mig-21_s"
-+ weapon:t="mig_21_s_4x_r3r"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=5, 7
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="su_25tm"
-+ weapon:t="su_25tm_sppu_22_r60m"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=5, 8
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="mig_23ml"
-+ weapon:t="mig_23ml_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=5, 8
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ka_50"
-+ weapon:t="ka_50_rocket_c_8_ko"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=5, 7
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="corsair_fmk2"
-+ weapon:t="f4u-1a_bomb_1000lb"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_britain"
-+ rank:ip2=1, 2
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="hellcat_fmk1"
-+ weapon:t="f6f-5_rockets_hvar"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_britain"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="thunderbolt_mk1"
-+ weapon:t="p-47d_22_re_1000lbs"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_britain"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="wyvern_s4"
-+ weapon:t="wyvern_s4_torpedo_mk15_16x60lb_rockets"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_britain"
-+ rank:ip2=2, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="dh_110_sea_vixen"
-+ weapon:t="dh110_sea_vixen_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_britain"
-+ rank:ip2=4, 6
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="attaker_fb2"
-+ weapon:t="attaker_fb1_12rockets"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_britain"
-+ rank:ip2=4, 6
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="harrier_gr1"
-+ weapon:t="harrier_gr1_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_britain"
-+ rank:ip2=5, 7
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="lightning_f53"
-+ weapon:t="lightning_f35_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_britain"
-+ rank:ip2=5, 7
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="f-4jk"
-+ weapon:t="f_4jk_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_britain"
-+ rank:ip2=5, 8
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="mig-21_bison"
-+ weapon:t="mig_21_bison_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_britain"
-+ rank:ip2=5, 8
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="g_lynx"
-+ weapon:t="g_lynx_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_britain"
-+ rank:ip2=5, 7
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ah_2_rooivalk"
-+ weapon:t="ah_2_rooivalk_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_britain"
-+ rank:ip2=5, 7
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ki_100_2"
-+ weapon:t="ki_100_2_250kg_2bomb"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_japan"
-+ rank:ip2=1, 2
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="a7m1"
-+ weapon:t="a7m_bombs"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_japan"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="p-51c-11-nt_japan"
-+ weapon:t="p_51c_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_japan"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="j2m5_30mm"
-+ weapon:t=""
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_japan"
-+ rank:ip2=2, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ki_87"
-+ weapon:t="ki_87_250kg_bomb"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_japan"
-+ rank:ip2=2, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="f-86f-40_japan"
-+ weapon:t="f_86_2xaim9"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_japan"
-+ rank:ip2=3, 5
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="av_8s_thailand"
-+ weapon:t="av_8s_thailand_rocket_aero_7"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_japan"
-+ rank:ip2=4, 6
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="f-4ej_adtw"
-+ weapon:t="f_4ej_adtw_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_japan"
-+ rank:ip2=5, 8
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ah_1s"
-+ weapon:t="ah_1s_rocket_8xTOW"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_japan"
-+ rank:ip2=5, 7
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ki-45_hei_tei_china"
-+ weapon:t=""
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_china"
-+ rank:ip2=1, 2
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="a6m2_zero_china"
-+ weapon:t="A6M2_2x60kg"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_china"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="f_47n_25_re_china"
-+ weapon:t="f_47n_25_re_china_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_china"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ki_84_ko_china"
-+ weapon:t="ki_84_250kg_2bomb"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_china"
-+ rank:ip2=2, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="f-84g-31-re_china"
-+ weapon:t="f_84g_32hvar"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_china"
-+ rank:ip2=3, 5
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="mig-17_f5"
-+ weapon:t="mig_17_2xpl2_rockets"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_china"
-+ rank:ip2=4, 5
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="a_5c"
-+ weapon:t="a_5c_4x500kg_bombs"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_china"
-+ rank:ip2=4, 7
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="j_7d"
-+ weapon:t="j_7d_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_china"
-+ rank:ip2=5, 8
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="z_19e"
-+ weapon:t="z_19e_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_china"
-+ rank:ip2=5, 7
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="mi_35m_pakistan"
-+ weapon:t="mi_35m_pakistan_rocket_9M39"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_china"
-+ rank:ip2=5, 7
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="iar_81c"
-+ weapon:t="iar_81c_rockets"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_italy"
-+ rank:ip2=1, 2
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="bf_110g_4_hungary"
-+ weapon:t="bf-110g_4_under_fuse_gun_pod"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_italy"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="g_55s"
-+ weapon:t="g_55s_torpedo"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_italy"
-+ rank:ip2=2, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="fiat_g91_r4"
-+ weapon:t="fiat_g91_r4_4xaim9"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_italy"
-+ rank:ip2=4, 6
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ariete"
-+ weapon:t="sagittario_2_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_italy"
-+ rank:ip2=5, 7
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="amx_a_1a_brazil"
-+ weapon:t="amx_a_1a_brazil_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_italy"
-+ rank:ip2=5, 8
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="mi_24p_hungary"
-+ weapon:t="mi_24p_rocket_c_8_ko"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_italy"
-+ rank:ip2=5, 7
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="p-40f-5_france_ep"
-+ weapon:t="p_40f_bombs"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_france"
-+ rank:ip2=1, 2
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="yak-3_france"
-+ weapon:t=""
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_france"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="douglas_ad_4na_france"
-+ weapon:t="douglas_ad_4na_tyni_tim"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_france"
-+ rank:ip2=2, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="so_8000_narval"
-+ weapon:t="so_8000_narval_rockets_150"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_france"
-+ rank:ip2=2, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="so_4050_vautour_2n"
-+ weapon:t="so_4050_vautour_2n_fr_rockets_as_30"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_france"
-+ rank:ip2=4, 6
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="mirage_f1c_200"
-+ weapon:t="mirage_f1c_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_france"
-+ rank:ip2=5, 8
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="tiger_hap_france"
-+ weapon:t="tiger_hap_france_hot3"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_france"
-+ rank:ip2=5, 7
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ah_64d_netherlands"
-+ weapon:t="ah_64d_netherlands_8_hellfire_hydra_70_atas"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_france"
-+ rank:ip2=5, 7
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="morko_morane"
-+ weapon:t=""
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_sweden"
-+ rank:ip2=1, 2
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="pyorremyrsky"
-+ weapon:t="pyorremyrsky_4x100kg"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_sweden"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="bf-109g-6_finland"
-+ weapon:t="Bf-109G-6_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_sweden"
-+ rank:ip2=2, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="saab_105oe"
-+ weapon:t="saab_105oe_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_sweden"
-+ rank:ip2=4, 6
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="saab_a32a_red_adam"
-+ weapon:t="saab_a32a_red_adam_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_sweden"
-+ rank:ip2=4, 6
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="saab_j35xs"
-+ weapon:t="saab_j35xs_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_sweden"
-+ rank:ip2=5, 7
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="saab_ja37di_f21"
-+ weapon:t="saab_ja37di_rockets_rb99"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_sweden"
-+ rank:ip2=5, 8
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="spitfire_lf_mk9e_weisman"
-+ weapon:t="spitfireIX_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_israel"
-+ rank:ip2=4, 5
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="f-84f_israel_iaf"
-+ weapon:t="f_84f_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_israel"
-+ rank:ip2=4, 5
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="kfir_canard"
-+ weapon:t="kfir_canard_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_israel"
-+ rank:ip2=5, 8
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ah_64a_peten_iaf"
-+ weapon:t="ah_64a_peten_16_hellfire_stinger"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_israel"
-+ rank:ip2=5, 7
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="us_t14"
-+ weapon:t="us_t14_default"
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_usa"
-+ rank:ip2=1, 2
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="us_m4_sherman_calliope"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_usa"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="us_m4a3e2_sherman_jumbo_cobra_king"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_usa"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="us_t29"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_usa"
-+ rank:ip2=2, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="us_t54e1"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_usa"
-+ rank:ip2=3, 5
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="us_t54e2"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_usa"
-+ rank:ip2=3, 5
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="us_m728"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_usa"
-+ rank:ip2=3, 5
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="us_m1128_wolfpack"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_usa"
-+ rank:ip2=4, 8
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="us_m1_abrams_kvt"
-+ weapon:t="us_m1_abrams_kvt_default"
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_usa"
-+ rank:ip2=4, 8
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="us_m1a1_hc_usmc"
-+ weapon:t="us_m1a1_hc_usmc_default"
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_usa"
-+ rank:ip2=4, 8
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="us_rdf_lt"
-+ weapon:t="us_rdf_lt_default"
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_usa"
-+ rank:ip2=4, 8
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ussr_smk"
-+ weapon:t="ussr_smk_default"
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=1, 2
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ussr_t_34_57_1943"
-+ weapon:t="ussr_t_34_57_1943_default"
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ussr_m4a2_76w_sherman"
-+ weapon:t="us_m4a2_76w_sherman_default"
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ussr_is_6"
-+ weapon:t="ussr_is_6_default"
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=2, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ussr_object_120"
-+ weapon:t="ussr_object_120_default"
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=3, 5
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ussr_to_55"
-+ weapon:t="ussr_to_55_default"
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=3, 5
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ussr_bmd_4m"
-+ weapon:t="ussr_bmd_4m_default"
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=4, 7
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ussr_t_55_am"
-+ weapon:t="ussr_t_55_am_default"
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=4, 7
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ussr_object_140"
-+ weapon:t="ussr_object_140_default"
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=4, 7
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ussr_t_72av_turms"
-+ weapon:t="ussr_t_72av_turms_default"
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=4, 8
-+ force:b=yes
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ussr_2s38"
-+ weapon:t="ussr_2s38_default"
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=4, 8
-+ force:b=yes
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ussr_t_80ud"
-+ weapon:t="ussr_t_80ud_default"
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=4, 8
-+ force:b=yes
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ussr_t_80ue1"
-+ weapon:t="ussr_t_80ue1_default"
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=4, 8
-+ force:b=yes
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="germ_t_34_747"
-+ weapon:t="germ_t_34_747_default"
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_germany"
-+ rank:ip2=1, 2
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="germ_panzerbefelhswagen_IV_ausf_J"
-+ weapon:t="germ_pzkpfw_IV_ausf_J_default"
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_germany"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="germ_kv_1_kwk_40"
-+ weapon:t="germ_kv_1_kwk_40_default"
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_germany"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="germ_pzkpfw_VI_ausf_b_tiger_IIh_sla"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_germany"
-+ rank:ip2=2, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="germ_mkpz_m47"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_germany"
-+ rank:ip2=3, 5
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="germ_erprobungstrager_3_achs_turm"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_germany"
-+ rank:ip2=3, 5
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="germ_thyssen_henschel_tam_2ip"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_germany"
-+ rank:ip2=4, 6
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="germ_leopard_a1a1_120"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_germany"
-+ rank:ip2=4, 6
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="germ_leopard_2a4_pzbtl_123"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_germany"
-+ rank:ip2=5, 8
-+ force:b=yes
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="germ_leopard_2a4m_can"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_germany"
-+ rank:ip2=5, 8
-+ force:b=yes
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="uk_crusader_mk_2_the_saint"
-+ weapon:t="uk_crusader_mk_2_default"
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_britain"
-+ rank:ip2=1, 2
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="uk_m4a5_ram_2"
-+ weapon:t="us_m4a5_ram_2_default"
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_britain"
-+ rank:ip2=1, 2
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="uk_ac4_thunderbolt"
-+ weapon:t="uk_ac4_thunderbolt_default"
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_britain"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="uk_sherman_ic_firefly"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_britain"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="uk_centurion_action_x"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_britain"
-+ rank:ip2=2, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="uk_vijayanta"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_britain"
-+ rank:ip2=3, 5
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="uk_khalid"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_britain"
-+ rank:ip2=4, 6
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="uk_challenger_1_mk_3_gulf"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_britain"
-+ rank:ip2=5, 8
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="uk_challenger_2_megatron"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_britain"
-+ rank:ip2=5, 8
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="jp_type_1_chi_he_5th_regiment"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_japan"
-+ rank:ip2=1, 2
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="jp_type_3_chi_nu_75cm_type_5"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_japan"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="jp_type_5_ho_ri_prototype"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_japan"
-+ rank:ip2=2, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="jp_type_75_mlrs"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_japan"
-+ rank:ip2=3, 5
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="jp_type_74_mod_g_kai"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_japan"
-+ rank:ip2=4, 6
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="jp_type_16_mod"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_japan"
-+ rank:ip2=4, 6
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="jp_type_90b_camo"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_japan"
-+ rank:ip2=5, 8
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="cn_m4a4_sherman_1st_ptg"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_china"
-+ rank:ip2=1, 2
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="cn_m41_a3_walker_bulldog"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_china"
-+ rank:ip2=2, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="cn_t_34_85_zis_53_no215"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_china"
-+ rank:ip2=2, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="cn_is_2_1943_no402"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_china"
-+ rank:ip2=2, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="cn_ztz_59a"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_china"
-+ rank:ip2=3, 5
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="cn_wma_301"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_china"
-+ rank:ip2=4, 6
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="cn_ztz_96a_prot"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_china"
-+ rank:ip2=5, 8
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="cn_al_khalid_1"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_china"
-+ rank:ip2=4, 8
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="it_m14_41_47_40"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_italy"
-+ rank:ip2=1, 2
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="it_sahariano"
-+ weapon:t="it_sahariano_default"
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_italy"
-+ rank:ip2=1, 2
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="it_sherman_75_37"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_italy"
-+ rank:ip2=1, 2
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="it_m26_ariete"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_italy"
-+ rank:ip2=2, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="it_of_40_mtca"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_italy"
-+ rank:ip2=4, 6
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="it_centauro_rgo_120"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_italy"
-+ rank:ip2=5, 8
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="fr_b1_ter"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_france"
-+ rank:ip2=1, 2
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="fr_amx_13_chaffee"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_france"
-+ rank:ip2=1, 2
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="fr_m4a1_sherman_fl_10"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_france"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="fr_somua_sm"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_france"
-+ rank:ip2=2, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="fr_pzkpfw_V_panther_dauphine"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_france"
-+ rank:ip2=2, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="fr_amx_30_super"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_france"
-+ rank:ip2=4, 6
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="fr_vbci2_mct30"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_france"
-+ rank:ip2=4, 8
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="sw_sav_fm48"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_sweden"
-+ rank:ip2=1, 2
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="sw_sherman_3_4"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_sweden"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="sw_kv_1_1942_fin"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_sweden"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="sw_strv_103_0"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_sweden"
-+ rank:ip2=3, 5
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="sw_k9_vidar"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_sweden"
-+ rank:ip2=3, 5
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="sw_leopard_1a5no"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_sweden"
-+ rank:ip2=4, 6
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="sw_cv_9035_dk"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_sweden"
-+ rank:ip2=4, 6
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="sw_cv_90105_tml"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_sweden"
-+ rank:ip2=4, 8
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="sw_strv121b_christian2"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_sweden"
-+ rank:ip2=4, 8
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="il_m_51_w"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_israel"
-+ rank:ip2=4, 5
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="il_magach_3"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_israel"
-+ rank:ip2=4, 5
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="il_centurion_shot_kal_d"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_israel"
-+ rank:ip2=5, 6
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="il_merkava_mk_3_raam_segol"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_israel"
-+ rank:ip2=6, 8
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="us_pc_466_carmi"
-+ weapon:t="us_pc_466_carmi_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_usa"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="us_elco_80ft_pt174"
-+ weapon:t="torpedoes"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_usa"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="us_destroyer_porter_1942"
-+ weapon:t="us_destroyer_porter_1942_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_usa"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="us_destroyer_gearing_frank_knox"
-+ weapon:t="us_destroyer_gearing_frank_knox_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_usa"
-+ rank:ip2=1, 3
-+ force:b=yes
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="us_cruiser_brooklyn_class_helena"
-+ weapon:t="us_cruiser_brooklyn_class_helena_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_usa"
-+ rank:ip2=3, 5
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="us_ashville_class_douglas"
-+ weapon:t="us_ashville_class_douglas_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_usa"
-+ rank:ip2=3, 5
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="us_cruiser_des_moines_class"
-+ weapon:t="us_cruiser_des_moines_class_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_usa"
-+ rank:ip2=3, 5
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="us_battleship_arkansas"
-+ weapon:t="us_battleship_arkansas_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_usa"
-+ rank:ip2=4, 6
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="germ_escort_typem1943"
-+ weapon:t="wbg_mortar"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_germany"
-+ rank:ip2=1, 5
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="germ_destroyer_fletcher_zerstorer4"
-+ weapon:t="torpedoes"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_germany"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="germ_destroyer_class1936c_z47"
-+ weapon:t="germ_destroyer_class1936c_z47_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_germany"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="germ_cruiser_karlsruhe"
-+ weapon:t="germ_cruiser_karlsruhe_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_germany"
-+ rank:ip2=3, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="germ_battleship_nassau"
-+ weapon:t="germ_battleship_nassau_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_germany"
-+ rank:ip2=4, 6
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ussr_pr_1204"
-+ weapon:t="ussr_pr_1204_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=1, 2
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ussr_mkl_186_mk85"
-+ weapon:t="ussr_mkl_186_mk85_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=2, 5
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ussr_mpk_pr12412p"
-+ weapon:t="ussr_mpk_pr12412p_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=3, 5
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ussr_skr_pr50plo_rosomacha"
-+ weapon:t="ussr_skr_pr50plo_rosomacha_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=3, 5
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ussr_destroyer_pr30bis_smelyi"
-+ weapon:t="ussr_destroyer_pr30bis_smelyi_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=1, 2
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ussr_destroyer_pr56_blagorodny"
-+ weapon:t="ussr_destroyer_pr56_blagorodny_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ussr_cruiser_kerch"
-+ weapon:t="ussr_cruiser_kerch_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=2, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ussr_cruiser_zheleznyakov"
-+ weapon:t="ussr_cruiser_zheleznyakov_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=2, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ussr_battleship_marat"
-+ weapon:t="ussr_battleship_marat_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=4, 6
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="uk_71ft_mgb"
-+ weapon:t="mk_vii_depth_charges"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_britain"
-+ rank:ip2=1, 2
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="uk_corvette_orla"
-+ weapon:t="uk_corvette_orla_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_britain"
-+ rank:ip2=3, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="uk_frigate_whitby"
-+ weapon:t="uk_frigate_whitby_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_britain"
-+ rank:ip2=2, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="uk_destroyer_j_class"
-+ weapon:t="uk_destroyer_j_class_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_britain"
-+ rank:ip2=1, 2
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="uk_destroyer_daring_class_diamond"
-+ weapon:t="uk_destroyer_daring_class_diamond_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_britain"
-+ rank:ip2=2, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="uk_cruiser_belfast"
-+ weapon:t="uk_cruiser_belfast_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_britain"
-+ rank:ip2=2, 5
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="jp_pg02"
-+ weapon:t="srboc_smoke_grenades_launcher"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_japan"
-+ rank:ip2=1, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="jp_escort_akebono_class"
-+ weapon:t="bomb_mortar_depth_charges"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_japan"
-+ rank:ip2=1, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="jp_destroyer_harukaze"
-+ weapon:t="jp_destroyer_harukaze_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_japan"
-+ rank:ip2=1, 2
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="jp_destroyer_nenohi"
-+ weapon:t="jp_destroyer_nenohi_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_japan"
-+ rank:ip2=1, 2
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="jp_cruiser_yubari"
-+ weapon:t="jp_cruiser_yubari_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_japan"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="jp_cruiser_mogami_mikuma"
-+ weapon:t="jp_cruiser_mogami_mikuma_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_japan"
-+ rank:ip2=2, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="jp_battleship_yamashiro"
-+ weapon:t="jp_battleship_yamashiro_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_japan"
-+ rank:ip2=4, 6
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="it_p420_sparviero"
-+ weapon:t="it_p420_sparviero_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_italy"
-+ rank:ip2=1, 5
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="it_ms444"
-+ weapon:t="it_ms444_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_italy"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="it_destroyer_leone_class_tigre"
-+ weapon:t="it_destroyer_leone_class_tigre_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_italy"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="it_destroyer_fletcher_geniere"
-+ weapon:t="it_destroyer_fletcher_geniere_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_italy"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="it_gabbiano_class_c16"
-+ weapon:t="it_gabbiano_class_c16_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_italy"
-+ rank:ip2=2, 4
-+ force:b=yes
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="it_cruiser_zara_class_pola"
-+ weapon:t="it_cruiser_zara_class_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_italy"
-+ rank:ip2=2, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="it_battleship_leonardo_da_vinci"
-+ weapon:t="it_battleship_leonardo_da_vinci_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_italy"
-+ rank:ip2=4, 6
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="fr_destroyer_aigle_class_aigle"
-+ weapon:t="fr_destroyer_aigle_class_aigle_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_france"
-+ rank:ip2=1, 2
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="fr_cruiser_dugauy_class_dugauy_trouin"
-+ weapon:t="it_cruiser_zara_class_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_france"
-+ rank:ip2=2, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="fr_cruiser_suffren_class_dupleix"
-+ weapon:t="fr_cruiser_suffren_class_dupleix_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_france"
-+ rank:ip2=2, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="fr_battleship_courbet_class_courbet"
-+ weapon:t="fr_battleship_courbet_class_courbet_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_france"
-+ rank:ip2=4, 6
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="fr_vlt2"
-+ weapon:t="fr_vlt2_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_france"
-+ rank:ip2=2, 4
-```
-
-  **Removed**:
-```diff
-- newYearHangar:b=yes
-- level:t="levels/hangar_field_winter.bin"
-- hangarMission:t="gameData/scenes/hangar_field_mission_winter.blk"
-- aurora_borealis{
-- enabled:b=yes
-- top_height:r=10.0
-- top_color:p3=0.1, 0.1, 1.4
-- bottom_height:r=7.0
-- bottom_color:p3=0.1, 1.3, 0.1
-- brightness:r=2.15
-- speed:r=0.018
-- luminance:r=22.0
-- ripples_scale:r=8.6
-- ripples_speed:r=0.04
-- ripples_strength:r=0.83
-- }
-- 
-- env:t="9.024"
-- weight:r=7.0
-- env{
-- env:t="2.064"
-- weight:r=3.0
-- compatibilityWeight:r=0.0
-- }
-- 
-- country_usa:t="us_m1a2_sep2_abrams"
-- country_germany:t="germ_leopard_2a7v"
-- country_ussr:t="ussr_t_90m_2020"
-- country_britain:t="uk_challenger_2_lep"
-- country_japan:t="jp_type_99"
-- country_china:t="cn_vt_4b"
-- country_italy:t="it_m109g"
-- country_france:t="fr_leclerc_azur"
-- country_sweden:t="sw_strv_122b_plus"
-- country_israel:t="il_m109a1"
-- country_usa:t="us_hstv_l"
-- country_germany:t="germ_schutzenpanzer_puma"
-- country_ussr:t="ussr_2s25m"
-- country_britain:t="uk_vickers_mk_11"
-- country_japan:t="jp_type_81_tansam"
-- country_china:t="cn_ztl_11"
-- country_italy:t="it_centauro_mgs_120"
-- country_france:t="fr_tpk_641_vpc"
-- country_sweden:t="sw_strf_90c"
-- country_israel:t="il_m113a1_tow"
-- country_usa:t="f_15a"
-- country_germany:t="tornado_ids_de_assta1"
-- country_ussr:t="su_27"
-- country_britain:t="tornado_f3"
-- country_japan:t="f_15j"
-- country_italy:t="tornado_adv"
-- country_france:t="mirage_4000"
-- country_china:t="j_11"
-- country_sweden:t="saab_jas39a"
-- country_israel:t="f_15a_iaf"
-```
-
-
-- **aces.vromfs.bin_u/config/hangar_xboxone.blkx**:
-
-  **Added**:
-```diff
-+ level:t="levels/hangar_field.bin"
-+ hangarMission:t="gameData/scenes/hangar_field_mission.blk"
-+ env{
-+ env:t="14.5"
-+ weight:r=10.0
-+ compatibilityWeight:r=1.0
-+ }
-+ 
-+ country_usa:t="us_m1a1_hc_usmc"
-+ country_germany:t="germ_pzh_2000"
-+ country_ussr:t="ussr_object_140"
-+ country_britain:t="uk_challenger_2_megatron"
-+ country_japan:t="jp_tkx_prot"
-+ country_china:t="cn_plz_05"
-+ country_italy:t="it_pzh_2000_hu"
-+ country_france:t="fr_leopard_2a6nl"
-+ country_sweden:t="sw_leopard_2a6nl"
-+ country_israel:t="il_sabra_mk1"
-+ country_usa:t="us_rdf_lt"
-+ country_germany:t="germ_m44"
-+ country_ussr:t="ussr_bmd_4m"
-+ country_britain:t="uk_9a35_m"
-+ country_japan:t="jp_m44"
-+ country_china:t="cn_hq_17"
-+ country_italy:t="it_9a35_m"
-+ country_france:t="fr_vbci"
-+ country_sweden:t="sw_cv_90_mk4"
-+ country_israel:t="il_namer_tsrikhon"
-+ country_usa:t="f_15e"
-+ country_germany:t="ef_2000_block_10"
-+ country_ussr:t="su_33"
-+ country_britain:t="ef_2000_fgr4"
-+ country_japan:t="f_15j_kai"
-+ country_italy:t="ef_2000a"
-+ country_france:t="rafale_c_f3"
-+ country_china:t="j_10a"
-+ country_sweden:t="saab_ja37di"
-+ country_israel:t="f_15i_raam"
-+ mechanics{
-+ 
-+ country_usa{
-+ n:t="unit_hangar_technic_idle_"
-+ n:t="unit_hangar_technic_black_idle_"
-+ n:t="unit_hangar_technic_asian_idle_"
-+ }
-+ 
-+ country_germany{
-+ n:t="unit_hangar_technic_idle_"
-+ }
-+ 
-+ country_ussr{
-+ n:t="unit_hangar_technic_idle_"
-+ }
-+ 
-+ country_britain{
-+ n:t="unit_hangar_technic_idle_"
-+ n:t="unit_hangar_technic_black_idle_"
-+ }
-+ 
-+ country_japan{
-+ n:t="unit_hangar_technic_asian_idle_"
-+ }
-+ 
-+ country_italy{
-+ n:t="unit_hangar_technic_idle_"
-+ }
-+ 
-+ country_france{
-+ n:t="unit_hangar_technic_idle_"
-+ n:t="unit_hangar_technic_black_idle_"
-+ n:t="unit_hangar_technic_asian_idle_"
-+ }
-+ 
-+ country_china{
-+ n:t="unit_hangar_technic_asian_idle_"
-+ }
-+ 
-+ country_sweden{
-+ n:t="unit_hangar_technic_idle_"
-+ }
-+ 
-+ country_israel{
-+ n:t="unit_hangar_technic_idle_"
-+ }
-+ }
-+ 
-+ hangarEffects{
-+ checkHoliday:b=yes
-+ 
-+ hangarEffect{
-+ effect:t="misc_firework"
-+ areaMin:p3=-0.0, 70.0, 300.0
-+ areaMax:p3=200.0, 210.0, 900.0
-+ delay:p2=20.0, 40.0
-+ }
-+ 
-+ hangarEffect{
-+ effect:t="firework_score_ginger"
-+ areaMin:p3=-0.0, 70.0, 300.0
-+ areaMax:p3=200.0, 210.0, 900.0
-+ delay:p2=3.0, 6.0
-+ }
-+ 
-+ hangarEffect{
-+ effect:t="firework_score_turquoise"
-+ areaMin:p3=-0.0, 70.0, 300.0
-+ areaMax:p3=200.0, 210.0, 900.0
-+ delay:p2=4.0, 7.0
-+ }
-+ 
-+ hangarEffect{
-+ effect:t="misc_firework"
-+ areaMin:p3=-375.0, 70.0, -450.0
-+ areaMax:p3=175.0, 140.0, -250.0
-+ delay:p2=20.0, 40.0
-+ }
-+ 
-+ hangarEffect{
-+ effect:t="firework_score_ginger"
-+ areaMin:p3=-375.0, 70.0, -450.0
-+ areaMax:p3=175.0, 140.0, -250.0
-+ delay:p2=3.0, 6.0
-+ }
-+ 
-+ hangarEffect{
-+ effect:t="firework_score_turquoise"
-+ areaMin:p3=-375.0, 70.0, -450.0
-+ areaMax:p3=175.0, 140.0, -250.0
-+ delay:p2=4.0, 7.0
-+ }
-+ 
-+ hangarEffect{
-+ effect:t="misc_firework"
-+ areaMin:p3=-2200.0, 20.0, -100.0
-+ areaMax:p3=-2000.0, 200.0, 300.0
-+ delay:p2=20.0, 40.0
-+ }
-+ 
-+ hangarEffect{
-+ effect:t="firework_score_turquoise"
-+ areaMin:p3=-2200.0, 20.0, -100.0
-+ areaMax:p3=-2000.0, 200.0, 300.0
-+ delay:p2=3.0, 6.0
-+ }
-+ 
-+ hangarEffect{
-+ effect:t="firework_score_ginger"
-+ areaMin:p3=-2200.0, 20.0, -100.0
-+ areaMax:p3=-2000.0, 200.0, 300.0
-+ delay:p2=4.0, 7.0
-+ }
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="xp-55"
-+ weapon:t="xp-55_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_usa"
-+ rank:ip2=1, 2
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="btd-1"
-+ weapon:t="btd_1_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_usa"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="p-51d-20-na"
-+ weapon:t="p-51d-20_6xbazooka"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_usa"
-+ rank:ip2=2, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="a2d"
-+ weapon:t="a2d_10x500lbs"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_usa"
-+ rank:ip2=2, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="f-89b"
-+ weapon:t="f_89_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_usa"
-+ rank:ip2=4, 6
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="f-86f-35"
-+ weapon:t="f_86_hvar_rockets"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_usa"
-+ rank:ip2=4, 6
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="f-5c"
-+ weapon:t="f_5c_rockets_agm_12b"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_usa"
-+ rank:ip2=5, 7
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="a_10a_early"
-+ weapon:t="a_10a_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_usa"
-+ rank:ip2=4, 7
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="f-4s"
-+ weapon:t="f_4s_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_usa"
-+ rank:ip2=5, 7
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="av_8b_na"
-+ weapon:t="av_8b_plus_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_usa"
-+ rank:ip2=4, 7
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ah_64a_greece_usa"
-+ weapon:t="ah_64a_greece_usa_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_usa"
-+ rank:ip2=4, 7
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="f_20a"
-+ weapon:t="f_20a_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_usa"
-+ rank:ip2=5, 8
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="he_112b_1"
-+ weapon:t=""
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_germany"
-+ rank:ip2=1, 1
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ta_154a_1"
-+ weapon:t=""
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_germany"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="fw_190a_5_u14"
-+ weapon:t="fw_190a_5_f5b_torpedo"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_germany"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ju-288c"
-+ weapon:t="Ju-288C_2x1800kg"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_germany"
-+ rank:ip2=2, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="fiat_g91_r4_german"
-+ weapon:t="fiat_g91_r4_4xas20"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_germany"
-+ rank:ip2=4, 6
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ffa_p16"
-+ weapon:t="ffa_p16_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_germany"
-+ rank:ip2=4, 6
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="mig-21_bis_lazur"
-+ weapon:t="mig_21_bis_lazur_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_germany"
-+ rank:ip2=5, 8
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="tornado_ids_de_wtd61"
-+ weapon:t="tornado_ids_de_mfg_fr_mk13_air"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_germany"
-+ rank:ip2=5, 8
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="su_22m4_de_wtd61"
-+ weapon:t="su_22m4_de_wtd61_rocket_r60mk"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_germany"
-+ rank:ip2=5, 8
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="mi_24p_german_hfs80"
-+ weapon:t="mi_24p_german_rocket_c_8_ko"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_germany"
-+ rank:ip2=5, 7
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="i-153p"
-+ weapon:t="I153_rockets_rbs"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=1, 2
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="p-47d_ussr"
-+ weapon:t="P_47D_bombs"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="a_20g_30_ussr"
-+ weapon:t="a_20g_30_45_36_torpedo_x2"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="yak-3_vk107"
-+ weapon:t="Yak3_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=2, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="su_6_single"
-+ weapon:t="su_6_single_rs132"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=2, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="su-11"
-+ weapon:t="su_11_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=3, 5
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="mig-17_cuba"
-+ weapon:t="mig_17_2xr3s_rockets"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=4, 6
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="yak-38"
-+ weapon:t="yak_38_2x_r60"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=4, 7
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="su_25k"
-+ weapon:t="su_25k_sppu_22_b8m_r_60m"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=4, 7
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="mig-21_s"
-+ weapon:t="mig_21_s_4x_r3r"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=5, 7
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="su_25tm"
-+ weapon:t="su_25tm_sppu_22_r60m"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=5, 8
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="mig_23ml"
-+ weapon:t="mig_23ml_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=5, 8
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ka_50"
-+ weapon:t="ka_50_rocket_c_8_ko"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=5, 7
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="corsair_fmk2"
-+ weapon:t="f4u-1a_bomb_1000lb"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_britain"
-+ rank:ip2=1, 2
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="hellcat_fmk1"
-+ weapon:t="f6f-5_rockets_hvar"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_britain"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="thunderbolt_mk1"
-+ weapon:t="p-47d_22_re_1000lbs"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_britain"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="wyvern_s4"
-+ weapon:t="wyvern_s4_torpedo_mk15_16x60lb_rockets"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_britain"
-+ rank:ip2=2, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="dh_110_sea_vixen"
-+ weapon:t="dh110_sea_vixen_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_britain"
-+ rank:ip2=4, 6
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="attaker_fb2"
-+ weapon:t="attaker_fb1_12rockets"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_britain"
-+ rank:ip2=4, 6
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="harrier_gr1"
-+ weapon:t="harrier_gr1_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_britain"
-+ rank:ip2=5, 7
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="lightning_f53"
-+ weapon:t="lightning_f35_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_britain"
-+ rank:ip2=5, 7
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="f-4jk"
-+ weapon:t="f_4jk_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_britain"
-+ rank:ip2=5, 8
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="mig-21_bison"
-+ weapon:t="mig_21_bison_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_britain"
-+ rank:ip2=5, 8
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="g_lynx"
-+ weapon:t="g_lynx_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_britain"
-+ rank:ip2=5, 7
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ah_2_rooivalk"
-+ weapon:t="ah_2_rooivalk_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_britain"
-+ rank:ip2=5, 7
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ki_100_2"
-+ weapon:t="ki_100_2_250kg_2bomb"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_japan"
-+ rank:ip2=1, 2
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="a7m1"
-+ weapon:t="a7m_bombs"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_japan"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="p-51c-11-nt_japan"
-+ weapon:t="p_51c_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_japan"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="j2m5_30mm"
-+ weapon:t=""
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_japan"
-+ rank:ip2=2, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ki_87"
-+ weapon:t="ki_87_250kg_bomb"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_japan"
-+ rank:ip2=2, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="f-86f-40_japan"
-+ weapon:t="f_86_2xaim9"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_japan"
-+ rank:ip2=3, 5
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="av_8s_thailand"
-+ weapon:t="av_8s_thailand_rocket_aero_7"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_japan"
-+ rank:ip2=4, 6
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="f-4ej_adtw"
-+ weapon:t="f_4ej_adtw_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_japan"
-+ rank:ip2=5, 8
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ah_1s"
-+ weapon:t="ah_1s_rocket_8xTOW"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_japan"
-+ rank:ip2=5, 7
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ki-45_hei_tei_china"
-+ weapon:t=""
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_china"
-+ rank:ip2=1, 2
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="a6m2_zero_china"
-+ weapon:t="A6M2_2x60kg"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_china"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="f_47n_25_re_china"
-+ weapon:t="f_47n_25_re_china_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_china"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ki_84_ko_china"
-+ weapon:t="ki_84_250kg_2bomb"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_china"
-+ rank:ip2=2, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="f-84g-31-re_china"
-+ weapon:t="f_84g_32hvar"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_china"
-+ rank:ip2=3, 5
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="mig-17_f5"
-+ weapon:t="mig_17_2xpl2_rockets"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_china"
-+ rank:ip2=4, 5
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="a_5c"
-+ weapon:t="a_5c_4x500kg_bombs"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_china"
-+ rank:ip2=4, 7
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="j_7d"
-+ weapon:t="j_7d_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_china"
-+ rank:ip2=5, 8
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="z_19e"
-+ weapon:t="z_19e_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_china"
-+ rank:ip2=5, 7
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="mi_35m_pakistan"
-+ weapon:t="mi_35m_pakistan_rocket_9M39"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_china"
-+ rank:ip2=5, 7
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="iar_81c"
-+ weapon:t="iar_81c_rockets"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_italy"
-+ rank:ip2=1, 2
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="bf_110g_4_hungary"
-+ weapon:t="bf-110g_4_under_fuse_gun_pod"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_italy"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="g_55s"
-+ weapon:t="g_55s_torpedo"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_italy"
-+ rank:ip2=2, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="fiat_g91_r4"
-+ weapon:t="fiat_g91_r4_4xaim9"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_italy"
-+ rank:ip2=4, 6
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ariete"
-+ weapon:t="sagittario_2_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_italy"
-+ rank:ip2=5, 7
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="amx_a_1a_brazil"
-+ weapon:t="amx_a_1a_brazil_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_italy"
-+ rank:ip2=5, 8
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="mi_24p_hungary"
-+ weapon:t="mi_24p_rocket_c_8_ko"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_italy"
-+ rank:ip2=5, 7
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="p-40f-5_france_ep"
-+ weapon:t="p_40f_bombs"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_france"
-+ rank:ip2=1, 2
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="yak-3_france"
-+ weapon:t=""
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_france"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="douglas_ad_4na_france"
-+ weapon:t="douglas_ad_4na_tyni_tim"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_france"
-+ rank:ip2=2, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="so_8000_narval"
-+ weapon:t="so_8000_narval_rockets_150"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_france"
-+ rank:ip2=2, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="so_4050_vautour_2n"
-+ weapon:t="so_4050_vautour_2n_fr_rockets_as_30"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_france"
-+ rank:ip2=4, 6
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="mirage_f1c_200"
-+ weapon:t="mirage_f1c_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_france"
-+ rank:ip2=5, 8
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="tiger_hap_france"
-+ weapon:t="tiger_hap_france_hot3"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_france"
-+ rank:ip2=5, 7
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ah_64d_netherlands"
-+ weapon:t="ah_64d_netherlands_8_hellfire_hydra_70_atas"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_france"
-+ rank:ip2=5, 7
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="morko_morane"
-+ weapon:t=""
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_sweden"
-+ rank:ip2=1, 2
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="pyorremyrsky"
-+ weapon:t="pyorremyrsky_4x100kg"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_sweden"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="bf-109g-6_finland"
-+ weapon:t="Bf-109G-6_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_sweden"
-+ rank:ip2=2, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="saab_105oe"
-+ weapon:t="saab_105oe_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_sweden"
-+ rank:ip2=4, 6
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="saab_a32a_red_adam"
-+ weapon:t="saab_a32a_red_adam_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_sweden"
-+ rank:ip2=4, 6
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="saab_j35xs"
-+ weapon:t="saab_j35xs_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_sweden"
-+ rank:ip2=5, 7
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="saab_ja37di_f21"
-+ weapon:t="saab_ja37di_rockets_rb99"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_sweden"
-+ rank:ip2=5, 8
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="spitfire_lf_mk9e_weisman"
-+ weapon:t="spitfireIX_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_israel"
-+ rank:ip2=4, 5
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="f-84f_israel_iaf"
-+ weapon:t="f_84f_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_israel"
-+ rank:ip2=4, 5
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="kfir_canard"
-+ weapon:t="kfir_canard_default"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_israel"
-+ rank:ip2=5, 8
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ah_64a_peten_iaf"
-+ weapon:t="ah_64a_peten_16_hellfire_stinger"
-+ type:t="plane"
-+ skin:t=""
-+ country:t="country_israel"
-+ rank:ip2=5, 7
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="us_t14"
-+ weapon:t="us_t14_default"
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_usa"
-+ rank:ip2=1, 2
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="us_m4_sherman_calliope"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_usa"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="us_m4a3e2_sherman_jumbo_cobra_king"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_usa"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="us_t29"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_usa"
-+ rank:ip2=2, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="us_t54e1"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_usa"
-+ rank:ip2=3, 5
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="us_t54e2"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_usa"
-+ rank:ip2=3, 5
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="us_m728"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_usa"
-+ rank:ip2=3, 5
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="us_m1128_wolfpack"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_usa"
-+ rank:ip2=4, 8
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="us_m1_abrams_kvt"
-+ weapon:t="us_m1_abrams_kvt_default"
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_usa"
-+ rank:ip2=4, 8
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="us_m1a1_hc_usmc"
-+ weapon:t="us_m1a1_hc_usmc_default"
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_usa"
-+ rank:ip2=4, 8
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="us_rdf_lt"
-+ weapon:t="us_rdf_lt_default"
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_usa"
-+ rank:ip2=4, 8
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ussr_smk"
-+ weapon:t="ussr_smk_default"
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=1, 2
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ussr_t_34_57_1943"
-+ weapon:t="ussr_t_34_57_1943_default"
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ussr_m4a2_76w_sherman"
-+ weapon:t="us_m4a2_76w_sherman_default"
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ussr_is_6"
-+ weapon:t="ussr_is_6_default"
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=2, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ussr_object_120"
-+ weapon:t="ussr_object_120_default"
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=3, 5
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ussr_to_55"
-+ weapon:t="ussr_to_55_default"
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=3, 5
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ussr_bmd_4m"
-+ weapon:t="ussr_bmd_4m_default"
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=4, 7
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ussr_t_55_am"
-+ weapon:t="ussr_t_55_am_default"
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=4, 7
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ussr_object_140"
-+ weapon:t="ussr_object_140_default"
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=4, 7
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ussr_t_72av_turms"
-+ weapon:t="ussr_t_72av_turms_default"
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=4, 8
-+ force:b=yes
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ussr_2s38"
-+ weapon:t="ussr_2s38_default"
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=4, 8
-+ force:b=yes
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ussr_t_80ud"
-+ weapon:t="ussr_t_80ud_default"
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=4, 8
-+ force:b=yes
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ussr_t_80ue1"
-+ weapon:t="ussr_t_80ue1_default"
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=4, 8
-+ force:b=yes
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="germ_t_34_747"
-+ weapon:t="germ_t_34_747_default"
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_germany"
-+ rank:ip2=1, 2
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="germ_panzerbefelhswagen_IV_ausf_J"
-+ weapon:t="germ_pzkpfw_IV_ausf_J_default"
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_germany"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="germ_kv_1_kwk_40"
-+ weapon:t="germ_kv_1_kwk_40_default"
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_germany"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="germ_pzkpfw_VI_ausf_b_tiger_IIh_sla"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_germany"
-+ rank:ip2=2, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="germ_mkpz_m47"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_germany"
-+ rank:ip2=3, 5
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="germ_erprobungstrager_3_achs_turm"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_germany"
-+ rank:ip2=3, 5
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="germ_thyssen_henschel_tam_2ip"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_germany"
-+ rank:ip2=4, 6
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="germ_leopard_a1a1_120"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_germany"
-+ rank:ip2=4, 6
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="germ_leopard_2a4_pzbtl_123"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_germany"
-+ rank:ip2=5, 8
-+ force:b=yes
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="germ_leopard_2a4m_can"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_germany"
-+ rank:ip2=5, 8
-+ force:b=yes
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="uk_crusader_mk_2_the_saint"
-+ weapon:t="uk_crusader_mk_2_default"
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_britain"
-+ rank:ip2=1, 2
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="uk_m4a5_ram_2"
-+ weapon:t="us_m4a5_ram_2_default"
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_britain"
-+ rank:ip2=1, 2
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="uk_ac4_thunderbolt"
-+ weapon:t="uk_ac4_thunderbolt_default"
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_britain"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="uk_sherman_ic_firefly"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_britain"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="uk_centurion_action_x"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_britain"
-+ rank:ip2=2, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="uk_vijayanta"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_britain"
-+ rank:ip2=3, 5
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="uk_khalid"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_britain"
-+ rank:ip2=4, 6
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="uk_challenger_1_mk_3_gulf"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_britain"
-+ rank:ip2=5, 8
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="uk_challenger_2_megatron"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_britain"
-+ rank:ip2=5, 8
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="jp_type_1_chi_he_5th_regiment"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_japan"
-+ rank:ip2=1, 2
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="jp_type_3_chi_nu_75cm_type_5"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_japan"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="jp_type_5_ho_ri_prototype"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_japan"
-+ rank:ip2=2, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="jp_type_75_mlrs"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_japan"
-+ rank:ip2=3, 5
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="jp_type_74_mod_g_kai"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_japan"
-+ rank:ip2=4, 6
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="jp_type_16_mod"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_japan"
-+ rank:ip2=4, 6
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="jp_type_90b_camo"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_japan"
-+ rank:ip2=5, 8
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="cn_m4a4_sherman_1st_ptg"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_china"
-+ rank:ip2=1, 2
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="cn_m41_a3_walker_bulldog"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_china"
-+ rank:ip2=2, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="cn_t_34_85_zis_53_no215"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_china"
-+ rank:ip2=2, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="cn_is_2_1943_no402"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_china"
-+ rank:ip2=2, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="cn_ztz_59a"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_china"
-+ rank:ip2=3, 5
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="cn_wma_301"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_china"
-+ rank:ip2=4, 6
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="cn_ztz_96a_prot"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_china"
-+ rank:ip2=5, 8
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="cn_al_khalid_1"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_china"
-+ rank:ip2=4, 8
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="it_m14_41_47_40"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_italy"
-+ rank:ip2=1, 2
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="it_sahariano"
-+ weapon:t="it_sahariano_default"
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_italy"
-+ rank:ip2=1, 2
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="it_sherman_75_37"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_italy"
-+ rank:ip2=1, 2
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="it_m26_ariete"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_italy"
-+ rank:ip2=2, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="it_of_40_mtca"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_italy"
-+ rank:ip2=4, 6
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="it_centauro_rgo_120"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_italy"
-+ rank:ip2=5, 8
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="fr_b1_ter"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_france"
-+ rank:ip2=1, 2
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="fr_amx_13_chaffee"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_france"
-+ rank:ip2=1, 2
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="fr_m4a1_sherman_fl_10"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_france"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="fr_somua_sm"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_france"
-+ rank:ip2=2, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="fr_pzkpfw_V_panther_dauphine"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_france"
-+ rank:ip2=2, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="fr_amx_30_super"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_france"
-+ rank:ip2=4, 6
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="fr_vbci2_mct30"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_france"
-+ rank:ip2=4, 8
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="sw_sav_fm48"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_sweden"
-+ rank:ip2=1, 2
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="sw_sherman_3_4"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_sweden"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="sw_kv_1_1942_fin"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_sweden"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="sw_strv_103_0"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_sweden"
-+ rank:ip2=3, 5
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="sw_k9_vidar"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_sweden"
-+ rank:ip2=3, 5
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="sw_leopard_1a5no"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_sweden"
-+ rank:ip2=4, 6
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="sw_cv_9035_dk"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_sweden"
-+ rank:ip2=4, 6
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="sw_cv_90105_tml"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_sweden"
-+ rank:ip2=4, 8
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="sw_strv121b_christian2"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_sweden"
-+ rank:ip2=4, 8
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="il_m_51_w"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_israel"
-+ rank:ip2=4, 5
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="il_magach_3"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_israel"
-+ rank:ip2=4, 5
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="il_centurion_shot_kal_d"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_israel"
-+ rank:ip2=5, 6
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="il_merkava_mk_3_raam_segol"
-+ weapon:t=""
-+ type:t="tank"
-+ skin:t=""
-+ country:t="country_israel"
-+ rank:ip2=6, 8
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="us_pc_466_carmi"
-+ weapon:t="us_pc_466_carmi_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_usa"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="us_elco_80ft_pt174"
-+ weapon:t="torpedoes"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_usa"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="us_destroyer_porter_1942"
-+ weapon:t="us_destroyer_porter_1942_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_usa"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="us_destroyer_gearing_frank_knox"
-+ weapon:t="us_destroyer_gearing_frank_knox_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_usa"
-+ rank:ip2=1, 3
-+ force:b=yes
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="us_cruiser_brooklyn_class_helena"
-+ weapon:t="us_cruiser_brooklyn_class_helena_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_usa"
-+ rank:ip2=3, 5
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="us_ashville_class_douglas"
-+ weapon:t="us_ashville_class_douglas_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_usa"
-+ rank:ip2=3, 5
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="us_cruiser_des_moines_class"
-+ weapon:t="us_cruiser_des_moines_class_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_usa"
-+ rank:ip2=3, 5
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="us_battleship_arkansas"
-+ weapon:t="us_battleship_arkansas_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_usa"
-+ rank:ip2=4, 6
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="germ_escort_typem1943"
-+ weapon:t="wbg_mortar"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_germany"
-+ rank:ip2=1, 5
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="germ_destroyer_fletcher_zerstorer4"
-+ weapon:t="torpedoes"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_germany"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="germ_destroyer_class1936c_z47"
-+ weapon:t="germ_destroyer_class1936c_z47_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_germany"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="germ_cruiser_karlsruhe"
-+ weapon:t="germ_cruiser_karlsruhe_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_germany"
-+ rank:ip2=3, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="germ_battleship_nassau"
-+ weapon:t="germ_battleship_nassau_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_germany"
-+ rank:ip2=4, 6
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ussr_pr_1204"
-+ weapon:t="ussr_pr_1204_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=1, 2
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ussr_mkl_186_mk85"
-+ weapon:t="ussr_mkl_186_mk85_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=2, 5
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ussr_mpk_pr12412p"
-+ weapon:t="ussr_mpk_pr12412p_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=3, 5
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ussr_skr_pr50plo_rosomacha"
-+ weapon:t="ussr_skr_pr50plo_rosomacha_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=3, 5
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ussr_destroyer_pr30bis_smelyi"
-+ weapon:t="ussr_destroyer_pr30bis_smelyi_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=1, 2
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ussr_destroyer_pr56_blagorodny"
-+ weapon:t="ussr_destroyer_pr56_blagorodny_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ussr_cruiser_kerch"
-+ weapon:t="ussr_cruiser_kerch_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=2, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ussr_cruiser_zheleznyakov"
-+ weapon:t="ussr_cruiser_zheleznyakov_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=2, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="ussr_battleship_marat"
-+ weapon:t="ussr_battleship_marat_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_ussr"
-+ rank:ip2=4, 6
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="uk_71ft_mgb"
-+ weapon:t="mk_vii_depth_charges"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_britain"
-+ rank:ip2=1, 2
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="uk_corvette_orla"
-+ weapon:t="uk_corvette_orla_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_britain"
-+ rank:ip2=3, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="uk_frigate_whitby"
-+ weapon:t="uk_frigate_whitby_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_britain"
-+ rank:ip2=2, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="uk_destroyer_j_class"
-+ weapon:t="uk_destroyer_j_class_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_britain"
-+ rank:ip2=1, 2
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="uk_destroyer_daring_class_diamond"
-+ weapon:t="uk_destroyer_daring_class_diamond_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_britain"
-+ rank:ip2=2, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="uk_cruiser_belfast"
-+ weapon:t="uk_cruiser_belfast_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_britain"
-+ rank:ip2=2, 5
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="jp_pg02"
-+ weapon:t="srboc_smoke_grenades_launcher"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_japan"
-+ rank:ip2=1, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="jp_escort_akebono_class"
-+ weapon:t="bomb_mortar_depth_charges"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_japan"
-+ rank:ip2=1, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="jp_destroyer_harukaze"
-+ weapon:t="jp_destroyer_harukaze_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_japan"
-+ rank:ip2=1, 2
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="jp_destroyer_nenohi"
-+ weapon:t="jp_destroyer_nenohi_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_japan"
-+ rank:ip2=1, 2
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="jp_cruiser_yubari"
-+ weapon:t="jp_cruiser_yubari_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_japan"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="jp_cruiser_mogami_mikuma"
-+ weapon:t="jp_cruiser_mogami_mikuma_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_japan"
-+ rank:ip2=2, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="jp_battleship_yamashiro"
-+ weapon:t="jp_battleship_yamashiro_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_japan"
-+ rank:ip2=4, 6
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="it_p420_sparviero"
-+ weapon:t="it_p420_sparviero_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_italy"
-+ rank:ip2=1, 5
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="it_ms444"
-+ weapon:t="it_ms444_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_italy"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="it_destroyer_leone_class_tigre"
-+ weapon:t="it_destroyer_leone_class_tigre_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_italy"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="it_destroyer_fletcher_geniere"
-+ weapon:t="it_destroyer_fletcher_geniere_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_italy"
-+ rank:ip2=1, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="it_gabbiano_class_c16"
-+ weapon:t="it_gabbiano_class_c16_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_italy"
-+ rank:ip2=2, 4
-+ force:b=yes
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="it_cruiser_zara_class_pola"
-+ weapon:t="it_cruiser_zara_class_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_italy"
-+ rank:ip2=2, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="it_battleship_leonardo_da_vinci"
-+ weapon:t="it_battleship_leonardo_da_vinci_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_italy"
-+ rank:ip2=4, 6
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="fr_destroyer_aigle_class_aigle"
-+ weapon:t="fr_destroyer_aigle_class_aigle_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_france"
-+ rank:ip2=1, 2
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="fr_cruiser_dugauy_class_dugauy_trouin"
-+ weapon:t="it_cruiser_zara_class_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_france"
-+ rank:ip2=2, 3
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="fr_cruiser_suffren_class_dupleix"
-+ weapon:t="fr_cruiser_suffren_class_dupleix_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_france"
-+ rank:ip2=2, 4
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="fr_battleship_courbet_class_courbet"
-+ weapon:t="fr_battleship_courbet_class_courbet_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_france"
-+ rank:ip2=4, 6
-+ }
-+ 
-+ premiumVehicle{
-+ unitName:t="fr_vlt2"
-+ weapon:t="fr_vlt2_default"
-+ type:t="ship"
-+ skin:t=""
-+ country:t="country_france"
-+ rank:ip2=2, 4
-```
-
-  **Removed**:
-```diff
-- newYearHangar:b=yes
-- level:t="levels/hangar_field_winter.bin"
-- hangarMission:t="gameData/scenes/hangar_field_mission_winter.blk"
-- aurora_borealis{
-- enabled:b=yes
-- top_height:r=10.0
-- top_color:p3=0.1, 0.1, 1.4
-- bottom_height:r=7.0
-- bottom_color:p3=0.1, 1.3, 0.1
-- brightness:r=2.15
-- speed:r=0.018
-- luminance:r=22.0
-- ripples_scale:r=8.6
-- ripples_speed:r=0.04
-- ripples_strength:r=0.83
-- }
-- 
-- country_usa:t="us_m1a2_sep2_abrams"
-- country_germany:t="germ_leopard_2a7v"
-- country_ussr:t="ussr_t_90m_2020"
-- country_britain:t="uk_challenger_2_lep"
-- country_japan:t="jp_type_99"
-- country_china:t="cn_vt_4b"
-- country_italy:t="it_m109g"
-- country_france:t="fr_leclerc_azur"
-- country_sweden:t="sw_strv_122b_plus"
-- country_israel:t="il_m109a1"
-- country_usa:t="us_hstv_l"
-- country_germany:t="germ_schutzenpanzer_puma"
-- country_ussr:t="ussr_2s25m"
-- country_britain:t="uk_vickers_mk_11"
-- country_japan:t="jp_type_81_tansam"
-- country_china:t="cn_ztl_11"
-- country_italy:t="it_centauro_mgs_120"
-- country_france:t="fr_tpk_641_vpc"
-- country_sweden:t="sw_strf_90c"
-- country_israel:t="il_m113a1_tow"
-- country_usa:t="f_15a"
-- country_germany:t="tornado_ids_de_assta1"
-- country_ussr:t="su_27"
-- country_britain:t="tornado_f3"
-- country_japan:t="f_15j"
-- country_italy:t="tornado_adv"
-- country_france:t="mirage_4000"
-- country_china:t="j_11"
-- country_sweden:t="saab_jas39a"
-- country_israel:t="f_15a_iaf"
-- env{
-- env:t="9.024"
-- weight:r=1.0
-- compatibilityWeight:r=1.0
 ```
 
 
@@ -4489,8 +32,9 @@
   **Added**:
 ```diff
 + dmg{
-+ name:t="avg_poland_iced_lake"
++ name:t="rheinland_obelisk_a"
 + immortal:b=yes
++ useVsm:b=yes
 + }
 + 
 ```
@@ -4500,248 +44,18 @@
 ```
 
 
-- **aces.vromfs.bin_u/config/skins_market.blkx**:
+- **aces.vromfs.bin_u/config/workshop.blkx**:
 
   **Added**:
 ```diff
-+ ka_50{
-+ marketplaceItemdefId:i=1001946
-+ hideFeature:t="!Marketplace"
-+ needShowPreviewSuggestion:b=yes
-+ }
-+ 
-+ wessex_mk5{
-+ marketplaceItemdefId:i=1001971
-+ hideFeature:t="!Marketplace"
-+ needShowPreviewSuggestion:b=yes
-+ }
-+ 
-+ av_8b_na{
-+ marketplaceItemdefId:i=1001972
-+ hideFeature:t="!Marketplace"
-+ needShowPreviewSuggestion:b=yes
-+ }
-+ 
-+ ef_2000_block_10{
-+ marketplaceItemdefId:i=1001951
-+ hideFeature:t="!Marketplace"
-+ needShowPreviewSuggestion:b=yes
-+ }
-+ 
-+ ef_2000_fgr4{
-+ marketplaceItemdefId:i=1001950
-+ hideFeature:t="!Marketplace"
-+ needShowPreviewSuggestion:b=yes
-+ }
-+ 
-+ f_117{
-+ marketplaceItemdefId:i=1001952
-+ hideFeature:t="!Marketplace"
-+ needShowPreviewSuggestion:b=yes
-+ }
-+ 
-+ f_15e{
-+ marketplaceItemdefId:i=1001949
-+ hideFeature:t="!Marketplace"
-+ needShowPreviewSuggestion:b=yes
-+ }
-+ 
-+ f_16a_block_15_ocu_thailand{
-+ marketplaceItemdefId:i=1001960
-+ hideFeature:t="!Marketplace"
-+ needShowPreviewSuggestion:b=yes
-+ }
-+ 
-+ f7f3{
-+ marketplaceItemdefId:i=1001968
-+ hideFeature:t="!Marketplace"
-+ needShowPreviewSuggestion:b=yes
-+ }
-+ 
-+ mig-21_bison{
-+ marketplaceItemdefId:i=1001964
-+ hideFeature:t="!Marketplace"
-+ needShowPreviewSuggestion:b=yes
-+ }
-+ 
-+ mirage_2000_5ei{
-+ marketplaceItemdefId:i=1001958
-+ hideFeature:t="!Marketplace"
-+ needShowPreviewSuggestion:b=yes
-+ }
-+ 
-+ rafale_c_f3{
-+ marketplaceItemdefId:i=1001976
-+ hideFeature:t="!Marketplace"
-+ needShowPreviewSuggestion:b=yes
-+ }
-+ 
-+ saab_a21a_3{
-+ marketplaceItemdefId:i=1001973
-+ hideFeature:t="!Marketplace"
-+ needShowPreviewSuggestion:b=yes
-+ }
-+ 
-+ spitfire_fr_mk14e_belgium{
-+ marketplaceItemdefId:i=1001953
-+ hideFeature:t="!Marketplace"
-+ needShowPreviewSuggestion:b=yes
-+ }
-+ 
-+ su_27{
-+ marketplaceItemdefId:i=1001959
-+ hideFeature:t="!Marketplace"
-+ needShowPreviewSuggestion:b=yes
-+ }
-+ 
-+ su_33{
-+ marketplaceItemdefId:i=1001974
-+ hideFeature:t="!Marketplace"
-+ needShowPreviewSuggestion:b=yes
-+ }
-+ 
-+ su_34{
-+ marketplaceItemdefId:i=1001963
-+ hideFeature:t="!Marketplace"
-+ needShowPreviewSuggestion:b=yes
-+ }
-+ 
-+ tbd-1_1938{
-+ marketplaceItemdefId:i=1001955
-+ hideFeature:t="!Marketplace"
-+ needShowPreviewSuggestion:b=yes
-+ }
-+ 
-+ tornado_ids_it{
-+ marketplaceItemdefId:i=1001975
-+ hideFeature:t="!Marketplace"
-+ needShowPreviewSuggestion:b=yes
-+ }
-+ 
-+ yak-3_france{
-+ marketplaceItemdefId:i=1001954
-+ hideFeature:t="!Marketplace"
-+ needShowPreviewSuggestion:b=yes
-+ }
-+ 
-+ uk_battleship_rodney{
-+ marketplaceItemdefId:i=1001947
-+ hideFeature:t="!Marketplace"
-+ needShowPreviewSuggestion:b=yes
-+ }
-+ 
-+ cn_wz_305{
-+ marketplaceItemdefId:i=1001751
-+ hideFeature:t="!Marketplace"
-+ needShowPreviewSuggestion:b=yes
-+ }
-+ 
-+ fr_amx_10rc{
-+ marketplaceItemdefId:i=1001970
-+ hideFeature:t="!Marketplace"
-+ needShowPreviewSuggestion:b=yes
-+ }
-+ 
-+ fr_bat_chat_25t{
-+ marketplaceItemdefId:i=1001965
-+ hideFeature:t="!Marketplace"
-+ needShowPreviewSuggestion:b=yes
-+ }
-+ 
-+ fr_vbci{
-+ marketplaceItemdefId:i=1001962
-+ hideFeature:t="!Marketplace"
-+ needShowPreviewSuggestion:b=yes
-+ }
-+ 
-+ germ_boxer_3105{
-+ marketplaceItemdefId:i=1001933
-+ hideFeature:t="!Marketplace"
-+ needShowPreviewSuggestion:b=yes
-+ }
-+ 
-+ germ_leopard_2pl{
-+ marketplaceItemdefId:i=1001939
-+ hideFeature:t="!Marketplace"
-+ needShowPreviewSuggestion:b=yes
-+ }
-+ 
-+ germ_pzh_2000{
-+ marketplaceItemdefId:i=1001943
-+ hideFeature:t="!Marketplace"
-+ needShowPreviewSuggestion:b=yes
-+ }
-+ 
-+ germ_pzkpfw_VI_ausf_h1_tiger_east{
-+ marketplaceItemdefId:i=1001961
-+ hideFeature:t="!Marketplace"
-+ needShowPreviewSuggestion:b=yes
-+ }
-+ 
-+ germ_pzkpfw_VI_ausf_h1_tiger_west{
-+ marketplaceItemdefId:i=1001936
-+ hideFeature:t="!Marketplace"
-+ needShowPreviewSuggestion:b=yes
-+ }
-+ 
-+ germ_schutzenpanzer_puma_vjtf{
-+ marketplaceItemdefId:i=1001941
-+ hideFeature:t="!Marketplace"
-+ needShowPreviewSuggestion:b=yes
-+ }
-+ 
-+ il_namer_tsrikhon{
-+ marketplaceItemdefId:i=1001932
-+ hideFeature:t="!Marketplace"
-+ needShowPreviewSuggestion:b=yes
-+ }
-+ 
-+ jp_m44{
-+ marketplaceItemdefId:i=1001945
-+ hideFeature:t="!Marketplace"
-+ needShowPreviewSuggestion:b=yes
-+ }
-+ 
-+ sw_cv_90_mk4{
-+ marketplaceItemdefId:i=1001938
-+ hideFeature:t="!Marketplace"
-+ needShowPreviewSuggestion:b=yes
-+ }
-+ 
-+ sw_leopard_1a5no{
-+ marketplaceItemdefId:i=1001977
-+ hideFeature:t="!Marketplace"
-+ needShowPreviewSuggestion:b=yes
-+ }
-+ 
-+ us_m551{
-+ marketplaceItemdefId:i=1001934
-+ hideFeature:t="!Marketplace"
-+ needShowPreviewSuggestion:b=yes
-+ }
-+ 
-+ us_rdf_lt{
-+ marketplaceItemdefId:i=1001935
-+ hideFeature:t="!Marketplace"
-+ needShowPreviewSuggestion:b=yes
-+ }
-+ 
-+ ussr_bmd_4m{
-+ marketplaceItemdefId:i=1001944
-+ hideFeature:t="!Marketplace"
-+ needShowPreviewSuggestion:b=yes
-+ }
-+ 
-+ ussr_is_2_1943{
-+ marketplaceItemdefId:i=1001940
-+ hideFeature:t="!Marketplace"
-+ needShowPreviewSuggestion:b=yes
-+ }
-+ 
-+ ussr_t_72av_turms{
-+ marketplaceItemdefId:i=1001969
-+ hideFeature:t="!Marketplace"
-+ needShowPreviewSuggestion:b=yes
++ items{
++ setId:t="storm_warning"
++ locId:t="workshop/storm_warning"
++ alwaysVisibleItem:i=660405
++ alwaysVisibleItem:i=660408
++ alwaysVisibleItem:i=660409
++ alwaysVisibleItem:i=660410
++ alwaysVisibleItem:i=660411
 + }
 + 
 ```
@@ -4751,48 +65,12 @@
 ```
 
 
-- **aces.vromfs.bin_u/config/skinslocations.blkx**:
+- **aces.vromfs.bin_u/gamedata/attachables/decor_heybox_guai.blkx**:
 
   **Added**:
 ```diff
-+ pak_camo_earth_yellow{
-+ camoType:t="desert"
-+ }
-+ 
-```
-
-  **Removed**:
-```diff
-```
-
-
-- **aces.vromfs.bin_u/config/sound_studio.blkx**:
-
-  **Added**:
-```diff
-+ optional:b=yes
-+ optional:b=yes
-+ optional:b=yes
-+ optional:b=yes
-+ optional:b=yes
-+ optional:b=yes
-+ optional:b=yes
-+ optional:b=yes
-+ optional:b=yes
-+ optional:b=yes
-```
-
-  **Removed**:
-```diff
-```
-
-
-- **aces.vromfs.bin_u/gamedata/attachables/decor_uroboros.blkx**:
-
-  **Added**:
-```diff
-+ model:t="decor_uroboros"
-+ collision:t="decor_uroboros_collision"
++ model:t="decor_heybox_guai"
++ collision:t="decor_heybox_guai_collision"
 + bboxMult:r=0.1
 + breakFx:t="destruction_decorators_model_small"
 + mass:r=15.0
@@ -4823,28 +101,35 @@
 ```
 
 
-- **aces.vromfs.bin_u/gamedata/flightmodels/ef_2000_block_10.blkx**:
+- **aces.vromfs.bin_u/gamedata/attachables/lrac_f1.blkx**:
 
   **Added**:
 ```diff
-+ node:t="radar1_dm"
-```
-
-  **Removed**:
-```diff
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/ef_2000_fgr4.blkx**:
-
-  **Added**:
-```diff
-+ node:t="radar1_dm"
-+ ShowNodes{
-+ node:t="pylon_2"
-+ node:t="pylon_1"
++ model:t="lrac_f1"
++ collision:t="lrac_f1_collision"
++ bboxMult:r=0.1
++ breakFx:t="destruction_decorators_model_small"
++ mass:r=15.0
++ 
++ DamageParts{
++ 
++ body{
++ hp:r=50.0
++ armorClass:t="tank_structural_steel"
++ armorThickness:r=0.01
++ }
 + }
 + 
++ DamageEffects{
++ 
++ part{
++ name:t="body"
++ 
++ onKill{
++ cut:r=1.0
++ }
++ }
++ }
 ```
 
   **Removed**:
@@ -4852,16 +137,35 @@
 ```
 
 
-- **aces.vromfs.bin_u/gamedata/flightmodels/ef_2000a.blkx**:
+- **aces.vromfs.bin_u/gamedata/attachables/mas_49_56.blkx**:
 
   **Added**:
 ```diff
-+ node:t="radar1_dm"
-+ ShowNodes{
-+ node:t="pylon_2"
-+ node:t="pylon_1"
++ model:t="mas_49_56"
++ collision:t="mas_49_56_collision"
++ bboxMult:r=0.1
++ breakFx:t="destruction_decorators_model_small"
++ mass:r=15.0
++ 
++ DamageParts{
++ 
++ body{
++ hp:r=50.0
++ armorClass:t="tank_structural_steel"
++ armorThickness:r=0.01
++ }
 + }
 + 
++ DamageEffects{
++ 
++ part{
++ name:t="body"
++ 
++ onKill{
++ cut:r=1.0
++ }
++ }
++ }
 ```
 
   **Removed**:
@@ -4869,1625 +173,4505 @@
 ```
 
 
-- **aces.vromfs.bin_u/gamedata/flightmodels/f_15i_raam.blkx**:
+- **aces.vromfs.bin_u/gamedata/attachables/mo_120_rt_f1.blkx**:
 
   **Added**:
 ```diff
-+ nvIndex:i=1
++ model:t="mo_120_rt_f1"
++ collision:t="mo_120_rt_f1_collision"
++ bboxMult:r=0.1
++ breakFx:t="destruction_decorators_model_med"
++ mass:r=250.0
++ 
++ DamageParts{
++ 
++ body{
++ hp:r=2000.0
++ armorClass:t="tank_structural_steel"
++ armorThickness:r=1.0
++ }
++ }
++ 
++ DamageEffects{
++ 
++ part{
++ name:t="body"
++ 
++ onKill{
++ cut:r=1.0
++ }
++ }
++ }
 ```
 
   **Removed**:
 ```diff
-- nvIndex:i=0
 ```
 
 
-- **aces.vromfs.bin_u/gamedata/flightmodels/fm/mb_151c1.blkx**:
+- **aces.vromfs.bin_u/gamedata/flightmodels/a_10c.blkx**:
+
+  **Added**:
+```diff
++ text:t="E2K"
+```
+
+  **Removed**:
+```diff
+- text:t="EF2K"
+```
+
+
+- **aces.vromfs.bin_u/gamedata/flightmodels/av_8b_na.blkx**:
+
+  **Added**:
+```diff
++ text:t="E2K"
+```
+
+  **Removed**:
+```diff
+- text:t="EF2K"
+```
+
+
+- **aces.vromfs.bin_u/gamedata/flightmodels/av_8b_plus.blkx**:
+
+  **Added**:
+```diff
++ text:t="E2K"
+```
+
+  **Removed**:
+```diff
+- text:t="EF2K"
+```
+
+
+- **aces.vromfs.bin_u/gamedata/flightmodels/av_8b_plus_italy.blkx**:
+
+  **Added**:
+```diff
++ text:t="E2K"
+```
+
+  **Removed**:
+```diff
+- text:t="EF2K"
+```
+
+
+- **aces.vromfs.bin_u/gamedata/flightmodels/f-4ej_kai.blkx**:
+
+  **Added**:
+```diff
++ text:t="E2K"
+```
+
+  **Removed**:
+```diff
+- text:t="EF2K"
+```
+
+
+- **aces.vromfs.bin_u/gamedata/flightmodels/f_14a_early.blkx**:
+
+  **Added**:
+```diff
++ text:t="E2K"
+```
+
+  **Removed**:
+```diff
+- text:t="EF2K"
+```
+
+
+- **aces.vromfs.bin_u/gamedata/flightmodels/f_14b.blkx**:
+
+  **Added**:
+```diff
++ text:t="E2K"
+```
+
+  **Removed**:
+```diff
+- text:t="EF2K"
+```
+
+
+- **aces.vromfs.bin_u/gamedata/flightmodels/f_15a.blkx**:
+
+  **Added**:
+```diff
++ text:t="E2K"
+```
+
+  **Removed**:
+```diff
+- text:t="EF2K"
+```
+
+
+- **aces.vromfs.bin_u/gamedata/flightmodels/f_15a_iaf.blkx**:
+
+  **Added**:
+```diff
++ text:t="E2K"
+```
+
+  **Removed**:
+```diff
+- text:t="EF2K"
+```
+
+
+- **aces.vromfs.bin_u/gamedata/flightmodels/f_15c_baz_msip.blkx**:
+
+  **Added**:
+```diff
++ text:t="E2K"
+```
+
+  **Removed**:
+```diff
+- text:t="EF2K"
+```
+
+
+- **aces.vromfs.bin_u/gamedata/flightmodels/f_15c_msip2.blkx**:
+
+  **Added**:
+```diff
++ text:t="E2K"
+```
+
+  **Removed**:
+```diff
+- text:t="EF2K"
+```
+
+
+- **aces.vromfs.bin_u/gamedata/flightmodels/f_15e.blkx**:
+
+  **Added**:
+```diff
++ text:t="E2K"
+```
+
+  **Removed**:
+```diff
+- text:t="EF2K"
+```
+
+
+- **aces.vromfs.bin_u/gamedata/flightmodels/f_15j.blkx**:
+
+  **Added**:
+```diff
++ text:t="E2K"
+```
+
+  **Removed**:
+```diff
+- text:t="EF2K"
+```
+
+
+- **aces.vromfs.bin_u/gamedata/flightmodels/f_15j_kai.blkx**:
+
+  **Added**:
+```diff
++ text:t="E2K"
+```
+
+  **Removed**:
+```diff
+- text:t="EF2K"
+```
+
+
+- **aces.vromfs.bin_u/gamedata/flightmodels/ffa_p16.blkx**:
+
+  **Added**:
+```diff
++ order:i=13
++ order:i=15
++ order:i=13
++ order:i=15
++ emitter:t="4_sura_rocket_pylon_008"
++ order:i=14
++ emitter:t="4_sura_rocket_pylon_007"
++ order:i=16
++ emitter:t="4_sura_rocket_pylon_008"
++ order:i=14
++ emitter:t="4_sura_rocket_pylon_007"
++ order:i=16
+```
+
+  **Removed**:
+```diff
+- order:i=13
+- emitter:t="4_sura_rocket_pylon_007"
+- emitter:t="4_sura_rocket_pylon_008"
+- emitter:t="4_sura_rocket_pylon_007"
+- emitter:t="4_sura_rocket_pylon_008"
+```
+
+
+- **aces.vromfs.bin_u/gamedata/flightmodels/fm/amx_a_1a_brazil.blkx**:
+
+  **Added**:
+```diff
++ Num:i=0
+```
+
+  **Removed**:
+```diff
+- Num:i=1
+```
+
+
+- **aces.vromfs.bin_u/gamedata/flightmodels/fm/amx_italy.blkx**:
+
+  **Added**:
+```diff
++ Num:i=0
+```
+
+  **Removed**:
+```diff
+- Num:i=1
+```
+
+
+- **aces.vromfs.bin_u/gamedata/flightmodels/fm/j7w1.blkx**:
+
+  **Added**:
+```diff
++ CdMin:r=0.0077
++ CdMin:r=0.0074
++ OswaldsEfficiencyNumber:r=0.7
++ Direction:p2=-0.0, -3.0
++ PowerConstRPMCurvature0:r=1.0
++ SpeedManifoldMultiplier:r=0.4
++ EmptyMass:r=3990.0
+```
+
+  **Removed**:
+```diff
+- CdMin:r=0.009
+- CdMin:r=0.0079
+- OswaldsEfficiencyNumber:r=0.9
+- Direction:p2=-0.0, 0.0
+- PowerConstRPMCurvature0:r=0.7
+- SpeedManifoldMultiplier:r=0.7
+- EmptyMass:r=4400.0
+```
+
+
+- **aces.vromfs.bin_u/gamedata/flightmodels/fm/p-61a_1.blkx**:
+
+  **Added**:
+```diff
++ Num:i=0
++ Num:i=0
+```
+
+  **Removed**:
+```diff
+- Num:i=1
+- Num:i=1
+```
+
+
+- **aces.vromfs.bin_u/gamedata/flightmodels/fm/p-61c_1.blkx**:
 
   **Added**:
 ```diff
 + UseTime:r=5.0
 + Power:r=2500.0
-+ Automatic:b=yes
-+ EmptyMass:r=2097.0
-+ MaxFuelMass0:r=306.0
-+ OilMass:r=18.0
++ UseTime:r=5.0
++ Power:r=2500.0
 ```
 
   **Removed**:
 ```diff
 - UseTime:r=0.0
 - Power:r=0.0
-- Automatic:b=no
-- EmptyMass:r=2365.0
-- MaxFuelMass0:r=305.0
-- OilMass:r=29.0
+- UseTime:r=0.0
+- Power:r=0.0
 ```
 
 
-- **aces.vromfs.bin_u/gamedata/flightmodels/kfir_c10_colombia.blkx**:
+- **aces.vromfs.bin_u/gamedata/flightmodels/fm/rafale_c_f3.blkx**:
 
   **Added**:
 ```diff
-+ position:p2=250.0, 256.0
-+ size:p2=490.0, 490.0
-+ position:p2=250.0, 256.0
-+ size:p2=490.0, 490.0
-+ maxloadMass:r=5500.0
++ MultMachMax5:r=0.7
++ MultLineCoeff5:r=0.12
++ MultMachMax5:r=0.7
++ MultLineCoeff5:r=0.12
++ FullBrakeSlidingFrictionMult:p4=2.0, 1.35, 50.0, 0.7
++ FullBrakeSlidingFrictionMult:p4=2.0, 1.35, 50.0, 0.7
++ FullBrakeSlidingFrictionMult:p4=2.0, 0.65, 50.0, 0.6
 ```
 
   **Removed**:
 ```diff
-- position:p2=350.0, 256.0
-- size:p2=390.0, 300.0
-- position:p2=350.0, 256.0
-- size:p2=390.0, 300.0
-- maxloadMass:r=4295.0
+- MultMachMax5:r=0.81
+- MultLineCoeff5:r=0.05
+- MultMachMax5:r=0.81
+- MultLineCoeff5:r=0.05
+- FullBrakeSlidingFrictionMult:p4=2.0, 1.35, 50.0, 0.4
+- FullBrakeSlidingFrictionMult:p4=2.0, 1.35, 50.0, 0.4
+- FullBrakeSlidingFrictionMult:p4=2.0, 0.65, 50.0, 0.4
 ```
 
 
-- **aces.vromfs.bin_u/gamedata/sensors/il_el_m_2032.blkx**:
+- **aces.vromfs.bin_u/gamedata/flightmodels/fm/typhoon_mk1a.blkx**:
 
   **Added**:
 ```diff
-+ hprf{
-+ sideLobesAttenuation:r=-20.0
-+ power:r=1200.0
-+ band:i=8
-+ rcs:r=5.0
-+ range:r=150000.0
-+ rangeMax:r=200000.0
-+ multipathEffect:p4=0.0, 1.0, 60.0, 0.0
-+ 
-+ antenna{
-+ angleHalfSens:r=3.0
-+ sideLobesSensitivity:r=-32.0
-+ }
-+ }
-+ 
-+ angleHalfSens:r=3.0
-+ angleHalfSens:r=3.0
-+ barHeight:r=2.1
-+ barHeight:r=2.1
-+ barHeight:r=2.1
-+ barHeight:r=2.1
-+ barHeight:r=2.1
-+ barHeight:r=2.1
-+ barHeight:r=2.5
-+ barHeight:r=1.85
-+ barHeight:r=2.25
-+ barHeight:r=2.25
-+ maxValue:r=180000.0
-+ maxValue:r=180000.0
-+ maxValue:r=200000.0
-+ hprfSearch{
-+ groundClutter:b=no
-+ aircraftAsTarget:b=yes
-+ friendFoeId:b=yes
-+ mainBeamDopplerSpeed:b=yes
-+ 
-+ distance{
-+ presents:b=yes
-+ minValue:r=5000.0
-+ maxValue:r=200000.0
-+ width:r=2000.0
-+ }
-+ 
-+ dopplerSpeed{
-+ presents:b=yes
-+ minValue:r=40.0
-+ maxValue:r=1500.0
-+ signalWidthMin:r=5.0
-+ width:r=120.0
-+ }
-+ }
-+ 
-+ hprfTrack{
-+ rangeFinder:b=yes
-+ dopplerSpeedFinder:b=yes
-+ dynamicRange:p2=40.0, 15.0
-+ groundClutter:b=yes
-+ aircraftAsTarget:b=yes
-+ angularAccuracy:r=0.05
-+ distanceAccuracy:r=15.0
-+ absDopplerSpeed:b=no
-+ mainBeamDopplerSpeed:b=no
-+ track:b=yes
-+ 
-+ distance{
-+ presents:b=yes
-+ minValue:r=200.0
-+ maxValue:r=200000.0
-+ width:r=500.0
-+ }
-+ 
-+ dopplerSpeed{
-+ presents:b=yes
-+ minValue:r=-1500.0
-+ maxValue:r=1500.0
-+ signalWidthMin:r=2.0
-+ width:r=20.0
-+ }
-+ }
-+ 
-+ distanceRange:p2=0.0, 138750.0
-+ setHprfStandbyMode{
-+ 
-+ setStandbyModeCommon{
-+ }
-+ 
-+ setScanPatternSet{
-+ scanPatternSet:t="search"
-+ }
-+ 
-+ setTransiver{
-+ transiver:t="hprf"
-+ }
-+ 
-+ setSignal{
-+ signal:t="hprfSearch"
-+ }
-+ 
-+ setModeName{
-+ name:t="PD HDN standby"
-+ }
-+ }
-+ 
-+ setHprfSearchMode{
-+ 
-+ setSearchModeCommon{
-+ }
-+ 
-+ setTransiver{
-+ transiver:t="hprf"
-+ }
-+ 
-+ setSignal{
-+ signal:t="hprfSearch"
-+ }
-+ 
-+ setModeName{
-+ name:t="PD HDN search"
-+ }
-+ }
-+ 
-+ setHprfBvrLockMode{
-+ 
-+ setBvrLockMode{
-+ }
-+ 
-+ setModeName{
-+ name:t="PD HDN acquisition"
-+ }
-+ }
-+ 
-+ twsToHprf{
-+ stateTo:t="hprf"
-+ 
-+ actions{
-+ 
-+ setCustomActionTemplate{
-+ fsm:t="main"
-+ name:t="setStandbyMode"
-+ actionTemplateName:t="setHprfStandbyMode"
-+ }
-+ 
-+ setCustomActionTemplate{
-+ fsm:t="main"
-+ name:t="setSearchMode"
-+ actionTemplateName:t="setHprfSearchMode"
-+ }
-+ 
-+ setCustomActionTemplate{
-+ fsm:t="main"
-+ name:t="setBvrLockMode"
-+ actionTemplateName:t="setHprfBvrLockMode"
-+ }
-+ 
-+ setCustomActionTemplate{
-+ fsm:t="main"
-+ name:t="designateTarget"
-+ actionTemplateName:t="designatedTargetSearch"
-+ }
-+ 
-+ setCustomActionTemplate{
-+ fsm:t="main"
-+ name:t="resetSearchMode"
-+ actionTemplateName:t="resetSearchMode"
-+ }
-+ 
-+ doCustomActionTemplate{
-+ fsm:t="main"
-+ name:t="resetSearchMode"
-+ }
-+ 
-+ setFsmActive{
-+ fsm:t="main"
-+ active:b=no
-+ }
-+ 
-+ setFsmActive{
-+ fsm:t="main"
-+ active:b=yes
-+ }
-+ }
-+ }
-+ 
-+ hprfToHprfVelocity{
-+ stateFrom:t="hprf"
-+ command:t="modeSwitch"
-+ illumination{
-+ stateInit:t="init"
-+ 
-+ transitions{
-+ 
-+ activate{
-+ event:t="fsmActivate"
-+ stateTo:t="active"
-+ 
-+ actions{
-+ 
-+ checkIlluminationTimeOut{
-+ transiver:b=yes
-+ pauseMax:r=20.0
-+ }
-+ }
-+ }
-+ 
-+ deactivate{
-+ event:t="fsmDeactivate"
-+ stateTo:t="inactive"
-+ 
-+ actions{
-+ 
-+ setIllumination{
-+ transiver:b=no
-+ }
-+ }
-+ }
-+ 
-+ activateIllumination{
-+ event:t="sarhMissileLaunch"
-+ 
-+ actions{
-+ 
-+ setIlluminationTimeOut{
-+ timeOut:r=60.0
-+ }
-+ }
-+ }
-+ 
-+ updateIllumination{
-+ event:t="update"
-+ 
-+ actions{
-+ 
-+ checkIlluminationTimeOut{
-+ transiver:b=yes
-+ pauseMax:r=20.0
-+ }
-+ }
-+ }
-+ }
-+ }
-+ 
-+ setHprfTrack{
-+ 
-+ setTransiver{
-+ transiver:t="hprf"
-+ }
-+ 
-+ setSignal{
-+ signal:t="hprfTrack"
-+ }
-+ }
-+ 
-+ hprfOkTryDetectMprf{
-+ stateFrom:t="hprfOkMprfTry"
-+ event:t="update"
-+ 
-+ actions{
-+ 
-+ setMprfTrack{
-+ }
-+ 
-+ detectTarget{
-+ ignoreOwnWeapon:b=yes
-+ rangeMult:r=1.0
-+ }
-+ 
-+ setHprfTrack{
-+ }
-+ }
-+ }
-+ 
-+ tryDetectHprf{
-+ stateFrom:t="hprfTry"
-+ event:t="update"
-+ 
-+ actions{
-+ 
-+ setHprfTrack{
-+ }
-+ 
-+ detectTarget{
-+ ignoreOwnWeapon:b=yes
-+ rangeMult:r=1.0
-+ }
-+ 
-+ setMprfTrack{
-+ }
-+ }
-+ }
-+ 
-+ lprfOkTryDetectHprf{
-+ stateFrom:t="lprfOkHprfTry"
-+ event:t="update"
-+ 
-+ actions{
-+ 
-+ setHprfTrack{
-+ }
-+ 
-+ detectTarget{
-+ ignoreOwnWeapon:b=yes
-+ rangeMult:r=1.0
-+ }
-+ 
-+ setLprfTrack{
-+ }
-+ }
-+ }
-+ 
-+ stateFrom:t="hprfOkMprfTry"
-+ trackHprf{
-+ stateFrom:t="hprf"
-+ event:t="targetDetected"
-+ stateTo:t="hprfOkMprfTry"
-+ 
-+ actions{
-+ 
-+ track{
-+ }
-+ }
-+ }
-+ 
-+ startTrackHprf{
-+ stateFrom:t="hprfTry"
-+ stateFrom:t="lprfOkHprfTry"
-+ event:t="targetDetected"
-+ stateTo:t="hprf"
-+ 
-+ actions{
-+ 
-+ setHprfTrack{
-+ }
-+ 
-+ track{
-+ }
-+ 
-+ setModeName{
-+ name:t="PD HDN track"
-+ }
-+ }
-+ }
-+ 
-+ stateTo:t="lprfOkHprfTry"
-+ mprfToHprf{
-+ stateTo:t="hprfTry"
-+ backToHprf{
-+ stateFrom:t="hprfOkMprfTry"
-+ stateTo:t="hprfTry"
-+ hprfToLprfTry{
-+ stateFrom:t="hprf"
-+ stateFrom:t="hprfTry"
-+ stateTo:t="lprfTry"
-+ lprfToMprfTry{
-+ stateFrom:t="lprfOkHprfTry"
-+ stateTo:t="lprfOkMprfTry"
-+ backToLprf{
-+ stateFrom:t="lprfOkMprfTry"
-+ event:t="targetNotDetected"
-+ stateTo:t="lprfTry"
-+ extrapolate{
-+ lprfToMprf{
-+ stateFrom:t="lprf"
-+ event:t="targetNotDetected"
-+ stateTo:t="mprfTry"
-+ extrapolate{
-+ lprfTryToMprf{
-+ stateFrom:t="lprfTry"
-+ event:t="targetNotDetected"
-+ stateTo:t="mprfTry"
-+ extrapolate{
-+ setModeName{
-+ name:t="track memory"
++ flapsLimByIas:p4=180.0, 315.0, 1.0, 0.0
++ mechLockIas:r=315.0
++ FlapsDestructionIndSpeedP2:p2=1.0, 315.0
 ```
 
   **Removed**:
 ```diff
-- angleHalfSens:r=4.0
-- angleHalfSens:r=4.0
-- barHeight:r=2.85
-- barHeight:r=2.85
-- barHeight:r=2.85
-- barHeight:r=2.85
-- barHeight:r=2.85
-- barHeight:r=2.85
-- barHeight:r=3.3
-- barHeight:r=2.5
-- barHeight:r=3.0
-- barHeight:r=3.0
-- maxValue:r=74000.0
-- maxValue:r=74000.0
-- maxValue:r=74000.0
-- distanceRange:p2=0.0, 92500.0
-- twsToHprfVelocity{
-- stateFrom:t="mprf"
-- stateFrom:t="lprf"
-- stateTo:t="lprfOkMprfTry"
-- mprfToLprf{
-- stateTo:t="lprfTry"
-- backToLprf{
-- stateFrom:t="lprfOkMprfTry"
-- stateTo:t="lprfTry"
-- lprfToMprf{
-- stateFrom:t="lprf"
-- stateTo:t="mprfTry"
-- lprfTryToMprf{
-- stateFrom:t="lprfTry"
-- stateTo:t="mprfTry"
-- 
-- setModeName{
-- name:t="track memory"
-- }
-- }
-- }
-- 
-- illumination{
-- stateInit:t="init"
-- 
-- transitions{
-- activate{
-- event:t="fsmActivate"
-- stateTo:t="active"
-- checkIlluminationTimeOut{
-- transiver:b=yes
-- pauseMax:r=20.0
-- deactivate{
-- event:t="fsmDeactivate"
-- stateTo:t="inactive"
-- setIllumination{
-- transiver:b=no
-- activateIllumination{
-- event:t="sarhMissileLaunch"
-- setIlluminationTimeOut{
-- timeOut:r=60.0
-- }
-- }
-- updateIllumination{
-- event:t="update"
-- 
-- actions{
-- 
-- checkIlluminationTimeOut{
-- transiver:b=yes
-- pauseMax:r=20.0
+- flapsLimByIas:p4=180.0, 280.0, 1.0, 0.0
+- mechLockIas:r=280.0
+- FlapsDestructionIndSpeedP2:p2=1.0, 280.0
 ```
 
 
-- **aces.vromfs.bin_u/gamedata/sensors/su_kopio.blkx**:
+- **aces.vromfs.bin_u/gamedata/flightmodels/fm/typhoon_mk1b.blkx**:
 
   **Added**:
 ```diff
-+ fsm:t="bvrLock"
-+ fsm:t="bvrLock"
++ flapsLimByIas:p4=180.0, 315.0, 1.0, 0.0
++ mechLockIas:r=315.0
++ FlapsDestructionIndSpeedP2:p2=1.0, 320.0
 ```
 
   **Removed**:
 ```diff
-- fsm:t="lock"
-- fsm:t="lock"
-- actionsTemplates{
-- 
-- setMprfLock{
-- 
-- setTransiver{
-- transiver:t="mprf"
-- }
-- 
-- setSignal{
-- signal:t="mprfSearch"
-- }
-- }
-- 
-- setHprfLock{
-- 
-- setTransiver{
-- transiver:t="hprf"
-- }
-- 
-- setSignal{
-- signal:t="hprfSearch"
-- }
-- }
-- }
-- 
-- transitions{
-- 
-- init{
-- event:t="fsmActivate"
-- 
-- actions{
-- 
-- setMprfLock{
-- }
-- }
-- }
-- 
-- scan{
-- event:t="update"
-- 
-- actions{
-- 
-- setMprfLock{
-- }
-- 
-- scan{
-- }
-- 
-- scan{
-- }
-- 
-- setHprfLock{
-- }
-- }
-- }
-- 
-- detect{
-- event:t="targetInSight"
-- 
-- actions{
-- 
-- setMprfLock{
-- }
-- 
-- detectTarget{
-- ignoreOwnWeapon:b=yes
-- rangeMult:r=1.0
-- }
-- 
-- detectTarget{
-- ignoreOwnWeapon:b=yes
-- rangeMult:r=1.0
-- }
-- 
-- setHprfLock{
-- }
-- }
-- }
-- }
-- }
-- 
-- lock{
-- stateInit:t="lock"
-- 
+- flapsLimByIas:p4=180.0, 280.0, 1.0, 0.0
+- mechLockIas:r=280.0
+- FlapsDestructionIndSpeedP2:p2=1.0, 280.0
 ```
 
 
-- **aces.vromfs.bin_u/gamedata/sensors/su_kopio_25.blkx**:
+- **aces.vromfs.bin_u/gamedata/flightmodels/fm/typhoon_mk1b_late.blkx**:
 
   **Added**:
 ```diff
-+ fsm:t="bvrLock"
-+ fsm:t="bvrLock"
++ flapsLimByIas:p4=180.0, 315.0, 1.0, 0.0
++ mechLockIas:r=315.0
++ FlapsDestructionIndSpeedP2:p2=1.0, 320.0
 ```
 
   **Removed**:
 ```diff
-- fsm:t="lock"
-- fsm:t="lock"
-- actionsTemplates{
-- 
-- setMprfLock{
-- 
-- setTransiver{
-- transiver:t="mprf"
-- }
-- 
-- setSignal{
-- signal:t="mprfSearch"
-- }
-- }
-- 
-- setHprfLock{
-- 
-- setTransiver{
-- transiver:t="hprf"
-- }
-- 
-- setSignal{
-- signal:t="hprfSearch"
-- }
-- }
-- }
-- 
-- transitions{
-- 
-- init{
-- event:t="fsmActivate"
-- 
-- actions{
-- 
-- setMprfLock{
-- }
-- }
-- }
-- 
-- scan{
-- event:t="update"
-- 
-- actions{
-- 
-- setMprfLock{
-- }
-- 
-- scan{
-- }
-- 
-- scan{
-- }
-- 
-- setHprfLock{
-- }
-- }
-- }
-- 
-- detect{
-- event:t="targetInSight"
-- 
-- actions{
-- 
-- setMprfLock{
-- }
-- 
-- detectTarget{
-- ignoreOwnWeapon:b=yes
-- rangeMult:r=1.0
-- }
-- 
-- detectTarget{
-- ignoreOwnWeapon:b=yes
-- rangeMult:r=1.0
-- }
-- 
-- setHprfLock{
-- }
-- }
-- }
-- }
-- }
-- 
-- lock{
-- stateInit:t="lock"
-- 
+- flapsLimByIas:p4=180.0, 280.0, 1.0, 0.0
+- mechLockIas:r=280.0
+- FlapsDestructionIndSpeedP2:p2=1.0, 280.0
 ```
 
 
-- **aces.vromfs.bin_u/gamedata/sensors/su_n_001k.blkx**:
+- **aces.vromfs.bin_u/gamedata/flightmodels/j7w1.blkx**:
 
   **Added**:
 ```diff
-+ name:t="N001"
++ instructorCritMult:p2=0.9, 0.9
 ```
 
   **Removed**:
 ```diff
-- name:t="N001K"
+- instructorCritMult:p2=0.8, 0.8
 ```
 
 
-- **aces.vromfs.bin_u/gamedata/sensors/uk_captor_m.blkx**:
+- **aces.vromfs.bin_u/gamedata/flightmodels/sb2c_5_thailand.blkx**:
 
   **Added**:
 ```diff
-+ power:r=800.0
-+ band:i=8
-+ rcs:r=5.0
-+ range:r=80000.0
-+ rangeMax:r=150000.0
-+ multipathEffect:p4=0.0, 1.0, 60.0, 0.0
-+ 
-+ antenna{
-+ angleHalfSens:r=3.0
-+ sideLobesSensitivity:r=-32.0
-+ }
-+ }
-+ 
-+ hprf{
-+ sideLobesAttenuation:r=-20.0
-+ power:r=1200.0
-+ range:r=150000.0
-+ rangeMax:r=200000.0
-+ angleHalfSens:r=3.0
-+ power:r=1200.0
-+ rangeMax:r=250000.0
-+ angleHalfSens:r=3.0
-+ power:r=800.0
-+ rangeMax:r=200000.0
-+ angleHalfSens:r=3.0
-+ angleHalfSens:r=3.0
-+ angleHalfSens:r=3.0
-+ barHeight:r=2.1
-+ barHeight:r=2.1
-+ barHeight:r=2.1
-+ barHeight:r=2.1
-+ barHeight:r=2.1
-+ barHeight:r=2.1
-+ barHeight:r=2.5
-+ barHeight:r=1.85
-+ barHeight:r=2.25
-+ barHeight:r=2.25
-+ maxValue:r=180000.0
-+ maxValue:r=180000.0
-+ maxValue:r=200000.0
-+ hprfSearch{
-+ groundClutter:b=no
-+ aircraftAsTarget:b=yes
-+ friendFoeId:b=yes
-+ mainBeamDopplerSpeed:b=yes
++ model:t="sb2c_5"
++ fmFile:t="fm/sb2c_4.blk"
++ MetaPartsBlk:t="gameData/FlightModels/dm/metaparts/1x_engine_bomber_metaparts.blk"
++ exhaustEffectsBlk:t="gameData/FlightModels/exhaustEffects/exhaustEffects_common.blk"
++ gyroSight:b=no
++ type:t="typeBomber"
++ type:t="typeDiveBomber"
++ paratrooper:t="usa_para"
++ flapsIsAirbrakes:b=yes
++ overheatBlk:t="gameData/FlightModels/dm/overheat.blk"
++ damagePartsToCollisionObjectsMapBlk:t="gameData/FlightModels/DM/dm_parts_to_collision_objects.blk"
++ damagePartsToFmPartsMapBlk:t="gameData/FlightModels/DM/dm_parts_to_fm_parts_map.blk"
++ damagePartsToHudPartsMapBlk:t="gameData/FlightModels/DM/dm_parts_to_hud_parts_map.blk"
++ damagePartsDependencyMapBlk:t="gameData/FlightModels/DM/dm_parts_additional_dependency_map.blk"
++ damagePartsToCollisionPointsMapBlk:t="gameData/FlightModels/DM/dm_parts_to_collision_points_map.blk"
++ damagePartsToWeaponsMapBlk:t="gameData/FlightModels/DM/dm_parts_to_weapons_map.blk"
++ damagePartsToAvionicsPartsMapBlk:t="gameData/FlightModels/DM/dm_parts_to_avionics_parts_map.blk"
++ damagePartsToVisualEffectsMapBlk:t="gameData/FlightModels/DM/dm_parts_to_visual_effects_map.blk"
++ damagePartsExcludeFromHoleBlk:t="gameData/FlightModels/DM/dm_parts_exclude_from_hole.blk"
++ explosion_dmBlk:t="gameData/FlightModels/DM/commonExplosion.blk"
++ fireParamsPreset:t="500kph"
++ fightAiBehaviour:t="diveBomber"
++ 
++ hook{
++ coeffHookJ:r=0.03
++ hookDeflectionAngles:p2=-40.0, 70.0
++ hookCxDiap:p2=0.2, 0.9
++ hookMass:r=4.0
++ }
++ 
++ Params{
++ Range:r=2100.2
++ }
++ 
++ Sound{
++ turretTurnSfxPath:t="sounds/effects"
++ turretTurnSfxPathStudio:t="aircraft/effects"
++ turretTurnSfxName:t="gun_turn_manual"
++ Engine:t="engine03"
++ gun:t="gun_default"
++ }
++ 
++ cockpit{
++ headPos:p3=-0.088, 1.1, 0.0
++ headPosOnShooting:p3=0.0, 1.1, 0.0
++ lightPos:p3=0.3, 0.743, 0.37
++ lightColor:p3=0.62, 0.3, 0.21
++ lightAttenuation:r=10.0
++ openedGunnerCockpit:b=yes
++ 
++ devices{
++ speed:p2=0.0, 221.21
++ pedals1:p2=-1.0, 1.0
++ pedals2:p2=-1.0, 1.0
++ stick_ailerons:p2=-1.0, 1.0
++ stick_elevator:p2=-1.0, 1.0
++ throttle:p2=0.0, 1.0
++ mixture:p2=0.0, 1.0
++ prop_pitch:p2=0.0, 1.0
++ supercharger:p2=0.0, 1.0
++ weapon2:p2=0.0, 1.0
++ weapon3:p2=0.0, 1.0
++ gears:p2=0.0, 1.0
++ gear_fixed:b=yes
++ flaps:p2=0.0, 1.0
++ flaps_fixed:b=yes
++ gears_lamp:p2=0.0, 0.0
++ trimmer:p2=-1.0, 1.0
++ aviahorizon_pitch:p2=-60.0, 60.0
++ aviahorizon_roll:p2=-180.0, 180.0
++ altitude_10k:p2=0.0, 40000.0
++ altitude_hour:p2=0.0, 10000.0
++ altitude_min:p2=0.0, 1000.0
++ altitude_koef:r=3.28
++ vario:p2=-30.0, 30.0
++ compass:p2=0.0, 360.0
++ compass1:p2=0.0, 360.0
++ compass2:p2=0.0, 360.0
++ bank:p2=-8.0, 8.0
++ bank1:p2=-8.0, 8.0
++ turn:p2=-0.23562, 0.23562
++ clock_hour:p2=0.0, 24.0
++ clock_min:p2=0.0, 60.0
++ clock_sec:p2=0.0, 60.0
++ manifold_pressure:p2=0.3453, 1.727
++ rpm_hour:p2=0.0, 3500.0
++ rpm_min:p2=0.0, 1000.0
++ oil_temperature:p2=0.0, 100.0
++ water_temperature:p2=0.0, 140.0
++ carb_temperature:p2=-50.0, 50.0
++ head_temperature:p2=0.0, 350.0
++ fuel:p2=0.0, 281.0
++ fuel1:p2=0.0, 332.0
++ fuel2:p2=0.0, 268.0
++ fuel3:p2=0.0, 268.0
++ oil_pressure:p2=0.0, 200.0
++ fuel_pressure:p2=0.0, 15.0
++ }
++ 
++ parts_holes_dmg{
++ part:t="fuse"
++ }
++ 
++ parts_oil_dmg{
++ part:t="engine1"
++ part:t="engine2"
++ part:t="engine3"
++ part:t="engine4"
++ }
++ }
++ 
++ flexWing{
++ wingStrainCoeff:r=0.2
++ wingOverloadCoeff:r=1.0
++ wingStrainLimitDown:r=1.0
++ }
++ 
++ commonWeapons{
++ 
++ Weapon{
++ slot:i=0
++ preset:t="default_common"
++ }
++ }
++ 
++ gunnerFps{
++ pos:p3=-0.2, 0.7, 0.0
++ head:t="turret1"
++ }
++ 
++ weapon_presets{
++ 
++ preset{
++ name:t="sb2c_5_5in_rockets"
++ blk:t="gameData/FlightModels/weaponPresets/sb2c_5_5in_rockets.blk"
++ }
++ 
++ preset{
++ name:t="sb2c_5_250lbs_bombs"
++ blk:t="gameData/FlightModels/weaponPresets/sb2c_5_250lbs_bombs.blk"
++ }
++ 
++ preset{
++ name:t="sb2c_5_500lbs_bombs"
++ blk:t="gameData/FlightModels/weaponPresets/sb2c_5_500lbs_bombs.blk"
++ }
++ 
++ preset{
++ name:t="sb2c_5_1000lbs_bombs"
++ blk:t="gameData/FlightModels/weaponPresets/sb2c_5_1000lbs_bombs.blk"
++ }
++ 
++ preset{
++ name:t="sb2c_5_1000lbs_bombs_external"
++ blk:t="gameData/FlightModels/weaponPresets/sb2c_5_1000lbs_bombs_external.blk"
++ }
++ 
++ preset{
++ name:t="sb2c_5_1600lbs_bombs"
++ blk:t="gameData/FlightModels/weaponPresets/sb2c_5_1600lbs_bombs.blk"
++ 
++ weaponConfig{
++ presetType:t="AIR_TO_SEA"
++ }
++ }
++ 
++ preset{
++ name:t="sb2c_5_1x2000lbs"
++ blk:t="gameData/FlightModels/weaponPresets/sb2c_5_1x2000lbs.blk"
++ }
++ 
++ preset{
++ name:t="sb2c_5_torpedo"
++ blk:t="gameData/FlightModels/weaponPresets/sb2c_5_torpedo.blk"
++ }
++ 
++ preset{
++ name:t="sb2c_5_torpedo_case"
++ blk:t="gameData/FlightModels/weaponPresets/sb2c_5_torpedo_case.blk"
++ }
++ 
++ preset{
++ name:t="sb2c_5_dgp_1"
++ blk:t="gameData/FlightModels/weaponPresets/sb2c_5_dgp_1.blk"
++ }
++ }
++ 
++ jetwash{
++ radius:r=10.0
++ minDist:r=50.0
++ timeToLive:r=45.0
++ maxPower:r=6.0
++ maxSegments:i=50
++ }
++ 
++ turbulence{
++ segmentlength:r=100.0
++ startSpeed:r=28.0
++ maxSpeed:r=140.0
++ maxPower:r=6.0
++ initialRadius:r=12.0
++ radiusSpeed:r=2.0
++ }
++ 
++ fireParams{
++ engineExtinguishFireSpeed:p2=82.0, 166.0
++ engineExtinguishFireSpeedChance:p2=0.01, 0.1
++ fireDamagePowerRel:r=0.05
++ nonExtinguishFireTime:r=5.0
++ }
++ 
++ wiki{
++ 
++ general{
++ length:r=11.1732
++ wingspan:r=15.1591
++ wingArea:r=39.21
++ emptyWeight:r=5222.0
++ normalWeight:r=6346.0
++ maxTakeoffWeight:r=7538.0
++ powerPlantType:i=1
++ powerMaxWep:r=1910.0
++ powerMaxMil:r=1750.0
++ }
++ 
++ performance{
++ 
++ table{
++ rpmWep:r=2800.0
++ manifoldPressureWep:r=1.64
++ airSpeedWep0:p2=0.0, 431.0
++ airSpeedWep1:p2=1000.0, 446.0
++ airSpeedWep2:p2=5200.0, 463.0
++ climbRateWep0:p2=0.0, 6.1
++ climbRateWep1:p2=400.0, 5.9
++ climbRateWep2:p2=4700.0, 1.8
++ climbTimeWep0:p2=2000.0, 196.691
++ climbTimeWep1:p2=4000.0, 466.022
++ climbTimeWep2:p2=6000.0, 766.196
++ climbTimeWep3:p2=8000.0, 1281.06
++ turnTimeWep:p2=1000.0, 23.0
++ rpmMil:r=2600.0
++ manifoldPressureMil:r=1.45
++ airSpeedMil0:p2=0.0, 414.0
++ airSpeedMil1:p2=1600.0, 438.0
++ airSpeedMil2:p2=5300.0, 465.0
++ climbRateMil0:p2=0.0, 5.0
++ climbRateMil1:p2=1100.0, 4.9
++ climbRateMil2:p2=4700.0, 1.8
++ climbTimeMil0:p2=2000.0, 199.146
++ climbTimeMil1:p2=4000.0, 459.476
++ climbTimeMil2:p2=6000.0, 759.664
++ climbTimeMil3:p2=8000.0, 1274.53
++ turnTimeMil:p2=1000.0, 23.1
++ takeoffDistance:r=589.633
++ ceiling:r=9200.0
++ rollRate:r=77.0
++ wingLoading:r=162.0
++ powerToWeightRatio:r=0.28
++ }
++ 
++ plot{
++ airSpeedWep0:p2=0.0, 431.0
++ airSpeedWep1:p2=1000.0, 446.0
++ airSpeedWep2:p2=3000.0, 426.0
++ airSpeedWep3:p2=5200.0, 463.0
++ airSpeedWep4:p2=8000.0, 442.0
++ airSpeedWep5:p2=9200.0, 417.0
++ climbRateWep0:p2=0.0, 6.1
++ climbRateWep1:p2=300.0, 6.1
++ climbRateWep2:p2=2200.0, 2.7
++ climbRateWep3:p2=2500.0, 1.6
++ climbRateWep4:p2=2600.0, 1.8
++ climbRateWep5:p2=2700.0, 0.9
++ climbRateWep6:p2=2800.0, 2.0
++ climbRateWep7:p2=4700.0, 1.8
++ climbRateWep8:p2=9200.0, -4.3
++ airSpeedMil0:p2=0.0, 414.0
++ airSpeedMil1:p2=1500.0, 440.0
++ airSpeedMil2:p2=3100.0, 427.0
++ airSpeedMil3:p2=5300.0, 465.0
++ airSpeedMil4:p2=7900.0, 443.0
++ airSpeedMil5:p2=9200.0, 420.0
++ climbRateMil0:p2=0.0, 5.0
++ climbRateMil1:p2=1100.0, 4.9
++ climbRateMil2:p2=2700.0, 2.2
++ climbRateMil3:p2=4700.0, 1.8
++ climbRateMil4:p2=9200.0, -4.3
++ }
++ }
++ }
++ 
++ balanceData{
++ accSpd:r=1.3211
++ climbSpeed:r=6.12
++ maxSpeed:r=125.1
++ turnTime:r=23.0
++ }
++ 
++ modifications{
++ 
++ CdMin_Fuse{
++ tier:i=1
++ modClass:t="lth"
++ }
++ 
++ structure_str{
++ prevModification:t="CdMin_Fuse"
++ tier:i=2
++ modClass:t="lth"
++ }
++ 
++ cd_98{
++ prevModification:t="structure_str"
++ tier:i=3
++ modClass:t="lth"
++ }
++ 
++ new_cover{
++ prevModification:t="cd_98"
++ tier:i=4
++ modClass:t="lth"
++ }
++ 
++ new_radiator{
++ tier:i=1
++ modClass:t="lth"
++ }
++ 
++ new_compressor{
++ prevModification:t="new_radiator"
++ tier:i=2
++ modClass:t="lth"
++ }
++ 
++ hp_105{
++ prevModification:t="new_compressor"
++ tier:i=3
++ modClass:t="lth"
++ }
++ 
++ new_engine_injection{
++ prevModification:t="hp_105"
++ tier:i=4
++ modClass:t="lth"
++ }
++ 
++ an_m2_universal{
++ }
++ 
++ an_m2_ground_targets{
++ }
++ 
++ an_m2_air_targets{
++ }
++ 
++ an_m2_stealth{
++ }
++ 
++ 30cal_turret_ap{
++ }
++ 
++ tbf_itc{
++ modClass:t="weapon"
++ tier:i=1
++ }
++ 
++ improved_torpedo_mod{
++ modClass:t="weapon"
++ tier:i=2
++ reqModification:t="tbf_itc"
++ }
++ 
++ btd_sbc{
++ modClass:t="weapon"
++ tier:i=3
++ reqModification:t="improved_torpedo_mod"
++ }
++ 
++ btd_mbc{
++ modClass:t="weapon"
++ tier:i=4
++ reqModification:t="btd_sbc"
++ }
++ 
++ us_2000lb_m66{
++ modClass:t="weapon"
++ tier:i=4
++ reqModification:t="btd_mbc"
++ }
++ 
++ frc_mk2{
++ tier:i=4
++ modClass:t="weapon"
++ }
++ 
++ bmg30_turret_belt_pack{
++ tier:i=2
++ }
++ 
++ bmg30_turret_new_gun{
++ reqModification:t="bmg30_turret_belt_pack"
++ tier:i=3
++ }
++ 
++ dgp-1_gunpod{
++ tier:i=1
++ modClass:t="weapon"
++ }
++ 
++ 50cal_universal{
++ }
++ 
++ 50cal_ground_targets{
++ }
++ 
++ 50cal_tracers{
++ }
++ 
++ 50cal_stealth{
++ }
++ 
++ bmg50_belt_pack{
++ reqModification:t="dgp-1_gunpod"
++ tier:i=1
++ }
++ 
++ bmg50_new_gun{
++ reqModification:t="bmg50_belt_pack"
++ tier:i=2
++ }
++ 
++ anm2_belt_pack{
++ }
++ 
++ anm2_new_gun{
++ reqModification:t="anm2_belt_pack"
++ }
++ }
++ 
++ user_skin{
++ name:t="sb2c_5"
++ 
++ replace_tex{
++ from:t="sb2c_5_a*"
++ }
++ 
++ replace_tex{
++ from:t="sb2c_5_n*"
++ }
++ }
++ 
++ cutting{
++ _emtr_break_wing0_l_from:p3=-1.18567, -0.138279, 1.13969
++ _emtr_break_wing0_l_to:p3=-1.18567, -0.138279, 2.03061
++ emtr_break_wing1_l_from:p3=-1.18567, -0.138279, 3.36699
++ emtr_break_wing1_l_to:p3=-1.18567, -0.138279, 4.12487
++ _emtr_break_wing0_r_from:p3=-1.18567, -0.138279, -1.13969
++ _emtr_break_wing0_r_to:p3=-1.18567, -0.138279, -2.03061
++ emtr_break_wing1_r_from:p3=-1.18567, -0.138279, -3.36699
++ emtr_break_wing1_r_to:p3=-1.18567, -0.138279, -4.12487
++ emtr_break_wing_tail:p3=-3.7967, 0.0, 0.0
++ finCut:b=no
++ emtr_break_stab_l_from:p3=-5.46471, 0.866208, 0.631988
++ emtr_break_stab_l_to:p3=-5.46471, 0.866208, 2.32509
++ emtr_break_stab_r_from:p3=-5.46471, 0.866208, -0.631988
++ emtr_break_stab_r_to:p3=-5.46471, 0.866208, -2.32509
++ emtr_break_fin_from:p3=-5.59832, 1.37451, 0.00188086
++ emtr_break_fin_to:p3=-5.59832, 2.60958, 0.00188086
++ }
++ 
++ DamageParts{
++ 
++ armor10{
++ 
++ cannon1_dm{
++ hp:r=15.0
++ }
++ 
++ cannon2_dm{
++ hp:r=15.0
++ }
++ 
++ gun1_dm{
++ hp:r=15.0
++ }
++ 
++ mgun1_dm{
++ hp:r=15.0
++ }
++ 
++ mgun2_dm{
++ hp:r=15.0
++ }
++ 
++ mgun3_dm{
++ hp:r=15.0
++ }
++ 
++ mgun4_dm{
++ hp:r=15.0
++ }
++ }
++ 
++ armor11_11{
++ 
++ armor1_dm{
++ hp:r=40.0
++ }
++ }
++ 
++ armor6_35{
++ 
++ armor2_dm{
++ hp:r=35.0
++ }
++ 
++ armor4_dm{
++ hp:r=35.0
++ }
++ }
++ 
++ armor8_5{
++ 
++ armor5_dm{
++ hp:r=40.0
++ }
++ }
++ 
++ armor_engine{
++ 
++ engine1_dm{
++ genericDamageMult:r=1.6
++ hp:r=60.5
++ }
++ }
++ 
++ c_dural10{
++ 
++ fuse1_dm{
++ hp:r=75.3
++ }
++ 
++ fuse2_dm{
++ hp:r=77.3
++ }
++ 
++ fuse_dm{
++ hp:r=64.5
++ }
++ 
++ tail_dm{
++ genericDamageMult:r=0.5
++ hp:r=120.5
++ }
++ 
++ wing1_l_dm{
++ genericDamageMult:r=0.3
++ hp:r=120.5
++ }
++ 
++ wing1_r_dm{
++ genericDamageMult:r=0.3
++ hp:r=120.5
++ }
++ }
++ 
++ c_dural5{
++ 
++ aileron_l_dm{
++ genericDamageMult:r=0.3
++ hp:r=42.8
++ }
++ 
++ aileron_r_dm{
++ genericDamageMult:r=0.3
++ hp:r=42.8
++ }
++ 
++ elevator0_dm{
++ genericDamageMult:r=0.3
++ hp:r=37.2
++ }
++ 
++ elevator1_dm{
++ genericDamageMult:r=0.3
++ hp:r=37.1
++ }
++ 
++ fin_dm{
++ hp:r=45.5
++ }
++ 
++ flap_airbrake1_l_dm{
++ hp:r=24.5
++ }
++ 
++ flap_airbrake1_r_dm{
++ hp:r=24.5
++ }
++ 
++ flap_airbrake_l_dm{
++ hp:r=36.6
++ }
++ 
++ flap_airbrake_r_dm{
++ hp:r=36.3
++ }
++ 
++ rudder_dm{
++ genericDamageMult:r=0.3
++ hp:r=45.5
++ }
++ 
++ stab1_dm{
++ hp:r=28.9
++ }
++ 
++ stab2_dm{
++ hp:r=28.9
++ }
++ }
++ 
++ c_dural7{
++ 
++ wing_l_dm{
++ genericDamageMult:r=0.3
++ hp:r=80.5
++ }
++ 
++ wing_r_dm{
++ genericDamageMult:r=0.3
++ hp:r=80.5
++ }
++ }
++ 
++ dural{
++ 
++ airbrake_l1_dm{
++ hp:r=19.5
++ }
++ 
++ airbrake_l_dm{
++ hp:r=19.5
++ }
++ 
++ airbrake_r1_dm{
++ hp:r=19.5
++ }
++ 
++ airbrake_r_dm{
++ hp:r=19.5
++ }
++ 
++ cover1_dm{
++ hp:r=19.5
++ }
++ 
++ cover2_dm{
++ hp:r=19.5
++ }
++ 
++ cover3_dm{
++ hp:r=19.5
++ }
++ 
++ cover4_dm{
++ hp:r=19.5
++ }
++ 
++ cover5_dm{
++ hp:r=19.5
++ }
++ }
++ 
++ dural60{
++ 
++ spar1_l_dm{
++ hp:r=55.1
++ }
++ 
++ spar1_r_dm{
++ hp:r=55.1
++ }
++ 
++ spar2_l_dm{
++ hp:r=39.5
++ }
++ 
++ spar2_r_dm{
++ hp:r=39.5
++ }
++ 
++ spar_l_dm{
++ hp:r=80.5
++ }
++ 
++ spar_r_dm{
++ hp:r=80.5
++ }
++ }
++ 
++ glass38{
++ 
++ armor3_dm{
++ hp:r=100.0
++ }
++ }
++ 
++ protected_controls{
++ 
++ tailcontrol_dm{
++ hp:r=60.5
++ }
++ 
++ wingcontrol_dm{
++ hp:r=60.5
++ }
++ }
++ 
++ steel{
++ 
++ gear_c_dm{
++ hp:r=39.5
++ }
++ 
++ gear_l_dm{
++ hp:r=60.5
++ }
++ 
++ gear_r_dm{
++ hp:r=60.5
++ }
++ }
++ 
++ steel_cooling_sys{
++ 
++ oil1_dm{
++ hp:r=19.5
++ }
++ 
++ oil2_dm{
++ hp:r=13.5
++ }
++ }
++ 
++ steel_pilot{
++ 
++ gunner1_dm{
++ hp:r=20.0
++ }
++ 
++ pilot_dm{
++ fireProtectionHp:r=20.0
++ hp:r=20.0
++ }
++ }
++ 
++ steel_tank_s{
++ 
++ tank1_dm{
++ hp:r=43.5
++ }
++ 
++ tank2_dm{
++ hp:r=56.5
++ }
++ 
++ tank3_dm{
++ hp:r=56.0
++ }
++ 
++ tank4_dm{
++ hp:r=39.5
++ }
++ 
++ tank5_dm{
++ hp:r=39.5
++ }
++ }
++ }
++ 
++ DamageEffects{
++ 
++ part{
++ name:t="aileron_l_dm"
++ 
++ onHit{
++ damage:r=10.0
++ cut:r=0.1
++ }
++ 
++ onHit{
++ damage:r=20.0
++ cut:r=0.4
++ }
++ 
++ onHit{
++ damage:r=30.0
++ cut:r=0.7
++ }
++ 
++ onHit{
++ damage:r=50.0
++ cut:r=1.0
++ }
++ 
++ onKill{
++ cut:r=1.0
++ nothing:r=4.0
++ }
++ 
++ onKill{
++ damage:r=20.0
++ cut:r=1.0
++ nothing:r=2.0
++ }
++ 
++ onKill{
++ damage:r=30.0
++ cut:r=1.0
++ nothing:r=1.0
++ }
++ 
++ onKill{
++ damage:r=50.0
++ cut:r=1.0
++ }
++ }
++ 
++ part{
++ name:t="aileron_r_dm"
++ 
++ onHit{
++ damage:r=10.0
++ cut:r=0.1
++ }
++ 
++ onHit{
++ damage:r=20.0
++ cut:r=0.4
++ }
++ 
++ onHit{
++ damage:r=30.0
++ cut:r=0.7
++ }
++ 
++ onHit{
++ damage:r=50.0
++ cut:r=1.0
++ }
++ 
++ onKill{
++ cut:r=1.0
++ nothing:r=4.0
++ }
++ 
++ onKill{
++ damage:r=20.0
++ cut:r=1.0
++ nothing:r=2.0
++ }
++ 
++ onKill{
++ damage:r=30.0
++ cut:r=1.0
++ nothing:r=1.0
++ }
++ 
++ onKill{
++ damage:r=50.0
++ cut:r=1.0
++ }
++ }
++ 
++ part{
++ name:t="airbrake_l1_dm"
++ }
++ 
++ part{
++ name:t="airbrake_l_dm"
++ }
++ 
++ part{
++ name:t="airbrake_r1_dm"
++ }
++ 
++ part{
++ name:t="airbrake_r_dm"
++ }
++ 
++ part{
++ name:t="armor1_dm"
++ }
++ 
++ part{
++ name:t="armor2_dm"
++ }
++ 
++ part{
++ name:t="armor3_dm"
++ }
++ 
++ part{
++ name:t="armor4_dm"
++ }
++ 
++ part{
++ name:t="armor5_dm"
++ }
++ 
++ part{
++ name:t="cannon1_dm"
++ }
++ 
++ part{
++ name:t="cannon2_dm"
++ }
++ 
++ part{
++ name:t="cover1_dm"
++ }
++ 
++ part{
++ name:t="cover2_dm"
++ }
++ 
++ part{
++ name:t="cover3_dm"
++ }
++ 
++ part{
++ name:t="cover4_dm"
++ }
++ 
++ part{
++ name:t="cover5_dm"
++ }
++ 
++ part{
++ name:t="elevator0_dm"
++ 
++ onHit{
++ damage:r=10.0
++ cut:r=0.1
++ }
++ 
++ onHit{
++ damage:r=20.0
++ cut:r=0.4
++ }
++ 
++ onHit{
++ damage:r=30.0
++ cut:r=0.7
++ }
++ 
++ onHit{
++ damage:r=50.0
++ cut:r=1.0
++ }
++ 
++ onKill{
++ cut:r=1.0
++ nothing:r=4.0
++ }
++ 
++ onKill{
++ damage:r=20.0
++ cut:r=1.0
++ nothing:r=2.0
++ }
++ 
++ onKill{
++ damage:r=30.0
++ cut:r=1.0
++ nothing:r=1.0
++ }
++ 
++ onKill{
++ damage:r=50.0
++ cut:r=1.0
++ }
++ }
++ 
++ part{
++ name:t="elevator1_dm"
++ 
++ onHit{
++ damage:r=10.0
++ cut:r=0.1
++ }
++ 
++ onHit{
++ damage:r=20.0
++ cut:r=0.4
++ }
++ 
++ onHit{
++ damage:r=30.0
++ cut:r=0.7
++ }
++ 
++ onHit{
++ damage:r=50.0
++ cut:r=1.0
++ }
++ 
++ onKill{
++ cut:r=1.0
++ nothing:r=4.0
++ }
++ 
++ onKill{
++ damage:r=20.0
++ cut:r=1.0
++ nothing:r=2.0
++ }
++ 
++ onKill{
++ damage:r=30.0
++ cut:r=1.0
++ nothing:r=1.0
++ }
++ 
++ onKill{
++ damage:r=50.0
++ cut:r=1.0
++ }
++ }
++ 
++ part{
++ name:t="engine1_dm"
++ 
++ onHit{
++ fire:r=0.01
++ }
++ 
++ onHit{
++ damage:r=2.7
++ fire:r=0.01
++ leak_oil:r=0.5
++ cut:r=0.0
++ }
++ 
++ onHit{
++ damage:r=30.0
++ fire:r=0.1
++ leak_oil:r=1.0
++ cut:r=0.0
++ }
++ 
++ onKill{
++ fire:r=30.0
++ leak_oil:r=10.0
++ cut:r=0.0
++ }
++ 
++ onKill{
++ damage:r=30.0
++ fire:r=44.0
++ leak_oil:r=10.0
++ cut:r=0.0
++ }
++ }
++ 
++ part{
++ name:t="fin_dm"
++ 
++ onHit{
++ tailcontrol_dm:r=0.001
++ }
++ 
++ onHit{
++ damage:r=30.0
++ cut:r=0.6
++ }
++ 
++ onHit{
++ damage:r=70.0
++ cut:r=1.0
++ }
++ 
++ onKill{
++ tailcontrol_dm:r=1.0
++ nothing:r=9.0
++ }
++ 
++ onKill{
++ damage:r=10.0
++ cut:r=1.0
++ nothing:r=14.0
++ }
++ 
++ onKill{
++ damage:r=30.0
++ cut:r=1.0
++ nothing:r=4.0
++ }
++ 
++ onKill{
++ damage:r=50.0
++ cut:r=1.0
++ nothing:r=1.0
++ }
++ }
++ 
++ part{
++ name:t="flap_airbrake1_l_dm"
++ 
++ onHit{
++ damage:r=10.0
++ cut:r=0.1
++ }
++ 
++ onHit{
++ damage:r=20.0
++ cut:r=0.4
++ }
++ 
++ onHit{
++ damage:r=30.0
++ cut:r=0.7
++ }
++ 
++ onHit{
++ damage:r=50.0
++ cut:r=1.0
++ }
++ 
++ onKill{
++ cut:r=1.0
++ nothing:r=9.0
++ }
++ 
++ onKill{
++ damage:r=10.0
++ cut:r=1.0
++ nothing:r=5.0
++ }
++ 
++ onKill{
++ damage:r=20.0
++ cut:r=1.0
++ nothing:r=3.0
++ }
++ 
++ onKill{
++ damage:r=30.0
++ cut:r=1.0
++ }
++ }
++ 
++ part{
++ name:t="flap_airbrake1_r_dm"
++ 
++ onHit{
++ damage:r=10.0
++ cut:r=0.1
++ }
++ 
++ onHit{
++ damage:r=20.0
++ cut:r=0.4
++ }
++ 
++ onHit{
++ damage:r=30.0
++ cut:r=0.7
++ }
++ 
++ onHit{
++ damage:r=50.0
++ cut:r=1.0
++ }
++ 
++ onKill{
++ cut:r=1.0
++ nothing:r=9.0
++ }
++ 
++ onKill{
++ damage:r=10.0
++ cut:r=1.0
++ nothing:r=5.0
++ }
++ 
++ onKill{
++ damage:r=20.0
++ cut:r=1.0
++ nothing:r=3.0
++ }
++ 
++ onKill{
++ damage:r=30.0
++ cut:r=1.0
++ }
++ }
++ 
++ part{
++ name:t="flap_airbrake_l_dm"
++ 
++ onHit{
++ damage:r=10.0
++ cut:r=0.1
++ }
++ 
++ onHit{
++ damage:r=20.0
++ cut:r=0.4
++ }
++ 
++ onHit{
++ damage:r=30.0
++ cut:r=0.7
++ }
++ 
++ onHit{
++ damage:r=50.0
++ cut:r=1.0
++ }
++ 
++ onKill{
++ cut:r=1.0
++ nothing:r=9.0
++ }
++ 
++ onKill{
++ damage:r=10.0
++ cut:r=1.0
++ nothing:r=5.0
++ }
++ 
++ onKill{
++ damage:r=20.0
++ cut:r=1.0
++ nothing:r=3.0
++ }
++ 
++ onKill{
++ damage:r=30.0
++ cut:r=1.0
++ }
++ }
++ 
++ part{
++ name:t="flap_airbrake_r_dm"
++ 
++ onHit{
++ damage:r=10.0
++ cut:r=0.1
++ }
++ 
++ onHit{
++ damage:r=20.0
++ cut:r=0.4
++ }
++ 
++ onHit{
++ damage:r=30.0
++ cut:r=0.7
++ }
++ 
++ onHit{
++ damage:r=50.0
++ cut:r=1.0
++ }
++ 
++ onKill{
++ cut:r=1.0
++ nothing:r=9.0
++ }
++ 
++ onKill{
++ damage:r=10.0
++ cut:r=1.0
++ nothing:r=5.0
++ }
++ 
++ onKill{
++ damage:r=20.0
++ cut:r=1.0
++ nothing:r=3.0
++ }
++ 
++ onKill{
++ damage:r=30.0
++ cut:r=1.0
++ }
++ }
++ 
++ part{
++ name:t="fuse1_dm"
++ 
++ onHit{
++ flame:r=0.2
++ smoke:r=0.2
++ }
++ 
++ onHit{
++ damage:r=50.0
++ wing_r_dm:r=0.7
++ wing_l_dm:r=0.7
++ }
++ 
++ onHit{
++ damage:r=70.0
++ wing_r_dm:r=0.9
++ wing_l_dm:r=0.9
++ }
++ 
++ onKill{
++ wingcontrol_l_dm:r=1.0
++ wingcontrol_r_dm:r=1.0
++ nothing:r=9.0
++ }
++ 
++ onKill{
++ damage:r=10.0
++ wing_l_dm:r=1.0
++ wing_r_dm:r=1.0
++ nothing:r=5.0
++ }
++ 
++ onKill{
++ damage:r=20.0
++ wing_l_dm:r=1.0
++ wing_r_dm:r=1.0
++ nothing:r=4.0
++ }
++ 
++ onKill{
++ damage:r=30.0
++ wing_l_dm:r=1.0
++ wing_r_dm:r=1.0
++ nothing:r=3.0
++ }
++ 
++ onKill{
++ damage:r=50.0
++ wing_l_dm:r=1.0
++ wing_r_dm:r=1.0
++ nothing:r=2.0
++ }
++ 
++ onKill{
++ damage:r=70.0
++ wing_l_dm:r=1.0
++ wing_r_dm:r=1.0
++ }
++ }
++ 
++ part{
++ name:t="fuse2_dm"
++ 
++ onHit{
++ flame:r=0.2
++ smoke:r=0.2
++ }
++ 
++ onHit{
++ damage:r=50.0
++ wing_r_dm:r=0.7
++ wing_l_dm:r=0.7
++ }
++ 
++ onHit{
++ damage:r=70.0
++ wing_r_dm:r=0.9
++ wing_l_dm:r=0.9
++ }
++ 
++ onKill{
++ wingcontrol_l_dm:r=1.0
++ wingcontrol_r_dm:r=1.0
++ nothing:r=9.0
++ }
++ 
++ onKill{
++ damage:r=10.0
++ wing_l_dm:r=1.0
++ wing_r_dm:r=1.0
++ nothing:r=5.0
++ }
++ 
++ onKill{
++ damage:r=20.0
++ wing_l_dm:r=1.0
++ wing_r_dm:r=1.0
++ nothing:r=4.0
++ }
++ 
++ onKill{
++ damage:r=30.0
++ wing_l_dm:r=1.0
++ wing_r_dm:r=1.0
++ nothing:r=3.0
++ }
++ 
++ onKill{
++ damage:r=50.0
++ wing_l_dm:r=1.0
++ wing_r_dm:r=1.0
++ nothing:r=2.0
++ }
++ 
++ onKill{
++ damage:r=70.0
++ wing_l_dm:r=1.0
++ wing_r_dm:r=1.0
++ }
++ }
++ 
++ part{
++ name:t="fuse_dm"
++ 
++ onHit{
++ flame:r=0.2
++ smoke:r=0.2
++ }
++ 
++ onHit{
++ damage:r=50.0
++ tail_dm:r=0.6
++ }
++ 
++ onHit{
++ damage:r=70.0
++ tail_dm:r=0.8
++ }
++ 
++ onHit{
++ damage:r=100.0
++ tail_dm:r=1.0
++ }
++ 
++ onKill{
++ tail_dm:r=1.0
++ nothing:r=12.0
++ }
++ 
++ onKill{
++ damage:r=3.0
++ tail_dm:r=1.0
++ nothing:r=9.0
++ }
++ 
++ onKill{
++ damage:r=7.0
++ tail_dm:r=1.0
++ nothing:r=8.0
++ }
++ 
++ onKill{
++ damage:r=10.0
++ tail_dm:r=1.0
++ nothing:r=7.0
++ }
++ 
++ onKill{
++ damage:r=20.0
++ tail_dm:r=1.0
++ nothing:r=6.0
++ }
++ 
++ onKill{
++ damage:r=30.0
++ tail_dm:r=1.0
++ nothing:r=5.0
++ }
++ 
++ onKill{
++ damage:r=50.0
++ tail_dm:r=1.0
++ nothing:r=4.0
++ }
++ 
++ onKill{
++ damage:r=70.0
++ tail_dm:r=1.0
++ nothing:r=3.0
++ }
++ 
++ onKill{
++ damage:r=100.0
++ tail_dm:r=1.0
++ }
++ }
++ 
++ part{
++ name:t="gear_c_dm"
++ 
++ onHit{
++ damage:r=15.0
++ cut:r=0.1
++ }
++ 
++ onHit{
++ damage:r=25.0
++ cut:r=0.4
++ }
++ 
++ onHit{
++ damage:r=40.0
++ cut:r=0.7
++ }
++ 
++ onHit{
++ damage:r=60.0
++ cut:r=1.0
++ }
++ 
++ onKill{
++ cut:r=1.0
++ }
++ }
++ 
++ part{
++ name:t="gear_l_dm"
++ 
++ onHit{
++ damage:r=15.0
++ cut:r=0.1
++ }
++ 
++ onHit{
++ damage:r=25.0
++ cut:r=0.4
++ }
++ 
++ onHit{
++ damage:r=40.0
++ cut:r=0.7
++ }
++ 
++ onHit{
++ damage:r=60.0
++ cut:r=1.0
++ }
++ 
++ onKill{
++ cut:r=1.0
++ }
++ }
++ 
++ part{
++ name:t="gear_r_dm"
++ 
++ onHit{
++ damage:r=15.0
++ cut:r=0.1
++ }
++ 
++ onHit{
++ damage:r=25.0
++ cut:r=0.4
++ }
++ 
++ onHit{
++ damage:r=40.0
++ cut:r=0.7
++ }
++ 
++ onHit{
++ damage:r=60.0
++ cut:r=1.0
++ }
++ 
++ onKill{
++ cut:r=1.0
++ }
++ }
++ 
++ part{
++ name:t="gun1_dm"
++ }
++ 
++ part{
++ name:t="gunner1_dm"
++ }
++ 
++ part{
++ name:t="mgun1_dm"
++ }
++ 
++ part{
++ name:t="mgun2_dm"
++ }
++ 
++ part{
++ name:t="mgun3_dm"
++ }
++ 
++ part{
++ name:t="mgun4_dm"
++ }
++ 
++ part{
++ name:t="oil1_dm"
++ 
++ onHit{
++ leak_oil:r=0.95
++ }
++ 
++ onKill{
++ leak_oil:r=1.0
++ }
++ }
++ 
++ part{
++ name:t="oil2_dm"
++ 
++ onHit{
++ leak_oil:r=0.95
++ }
++ 
++ onKill{
++ leak_oil:r=1.0
++ }
++ }
++ 
++ part{
++ name:t="pilot_dm"
++ }
++ 
++ part{
++ name:t="rudder_dm"
++ 
++ onHit{
++ damage:r=10.0
++ cut:r=0.1
++ }
++ 
++ onHit{
++ damage:r=20.0
++ cut:r=0.4
++ }
++ 
++ onHit{
++ damage:r=30.0
++ cut:r=0.7
++ }
++ 
++ onHit{
++ damage:r=50.0
++ cut:r=1.0
++ }
++ 
++ onKill{
++ cut:r=1.0
++ nothing:r=4.0
++ }
++ 
++ onKill{
++ damage:r=20.0
++ cut:r=1.0
++ nothing:r=2.0
++ }
++ 
++ onKill{
++ damage:r=30.0
++ cut:r=1.0
++ nothing:r=1.0
++ }
++ 
++ onKill{
++ damage:r=50.0
++ cut:r=1.0
++ }
++ }
++ 
++ part{
++ name:t="spar1_l_dm"
++ 
++ onKill{
++ nothing:r=2.0
++ cut:r=3.0
++ }
++ }
++ 
++ part{
++ name:t="spar1_r_dm"
++ 
++ onKill{
++ nothing:r=2.0
++ cut:r=3.0
++ }
++ }
++ 
++ part{
++ name:t="spar2_l_dm"
++ 
++ onKill{
++ nothing:r=2.0
++ cut:r=3.0
++ }
++ }
++ 
++ part{
++ name:t="spar2_r_dm"
++ 
++ onKill{
++ nothing:r=2.0
++ cut:r=3.0
++ }
++ }
++ 
++ part{
++ name:t="spar_l_dm"
++ 
++ onKill{
++ nothing:r=100.0
++ cut:r=0.001
++ }
++ }
++ 
++ part{
++ name:t="spar_r_dm"
++ 
++ onKill{
++ nothing:r=100.0
++ cut:r=0.001
++ }
++ }
++ 
++ part{
++ name:t="stab1_dm"
++ 
++ onHit{
++ damage:r=30.0
++ cut:r=0.6
++ }
++ 
++ onHit{
++ damage:r=70.0
++ cut:r=1.0
++ }
++ 
++ onKill{
++ damage:r=10.0
++ cut:r=1.0
++ nothing:r=14.0
++ }
++ 
++ onKill{
++ damage:r=30.0
++ cut:r=1.0
++ nothing:r=4.0
++ }
++ 
++ onKill{
++ damage:r=50.0
++ cut:r=1.0
++ nothing:r=1.0
++ }
++ }
++ 
++ part{
++ name:t="stab2_dm"
++ 
++ onHit{
++ damage:r=30.0
++ cut:r=0.6
++ }
++ 
++ onHit{
++ damage:r=70.0
++ cut:r=1.0
++ }
++ 
++ onKill{
++ damage:r=10.0
++ cut:r=1.0
++ nothing:r=14.0
++ }
++ 
++ onKill{
++ damage:r=30.0
++ cut:r=1.0
++ nothing:r=4.0
++ }
++ 
++ onKill{
++ damage:r=50.0
++ cut:r=1.0
++ nothing:r=1.0
++ }
++ }
++ 
++ part{
++ name:t="tail_dm"
++ 
++ onHit{
++ flame:r=0.2
++ smoke:r=0.2
++ }
++ 
++ onHit{
++ damage:r=30.0
++ cut:r=0.25
++ }
++ 
++ onHit{
++ damage:r=50.0
++ cut:r=0.5
++ }
++ 
++ onHit{
++ damage:r=65.0
++ cut:r=1.0
++ }
++ 
++ onKill{
++ tailcontrol_dm:r=1.0
++ nothing:r=19.0
++ }
++ 
++ onKill{
++ damage:r=10.0
++ tailcontrol_dm:r=1.0
++ nothing:r=9.0
++ }
++ 
++ onKill{
++ damage:r=20.0
++ cut:r=1.0
++ nothing:r=4.0
++ }
++ 
++ onKill{
++ damage:r=30.0
++ cut:r=1.0
++ nothing:r=3.0
++ }
++ 
++ onKill{
++ damage:r=50.0
++ cut:r=1.0
++ nothing:r=2.0
++ }
++ 
++ onKill{
++ damage:r=65.0
++ cut:r=1.0
++ }
++ }
++ 
++ part{
++ name:t="tailcontrol_dm"
++ }
++ 
++ part{
++ name:t="tank1_dm"
++ 
++ onHit{
++ fire:r=0.03
++ leak:r=0.5
++ }
++ 
++ onHit{
++ damage:r=20.0
++ fire:r=0.3
++ leak:r=0.7
++ }
++ 
++ onHit{
++ damage:r=80.0
++ expl:r=0.5
++ fire:r=0.7
++ leak:r=0.9
++ }
++ 
++ onKill{
++ fire:r=3.0
++ leak:r=12.0
++ nothing:r=85.0
++ }
++ 
++ onKill{
++ damage:r=30.0
++ fire:r=10.0
++ leak:r=30.0
++ }
++ 
++ onKill{
++ damage:r=80.0
++ fire:r=50.0
++ leak:r=30.0
++ }
++ }
++ 
++ part{
++ name:t="tank2_dm"
++ 
++ onHit{
++ fire:r=0.03
++ leak:r=0.5
++ }
++ 
++ onHit{
++ damage:r=20.0
++ fire:r=0.3
++ leak:r=0.7
++ }
++ 
++ onHit{
++ damage:r=80.0
++ expl:r=0.5
++ fire:r=0.7
++ leak:r=0.9
++ }
++ 
++ onKill{
++ fire:r=3.0
++ leak:r=12.0
++ nothing:r=85.0
++ }
++ 
++ onKill{
++ damage:r=30.0
++ fire:r=10.0
++ leak:r=30.0
++ }
++ 
++ onKill{
++ damage:r=80.0
++ fire:r=50.0
++ leak:r=30.0
++ }
++ }
++ 
++ part{
++ name:t="tank3_dm"
++ 
++ onHit{
++ fire:r=0.03
++ leak:r=0.5
++ }
++ 
++ onHit{
++ damage:r=20.0
++ fire:r=0.3
++ leak:r=0.7
++ }
++ 
++ onHit{
++ damage:r=80.0
++ expl:r=0.5
++ fire:r=0.7
++ leak:r=0.9
++ }
++ 
++ onKill{
++ fire:r=3.0
++ leak:r=12.0
++ nothing:r=85.0
++ }
++ 
++ onKill{
++ damage:r=30.0
++ fire:r=10.0
++ leak:r=30.0
++ }
++ 
++ onKill{
++ damage:r=80.0
++ fire:r=50.0
++ leak:r=30.0
++ }
++ }
++ 
++ part{
++ name:t="tank4_dm"
++ 
++ onHit{
++ fire:r=0.03
++ leak:r=0.5
++ }
++ 
++ onHit{
++ damage:r=20.0
++ fire:r=0.3
++ leak:r=0.7
++ }
++ 
++ onHit{
++ damage:r=80.0
++ expl:r=0.5
++ fire:r=0.7
++ leak:r=0.9
++ }
++ 
++ onKill{
++ fire:r=3.0
++ leak:r=12.0
++ nothing:r=85.0
++ }
++ 
++ onKill{
++ damage:r=30.0
++ fire:r=10.0
++ leak:r=30.0
++ }
++ 
++ onKill{
++ damage:r=80.0
++ fire:r=50.0
++ leak:r=30.0
++ }
++ }
++ 
++ part{
++ name:t="tank5_dm"
++ 
++ onHit{
++ fire:r=0.03
++ leak:r=0.5
++ }
++ 
++ onHit{
++ damage:r=20.0
++ fire:r=0.3
++ leak:r=0.7
++ }
++ 
++ onHit{
++ damage:r=80.0
++ expl:r=0.5
++ fire:r=0.7
++ leak:r=0.9
++ }
++ 
++ onKill{
++ fire:r=3.0
++ leak:r=12.0
++ nothing:r=85.0
++ }
++ 
++ onKill{
++ damage:r=30.0
++ fire:r=10.0
++ leak:r=30.0
++ }
++ 
++ onKill{
++ damage:r=80.0
++ fire:r=50.0
++ leak:r=30.0
++ }
++ }
++ 
++ part{
++ name:t="wing1_l_dm"
++ defaultEffectPart:t="spar1_l_dm"
++ 
++ onHit{
++ smoke:r=0.1
++ flame:r=0.2
++ }
++ 
++ onHit{
++ damage:r=10.0
++ cut:r=0.0
++ smoke:r=0.3
++ flame:r=0.3
++ 
++ part{
++ ratio:r=0.1
++ canCut:b=yes
++ }
++ }
++ 
++ onHit{
++ damage:r=20.0
++ cut:r=0.0
++ smoke:r=0.3
++ flame:r=0.3
++ 
++ part{
++ ratio:r=0.2
++ canCut:b=yes
++ }
++ }
++ 
++ onHit{
++ damage:r=30.0
++ cut:r=0.0
++ smoke:r=0.4
++ flame:r=0.4
++ 
++ part{
++ ratio:r=0.4
++ canCut:b=yes
++ }
++ }
++ 
++ onHit{
++ damage:r=50.0
++ cut:r=0.0
++ smoke:r=0.6
++ flame:r=0.6
++ 
++ part{
++ ratio:r=0.8
++ canCut:b=yes
++ }
++ }
++ 
++ onHit{
++ damage:r=70.0
++ cut:r=0.0
++ smoke:r=0.8
++ flame:r=0.8
++ 
++ part{
++ ratio:r=1.0
++ canCut:b=yes
++ }
++ }
++ 
++ onKill{
++ damage:r=10.0
++ cut:r=0.0
++ smoke:r=1.0
++ flame:r=1.0
++ nothing:r=9.0
++ 
++ part{
++ ratio:r=1.0
++ canCut:b=yes
++ }
++ }
++ 
++ onKill{
++ damage:r=20.0
++ cut:r=0.0
++ smoke:r=2.0
++ flame:r=2.0
++ nothing:r=5.0
++ 
++ part{
++ ratio:r=1.0
++ canCut:b=yes
++ }
++ }
++ 
++ onKill{
++ damage:r=30.0
++ cut:r=0.0
++ smoke:r=2.0
++ flame:r=2.0
++ nothing:r=3.0
++ 
++ part{
++ ratio:r=1.0
++ canCut:b=yes
++ }
++ }
++ 
++ onKill{
++ damage:r=50.0
++ cut:r=0.0
++ smoke:r=2.0
++ flame:r=2.0
++ nothing:r=1.0
++ 
++ part{
++ ratio:r=1.0
++ canCut:b=yes
++ }
++ }
++ 
++ onKill{
++ damage:r=70.0
++ cut:r=0.0
++ smoke:r=2.0
++ flame:r=2.0
++ 
++ part{
++ ratio:r=1.0
++ canCut:b=yes
++ }
++ }
++ }
++ 
++ part{
++ name:t="wing1_r_dm"
++ defaultEffectPart:t="spar1_r_dm"
++ 
++ onHit{
++ smoke:r=0.1
++ flame:r=0.2
++ }
++ 
++ onHit{
++ damage:r=10.0
++ cut:r=0.0
++ smoke:r=0.3
++ flame:r=0.3
++ 
++ part{
++ ratio:r=0.1
++ canCut:b=yes
++ }
++ }
++ 
++ onHit{
++ damage:r=20.0
++ cut:r=0.0
++ smoke:r=0.3
++ flame:r=0.3
++ 
++ part{
++ ratio:r=0.2
++ canCut:b=yes
++ }
++ }
++ 
++ onHit{
++ damage:r=30.0
++ cut:r=0.0
++ smoke:r=0.4
++ flame:r=0.4
++ 
++ part{
++ ratio:r=0.4
++ canCut:b=yes
++ }
++ }
++ 
++ onHit{
++ damage:r=50.0
++ cut:r=0.0
++ smoke:r=0.6
++ flame:r=0.6
++ 
++ part{
++ ratio:r=0.8
++ canCut:b=yes
++ }
++ }
++ 
++ onHit{
++ damage:r=70.0
++ cut:r=0.0
++ smoke:r=0.8
++ flame:r=0.8
++ 
++ part{
++ ratio:r=1.0
++ canCut:b=yes
++ }
++ }
++ 
++ onKill{
++ damage:r=10.0
++ cut:r=0.0
++ smoke:r=1.0
++ flame:r=1.0
++ nothing:r=9.0
++ 
++ part{
++ ratio:r=1.0
++ canCut:b=yes
++ }
++ }
++ 
++ onKill{
++ damage:r=20.0
++ cut:r=0.0
++ smoke:r=2.0
++ flame:r=2.0
++ nothing:r=5.0
++ 
++ part{
++ ratio:r=1.0
++ canCut:b=yes
++ }
++ }
++ 
++ onKill{
++ damage:r=30.0
++ cut:r=0.0
++ smoke:r=2.0
++ flame:r=2.0
++ nothing:r=3.0
++ 
++ part{
++ ratio:r=1.0
++ canCut:b=yes
++ }
++ }
++ 
++ onKill{
++ damage:r=50.0
++ cut:r=0.0
++ smoke:r=2.0
++ flame:r=2.0
++ nothing:r=1.0
++ 
++ part{
++ ratio:r=1.0
++ canCut:b=yes
++ }
++ }
++ 
++ onKill{
++ damage:r=70.0
++ cut:r=0.0
++ smoke:r=2.0
++ flame:r=2.0
++ 
++ part{
++ ratio:r=1.0
++ canCut:b=yes
++ }
++ }
++ }
++ 
++ part{
++ name:t="wing_l_dm"
++ 
++ onHit{
++ smoke:r=0.1
++ flame:r=0.2
++ }
++ 
++ onHit{
++ damage:r=10.0
++ smoke:r=0.2
++ flame:r=0.3
++ }
++ 
++ onHit{
++ damage:r=20.0
++ smoke:r=0.3
++ flame:r=0.4
++ }
++ 
++ onHit{
++ damage:r=30.0
++ smoke:r=0.4
++ flame:r=0.5
++ }
++ 
++ onHit{
++ damage:r=50.0
++ smoke:r=0.5
++ flame:r=0.6
++ }
++ 
++ onHit{
++ damage:r=70.0
++ smoke:r=0.8
++ flame:r=0.8
++ }
++ 
++ onKill{
++ damage:r=10.0
++ smoke:r=0.2
++ flame:r=0.2
++ }
++ 
++ onKill{
++ damage:r=20.0
++ smoke:r=0.2
++ flame:r=0.2
++ }
++ 
++ onKill{
++ damage:r=30.0
++ smoke:r=0.5
++ flame:r=0.6
++ }
++ 
++ onKill{
++ damage:r=50.0
++ smoke:r=1.0
++ flame:r=1.1
++ }
++ 
++ onKill{
++ damage:r=70.0
++ smoke:r=1.0
++ flame:r=1.1
++ }
++ }
++ 
++ part{
++ name:t="wing_r_dm"
++ 
++ onHit{
++ smoke:r=0.1
++ flame:r=0.2
++ }
++ 
++ onHit{
++ damage:r=10.0
++ smoke:r=0.2
++ flame:r=0.3
++ }
++ 
++ onHit{
++ damage:r=20.0
++ smoke:r=0.3
++ flame:r=0.4
++ }
++ 
++ onHit{
++ damage:r=30.0
++ smoke:r=0.4
++ flame:r=0.5
++ }
++ 
++ onHit{
++ damage:r=50.0
++ smoke:r=0.5
++ flame:r=0.6
++ }
++ 
++ onHit{
++ damage:r=70.0
++ smoke:r=0.8
++ flame:r=0.8
++ }
++ 
++ onKill{
++ damage:r=10.0
++ smoke:r=0.2
++ flame:r=0.2
++ }
++ 
++ onKill{
++ damage:r=20.0
++ smoke:r=0.2
++ flame:r=0.2
++ }
++ 
++ onKill{
++ damage:r=30.0
++ smoke:r=0.5
++ flame:r=0.6
++ }
++ 
++ onKill{
++ damage:r=50.0
++ smoke:r=1.0
++ flame:r=1.1
++ }
++ 
++ onKill{
++ damage:r=70.0
++ smoke:r=1.0
++ flame:r=1.1
++ }
++ }
++ 
++ part{
++ name:t="wingcontrol_dm"
++ }
++ }
++ 
++ ikPilot{
++ model:t="pilot_us_char"
++ maxHeadHorAngle:r=60.0
++ maxHeadDownAngle:r=60.0
++ maxHeadUpAngle:r=10.0
++ headNode:t="Bip01 Head"
++ pelvisNode:t="Bip01 Pelvis"
++ pelvisTargetNode:t="Bip01 Pelvis01"
++ 
++ ikNode{
++ downNode:t="Bip01 L Hand"
++ midNode:t="Bip01 L Forearm"
++ upNode:t="Bip01 L UpperArm"
++ targetNode:t="throttle_lhand_1"
++ flexionDir:p3=0.0, -1.0, 0.2
++ type:t="leftHand"
++ detachedNodeYpr:p3=0.0, -15.0, -90.0
++ detachedNodeScale:p3=1.0, -1.0, 1.0
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 R Hand"
++ midNode:t="Bip01 R Forearm"
++ upNode:t="Bip01 R UpperArm"
++ targetNode:t="stick_rhand_1"
++ flexionDir:p3=0.0, -1.0, -0.5
++ type:t="rightHand"
++ detachedNodeYpr:p3=0.0, -15.0, 90.0
++ detachedNodeScale:p3=1.0, -1.0, 1.0
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 L Foot"
++ midNode:t="Bip01 L Calf"
++ upNode:t="Bip01 L Thigh"
++ targetNode:t="pedal_lfoot_1"
++ flexionDir:p3=0.0, 1.0, 0.3
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 R Foot"
++ midNode:t="Bip01 R Calf"
++ upNode:t="Bip01 R Thigh"
++ targetNode:t="pedal_rfoot_1"
++ flexionDir:p3=0.0, 1.0, -0.3
++ }
++ }
++ 
++ ikGunner{
++ model:t="gunner_us_char"
++ maxHeadHorAngle:r=60.0
++ maxHeadDownAngle:r=60.0
++ maxHeadUpAngle:r=10.0
++ headNode:t="Bip01 Head"
++ pelvisNode:t="Bip01 Pelvis"
++ pelvisTargetNode:t="Bip01 Pelvis02"
++ 
++ chestNodes{
++ leftShoulderNode:t="Bip01 L UpperArm"
++ rightShoulderNode:t="Bip01 R UpperArm"
++ neckNode:t="Bip01 Neck"
++ node:t="Bip01 R Clavicle"
++ node:t="Bip01 L Clavicle"
++ node:t="Bip01 Spine 1"
++ node:t="Bip01 Head"
++ node:t="Bip01 HeadNub"
++ node:t="Bip01 L UpperArm"
++ node:t="Bip01 R UpperArm"
++ node:t="Bip01 Neck"
++ leftHandTarget:t="throttle_lhand_2"
++ rightHandTarget:t="stick_rhand_2"
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 L Hand"
++ midNode:t="Bip01 L Forearm"
++ upNode:t="Bip01 L UpperArm"
++ targetNode:t="throttle_lhand_2"
++ flexionDir:p3=0.0, -0.9, 0.3
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 R Hand"
++ midNode:t="Bip01 R Forearm"
++ upNode:t="Bip01 R UpperArm"
++ targetNode:t="stick_rhand_2"
++ flexionDir:p3=0.0, -0.9, -0.3
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 L Foot"
++ midNode:t="Bip01 L Calf"
++ upNode:t="Bip01 L Thigh"
++ targetNode:t="pedal_lfoot_2"
++ flexionDir:p3=0.0, 1.0, -0.2
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 R Foot"
++ midNode:t="Bip01 R Calf"
++ upNode:t="Bip01 R Thigh"
++ targetNode:t="pedal_rfoot_2"
++ flexionDir:p3=0.0, 1.0, 0.2
++ }
++ }
++ 
++ attach{
++ pilot1:t="pilot_us_500"
++ gunner1:t="gunner_sit_us_500"
++ }
++ 
++ default_skin{
++ name:t="sb2c_5_thailand"
++ 
++ replace_tex{
++ from:t="sb2c_5_a*"
++ to:t="sb2c_5_thailand_a*"
++ }
++ }
++ 
++ WeaponSlots{
++ maxloadMass:r=2260.0
++ maxloadMassLeftConsoles:r=1130.0
++ maxloadMassRightConsoles:r=1130.0
++ maxDisbalance:r=850.0
++ 
++ HideNodes{
++ node:t="pylon_rocket1"
++ node:t="pylon_rocket2"
++ node:t="pylon_dgp_1"
++ node:t="pylon_dgp_2"
++ node:t="dgp_1_l"
++ node:t="dgp_1_r"
++ node:t="hatch2_open"
++ node:t="hatch1_open"
++ node:t="pylon_bomb1"
++ node:t="pylon_bomb2"
++ node:t="bomb_launcher"
++ node:t="bomb_launcher1"
++ }
++ 
++ HideDmParts{
++ node:t="cover4_dm"
++ node:t="mgun1_dm"
++ node:t="mgun2_dm"
++ node:t="cover5_dm"
++ node:t="mgun3_dm"
++ node:t="mgun4_dm"
++ }
++ 
++ WeaponSlot{
++ index:i=0
++ 
++ WeaponPreset{
++ name:t="default_common"
++ 
++ Weapon{
++ trigger:t="cannon"
++ blk:t="gameData/Weapons/cannonAN_M2.blk"
++ emitter:t="flare1"
++ flash:t="flare1"
++ shell:t="emtr_shellrejection1"
++ dm:t="cannon1_dm"
++ bullets:i=200
++ spread:r=1.5
++ }
++ 
++ Weapon{
++ trigger:t="cannon"
++ blk:t="gameData/Weapons/cannonAN_M2.blk"
++ emitter:t="flare2"
++ flash:t="flare2"
++ shell:t="emtr_shellrejection2"
++ dm:t="cannon2_dm"
++ bullets:i=200
++ spread:r=1.5
++ traceOffset:i=2
++ }
++ 
++ Weapon{
++ trigger:t="gunner0"
++ blk:t="gameData/Weapons/gunBrowning30_turret.blk"
++ breechInCockpit:b=yes
++ emitter:t="gun1"
++ flash:t="flare3"
++ dm:t="gunner1_dm"
++ gunnerDm:t="gunner1_dm"
++ gunDm:t="gun1_dm"
++ partsDP:t="gun1_dm"
++ bullets:i=2000
++ 
++ turret{
++ head:t="turret1"
++ gun:t="gun1"
++ }
++ 
++ limits{
++ yaw:p2=-90.0, 90.0
++ pitch:p2=-25.0, 80.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-90.0, -50.0, -25.0, 80.0
++ lim2:p4=-50.0, -29.0, -25.0, 80.0
++ lim3:p4=-29.0, 29.0, -2.0, 80.0
++ lim4:p4=29.0, 50.0, -25.0, 80.0
++ lim5:p4=50.0, 90.0, -25.0, 80.0
++ }
++ 
++ limitsDeadzone{
++ yaw:p2=-4.0, 4.0
++ pitch:p2=-25.0, 35.0
++ }
++ 
++ limitsDeadzone{
++ yaw:p2=-45.0, -29.0
++ pitch:p2=-10.0, 0.0
++ }
++ 
++ limitsDeadzone{
++ yaw:p2=29.0, 45.0
++ pitch:p2=-10.0, 0.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner0"
++ blk:t="gameData/Weapons/gunBrowning30_turret.blk"
++ breechInCockpit:b=yes
++ emitter:t="gun1"
++ flash:t="flare4"
++ dm:t="gunner1_dm"
++ bullets:i=2000
++ 
++ turret{
++ head:t="turret1"
++ gun:t="gun1"
++ }
++ 
++ limits{
++ yaw:p2=-90.0, 90.0
++ pitch:p2=-25.0, 80.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-90.0, -50.0, -25.0, 80.0
++ lim2:p4=-50.0, -29.0, -25.0, 80.0
++ lim3:p4=-29.0, 29.0, -2.0, 80.0
++ lim4:p4=29.0, 50.0, -25.0, 80.0
++ lim5:p4=50.0, 90.0, -25.0, 80.0
++ }
++ 
++ limitsDeadzone{
++ yaw:p2=-4.0, 4.0
++ pitch:p2=-25.0, 35.0
++ }
++ 
++ limitsDeadzone{
++ yaw:p2=-45.0, -29.0
++ pitch:p2=-10.0, 0.0
++ }
++ 
++ limitsDeadzone{
++ yaw:p2=29.0, 45.0
++ pitch:p2=-10.0, 0.0
++ }
++ }
++ }
++ }
++ 
++ WeaponSlot{
++ index:i=1
++ tier:i=8
++ order:i=1
++ 
++ WeaponPreset{
++ iconType:t="rockets_he_middle_group_x4"
++ name:t="hvar_slot1"
++ reqModification:t="frc_mk2"
++ 
++ ShowNodes{
++ node:t="pylon_rocket1"
++ }
++ 
++ Weapon{
++ trigger:t="rockets"
++ external:b=yes
++ separate:b=yes
++ blk:t="gameData/Weapons/rocketGuns/us_5_in_hvar_a.blk"
++ emitter:t="rocket1"
++ bullets:i=1
++ order:i=11
++ }
++ 
++ Weapon{
++ trigger:t="rockets"
++ external:b=yes
++ separate:b=yes
++ blk:t="gameData/Weapons/rocketGuns/us_5_in_hvar_a.blk"
++ emitter:t="rocket2"
++ bullets:i=1
++ order:i=13
++ }
++ 
++ Weapon{
++ trigger:t="rockets"
++ external:b=yes
++ separate:b=yes
++ blk:t="gameData/Weapons/rocketGuns/us_5_in_hvar_a.blk"
++ emitter:t="rocket3"
++ bullets:i=1
++ order:i=15
++ }
++ 
++ Weapon{
++ trigger:t="rockets"
++ external:b=yes
++ separate:b=yes
++ blk:t="gameData/Weapons/rocketGuns/us_5_in_hvar_a.blk"
++ emitter:t="rocket4"
++ bullets:i=1
++ order:i=17
++ }
++ }
++ }
 + 
-+ distance{
-+ presents:b=yes
-+ minValue:r=5000.0
-+ maxValue:r=200000.0
-+ width:r=2000.0
++ WeaponSlot{
++ index:i=2
++ tier:i=7
++ order:i=3
++ 
++ WeaponPreset{
++ iconType:t="bombs_middle"
++ name:t="250lbs"
++ 
++ ShowNodes{
++ node:t="pylon_bomb1"
++ }
++ 
++ Weapon{
++ trigger:t="bombs"
++ blk:t="gameData/Weapons/BombGuns/us_250lb_anm57.blk"
++ emitter:t="bomb4"
++ bullets:i=1
++ external:b=yes
++ separate:b=yes
++ }
++ }
++ 
++ WeaponPreset{
++ iconType:t="bombs_large"
++ name:t="500lbs"
++ reqModification:t="btd_sbc"
++ 
++ ShowNodes{
++ node:t="pylon_bomb1"
++ }
++ 
++ Weapon{
++ trigger:t="bombs"
++ blk:t="gameData/Weapons/BombGuns/us_500lb_anm64a1.blk"
++ emitter:t="bomb4"
++ bullets:i=1
++ external:b=yes
++ separate:b=yes
++ }
++ 
++ BannedWeaponPreset{
++ slot:i=1
++ preset:t="hvar_slot1"
++ }
++ }
++ 
++ WeaponPreset{
++ iconType:t="bombs_heavy_middle"
++ name:t="1000lbs_external"
++ reqModification:t="btd_mbc"
++ 
++ ShowNodes{
++ node:t="pylon_bomb1"
 + }
 + 
-+ dopplerSpeed{
-+ presents:b=yes
-+ minValue:r=40.0
-+ maxValue:r=1500.0
-+ signalWidthMin:r=5.0
-+ width:r=120.0
++ Weapon{
++ trigger:t="bombs"
++ blk:t="gameData/Weapons/BombGuns/us_1000lb_anm65a1.blk"
++ emitter:t="bomb4"
++ bullets:i=1
++ external:b=yes
 + }
++ 
++ BannedWeaponPreset{
++ slot:i=1
++ preset:t="hvar_slot1"
++ }
 + }
 + 
-+ hprfTrack{
-+ rangeFinder:b=yes
-+ dopplerSpeedFinder:b=yes
-+ dynamicRange:p2=40.0, 15.0
-+ groundClutter:b=yes
-+ aircraftAsTarget:b=yes
-+ angularAccuracy:r=0.05
-+ distanceAccuracy:r=15.0
-+ absDopplerSpeed:b=no
-+ mainBeamDopplerSpeed:b=no
-+ track:b=yes
++ WeaponPreset{
++ iconType:t="doublebarreled_box"
++ name:t="gun_pod"
++ reqModification:t="dgp-1_gunpod"
 + 
-+ distance{
-+ presents:b=yes
-+ minValue:r=200.0
-+ maxValue:r=200000.0
-+ width:r=500.0
++ ShowNodes{
++ node:t="pylon_dgp_1"
++ node:t="dgp_1_l"
 + }
 + 
-+ dopplerSpeed{
-+ presents:b=yes
-+ minValue:r=-1500.0
-+ maxValue:r=1500.0
-+ signalWidthMin:r=2.0
-+ width:r=20.0
++ ShowDmParts{
++ node:t="cover4_dm"
++ node:t="mgun1_dm"
++ node:t="mgun2_dm"
 + }
++ 
++ Weapon{
++ trigger:t="additional gun"
++ blk:t="gameData/Weapons/gunBrowning50_M2_underwing.blk"
++ emitter:t="flare13"
++ flash:t="flare13"
++ bullets:i=340
++ dm:t="mgun1_dm"
++ traceOffset:i=1
++ spread:r=1.0
++ counterIndex:i=1
++ external:b=yes
 + }
 + 
-+ distanceRange:p2=0.0, 138750.0
-+ setHprfStandbyMode{
++ Weapon{
++ trigger:t="additional gun"
++ blk:t="gameData/Weapons/gunBrowning50_M2_underwing.blk"
++ emitter:t="flare14"
++ flash:t="flare14"
++ bullets:i=340
++ dm:t="mgun2_dm"
++ traceOffset:i=1
++ spread:r=1.0
++ counterIndex:i=1
++ external:b=yes
++ }
 + 
-+ setStandbyModeCommon{
++ BannedWeaponPreset{
++ slot:i=1
++ preset:t="hvar_slot1"
 + }
++ }
++ }
++ 
++ WeaponSlot{
++ index:i=3
++ tier:i=6
++ order:i=5
++ notUseforDisbalanceCalculation:b=yes
++ 
++ WeaponPreset{
++ iconType:t="bombs_middle_group_x2"
++ name:t="250lbs_x2"
 + 
-+ setScanPatternSet{
-+ scanPatternSet:t="search"
++ Weapon{
++ trigger:t="bombs"
++ blk:t="gameData/Weapons/BombGuns/us_250lb_anm57.blk"
++ emitter:t="bomb2"
++ bullets:i=1
++ separate:b=yes
 + }
 + 
-+ setTransiver{
-+ transiver:t="hprf"
++ Weapon{
++ trigger:t="bombs"
++ blk:t="gameData/Weapons/BombGuns/us_250lb_anm57.blk"
++ emitter:t="bomb3"
++ bullets:i=1
++ separate:b=yes
 + }
 + 
-+ setSignal{
-+ signal:t="hprfSearch"
++ Bombing{
++ maxDelay:r=0.0
++ 
++ canBeDropped{
++ altitude:p2=-100.0, 20000.0
++ tangage:p2=-95.0, 60.0
++ roll:r=65.0
 + }
 + 
-+ setModeName{
-+ name:t="PD HDN standby"
++ maxDispersionAt{
++ altitude:p2=20.0, 10000.0
++ tangage:p2=-100.0, 55.0
++ roll:r=65.0
 + }
++ 
++ noDispersionAt{
++ altitude:p2=20.0, 6000.0
++ tangage:p2=-90.0, 15.0
++ roll:r=40.0
 + }
 + 
-+ setHprfSearchMode{
++ sightDisappears{
++ altitude:p2=40.0, 10000.0
++ tangage:p2=-100.0, 45.0
++ roll:r=55.0
++ }
 + 
-+ setSearchModeCommon{
++ sightStartsFading{
++ altitude:p2=95.0, 6000.0
++ tangage:p2=-30.0, 18.0
++ roll:r=40.0
 + }
 + 
-+ setTransiver{
-+ transiver:t="hprf"
++ sightEnabled{
++ altitude:p2=20.0, 15000.0
++ tangage:p2=-120.0, 60.0
++ roll:r=180.0
 + }
 + 
-+ setSignal{
-+ signal:t="hprfSearch"
++ maxDelayAt{
++ altitude:p2=-20000.0, 20000.0
++ tangage:p2=-180.0, 180.0
++ roll:r=180.0
 + }
 + 
-+ setModeName{
-+ name:t="PD HDN search"
++ noDelayAt{
++ altitude:p2=-19999.0, 19999.0
++ tangage:p2=-179.0, 179.0
++ roll:r=179.0
++ }
 + }
 + }
 + 
-+ setHprfBvrLockMode{
++ WeaponPreset{
++ iconType:t="bombs_large_group_x2"
++ name:t="500lbs_x2"
++ reqModification:t="btd_sbc"
 + 
-+ setBvrLockMode{
++ Weapon{
++ trigger:t="bombs"
++ blk:t="gameData/Weapons/BombGuns/us_500lb_anm64a1.blk"
++ emitter:t="bomb2"
++ bullets:i=1
++ separate:b=yes
 + }
 + 
-+ setModeName{
-+ name:t="PD HDN acquisition"
++ Weapon{
++ trigger:t="bombs"
++ blk:t="gameData/Weapons/BombGuns/us_500lb_anm64a1.blk"
++ emitter:t="bomb3"
++ bullets:i=1
++ separate:b=yes
 + }
++ 
++ Bombing{
++ maxDelay:r=0.0
++ 
++ canBeDropped{
++ altitude:p2=-100.0, 20000.0
++ tangage:p2=-95.0, 60.0
++ roll:r=65.0
 + }
 + 
-+ twsToHprf{
-+ stateTo:t="hprf"
++ maxDispersionAt{
++ altitude:p2=20.0, 10000.0
++ tangage:p2=-100.0, 55.0
++ roll:r=65.0
++ }
 + 
-+ actions{
++ noDispersionAt{
++ altitude:p2=20.0, 6000.0
++ tangage:p2=-90.0, 15.0
++ roll:r=40.0
++ }
 + 
-+ setCustomActionTemplate{
-+ fsm:t="main"
-+ name:t="setStandbyMode"
-+ actionTemplateName:t="setHprfStandbyMode"
++ sightDisappears{
++ altitude:p2=40.0, 10000.0
++ tangage:p2=-100.0, 45.0
++ roll:r=55.0
 + }
 + 
-+ setCustomActionTemplate{
-+ fsm:t="main"
-+ name:t="setSearchMode"
-+ actionTemplateName:t="setHprfSearchMode"
++ sightStartsFading{
++ altitude:p2=95.0, 6000.0
++ tangage:p2=-30.0, 18.0
++ roll:r=40.0
 + }
 + 
-+ setCustomActionTemplate{
-+ fsm:t="main"
-+ name:t="setBvrLockMode"
-+ actionTemplateName:t="setHprfBvrLockMode"
++ sightEnabled{
++ altitude:p2=20.0, 15000.0
++ tangage:p2=-120.0, 60.0
++ roll:r=180.0
 + }
 + 
-+ setCustomActionTemplate{
-+ fsm:t="main"
-+ name:t="designateTarget"
-+ actionTemplateName:t="designatedTargetSearch"
++ maxDelayAt{
++ altitude:p2=-20000.0, 20000.0
++ tangage:p2=-180.0, 180.0
++ roll:r=180.0
 + }
 + 
-+ setCustomActionTemplate{
-+ fsm:t="main"
-+ name:t="resetSearchMode"
-+ actionTemplateName:t="resetSearchMode"
++ noDelayAt{
++ altitude:p2=-19999.0, 19999.0
++ tangage:p2=-179.0, 179.0
++ roll:r=179.0
 + }
++ }
++ }
 + 
-+ doCustomActionTemplate{
-+ fsm:t="main"
-+ name:t="resetSearchMode"
++ WeaponPreset{
++ iconType:t="bombs_heavy_middle"
++ name:t="1000lbs"
++ reqModification:t="btd_mbc"
++ 
++ ShowNodes{
++ node:t="bomb_launcher1"
 + }
 + 
-+ setFsmActive{
-+ fsm:t="main"
-+ active:b=no
++ Weapon{
++ trigger:t="bombs"
++ blk:t="gameData/Weapons/BombGuns/us_1000lb_anm65a1.blk"
++ emitter:t="bomb1"
++ bullets:i=1
++ launcher:b=yes
++ separate:b=yes
 + }
++ 
++ Bombing{
++ maxDelay:r=0.0
 + 
-+ setFsmActive{
-+ fsm:t="main"
-+ active:b=yes
++ canBeDropped{
++ altitude:p2=-100.0, 20000.0
++ tangage:p2=-95.0, 60.0
++ roll:r=65.0
 + }
++ 
++ maxDispersionAt{
++ altitude:p2=20.0, 10000.0
++ tangage:p2=-100.0, 55.0
++ roll:r=65.0
 + }
++ 
++ noDispersionAt{
++ altitude:p2=20.0, 6000.0
++ tangage:p2=-90.0, 15.0
++ roll:r=40.0
 + }
 + 
-+ hprfToHprfVelocity{
-+ stateFrom:t="hprf"
-+ command:t="modeSwitch"
-+ illumination{
-+ stateInit:t="init"
++ sightDisappears{
++ altitude:p2=40.0, 10000.0
++ tangage:p2=-100.0, 45.0
++ roll:r=55.0
++ }
 + 
-+ transitions{
++ sightStartsFading{
++ altitude:p2=95.0, 6000.0
++ tangage:p2=-30.0, 18.0
++ roll:r=40.0
++ }
 + 
-+ activate{
-+ event:t="fsmActivate"
-+ stateTo:t="active"
++ sightEnabled{
++ altitude:p2=20.0, 15000.0
++ tangage:p2=-120.0, 60.0
++ roll:r=180.0
++ }
 + 
-+ actions{
++ maxDelayAt{
++ altitude:p2=-20000.0, 20000.0
++ tangage:p2=-180.0, 180.0
++ roll:r=180.0
++ }
 + 
-+ checkIlluminationTimeOut{
-+ transiver:b=yes
-+ pauseMax:r=20.0
++ noDelayAt{
++ altitude:p2=-19999.0, 19999.0
++ tangage:p2=-179.0, 179.0
++ roll:r=179.0
 + }
 + }
++ }
++ 
++ WeaponPreset{
++ iconType:t="bombs_special"
++ name:t="1600lbs"
++ reqModification:t="btd_mbc"
++ 
++ ShowNodes{
++ node:t="bomb_launcher1"
 + }
 + 
-+ deactivate{
-+ event:t="fsmDeactivate"
-+ stateTo:t="inactive"
++ Weapon{
++ trigger:t="bombs"
++ blk:t="gameData/Weapons/BombGuns/us_1600lb_ap_an_mk1.blk"
++ emitter:t="bomb1"
++ bullets:i=1
++ launcher:b=yes
++ separate:b=yes
++ }
++ }
 + 
-+ actions{
++ WeaponPreset{
++ iconType:t="bombs_special"
++ name:t="2000lbs"
++ reqModification:t="us_2000lb_m66"
 + 
-+ setIllumination{
-+ transiver:b=no
++ ShowNodes{
++ node:t="bomb_launcher1"
++ node:t="hatch1_open"
++ node:t="hatch2_open"
 + }
++ 
++ HideNodes{
++ node:t="hatch1"
++ node:t="hatch2"
++ node:t="hatch3"
++ node:t="hatch4"
++ node:t="hatch5"
++ node:t="hatch6"
 + }
++ 
++ Weapon{
++ trigger:t="bombs"
++ blk:t="gameData/Weapons/BombGuns/us_2000lbs_anm66.blk"
++ emitter:t="bomb1"
++ bullets:i=1
++ launcher:b=yes
++ external:b=yes
++ separate:b=yes
 + }
++ 
++ Bombing{
++ maxDelay:r=0.0
 + 
-+ activateIllumination{
-+ event:t="sarhMissileLaunch"
++ canBeDropped{
++ altitude:p2=-100.0, 20000.0
++ tangage:p2=-95.0, 60.0
++ roll:r=65.0
++ }
 + 
-+ actions{
++ maxDispersionAt{
++ altitude:p2=20.0, 10000.0
++ tangage:p2=-100.0, 55.0
++ roll:r=65.0
++ }
 + 
-+ setIlluminationTimeOut{
-+ timeOut:r=60.0
++ noDispersionAt{
++ altitude:p2=20.0, 6000.0
++ tangage:p2=-90.0, 15.0
++ roll:r=40.0
 + }
++ 
++ sightDisappears{
++ altitude:p2=40.0, 10000.0
++ tangage:p2=-100.0, 45.0
++ roll:r=55.0
 + }
++ 
++ sightStartsFading{
++ altitude:p2=95.0, 6000.0
++ tangage:p2=-30.0, 18.0
++ roll:r=40.0
 + }
 + 
-+ updateIllumination{
-+ event:t="update"
++ sightEnabled{
++ altitude:p2=20.0, 15000.0
++ tangage:p2=-120.0, 60.0
++ roll:r=180.0
++ }
 + 
-+ actions{
++ maxDelayAt{
++ altitude:p2=-20000.0, 20000.0
++ tangage:p2=-180.0, 180.0
++ roll:r=180.0
++ }
 + 
-+ checkIlluminationTimeOut{
-+ transiver:b=yes
-+ pauseMax:r=20.0
++ noDelayAt{
++ altitude:p2=-19999.0, 19999.0
++ tangage:p2=-179.0, 179.0
++ roll:r=179.0
 + }
 + }
 + }
++ 
++ WeaponPreset{
++ iconType:t="bombs_middle_high_drag_group_x2"
++ name:t="1000lbs_ap_x2"
++ reqModification:t="btd_mbc"
++ 
++ Weapon{
++ trigger:t="bombs"
++ blk:t="gameData/Weapons/BombGuns/us_1000lb_anmk33_box_ap.blk"
++ emitter:t="bomb2"
++ bullets:i=1
++ separate:b=yes
++ }
++ 
++ Weapon{
++ trigger:t="bombs"
++ blk:t="gameData/Weapons/BombGuns/us_1000lb_anmk33_box_ap.blk"
++ emitter:t="bomb3"
++ bullets:i=1
++ separate:b=yes
 + }
++ 
++ Bombing{
++ maxDelay:r=0.0
++ 
++ canBeDropped{
++ altitude:p2=-100.0, 20000.0
++ tangage:p2=-95.0, 60.0
++ roll:r=65.0
 + }
 + 
-+ setHprfTrack{
++ maxDispersionAt{
++ altitude:p2=20.0, 10000.0
++ tangage:p2=-100.0, 55.0
++ roll:r=65.0
++ }
 + 
-+ setTransiver{
-+ transiver:t="hprf"
++ noDispersionAt{
++ altitude:p2=20.0, 6000.0
++ tangage:p2=-90.0, 15.0
++ roll:r=40.0
 + }
 + 
-+ setSignal{
-+ signal:t="hprfTrack"
++ sightDisappears{
++ altitude:p2=40.0, 10000.0
++ tangage:p2=-100.0, 45.0
++ roll:r=55.0
 + }
++ 
++ sightStartsFading{
++ altitude:p2=95.0, 6000.0
++ tangage:p2=-30.0, 18.0
++ roll:r=40.0
 + }
 + 
-+ hprfOkTryDetectMprf{
-+ stateFrom:t="hprfOkMprfTry"
-+ event:t="update"
++ sightEnabled{
++ altitude:p2=20.0, 15000.0
++ tangage:p2=-120.0, 60.0
++ roll:r=180.0
++ }
 + 
-+ actions{
++ maxDelayAt{
++ altitude:p2=-20000.0, 20000.0
++ tangage:p2=-180.0, 180.0
++ roll:r=180.0
++ }
 + 
-+ setMprfTrack{
++ noDelayAt{
++ altitude:p2=-19999.0, 19999.0
++ tangage:p2=-179.0, 179.0
++ roll:r=179.0
++ }
++ }
 + }
 + 
-+ detectTarget{
-+ ignoreOwnWeapon:b=yes
-+ rangeMult:r=1.0
++ WeaponPreset{
++ iconType:t="air_torpedo"
++ name:t="torpedo"
++ reqModification:t="tbf_itc"
++ 
++ ShowNodes{
++ node:t="hatch1_open"
++ node:t="hatch2_open"
 + }
 + 
-+ setHprfTrack{
++ HideNodes{
++ node:t="hatch1"
++ node:t="hatch2"
++ node:t="hatch3"
++ node:t="hatch4"
++ node:t="hatch5"
++ node:t="hatch6"
 + }
++ 
++ Weapon{
++ trigger:t="torpedoes"
++ blk:t="gameData/Weapons/torpedoes/us_mk13_torpedo_no_case.blk"
++ emitter:t="torp1"
++ bullets:i=1
++ external:b=yes
++ separate:b=yes
 + }
 + }
 + 
-+ tryDetectHprf{
-+ stateFrom:t="hprfTry"
-+ event:t="update"
++ WeaponPreset{
++ iconType:t="air_torpedo"
++ name:t="torpedo_case"
++ reqModification:t="improved_torpedo_mod"
++ 
++ ShowNodes{
++ node:t="hatch1_open"
++ node:t="hatch2_open"
++ }
 + 
-+ actions{
++ HideNodes{
++ node:t="hatch1"
++ node:t="hatch2"
++ node:t="hatch3"
++ node:t="hatch4"
++ node:t="hatch5"
++ node:t="hatch6"
++ }
 + 
-+ setHprfTrack{
++ Weapon{
++ trigger:t="torpedoes"
++ blk:t="gameData/Weapons/torpedoes/us_mk13_torpedo.blk"
++ emitter:t="torp1"
++ bullets:i=1
++ external:b=yes
++ separate:b=yes
++ }
 + }
++ }
++ 
++ WeaponSlot{
++ index:i=4
++ tier:i=5
++ order:i=4
 + 
-+ detectTarget{
-+ ignoreOwnWeapon:b=yes
-+ rangeMult:r=1.0
++ WeaponPreset{
++ iconType:t="bombs_middle"
++ name:t="250lbs"
++ 
++ ShowNodes{
++ node:t="pylon_bomb2"
 + }
 + 
-+ setMprfTrack{
++ Weapon{
++ trigger:t="bombs"
++ blk:t="gameData/Weapons/BombGuns/us_250lb_anm57.blk"
++ emitter:t="bomb5"
++ bullets:i=1
++ external:b=yes
++ separate:b=yes
++ }
 + }
++ 
++ WeaponPreset{
++ iconType:t="bombs_large"
++ name:t="500lbs"
++ reqModification:t="btd_sbc"
++ 
++ ShowNodes{
++ node:t="pylon_bomb2"
 + }
++ 
++ Weapon{
++ trigger:t="bombs"
++ blk:t="gameData/Weapons/BombGuns/us_500lb_anm64a1.blk"
++ emitter:t="bomb5"
++ bullets:i=1
++ external:b=yes
++ separate:b=yes
 + }
 + 
-+ lprfOkTryDetectHprf{
-+ stateFrom:t="lprfOkHprfTry"
-+ event:t="update"
++ BannedWeaponPreset{
++ slot:i=5
++ preset:t="hvar_slot5"
++ }
++ }
 + 
-+ actions{
++ WeaponPreset{
++ iconType:t="bombs_heavy_middle"
++ name:t="1000lbs_external"
++ reqModification:t="btd_mbc"
 + 
-+ setHprfTrack{
++ ShowNodes{
++ node:t="pylon_bomb2"
 + }
 + 
-+ detectTarget{
-+ ignoreOwnWeapon:b=yes
-+ rangeMult:r=1.0
++ Weapon{
++ trigger:t="bombs"
++ blk:t="gameData/Weapons/BombGuns/us_1000lb_anm65a1.blk"
++ emitter:t="bomb5"
++ bullets:i=1
++ external:b=yes
 + }
 + 
-+ setLprfTrack{
++ BannedWeaponPreset{
++ slot:i=5
++ preset:t="hvar_slot5"
++ }
 + }
++ 
++ WeaponPreset{
++ iconType:t="doublebarreled_box"
++ name:t="gun_pod"
++ reqModification:t="dgp-1_gunpod"
++ 
++ ShowNodes{
++ node:t="pylon_dgp_2"
++ node:t="dgp_1_r"
 + }
++ 
++ ShowDmParts{
++ node:t="cover5_dm"
++ node:t="mgun3_dm"
++ node:t="mgun4_dm"
 + }
 + 
-+ stateFrom:t="hprfOkMprfTry"
-+ trackHprf{
-+ stateFrom:t="hprf"
-+ event:t="targetDetected"
-+ stateTo:t="hprfOkMprfTry"
++ Weapon{
++ trigger:t="additional gun"
++ blk:t="gameData/Weapons/gunBrowning50_M2_underwing.blk"
++ emitter:t="flare15"
++ flash:t="flare15"
++ bullets:i=340
++ dm:t="mgun3_dm"
++ traceOffset:i=1
++ spread:r=1.0
++ counterIndex:i=1
++ external:b=yes
++ }
 + 
-+ actions{
++ Weapon{
++ trigger:t="additional gun"
++ blk:t="gameData/Weapons/gunBrowning50_M2_underwing.blk"
++ emitter:t="flare16"
++ flash:t="flare16"
++ bullets:i=340
++ dm:t="mgun4_dm"
++ traceOffset:i=1
++ spread:r=1.0
++ counterIndex:i=1
++ external:b=yes
++ }
 + 
-+ track{
++ BannedWeaponPreset{
++ slot:i=5
++ preset:t="hvar_slot5"
 + }
 + }
 + }
++ 
++ WeaponSlot{
++ index:i=5
++ tier:i=4
++ order:i=2
 + 
-+ startTrackHprf{
-+ stateFrom:t="hprfTry"
-+ stateFrom:t="lprfOkHprfTry"
-+ event:t="targetDetected"
-+ stateTo:t="hprf"
++ WeaponPreset{
++ iconType:t="rockets_he_middle_group_x4"
++ name:t="hvar_slot5"
++ reqModification:t="frc_mk2"
++ 
++ ShowNodes{
++ node:t="pylon_rocket2"
++ }
 + 
-+ actions{
++ Weapon{
++ trigger:t="rockets"
++ external:b=yes
++ separate:b=yes
++ blk:t="gameData/Weapons/rocketGuns/us_5_in_hvar_a.blk"
++ emitter:t="rocket8"
++ bullets:i=1
++ order:i=12
++ }
 + 
-+ setHprfTrack{
++ Weapon{
++ trigger:t="rockets"
++ external:b=yes
++ separate:b=yes
++ blk:t="gameData/Weapons/rocketGuns/us_5_in_hvar_a.blk"
++ emitter:t="rocket7"
++ bullets:i=1
++ order:i=14
 + }
 + 
-+ track{
++ Weapon{
++ trigger:t="rockets"
++ external:b=yes
++ separate:b=yes
++ blk:t="gameData/Weapons/rocketGuns/us_5_in_hvar_a.blk"
++ emitter:t="rocket6"
++ bullets:i=1
++ order:i=16
 + }
 + 
-+ setModeName{
-+ name:t="PD HDN track"
++ Weapon{
++ trigger:t="rockets"
++ external:b=yes
++ separate:b=yes
++ blk:t="gameData/Weapons/rocketGuns/us_5_in_hvar_a.blk"
++ emitter:t="rocket5"
++ bullets:i=1
++ order:i=18
++ }
 + }
 + }
 + }
 + 
-+ stateTo:t="lprfOkHprfTry"
-+ mprfToHprf{
-+ stateTo:t="hprfTry"
-+ backToHprf{
-+ stateFrom:t="hprfOkMprfTry"
-+ stateTo:t="hprfTry"
-+ hprfToLprfTry{
-+ stateFrom:t="hprf"
-+ stateFrom:t="hprfTry"
-+ stateTo:t="lprfTry"
-+ lprfToMprfTry{
-+ stateFrom:t="lprfOkHprfTry"
-+ stateTo:t="lprfOkMprfTry"
-+ backToLprf{
-+ stateFrom:t="lprfOkMprfTry"
-+ event:t="targetNotDetected"
-+ stateTo:t="lprfTry"
-+ extrapolate{
-+ lprfToMprf{
-+ stateFrom:t="lprf"
-+ event:t="targetNotDetected"
-+ stateTo:t="mprfTry"
-+ extrapolate{
-+ lprfTryToMprf{
-+ stateFrom:t="lprfTry"
-+ event:t="targetNotDetected"
-+ stateTo:t="mprfTry"
-+ extrapolate{
-+ setModeName{
-+ name:t="track memory"
++ default_skin_tomoe{
++ 
++ replace_tex{
++ from:t="a_4b_c*"
++ to:t="a_4b_c_tomoe*"
++ }
++ }
 ```
 
   **Removed**:
 ```diff
-- power:r=600.0
-- range:r=120000.0
-- rangeMax:r=300000.0
-- angleHalfSens:r=4.0
-- power:r=600.0
-- rangeMax:r=300000.0
-- angleHalfSens:r=4.0
-- power:r=600.0
-- rangeMax:r=300000.0
-- angleHalfSens:r=4.0
-- angleHalfSens:r=4.0
-- angleHalfSens:r=4.0
-- barHeight:r=2.85
-- barHeight:r=2.85
-- barHeight:r=2.85
-- barHeight:r=2.85
-- barHeight:r=2.85
-- barHeight:r=2.85
-- barHeight:r=3.3
-- barHeight:r=2.5
-- barHeight:r=3.0
-- barHeight:r=3.0
-- maxValue:r=74000.0
-- maxValue:r=74000.0
-- maxValue:r=74000.0
-- distanceRange:p2=0.0, 92500.0
-- twsToHprfVelocity{
-- stateFrom:t="mprf"
-- stateFrom:t="lprf"
-- stateTo:t="lprfOkMprfTry"
-- mprfToLprf{
-- stateTo:t="lprfTry"
-- backToLprf{
-- stateFrom:t="lprfOkMprfTry"
-- stateTo:t="lprfTry"
-- lprfToMprf{
-- stateFrom:t="lprf"
-- stateTo:t="mprfTry"
-- lprfTryToMprf{
-- stateFrom:t="lprfTry"
-- stateTo:t="mprfTry"
-- 
-- setModeName{
-- name:t="track memory"
-- }
-- }
-- }
-- illumination{
-- stateInit:t="init"
-- 
-- transitions{
-- 
-- activate{
-- event:t="fsmActivate"
-- stateTo:t="active"
-- checkIlluminationTimeOut{
-- transiver:b=yes
-- pauseMax:r=20.0
-- deactivate{
-- event:t="fsmDeactivate"
-- stateTo:t="inactive"
-- setIllumination{
-- transiver:b=no
-- activateIllumination{
-- event:t="sarhMissileLaunch"
-- setIlluminationTimeOut{
-- timeOut:r=60.0
-- }
-- }
-- updateIllumination{
-- event:t="update"
-- 
-- actions{
-- 
-- checkIlluminationTimeOut{
-- transiver:b=yes
-- pauseMax:r=20.0
 ```
 
 
-- **aces.vromfs.bin_u/gamedata/sensors/uk_captor_m_pirate.blkx**:
+- **aces.vromfs.bin_u/gamedata/flightmodels/su_33.blkx**:
 
   **Added**:
 ```diff
-+ power:r=800.0
-+ range:r=80000.0
-+ rangeMax:r=150000.0
-+ angleHalfSens:r=3.0
-+ sideLobesSensitivity:r=-32.0
-+ }
-+ }
-+ 
-+ hprf{
-+ sideLobesAttenuation:r=-20.0
-+ power:r=1200.0
-+ band:i=8
-+ rcs:r=5.0
-+ range:r=150000.0
-+ rangeMax:r=200000.0
-+ multipathEffect:p4=0.0, 1.0, 60.0, 0.0
-+ 
-+ antenna{
-+ angleHalfSens:r=3.0
-+ power:r=1200.0
-+ rangeMax:r=250000.0
-+ angleHalfSens:r=3.0
-+ power:r=800.0
-+ rangeMax:r=200000.0
-+ angleHalfSens:r=3.0
-+ power:r=800.0
-+ angleHalfSens:r=3.0
-+ angleHalfSens:r=3.0
-+ hprfSearch{
-+ groundClutter:b=no
-+ aircraftAsTarget:b=yes
-+ friendFoeId:b=yes
-+ mainBeamDopplerSpeed:b=yes
-+ 
-+ distance{
-+ presents:b=yes
-+ minValue:r=5000.0
-+ maxValue:r=200000.0
-+ width:r=2000.0
-+ }
-+ 
-+ dopplerSpeed{
-+ presents:b=yes
-+ minValue:r=40.0
-+ maxValue:r=1500.0
-+ signalWidthMin:r=5.0
-+ width:r=120.0
-+ }
-+ }
-+ 
-+ hprfTrack{
-+ rangeFinder:b=yes
-+ dopplerSpeedFinder:b=yes
-+ dynamicRange:p2=40.0, 15.0
-+ groundClutter:b=yes
-+ aircraftAsTarget:b=yes
-+ angularAccuracy:r=0.05
-+ distanceAccuracy:r=15.0
-+ absDopplerSpeed:b=no
-+ mainBeamDopplerSpeed:b=no
-+ track:b=yes
-+ 
-+ distance{
-+ presents:b=yes
-+ minValue:r=200.0
-+ maxValue:r=200000.0
-+ width:r=500.0
-+ }
-+ 
-+ dopplerSpeed{
-+ presents:b=yes
-+ minValue:r=-1500.0
-+ maxValue:r=1500.0
-+ signalWidthMin:r=2.0
-+ width:r=20.0
-+ }
-+ }
-+ 
-+ maxValue:r=180000.0
-+ maxValue:r=180000.0
-+ maxValue:r=200000.0
-+ barHeight:r=2.1
-+ barHeight:r=2.1
-+ barHeight:r=2.1
-+ barHeight:r=2.1
-+ barHeight:r=2.1
-+ barHeight:r=2.1
-+ barHeight:r=2.5
-+ barHeight:r=1.85
-+ barHeight:r=2.25
-+ barHeight:r=2.25
-+ setHprfStandbyMode{
-+ transiver:t="hprf"
-+ signal:t="hprfSearch"
-+ name:t="PD HDN standby"
-+ setHprfVelocityStandbyMode{
-+ transiver:t="hprfVelocity"
-+ signal:t="hprfVelocitySearch"
-+ name:t="PD HDN VS standby"
-+ setMprfTwsStandbyMode{
-+ setRadarTwsStandbyModeCommon{
-+ transiver:t="mprf"
-+ signal:t="mprfSearch"
-+ name:t="TWS standby"
-+ setHprfSearchMode{
-+ 
-+ setRadarSearchModeCommon{
-+ }
-+ 
-+ setTransiver{
-+ transiver:t="hprf"
-+ }
-+ 
-+ setSignal{
-+ signal:t="hprfSearch"
-+ }
-+ 
-+ setModeName{
-+ name:t="PD HDN search"
-+ }
-+ }
-+ 
-+ distanceRange:p2=0.0, 138750.0
-+ distanceRange:p2=0.0, 138750.0
-+ setHprf{
-+ 
-+ setHprfTargetDesignationRange{
-+ }
-+ 
-+ setCustomActionTemplate{
-+ fsm:t="main"
-+ name:t="setStandbyMode"
-+ actionTemplateName:t="setHprfStandbyMode"
-+ }
-+ 
-+ setCustomActionTemplate{
-+ fsm:t="main"
-+ name:t="setSearchMode"
-+ actionTemplateName:t="setHprfSearchMode"
-+ }
-+ 
-+ setCustomActionTemplate{
-+ fsm:t="main"
-+ name:t="designateTarget"
-+ actionTemplateName:t="designatedTargetSearch"
-+ }
-+ 
-+ setCustomActionTemplate{
-+ fsm:t="main"
-+ name:t="setBvrLockMode"
-+ actionTemplateName:t="setHprfBvrLockMode"
-+ }
-+ 
-+ setCustomActionTemplate{
-+ fsm:t="main"
-+ name:t="resetSearchMode"
-+ actionTemplateName:t="resetRadarSearchMode"
-+ }
-+ 
-+ doCustomActionTemplate{
-+ fsm:t="main"
-+ name:t="resetSearchMode"
-+ }
-+ 
-+ clearTargets{
-+ }
-+ 
-+ setFsmActive{
-+ fsm:t="main"
-+ active:b=no
-+ }
-+ 
-+ setFsmActive{
-+ fsm:t="main"
-+ active:b=yes
-+ }
-+ }
-+ 
-+ mprfTwsToHprf{
-+ stateTo:t="hprf"
-+ 
-+ actions{
-+ 
-+ setHprf{
-+ }
-+ 
-+ setCustomActionTemplate{
-+ fsm:t="radarSearchModes"
-+ name:t="restore"
-+ actionTemplateName:t="setHprf"
-+ }
-+ }
-+ }
-+ 
-+ hprfTwsToHprfVelocity{
-+ stateFrom:t="hprf"
-+ command:t="modeSwitch"
-+ setHprfTrack{
-+ 
-+ setTransiver{
-+ transiver:t="hprf"
-+ }
-+ 
-+ setSignal{
-+ signal:t="hprfTrack"
-+ }
-+ }
-+ 
-+ hprfOkTryDetectMprf{
-+ stateFrom:t="hprfOkMprfTry"
-+ event:t="update"
-+ 
-+ actions{
-+ 
-+ setMprfTrack{
-+ }
-+ 
-+ detectTarget{
-+ ignoreOwnWeapon:b=yes
-+ rangeMult:r=1.0
-+ }
-+ 
-+ setHprfTrack{
-+ }
-+ }
-+ }
-+ 
-+ tryDetectHprf{
-+ stateFrom:t="hprfTry"
-+ event:t="update"
-+ 
-+ actions{
-+ 
-+ setHprfTrack{
-+ }
-+ 
-+ detectTarget{
-+ ignoreOwnWeapon:b=yes
-+ rangeMult:r=1.0
-+ }
-+ 
-+ setMprfTrack{
-+ }
-+ }
-+ }
-+ 
-+ lprfOkTryDetectHprf{
-+ stateFrom:t="lprfOkHprfTry"
-+ event:t="update"
-+ 
-+ actions{
-+ 
-+ setHprfTrack{
-+ }
-+ 
-+ detectTarget{
-+ ignoreOwnWeapon:b=yes
-+ rangeMult:r=1.0
-+ }
-+ 
-+ setLprfTrack{
-+ }
-+ }
-+ }
-+ 
-+ stateFrom:t="hprfOkMprfTry"
-+ trackHprf{
-+ stateFrom:t="hprf"
-+ event:t="targetDetected"
-+ stateTo:t="hprfOkMprfTry"
-+ 
-+ actions{
-+ 
-+ track{
-+ }
-+ }
-+ }
-+ 
-+ startTrackHprf{
-+ stateFrom:t="hprfTry"
-+ stateFrom:t="lprfOkHprfTry"
-+ event:t="targetDetected"
-+ stateTo:t="hprf"
-+ 
-+ actions{
-+ 
-+ setHprfTrack{
-+ }
-+ 
-+ track{
-+ }
-+ 
-+ setModeName{
-+ name:t="PD HDN track"
-+ }
-+ }
-+ }
-+ 
-+ stateTo:t="lprfOkHprfTry"
-+ mprfToHprf{
-+ stateTo:t="hprfTry"
-+ 
-+ actions{
-+ 
-+ extrapolate{
-+ }
-+ }
-+ }
-+ 
-+ backToHprf{
-+ stateFrom:t="hprfOkMprfTry"
-+ event:t="targetNotDetected"
-+ stateTo:t="hprfTry"
-+ 
-+ actions{
-+ 
-+ extrapolate{
-+ }
-+ }
-+ }
-+ 
-+ hprfToLprfTry{
-+ stateFrom:t="hprf"
-+ stateFrom:t="hprfTry"
-+ event:t="targetNotDetected"
-+ lprfToMprfTry{
-+ stateFrom:t="lprfOkHprfTry"
-+ event:t="targetNotDetected"
-+ stateTo:t="lprfOkMprfTry"
-+ 
-+ actions{
-+ 
-+ extrapolate{
-+ }
-+ }
++ notUseforDisbalanceCalculation:b=yes
+```
+
+  **Removed**:
+```diff
+```
+
+
+- **aces.vromfs.bin_u/gamedata/flightmodels/xp-55.blkx**:
+
+  **Added**:
+```diff
++ flexWing{
++ wingStrainCoeff:r=0.4
++ wingOverloadCoeff:r=1.0
++ wingStrainLimitDown:r=1.0
 + }
 + 
 ```
 
   **Removed**:
 ```diff
-- power:r=600.0
-- range:r=120000.0
-- rangeMax:r=300000.0
-- angleHalfSens:r=4.0
-- power:r=600.0
-- rangeMax:r=300000.0
-- angleHalfSens:r=4.0
-- power:r=600.0
-- rangeMax:r=300000.0
-- angleHalfSens:r=4.0
-- power:r=600.0
-- angleHalfSens:r=4.0
-- angleHalfSens:r=4.0
-- maxValue:r=74000.0
-- maxValue:r=74000.0
-- lprfSearch{
-- dynamicRange:p2=40.0, 15.0
-- groundClutter:b=yes
-- aircraftAsTarget:b=yes
-- friendFoeId:b=yes
-- 
-- distance{
-- presents:b=yes
-- minValue:r=500.0
-- maxValue:r=150000.0
-- width:r=200.0
-- }
-- }
-- 
-- maxValue:r=74000.0
-- barHeight:r=2.85
-- barHeight:r=2.85
-- barHeight:r=2.85
-- barHeight:r=2.85
-- barHeight:r=2.85
-- barHeight:r=2.85
-- barHeight:r=3.3
-- barHeight:r=2.5
-- barHeight:r=3.0
-- barHeight:r=3.0
-- setHprfVelocityStandbyMode{
-- transiver:t="hprfVelocity"
-- signal:t="hprfVelocitySearch"
-- name:t="PD HDN VS standby"
-- setMprfTwsStandbyMode{
-- 
-- setRadarTwsStandbyModeCommon{
-- }
-- 
-- setTransiver{
-- transiver:t="mprf"
-- }
-- 
-- setSignal{
-- signal:t="mprfSearch"
-- }
-- 
-- setModeName{
-- name:t="TWS standby"
-- }
-- }
-- 
-- setLprfStandbyMode{
-- transiver:t="lprf"
-- signal:t="lprfSearch"
-- name:t="standby"
-- setLprfSearchMode{
-- setRadarSearchStandbyModeCommon{
-- transiver:t="lprf"
-- signal:t="lprfSearch"
-- name:t="search"
-- distanceRange:p2=0.0, 92500.0
-- distanceRange:p2=0.0, 92500.0
-- mprfTwsToHprfVelocity{
-- stateFrom:t="mprf"
-- stateFrom:t="lprf"
-- stateTo:t="lprfOkMprfTry"
-- mprfToLprf{
 ```
 
 
-- **aces.vromfs.bin_u/gamedata/units/tankmodels/uk_shir_2.blkx**:
+- **aces.vromfs.bin_u/gamedata/flightmodels/z_9w.blkx**:
 
   **Added**:
 ```diff
-+ model:t="shir_2"
++ tpsCameraTargetOffsetAtZoom:p3=80.0, 60.0, 0.0
+```
+
+  **Removed**:
+```diff
+- tpsCameraTargetOffsetAtZoom:p3=2.0, -2.5, 0.0
+```
+
+
+- **aces.vromfs.bin_u/gamedata/flightmodels/z_9wa.blkx**:
+
+  **Added**:
+```diff
++ tpsCameraTargetOffsetAtZoom:p3=80.0, 60.0, 0.0
+```
+
+  **Removed**:
+```diff
+- tpsCameraTargetOffsetAtZoom:p3=2.0, -2.5, 0.0
+```
+
+
+- **aces.vromfs.bin_u/gamedata/sensors/bl_carapace.blkx**:
+
+  **Added**:
+```diff
++ text:t="E2K"
+```
+
+  **Removed**:
+```diff
+- text:t="EF2K"
+```
+
+
+- **aces.vromfs.bin_u/gamedata/sensors/cn_kj8602a.blkx**:
+
+  **Added**:
+```diff
++ text:t="E2K"
+```
+
+  **Removed**:
+```diff
+- text:t="EF2K"
+```
+
+
+- **aces.vromfs.bin_u/gamedata/sensors/cn_kj_8602.blkx**:
+
+  **Added**:
+```diff
++ text:t="E2K"
+```
+
+  **Removed**:
+```diff
+- text:t="EF2K"
+```
+
+
+- **aces.vromfs.bin_u/gamedata/sensors/fr_serval_rwr.blkx**:
+
+  **Added**:
+```diff
++ text:t="E2K"
+```
+
+  **Removed**:
+```diff
+- text:t="EF2K"
+```
+
+
+- **aces.vromfs.bin_u/gamedata/sensors/fr_sherloc.blkx**:
+
+  **Added**:
+```diff
++ text:t="E2K"
+```
+
+  **Removed**:
+```diff
+- text:t="EF2K"
+```
+
+
+- **aces.vromfs.bin_u/gamedata/sensors/fr_spectra_rwr.blkx**:
+
+  **Added**:
+```diff
++ text:t="E2K"
+```
+
+  **Removed**:
+```diff
+- text:t="EF2K"
+```
+
+
+- **aces.vromfs.bin_u/gamedata/sensors/il_elisra_sps_200.blkx**:
+
+  **Added**:
+```diff
++ text:t="E2K"
+```
+
+  **Removed**:
+```diff
+- text:t="EF2K"
+```
+
+
+- **aces.vromfs.bin_u/gamedata/sensors/jp_j_apr_4.blkx**:
+
+  **Added**:
+```diff
++ text:t="E2K"
+```
+
+  **Removed**:
+```diff
+- text:t="EF2K"
+```
+
+
+- **aces.vromfs.bin_u/gamedata/sensors/jp_j_apr_6.blkx**:
+
+  **Added**:
+```diff
++ text:t="E2K"
+```
+
+  **Removed**:
+```diff
+- text:t="EF2K"
+```
+
+
+- **aces.vromfs.bin_u/gamedata/sensors/su_spo-150-16m.blkx**:
+
+  **Added**:
+```diff
++ text:t="E2K"
+```
+
+  **Removed**:
+```diff
+- text:t="EF2K"
+```
+
+
+- **aces.vromfs.bin_u/gamedata/sensors/su_spo-150-28m.blkx**:
+
+  **Added**:
+```diff
++ text:t="E2K"
+```
+
+  **Removed**:
+```diff
+- text:t="EF2K"
+```
+
+
+- **aces.vromfs.bin_u/gamedata/sensors/su_spo-150-30m1.blkx**:
+
+  **Added**:
+```diff
++ text:t="E2K"
+```
+
+  **Removed**:
+```diff
+- text:t="EF2K"
+```
+
+
+- **aces.vromfs.bin_u/gamedata/sensors/su_spo-150.blkx**:
+
+  **Added**:
+```diff
++ text:t="E2K"
+```
+
+  **Removed**:
+```diff
+- text:t="EF2K"
+```
+
+
+- **aces.vromfs.bin_u/gamedata/sensors/su_tarang.blkx**:
+
+  **Added**:
+```diff
++ text:t="E2K"
+```
+
+  **Removed**:
+```diff
+- text:t="EF2K"
+```
+
+
+- **aces.vromfs.bin_u/gamedata/sensors/swd_ar830.blkx**:
+
+  **Added**:
+```diff
++ text:t="E2K"
+```
+
+  **Removed**:
+```diff
+- text:t="EF2K"
+```
+
+
+- **aces.vromfs.bin_u/gamedata/sensors/swd_bow_21.blkx**:
+
+  **Added**:
+```diff
++ text:t="E2K"
+```
+
+  **Removed**:
+```diff
+- text:t="EF2K"
+```
+
+
+- **aces.vromfs.bin_u/gamedata/sensors/uk_ari_18228_10.blkx**:
+
+  **Added**:
+```diff
++ text:t="E2K"
+```
+
+  **Removed**:
+```diff
+- text:t="EF2K"
+```
+
+
+- **aces.vromfs.bin_u/gamedata/sensors/uk_ari_18228_19.blkx**:
+
+  **Added**:
+```diff
++ text:t="E2K"
+```
+
+  **Removed**:
+```diff
+- text:t="EF2K"
+```
+
+
+- **aces.vromfs.bin_u/gamedata/sensors/uk_ari_18241_1.blkx**:
+
+  **Added**:
+```diff
++ text:t="E2K"
+```
+
+  **Removed**:
+```diff
+- text:t="EF2K"
+```
+
+
+- **aces.vromfs.bin_u/gamedata/sensors/uk_ari_23284.blkx**:
+
+  **Added**:
+```diff
++ text:t="E2K"
+```
+
+  **Removed**:
+```diff
+- text:t="EF2K"
+```
+
+
+- **aces.vromfs.bin_u/gamedata/sensors/uk_praetorian_rwr.blkx**:
+
+  **Added**:
+```diff
++ text:t="E2K"
+```
+
+  **Removed**:
+```diff
+- text:t="EF2K"
+```
+
+
+- **aces.vromfs.bin_u/gamedata/sensors/uk_sky_guardian_200.blkx**:
+
+  **Added**:
+```diff
++ text:t="E2K"
+```
+
+  **Removed**:
+```diff
+- text:t="EF2K"
+```
+
+
+- **aces.vromfs.bin_u/gamedata/sensors/us_an_alr_400.blkx**:
+
+  **Added**:
+```diff
++ text:t="E2K"
+```
+
+  **Removed**:
+```diff
+- text:t="EF2K"
+```
+
+
+- **aces.vromfs.bin_u/gamedata/sensors/us_an_alr_56c.blkx**:
+
+  **Added**:
+```diff
++ text:t="E2K"
+```
+
+  **Removed**:
+```diff
+- text:t="EF2K"
+```
+
+
+- **aces.vromfs.bin_u/gamedata/sensors/us_an_alr_56m.blkx**:
+
+  **Added**:
+```diff
++ text:t="E2K"
+```
+
+  **Removed**:
+```diff
+- text:t="EF2K"
+```
+
+
+- **aces.vromfs.bin_u/gamedata/sensors/us_an_alr_67.blkx**:
+
+  **Added**:
+```diff
++ text:t="E2K"
+```
+
+  **Removed**:
+```diff
+- text:t="EF2K"
+```
+
+
+- **aces.vromfs.bin_u/gamedata/sensors/us_an_alr_68_v.blkx**:
+
+  **Added**:
+```diff
++ text:t="E2K"
+```
+
+  **Removed**:
+```diff
+- text:t="EF2K"
+```
+
+
+- **aces.vromfs.bin_u/gamedata/sensors/us_an_alr_68_v_3.blkx**:
+
+  **Added**:
+```diff
++ text:t="E2K"
+```
+
+  **Removed**:
+```diff
+- text:t="EF2K"
+```
+
+
+- **aces.vromfs.bin_u/gamedata/sensors/us_an_alr_69.blkx**:
+
+  **Added**:
+```diff
++ text:t="E2K"
+```
+
+  **Removed**:
+```diff
+- text:t="EF2K"
+```
+
+
+- **aces.vromfs.bin_u/gamedata/units/ships/it_ciclone_class_ghibli.blkx**:
+
+  **Added**:
+```diff
++ minCrewMemberRepairCount:i=61
++ minCrewMemberAliveCount:i=53
++ crew:i=25
++ crew:i=25
++ crew:i=25
++ crew:i=24
+```
+
+  **Removed**:
+```diff
+- minCrewMemberRepairCount:i=53
+- minCrewMemberAliveCount:i=46
+- crew:i=19
+- crew:i=19
+- crew:i=19
+- crew:i=19
+```
+
+
+- **aces.vromfs.bin_u/gamedata/units/ships/jp_destroyer_murasame.blkx**:
+
+  **Added**:
+```diff
++ speedYaw:r=30.0
++ speedPitch:r=15.0
++ speedYaw:r=30.0
++ speedPitch:r=15.0
++ speedYaw:r=30.0
++ speedPitch:r=15.0
+```
+
+  **Removed**:
+```diff
+- speedYaw:r=15.0
+- speedPitch:r=30.0
+- speedYaw:r=15.0
+- speedPitch:r=30.0
+- speedYaw:r=15.0
+- speedPitch:r=30.0
+```
+
+
+- **aces.vromfs.bin_u/gamedata/units/ships/jp_escort_hiburi_class_syonan.blkx**:
+
+  **Added**:
+```diff
++ lim1:p4=-180.0, -150.0, 25.0, 75.0
++ lim2:p4=-150.0, -145.0, 2.0, 75.0
++ lim3:p4=-145.0, -23.0, -10.0, 75.0
++ lim5:p4=23.0, 145.0, -10.0, 75.0
++ lim6:p4=145.0, 150.0, 2.0, 75.0
++ lim7:p4=150.0, 180.0, 25.0, 75.0
++ lim1:p4=-180.0, -150.0, 25.0, 75.0
++ lim2:p4=-150.0, -145.0, 2.0, 75.0
++ lim3:p4=-145.0, -23.0, -10.0, 75.0
++ lim5:p4=23.0, 145.0, -10.0, 75.0
++ lim6:p4=145.0, 150.0, 2.0, 75.0
++ lim7:p4=150.0, 180.0, 25.0, 75.0
+```
+
+  **Removed**:
+```diff
+- lim1:p4=-180.0, -158.0, 25.0, 75.0
+- lim2:p4=-158.0, -148.0, 2.0, 75.0
+- lim3:p4=-148.0, -23.0, -10.0, 75.0
+- lim5:p4=23.0, 148.0, -10.0, 75.0
+- lim6:p4=148.0, 158.0, 2.0, 75.0
+- lim7:p4=158.0, 180.0, 25.0, 75.0
+- lim1:p4=-180.0, -158.0, 25.0, 75.0
+- lim2:p4=-158.0, -148.0, 2.0, 75.0
+- lim3:p4=-148.0, -23.0, -10.0, 75.0
+- lim5:p4=23.0, 148.0, -10.0, 75.0
+- lim6:p4=148.0, 158.0, 2.0, 75.0
+- lim7:p4=158.0, 180.0, 25.0, 75.0
+```
+
+
+- **aces.vromfs.bin_u/gamedata/units/tankmodels/fr_m46_patton.blkx**:
+
+  **Added**:
+```diff
++ model:t="m46_france"
 + hasExpl:b=no
 + hasDmg2:b=no
 + hasQualityModels:b=yes
@@ -6500,7 +4684,6 @@
 + support_unit_class:t="structures/ussr_152mm_d1"
 + support_unit_tag:t="artillery"
 + useSimpleDeathConditionsAndEffects:b=no
-+ autoSightDistanceCorrection:b=yes
 + subclass:t="heavyVehicle"
 + onRadarAs:t="tracked"
 + moveType:t="vehicle"
@@ -6515,7 +4698,7 @@
 + groundNormSmoothViscosity:r=0.1
 + minDistBetween:r=10.0
 + expClass:t="exp_tank"
-+ mass:r=54000.0
++ mass:r=43650.0
 + bulletHitFx:t="ground_model_hit"
 + partDamageFx:t="part_damage"
 + explosionFx:t="tank_explosion"
@@ -6523,420 +4706,280 @@
 + destroysRendInstances:b=yes
 + destroysTrees:b=yes
 + type:t="typeMediumTank"
-+ rearmSmokeTimeOnField:r=60.0
-+ canReloadNonGuns:b=yes
 + 
 + DamageParts{
 + formatVersion:i=2
-+ armorClass:t="RHA_tank_modern"
++ armorClass:t="CHA_tank"
 + hp:r=10000.0
 + 
-+ hull_rha{
-+ 
-+ body_side_dm{
-+ armorThickness:r=38.0
-+ }
-+ 
-+ superstructure_top_dm{
-+ armorThickness:r=20.0
-+ }
++ hull_CHA{
 + 
 + superstructure_front_dm{
-+ armorThickness:r=25.0
-+ createSecondaryShatters:b=no
-+ }
-+ 
-+ superstructure_bottom_dm{
-+ armorThickness:r=20.0
-+ }
-+ 
-+ superstructure_back_dm{
-+ armorThickness:r=25.0
-+ }
-+ 
-+ superstructure_side_dm{
-+ armorThickness:r=20.0
-+ }
-+ 
-+ turret_01_side_dm{
-+ armorThickness:r=10.0
-+ }
-+ 
-+ turret_05_back_dm{
-+ armorThickness:r=80.0
-+ }
-+ }
-+ 
-+ hull_turret_spaced_armor{
-+ hp:r=5000.0
-+ armorClass:t="leopard_2a5_turret_nera"
-+ 
-+ composite_armor_turret_02_dm{
-+ armorThickness:r=300.0
-+ cumulativeArmorQuality:r=0.883
-+ genericArmorQuality:r=0.35
-+ createSecondaryShatters:b=no
-+ }
-+ 
-+ composite_armor_turret_03_dm{
-+ armorThickness:r=100.0
-+ cumulativeArmorQuality:r=0.883
-+ genericArmorQuality:r=0.35
-+ createSecondaryShatters:b=no
-+ }
-+ 
-+ composite_armor_turret_06_dm{
-+ armorThickness:r=0.001
-+ armorClass:t="CHA_tank_modern"
-+ hidableInXrayViewer:b=yes
-+ }
-+ 
-+ composite_armor_hull_01_dm{
-+ armorThickness:r=200.0
-+ cumulativeArmorQuality:r=0.883
-+ genericArmorQuality:r=0.25
-+ createSecondaryShatters:b=no
-+ }
-+ 
-+ composite_armor_hull_03_dm{
-+ armorThickness:r=0.001
-+ armorClass:t="RHA_tank_modern"
-+ hidableInXrayViewer:b=yes
-+ }
-+ 
-+ composite_armor_hull_06_dm{
-+ armorThickness:r=5.0
-+ armorClass:t="tank_structural_steel"
-+ hidableInXrayViewer:b=yes
-+ }
-+ 
-+ composite_armor_hull_07_dm{
-+ armorThickness:r=5.0
-+ armorClass:t="tank_structural_steel"
-+ hidableInXrayViewer:b=yes
-+ }
-+ 
-+ composite_armor_turret_09_dm{
-+ armorThickness:r=0.001
-+ armorClass:t="CHA_tank_modern"
-+ hidableInXrayViewer:b=yes
-+ }
-+ 
-+ composite_armor_turret_04_dm{
-+ armorThickness:r=180.0
-+ cumulativeArmorQuality:r=0.883
-+ genericArmorQuality:r=0.35
-+ hidableInXrayViewer:b=yes
-+ createSecondaryShatters:b=no
-+ }
-+ 
-+ composite_armor_turret_05_dm{
-+ armorThickness:r=180.0
-+ cumulativeArmorQuality:r=0.883
-+ genericArmorQuality:r=0.35
-+ hidableInXrayViewer:b=yes
-+ createSecondaryShatters:b=no
-+ }
-+ 
-+ composite_armor_turret_07_dm{
-+ armorThickness:r=180.0
-+ cumulativeArmorQuality:r=0.883
-+ genericArmorQuality:r=0.35
-+ hidableInXrayViewer:b=yes
-+ createSecondaryShatters:b=no
-+ }
-+ 
-+ composite_armor_turret_08_dm{
-+ armorThickness:r=180.0
-+ cumulativeArmorQuality:r=0.883
-+ genericArmorQuality:r=0.35
-+ hidableInXrayViewer:b=yes
-+ createSecondaryShatters:b=no
-+ }
-+ }
-+ 
-+ turret_cha{
-+ armorClass:t="CHA_tank_modern"
-+ 
-+ gun_mask_02_dm{
-+ armorThickness:r=38.0
-+ }
-+ 
-+ gun_mask_dm{
-+ armorThickness:r=100.0
-+ variableThickness:b=yes
-+ }
-+ }
-+ 
-+ hull_turret_cha{
-+ armorClass:t="RHA_tank_modern"
-+ 
-+ turret_06_front_dm{
-+ armorThickness:r=25.0
-+ variableThickness:b=yes
-+ }
-+ 
-+ turret_03_front_dm{
-+ armorThickness:r=40.0
-+ }
-+ 
-+ turret_06_bottom_dm{
-+ armorThickness:r=45.0
-+ }
-+ 
-+ turret_07_back_dm{
-+ armorThickness:r=20.0
-+ }
-+ 
-+ turret_07_bottom_dm{
-+ armorThickness:r=25.0
-+ }
-+ 
-+ turret_04_back_dm{
-+ armorThickness:r=15.0
-+ createSecondaryShatters:b=no
-+ }
-+ 
-+ turret_01_back_dm{
-+ armorClass:t="t_90_rubber_fabric_screens"
-+ armorThickness:r=10.0
-+ }
-+ 
-+ turret_02_back_dm{
-+ armorThickness:r=5.0
-+ }
-+ 
-+ turret_06_back_dm{
-+ armorThickness:r=20.0
-+ }
-+ 
-+ body_top_dm{
-+ armorThickness:r=15.0
++ armorThickness:r=101.6
 + }
 + 
 + body_front_dm{
-+ armorThickness:r=70.0
++ armorThickness:r=76.2
 + }
 + 
-+ turret_01_top_dm{
-+ armorThickness:r=29.0
-+ armorClass:t="CHA_tank_modern"
++ body_shield_dm{
++ armorThickness:r=162.5
++ }
 + }
 + 
-+ body_bottom_dm{
-+ armorThickness:r=16.0
++ hull_RHA{
++ armorClass:t="RHA_tank"
++ 
++ superstructure_side_dm{
++ armorThickness:r=76.2
++ }
++ 
++ body_side_dm{
++ armorThickness:r=50.8
++ }
++ 
++ superstructure_top_dm{
++ armorThickness:r=25.4
 + }
 + 
 + body_back_dm{
-+ armorThickness:r=15.0
-+ variableThickness:b=yes
++ armorThickness:r=25.4
 + }
 + 
-+ turret_01_front_dm{
-+ armorThickness:r=60.0
-+ armorClass:t="CHA_tank_modern"
++ superstructure_back_dm{
++ armorThickness:r=50.8
 + }
 + 
-+ turret_05_top_dm{
-+ armorThickness:r=25.0
++ body_bottom_dm{
++ armorThickness:r=25.4
 + }
 + 
-+ turret_05_bottom_dm{
-+ armorThickness:r=25.0
-+ variableThickness:b=yes
-+ armorEffectiveThicknessMax:r=150.0
++ superstructure_bottom_dm{
++ armorThickness:r=12.7
 + }
 + 
-+ turret_02_front_dm{
-+ armorThickness:r=10.0
++ turret_top_dm{
++ armorThickness:r=25.4
 + }
 + 
-+ turret_02_top_dm{
++ gun_barrel_armor_dm{
++ armorThickness:r=25.4
++ armorEffectiveThicknessMax:r=30.0
++ }
++ 
++ body_top_dm{
 + armorThickness:r=20.0
 + }
 + 
-+ turret_05_side_dm{
-+ armorThickness:r=20.0
-+ }
-+ 
-+ turret_03_side_dm{
++ turret_01_back_dm{
 + armorThickness:r=5.0
 + }
-+ 
-+ turret_02_side_dm{
-+ armorThickness:r=5.0
-+ ignoreSolidDimension:b=yes
 + }
 + 
-+ turret_07_side_dm{
-+ armorThickness:r=50.0
++ turret{
++ armorClass:t="CHA_tank"
++ 
++ turret_back_dm{
++ armorThickness:r=76.2
 + }
 + 
-+ turret_02_bottom_dm{
-+ armorThickness:r=20.0
++ turret_side_dm{
++ armorThickness:r=76.2
 + }
 + 
-+ turret_03_back_dm{
-+ armorThickness:r=15.0
-+ createSecondaryShatters:b=no
++ turret_front_dm{
++ armorThickness:r=101.6
 + }
 + 
-+ turret_03_bottom_dm{
-+ armorThickness:r=38.0
-+ createSecondaryShatters:b=no
++ turret_bottom_dm{
++ armorThickness:r=101.6
 + }
 + 
 + turret_commander_dm{
-+ armorThickness:r=40.0
-+ armorClass:t="CHA_tank_modern"
++ armorThickness:r=76.2
++ }
++ 
++ gun_mask_dm{
++ armorThickness:r=114.3
++ variableThickness:b=yes
 + }
 + 
 + gun_mask_01_dm{
-+ armorThickness:r=5.0
++ armorThickness:r=203.2
 + }
 + 
-+ composite_armor_hull_08_dm{
-+ armorThickness:r=5.0
-+ hidableInXrayViewer:b=yes
++ gun_mask_02_dm{
++ armorThickness:r=152.4
 + }
 + 
-+ turret_05_front_dm{
-+ armorThickness:r=5.0
-+ }
-+ 
-+ turret_01_bottom_dm{
-+ armorThickness:r=4.0
-+ armorClass:t="tank_structural_steel"
++ gun_mask_03_dm{
++ armorThickness:r=25.4
 + }
 + }
 + 
 + body_shields{
 + armorClass:t="tank_structural_steel"
-+ hp:r=400.0
++ hp:r=1000.0
 + armorThickness:r=4.0
 + stopChanceOnDeadPart:r=0.0
 + createSecondaryShatters:b=no
-+ hidableInViewer:b=yes
 + 
-+ ex_armor_l_01_dm{
-+ armorThickness:r=19.0
-+ armorClass:t="aluminium"
-+ }
-+ 
-+ ex_armor_l_02_dm{
-+ armorThickness:r=19.0
-+ armorClass:t="aluminium"
-+ }
-+ 
-+ ex_armor_l_03_dm{
-+ armorThickness:r=19.0
-+ armorClass:t="aluminium"
-+ }
-+ 
-+ ex_armor_l_04_dm{
-+ armorThickness:r=19.0
-+ armorClass:t="aluminium"
-+ }
-+ 
-+ ex_armor_r_01_dm{
-+ armorThickness:r=19.0
-+ armorClass:t="aluminium"
-+ }
-+ 
-+ ex_armor_r_02_dm{
-+ armorThickness:r=19.0
-+ armorClass:t="aluminium"
-+ }
-+ 
-+ ex_armor_r_03_dm{
-+ armorThickness:r=19.0
-+ armorClass:t="aluminium"
-+ }
-+ 
-+ ex_armor_r_04_dm{
-+ armorThickness:r=19.0
-+ armorClass:t="aluminium"
-+ }
-+ 
-+ ex_decor_r_01_dm{
++ ex_decor_r_05_dm{
 + }
 + 
 + ex_decor_r_07_dm{
-+ armorThickness:r=4.0
-+ armorClass:t="t_90_rubber_fabric_screens"
 + }
 + 
-+ ex_decor_l_01_dm{
++ ex_decor_l_04_dm{
 + }
 + 
 + ex_decor_l_07_dm{
-+ armorThickness:r=4.0
-+ armorClass:t="t_90_rubber_fabric_screens"
 + }
 + 
-+ turret_09_top_dm{
-+ armorThickness:r=5.0
++ ex_armor_turret_01_dm{
 + }
 + 
-+ turret_09_side_dm{
-+ armorThickness:r=20.0
++ ex_armor_turret_02_dm{
 + }
 + 
-+ turret_06_top_dm{
-+ armorThickness:r=5.0
++ ex_armor_turret_03_dm{
++ }
++ 
++ ex_armor_turret_04_dm{
++ }
++ 
++ ex_armor_turret_05_dm{
++ }
++ 
++ ex_armor_turret_06_dm{
++ }
++ 
++ ex_armor_turret_07_dm{
++ }
++ 
++ ex_armor_turret_08_dm{
++ }
++ 
++ ex_decor_l_02_dm{
++ }
++ 
++ ex_decor_l_03_dm{
++ }
++ 
++ ex_decor_l_05_dm{
 + }
 + 
 + ex_decor_l_06_dm{
 + }
 + 
++ ex_decor_l_08_dm{
++ }
++ 
++ ex_decor_l_09_dm{
++ }
++ 
++ ex_decor_l_10_dm{
++ }
++ 
++ ex_decor_l_11_dm{
++ }
++ 
++ ex_decor_r_02_dm{
++ }
++ 
++ ex_decor_r_03_dm{
++ }
++ 
 + ex_decor_r_06_dm{
 + }
 + 
-+ ex_decor_04_dm{
++ ex_decor_r_08_dm{
 + }
 + 
-+ ex_armor_l_05_dm{
-+ hp:r=1000.0
++ ex_decor_r_09_dm{
 + }
 + 
-+ ex_armor_l_06_dm{
-+ hp:r=1000.0
++ ex_decor_r_10_dm{
 + }
 + 
-+ ex_armor_r_05_dm{
-+ hp:r=1000.0
++ ex_decor_r_11_dm{
 + }
 + 
-+ ex_armor_r_06_dm{
-+ hp:r=1000.0
++ ex_armor_03_dm{
 + }
 + }
 + 
 + optics{
 + armorClass:t="optics_tank"
-+ armorThickness:r=10.0
-+ hp:r=30.0
 + 
 + optic_gun_dm{
++ armorThickness:r=10.0
++ hp:r=50.0
 + }
 + 
 + optic_turret_01_dm{
++ armorThickness:r=3.0
++ hp:r=20.0
 + }
 + 
 + optic_turret_02_dm{
++ armorThickness:r=3.0
++ hp:r=20.0
 + }
 + 
 + optic_turret_03_dm{
++ armorThickness:r=3.0
++ hp:r=20.0
 + }
 + 
-+ optic_body_dm{
++ optic_turret_04_dm{
++ armorThickness:r=3.0
++ hp:r=20.0
++ }
++ 
++ optic_turret_05_dm{
++ armorThickness:r=3.0
++ hp:r=20.0
++ }
++ 
++ optic_turret_06_dm{
++ armorThickness:r=3.0
++ hp:r=20.0
++ }
++ 
++ optic_turret_07_dm{
++ armorThickness:r=3.0
++ hp:r=20.0
++ }
++ 
++ optic_turret_08_dm{
++ armorThickness:r=3.0
++ hp:r=20.0
++ }
++ 
++ optic_turret_09_dm{
++ armorThickness:r=3.0
++ hp:r=20.0
++ }
++ 
++ optic_body_01_dm{
++ armorThickness:r=3.0
++ hp:r=20.0
++ }
++ 
++ optic_body_02_dm{
++ armorThickness:r=3.0
++ hp:r=20.0
 + }
 + }
 + 
 + chassis{
 + armorClass:t="tank_steel_wheels"
-+ hp:r=250.0
++ hp:r=300.0
 + armorThickness:r=20.0
++ 
++ wheel_support_dm{
++ }
 + 
 + wheel_r_01_dm{
 + }
@@ -6954,6 +4997,9 @@
 + }
 + 
 + wheel_r_06_dm{
++ }
++ 
++ wheel_r_07_dm{
 + }
 + 
 + wheel_l_01_dm{
@@ -6974,6 +5020,21 @@
 + wheel_l_06_dm{
 + }
 + 
++ wheel_l_07_dm{
++ }
++ 
++ wheel_r_drive_dm{
++ }
++ 
++ wheel_l_drive_dm{
++ }
++ 
++ wheel_r_front_dm{
++ }
++ 
++ wheel_l_front_dm{
++ }
++ 
 + wheel_l_top_01_dm{
 + }
 + 
@@ -6981,6 +5042,12 @@
 + }
 + 
 + wheel_l_top_03_dm{
++ }
++ 
++ wheel_l_top_04_dm{
++ }
++ 
++ wheel_l_top_05_dm{
 + }
 + 
 + wheel_r_top_01_dm{
@@ -6992,19 +5059,10 @@
 + wheel_r_top_03_dm{
 + }
 + 
-+ wheel_r_drive_dm{
++ wheel_r_top_04_dm{
 + }
 + 
-+ wheel_l_drive_dm{
-+ }
-+ 
-+ wheel_l_front_dm{
-+ }
-+ 
-+ wheel_r_front_dm{
-+ }
-+ 
-+ wheel_support_dm{
++ wheel_r_top_05_dm{
 + }
 + 
 + submodule{
@@ -7013,17 +5071,19 @@
 + hp:r=200.0
 + 
 + ex_armor_01_dm{
++ hp:r=200.0
 + }
 + 
 + ex_armor_02_dm{
++ hp:r=200.0
 + }
 + }
 + }
 + 
 + gun{
 + armorClass:t="tank_barrel"
-+ hp:r=200.0
-+ armorThickness:r=35.0
++ hp:r=150.0
++ armorThickness:r=30.0
 + 
 + gun_barrel_dm{
 + }
@@ -7040,12 +5100,6 @@
 + hp:r=50.0
 + }
 + 
-+ gun_barrel_03_dm{
-+ armorThrough:r=10.0
-+ armorThickness:r=5.0
-+ hp:r=50.0
-+ }
-+ 
 + gun_barrel_04_dm{
 + armorThrough:r=10.0
 + armorThickness:r=5.0
@@ -7053,24 +5107,6 @@
 + }
 + 
 + gun_barrel_05_dm{
-+ armorThrough:r=10.0
-+ armorThickness:r=5.0
-+ hp:r=50.0
-+ }
-+ 
-+ gun_barrel_06_dm{
-+ armorThrough:r=10.0
-+ armorThickness:r=5.0
-+ hp:r=50.0
-+ }
-+ 
-+ gun_barrel_07_dm{
-+ armorThrough:r=10.0
-+ armorThickness:r=5.0
-+ hp:r=50.0
-+ }
-+ 
-+ gun_barrel_08_dm{
 + armorThrough:r=10.0
 + armorThickness:r=5.0
 + hp:r=50.0
@@ -7106,41 +5142,51 @@
 + genericDamageMult:r=3.0
 + pressureDamageMult:r=1.0
 + napalmDamageMult:r=0.0
++ ignoreSolidDimension:b=yes
 + 
 + driver_dm{
-+ genericDamageMult:r=3.0
 + }
 + 
 + loader_dm{
-+ genericDamageMult:r=3.0
 + }
 + 
 + loader_01_dm{
-+ genericDamageMult:r=3.0
 + }
 + 
 + loader_02_dm{
-+ genericDamageMult:r=3.0
++ }
++ 
++ loader_03_dm{
 + }
 + 
 + gunner_dm{
-+ genericDamageMult:r=3.0
++ }
++ 
++ gunner_01_dm{
++ }
++ 
++ gunner_02_dm{
++ }
++ 
++ gunner_03_dm{
 + }
 + 
 + commander_dm{
-+ genericDamageMult:r=3.0
-+ }
-+ 
-+ machine_gunner_01_dm{
-+ genericDamageMult:r=3.0
-+ }
-+ 
-+ machine_gunner_02_dm{
-+ genericDamageMult:r=3.0
 + }
 + 
 + machine_gunner_dm{
-+ genericDamageMult:r=3.0
++ }
++ 
++ machine_gunner_01_dm{
++ }
++ 
++ machine_gunner_02_dm{
++ }
++ 
++ machine_gunner_03_dm{
++ }
++ 
++ machine_gunner_04_dm{
 + }
 + }
 + 
@@ -8004,12 +6050,22 @@
 + }
 + }
 + 
++ sound{
++ EngineName:t="engine_sherman_m4a3"
++ TrackSoundPath:t="tanks/engines_tanks"
++ TrackSoundPathStudio:t="ground/engines"
++ TrackSoundName:t="tracks"
++ TrackSoundNameCockpit:t="tracks_interior"
++ turret_turn:t="turret_turn_manual_y"
++ EngineNameAi:t="engine_tank_ai_middle"
++ TrackSoundNameAi:t="tracks_ai_middle"
++ gun_turn:t="turret_turn_mg_light"
++ }
++ 
 + DamageEffects{
 + 
 + part{
-+ name:t="ammo_turret_11_dm"
-+ name:t="ammo_turret_12_dm"
-+ name:t="ammo_turret_13_dm"
++ name:t="ammo_body_dm"
 + name:t="ammo_body_01_dm"
 + name:t="ammo_body_02_dm"
 + name:t="ammo_body_03_dm"
@@ -8051,106 +6107,6 @@
 + name:t="ammo_body_39_dm"
 + name:t="ammo_body_40_dm"
 + name:t="ammo_body_41_dm"
-+ name:t="ammo_body_52_dm"
-+ name:t="ammo_body_53_dm"
-+ name:t="ammo_body_54_dm"
-+ name:t="ammo_body_55_dm"
-+ name:t="ammo_body_56_dm"
-+ name:t="ammo_body_57_dm"
-+ name:t="ammo_body_58_dm"
-+ name:t="ammo_body_59_dm"
-+ 
-+ onHit{
-+ damageType:t="cumulative"
-+ fire:r=0.7
-+ damage:r=75.0
-+ fHitCritical:b=yes
-+ }
-+ 
-+ onHit{
-+ damageType:t="cumulative"
-+ fire:r=0.8
-+ damage:r=200.0
-+ fHitCritical:b=yes
-+ }
-+ 
-+ onHit{
-+ damageType:t="explosion"
-+ fire:r=0.05
-+ damage:r=5.0
-+ fHitCritical:b=yes
-+ }
-+ 
-+ onHit{
-+ damageType:t="explosion"
-+ fire:r=0.35
-+ damage:r=20.0
-+ fHitCritical:b=yes
-+ }
-+ 
-+ onHit{
-+ damageType:t="explosion"
-+ fire:r=0.5
-+ damage:r=30.0
-+ fHitCritical:b=yes
-+ }
-+ 
-+ onHit{
-+ damageType:t="generic"
-+ fire:r=0.2
-+ damage:r=70.0
-+ fHitCritical:b=yes
-+ }
-+ 
-+ onHit{
-+ damageType:t="generic"
-+ fire:r=0.4
-+ damage:r=200.0
-+ fHitCritical:b=yes
-+ }
-+ 
-+ onHit{
-+ damageType:t="generic"
-+ fire:r=0.5
-+ damage:r=300.0
-+ fHitCritical:b=yes
-+ }
-+ 
-+ onHit{
-+ damageType:t="secondaryShatter"
-+ fire:r=0.1
-+ damage:r=150.0
-+ fHitCritical:b=yes
-+ }
-+ 
-+ onHit{
-+ damageType:t="secondaryShatter"
-+ fire:r=0.3
-+ damage:r=300.0
-+ fHitCritical:b=yes
-+ }
-+ 
-+ onHit{
-+ damageType:t="fire"
-+ fire:r=0.02
-+ }
-+ 
-+ onKill{
-+ fire:r=1.0
-+ }
-+ }
-+ 
-+ part{
-+ name:t="ammo_turret_01_dm"
-+ name:t="ammo_turret_02_dm"
-+ name:t="ammo_turret_03_dm"
-+ name:t="ammo_turret_04_dm"
-+ name:t="ammo_turret_05_dm"
-+ name:t="ammo_turret_06_dm"
-+ name:t="ammo_turret_07_dm"
-+ name:t="ammo_turret_08_dm"
-+ name:t="ammo_turret_09_dm"
-+ name:t="ammo_turret_10_dm"
 + name:t="ammo_body_42_dm"
 + name:t="ammo_body_43_dm"
 + name:t="ammo_body_44_dm"
@@ -8161,6 +6117,149 @@
 + name:t="ammo_body_49_dm"
 + name:t="ammo_body_50_dm"
 + name:t="ammo_body_51_dm"
++ name:t="ammo_body_52_dm"
++ name:t="ammo_body_53_dm"
++ name:t="ammo_body_54_dm"
++ name:t="ammo_body_55_dm"
++ name:t="ammo_body_56_dm"
++ name:t="ammo_body_57_dm"
++ name:t="ammo_body_58_dm"
++ name:t="ammo_body_59_dm"
++ name:t="ammo_body_60_dm"
++ name:t="ammo_body_61_dm"
++ name:t="ammo_body_62_dm"
++ name:t="ammo_body_63_dm"
++ name:t="ammo_body_64_dm"
++ name:t="ammo_body_65_dm"
++ name:t="ammo_body_66_dm"
++ name:t="ammo_body_67_dm"
++ name:t="ammo_body_68_dm"
++ name:t="ammo_body_69_dm"
++ name:t="ammo_body_70_dm"
++ name:t="ammo_body_l_01_dm"
++ name:t="ammo_body_l_02_dm"
++ name:t="ammo_body_l_03_dm"
++ name:t="ammo_body_l_04_dm"
++ name:t="ammo_body_l_05_dm"
++ name:t="ammo_body_l_06_dm"
++ name:t="ammo_body_l_07_dm"
++ name:t="ammo_body_l_08_dm"
++ name:t="ammo_body_l_09_dm"
++ name:t="ammo_body_l_10_dm"
++ name:t="ammo_body_l_11_dm"
++ name:t="ammo_body_l_12_dm"
++ name:t="ammo_body_l_13_dm"
++ name:t="ammo_body_l_14_dm"
++ name:t="ammo_body_l_15_dm"
++ name:t="ammo_body_l_16_dm"
++ name:t="ammo_body_l_17_dm"
++ name:t="ammo_body_l_18_dm"
++ name:t="ammo_body_l_19_dm"
++ name:t="ammo_body_l_20_dm"
++ name:t="ammo_body_l_21_dm"
++ name:t="ammo_body_l_22_dm"
++ name:t="ammo_body_l_23_dm"
++ name:t="ammo_body_l_24_dm"
++ name:t="ammo_body_r_01_dm"
++ name:t="ammo_body_r_02_dm"
++ name:t="ammo_body_r_03_dm"
++ name:t="ammo_body_r_04_dm"
++ name:t="ammo_body_r_05_dm"
++ name:t="ammo_body_r_06_dm"
++ name:t="ammo_body_r_07_dm"
++ name:t="ammo_body_r_08_dm"
++ name:t="ammo_body_r_09_dm"
++ name:t="ammo_body_r_10_dm"
++ name:t="ammo_body_r_11_dm"
++ name:t="ammo_body_r_12_dm"
++ name:t="ammo_body_r_13_dm"
++ name:t="ammo_body_r_14_dm"
++ name:t="ammo_body_r_15_dm"
++ name:t="ammo_body_r_16_dm"
++ name:t="ammo_body_r_17_dm"
++ name:t="ammo_body_r_18_dm"
++ name:t="ammo_body_r_19_dm"
++ name:t="ammo_body_r_20_dm"
++ name:t="ammo_body_r_21_dm"
++ name:t="ammo_body_r_22_dm"
++ name:t="ammo_body_r_23_dm"
++ name:t="ammo_body_r_24_dm"
++ name:t="ammo_turret_dm"
++ name:t="ammo_turret_01_dm"
++ name:t="ammo_turret_02_dm"
++ name:t="ammo_turret_03_dm"
++ name:t="ammo_turret_04_dm"
++ name:t="ammo_turret_05_dm"
++ name:t="ammo_turret_06_dm"
++ name:t="ammo_turret_07_dm"
++ name:t="ammo_turret_08_dm"
++ name:t="ammo_turret_09_dm"
++ name:t="ammo_turret_10_dm"
++ name:t="ammo_turret_11_dm"
++ name:t="ammo_turret_12_dm"
++ name:t="ammo_turret_13_dm"
++ name:t="ammo_turret_14_dm"
++ name:t="ammo_turret_15_dm"
++ name:t="ammo_turret_16_dm"
++ name:t="ammo_turret_17_dm"
++ name:t="ammo_turret_18_dm"
++ name:t="ammo_turret_19_dm"
++ name:t="ammo_turret_20_dm"
++ name:t="ammo_turret_21_dm"
++ name:t="ammo_turret_22_dm"
++ name:t="ammo_turret_23_dm"
++ name:t="ammo_turret_24_dm"
++ name:t="ammo_turret_25_dm"
++ name:t="ammo_turret_26_dm"
++ name:t="ammo_turret_27_dm"
++ name:t="ammo_turret_28_dm"
++ name:t="ammo_turret_29_dm"
++ name:t="ammo_turret_30_dm"
++ name:t="ammo_turret_31_dm"
++ name:t="ammo_turret_32_dm"
++ name:t="ammo_turret_33_dm"
++ name:t="ammo_turret_34_dm"
++ name:t="ammo_turret_35_dm"
++ name:t="ammo_turret_36_dm"
++ name:t="ammo_turret_37_dm"
++ name:t="ammo_turret_38_dm"
++ name:t="ammo_turret_39_dm"
++ name:t="ammo_turret_40_dm"
++ name:t="ammo_turret_41_dm"
++ name:t="ammo_turret_42_dm"
++ name:t="ammo_turret_43_dm"
++ name:t="ammo_turret_44_dm"
++ name:t="ammo_turret_45_dm"
++ name:t="ammo_turret_46_dm"
++ name:t="ammo_turret_47_dm"
++ name:t="ammo_turret_48_dm"
++ name:t="ammo_turret_49_dm"
++ name:t="ammo_turret_50_dm"
++ name:t="ammo_turret_51_dm"
++ name:t="ammo_turret_52_dm"
++ name:t="ammo_turret_53_dm"
++ name:t="ammo_turret_54_dm"
++ name:t="ammo_turret_55_dm"
++ name:t="ammo_turret_56_dm"
++ name:t="ammo_turret_57_dm"
++ name:t="ammo_turret_58_dm"
++ name:t="ammo_turret_59_dm"
++ name:t="ammo_turret_60_dm"
++ name:t="ammo_turret_61_dm"
++ name:t="ammo_turret_62_dm"
++ name:t="ammo_turret_63_dm"
++ name:t="ammo_turret_64_dm"
++ name:t="ammo_turret_65_dm"
++ name:t="ammo_turret_66_dm"
++ name:t="ammo_turret_67_dm"
++ name:t="ammo_turret_68_dm"
++ name:t="ammo_turret_69_dm"
++ name:t="ammo_turret_70_dm"
++ name:t="ammo_turret_71_dm"
++ name:t="ammo_turret_72_dm"
++ name:t="ammo_turret_73_dm"
++ name:t="ammo_turret_74_dm"
++ name:t="ammo_turret_75_dm"
 + 
 + onHit{
 + damageType:t="cumulative"
@@ -8292,192 +6391,6 @@
 + }
 + 
 + part{
-+ name:t="ammo_turret_14_dm"
-+ name:t="ammo_turret_15_dm"
-+ name:t="ammo_turret_16_dm"
-+ name:t="ammo_turret_17_dm"
-+ name:t="ammo_turret_18_dm"
-+ name:t="ammo_turret_19_dm"
-+ name:t="ammo_turret_20_dm"
-+ name:t="ammo_turret_21_dm"
-+ name:t="ammo_turret_22_dm"
-+ name:t="ammo_turret_23_dm"
-+ name:t="ammo_turret_24_dm"
-+ name:t="ammo_turret_25_dm"
-+ name:t="ammo_turret_26_dm"
-+ name:t="ammo_turret_27_dm"
-+ name:t="ammo_turret_28_dm"
-+ name:t="ammo_turret_29_dm"
-+ name:t="ammo_turret_30_dm"
-+ name:t="ammo_turret_31_dm"
-+ name:t="ammo_turret_32_dm"
-+ name:t="ammo_turret_33_dm"
-+ name:t="ammo_turret_34_dm"
-+ name:t="ammo_turret_35_dm"
-+ name:t="ammo_turret_36_dm"
-+ name:t="ammo_turret_37_dm"
-+ name:t="ammo_turret_38_dm"
-+ name:t="ammo_turret_39_dm"
-+ name:t="ammo_turret_40_dm"
-+ name:t="ammo_turret_41_dm"
-+ name:t="ammo_turret_42_dm"
-+ name:t="ammo_turret_43_dm"
-+ name:t="ammo_turret_44_dm"
-+ name:t="ammo_turret_45_dm"
-+ 
-+ onHit{
-+ damageType:t="cumulative"
-+ expl:r=0.0
-+ fire:r=0.0
-+ damage:r=75.0
-+ fHitCritical:b=yes
-+ }
-+ 
-+ onHit{
-+ damageType:t="cumulative"
-+ expl:r=0.0
-+ fire:r=0.0
-+ damage:r=200.0
-+ fHitCritical:b=yes
-+ }
-+ 
-+ onHit{
-+ damageType:t="explosion"
-+ expl:r=0.0
-+ fire:r=0.0
-+ damage:r=20.0
-+ fHitCritical:b=yes
-+ }
-+ 
-+ onHit{
-+ damageType:t="explosion"
-+ expl:r=0.0
-+ fire:r=0.0
-+ damage:r=50.0
-+ fHitCritical:b=yes
-+ }
-+ 
-+ onHit{
-+ damageType:t="explosion"
-+ expl:r=0.0
-+ fire:r=0.0
-+ damage:r=200.0
-+ fHitCritical:b=yes
-+ }
-+ 
-+ onHit{
-+ damageType:t="explosion"
-+ expl:r=0.0
-+ fire:r=0.0
-+ damage:r=400.0
-+ fHitCritical:b=yes
-+ }
-+ 
-+ onHit{
-+ damageType:t="generic"
-+ expl:r=0.0
-+ fire:r=0.0
-+ damage:r=70.0
-+ fHitCritical:b=yes
-+ }
-+ 
-+ onHit{
-+ damageType:t="generic"
-+ expl:r=0.0
-+ fire:r=0.0
-+ damage:r=200.0
-+ fHitCritical:b=yes
-+ }
-+ 
-+ onHit{
-+ damageType:t="generic"
-+ expl:r=0.0
-+ fire:r=0.0
-+ damage:r=300.0
-+ fHitCritical:b=yes
-+ }
-+ 
-+ onHit{
-+ damageType:t="secondaryShatter"
-+ fire:r=0.0
-+ damage:r=50.0
-+ fHitCritical:b=yes
-+ }
-+ 
-+ onHit{
-+ damageType:t="secondaryShatter"
-+ fire:r=0.0
-+ damage:r=150.0
-+ fHitCritical:b=yes
-+ }
-+ 
-+ onHit{
-+ damageType:t="secondaryShatter"
-+ fire:r=0.0
-+ damage:r=200.0
-+ fHitCritical:b=yes
-+ }
-+ }
-+ 
-+ part{
-+ name:t="engine_dm"
-+ 
-+ onHit{
-+ damageType:t="cumulative"
-+ fire:r=0.2
-+ damage:r=75.0
-+ fHitCritical:b=yes
-+ }
-+ 
-+ onHit{
-+ damageType:t="explosion"
-+ fire:r=0.3
-+ damage:r=30.0
-+ fHitCritical:b=yes
-+ }
-+ 
-+ onHit{
-+ damageType:t="generic"
-+ fire:r=0.05
-+ damage:r=20.0
-+ fHitCritical:b=yes
-+ }
-+ 
-+ onHit{
-+ damageType:t="generic"
-+ fire:r=0.1
-+ damage:r=70.0
-+ fHitCritical:b=yes
-+ }
-+ 
-+ onHit{
-+ damageType:t="generic"
-+ fire:r=0.3
-+ damage:r=200.0
-+ fHitCritical:b=yes
-+ }
-+ 
-+ onHit{
-+ damageType:t="generic"
-+ fire:r=0.4
-+ damage:r=300.0
-+ fHitCritical:b=yes
-+ }
-+ 
-+ onHit{
-+ damageType:t="fire"
-+ fire:r=0.1
-+ }
-+ 
-+ onKill{
-+ notDamageType:t="overheat"
-+ fire:r=0.4
-+ nothing:r=0.6
-+ fHitCritical:b=yes
-+ }
-+ }
-+ 
-+ part{
 + name:t="fuel_tank_dm"
 + name:t="fuel_tank_01_dm"
 + name:t="fuel_tank_02_dm"
@@ -8501,24 +6414,24 @@
 + 
 + onHit{
 + damageType:t="cumulative"
-+ expl:r=0.08
-+ fire:r=0.1
++ expl:r=0.1
++ fire:r=0.2
 + damage:r=100.0
 + fHitCritical:b=yes
 + }
 + 
 + onHit{
 + damageType:t="cumulative"
-+ expl:r=0.15
-+ fire:r=0.2
++ expl:r=0.2
++ fire:r=0.3
 + damage:r=250.0
 + fHitCritical:b=yes
 + }
 + 
 + onHit{
 + damageType:t="cumulative"
-+ expl:r=0.6
-+ fire:r=0.4
++ expl:r=0.5
++ fire:r=0.5
 + damage:r=400.0
 + fHitCritical:b=yes
 + }
@@ -8533,45 +6446,44 @@
 + onHit{
 + damageType:t="explosion"
 + expl:r=0.125
-+ fire:r=0.15
++ fire:r=0.225
 + damage:r=25.0
 + fHitCritical:b=yes
 + }
 + 
 + onHit{
 + damageType:t="explosion"
-+ expl:r=0.2
-+ fire:r=0.2
++ expl:r=0.25
++ fire:r=0.35
 + damage:r=50.0
 + fHitCritical:b=yes
 + }
 + 
 + onHit{
 + damageType:t="generic"
-+ fire:r=0.05
++ fire:r=0.1
 + damage:r=20.0
 + fHitCritical:b=yes
 + }
 + 
 + onHit{
 + damageType:t="generic"
-+ fire:r=0.1
++ fire:r=0.25
 + damage:r=70.0
 + fHitCritical:b=yes
 + }
 + 
 + onHit{
 + damageType:t="generic"
-+ fire:r=0.2
-+ expl:r=0.2
++ fire:r=0.4
 + damage:r=200.0
 + fHitCritical:b=yes
 + }
 + 
 + onHit{
 + damageType:t="generic"
-+ fire:r=0.4
-+ expl:r=0.6
++ fire:r=0.5
++ expl:r=0.5
 + damage:r=250.0
 + fHitCritical:b=yes
 + }
@@ -8598,6 +6510,64 @@
 + 
 + onKill{
 + fire:r=1.0
++ fHitCritical:b=yes
++ }
++ }
++ 
++ part{
++ name:t="engine_dm"
++ 
++ onHit{
++ damageType:t="cumulative"
++ fire:r=0.2
++ damage:r=75.0
++ fHitCritical:b=yes
++ }
++ 
++ onHit{
++ damageType:t="explosion"
++ fire:r=0.3
++ damage:r=30.0
++ fHitCritical:b=yes
++ }
++ 
++ onHit{
++ damageType:t="generic"
++ fire:r=0.2
++ damage:r=70.0
++ fHitCritical:b=yes
++ }
++ 
++ onHit{
++ damageType:t="generic"
++ fire:r=0.55
++ damage:r=300.0
++ fHitCritical:b=yes
++ }
++ 
++ onHit{
++ damageType:t="generic"
++ fire:r=0.35
++ damage:r=200.0
++ fHitCritical:b=yes
++ }
++ 
++ onHit{
++ damageType:t="generic"
++ fire:r=0.1
++ damage:r=20.0
++ fHitCritical:b=yes
++ }
++ 
++ onHit{
++ damageType:t="fire"
++ fire:r=0.1
++ }
++ 
++ onKill{
++ notDamageType:t="overheat"
++ fire:r=0.5
++ nothing:r=0.5
 + fHitCritical:b=yes
 + }
 + }
@@ -8686,6 +6656,232 @@
 + track_l_dm:r=1.0
 + }
 + }
++ 
++ part{
++ name:t="body_top_dm"
++ name:t="body_front_dm"
++ name:t="body_side_dm"
++ name:t="body_back_dm"
++ name:t="body_bottom_dm"
++ name:t="superstructure_bottom_dm"
++ name:t="superstructure_back_dm"
++ name:t="superstructure_top_dm"
++ name:t="superstructure_front_dm"
++ name:t="superstructure_side_dm"
++ name:t="ex_armor_body_l_01_dm"
++ name:t="ex_armor_body_l_02_dm"
++ name:t="ex_armor_body_l_03_dm"
++ name:t="ex_armor_body_l_04_dm"
++ name:t="ex_armor_body_l_05_dm"
++ name:t="ex_armor_body_l_06_dm"
++ name:t="ex_armor_body_l_07_dm"
++ name:t="ex_armor_body_l_08_dm"
++ name:t="ex_armor_body_l_09_dm"
++ name:t="ex_armor_body_l_10_dm"
++ name:t="ex_armor_body_r_01_dm"
++ name:t="ex_armor_body_r_02_dm"
++ name:t="ex_armor_body_r_03_dm"
++ name:t="ex_armor_body_r_04_dm"
++ name:t="ex_armor_body_r_05_dm"
++ name:t="ex_armor_body_r_06_dm"
++ name:t="ex_armor_body_r_07_dm"
++ name:t="ex_armor_body_r_08_dm"
++ name:t="ex_armor_body_r_09_dm"
++ name:t="ex_armor_body_r_10_dm"
++ name:t="ex_armor_01_dm"
++ name:t="ex_armor_02_dm"
++ name:t="ex_armor_03_dm"
++ name:t="ex_armor_04_dm"
++ name:t="ex_armor_05_dm"
++ name:t="ex_armor_06_dm"
++ name:t="ex_armor_07_dm"
++ name:t="ex_armor_08_dm"
++ name:t="ex_armor_09_dm"
++ name:t="ex_armor_10_dm"
++ name:t="ex_armor_r_01_dm"
++ name:t="ex_armor_r_02_dm"
++ name:t="ex_armor_r_03_dm"
++ name:t="ex_armor_r_04_dm"
++ name:t="ex_armor_r_05_dm"
++ name:t="ex_armor_r_06_dm"
++ name:t="ex_armor_r_07_dm"
++ name:t="ex_armor_r_08_dm"
++ name:t="ex_armor_r_09_dm"
++ name:t="ex_armor_r_10_dm"
++ name:t="ex_armor_l_01_dm"
++ name:t="ex_armor_l_02_dm"
++ name:t="ex_armor_l_03_dm"
++ name:t="ex_armor_l_04_dm"
++ name:t="ex_armor_l_05_dm"
++ name:t="ex_armor_l_06_dm"
++ name:t="ex_armor_l_07_dm"
++ name:t="ex_armor_l_08_dm"
++ name:t="ex_armor_l_09_dm"
++ name:t="ex_armor_l_10_dm"
++ name:t="turret_front_dm"
++ name:t="turret_side_dm"
++ name:t="turret_back_dm"
++ name:t="turret_top_dm"
++ name:t="turret_01_bottom_dm"
++ name:t="turret_01_front_dm"
++ name:t="turret_01_side_dm"
++ name:t="turret_01_back_dm"
++ name:t="turret_01_top_dm"
++ name:t="turret_02_bottom_dm"
++ name:t="turret_02_front_dm"
++ name:t="turret_02_side_dm"
++ name:t="turret_02_back_dm"
++ name:t="turret_02_top_dm"
++ name:t="turret_03_bottom_dm"
++ name:t="turret_03_front_dm"
++ name:t="turret_03_side_dm"
++ name:t="turret_03_back_dm"
++ name:t="turret_03_top_dm"
++ name:t="turret_04_bottom_dm"
++ name:t="turret_04_front_dm"
++ name:t="turret_04_side_dm"
++ name:t="turret_04_back_dm"
++ name:t="turret_04_top_dm"
++ name:t="turret_05_bottom_dm"
++ name:t="turret_05_front_dm"
++ name:t="turret_05_side_dm"
++ name:t="turret_05_back_dm"
++ name:t="turret_05_top_dm"
++ name:t="turret_06_bottom_dm"
++ name:t="turret_06_front_dm"
++ name:t="turret_06_side_dm"
++ name:t="turret_06_back_dm"
++ name:t="turret_06_top_dm"
++ name:t="turret_07_bottom_dm"
++ name:t="turret_07_front_dm"
++ name:t="turret_07_side_dm"
++ name:t="turret_07_back_dm"
++ name:t="turret_07_top_dm"
++ name:t="turret_08_bottom_dm"
++ name:t="turret_08_front_dm"
++ name:t="turret_08_side_dm"
++ name:t="turret_08_back_dm"
++ name:t="turret_08_top_dm"
++ name:t="turret_09_bottom_dm"
++ name:t="turret_09_front_dm"
++ name:t="turret_09_side_dm"
++ name:t="turret_09_back_dm"
++ name:t="turret_09_top_dm"
++ name:t="gun_mask_01_dm"
++ name:t="gun_mask_02_dm"
++ name:t="gun_mask_03_dm"
++ name:t="gun_mask_04_dm"
++ 
++ onHit{
++ damageType:t="explosion"
++ damage:r=0.0
++ 
++ action{
++ type:t="fxEvent"
++ probability:r=0.05
++ fxEventName:t="fire_after_hit_tiny"
++ }
++ }
++ 
++ onHit{
++ damageType:t="generic"
++ damage:r=0.0
++ 
++ action{
++ type:t="fxEvent"
++ probability:r=0.05
++ fxEventName:t="fire_after_hit_tiny"
++ }
++ }
++ 
++ onHit{
++ damageType:t="explosion"
++ damage:r=18.0
++ 
++ action{
++ type:t="fxEvent"
++ probability:r=0.2
++ fxEventName:t="fire_after_hit_small"
++ }
++ }
++ 
++ onHit{
++ damageType:t="generic"
++ damage:r=30.0
++ 
++ action{
++ type:t="fxEvent"
++ probability:r=0.2
++ fxEventName:t="fire_after_hit_small"
++ }
++ }
++ 
++ onHit{
++ damageType:t="explosion"
++ damage:r=30.0
++ 
++ action{
++ type:t="fxEvent"
++ probability:r=0.4
++ fxEventName:t="fire_after_hit_med"
++ }
++ }
++ 
++ onHit{
++ damageType:t="generic"
++ damage:r=50.0
++ 
++ action{
++ type:t="fxEvent"
++ probability:r=0.4
++ fxEventName:t="fire_after_hit_med"
++ }
++ }
++ 
++ onHit{
++ damageType:t="cumulative"
++ damage:r=80.0
++ 
++ action{
++ type:t="fxEvent"
++ probability:r=0.4
++ fxEventName:t="fire_after_hit_med"
++ }
++ }
++ 
++ onHit{
++ damageType:t="explosion"
++ damage:r=200.0
++ 
++ action{
++ type:t="fxEvent"
++ probability:r=0.7
++ fxEventName:t="fire_after_hit_big"
++ }
++ }
++ 
++ onHit{
++ damageType:t="generic"
++ damage:r=120.0
++ 
++ action{
++ type:t="fxEvent"
++ probability:r=0.7
++ fxEventName:t="fire_after_hit_big"
++ }
++ }
++ 
++ onHit{
++ damageType:t="cumulative"
++ damage:r=200.0
++ 
++ action{
++ type:t="fxEvent"
++ probability:r=0.7
++ fxEventName:t="fire_after_hit_big"
++ }
++ }
++ }
 + }
 + 
 + tank_crew{
@@ -8694,6 +6890,7 @@
 + gunner{
 + dmPart:t="gunner_dm"
 + role:t="tank_gunner"
++ substitute:t="machine_gunner"
 + substitute:t="commander"
 + substitute:t="loader"
 + }
@@ -8701,6 +6898,7 @@
 + driver{
 + dmPart:t="driver_dm"
 + role:t="driver"
++ substitute:t="machine_gunner"
 + substitute:t="commander"
 + substitute:t="loader"
 + }
@@ -8708,13 +6906,19 @@
 + loader{
 + dmPart:t="loader_dm"
 + role:t="loader"
++ substitute:t="machine_gunner"
 + substitute:t="commander"
 + }
 + 
 + commander{
 + dmPart:t="commander_dm"
-+ role:t="tank_gunner"
 + role:t="commander"
++ substitute:t="machine_gunner"
++ }
++ 
++ machine_gunner{
++ dmPart:t="machine_gunner_dm"
++ role:t="radio_gunner"
 + }
 + }
 + 
@@ -8905,263 +7109,10 @@
 + }
 + }
 + 
-+ attachables{
-+ ex_armor_03_dm:b=no
-+ }
-+ 
 + gunConvergence{
-+ updateFromRangefinder:b=yes
-+ minDistance:r=200.0
-+ defaultDistance:r=1000.0
++ defaultDistance:r=800.0
 + vertical:b=yes
 + horizontal:b=yes
-+ }
-+ 
-+ fuelTanks{
-+ 
-+ r1{
-+ part:t="fuel_tank_exterior_r_01_dm"
-+ external:b=yes
-+ }
-+ 
-+ r2{
-+ part:t="fuel_tank_exterior_r_02_dm"
-+ external:b=yes
-+ }
-+ 
-+ r3{
-+ part:t="fuel_tank_exterior_r_03_dm"
-+ external:b=yes
-+ }
-+ 
-+ r4{
-+ part:t="fuel_tank_exterior_r_04_dm"
-+ external:b=yes
-+ }
-+ 
-+ l1{
-+ part:t="fuel_tank_exterior_l_01_dm"
-+ external:b=yes
-+ }
-+ 
-+ l2{
-+ part:t="fuel_tank_exterior_l_02_dm"
-+ external:b=yes
-+ }
-+ 
-+ l3{
-+ part:t="fuel_tank_exterior_l_03_dm"
-+ external:b=yes
-+ }
-+ 
-+ l4{
-+ part:t="fuel_tank_exterior_l_04_dm"
-+ external:b=yes
-+ }
-+ }
-+ 
-+ xray_viewer_data{
-+ 
-+ armorArrayHullFront{
-+ xrayDmPart:t="composite_armor_hull_01_dm"
-+ 
-+ armorArrayText{
-+ 
-+ layer{
-+ dmPart:t="superstructure_front_dm"
-+ }
-+ 
-+ layer{
-+ dmPart:t="composite_armor_hull_01_dm"
-+ }
-+ 
-+ layer{
-+ dmPart:t="turret_05_back_dm"
-+ }
-+ }
-+ }
-+ 
-+ armorArrayTurretFrontMask{
-+ xrayDmPart:t="composite_armor_turret_03_dm"
-+ titleLoc:t="tank_structural_steel"
-+ 
-+ armorArrayText{
-+ 
-+ layer{
-+ dmPart:t="composite_armor_turret_03_dm"
-+ }
-+ }
-+ }
-+ 
-+ armorArrayTurretFrontTop{
-+ xrayDmPart:t="composite_armor_turret_06_dm"
-+ titleLoc:t="CHA_tank_modern"
-+ 
-+ armorArrayText{
-+ 
-+ layer{
-+ dmPart:t="gun_mask_04_dm"
-+ xrayTextThickness:p2=50.0, 250.0
-+ }
-+ }
-+ }
-+ 
-+ armorArrayHullSideInner{
-+ xrayDmPart:t="composite_armor_hull_03_dm"
-+ titleLoc:t="RHA_tank_modern"
-+ 
-+ armorArrayText{
-+ 
-+ layer{
-+ dmPart:t="turret_06_back_dm"
-+ }
-+ }
-+ }
-+ 
-+ armorArrayHullSideIn{
-+ xrayDmPart:t="composite_armor_hull_06_dm"
-+ titleLoc:t="tank_structural_steel"
-+ 
-+ armorArrayText{
-+ 
-+ layer{
-+ dmPart:t="composite_armor_hull_06_dm"
-+ }
-+ }
-+ }
-+ 
-+ armorArrayHullSideIn{
-+ xrayDmPart:t="composite_armor_hull_07_dm"
-+ titleLoc:t="tank_structural_steel"
-+ 
-+ armorArrayText{
-+ 
-+ layer{
-+ dmPart:t="composite_armor_hull_07_dm"
-+ }
-+ }
-+ }
-+ 
-+ armorArrayHullSideIn{
-+ xrayDmPart:t="composite_armor_hull_08_dm"
-+ titleLoc:t="RHA_tank_modern"
-+ 
-+ armorArrayText{
-+ 
-+ layer{
-+ dmPart:t="composite_armor_hull_08_dm"
-+ }
-+ }
-+ }
-+ 
-+ armorArrayTurretFront{
-+ xrayDmPart:t="composite_armor_turret_02_dm"
-+ 
-+ armorArrayText{
-+ 
-+ layer{
-+ dmPart:t="turret_03_bottom_dm"
-+ }
-+ 
-+ layer{
-+ dmPart:t="composite_armor_turret_02_dm"
-+ }
-+ 
-+ layer{
-+ dmPart:t="gun_mask_02_dm"
-+ }
-+ }
-+ }
-+ 
-+ armorArrayTurretSide{
-+ xrayDmPart:t="composite_armor_turret_09_dm"
-+ 
-+ armorArrayText{
-+ 
-+ layer{
-+ dmPart:t="turret_03_bottom_dm"
-+ }
-+ 
-+ layer{
-+ dmPart:t="composite_armor_turret_09_dm"
-+ }
-+ }
-+ }
-+ 
-+ armorArrayTurretSideL01{
-+ xrayDmPart:t="composite_armor_turret_04_dm"
-+ 
-+ armorArrayText{
-+ 
-+ layer{
-+ dmPart:t="composite_armor_turret_04_dm"
-+ }
-+ }
-+ }
-+ 
-+ armorArrayTurretSideL01{
-+ xrayDmPart:t="composite_armor_turret_07_dm"
-+ 
-+ armorArrayText{
-+ 
-+ layer{
-+ dmPart:t="composite_armor_turret_07_dm"
-+ }
-+ }
-+ }
-+ 
-+ armorArrayTurretSideL02{
-+ xrayDmPart:t="composite_armor_turret_05_dm"
-+ 
-+ armorArrayText{
-+ 
-+ layer{
-+ dmPart:t="composite_armor_turret_05_dm"
-+ }
-+ }
-+ }
-+ 
-+ armorArrayTurretSideL02{
-+ xrayDmPart:t="composite_armor_turret_08_dm"
-+ 
-+ armorArrayText{
-+ 
-+ layer{
-+ dmPart:t="composite_armor_turret_08_dm"
-+ }
-+ }
-+ }
-+ 
-+ armorArrayTurretSideR{
-+ xrayDmPart:t="composite_armor_turret_03_dm"
-+ 
-+ armorArrayText{
-+ 
-+ layer{
-+ dmPart:t="turret_04_back_dm"
-+ }
-+ 
-+ layer{
-+ dmPart:t="composite_armor_turret_03_dm"
-+ }
-+ 
-+ layer{
-+ dmPart:t="gun_mask_dm"
-+ xrayTextThickness:r=60.0
-+ }
-+ }
-+ }
-+ }
-+ 
-+ sound{
-+ EngineName:t="engine_challenger"
-+ TrackSoundPath:t="tanks/engines_tanks"
-+ TrackSoundPathStudio:t="ground/engines"
-+ TrackSoundName:t="tracks_mbt"
-+ TrackSoundNameCockpit:t="tracks_mbt_interior"
-+ EngineNameAi:t="engine_tank_ai_middle"
-+ TrackSoundNameAi:t="tracks_ai_mbt"
-+ turret_turn:t="turret_turn_servo"
 + }
 + 
 + class_tags{
@@ -9171,18 +7122,17 @@
 + 
 + Weapon{
 + trigger:t="gunner0"
-+ blk:t="gameData/Weapons/groundModels_weapons/120mm_L11A5_user_cannon.blk"
-+ shotFreq:r=0.2
++ blk:t="gameData/Weapons/groundModels_weapons/90mm_M3A1_user_cannon.blk"
 + emitter:t="bone_gun_barrel"
 + flash:t="emtr_gun_flame"
 + defaultYaw:r=0.0
 + defaultPitch:r=0.0
 + barrelDP:t="gun_barrel_dm"
 + breechDP:t="cannon_breech_dm"
-+ speedYaw:r=31.0
-+ speedPitch:r=22.5
++ speedYaw:r=21.0
++ speedPitch:r=4.0
 + fireConeAngle:r=1.0
-+ bullets:i=52
++ bullets:i=70
 + salvoAmount:r=100.0
 + ChainfireTime:r=0.0
 + DelayAfterShoot:r=5.0
@@ -9203,20 +7153,6 @@
 + head:t="bone_turret"
 + gun:t="bone_gun"
 + barrel:t="bone_gun_barrel"
-+ gunnerDm:t="gunner_dm"
-+ secondGunnerDm:t="commander_dm"
-+ 
-+ linkedAnimPart{
-+ verNode:t="bone_camera_gunner"
-+ verLimits:p2=-10.0, 20.0
-+ verOriginLimits:p2=-10.0, 20.0
-+ }
-+ 
-+ linkedAnimPart{
-+ verNode:t="bone_roll_03"
-+ verLimits:p2=-10.0, 5.0
-+ verOriginLimits:p2=-10.0, 5.0
-+ }
 + }
 + 
 + limits{
@@ -9225,46 +7161,26 @@
 + }
 + 
 + limitsTable{
-+ lim1:p4=-180.0, -140.0, 2.0, 20.0
-+ lim2:p4=-140.0, -120.0, -1.0, 20.0
-+ lim3:p4=-120.0, 120.0, -10.0, 20.0
-+ lim4:p4=120.0, 140.0, -1.0, 20.0
-+ lim5:p4=140.0, 180.0, 2.0, 20.0
-+ }
-+ 
-+ gunStabilizer{
-+ hasVerticalGunFreeMode:b=no
-+ hasHorizontal:b=yes
-+ horizontalOmegaMult:r=1.0
-+ horizontalSpeedLimitKPH:r=75.0
-+ hasVertical:b=yes
-+ verticalOmegaMult:r=1.0
-+ verticalSpeedLimitKPH:r=75.0
-+ speedFromVehicleVerticalMult:r=-1.0
-+ 
-+ errorKPHToDegrees{
-+ row:p2=5.0, 0.0
-+ row:p2=45.0, 0.015
-+ row:p2=80.0, 0.02
-+ }
++ lim1:p4=-180.0, -135.0, -5.0, 20.0
++ lim2:p4=-135.0, 135.0, -10.0, 20.0
++ lim3:p4=135.0, 180.0, -5.0, 20.0
 + }
 + }
 + 
 + Weapon{
 + trigger:t="gunner1"
 + triggerGroup:t="coaxial"
-+ blk:t="gameData/Weapons/groundModels_weapons/7_62mm_L8A2_user_machinegun.blk"
++ blk:t="gameData/Weapons/groundModels_weapons/7_62mm_M1919A4_user_machinegun.blk"
 + emitter:t="bone_mg_gun_twin"
 + flash:t="emtr_mg_flame_01"
-+ barrelDP:t="gun_barrel_03_dm"
-+ barrelDP:t="gun_barrel_01_dm"
 + defaultYaw:r=0.0
 + defaultPitch:r=0.0
++ barrelDP:t="gun_barrel_01_dm"
 + speedYaw:r=5.5
 + speedPitch:r=4.0
 + fireConeAngle:r=1.0
 + fireConeAngle:r=15.0
-+ bullets:i=2400
++ bullets:i=5500
 + ChainfireTime:r=3.0
 + DelayAfterShoot:r=3.0
 + accuracyAir:r=0.0
@@ -9281,7 +7197,6 @@
 + head:t="bone_mg_gun_twin"
 + gun:t="bone_mg_gun_twin"
 + gunnerDm:t="gunner_dm"
-+ secondGunnerDm:t="commander_dm"
 + }
 + 
 + limits{
@@ -9293,16 +7208,16 @@
 + Weapon{
 + trigger:t="gunner2"
 + triggerGroup:t="machinegun"
-+ blk:t="gameData/Weapons/groundModels_weapons/7_62mm_L37A2_user_machinegun.blk"
++ blk:t="gameData/Weapons/groundModels_weapons/12_7mm_M2_HB_user_machinegun.blk"
 + emitter:t="bone_mg_aa_v_01"
-+ flash:t="emtr_mg_flame_02"
-+ barrelDP:t="gun_barrel_02_dm"
++ flash:t="emtr_mg_aa_flame_01"
 + defaultYaw:r=0.0
 + defaultPitch:r=0.0
++ barrelDP:t="gun_barrel_02_dm"
 + parkInDeadzone:b=no
 + speedYaw:r=90.0
 + speedPitch:r=90.0
-+ bullets:i=3600
++ bullets:i=600
 + isBulletBelt:b=yes
 + fireConeAngle:r=5.0
 + ChainfireTime:r=0.5
@@ -9322,39 +7237,11 @@
 + head:t="bone_mg_aa_h_01"
 + gun:t="bone_mg_aa_v_01"
 + gunnerDm:t="commander_dm"
-+ rotatedTurret:t="bone_mg_aa_h_01"
-+ hasNightVision:b=no
 + }
 + 
 + limits{
-+ yaw:p2=-180.0, 180.0
++ yaw:p2=-120.0, 120.0
 + pitch:p2=-10.0, 50.0
-+ }
-+ }
-+ 
-+ Weapon{
-+ trigger:t="gunner3"
-+ triggerGroup:t="commander"
-+ blk:t="gameData/Weapons/dummy_weapon.blk"
-+ emitter:t="bone_commander_sight_v"
-+ defaultYaw:r=0.0
-+ defaultPitch:r=0.0
-+ parkInDeadzone:b=no
-+ speedYaw:r=90.0
-+ speedPitch:r=90.0
-+ 
-+ limits{
-+ yaw:p2=-180.0, 180.0
-+ pitch:p2=-5.0, 10.0
-+ }
-+ 
-+ turret{
-+ head:t="bone_mg_aa_h_01"
-+ gun:t="bone_commander_sight_v"
-+ gunnerDm:t="commander_dm"
-+ verDriveDm:t="commander_panoramic_sight_dm"
-+ horDriveDm:t="commander_panoramic_sight_dm"
-+ rotatedTurret:t="bone_mg_aa_h_01"
 + }
 + }
 + }
@@ -9362,104 +7249,448 @@
 + weapon_presets{
 + 
 + preset{
-+ name:t="uk_shir_2_default"
-+ blk:t="gameData/units/tankModels/weaponPresets/uk_shir_2_default.blk"
++ name:t="us_m46_patton_default"
++ blk:t="gameData/units/tankModels/weaponPresets/us_m46_patton_default.blk"
++ }
++ }
++ 
++ ammoStowages{
++ 
++ ammo1{
++ removeLoadedAmmo:b=yes
++ weaponTrigger:t="gunner0"
++ fatalFire:b=yes
++ fatalExplosion:b=yes
++ replenishmentDelay:r=4.0
++ replenishmentTime:r=15.0
++ 
++ shells{
++ firstStage:b=yes
++ 
++ ammo_turret_01_dm{
++ count:i=2
++ }
++ 
++ ammo_turret_02_dm{
++ count:i=2
++ }
++ 
++ ammo_turret_03_dm{
++ count:i=2
++ }
++ 
++ ammo_turret_04_dm{
++ count:i=2
++ }
++ 
++ ammo_turret_05_dm{
++ count:i=2
++ }
++ }
++ 
++ shells{
++ reloadTimeMult:r=1.33
++ 
++ ammo_body_l_01_dm{
++ count:i=1
++ }
++ 
++ ammo_body_l_02_dm{
++ count:i=1
++ }
++ 
++ ammo_body_l_03_dm{
++ count:i=1
++ }
++ 
++ ammo_body_l_04_dm{
++ count:i=1
++ }
++ 
++ ammo_body_l_05_dm{
++ count:i=1
++ }
++ 
++ ammo_body_l_06_dm{
++ count:i=1
++ }
++ 
++ ammo_body_24_dm{
++ count:i=1
++ }
++ 
++ ammo_body_25_dm{
++ count:i=1
++ }
++ 
++ ammo_body_26_dm{
++ count:i=1
++ }
++ 
++ ammo_body_27_dm{
++ count:i=1
++ }
++ 
++ ammo_body_28_dm{
++ count:i=1
++ }
++ 
++ ammo_body_29_dm{
++ count:i=1
++ }
++ 
++ ammo_body_30_dm{
++ count:i=1
++ }
++ 
++ ammo_body_31_dm{
++ count:i=1
++ }
++ 
++ ammo_body_32_dm{
++ count:i=1
++ }
++ 
++ ammo_body_33_dm{
++ count:i=1
++ }
++ 
++ ammo_body_34_dm{
++ count:i=1
++ }
++ 
++ ammo_body_35_dm{
++ count:i=1
++ }
++ 
++ ammo_body_36_dm{
++ count:i=1
++ }
++ 
++ ammo_body_37_dm{
++ count:i=1
++ }
++ 
++ ammo_body_38_dm{
++ count:i=1
++ }
++ 
++ ammo_body_39_dm{
++ count:i=1
++ }
++ 
++ ammo_body_40_dm{
++ count:i=1
++ }
++ 
++ ammo_body_41_dm{
++ count:i=1
++ }
++ 
++ ammo_body_42_dm{
++ count:i=1
++ }
++ 
++ ammo_body_43_dm{
++ count:i=1
++ }
++ 
++ ammo_body_44_dm{
++ count:i=1
++ }
++ 
++ ammo_body_45_dm{
++ count:i=1
++ }
++ 
++ ammo_body_46_dm{
++ count:i=1
++ }
++ 
++ ammo_body_47_dm{
++ count:i=1
++ }
++ 
++ ammo_body_48_dm{
++ count:i=1
++ }
++ 
++ ammo_body_01_dm{
++ count:i=1
++ }
++ 
++ ammo_body_02_dm{
++ count:i=1
++ }
++ 
++ ammo_body_03_dm{
++ count:i=1
++ }
++ 
++ ammo_body_04_dm{
++ count:i=1
++ }
++ 
++ ammo_body_05_dm{
++ count:i=1
++ }
++ 
++ ammo_body_06_dm{
++ count:i=1
++ }
++ 
++ ammo_body_07_dm{
++ count:i=1
++ }
++ 
++ ammo_body_08_dm{
++ count:i=1
++ }
++ 
++ ammo_body_09_dm{
++ count:i=1
++ }
++ 
++ ammo_body_10_dm{
++ count:i=1
++ }
++ 
++ ammo_body_11_dm{
++ count:i=1
++ }
++ 
++ ammo_body_12_dm{
++ count:i=1
++ }
++ 
++ ammo_body_13_dm{
++ count:i=1
++ }
++ 
++ ammo_body_14_dm{
++ count:i=1
++ }
++ 
++ ammo_body_15_dm{
++ count:i=1
++ }
++ 
++ ammo_body_16_dm{
++ count:i=1
++ }
++ 
++ ammo_body_17_dm{
++ count:i=1
++ }
++ 
++ ammo_body_18_dm{
++ count:i=1
++ }
++ 
++ ammo_body_19_dm{
++ count:i=1
++ }
++ 
++ ammo_body_20_dm{
++ count:i=1
++ }
++ 
++ ammo_body_21_dm{
++ count:i=1
++ }
++ 
++ ammo_body_22_dm{
++ count:i=1
++ }
++ 
++ ammo_body_23_dm{
++ count:i=1
++ }
++ 
++ ammo_body_r_01_dm{
++ count:i=1
++ }
++ 
++ ammo_body_r_02_dm{
++ count:i=1
++ }
++ 
++ ammo_body_r_03_dm{
++ count:i=1
++ }
++ 
++ ammo_body_r_04_dm{
++ count:i=1
++ }
++ 
++ ammo_body_r_05_dm{
++ count:i=1
++ }
++ 
++ ammo_body_r_06_dm{
++ count:i=1
++ }
++ }
 + }
 + }
 + 
 + VehiclePhys{
 + 
 + Mass{
-+ Empty:r=61500.0
-+ Fuel:r=1000.0
-+ TakeOff:r=62500.0
-+ momentOfInertia:p3=4.0, 5.0, 6.0
-+ CenterOfGravity:p3=0.0, 0.5, 0.0
-+ AdvancedMass:b=no
-+ trackMass:r=3000.0
-+ CenterOfGravityClampY:p2=0.0, 0.5
++ Empty:r=43450.0
++ Fuel:r=400.0
++ TakeOff:r=43850.0
++ momentOfInertia:p3=2.5, 2.5, 5.0
++ CenterOfGravity:p3=-0.3, 0.5, 0.0
++ CenterOfGravityClampY:p2=0.0, 0.7
++ AdvancedMass:b=yes
++ trackMass:r=2500.0
 + }
 + 
 + tracks{
-+ animationMultiplier:r=0.62
-+ width:r=0.61
-+ height:r=0.06
-+ fricFrontal:p2=1.0, 0.8
-+ tracksTensionK:p3=5.0, 9.0, 5.0
-+ trackMesh:t="uk_challenger_1_phys_track_line"
-+ trackLen:r=0.167
-+ trackCount:i=94
-+ trackFadeTime:r=1.5
++ animationMultiplier:r=0.58
++ height:r=0.09
++ width:r=0.5
++ tracksTensionK:p3=8.0, 10.0, 5.0
++ trackMesh:t="us_t84e1_phys_track_line"
++ trackLen:r=0.152
++ trackCount:i=86
++ trackFadeTime:r=1.1
++ trackConnector:b=yes
 + trackEmitSparks:b=no
-+ trackStartOffset:r=0.06
++ trackMaxHeight:r=1.29
++ trackStartOffset:r=0.07
 + }
 + 
 + collisionProps{
-+ cls_turret:t="convex_hull"
-+ cls_body:t="convex_hull"
++ cls_turret_01:t="convex_hull"
++ cls_turret_02:t="convex_hull"
++ cls_body_01:t="convex_hull"
 + }
 + 
 + engine{
-+ horsePowers:r=1217.0
-+ maxRPM:r=2300.0
-+ minRPM:r=660.0
++ horsePowers:r=810.0
++ maxRPM:r=2800.0
++ minRPM:r=500.0
 + }
 + 
 + mechanics{
 + steerType:t="clutch_braking"
-+ maxBrakeForce:r=280000.0
-+ driveGearRadius:r=0.299
-+ mainGearRatio:r=4.3
-+ sideGearRatio:r=1.0
-+ neutralGearRatio:r=15.0
++ maxBrakeForce:r=190000.0
++ driveGearRadius:r=0.33
++ mainGearRatio:r=7.1
++ sideGearRatio:r=0.227
++ neutralGearRatio:r=56.16
 + 
 + gearRatios{
-+ ratio:r=-1.65
-+ ratio:r=-2.0
-+ ratio:r=-2.63
-+ ratio:r=-3.27
-+ ratio:r=-4.11
-+ ratio:r=-10.0
++ ratio:r=-11.2
++ ratio:r=-35.6
 + ratio:r=0.0
-+ ratio:r=10.0
-+ ratio:r=4.11
-+ ratio:r=3.27
-+ ratio:r=2.43
-+ ratio:r=2.0
-+ ratio:r=1.57
-+ ratio:r=1.27
-+ ratio:r=1.08
++ ratio:r=26.0
++ ratio:r=18.5
++ ratio:r=13.0
++ ratio:r=10.16
++ ratio:r=7.33
++ ratio:r=4.5
 + }
 + }
 + 
 + suspension{
-+ suspensionOffsets:p3=-0.159, -0.15, 0.082
-+ defaultGearRadius:r=0.39
-+ topGearRadius:r=0.12
-+ frontBackGearRadius:r=0.3
-+ defaultDampeningForce:p2=170000.0, 170000.0
++ maxDisplacementOffsets:p2=0.0, 0.05
++ suspensionOffsets:p3=-0.16, -0.12, 0.1
++ defaultGearRadius:r=0.32
++ frontBackGearRadius:r=0.34
++ topGearRadius:r=0.18
++ defaultDampeningForce:p2=150000.0, 150000.0
 + dampeningRelaxationRatio:r=0.4
 + dampeningCompressionRatio:r=0.15
-+ wheel_r_drive:r=0.32
-+ wheel_l_drive:r=0.32
-+ wheel_r_front:r=0.32
-+ wheel_l_front:r=0.32
++ wheel_r_07:r=0.2
++ wheel_l_07:r=0.2
++ wheel_r_drive:r=0.3
++ wheel_l_drive:r=0.3
 + }
 + }
 + 
 + PhysSys{
-+ find:t="^bone_suspension_(._dd)$"
++ 
++ group{
++ find:t="bone_suspension_(w)_(d+)$"
++ 
++ points{
++ 
++ lever{
++ limitMin:p3=0.0, 0.0, 0.0
++ limitMax:p3=0.0, 0.0, 0.0
++ name:t="bone_suspension_$1_$2"
++ }
++ 
++ suspension_01_01{
++ name:t="bone_suspension_$1_$2_01"
++ limitMin:p3=0.0, -1.0, 0.0
++ limitMax:p3=0.0, 1.0, 0.0
++ }
++ 
++ wheel{
++ 
++ searchChildren{
++ parent:t="lever"
++ find:t="bone_wheel_"
++ occurence:i=1
++ limitMin:p3=-1.0, -1.0, 0.0
++ limitMax:p3=1.0, 1.0, 0.0
++ }
++ }
++ 
++ suspension_01_02{
++ name:t="bone_suspension_$1_$2_02"
++ limitMin:p3=0.0, 0.0, 0.0
++ limitMax:p3=0.0, 0.0, 0.0
++ }
++ }
++ 
++ constraints{
++ 
++ edge{
++ from:t="lever"
++ to:t="wheel"
++ }
++ 
++ edge{
++ moveSecond:b=no
++ from:t="suspension_01_01"
++ to:t="wheel"
++ }
++ 
++ projection{
++ to:t="suspension_01_01"
++ from:t="lever"
++ point:t="suspension_01_02"
++ movePoint:b=no
++ moveEdgeNodes:b=no
++ }
++ }
++ }
++ 
++ group{
++ find:t="bone_suspension_tb_(w)_(d+)$"
 + 
 + points{
 + 
 + suspension{
-+ name:t="bone_suspension_$1"
++ limitMin:p3=0.0, 0.0, 0.0
++ limitMax:p3=0.0, 0.0, 0.0
++ name:t="bone_suspension_tb_$1_$2"
 + }
 + 
 + wheel{
-+ name:t="bone_wheel_$1"
++ 
++ searchChildren{
++ occurence:i=1
 + limitMin:p3=-1.0, -1.0, 0.0
 + limitMax:p3=1.0, 1.0, 0.0
++ parent:t="suspension"
++ find:t="bone_wheel_"
++ }
 + }
 + }
 + 
@@ -9471,16 +7702,401 @@
 + }
 + }
 + }
++ }
 + 
-+ trackEffects{
-+ top:b=no
++ chainIK{
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_01_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_01_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_02_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_02_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_03_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_03_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_04_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_04_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_05_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_05_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_06_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_06_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_07_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_07_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_08_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_08_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_09_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_09_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_10_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_10_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_11_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_11_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_12_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_12_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_13_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_13_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_14_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_14_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_15_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_15_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_16_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_16_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_17_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_17_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_18_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_18_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_19_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_19_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_20_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_20_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_21_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_21_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_22_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_22_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_23_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_23_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_24_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_24_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_25_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_25_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_26_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_26_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_27_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_27_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_28_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_28_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_29_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_29_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_30_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_30_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_31_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_31_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_32_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_32_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_33_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_33_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_34_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_34_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_35_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_35_02"
++ }
++ }
 + }
 + 
 + ammo{
-+ combustionTime:r=7.0
-+ detonateProb:r=0.5
-+ detonatePortion:p2=0.5, 0.9
-+ explodeHitPower:r=5000.0
++ combustionTime:r=10.0
++ detonateProb:r=0.15
++ detonatePortion:p2=0.6, 0.9
++ explodeHitPower:r=1500.0
 + hitPowerMult:r=1.0
 + nearHitPower:p2=1.0, 50.0
 + midHitPower:p2=0.9, 400.0
@@ -9500,11 +8116,11 @@
 + 
 + part{
 + node:t="bone_turret"
-+ mass:r=17000.0
-+ cutDamage:r=1700.0
-+ deviation:r=0.4
-+ rotation:r=1.5
-+ collisionNode:t="cls_turret"
++ mass:r=8000.0
++ cutDamage:r=1000.0
++ deviation:r=0.5
++ rotation:r=0.5
++ collisionNode:t="cls_turret_01"
 + }
 + }
 + 
@@ -10168,23 +8784,14 @@
 + }
 + }
 + 
-+ commanderView{
-+ aimModeAvailable:b=yes
-+ optics:t="commander_optics_square"
-+ zoomOutFov:r=80.0
-+ zoomInFov:r=7.37
-+ sightSize:p2=1.775, 1.25
-+ }
-+ 
 + cockpit{
-+ zoomOutFov:r=18.5
-+ zoomInFov:r=6.4
-+ sightFov:r=5.2
-+ sightName:t="tls_no_10_mk1"
-+ headPos:p3=0.0, 4.2, -9.0
-+ headPosOnShooting:p3=-0.7, 3.5, 0.64
-+ detectionHeight:r=2.5
-+ bone_turret:t="bone_mg_aa_h_01"
++ zoomOutFov:r=18.49
++ zoomInFov:r=9.217
++ sightFov:r=8.5
++ sightName:t="telescope_m46"
++ headPos:p3=0.0, 3.7, -8.3
++ headPosOnShooting:p3=0.1, 3.5, 0.45
++ detectionHeight:r=2.82
 + }
 + 
 + modifications{
@@ -10207,12 +8814,6 @@
 + new_tank_engine{
 + }
 + 
-+ tank_camouflage{
-+ }
-+ 
-+ tank_additional_armor{
-+ }
-+ 
 + manual_extinguisher{
 + }
 + 
@@ -10229,802 +8830,103 @@
 + }
 + 
 + tank_medical_kit{
-+ image:t="#ui/gameuiskin#tank_reinforcement_uk"
++ image:t="#ui/gameuiskin#tank_reinforcement_fr"
 + }
 + 
 + tank_medical_kit_expendable{
-+ image:t="#ui/gameuiskin#tank_reinforcement_uk"
-+ }
-+ 
-+ modern_tank_laser_rangefinder{
-+ }
-+ 
-+ 120mm_britain_L37A7_HESH{
-+ }
-+ 
-+ 120mm_britain_L23_APDSFS{
-+ }
-+ 
-+ 120mm_britain_L23_APDSFS_ammo_pack{
-+ tier:i=3
-+ }
-+ 
-+ 120mm_britain_Smoke{
-+ }
-+ 
-+ 120mm_britain_Smoke_ammo_pack{
-+ tier:i=1
++ image:t="#ui/gameuiskin#tank_reinforcement_fr"
 + }
 + 
 + art_support{
 + }
 + 
-+ tank_smoke_screen_system_mod{
-+ tier:i=4
-+ modClass:t="protection"
-+ 
-+ effects{
-+ 
-+ commonWeapons{
-+ 
-+ Weapon{
-+ trigger:t="gunner0"
-+ blk:t="gameData/Weapons/groundModels_weapons/120mm_L11A5_user_cannon.blk"
-+ shotFreq:r=0.2
-+ emitter:t="bone_gun_barrel"
-+ flash:t="emtr_gun_flame"
-+ defaultYaw:r=0.0
-+ defaultPitch:r=0.0
-+ barrelDP:t="gun_barrel_dm"
-+ breechDP:t="cannon_breech_dm"
-+ speedYaw:r=31.0
-+ speedPitch:r=22.5
-+ fireConeAngle:r=1.0
-+ bullets:i=52
-+ salvoAmount:r=100.0
-+ ChainfireTime:r=0.0
-+ DelayAfterShoot:r=5.0
-+ AttackMaxDistance:r=1000.0
-+ AttackMaxRadius:r=1000.0
-+ AttackMaxHeight:r=1000.0
-+ accuracyAir:r=0.0
-+ accuracyGnd:r=1.5
-+ errMeasureVel:r=0.0
-+ errMeasureVelFast:r=0.0
-+ errMeasureVelFwdShift:r=0.0
-+ errMeasureVelDir:r=0.0
-+ errTargettingOn100kmph:r=0.0
-+ errTargetting:r=3.0
-+ errExplTime:r=0.0
-+ 
-+ turret{
-+ head:t="bone_turret"
-+ gun:t="bone_gun"
-+ barrel:t="bone_gun_barrel"
-+ gunnerDm:t="gunner_dm"
-+ secondGunnerDm:t="commander_dm"
-+ 
-+ linkedAnimPart{
-+ verNode:t="bone_camera_gunner"
-+ verLimits:p2=-10.0, 20.0
-+ verOriginLimits:p2=-10.0, 20.0
-+ }
-+ 
-+ linkedAnimPart{
-+ verNode:t="bone_roll_03"
-+ verLimits:p2=-10.0, 5.0
-+ verOriginLimits:p2=-10.0, 5.0
-+ }
-+ }
-+ 
-+ limits{
-+ yaw:p2=-180.0, 180.0
-+ pitch:p2=-10.0, 20.0
-+ }
-+ 
-+ limitsTable{
-+ lim1:p4=-180.0, -140.0, 2.0, 20.0
-+ lim2:p4=-140.0, -120.0, -1.0, 20.0
-+ lim3:p4=-120.0, 120.0, -10.0, 20.0
-+ lim4:p4=120.0, 140.0, -1.0, 20.0
-+ lim5:p4=140.0, 180.0, 2.0, 20.0
-+ }
-+ 
-+ gunStabilizer{
-+ hasVerticalGunFreeMode:b=no
-+ hasHorizontal:b=yes
-+ horizontalOmegaMult:r=1.0
-+ horizontalSpeedLimitKPH:r=75.0
-+ hasVertical:b=yes
-+ verticalOmegaMult:r=1.0
-+ verticalSpeedLimitKPH:r=75.0
-+ speedFromVehicleVerticalMult:r=-1.0
-+ 
-+ errorKPHToDegrees{
-+ row:p2=5.0, 0.0
-+ row:p2=45.0, 0.015
-+ row:p2=80.0, 0.02
-+ }
-+ }
-+ }
-+ 
-+ Weapon{
-+ trigger:t="gunner1"
-+ triggerGroup:t="coaxial"
-+ blk:t="gameData/Weapons/groundModels_weapons/7_62mm_L8A2_user_machinegun.blk"
-+ emitter:t="bone_mg_gun_twin"
-+ flash:t="emtr_mg_flame_01"
-+ barrelDP:t="gun_barrel_03_dm"
-+ barrelDP:t="gun_barrel_01_dm"
-+ defaultYaw:r=0.0
-+ defaultPitch:r=0.0
-+ speedYaw:r=5.5
-+ speedPitch:r=4.0
-+ fireConeAngle:r=1.0
-+ fireConeAngle:r=15.0
-+ bullets:i=2400
-+ ChainfireTime:r=3.0
-+ DelayAfterShoot:r=3.0
-+ accuracyAir:r=0.0
-+ accuracyGnd:r=0.0
-+ errMeasureVel:r=0.0
-+ errMeasureVelFast:r=0.0
-+ errMeasureVelFwdShift:r=0.0
-+ errMeasureVelDir:r=0.0
-+ errTargettingOn100kmph:r=0.0
-+ errTargetting:r=3.0
-+ errExplTime:r=0.0
-+ 
-+ turret{
-+ head:t="bone_mg_gun_twin"
-+ gun:t="bone_mg_gun_twin"
-+ gunnerDm:t="gunner_dm"
-+ secondGunnerDm:t="commander_dm"
-+ }
-+ 
-+ limits{
-+ yaw:p2=-0.0, 0.0
-+ pitch:p2=-0.0, 0.0
-+ }
-+ }
-+ 
-+ Weapon{
-+ trigger:t="gunner2"
-+ triggerGroup:t="machinegun"
-+ blk:t="gameData/Weapons/groundModels_weapons/7_62mm_L37A2_user_machinegun.blk"
-+ emitter:t="bone_mg_aa_v_01"
-+ flash:t="emtr_mg_flame_02"
-+ barrelDP:t="gun_barrel_02_dm"
-+ defaultYaw:r=0.0
-+ defaultPitch:r=0.0
-+ parkInDeadzone:b=no
-+ speedYaw:r=90.0
-+ speedPitch:r=90.0
-+ bullets:i=3600
-+ isBulletBelt:b=yes
-+ fireConeAngle:r=5.0
-+ ChainfireTime:r=0.5
-+ DelayAfterShoot:r=2.0
-+ accuracyAir:r=1.5
-+ accuracyGnd:r=0.0
-+ errMeasureVel:r=0.0
-+ errMeasureVelFast:r=0.0
-+ errMeasureVelFwdShift:r=1.5
-+ errMeasureVelDir:r=0.0
-+ errTargettingOn100kmph:r=0.0
-+ errTargetting:r=3.0
-+ errExplTime:r=0.0
-+ forestallTime:r=0.1
-+ 
-+ turret{
-+ head:t="bone_mg_aa_h_01"
-+ gun:t="bone_mg_aa_v_01"
-+ gunnerDm:t="commander_dm"
-+ rotatedTurret:t="bone_mg_aa_h_01"
-+ hasNightVision:b=no
-+ }
-+ 
-+ limits{
-+ yaw:p2=-180.0, 180.0
-+ pitch:p2=-10.0, 50.0
-+ }
-+ }
-+ 
-+ Weapon{
-+ trigger:t="gunner3"
-+ triggerGroup:t="commander"
-+ blk:t="gameData/Weapons/dummy_weapon.blk"
-+ emitter:t="bone_commander_sight_v"
-+ defaultYaw:r=0.0
-+ defaultPitch:r=0.0
-+ parkInDeadzone:b=no
-+ speedYaw:r=90.0
-+ speedPitch:r=90.0
-+ 
-+ limits{
-+ yaw:p2=-180.0, 180.0
-+ pitch:p2=-5.0, 10.0
-+ }
-+ 
-+ turret{
-+ head:t="bone_mg_aa_h_01"
-+ gun:t="bone_commander_sight_v"
-+ gunnerDm:t="commander_dm"
-+ verDriveDm:t="commander_panoramic_sight_dm"
-+ horDriveDm:t="commander_panoramic_sight_dm"
-+ rotatedTurret:t="bone_mg_aa_h_01"
-+ }
-+ }
-+ 
-+ Weapon{
-+ trigger:t="gunner4"
-+ triggerGroup:t="smoke"
-+ blk:t="gameData/Weapons/groundModels_weapons/66mm_modern_uk_smoke_grenade_launcher.blk"
-+ weaponType:t="rockets"
-+ useEmitter:b=yes
-+ emitter:t="emtr_mortar_flame_01"
-+ emitterGenRange:ip2=1, 10
-+ emitterGenFmt:t="emtr_mortar_flame_%02d"
-+ ignoreLoaderPenalty:b=yes
-+ createGunEffects:b=yes
-+ defaultYaw:r=0.0
-+ defaultPitch:r=0.0
-+ allowableDelta:r=360.0
-+ salvo:i=2
-+ salvoDelay:r=0.5
-+ speedYaw:r=24.0
-+ speedPitch:r=15.0
-+ fireConeAngle:r=1.0
-+ bullets:i=10
-+ salvoAmount:r=100.0
-+ ChainfireTime:r=0.0
-+ DelayAfterShoot:r=5.0
-+ AttackMaxDistance:r=1000.0
-+ AttackMaxRadius:r=1000.0
-+ AttackMaxHeight:r=1000.0
-+ accuracyAir:r=0.0
-+ accuracyGnd:r=1.5
-+ errMeasureVel:r=0.0
-+ errMeasureVelFast:r=0.0
-+ errMeasureVelFwdShift:r=0.0
-+ errMeasureVelDir:r=0.0
-+ errTargettingOn100kmph:r=0.0
-+ errTargetting:r=3.0
-+ errExplTime:r=0.0
-+ 
-+ turret{
-+ head:t="bone_grenade"
-+ gun:t="bone_grenade"
-+ }
-+ 
-+ limits{
-+ yaw:p2=-0.0, 0.0
-+ pitch:p2=0.0, 0.0
-+ }
-+ }
-+ }
-+ }
-+ }
-+ }
-+ 
-+ nightVision{
-+ 
-+ gunnerIr{
-+ resolution:ip2=800, 600
-+ lightMult:r=8.0
-+ ghosting:r=0.75
-+ noiseFactor:r=0.2
-+ }
-+ 
-+ commanderViewIr{
-+ resolution:ip2=800, 600
-+ lightMult:r=8.0
-+ ghosting:r=0.75
-+ noiseFactor:r=0.2
-+ }
-+ 
-+ driverIr{
-+ resolution:ip2=800, 600
-+ lightMult:r=5.0
-+ ghosting:r=0.7
-+ noiseFactor:r=0.2
-+ }
-+ }
-+ 
-+ ammoStowages{
-+ 
-+ ammo1{
-+ weaponTrigger:t="gunner0"
-+ removeLoadedAmmo:b=yes
-+ fatalFire:b=yes
-+ fatalExplosion:b=yes
-+ replenishmentDelay:r=4.0
-+ replenishmentTime:r=20.0
-+ reverseFill:b=no
-+ 
-+ shells{
-+ firstStage:b=yes
-+ 
-+ ammo_turret_20_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_turret_23_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_turret_25_dm{
-+ count:i=1
-+ }
-+ }
-+ 
-+ shells{
-+ reloadTimeMult:r=1.333
-+ 
-+ ammo_turret_21_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_turret_22_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_turret_24_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_turret_26_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_turret_28_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_turret_30_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_turret_32_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_turret_34_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_turret_27_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_turret_29_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_turret_31_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_turret_33_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_turret_35_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_turret_36_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_turret_38_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_turret_37_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_turret_39_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_turret_19_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_turret_18_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_turret_17_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_turret_16_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_turret_15_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_turret_14_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_turret_01_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_turret_02_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_turret_03_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_turret_05_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_turret_04_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_turret_06_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_turret_07_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_turret_08_dm{
-+ count:i=1
++ 90mm_us_M82_APCBC_ammo_pack{
 + }
 + 
-+ ammo_turret_09_dm{
-+ count:i=1
++ 90mm_us_M82_APCBC{
 + }
 + 
-+ ammo_turret_10_dm{
-+ count:i=1
++ 90mm_us_M332_APCR_ammo_pack{
 + }
 + 
-+ ammo_turret_40_dm{
-+ count:i=1
++ 90mm_us_M332_APCR{
 + }
 + 
-+ ammo_turret_41_dm{
-+ count:i=1
++ 90mm_us_T108_HEAT{
 + }
 + 
-+ ammo_turret_42_dm{
-+ count:i=1
++ 90mm_us_T108_HEAT_ammo_pack{
 + }
 + 
-+ ammo_turret_44_dm{
-+ count:i=1
++ 90mm_us_M71_HE{
 + }
 + 
-+ ammo_turret_43_dm{
-+ count:i=1
++ 90mm_us_M313_Smoke{
 + }
 + 
-+ ammo_turret_45_dm{
-+ count:i=1
++ 90mm_us_M313_Smoke_ammo_pack{
 + }
-+ 
-+ ammo_body_42_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_body_43_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_body_44_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_body_45_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_body_46_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_body_47_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_body_48_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_body_49_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_body_50_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_body_51_dm{
-+ count:i=1
-+ }
-+ }
-+ 
-+ charges{
-+ firstStage:b=yes
-+ 
-+ ammo_turret_11_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_turret_12_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_turret_13_dm{
-+ count:i=1
-+ }
-+ }
-+ 
-+ charges{
-+ reloadTimeMult:r=1.333
-+ 
-+ ammo_body_02_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_body_01_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_body_03_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_body_04_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_body_05_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_body_52_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_body_06_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_body_07_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_body_53_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_body_09_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_body_55_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_body_11_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_body_57_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_body_08_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_body_54_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_body_10_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_body_56_dm{
-+ count:i=1
 + }
 + 
-+ ammo_body_12_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_body_58_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_body_13_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_body_59_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_body_14_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_body_15_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_body_16_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_body_17_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_body_30_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_body_31_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_body_32_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_body_33_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_body_34_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_body_35_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_body_36_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_body_37_dm{
-+ count:i=1
-+ }
++ default_skin{
++ name:t="default"
 + 
-+ ammo_body_38_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_body_39_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_body_40_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_body_41_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_body_18_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_body_19_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_body_20_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_body_21_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_body_22_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_body_23_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_body_24_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_body_25_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_body_26_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_body_27_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_body_28_dm{
-+ count:i=1
-+ }
-+ 
-+ ammo_body_29_dm{
-+ count:i=1
-+ }
-+ }
++ replace_tex{
++ from:t="us_camo_olive*"
++ to:t="fr_camo_vert_olive_arme*"
 + }
 + }
 + 
 + user_skin{
-+ name:t="shir_2"
++ name:t="fr_m46_patton"
 + 
 + replace_tex{
-+ from:t="uk_camo_very_dark_drab*"
++ from:t="us_camo_olive*"
++ to:t="fr_camo_vert_olive_arme*"
 + }
 + }
 + 
 + skin{
-+ name:t="uk_camo_standart_modern_light_stone"
-+ nameLocId:t="skin/uk_camo_standart_modern_light_stone"
-+ descLocId:t="skin/uk_camo_standart_modern_light_stone/desc"
++ name:t="fr_camo_desert_storm"
++ nameLocId:t="skin/fr_camo_desert_storm"
++ descLocId:t="skin/fr_camo_desert_storm/desc"
 + 
 + replace_tex{
-+ from:t="uk_camo_very_dark_drab*"
-+ to:t="uk_camo_standart_modern_light_stone*"
++ from:t="fr_camo_vert_olive_arme*"
++ to:t="fr_camo_desert_storm*"
 + }
 + }
 + 
 + skin{
-+ name:t="uk_camo_standart_modern_bicolor"
-+ nameLocId:t="skin/uk_camo_standart_modern_bicolor"
-+ descLocId:t="skin/uk_camo_standart_modern_bicolor/desc"
++ name:t="fr_camo_green_brown"
++ nameLocId:t="skin/fr_camo_green_brown"
++ descLocId:t="skin/fr_camo_green_brown/desc"
 + 
 + replace_tex{
-+ from:t="uk_camo_very_dark_drab*"
-+ to:t="uk_camo_standart_modern_bicolor*"
++ from:t="fr_camo_vert_olive_arme*"
++ to:t="fr_camo_green_brown*"
 + }
 + }
 + 
 + skin{
-+ name:t="uk_camo_standart_modern_desert_bicolor"
-+ nameLocId:t="skin/uk_camo_standart_modern_desert_bicolor"
-+ descLocId:t="skin/uk_camo_standart_modern_desert_bicolor/desc"
++ name:t="fr_camo_green_sand_brown"
++ nameLocId:t="skin/fr_camo_green_sand_brown"
++ descLocId:t="skin/fr_camo_green_sand_brown/desc"
 + 
 + replace_tex{
-+ from:t="uk_camo_very_dark_drab*"
-+ to:t="uk_camo_standart_modern_desert_bicolor*"
++ from:t="fr_camo_vert_olive_arme*"
++ to:t="fr_camo_green_sand_brown*"
 + }
 + }
 + 
 + skin{
-+ name:t="uk_camo_winter_olive"
-+ nameLocId:t="skin/winter"
-+ descLocId:t="skin/winter/desc"
++ name:t="fr_camo_jaune_sahara"
++ nameLocId:t="skin/fr_camo_jaune_sahara"
++ descLocId:t="skin/fr_camo_jaune_sahara/desc"
 + 
 + replace_tex{
-+ from:t="uk_camo_very_dark_drab*"
-+ to:t="us_camo_winter_olive*"
++ from:t="fr_camo_vert_olive_arme*"
++ to:t="fr_camo_jaune_sahara*"
 + }
 + }
 + 
@@ -11034,8 +8936,19 @@
 + descLocId:t="skin/fr_camo_winter_green_white/desc"
 + 
 + replace_tex{
-+ from:t="uk_camo_very_dark_drab*"
++ from:t="fr_camo_vert_olive_arme*"
 + to:t="fr_camo_winter_green_white*"
++ }
++ }
++ 
++ skin{
++ name:t="fr_camo_winter_base"
++ nameLocId:t="skin/fr_camo_winter_base"
++ descLocId:t="skin/fr_camo_winter_base/desc"
++ 
++ replace_tex{
++ from:t="fr_camo_vert_olive_arme*"
++ to:t="fr_camo_winter_base*"
 + }
 + }
 ```
@@ -11045,7 +8958,1073 @@
 ```
 
 
-- **aces.vromfs.bin_u/gamedata/units/tankmodels/weaponpresets/uk_shir_2_default.blkx**:
+- **aces.vromfs.bin_u/gamedata/units/tankmodels/fr_vbci2_mct30.blkx**:
+
+  **Added**:
+```diff
++ Empty:r=26000.0
++ TakeOff:r=27000.0
++ manufacturer:t="volvo"
++ model:t="d13"
++ manufacturer:t="zf"
++ model:t="7hp_902"
++ type:t="auto"
++ wheel_l_01:r=24.0
++ wheel_r_01:r=24.0
++ wheel_l_02:r=13.0
++ wheel_r_02:r=13.0
++ wheel_l_04:r=-13.0
++ wheel_r_04:r=-13.0
+```
+
+  **Removed**:
+```diff
+- Empty:r=31000.0
+- TakeOff:r=32000.0
+- wheel_l_01:r=20.0
+- wheel_r_01:r=20.0
+- wheel_l_02:r=10.0
+- wheel_r_02:r=10.0
+- wheel_l_04:r=-10.0
+- wheel_r_04:r=-10.0
+```
+
+
+- **aces.vromfs.bin_u/gamedata/units/tankmodels/germ_pzkpfw_iv_ausf_c.blkx**:
+
+  **Added**:
+```diff
++ speedYaw:r=16.0
++ speedYaw:r=16.0
+```
+
+  **Removed**:
+```diff
+- speedYaw:r=15.0
+- speedYaw:r=15.0
+```
+
+
+- **aces.vromfs.bin_u/gamedata/units/tankmodels/germ_pzkpfw_iv_ausf_e.blkx**:
+
+  **Added**:
+```diff
++ speedYaw:r=16.0
++ speedYaw:r=16.0
+```
+
+  **Removed**:
+```diff
+- speedYaw:r=15.0
+- speedYaw:r=15.0
+```
+
+
+- **aces.vromfs.bin_u/gamedata/units/tankmodels/germ_pzkpfw_iv_ausf_f.blkx**:
+
+  **Added**:
+```diff
++ speedYaw:r=16.0
++ speedYaw:r=16.0
+```
+
+  **Removed**:
+```diff
+- speedYaw:r=15.0
+- speedYaw:r=15.0
+```
+
+
+- **aces.vromfs.bin_u/gamedata/units/tankmodels/germ_pzkpfw_iv_ausf_f2.blkx**:
+
+  **Added**:
+```diff
++ speedYaw:r=16.0
++ speedYaw:r=16.0
+```
+
+  **Removed**:
+```diff
+- speedYaw:r=15.0
+- speedYaw:r=15.0
+```
+
+
+- **aces.vromfs.bin_u/gamedata/units/tankmodels/germ_pzkpfw_iv_ausf_g.blkx**:
+
+  **Added**:
+```diff
++ speedYaw:r=16.0
++ speedYaw:r=16.0
+```
+
+  **Removed**:
+```diff
+- speedYaw:r=15.0
+- speedYaw:r=15.0
+```
+
+
+- **aces.vromfs.bin_u/gamedata/units/tankmodels/germ_pzkpfw_iv_ausf_h.blkx**:
+
+  **Added**:
+```diff
++ speedYaw:r=16.0
+```
+
+  **Removed**:
+```diff
+- speedYaw:r=15.0
+```
+
+
+- **aces.vromfs.bin_u/gamedata/units/tankmodels/germ_pzkpfw_vi_tiger_p.blkx**:
+
+  **Added**:
+```diff
++ Empty:r=52000.0
++ TakeOff:r=52500.0
+```
+
+  **Removed**:
+```diff
+- Empty:r=56500.0
+- TakeOff:r=57000.0
+```
+
+
+- **aces.vromfs.bin_u/gamedata/units/tankmodels/germ_sdkfz_234_1.blkx**:
+
+  **Added**:
+```diff
+```
+
+  **Removed**:
+```diff
+- substitute:t="machine_gunner"
+```
+
+
+- **aces.vromfs.bin_u/gamedata/units/tankmodels/germ_sppz2_luchs_a2.blkx**:
+
+  **Added**:
+```diff
+```
+
+  **Removed**:
+```diff
+- substitute:t="machine_gunner"
+```
+
+
+- **aces.vromfs.bin_u/gamedata/units/tankmodels/il_zsu_57_2.blkx**:
+
+  **Added**:
+```diff
++ speedYaw:r=30.0
++ speedYaw:r=30.0
+```
+
+  **Removed**:
+```diff
+- speedYaw:r=60.0
+- speedYaw:r=60.0
+```
+
+
+- **aces.vromfs.bin_u/gamedata/units/tankmodels/it_zsu_57_2.blkx**:
+
+  **Added**:
+```diff
++ speedYaw:r=30.0
++ speedYaw:r=30.0
+```
+
+  **Removed**:
+```diff
+- speedYaw:r=60.0
+- speedYaw:r=60.0
+```
+
+
+- **aces.vromfs.bin_u/gamedata/units/tankmodels/jp_type_5_chi_ri.blkx**:
+
+  **Added**:
+```diff
++ bullets:i=102
++ bullets:i=5000
++ Empty:r=36500.0
++ Fuel:r=500.0
++ TakeOff:r=37000.0
++ sideGearRatio:r=8.0407
++ ratio:r=-2.32
++ ratio:r=-4.397
++ ratio:r=4.397
++ ratio:r=2.32
++ ratio:r=1.546
++ ratio:r=0.645
++ count:i=14
++ count:i=14
++ count:i=14
++ count:i=15
++ count:i=15
++ count:i=15
++ count:i=15
+```
+
+  **Removed**:
+```diff
+- bullets:i=120
+- bullets:i=3000
+- Empty:r=40700.0
+- Fuel:r=300.0
+- TakeOff:r=41000.0
+- sideGearRatio:r=5.1407
+- ratio:r=-5.35
+- ratio:r=-8.35
+- ratio:r=12.5
+- ratio:r=10.5
+- ratio:r=8.5
+- ratio:r=6.0
+- ratio:r=3.5
+- ratio:r=2.5
+- ratio:r=1.5
+- count:i=20
+- count:i=20
+- count:i=20
+- count:i=20
+- count:i=20
+- count:i=10
+- count:i=10
+```
+
+
+- **aces.vromfs.bin_u/gamedata/units/tankmodels/jp_type_94.blkx**:
+
+  **Added**:
+```diff
++ steeringNodes{
++ wheel_r_01:t="bone_wheel_r_01"
++ wheel_l_01:t="bone_wheel_l_01"
++ }
++ 
++ PhysSys{
++ find:t="^bone_suspension_(w)_(d+)$"
++ 
++ points{
++ 
++ lever{
++ limitMin:p3=0.0, -1.0, 0.0
++ limitMax:p3=0.0, 1.0, 0.0
++ name:t="bone_suspension_c_$2"
++ }
++ 
++ wheel_r_01{
++ 
++ searchChildren{
++ occurence:i=1
++ limitMin:p3=-1.0, -1.0, 0.0
++ limitMax:p3=1.0, 1.0, 0.0
++ parent:t="lever"
++ find:t="bone_wheel_"
++ }
++ }
++ 
++ wheel_l_01{
++ 
++ searchChildren{
++ occurence:i=2
++ limitMin:p3=-1.0, -1.0, 0.0
++ limitMax:p3=1.0, 1.0, 0.0
++ parent:t="lever"
++ find:t="bone_wheel_"
++ }
++ }
++ }
++ 
++ constraints{
++ 
++ edge{
++ to:t="wheel_r_01"
++ from:t="lever"
++ }
++ 
++ edge{
++ from:t="lever"
++ to:t="wheel_l_01"
++ }
++ 
++ slider{
++ moveNodes:b=yes
++ rotateSecond:b=no
++ moveSecond:b=yes
++ moveOnly:b=no
++ point:t="lever"
++ from:t="wheel_l_01"
++ to:t="wheel_r_01"
++ }
++ }
++ }
++ 
++ chainIK{
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_01_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_01_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_02_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_02_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_03_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_03_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_04_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_04_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_05_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_05_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_06_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_06_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_07_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_07_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_08_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_08_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_09_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_09_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_10_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_10_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_11_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_11_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_12_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_12_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_13_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_13_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_14_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_14_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_15_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_15_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_16_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_16_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_17_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_17_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_18_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_18_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_19_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_19_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_20_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_20_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_21_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_21_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_22_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_22_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_23_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_23_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_24_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_24_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_25_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_25_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_26_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_26_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_27_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_27_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_28_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_28_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_29_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_29_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_30_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_30_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_31_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_31_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_32_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_32_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_33_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_33_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_34_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_34_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_35_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_35_02"
++ }
++ }
++ }
++ 
+```
+
+  **Removed**:
+```diff
+```
+
+
+- **aces.vromfs.bin_u/gamedata/units/tankmodels/sw_bmp_2md.blkx**:
+
+  **Added**:
+```diff
++ thrust:r=11000.0
++ thrust:r=11000.0
+```
+
+  **Removed**:
+```diff
+- thrust:r=19000.0
+- thrust:r=19000.0
+```
+
+
+- **aces.vromfs.bin_u/gamedata/units/tankmodels/sw_cv_90_mk4.blkx**:
+
+  **Added**:
+```diff
++ turret_09_front_dm{
++ turret_08_bottom_dm{
++ turret_08_front_dm{
++ zoomOutFov:r=30.0
++ zoomInFov:r=7.4
++ sightSize:p2=0.57, 0.4
+```
+
+  **Removed**:
+```diff
+- body_01_top_dm{
+- body_01_side_dm{
+- body_01_back_dm{
+- zoomOutFov:r=50.74
+- zoomInFov:r=3.07
+- sightSize:p2=0.99, 0.69
+```
+
+
+- **aces.vromfs.bin_u/gamedata/units/tankmodels/sw_zsu_57_2.blkx**:
+
+  **Added**:
+```diff
++ speedYaw:r=30.0
++ speedYaw:r=30.0
+```
+
+  **Removed**:
+```diff
+- speedYaw:r=60.0
+- speedYaw:r=60.0
+```
+
+
+- **aces.vromfs.bin_u/gamedata/units/tankmodels/uk_a17_mk_1_tetrarch.blkx**:
+
+  **Added**:
+```diff
++ speedYaw:r=21.0
++ speedYaw:r=21.0
+```
+
+  **Removed**:
+```diff
+- speedYaw:r=16.0
+- speedYaw:r=16.0
+```
+
+
+- **aces.vromfs.bin_u/gamedata/units/tankmodels/uk_a_12_mk_2_matilda_2.blkx**:
+
+  **Added**:
+```diff
++ Empty:r=25100.0
++ Fuel:r=300.0
++ TakeOff:r=25400.0
+```
+
+  **Removed**:
+```diff
+- Empty:r=27104.0
+- Fuel:r=227.0
+- TakeOff:r=27331.0
+```
+
+
+- **aces.vromfs.bin_u/gamedata/units/tankmodels/us_mbt_70.blkx**:
+
+  **Added**:
+```diff
++ bullets:i=750
++ lim1:p4=-180.0, -25.0, -15.0, 65.0
++ lim2:p4=-25.0, 3.0, -10.0, 65.0
++ lim3:p4=3.0, 55.0, -5.0, 65.0
++ lim4:p4=55.0, 85.0, 20.0, 65.0
++ lim5:p4=85.0, 105.0, -3.0, 65.0
++ lim6:p4=105.0, 180.0, -6.0, 65.0
++ bullets:i=750
++ lim1:p4=-180.0, -25.0, -15.0, 65.0
++ lim2:p4=-25.0, 3.0, -10.0, 65.0
++ lim3:p4=3.0, 55.0, -5.0, 65.0
++ lim4:p4=55.0, 85.0, 20.0, 65.0
++ lim5:p4=85.0, 105.0, -3.0, 65.0
++ lim6:p4=105.0, 180.0, -6.0, 65.0
+```
+
+  **Removed**:
+```diff
+- bullets:i=2000
+- lim1:p4=-180.0, 3.0, -15.0, 65.0
+- lim2:p4=3.0, 55.0, -5.0, 65.0
+- lim3:p4=55.0, 85.0, 20.0, 65.0
+- lim4:p4=85.0, 105.0, -3.0, 65.0
+- lim4:p4=105.0, 180.0, -6.0, 65.0
+- bullets:i=2000
+- lim1:p4=-180.0, 3.0, -15.0, 65.0
+- lim2:p4=3.0, 55.0, -5.0, 65.0
+- lim3:p4=55.0, 85.0, 20.0, 65.0
+- lim4:p4=85.0, 105.0, -3.0, 65.0
+- lim4:p4=105.0, 180.0, -6.0, 65.0
+```
+
+
+- **aces.vromfs.bin_u/gamedata/units/tankmodels/ussr_a_12_mk_2_matilda_2a_f96.blkx**:
+
+  **Added**:
+```diff
++ Fuel:r=300.0
+```
+
+  **Removed**:
+```diff
+- Fuel:r=227.0
+```
+
+
+- **aces.vromfs.bin_u/gamedata/units/tankmodels/ussr_bmp_2.blkx**:
+
+  **Added**:
+```diff
++ thrust:r=11000.0
++ thrust:r=11000.0
+```
+
+  **Removed**:
+```diff
+- thrust:r=19000.0
+- thrust:r=19000.0
+```
+
+
+- **aces.vromfs.bin_u/gamedata/units/tankmodels/ussr_bmp_2m.blkx**:
+
+  **Added**:
+```diff
++ thrust:r=10000.0
++ thrust:r=10000.0
+```
+
+  **Removed**:
+```diff
+- thrust:r=19000.0
+- thrust:r=19000.0
+```
+
+
+- **aces.vromfs.bin_u/gamedata/units/tankmodels/ussr_zis_30.blkx**:
+
+  **Added**:
+```diff
++ ratio:r=-11.34
++ ratio:r=9.28
++ ratio:r=4.48
++ ratio:r=2.45
++ ratio:r=1.45
+```
+
+  **Removed**:
+```diff
+```
+
+
+- **aces.vromfs.bin_u/gamedata/units/tankmodels/ussr_zsu_57_2.blkx**:
+
+  **Added**:
+```diff
++ speedYaw:r=30.0
++ speedYaw:r=30.0
+```
+
+  **Removed**:
+```diff
+- speedYaw:r=60.0
+- speedYaw:r=60.0
+```
+
+
+- **aces.vromfs.bin_u/gamedata/weapons/groundmodels_weapons/12_7mm_ksp_m88_user_machinegun.blkx**:
+
+  **Added**:
+```diff
++ bulletsCartridge:i=100
++ overheat{
++ overheat:p2=12.0, 0.0
++ overheat:p2=13.0, 0.1
++ overheat:p2=15.0, 0.5
++ }
++ 
+```
+
+  **Removed**:
+```diff
+- bulletsCartridge:i=200
+```
+
+
+- **aces.vromfs.bin_u/gamedata/weapons/groundmodels_weapons/12_7mm_m2_hb_md_user_machinegun.blkx**:
+
+  **Added**:
+```diff
++ bulletsCartridge:i=100
++ overheat{
++ overheat:p2=12.0, 0.0
++ overheat:p2=13.0, 0.1
++ overheat:p2=15.0, 0.5
++ }
++ 
+```
+
+  **Removed**:
+```diff
+- bulletsCartridge:i=200
+```
+
+
+- **aces.vromfs.bin_u/gamedata/weapons/groundmodels_weapons/12_7mm_m2_hb_t77e1_user_machinegun.blkx**:
+
+  **Added**:
+```diff
++ overheat{
++ overheat:p2=12.0, 0.0
++ overheat:p2=13.0, 0.1
++ overheat:p2=15.0, 0.5
++ }
++ 
+```
+
+  **Removed**:
+```diff
+```
+
+
+- **aces.vromfs.bin_u/gamedata/weapons/groundmodels_weapons/12_7mm_m2_hb_user_machinegun.blkx**:
+
+  **Added**:
+```diff
++ bulletsCartridge:i=100
++ overheat{
++ overheat:p2=12.0, 0.0
++ overheat:p2=13.0, 0.1
++ overheat:p2=15.0, 0.5
++ }
++ 
+```
+
+  **Removed**:
+```diff
+- bulletsCartridge:i=200
+```
+
+
+- **aces.vromfs.bin_u/gamedata/weapons/groundmodels_weapons/12_7mm_m2_hb_user_machinegun_for_m15.blkx**:
+
+  **Added**:
+```diff
++ overheat{
++ overheat:p2=12.0, 0.0
++ overheat:p2=13.0, 0.1
++ overheat:p2=15.0, 0.5
++ }
++ 
+```
+
+  **Removed**:
+```diff
+```
+
+
+- **aces.vromfs.bin_u/gamedata/weapons/groundmodels_weapons/12_7mm_m3p_user_machinegun.blkx**:
+
+  **Added**:
+```diff
++ bulletsCartridge:i=100
++ overheat{
++ overheat:p2=12.0, 0.0
++ overheat:p2=13.0, 0.1
++ overheat:p2=15.0, 0.5
++ }
++ 
+```
+
+  **Removed**:
+```diff
+- bulletsCartridge:i=200
+```
+
+
+- **aces.vromfs.bin_u/gamedata/weapons/groundmodels_weapons/239mm_9m331_user_cannon.blkx**:
+
+  **Added**:
+```diff
+```
+
+  **Removed**:
+```diff
+- bulletName:t=""
+- bulletName:t=""
+```
+
+
+- **aces.vromfs.bin_u/gamedata/weapons/groundmodels_weapons/239mm_hq_17_user_cannon.blkx**:
+
+  **Added**:
+```diff
++ bulletName:t="239mm_hq17"
++ bulletName:t="239mm_hq17"
+```
+
+  **Removed**:
+```diff
+- bulletName:t="239mm_9m331"
+- bulletName:t=""
+- bulletName:t="239mm_9m331"
+- bulletName:t=""
+```
+
+
+- **aces.vromfs.bin_u/gamedata/weapons/navalmodels_weapons/100mm_65_type_98_naval_user_cannon.blkx**:
+
+  **Added**:
+```diff
++ explosiveMass:r=1.4
++ explosiveMass:r=1.4
++ explosiveMass:r=1.4
+```
+
+  **Removed**:
+```diff
+- explosiveMass:r=0.95
+- explosiveMass:r=0.95
+- explosiveMass:r=0.95
+```
+
+
+- **aces.vromfs.bin_u/gamedata/weapons/navalmodels_weapons/152mm_6inch_47_mk_16_dp_naval_user_cannon.blkx**:
+
+  **Added**:
+```diff
++ shotFreq:r=0.2125
+```
+
+  **Removed**:
+```diff
+- shotFreq:r=0.2
+```
 
 
 ---
