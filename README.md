@@ -1,5 +1,5 @@
 # War Thunder Datamine
-Live server content updated to Storm Warning
+![image](https://github.com/user-attachments/assets/43d6e437-04ce-41ed-9e7e-79c18df7eb3d)
 ##  Versions (Autoupdated)
 ### Current Version
 Version: [2.43.0.56](aces.vromfs.bin_u/version)
