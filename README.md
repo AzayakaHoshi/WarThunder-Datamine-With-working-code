@@ -1,5 +1,9 @@
 # War Thunder Datamine
-![image](https://github.com/user-attachments/assets/43d6e437-04ce-41ed-9e7e-79c18df7eb3d)
+### 107 files changed
+```diff
++ 8659 insertions
+- 204 deletions
+```
 ##  Versions (Autoupdated)
 ### Current Version
 Version: [2.43.0.75](aces.vromfs.bin_u/version)
