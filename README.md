@@ -1,5 +1,11 @@
 # War Thunder Datamine
 ### mis.vromfs.blk has been added.
+### 4817 files changed
+```diff
++ 6793554 insertions
+- 3 deletions
+```
+
 
 ##  Versions (Autoupdated)
 ### Current Version
