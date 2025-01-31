@@ -1,0 +1,238 @@
+selected_tag:t=""
+bin_dump_file:t=""
+
+mission_settings{
+
+  player{
+    army:i=1
+    wing:t="flt_armada"
+  }
+
+  player_teamB{
+    army:i=2
+  }
+
+  mission{
+    level:t="levels/water.bin"
+    type:t="singleMission"
+    environment:t="Day"
+    weather:t="hazy"
+    restoreType:t="attempts"
+    optionalTakeOff:b=no
+  }
+
+  spectator_points{
+  }
+}
+
+imports{
+
+  import_record{
+    file:t="gameData/missions/templates/enduring_confrontation/flt_frontline_template.blk"
+    importAreas:b=yes
+    importUnits:b=yes
+    importTriggers:b=yes
+    importMissionObjectives:b=yes
+    importWayPoints:b=yes
+    showAreas:b=yes
+    showUnits:b=yes
+    showTriggers:b=yes
+    showMissionObjectives:b=yes
+    showWayPoints:b=yes
+
+    excludes{
+    }
+  }
+
+  import_record{
+    file:t="gameData/missions/cta/planes/historical/BfD/air_afghan_ec/frontline/flt_frontline_part.blk"
+    importAreas:b=yes
+    importUnits:b=yes
+    importTriggers:b=yes
+    importMissionObjectives:b=yes
+    importWayPoints:b=yes
+    showAreas:b=yes
+    showUnits:b=yes
+    showTriggers:b=yes
+    showMissionObjectives:b=yes
+    showWayPoints:b=yes
+
+    excludes{
+    }
+  }
+}
+
+triggers{
+  isCategory:b=yes
+  is_enabled:b=yes
+
+  flt_parts_init{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      initMission{
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      varSetInt{
+        value:i=10
+        var:t="flt_big_aaa_weight"
+      }
+
+      varSetInt{
+        value:i=10
+        var:t="flt_small_aaa_weight"
+      }
+
+      varSetInt{
+        value:i=20
+        var:t="flt_art_weight"
+      }
+
+      varSetInt{
+        value:i=50
+        var:t="flt_tank_weight"
+      }
+
+      varSetInt{
+        value:i=8
+        var:t="flt_zones_in_row"
+        var:t="flt_zones_in_col_real"
+      }
+
+      varSetInt{
+        value:i=8
+        var:t="flt_zones_in_col"
+        var:t="flt_zones_in_row_real"
+      }
+
+      varSetInt{
+        value:i=0
+        var:t="flt_total_zones"
+      }
+
+      comment{
+        value:t="nastrojki frontlajna"
+      }
+
+      comment{
+        value:t="obshchee kolichestvo zon"
+      }
+
+      comment{
+        value:t="vyschityvaem kolichestvo zon pokazyvayushchih glubinu fronta"
+      }
+
+      comment{
+        value:t="pomechaem zony komand (v cikle po algoritmu)"
+      }
+
+      comment{
+        value:t="risuem liniyu fronta"
+      }
+
+      varModify{
+        operator:t="add"
+        value:r=0.0
+        var:t="flt_total_zones"
+        use_variable:b=yes
+        var_value:t="flt_zones_in_row"
+      }
+
+      varModify{
+        operator:t="mul"
+        value:r=3.0
+        var:t="flt_total_zones"
+        use_variable:b=yes
+        var_value:t="flt_zones_in_col"
+      }
+
+      varSetBool{
+        value:b=yes
+        var:t="flt_mirrior_start"
+      }
+
+      triggerEnable{
+        target:t="flt_army_state_start"
+      }
+
+      triggerEnable{
+        target:t="flt_draw_frontline"
+      }
+
+      missionBattleArea{
+        air:b=yes
+        ground:b=no
+        mapArea:b=no
+        airMapArea:b=yes
+        killArea:b=no
+        detectionArea:b=no
+        killOutOfBattleArea:b=yes
+        area:t="flt_battle_area"
+        newGridHorizontalCellCount:i=8
+        gridCellCountVar:t="flt_zones_in_row"
+      }
+    }
+
+    else_actions{
+    }
+  }
+}
+
+mission_objectives{
+  isCategory:b=yes
+  is_enabled:b=yes
+}
+
+variables{
+}
+
+dialogs{
+}
+
+airfields{
+}
+
+effects{
+}
+
+units{
+}
+
+areas{
+}
+
+objLayers{
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+}
+
+wayPoints{
+}

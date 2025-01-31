@@ -1,0 +1,305 @@
+selected_tag:t=""
+bin_dump_file:t=""
+
+mission_settings{
+
+  atmosphere{
+    pressure:r=760.0
+    temperature:r=30.0
+  }
+
+  player{
+    army:i=1
+  }
+
+  player_teamB{
+    army:i=2
+  }
+
+  mission{
+    level:t="levels/water.bin"
+    type:t="domination"
+    restoreType:t="attempts"
+    optionalTakeOff:b=no
+    environment:t="Day"
+    weather:t="clear"
+    scoreLimit:i=6400
+    timeLimit:i=25
+    deathPenaltyMul:r=0.0
+  }
+
+  spectator_points{
+  }
+}
+
+imports{
+}
+
+triggers{
+  isCategory:b=yes
+  is_enabled:b=yes
+
+  rearm_zones_init{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      initMission{
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      varSetBool{
+        value:b=no
+        var:t="enableRearmZonesTeamA"
+        fromDescriptor:t="enableRearmZonesTeamA"
+      }
+
+      varSetBool{
+        value:b=no
+        var:t="enableRearmZonesTeamB"
+        fromDescriptor:t="enableRearmZonesTeamB"
+      }
+
+      triggerEnable{
+        target:t="rearm_zones_enable_check_t1"
+        target:t="rearm_zones_enable_check_t2"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  rearm_zones_enable_check_t1{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      varCompareBool{
+        var_value:t="enableRearmZonesTeamA"
+        value:b=yes
+        comparasion_func:t="equal"
+      }
+    }
+
+    actions{
+
+      triggerEnable{
+        target:t="rearm_zone_exist_check_t1"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  rearm_zones_enable_check_t2{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      varCompareBool{
+        var_value:t="enableRearmZonesTeamB"
+        value:b=yes
+        comparasion_func:t="equal"
+      }
+    }
+
+    actions{
+
+      triggerEnable{
+        target:t="rearm_zone_exist_check_t2"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  rearm_zone_exist_check_t1{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ANY"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      objectExists{
+        target:t="@t1_rearmZoneName"
+        type:t="area"
+      }
+
+      objectExists{
+        target:t="@t1_rearmZoneName"
+        type:t="squad"
+      }
+    }
+
+    actions{
+
+      missionMarkAsRearmZone{
+        army:i=1
+        area_name:t="@t1_rearmZoneName"
+        enabled:b=yes
+
+        tags{
+          air:b=no
+          tank:b=yes
+          ship:b=yes
+        }
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  rearm_zone_exist_check_t2{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ANY"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      objectExists{
+        target:t="@t2_rearmZoneName"
+        type:t="area"
+      }
+
+      objectExists{
+        target:t="@t2_rearmZoneName"
+        type:t="squad"
+      }
+    }
+
+    actions{
+
+      missionMarkAsRearmZone{
+        army:i=2
+        area_name:t="@t2_rearmZoneName"
+        enabled:b=yes
+
+        tags{
+          air:b=no
+          tank:b=yes
+          ship:b=yes
+        }
+      }
+    }
+
+    else_actions{
+    }
+  }
+}
+
+mission_objectives{
+  isCategory:b=yes
+  is_enabled:b=yes
+}
+
+variables{
+  enableRearmZonesTeamA:b=no
+  enableRearmZonesTeamB:b=no
+  t1_rearmZoneName:t="t1_rearm_zone"
+  t2_rearmZoneName:t="t2_rearm_zone"
+}
+
+dialogs{
+}
+
+airfields{
+}
+
+effects{
+}
+
+units{
+}
+
+areas{
+}
+
+objLayers{
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+}
+
+wayPoints{
+}

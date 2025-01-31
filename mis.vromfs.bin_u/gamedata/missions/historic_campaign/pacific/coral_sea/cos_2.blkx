@@ -1,0 +1,7591 @@
+selected_tag:t=""
+bin_dump_file:t=""
+
+mission_settings{
+
+  player{
+    army:i=1
+    wing:t="player"
+  }
+
+  player_teamB{
+    army:i=2
+  }
+
+  mission{
+    level:t="levels/water.bin"
+    type:t="campaign"
+    environment:t="Morning"
+    weather:t="good"
+    windDirection:p3=1.0, 0.0, 0.0
+    restoreType:t="tactical control"
+    optionalTakeOff:b=no
+    locationName:t="water_coral"
+    forceSkiesInitialRandomSeed:b=yes
+    skiesInitialRandomSeed:i=1588
+    windSpeed:p2=7.0, 7.0
+    windDirectionDeg:p2=260.0, 260.0
+
+    stars{
+      latitude:r=18.0
+      longitude:r=158.0
+      year:i=1942
+      month:i=5
+      day:i=6
+      localTime:r=10.0
+    }
+
+    customWeather{
+      windDir:p2=0.6, 0.8
+      wind_scale:r=1.0
+      max_wind_strength:r=6.0
+      waterWindStrength:r=4.0
+
+      strata_clouds{
+        amount:r=0.3
+        altitude:r=10.0
+      }
+
+      clouds_weather_gen{
+        "layers[0].coverage":r=0.44
+        "layers[0].freq":r=2.48
+        "layers[1].coverage":r=0.61
+        "layers[1].freq":r=3.07
+        cumulonimbusCoverage:r=0.32
+        cumulonimbusSeed:r=45.07
+      }
+
+      clouds_form{
+        "layers[0].startAt":r=1.0
+        "layers[0].thickness":r=4.0
+        "layers[0].density":r=0.8
+        "layers[0].clouds_type":r=0.1
+        "layers[1].startAt":r=5.0
+        "layers[1].thickness":r=2.0
+        "layers[1].density":r=0.71
+        turbulenceStrength:r=1.13
+      }
+    }
+  }
+
+  atmosphere{
+    pressure:r=760.0
+    temperature:r=25.0
+  }
+
+  spectator_points{
+  }
+
+  briefing{
+    place_loc:t="mb/coS_2/place"
+    date_loc:t=""
+    objective_loc:t="mb/coS_2/objective"
+    music:t="action_01"
+
+    part{
+      event:t="mb/coS_2/part1"
+      minTime:i=0
+
+      slide{
+        map:b=no
+        minTime:i=6
+        picture:t="coral_sea/briefing_slide_coralsea_m3_part1"
+        showAirMap:b=no
+      }
+    }
+
+    part{
+      event:t="mb/coS_2/part2"
+      minTime:i=0
+
+      slide{
+        map:b=no
+        minTime:i=6
+        picture:t="coral_sea/briefing_slide_coralsea_m3_part2"
+        showAirMap:b=no
+      }
+    }
+
+    part{
+      event:t="mb/coS_2/part3"
+      minTime:i=0
+
+      slide{
+        map:b=no
+        minTime:i=6
+        picture:t="coral_sea/briefing_slide_coralsea_m3_part3"
+        showAirMap:b=no
+      }
+    }
+
+    part{
+      event:t="mb/coS_2/part4"
+      minTime:i=0
+
+      slide{
+        map:b=no
+        minTime:i=6
+        picture:t="coral_sea/briefing_slide_coralsea_m3_part4"
+        showAirMap:b=no
+      }
+    }
+
+    part{
+      event:t="mb/coS_2/part5"
+      minTime:i=0
+
+      slide{
+        map:b=yes
+        minTime:i=6
+        picture:t=""
+        showAirMap:b=no
+
+        arrow{
+          width:i=1
+          side:t="enemy"
+          point:t="sbd_start_briefing"
+          point:t="jpn_carrier_shokaku"
+        }
+
+        icon{
+          icontype:t="fighter"
+          side:t="player"
+          target:t="player"
+          lookAt:t="sbd_start_briefing"
+        }
+
+        icon{
+          icontype:t="bomber"
+          side:t="enemy"
+          target:t="sbd_start_briefing"
+          lookAt:t="jpn_carrier_shokaku"
+        }
+
+        icon{
+          icontype:t="carrier"
+          side:t="ally"
+          target:t="jpn_carrier_zuikaku"
+        }
+
+        icon{
+          icontype:t="carrier"
+          side:t="ally"
+          target:t="jpn_carrier_shokaku"
+        }
+
+        icon{
+          icontype:t="destroyer"
+          side:t="ally"
+          target:t="ijn_destroyer_briefing"
+        }
+
+        icon{
+          icontype:t="destroyer"
+          side:t="ally"
+          target:t="jpn_destroyer_01"
+        }
+      }
+    }
+  }
+}
+
+imports{
+}
+
+triggers{
+  isCategory:b=yes
+  is_enabled:b=yes
+
+  debug_timer{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionSetTimeIndicator{
+        var:t="timer"
+      }
+
+      varModify{
+        operator:t="add"
+        value:r=1.0
+        var:t="timer"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  miss_init{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      initMission{
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      unitSetProperties{
+        object:t="ijn_fleet_sq"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        effShootingRate:r=0.5
+      }
+
+      unitSetProperties{
+        object:t="york_sbd_sq"
+        object:t="york_tbd_sq"
+        object:t="lex_sbd_sq"
+        object:t="lex_tbd_sq"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        effShootingRate:r=0.1
+
+        plane{
+
+          targetDeviation{
+            trigger:t="machine gun"
+            defaultVal:r=1.5
+            limits:p2=1.0, 4.0
+          }
+
+          targetDeviation{
+            trigger:t="gunner"
+            defaultVal:r=1.0
+            limits:p2=1.0, 4.0
+          }
+
+          targetDeviation{
+            trigger:t="bombs"
+            defaultVal:r=0.0
+            limits:p2=0.0, 3.0
+          }
+
+          targetDeviation{
+            trigger:t="torpedoes"
+            defaultVal:r=0.0
+            limits:p2=0.0, 3.0
+          }
+        }
+      }
+
+      unitSetProperties{
+        object:t="zero_sq"
+        object:t="player"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+
+        plane{
+
+          targetDeviation{
+            trigger:t="machine gun"
+            defaultVal:r=4.0
+            limits:p2=0.0, 4.0
+          }
+        }
+      }
+
+      unitSetProperties{
+        object:t="lex_f4f02"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        effShootingRate:r=0.3
+
+        plane{
+
+          targetDeviation{
+            trigger:t="machine gun"
+            defaultVal:r=0.0
+            limits:p2=1.0, 4.0
+          }
+        }
+      }
+
+      unitSetProperties{
+        object:t="lex_f4f01"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        effShootingRate:r=0.2
+
+        plane{
+
+          targetDeviation{
+            trigger:t="machine gun"
+            defaultVal:r=3.0
+            limits:p2=1.0, 4.0
+          }
+
+          targetDeviation{
+            trigger:t="gunner"
+            defaultVal:r=4.0
+            limits:p2=1.0, 4.0
+          }
+        }
+      }
+
+      unitSetProperties{
+        object:t="player"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        targetableByAi:b=no
+      }
+
+      unitSetProperties{
+        object:t="player_squad"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        targetableByAi:b=yes
+      }
+
+      unitPutToSleep{
+        target:t="us_planes_sq"
+        target:t="zero01"
+        target:t="zero02"
+        target:t="player_cut"
+      }
+
+      spawnOnAirfield{
+        runwayName:t="jpn_carrier_zuikaku"
+        objects:t="player"
+      }
+
+      spawnOnAirfield{
+        runwayName:t="jpn_carrier_shokaku"
+        objects:t="zero03"
+      }
+
+      triggerEnable{
+        target:t="start_cut"
+      }
+
+      wait{
+        time:r=0.1
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  start_cut{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      timeExpires{
+        time:r=0.0
+      }
+    }
+
+    conditions{
+
+      playersWhenStatus{
+        players:t="isAlive"
+        check_players:t="any"
+      }
+    }
+
+    actions{
+
+      missionForceMusic{
+        evName:t="1_japan_wake"
+      }
+
+      playerControls{
+        setStatus:t="disable"
+        control:t="ALL"
+      }
+
+      playerControls{
+        setStatus:t="enable"
+        control:t="ID_SKIP_CUTSCENE"
+        control:t="ID_FLIGHTMENU"
+      }
+
+      showSmartCutscene{
+        sceneType:t="takeoff"
+        startSubTypeOnTheMarch:t=""
+        startSubTypeGroundUnits:t=""
+        startSubTypeArea:t=""
+        startSubTypeUnitAttackUnit:t=""
+        startSubTypeUnitMoveToUnit:t=""
+        startSubTypeTwoUnits:t=""
+        duration:r=5.0
+        changeCameras:b=no
+        teleportAllAttackers:b=no
+        delayPlayer:b=no
+        fadeOut:b=yes
+        allowDeadUnits:b=no
+        allowTeleportAttackers:b=yes
+        fadeIn:b=no
+        inverseCameraDirection:b=no
+        startSubTypeTakeOff:t="camera2"
+        startSubTypeTakeoff:t="camera2"
+        startSubTypeFlyBy:t=""
+        wait:b=no
+        object:t="zero_cut"
+      }
+
+      showSmartCutscene{
+        sceneType:t="on_the_march"
+        startSubTypeOnTheMarch:t="right2front"
+        startSubTypeGroundUnits:t=""
+        startSubTypeArea:t=""
+        startSubTypeUnitAttackUnit:t=""
+        startSubTypeUnitMoveToUnit:t=""
+        startSubTypeTwoUnits:t=""
+        duration:r=10.0
+        changeCameras:b=no
+        teleportAllAttackers:b=no
+        delayPlayer:b=no
+        fadeOut:b=yes
+        allowDeadUnits:b=no
+        allowTeleportAttackers:b=yes
+        fadeIn:b=no
+        inverseCameraDirection:b=no
+        startSubTypeTakeOff:t=""
+        startSubTypeTakeoff:t=""
+        startSubTypeFlyBy:t=""
+        wait:b=no
+        object:t="zero_cut"
+        finalLook:t="sbd_cut"
+        changeLookTime:r=6.0
+        finalZoom:r=30.0
+      }
+
+      showSmartCutscene{
+        sceneType:t="on_the_march"
+        startSubTypeOnTheMarch:t="right2front"
+        startSubTypeGroundUnits:t=""
+        startSubTypeArea:t=""
+        startSubTypeUnitAttackUnit:t=""
+        startSubTypeUnitMoveToUnit:t=""
+        startSubTypeTwoUnits:t=""
+        duration:r=8.0
+        changeCameras:b=no
+        teleportAllAttackers:b=no
+        delayPlayer:b=no
+        fadeOut:b=yes
+        allowDeadUnits:b=no
+        allowTeleportAttackers:b=yes
+        fadeIn:b=no
+        inverseCameraDirection:b=no
+        startSubTypeTakeOff:t=""
+        startSubTypeTakeoff:t=""
+        startSubTypeFlyBy:t=""
+        wait:b=no
+        object:t="zero_cut"
+      }
+
+      showSmartCutscene{
+        sceneType:t="ground_units"
+        startSubTypeOnTheMarch:t=""
+        startSubTypeGroundUnits:t="c2"
+        startSubTypeArea:t=""
+        startSubTypeUnitAttackUnit:t=""
+        startSubTypeUnitMoveToUnit:t=""
+        startSubTypeTwoUnits:t=""
+        startSubTypeTakeoff:t=""
+        duration:r=6.0
+        changeCameras:b=yes
+        teleportAllAttackers:b=no
+        allowTeleportAttackers:b=yes
+        inverseCameraDirection:b=no
+        delayPlayer:b=no
+        fadeIn:b=no
+        fadeOut:b=yes
+        allowDeadUnits:b=no
+        startSubTypeFlyBy:t=""
+        wait:b=no
+        object:t="jpn_carrier_zuikaku"
+      }
+
+      showSmartCutscene{
+        sceneType:t="takeoff"
+        startSubTypeOnTheMarch:t=""
+        startSubTypeGroundUnits:t=""
+        startSubTypeArea:t=""
+        startSubTypeUnitAttackUnit:t=""
+        startSubTypeUnitMoveToUnit:t=""
+        startSubTypeTwoUnits:t=""
+        duration:r=6.0
+        changeCameras:b=no
+        teleportAllAttackers:b=no
+        delayPlayer:b=no
+        fadeOut:b=yes
+        allowDeadUnits:b=no
+        allowTeleportAttackers:b=yes
+        fadeIn:b=no
+        inverseCameraDirection:b=no
+        startSubTypeTakeOff:t=""
+        startSubTypeTakeoff:t="camera3"
+        startSubTypeFlyBy:t=""
+        wait:b=no
+        object:t="player"
+      }
+
+      wait{
+        time:r=2.0
+      }
+
+      wait{
+        time:r=3.0
+      }
+
+      wait{
+        time:r=10.0
+      }
+
+      wait{
+        time:r=8.0
+      }
+
+      wait{
+        time:r=6.0
+      }
+
+      wait{
+        time:r=4.0
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      playHint{
+        hintType:t="custom"
+        name:t="hints/cutsc_skip"
+        action:t="show"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        item:t="ID_SKIP_CUTSCENE"
+        shouldBlink:b=no
+      }
+
+      playHint{
+        hintType:t="custom"
+        name:t="hints/cutsc_skip"
+        action:t="hide"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        item:t="ID_SKIP_CUTSCENE"
+        shouldBlink:b=no
+      }
+
+      triggerEnable{
+        target:t="start_cut_skip"
+      }
+
+      triggerEnable{
+        target:t="mission_start"
+      }
+
+      showCutsceneInfo{
+        text:t="cutscene_text/coral_m2_p1"
+        duration:r=8.0
+      }
+
+      showCutsceneInfo{
+        text:t="cutscene_text/coral_m2_p2"
+        duration:r=8.0
+      }
+
+      unitMoveTo{
+        target:t="shokaku3000"
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=yes
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        fastClimb:b=no
+        destTimeMode:b=no
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        object:t="zero_cut"
+      }
+
+      triggerDisable{
+        target:t="start_cut_skip"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  start_cut_skip{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      timeExpires{
+        time:r=0.0
+      }
+    }
+
+    conditions{
+
+      playerShortcutPressed{
+        control:t="ID_SKIP_CUTSCENE"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="start_cut"
+      }
+
+      playHint{
+        hintType:t="custom"
+        name:t="hints/cutsc_skip"
+        action:t="hide"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        item:t="ID_SKIP_CUTSCENE"
+        shouldBlink:b=no
+      }
+
+      triggerEnable{
+        target:t="mission_start"
+      }
+
+      wait{
+        time:r=0.95
+      }
+
+      missionStopCutscene{
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  mission_start{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionSetFade{
+        mode:t="fadeOut"
+        color:p3=0.0, 0.0, 0.0
+        time:r=1.0
+      }
+
+      missionSetFade{
+        mode:t="fadeIn"
+        color:p3=0.0, 0.0, 0.0
+        time:r=1.0
+      }
+
+      missionForceMusic{
+        evName:t="1_japan_midway"
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      unitPutToSleep{
+        target:t="sbd_cut"
+        target:t="zero_cut"
+      }
+
+      unitWakeUp{
+        target:t="zero01"
+        target:t="zero02"
+      }
+
+      playerControls{
+        setStatus:t="enable"
+        control:t="ALL"
+      }
+
+      unitMoveTo{
+        target:t="takeOff_player_tele"
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=yes
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        fastClimb:b=no
+        destTimeMode:b=no
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        object:t="zero01"
+        object:t="zero02"
+        object:t="zero03"
+        distributionRadius:r=150.0
+      }
+
+      missionPlayDialogue{
+        dialog:t="coral_m2_dialogue_01"
+        subtitles:b=yes
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=yes
+        primary:b=yes
+        oriented:b=no
+        ignoreDifficulty:b=no
+        scale:r=1.0
+        target:t="takeOff_wp"
+      }
+
+      moAddMissionObjective{
+        target:t="corS_mission02_fly00"
+        object_var_comp_op:t="equal"
+        object_var_name:t=""
+      }
+
+      triggerEnable{
+        target:t="takeoff_end"
+      }
+
+      triggerDisable{
+        target:t="arcade_diff"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  takeoff_end{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitDistanceBetween{
+        value:r=2000.0
+        math:t="notNear2D"
+        object_type:t="isAlive"
+        target_type:t="isAlive"
+        check_objects:t="any"
+        check_targets:t="any"
+        object_marking:i=0
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="player"
+        target:t="jpn_carrier_zuikaku"
+      }
+    }
+
+    actions{
+
+      missionMarkAsWaypoint{
+        visible:b=no
+        primary:b=yes
+        oriented:b=no
+        ignoreDifficulty:b=no
+        scale:r=1.0
+        target:t="takeOff_wp"
+      }
+
+      moSetObjectiveStatus{
+        target:t="corS_mission02_fly00"
+        status:i=2
+        object_var_comp_op:t="equal"
+        object_var_name:t=""
+        object_marking:i=0
+      }
+
+      wait{
+        time:r=2.0
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      missionSetFade{
+        mode:t="fadeOut"
+        color:p3=0.0, 0.0, 0.0
+        time:r=1.0
+      }
+
+      missionSetFade{
+        mode:t="fadeIn"
+        color:p3=0.0, 0.0, 0.0
+        time:r=1.0
+      }
+
+      triggerEnable{
+        target:t="tele_cut"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  tele_cut{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      timeExpires{
+        time:r=0.0
+      }
+    }
+
+    conditions{
+
+      playersWhenStatus{
+        players:t="isAlive"
+        check_players:t="any"
+      }
+    }
+
+    actions{
+
+      playerControls{
+        setStatus:t="disable"
+        control:t="ALL"
+      }
+
+      playerControls{
+        setStatus:t="enable"
+        control:t="ID_SKIP_CUTSCENE"
+        control:t="ID_FLIGHTMENU"
+      }
+
+      unitWakeUp{
+        target:t="player_cut"
+      }
+
+      unitMoveTo{
+        target:t="takeOff_player_tele"
+        follow_target:b=no
+        teleportHeightType:t="target"
+        useUnitHeightForTele:b=no
+        shouldKeepFormation:b=yes
+        teleportHeightValue:r=0.0
+        horizontalDirectionForTeleport:b=yes
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        fastClimb:b=no
+        destTimeMode:b=no
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        object:t="player_cut"
+        move_type:t="teleport"
+        lookat:t="york_sbd"
+        velocity:r=300.0
+      }
+
+      unitMoveTo{
+        target:t="york_sbd"
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=no
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        fastClimb:b=no
+        destTimeMode:b=no
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        object:t="player_cut"
+      }
+
+      showSmartCutscene{
+        sceneType:t="flyby"
+        startSubTypeOnTheMarch:t=""
+        startSubTypeGroundUnits:t=""
+        startSubTypeArea:t=""
+        startSubTypeUnitAttackUnit:t=""
+        startSubTypeUnitMoveToUnit:t=""
+        startSubTypeTwoUnits:t=""
+        duration:r=8.0
+        changeCameras:b=no
+        teleportAllAttackers:b=no
+        delayPlayer:b=yes
+        fadeOut:b=yes
+        allowDeadUnits:b=no
+        allowTeleportAttackers:b=yes
+        fadeIn:b=no
+        inverseCameraDirection:b=no
+        startSubTypeTakeOff:t="camera2"
+        startSubTypeTakeoff:t=""
+        startSubTypeFlyBy:t="direct"
+        wait:b=no
+        object:t="player_cut"
+        flybyVertOffset:r=2.0
+        timeBeforeFlyBy:r=3.0
+      }
+
+      wait{
+        time:r=2.0
+      }
+
+      wait{
+        time:r=4.0
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      playHint{
+        hintType:t="custom"
+        name:t="hints/cutsc_skip"
+        action:t="show"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        item:t="ID_SKIP_CUTSCENE"
+        shouldBlink:b=no
+      }
+
+      playHint{
+        hintType:t="custom"
+        name:t="hints/cutsc_skip"
+        action:t="hide"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        item:t="ID_SKIP_CUTSCENE"
+        shouldBlink:b=no
+      }
+
+      triggerEnable{
+        target:t="tele_cut_skip"
+      }
+
+      triggerEnable{
+        target:t="york_start"
+      }
+
+      triggerDisable{
+        target:t="tele_cut_skip"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  tele_cut_skip{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      timeExpires{
+        time:r=0.0
+      }
+    }
+
+    conditions{
+
+      playerShortcutPressed{
+        control:t="ID_SKIP_CUTSCENE"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="tele_cut"
+      }
+
+      playHint{
+        hintType:t="custom"
+        name:t="hints/cutsc_skip"
+        action:t="hide"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        item:t="ID_SKIP_CUTSCENE"
+        shouldBlink:b=no
+      }
+
+      triggerEnable{
+        target:t="york_start"
+      }
+
+      wait{
+        time:r=0.95
+      }
+
+      missionStopCutscene{
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  york_start{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      timeExpires{
+        time:r=0.0
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionSetFade{
+        mode:t="fadeOut"
+        color:p3=0.0, 0.0, 0.0
+        time:r=0.5
+      }
+
+      missionSetFade{
+        mode:t="fadeIn"
+        color:p3=0.0, 0.0, 0.0
+        time:r=1.0
+      }
+
+      wait{
+        time:r=0.6
+      }
+
+      wait{
+        time:r=0.5
+      }
+
+      wait{
+        time:r=3.0
+      }
+
+      missionStopCutscene{
+      }
+
+      unitRestore{
+        ressurectIfDead:b=yes
+        fullRestore:b=yes
+        target_marking:i=0
+        target:t="player"
+      }
+
+      unitPutToSleep{
+        target:t="player_cut"
+      }
+
+      playerControls{
+        setStatus:t="enable"
+        control:t="ALL"
+      }
+
+      unitMoveTo{
+        target:t="takeOff_player_tele"
+        follow_target:b=no
+        teleportHeightType:t="target"
+        useUnitHeightForTele:b=no
+        shouldKeepFormation:b=yes
+        teleportHeightValue:r=0.0
+        horizontalDirectionForTeleport:b=yes
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        fastClimb:b=no
+        destTimeMode:b=no
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        object:t="player"
+        move_type:t="teleport"
+        lookat:t="york_sbd"
+        velocity:r=300.0
+      }
+
+      unitMoveTo{
+        target:t="takeOff_zero_tele"
+        follow_target:b=no
+        teleportHeightType:t="target"
+        useUnitHeightForTele:b=no
+        shouldKeepFormation:b=yes
+        teleportHeightValue:r=0.0
+        horizontalDirectionForTeleport:b=yes
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        fastClimb:b=no
+        destTimeMode:b=no
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        object:t="zero01"
+        move_type:t="teleport"
+        lookat:t="york_sbd"
+        velocity:r=300.0
+      }
+
+      unitMoveTo{
+        target:t="shokaku2000"
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=yes
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        fastClimb:b=no
+        destTimeMode:b=no
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        object:t="york_sbd"
+        speed:r=250.0
+      }
+
+      unitMoveTo{
+        target:t="shokaku2500"
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=yes
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        fastClimb:b=no
+        destTimeMode:b=no
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        object:t="york_f4f00"
+        speed:r=250.0
+      }
+
+      unitWakeUp{
+        target:t="york_sbd_sq"
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="zero_sq"
+        target:t="york_sbd_sq"
+        fireRandom:b=yes
+        fightInArea:t="york_sbd"
+        fightAreaRadius:r=2000.0
+        fightAreaOuterRadius:r=5000.0
+      }
+
+      unitSetIndication{
+        set:b=yes
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="york_sbd"
+      }
+
+      unitSetProperties{
+        object:t="york_sbd_sq"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        airAccuracy:r=0.1
+        maxDeviationAngle:r=45.0
+        effShootingRate:r=0.1
+        airEffShootingRate:r=0.1
+        effShootingRateByPlayer:r=0.1
+        aiGunnersDistance:r=300.0
+        trackingTime:r=10.0
+        adaptiveAccuracyTime:r=60.0
+        fireRandom:b=yes
+        targetChangeInterval:r=5.0
+        targetChangeProb:r=0.25
+
+        plane{
+
+          targetDeviation{
+            trigger:t="gunner"
+            defaultVal:r=7.0
+            limits:p2=5.0, 9.0
+          }
+        }
+      }
+
+      moAddMissionObjective{
+        target:t="corS_mission02_att00"
+        object_var_comp_op:t="equal"
+        object_var_name:t=""
+      }
+
+      triggerEnable{
+        target:t="near_york_sbd"
+        target:t="york_sbd_near_target"
+        target:t="york_sbd_pkill"
+        target:t="york_sbd_all_dead"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  near_york_sbd{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitDistanceBetween{
+        value:r=3000.0
+        math:t="2D"
+        object_type:t="isAlive"
+        target_type:t="isAlive"
+        check_objects:t="any"
+        check_targets:t="any"
+        object_marking:i=0
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="player"
+        object:t="zero_sq"
+        target:t="york_sbd_sq"
+      }
+    }
+
+    actions{
+
+      unitAttackTarget{
+        playerAttracted:b=yes
+        object:t="york_f4f00"
+        target:t="zero_sq"
+        playerAttractedCount:i=2
+        playerAttractedEffRate:r=1.0
+        fightInArea:t="york_sbd"
+        fightAreaRadius:r=2000.0
+        fightAreaOuterRadius:r=5000.0
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  york_sbd_near_target{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitDistanceBetween{
+        value:r=5000.0
+        math:t="2D"
+        object_type:t="isAlive"
+        target_type:t="isAlive"
+        check_objects:t="any"
+        check_targets:t="any"
+        object_marking:i=0
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="york_sbd"
+        target:t="jpn_carrier_shokaku"
+      }
+    }
+
+    actions{
+
+      unitMoveTo{
+        target:t="evac"
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=no
+        shouldKeepFormation:b=yes
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        fastClimb:b=no
+        destTimeMode:b=no
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        object:t="york_sbd"
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="york_sbd"
+        target:t="jpn_carrier_shokaku"
+      }
+
+      wait{
+        time:r=60.0
+      }
+
+      triggerEnable{
+        target:t="york_sbd_done"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  york_sbd_pkill{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ANY"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isKilledByPlayer"
+        object_marking:i=0
+        func:t="more"
+        value:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="york_sbd"
+      }
+    }
+
+    actions{
+
+      unitSetProperties{
+        object:t="jpn_carrier_shokaku"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        isImmortal:b=yes
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  york_sbd_all_dead{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isAlive"
+        object_marking:i=0
+        func:t="less"
+        value:i=1
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="york_sbd"
+      }
+    }
+
+    actions{
+
+      triggerEnable{
+        target:t="york_sbd_done"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  york_sbd_done{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ANY"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitDistanceBetween{
+        value:r=5000.0
+        math:t="notNear2D"
+        object_type:t="isAlive"
+        target_type:t="isAlive"
+        check_objects:t="all"
+        check_targets:t="any"
+        object_marking:i=0
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="york_sbd"
+        target:t="shokaku3000"
+      }
+
+      unitWhenCountMatches{
+        object_type:t="canBomb"
+        object_marking:i=0
+        func:t="less"
+        value:i=1
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="york_sbd"
+      }
+    }
+
+    actions{
+
+      missionForceMusic{
+        evName:t="3_japan_coral"
+      }
+
+      triggerDisable{
+        target:t="york_sbd_pkill"
+        target:t="york_sbd_all_dead"
+        target:t="york_sbd_near_target"
+      }
+
+      unitSetIndication{
+        set:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="york_sbd"
+      }
+
+      moSetObjectiveStatus{
+        target:t="corS_mission02_att00"
+        status:i=2
+        object_var_comp_op:t="equal"
+        object_var_name:t=""
+        object_marking:i=0
+      }
+
+      missionPlayDialogue{
+        dialog:t="coral_m2_dialogue_02"
+        subtitles:b=yes
+      }
+
+      missionSetFade{
+        mode:t="fadeOut"
+        color:p3=0.0, 0.0, 0.0
+        time:r=1.0
+      }
+
+      missionSetFade{
+        mode:t="fadeIn"
+        color:p3=0.0, 0.0, 0.0
+        time:r=1.0
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      unitPutToSleep{
+        target:t="york_sbd_sq"
+        target:t="zero01"
+      }
+
+      unitMoveTo{
+        target:t="tbd_player_tele"
+        follow_target:b=no
+        teleportHeightType:t="target"
+        useUnitHeightForTele:b=no
+        shouldKeepFormation:b=yes
+        teleportHeightValue:r=0.0
+        horizontalDirectionForTeleport:b=yes
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        fastClimb:b=no
+        destTimeMode:b=no
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        object:t="player"
+        move_type:t="teleport"
+        lookat:t="york_tbd"
+        velocity:r=300.0
+      }
+
+      triggerEnable{
+        target:t="sbd_done_cut"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  sbd_done_cut{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      timeExpires{
+        time:r=0.0
+      }
+    }
+
+    conditions{
+
+      playersWhenStatus{
+        players:t="isAlive"
+        check_players:t="any"
+      }
+    }
+
+    actions{
+
+      playerControls{
+        setStatus:t="disable"
+        control:t="ALL"
+      }
+
+      playerControls{
+        setStatus:t="enable"
+        control:t="ID_SKIP_CUTSCENE"
+        control:t="ID_FLIGHTMENU"
+      }
+
+      showSmartCutscene{
+        sceneType:t="on_the_march"
+        startSubTypeOnTheMarch:t="right2front"
+        startSubTypeGroundUnits:t=""
+        startSubTypeArea:t=""
+        startSubTypeUnitAttackUnit:t=""
+        startSubTypeUnitMoveToUnit:t=""
+        startSubTypeTwoUnits:t=""
+        duration:r=6.0
+        changeCameras:b=no
+        teleportAllAttackers:b=no
+        delayPlayer:b=no
+        fadeOut:b=yes
+        allowDeadUnits:b=no
+        allowTeleportAttackers:b=yes
+        fadeIn:b=no
+        inverseCameraDirection:b=no
+        startSubTypeTakeOff:t="camera2"
+        startSubTypeTakeoff:t=""
+        startSubTypeFlyBy:t=""
+        wait:b=no
+        object:t="player"
+      }
+
+      showSmartCutscene{
+        sceneType:t="on_the_march"
+        startSubTypeOnTheMarch:t="back"
+        startSubTypeGroundUnits:t=""
+        startSubTypeArea:t=""
+        startSubTypeUnitAttackUnit:t=""
+        startSubTypeUnitMoveToUnit:t=""
+        startSubTypeTwoUnits:t=""
+        duration:r=6.0
+        changeCameras:b=no
+        teleportAllAttackers:b=no
+        delayPlayer:b=no
+        fadeOut:b=yes
+        allowDeadUnits:b=no
+        allowTeleportAttackers:b=yes
+        fadeIn:b=no
+        inverseCameraDirection:b=no
+        startSubTypeTakeOff:t="camera2"
+        startSubTypeTakeoff:t=""
+        startSubTypeFlyBy:t=""
+        wait:b=no
+        object:t="player"
+      }
+
+      wait{
+        time:r=2.0
+      }
+
+      wait{
+        time:r=4.0
+      }
+
+      wait{
+        time:r=4.0
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      playHint{
+        hintType:t="custom"
+        name:t="hints/cutsc_skip"
+        action:t="show"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        item:t="ID_SKIP_CUTSCENE"
+        shouldBlink:b=no
+      }
+
+      playHint{
+        hintType:t="custom"
+        name:t="hints/cutsc_skip"
+        action:t="hide"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        item:t="ID_SKIP_CUTSCENE"
+        shouldBlink:b=no
+      }
+
+      triggerEnable{
+        target:t="sbd_done_cut_skip"
+      }
+
+      triggerEnable{
+        target:t="tbd_start"
+      }
+
+      triggerDisable{
+        target:t="sbd_done_cut_skip"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  sbd_done_cut_skip{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      timeExpires{
+        time:r=0.0
+      }
+    }
+
+    conditions{
+
+      playerShortcutPressed{
+        control:t="ID_SKIP_CUTSCENE"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="sbd_done_cut"
+      }
+
+      playHint{
+        hintType:t="custom"
+        name:t="hints/cutsc_skip"
+        action:t="hide"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        item:t="ID_SKIP_CUTSCENE"
+        shouldBlink:b=no
+      }
+
+      triggerEnable{
+        target:t="tbd_start"
+      }
+
+      wait{
+        time:r=0.95
+      }
+
+      missionStopCutscene{
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  tbd_start{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      timeExpires{
+        time:r=0.0
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      unitSetProperties{
+        object:t="jpn_carrier_shokaku"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        isImmortal:b=no
+      }
+
+      unitSetProperties{
+        object:t="york_tbd"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        airAccuracy:r=0.1
+        maxDeviationAngle:r=35.0
+        effShootingRate:r=0.1
+        airEffShootingRate:r=0.1
+        effShootingRateByPlayer:r=0.1
+        aiGunnersDistance:r=300.0
+        trackingTime:r=5.0
+        adaptiveAccuracyTime:r=60.0
+        fireRandom:b=yes
+        targetChangeInterval:r=5.0
+        targetChangeProb:r=0.25
+
+        plane{
+
+          targetDeviation{
+            trigger:t="gunner"
+            defaultVal:r=7.0
+            limits:p2=5.0, 9.0
+          }
+        }
+      }
+
+      missionSetFade{
+        mode:t="fadeOut"
+        color:p3=0.0, 0.0, 0.0
+        time:r=1.0
+      }
+
+      missionSetFade{
+        mode:t="fadeIn"
+        color:p3=0.0, 0.0, 0.0
+        time:r=1.0
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      wait{
+        time:r=3.0
+      }
+
+      wait{
+        time:r=10.0
+      }
+
+      unitWakeUp{
+        target:t="york_tbd_sq"
+      }
+
+      unitMoveTo{
+        target:t="shokaku1500"
+        follow_target:b=yes
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=yes
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        fastClimb:b=no
+        destTimeMode:b=no
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        object:t="york_tbd"
+        speed:r=250.0
+      }
+
+      unitMoveTo{
+        target:t="shokaku2000"
+        follow_target:b=yes
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=yes
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        fastClimb:b=no
+        destTimeMode:b=no
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        object:t="york_f4f01"
+        speed:r=250.0
+      }
+
+      unitMoveTo{
+        target:t="tbd_zero02_tele"
+        follow_target:b=no
+        teleportHeightType:t="target"
+        useUnitHeightForTele:b=no
+        shouldKeepFormation:b=yes
+        teleportHeightValue:r=0.0
+        horizontalDirectionForTeleport:b=yes
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        fastClimb:b=no
+        destTimeMode:b=no
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        object:t="zero02"
+        move_type:t="teleport"
+        lookat:t="york_tbd"
+        velocity:r=300.0
+      }
+
+      unitMoveTo{
+        target:t="tbd_zero02_tele"
+        follow_target:b=no
+        teleportHeightType:t="target"
+        useUnitHeightForTele:b=no
+        shouldKeepFormation:b=yes
+        teleportHeightValue:r=500.0
+        horizontalDirectionForTeleport:b=yes
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        fastClimb:b=no
+        destTimeMode:b=no
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        object:t="zero03"
+        move_type:t="teleport"
+        lookat:t="york_tbd"
+        velocity:r=300.0
+      }
+
+      playerControls{
+        setStatus:t="enable"
+        control:t="ALL"
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="zero_sq"
+        target:t="york_tbd_sq"
+        fireRandom:b=yes
+        fightInArea:t="york_tbd"
+        fightAreaRadius:r=2000.0
+        fightAreaOuterRadius:r=5000.0
+      }
+
+      unitSetIndication{
+        set:b=yes
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="york_tbd"
+      }
+
+      moAddMissionObjective{
+        target:t="corS_mission02_att01"
+        object_var_comp_op:t="equal"
+        object_var_name:t=""
+      }
+
+      triggerEnable{
+        target:t="near_york_tbd"
+        target:t="york_tbd_near_target"
+        target:t="york_tbd_all_dead"
+      }
+
+      triggerEnable{
+        target:t="york_tbd_pkill"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  near_york_tbd{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitDistanceBetween{
+        value:r=3000.0
+        math:t="2D"
+        object_type:t="isAlive"
+        target_type:t="isAlive"
+        check_objects:t="any"
+        check_targets:t="any"
+        object_marking:i=0
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="player"
+        object:t="zero_sq"
+        target:t="york_tbd_sq"
+      }
+    }
+
+    actions{
+
+      unitAttackTarget{
+        playerAttracted:b=yes
+        object:t="york_f4f01"
+        target:t="zero_sq"
+        playerAttractedCount:i=2
+        playerAttractedEffRate:r=1.0
+        fightInArea:t="york_tbd"
+        fightAreaRadius:r=2000.0
+        fightAreaOuterRadius:r=5000.0
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  york_tbd_near_target{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitDistanceBetween{
+        value:r=5000.0
+        math:t="2D"
+        object_type:t="isAlive"
+        target_type:t="isAlive"
+        check_objects:t="any"
+        check_targets:t="any"
+        object_marking:i=0
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="york_tbd"
+        target:t="jpn_carrier_shokaku"
+      }
+    }
+
+    actions{
+
+      unitMoveTo{
+        target:t="evac"
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=no
+        shouldKeepFormation:b=yes
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        fastClimb:b=no
+        destTimeMode:b=no
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        object:t="york_tbd"
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="york_tbd"
+        target:t="jpn_carrier_shokaku"
+      }
+
+      wait{
+        time:r=60.0
+      }
+
+      triggerEnable{
+        target:t="york_tbd_done"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  york_tbd_pkill{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ANY"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isKilledByPlayer"
+        object_marking:i=0
+        func:t="more"
+        value:i=1
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="york_tbd"
+      }
+    }
+
+    actions{
+
+      unitSetProperties{
+        object:t="jpn_carrier_shokaku"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        isImmortal:b=yes
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  york_tbd_all_dead{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isAlive"
+        object_marking:i=0
+        func:t="less"
+        value:i=1
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="york_tbd"
+      }
+    }
+
+    actions{
+
+      triggerEnable{
+        target:t="york_tbd_done"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  york_tbd_done{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ANY"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitDistanceBetween{
+        value:r=5000.0
+        math:t="notNear2D"
+        object_type:t="isAlive"
+        target_type:t="isAlive"
+        check_objects:t="all"
+        check_targets:t="any"
+        object_marking:i=0
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="york_tbd"
+        target:t="shokaku3000"
+      }
+
+      unitWhenCountMatches{
+        object_type:t="canBomb"
+        object_marking:i=0
+        func:t="less"
+        value:i=1
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="york_tbd"
+      }
+    }
+
+    actions{
+
+      missionForceMusic{
+        evName:t="5_japan_guadalcanal"
+      }
+
+      unitSetProperties{
+        object:t="jpn_carrier_shokaku"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        isImmortal:b=yes
+      }
+
+      triggerDisable{
+        target:t="mission_fail"
+        target:t="york_tbd_near_target"
+      }
+
+      moSetObjectiveStatus{
+        target:t="corS_mission02_att01"
+        status:i=2
+        object_var_comp_op:t="equal"
+        object_var_name:t=""
+        object_marking:i=0
+      }
+
+      unitSetIndication{
+        set:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="york_tbd"
+      }
+
+      wait{
+        time:r=2.0
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      missionSetFade{
+        mode:t="fadeOut"
+        color:p3=0.0, 0.0, 0.0
+        time:r=1.0
+      }
+
+      missionSetFade{
+        mode:t="fadeIn"
+        color:p3=0.0, 0.0, 0.0
+        time:r=1.0
+      }
+
+      unitPutToSleep{
+        target:t="york_sbd_sq"
+        target:t="york_tbd_sq"
+      }
+
+      triggerEnable{
+        target:t="york_done_cut"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  york_done_cut{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      timeExpires{
+        time:r=0.0
+      }
+    }
+
+    conditions{
+
+      playersWhenStatus{
+        players:t="isAlive"
+        check_players:t="any"
+      }
+    }
+
+    actions{
+
+      unitWakeUp{
+        target:t="york_tbd_cut"
+        target:t="york_zero_cut"
+      }
+
+      unitWakeUp{
+        target:t="fake_player"
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="york_zero_cut"
+        target:t="york_tbd_cut"
+      }
+
+      showSmartCutscene{
+        sceneType:t="unit_attack_unit"
+        startSubTypeOnTheMarch:t=""
+        startSubTypeGroundUnits:t=""
+        startSubTypeArea:t=""
+        startSubTypeUnitAttackUnit:t="target"
+        startSubTypeUnitMoveToUnit:t=""
+        startSubTypeTwoUnits:t=""
+        startSubTypeTakeoff:t=""
+        startSubTypeFlyBy:t=""
+        duration:r=6.0
+        wait:b=no
+        changeCameras:b=yes
+        teleportAllAttackers:b=no
+        allowTeleportAttackers:b=no
+        inverseCameraDirection:b=no
+        delayPlayer:b=yes
+        fadeIn:b=no
+        fadeOut:b=yes
+        allowDeadUnits:b=no
+        object:t="york_zero_cut"
+        target:t="york_tbd_cut"
+      }
+
+      showSmartCutscene{
+        sceneType:t="on_the_march"
+        startSubTypeOnTheMarch:t="right2front"
+        startSubTypeGroundUnits:t=""
+        startSubTypeArea:t=""
+        startSubTypeUnitAttackUnit:t=""
+        startSubTypeUnitMoveToUnit:t=""
+        startSubTypeTwoUnits:t=""
+        startSubTypeTakeoff:t=""
+        startSubTypeFlyBy:t=""
+        duration:r=20.0
+        wait:b=no
+        changeCameras:b=no
+        teleportAllAttackers:b=no
+        allowTeleportAttackers:b=yes
+        inverseCameraDirection:b=no
+        delayPlayer:b=yes
+        fadeIn:b=no
+        fadeOut:b=no
+        allowDeadUnits:b=no
+        object:t="york_zero_cut01"
+      }
+
+      showSmartCutscene{
+        sceneType:t="on_the_march"
+        startSubTypeOnTheMarch:t="back"
+        startSubTypeGroundUnits:t=""
+        startSubTypeArea:t=""
+        startSubTypeUnitAttackUnit:t=""
+        startSubTypeUnitMoveToUnit:t=""
+        startSubTypeTwoUnits:t=""
+        startSubTypeTakeoff:t=""
+        startSubTypeFlyBy:t=""
+        duration:r=20.0
+        wait:b=no
+        changeCameras:b=no
+        teleportAllAttackers:b=no
+        allowTeleportAttackers:b=yes
+        inverseCameraDirection:b=no
+        delayPlayer:b=yes
+        fadeIn:b=no
+        fadeOut:b=no
+        allowDeadUnits:b=no
+        object:t="york_zero_cut01"
+      }
+
+      showSmartCutscene{
+        sceneType:t="on_the_march"
+        startSubTypeOnTheMarch:t="right2left"
+        startSubTypeGroundUnits:t=""
+        startSubTypeArea:t=""
+        startSubTypeUnitAttackUnit:t=""
+        startSubTypeUnitMoveToUnit:t=""
+        startSubTypeTwoUnits:t=""
+        duration:r=6.0
+        changeCameras:b=yes
+        teleportAllAttackers:b=no
+        delayPlayer:b=yes
+        fadeOut:b=yes
+        allowDeadUnits:b=no
+        allowTeleportAttackers:b=no
+        fadeIn:b=no
+        inverseCameraDirection:b=no
+        startSubTypeTakeOff:t=""
+        startSubTypeTakeoff:t=""
+        startSubTypeFlyBy:t=""
+        wait:b=no
+        object:t="fake_player"
+      }
+
+      showSmartCutscene{
+        sceneType:t="on_the_march"
+        startSubTypeOnTheMarch:t="back"
+        startSubTypeGroundUnits:t=""
+        startSubTypeArea:t=""
+        startSubTypeUnitAttackUnit:t=""
+        startSubTypeUnitMoveToUnit:t=""
+        startSubTypeTwoUnits:t=""
+        duration:r=6.0
+        changeCameras:b=no
+        teleportAllAttackers:b=no
+        delayPlayer:b=yes
+        fadeOut:b=yes
+        allowDeadUnits:b=no
+        allowTeleportAttackers:b=no
+        fadeIn:b=no
+        inverseCameraDirection:b=no
+        startSubTypeTakeOff:t=""
+        startSubTypeTakeoff:t=""
+        startSubTypeFlyBy:t=""
+        wait:b=no
+        object:t="fake_player"
+      }
+
+      showSmartCutscene{
+        sceneType:t="ground_units"
+        startSubTypeOnTheMarch:t=""
+        startSubTypeGroundUnits:t="center"
+        startSubTypeArea:t=""
+        startSubTypeUnitAttackUnit:t=""
+        startSubTypeUnitMoveToUnit:t=""
+        startSubTypeTwoUnits:t=""
+        duration:r=6.0
+        changeCameras:b=no
+        teleportAllAttackers:b=no
+        delayPlayer:b=yes
+        fadeOut:b=yes
+        allowDeadUnits:b=no
+        allowTeleportAttackers:b=no
+        fadeIn:b=no
+        inverseCameraDirection:b=no
+        startSubTypeTakeOff:t=""
+        startSubTypeTakeoff:t=""
+        startSubTypeFlyBy:t=""
+        wait:b=no
+        object:t="jpn_carrier_zuikaku"
+        zoom:r=2.0
+      }
+
+      wait{
+        time:r=2.0
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      wait{
+        time:r=3.0
+      }
+
+      wait{
+        time:r=0.5
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      wait{
+        time:r=0.5
+      }
+
+      wait{
+        time:r=2.0
+      }
+
+      wait{
+        time:r=4.0
+      }
+
+      wait{
+        time:r=6.0
+      }
+
+      wait{
+        time:r=3.0
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      playHint{
+        hintType:t="custom"
+        name:t="hints/cutsc_skip"
+        action:t="show"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        item:t="ID_SKIP_CUTSCENE"
+        shouldBlink:b=no
+      }
+
+      playHint{
+        hintType:t="custom"
+        name:t="hints/cutsc_skip"
+        action:t="hide"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        item:t="ID_SKIP_CUTSCENE"
+        shouldBlink:b=no
+      }
+
+      triggerEnable{
+        target:t="york_done_cut_skip"
+      }
+
+      triggerEnable{
+        target:t="after_york_done"
+      }
+
+      unitSetProperties{
+        object:t="york_tbd_cut"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        engineFire:b=yes
+      }
+
+      unitDamage{
+        part:i=3
+        power:r=1.0
+        useEffect:b=no
+        countEffects:i=1
+        delay:p2=1.0, 1.0
+        offset:p3=0.0, 0.0, 0.0
+        radiusOffset:p2=10.0, 15.0
+        target:t="york_tbd_cut"
+      }
+
+      unitPutToSleep{
+        target:t="york_zero_cut"
+      }
+
+      unitPutToSleep{
+        target:t="york_zero_cut01"
+      }
+
+      missionPlayDialogue{
+        dialog:t="coral_m2_dialogue_03_part1"
+        subtitles:b=no
+      }
+
+      missionPlayDialogue{
+        dialog:t="coral_m2_dialogue_03_part2"
+        subtitles:b=no
+      }
+
+      missionSetFade{
+        mode:t="fadeOut"
+        color:p3=0.0, 0.0, 0.0
+        time:r=0.5
+      }
+
+      missionSetFade{
+        mode:t="fadeIn"
+        color:p3=0.0, 0.0, 0.0
+        time:r=1.0
+      }
+
+      missionSetFade{
+        mode:t="fadeOut"
+        color:p3=0.0, 0.0, 0.0
+        time:r=0.5
+      }
+
+      missionSetFade{
+        mode:t="fadeIn"
+        color:p3=0.0, 0.0, 0.0
+        time:r=0.5
+      }
+
+      unitLoadBehTree{
+        name:t="instructorBeh"
+        objects:t="fake_player"
+        loadType:t="tree"
+      }
+
+      unitLandOnAirfield{
+        onWater:b=no
+        "rearmOnAirfield ":b=no
+        disappearAfterLanding:b=no
+        runwayName:t="jpn_carrier_zuikaku"
+        objects:t="fake_player"
+      }
+
+      triggerDisable{
+        target:t="york_done_cut_skip"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  york_done_cut_skip{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      timeExpires{
+        time:r=0.0
+      }
+    }
+
+    conditions{
+
+      playerShortcutPressed{
+        control:t="ID_SKIP_CUTSCENE"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="york_done_cut"
+      }
+
+      playHint{
+        hintType:t="custom"
+        name:t="hints/cutsc_skip"
+        action:t="hide"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        item:t="ID_SKIP_CUTSCENE"
+        shouldBlink:b=no
+      }
+
+      triggerEnable{
+        target:t="after_york_done"
+      }
+
+      wait{
+        time:r=0.95
+      }
+
+      missionStopCutscene{
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  after_york_done{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      timeExpires{
+        time:r=0.0
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionForceMusic{
+        evName:t="2_japan_guadalcanal"
+      }
+
+      missionSetFade{
+        mode:t="fadeOut"
+        color:p3=0.0, 0.0, 0.0
+        time:r=1.0
+      }
+
+      missionSetFade{
+        mode:t="fadeIn"
+        color:p3=0.0, 0.0, 0.0
+        time:r=1.0
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      missionStopCutscene{
+      }
+
+      unitWakeUp{
+        target:t="player"
+      }
+
+      unitPutToSleep{
+        target:t="fake_player"
+        target:t="york_tbd_cut"
+      }
+
+      unitRestore{
+        ressurectIfDead:b=yes
+        fullRestore:b=yes
+        target_marking:i=0
+        target:t="player"
+      }
+
+      spawnOnAirfield{
+        runwayName:t="jpn_carrier_zuikaku"
+        objects:t="player"
+      }
+
+      triggerEnable{
+        target:t="lex_start_cut"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  lex_start_cut{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      timeExpires{
+        time:r=0.0
+      }
+    }
+
+    conditions{
+
+      playersWhenStatus{
+        players:t="isAlive"
+        check_players:t="any"
+      }
+    }
+
+    actions{
+
+      playerControls{
+        setStatus:t="disable"
+        control:t="ALL"
+      }
+
+      playerControls{
+        setStatus:t="enable"
+        control:t="ID_SKIP_CUTSCENE"
+        control:t="ID_FLIGHTMENU"
+      }
+
+      unitWakeUp{
+        target:t="lex_sbd_sq"
+        target:t="zero03"
+      }
+
+      unitRestore{
+        ressurectIfDead:b=yes
+        fullRestore:b=yes
+        target_marking:i=0
+        target:t="zero03"
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="lex_f4f01"
+        target:t="zero03"
+        fireRandom:b=yes
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="zero03"
+        target:t="lex_sbd"
+        fireRandom:b=yes
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="lex_sbd"
+        target:t="jpn_carrier_shokaku"
+        fireRandom:b=yes
+      }
+
+      unitSetProperties{
+        object:t="zero03"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        isImmortal:b=yes
+
+        plane{
+
+          targetDeviation{
+            trigger:t="machine gun"
+            defaultVal:r=0.0
+            limits:p2=0.0, 0.0
+          }
+        }
+      }
+
+      unitSetProperties{
+        object:t="sbd_lex_cut"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        isImmortal:b=yes
+        effShootingRate:r=0.0
+      }
+
+      showSmartCutscene{
+        sceneType:t="takeoff"
+        startSubTypeOnTheMarch:t=""
+        startSubTypeGroundUnits:t=""
+        startSubTypeArea:t=""
+        startSubTypeUnitAttackUnit:t=""
+        startSubTypeUnitMoveToUnit:t=""
+        startSubTypeTwoUnits:t=""
+        startSubTypeTakeoff:t="object"
+        duration:r=6.0
+        changeCameras:b=yes
+        teleportAllAttackers:b=no
+        allowTeleportAttackers:b=yes
+        inverseCameraDirection:b=no
+        delayPlayer:b=no
+        fadeIn:b=no
+        fadeOut:b=yes
+        allowDeadUnits:b=no
+        startSubTypeFlyBy:t=""
+        wait:b=no
+        object:t="player"
+      }
+
+      showSmartCutscene{
+        sceneType:t="two_units"
+        startSubTypeOnTheMarch:t=""
+        startSubTypeGroundUnits:t=""
+        startSubTypeArea:t=""
+        startSubTypeUnitAttackUnit:t=""
+        startSubTypeUnitMoveToUnit:t=""
+        startSubTypeTwoUnits:t="object"
+        duration:r=12.0
+        changeCameras:b=no
+        teleportAllAttackers:b=no
+        delayPlayer:b=no
+        fadeOut:b=yes
+        allowDeadUnits:b=no
+        allowTeleportAttackers:b=no
+        fadeIn:b=no
+        inverseCameraDirection:b=no
+        startSubTypeTakeOff:t=""
+        startSubTypeTakeoff:t=""
+        startSubTypeFlyBy:t=""
+        wait:b=no
+        object:t="lex_sbd_leader"
+        target:t="jpn_carrier_zuikaku"
+        finalLook:t="jpn_carrier_shokaku"
+        changeLookTime:r=6.0
+        finalZoom:r=5.0
+      }
+
+      showSmartCutscene{
+        sceneType:t="unit_attack_unit"
+        startSubTypeOnTheMarch:t=""
+        startSubTypeGroundUnits:t=""
+        startSubTypeArea:t=""
+        startSubTypeUnitAttackUnit:t="1to2"
+        startSubTypeUnitMoveToUnit:t=""
+        startSubTypeTwoUnits:t=""
+        duration:r=12.0
+        changeCameras:b=no
+        teleportAllAttackers:b=no
+        delayPlayer:b=yes
+        fadeOut:b=no
+        allowDeadUnits:b=no
+        allowTeleportAttackers:b=yes
+        fadeIn:b=no
+        inverseCameraDirection:b=no
+        startSubTypeTakeOff:t=""
+        startSubTypeTakeoff:t=""
+        startSubTypeFlyBy:t=""
+        wait:b=no
+        object:t="zero03"
+        target:t="lex_sbd"
+      }
+
+      showSmartCutscene{
+        sceneType:t="unit_attack_unit"
+        startSubTypeOnTheMarch:t=""
+        startSubTypeGroundUnits:t=""
+        startSubTypeArea:t=""
+        startSubTypeUnitAttackUnit:t="1to2"
+        startSubTypeUnitMoveToUnit:t=""
+        startSubTypeTwoUnits:t=""
+        duration:r=6.0
+        changeCameras:b=no
+        teleportAllAttackers:b=no
+        delayPlayer:b=yes
+        fadeOut:b=no
+        allowDeadUnits:b=no
+        allowTeleportAttackers:b=yes
+        fadeIn:b=no
+        inverseCameraDirection:b=no
+        startSubTypeTakeOff:t=""
+        startSubTypeTakeoff:t=""
+        startSubTypeFlyBy:t=""
+        wait:b=no
+        object:t="lex_f4f01"
+        target:t="zero03"
+      }
+
+      showSmartCutscene{
+        sceneType:t="bomber_attack_ground"
+        startSubTypeOnTheMarch:t=""
+        startSubTypeGroundUnits:t=""
+        startSubTypeArea:t=""
+        startSubTypeUnitAttackUnit:t=""
+        startSubTypeUnitMoveToUnit:t=""
+        startSubTypeTwoUnits:t=""
+        duration:r=14.0
+        changeCameras:b=yes
+        teleportAllAttackers:b=no
+        delayPlayer:b=yes
+        fadeOut:b=yes
+        allowDeadUnits:b=no
+        allowTeleportAttackers:b=yes
+        fadeIn:b=no
+        inverseCameraDirection:b=no
+        startSubTypeTakeOff:t=""
+        startSubTypeTakeoff:t=""
+        startSubTypeFlyBy:t=""
+        wait:b=no
+        object:t="sbd_lex_cut"
+        target:t="jpn_carrier_shokaku"
+      }
+
+      wait{
+        time:r=2.0
+      }
+
+      wait{
+        time:r=4.0
+      }
+
+      wait{
+        time:r=12.0
+      }
+
+      wait{
+        time:r=12.0
+      }
+
+      wait{
+        time:r=6.0
+      }
+
+      wait{
+        time:r=12.0
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      playHint{
+        hintType:t="custom"
+        name:t="hints/cutsc_skip"
+        action:t="show"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        item:t="ID_SKIP_CUTSCENE"
+        shouldBlink:b=no
+      }
+
+      playHint{
+        hintType:t="custom"
+        name:t="hints/cutsc_skip"
+        action:t="hide"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        item:t="ID_SKIP_CUTSCENE"
+        shouldBlink:b=no
+      }
+
+      triggerEnable{
+        target:t="lex_start_cut_skip"
+      }
+
+      triggerEnable{
+        target:t="lex_start"
+      }
+
+      showCutsceneInfo{
+        text:t="cutscene_text/coral_m2_p3"
+        duration:r=8.0
+      }
+
+      triggerDisable{
+        target:t="lex_start_cut_skip"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  lex_start_cut_skip{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      initMission{
+      }
+    }
+
+    conditions{
+
+      playerShortcutPressed{
+        control:t="ID_SKIP_CUTSCENE"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="lex_start_cut"
+      }
+
+      playHint{
+        hintType:t="custom"
+        name:t="hints/cutsc_skip"
+        action:t="hide"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        item:t="ID_SKIP_CUTSCENE"
+        shouldBlink:b=no
+      }
+
+      playerControls{
+        setStatus:t="enable"
+        control:t="ALL"
+      }
+
+      triggerEnable{
+        target:t="lex_start"
+      }
+
+      wait{
+        time:r=0.95
+      }
+
+      missionStopCutscene{
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  lex_start{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      timeExpires{
+        time:r=0.0
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionSetFade{
+        mode:t="fadeOut"
+        color:p3=0.0, 0.0, 0.0
+        time:r=1.0
+      }
+
+      missionSetFade{
+        mode:t="fadeIn"
+        color:p3=0.0, 0.0, 0.0
+        time:r=1.0
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      unitPutToSleep{
+        target:t="sbd_lex_cut"
+        target:t="lex_sbd_sq"
+      }
+
+      unitRestore{
+        ressurectIfDead:b=yes
+        fullRestore:b=yes
+        target_marking:i=0
+        target:t="zero02"
+      }
+
+      unitMoveTo{
+        target:t="lex_player_tele"
+        follow_target:b=no
+        teleportHeightType:t="target"
+        useUnitHeightForTele:b=no
+        shouldKeepFormation:b=yes
+        teleportHeightValue:r=0.0
+        horizontalDirectionForTeleport:b=yes
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        fastClimb:b=no
+        destTimeMode:b=no
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        object:t="player"
+        move_type:t="teleport"
+        speed:r=300.0
+        lookat:t="lex_tbd_wp"
+        velocity:r=300.0
+      }
+
+      unitMoveTo{
+        target:t="lex_zero02_tele"
+        follow_target:b=no
+        teleportHeightType:t="target"
+        useUnitHeightForTele:b=no
+        shouldKeepFormation:b=yes
+        teleportHeightValue:r=0.0
+        horizontalDirectionForTeleport:b=yes
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        fastClimb:b=no
+        destTimeMode:b=no
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        object:t="zero02"
+        move_type:t="teleport"
+        lookat:t="lex_player_tele"
+        velocity:r=300.0
+      }
+
+      unitMoveTo{
+        target:t="player"
+        follow_target:b=yes
+        teleportHeightType:t="target"
+        useUnitHeightForTele:b=no
+        shouldKeepFormation:b=yes
+        teleportHeightValue:r=0.0
+        horizontalDirectionForTeleport:b=yes
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        fastClimb:b=no
+        destTimeMode:b=no
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        object:t="zero02"
+        follow_offset:p3=-300.0, 300.0, 200.0
+      }
+
+      unitMoveTo{
+        target:t="shokaku3000"
+        follow_target:b=no
+        teleportHeightType:t="target"
+        useUnitHeightForTele:b=no
+        shouldKeepFormation:b=yes
+        teleportHeightValue:r=0.0
+        horizontalDirectionForTeleport:b=yes
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        fastClimb:b=no
+        destTimeMode:b=no
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        object:t="zero01"
+        object:t="zero03"
+        velocity:r=300.0
+      }
+
+      unitMoveTo{
+        target:t="lex_evac"
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=no
+        shouldKeepFormation:b=no
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        fastClimb:b=no
+        destTimeMode:b=no
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        object:t="lex_sbd_sq"
+      }
+
+      unitWakeUp{
+        target:t="lex_tbd_sq"
+      }
+
+      unitSetProperties{
+        object:t="zero03"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        isImmortal:b=no
+
+        plane{
+
+          targetDeviation{
+            trigger:t="machine gun"
+            defaultVal:r=0.0
+            limits:p2=1.0, 4.0
+          }
+        }
+      }
+
+      playerControls{
+        setStatus:t="enable"
+        control:t="ALL"
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=yes
+        object:t="lex_f4f02"
+        target:t="zero02"
+        target:t="player"
+        fireRandom:b=yes
+        playerAttractedCount:i=2
+        playerAttractedEffRate:r=0.5
+        fightInArea:t="player"
+        fightAreaRadius:r=2000.0
+        fightAreaOuterRadius:r=5000.0
+      }
+
+      missionPlayDialogue{
+        dialog:t="coral_m2_dialogue_04"
+        subtitles:b=yes
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=yes
+        primary:b=yes
+        oriented:b=no
+        ignoreDifficulty:b=no
+        scale:r=1.0
+        target:t="lex_tbd_wp"
+      }
+
+      moAddMissionObjective{
+        target:t="corS_mission02_att02"
+        object_var_comp_op:t="equal"
+        object_var_name:t=""
+      }
+
+      triggerEnable{
+        target:t="lex_f4f_start"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  lex_f4f_start{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ANY"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      playersDistanceBetween{
+        value:r=2000.0
+        math:t="2D"
+        players:t="isAlive"
+        target_type:t="isAlive"
+        check_players:t="any"
+        check_targets:t="any"
+        target:t="lex_f4f02"
+      }
+
+      playersDistanceBetween{
+        value:r=1000.0
+        math:t="2D"
+        players:t="isAlive"
+        target_type:t="isAlive"
+        check_players:t="any"
+        check_targets:t="any"
+        target:t="lex_tbd_wp"
+      }
+    }
+
+    actions{
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="zero02"
+        target:t="lex_f4f02"
+        fireRandom:b=yes
+        fightInArea:t="player"
+        fightAreaRadius:r=2000.0
+        fightAreaOuterRadius:r=5000.0
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=no
+        primary:b=yes
+        oriented:b=no
+        ignoreDifficulty:b=no
+        scale:r=1.0
+        target:t="lex_tbd_wp"
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      unitSetIndication{
+        set:b=yes
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="lex_f4f02"
+      }
+
+      triggerEnable{
+        target:t="lex_f4f_done"
+        target:t="player_kill"
+        target:t="f4f_indicator"
+        target:t="kill_count_calc"
+        target:t="f4f_kill_max"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  player_kill{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isKilledByPlayer"
+        object_marking:i=0
+        func:t="more"
+        value:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="lex_f4f02"
+      }
+    }
+
+    actions{
+
+      unitSetProperties{
+        object:t="zero02"
+        object:t="player"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        effShootingRate:r=1.0
+
+        plane{
+
+          targetDeviation{
+            trigger:t="machine gun"
+            defaultVal:r=10.0
+            limits:p2=0.0, 0.5
+          }
+        }
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  kill_count_calc{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isDamagedByPlayer"
+        object_marking:i=0
+        func:t="more"
+        value:i=1
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="lex_f4f02"
+        var:t="f4f_kill_count"
+      }
+    }
+
+    actions{
+
+      varModify{
+        operator:t="add"
+        value:r=1.0
+        var:t="f4f_kill_count"
+      }
+
+      varModify{
+        operator:t="subAB"
+        value:r=1.0
+        var:t="f4f_kill"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  f4f_indicator{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionSetTargetsIndicator{
+        target_type:t="isAlive"
+        target_marking:i=0
+        delta:i=0
+        icon:t="air"
+        "icon army":i=2
+        set:b=yes
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="lex_f4f02"
+        var:t="f4f_kill"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  f4f_kill_max{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isAlive"
+        object_marking:i=0
+        func:t="less"
+        value:i=1
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="lex_f4f02"
+        var:t="f4f_kill"
+      }
+    }
+
+    actions{
+
+      varModify{
+        operator:t="subAB"
+        value:r=1.0
+        var:t="f4f_kill"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  lex_f4f_done{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ANY"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isAlive"
+        object_marking:i=0
+        func:t="less"
+        value:i=1
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="lex_f4f02"
+      }
+
+      varCompareInt{
+        var_value:t="f4f_kill"
+        value:i=1
+        comparasion_func:t="less"
+      }
+    }
+
+    actions{
+
+      missionForceMusic{
+        evName:t="2_japan_pearl_harbor"
+      }
+
+      unitSetProperties{
+        object:t="lex_f4f02"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        attack_type:t="hold_fire"
+        accuracy:r=0.0
+      }
+
+      unitMoveTo{
+        target:t="lex_evac"
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=yes
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        fastClimb:b=no
+        destTimeMode:b=no
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        object:t="lex_f4f02"
+      }
+
+      unitSetIndication{
+        set:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="lex_f4f02"
+      }
+
+      moSetObjectiveStatus{
+        target:t="corS_mission02_att02"
+        status:i=2
+        object_var_comp_op:t="equal"
+        object_var_name:t=""
+        object_marking:i=0
+      }
+
+      triggerDisable{
+        target:t="player_kill"
+        target:t="f4f_indicator"
+        target:t="kill_count_calc"
+        target:t="f4f_kill_max"
+      }
+
+      wait{
+        time:r=2.0
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      missionSetFade{
+        mode:t="fadeOut"
+        color:p3=0.0, 0.0, 0.0
+        time:r=1.0
+      }
+
+      missionSetFade{
+        mode:t="fadeIn"
+        color:p3=0.0, 0.0, 0.0
+        time:r=1.0
+      }
+
+      unitPutToSleep{
+        target:t="us_planes_sq"
+      }
+
+      triggerEnable{
+        target:t="end_cut"
+      }
+
+      missionSetTargetsIndicator{
+        target_type:t="isAlive"
+        target_marking:i=0
+        delta:i=0
+        icon:t="air"
+        "icon army":i=2
+        set:b=no
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="lex_f4f02"
+        var:t="f4f_kill"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  end_cut{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      timeExpires{
+        time:r=0.0
+      }
+    }
+
+    conditions{
+
+      playersWhenStatus{
+        players:t="isAlive"
+        check_players:t="any"
+      }
+    }
+
+    actions{
+
+      unitSetProperties{
+        object:t="jpn_carrier_shokaku"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        isImmortal:b=yes
+      }
+
+      unitSetProperties{
+        object:t="zero_end_cut"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        isImmortal:b=yes
+        effShootingRate:r=0.0
+      }
+
+      unitSetProperties{
+        object:t="f4f_end_cut"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        engineFire:b=yes
+      }
+
+      unitWakeUp{
+        target:t="f4f_end_cut"
+        target:t="zero_end_cut"
+      }
+
+      unitWakeUp{
+        target:t="tbd_end_cut"
+      }
+
+      unitWakeUp{
+        target:t="tbd_end_cut01"
+        target:t="tbd_end_cut02"
+        target:t="tbd_end_cut03"
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="zero_end_cut"
+        target:t="f4f_end_cut"
+      }
+
+      showSmartCutscene{
+        sceneType:t="unit_attack_unit"
+        startSubTypeOnTheMarch:t=""
+        startSubTypeGroundUnits:t=""
+        startSubTypeArea:t=""
+        startSubTypeUnitAttackUnit:t="1to2"
+        startSubTypeUnitMoveToUnit:t=""
+        startSubTypeTwoUnits:t=""
+        startSubTypeTakeoff:t=""
+        startSubTypeFlyBy:t=""
+        duration:r=9.0
+        changeCameras:b=no
+        teleportAllAttackers:b=no
+        allowTeleportAttackers:b=no
+        inverseCameraDirection:b=no
+        delayPlayer:b=yes
+        fadeIn:b=no
+        fadeOut:b=yes
+        allowDeadUnits:b=no
+        wait:b=no
+        object:t="zero_end_cut"
+        target:t="f4f_end_cut"
+        finalLook:t="jpn_carrier_shokaku"
+        changeLookTime:r=5.0
+        finalZoom:r=6.0
+      }
+
+      showSmartCutscene{
+        sceneType:t="two_units"
+        startSubTypeOnTheMarch:t=""
+        startSubTypeGroundUnits:t=""
+        startSubTypeArea:t=""
+        startSubTypeUnitAttackUnit:t=""
+        startSubTypeUnitMoveToUnit:t=""
+        startSubTypeTwoUnits:t="object"
+        duration:r=4.0
+        changeCameras:b=no
+        teleportAllAttackers:b=no
+        delayPlayer:b=yes
+        fadeOut:b=yes
+        allowDeadUnits:b=no
+        allowTeleportAttackers:b=yes
+        fadeIn:b=no
+        inverseCameraDirection:b=no
+        startSubTypeTakeOff:t=""
+        startSubTypeTakeoff:t=""
+        startSubTypeFlyBy:t=""
+        wait:b=no
+        object:t="tbd_end_cut"
+        target:t="jpn_carrier_shokaku"
+        finalLook:t="tbd_end_cut02"
+        changeLookTime:r=3.0
+      }
+
+      showSmartCutscene{
+        sceneType:t="on_the_march"
+        startSubTypeOnTheMarch:t="back"
+        startSubTypeGroundUnits:t=""
+        startSubTypeArea:t=""
+        startSubTypeUnitAttackUnit:t=""
+        startSubTypeUnitMoveToUnit:t=""
+        startSubTypeTwoUnits:t=""
+        startSubTypeTakeoff:t=""
+        startSubTypeFlyBy:t=""
+        duration:r=4.0
+        wait:b=no
+        changeCameras:b=yes
+        teleportAllAttackers:b=no
+        allowTeleportAttackers:b=yes
+        inverseCameraDirection:b=no
+        delayPlayer:b=yes
+        fadeIn:b=no
+        fadeOut:b=yes
+        allowDeadUnits:b=no
+        object:t="tbd_end_cut01"
+        finalLook:t="jpn_carrier_shokaku"
+        changeLookTime:r=3.0
+        zoom:r=0.5
+      }
+
+      showSmartCutscene{
+        sceneType:t="area"
+        startSubTypeOnTheMarch:t=""
+        startSubTypeGroundUnits:t=""
+        startSubTypeArea:t="unzoom_rotate"
+        startSubTypeUnitAttackUnit:t=""
+        startSubTypeUnitMoveToUnit:t=""
+        startSubTypeTwoUnits:t=""
+        startSubTypeTakeoff:t=""
+        startSubTypeFlyBy:t=""
+        duration:r=12.0
+        wait:b=no
+        changeCameras:b=yes
+        teleportAllAttackers:b=no
+        allowTeleportAttackers:b=yes
+        inverseCameraDirection:b=no
+        delayPlayer:b=no
+        fadeIn:b=no
+        fadeOut:b=yes
+        allowDeadUnits:b=no
+        object:t="end_cut_shokaku_area"
+        zoom:r=1.2
+      }
+
+      showSmartCutscene{
+        sceneType:t="on_the_march"
+        startSubTypeOnTheMarch:t="right2front"
+        startSubTypeGroundUnits:t=""
+        startSubTypeArea:t=""
+        startSubTypeUnitAttackUnit:t=""
+        startSubTypeUnitMoveToUnit:t=""
+        startSubTypeTwoUnits:t=""
+        startSubTypeTakeoff:t=""
+        startSubTypeFlyBy:t=""
+        duration:r=26.0
+        changeCameras:b=no
+        teleportAllAttackers:b=no
+        allowTeleportAttackers:b=yes
+        inverseCameraDirection:b=no
+        delayPlayer:b=yes
+        fadeIn:b=no
+        fadeOut:b=yes
+        allowDeadUnits:b=no
+        wait:b=no
+        object:t="zero_end_cut"
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      wait{
+        time:r=7.0
+      }
+
+      wait{
+        time:r=4.0
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      wait{
+        time:r=2.0
+      }
+
+      wait{
+        time:r=12.0
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      wait{
+        time:r=2.0
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      unitDamage{
+        part:i=21
+        power:r=1.0
+        useEffect:b=no
+        countEffects:i=1
+        delay:p2=1.0, 1.0
+        offset:p3=0.0, 0.0, 0.0
+        radiusOffset:p2=10.0, 15.0
+        target:t="f4f_end_cut"
+      }
+
+      unitMoveTo{
+        target:t="end_cut_area"
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=yes
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        fastClimb:b=no
+        destTimeMode:b=no
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        object:t="f4f_end_cut"
+      }
+
+      unitMoveTo{
+        target:t="shokaku2000"
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=yes
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        fastClimb:b=no
+        destTimeMode:b=no
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        object:t="zero_end_cut"
+      }
+
+      playHint{
+        hintType:t="custom"
+        name:t="hints/cutsc_skip"
+        action:t="show"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        item:t="ID_SKIP_CUTSCENE"
+        shouldBlink:b=no
+      }
+
+      playHint{
+        hintType:t="custom"
+        name:t="hints/cutsc_skip"
+        action:t="hide"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        item:t="ID_SKIP_CUTSCENE"
+        shouldBlink:b=no
+      }
+
+      triggerEnable{
+        target:t="end_cut_skip"
+      }
+
+      triggerEnable{
+        target:t="landing_start"
+      }
+
+      unitPutToSleep{
+        target:t="tbd_end_cut"
+      }
+
+      unitDropAmmo{
+        object:t="tbd_end_cut03"
+      }
+
+      unitDropAmmo{
+        object:t="tbd_end_cut01"
+      }
+
+      unitDropAmmo{
+        object:t="tbd_end_cut02"
+      }
+
+      missionForceMusic{
+        evName:t="3_japan_coral"
+      }
+
+      missionPlayDialogue{
+        dialog:t="coral_m2_dialogue_05_part1"
+        subtitles:b=no
+      }
+
+      missionPlayDialogue{
+        dialog:t="coral_m2_dialogue_05_part2"
+        subtitles:b=no
+      }
+
+      missionPlayDialogue{
+        dialog:t="coral_m2_dialogue_05_part3"
+        subtitles:b=no
+      }
+
+      triggerDisable{
+        target:t="end_cut_skip"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  end_cut_skip{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      timeExpires{
+        time:r=0.0
+      }
+    }
+
+    conditions{
+
+      playerShortcutPressed{
+        control:t="ID_SKIP_CUTSCENE"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="end_cut"
+      }
+
+      playHint{
+        hintType:t="custom"
+        name:t="hints/cutsc_skip"
+        action:t="hide"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        item:t="ID_SKIP_CUTSCENE"
+        shouldBlink:b=no
+      }
+
+      triggerEnable{
+        target:t="landing_start"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  landing_start{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      timeExpires{
+        time:r=0.0
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionSetFade{
+        mode:t="fadeOut"
+        color:p3=0.0, 0.0, 0.0
+        time:r=1.0
+      }
+
+      missionSetFade{
+        mode:t="fadeIn"
+        color:p3=0.0, 0.0, 0.0
+        time:r=1.0
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      wait{
+        time:r=3.0
+      }
+
+      wait{
+        time:r=5.0
+      }
+
+      unitMoveTo{
+        target:t="landing_point"
+        follow_target:b=no
+        teleportHeightType:t="target"
+        useUnitHeightForTele:b=no
+        shouldKeepFormation:b=yes
+        teleportHeightValue:r=0.0
+        horizontalDirectionForTeleport:b=yes
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        fastClimb:b=no
+        destTimeMode:b=no
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        object:t="player"
+        move_type:t="teleport"
+        lookat:t="jpn_carrier_zuikaku"
+        velocity:r=250.0
+      }
+
+      unitPutToSleep{
+        target:t="tbd_end_cut"
+        target:t="zero_end_cut"
+        target:t="f4f_end_cut"
+        target:t="tbd_end_cut01"
+        target:t="tbd_end_cut02"
+        target:t="tbd_end_cut03"
+      }
+
+      missionStopCutscene{
+      }
+
+      moAddMissionObjective{
+        target:t="corS_mission02_fly01"
+        object_var_comp_op:t="equal"
+        object_var_name:t=""
+      }
+
+      airfieldSetIndication{
+        set:b=yes
+        target:t="jpn_carrier_zuikaku"
+      }
+
+      triggerEnable{
+        target:t="landing_done"
+      }
+
+      missionCompleted{
+        timer:b=yes
+        afterComplete:t="debriefing_cutscene"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  landing_done{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      playersWhenOnLZ{
+        object_type:t="isAlive"
+        object_marking:i=0
+        check_objects:t="any"
+        afterRepaired:b=no
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="player"
+        target:t="jpn_carrier_zuikaku"
+      }
+    }
+
+    actions{
+
+      airfieldSetIndication{
+        set:b=no
+        target:t="jpn_carrier_zuikaku"
+      }
+
+      moSetObjectiveStatus{
+        target:t="corS_mission02_fly01"
+        status:i=2
+        object_var_comp_op:t="equal"
+        object_var_name:t=""
+        object_marking:i=0
+      }
+
+      wait{
+        time:r=2.0
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      missionSetFade{
+        mode:t="fadeOut"
+        color:p3=0.0, 0.0, 0.0
+        time:r=1.0
+      }
+
+      missionSetFade{
+        mode:t="fadeIn"
+        color:p3=0.0, 0.0, 0.0
+        time:r=1.0
+      }
+
+      unitPutToSleep{
+        target:t="zero_sq"
+      }
+
+      triggerEnable{
+        target:t="debriefing_cutscene"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  mission_fail{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenStatus{
+        object_type:t="isKilled"
+        object_marking:i=0
+        check_objects:t="all"
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="jpn_carrier_shokaku"
+      }
+    }
+
+    actions{
+
+      missionSetFailText{
+        value:t="MF_shokaku_died"
+      }
+
+      missionFailed{
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  debriefing_cutscene{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      timeExpires{
+        time:r=0.0
+      }
+    }
+
+    conditions{
+
+      playersWhenStatus{
+        players:t="isAlive"
+        check_players:t="any"
+      }
+    }
+
+    actions{
+
+      missionForceMusic{
+        evName:t="japan_victory_theme"
+      }
+
+      missionSetFade{
+        mode:t="fadeOut"
+        color:p3=0.0, 0.0, 0.0
+        time:r=1.0
+      }
+
+      missionSetFade{
+        mode:t="fadeIn"
+        color:p3=0.0, 0.0, 0.0
+        time:r=1.0
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      wait{
+        time:r=2.0
+      }
+
+      wait{
+        time:r=16.0
+      }
+
+      wait{
+        time:r=4.0
+      }
+
+      wait{
+        time:r=2.0
+      }
+
+      wait{
+        time:r=58.0
+      }
+
+      wait{
+        time:r=2.0
+      }
+
+      unitRestore{
+        ressurectIfDead:b=yes
+        fullRestore:b=yes
+        target_marking:i=0
+        target:t="player_squad"
+      }
+
+      unitWakeUp{
+        target:t="sbd_cut"
+        target:t="zero_cut"
+      }
+
+      unitMoveTo{
+        target:t="deb_cut_bombers_tele"
+        follow_target:b=no
+        teleportHeightType:t="target"
+        useUnitHeightForTele:b=no
+        shouldKeepFormation:b=yes
+        teleportHeightValue:r=0.0
+        horizontalDirectionForTeleport:b=yes
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        fastClimb:b=no
+        destTimeMode:b=no
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        object:t="sbd_cut"
+        move_type:t="teleport"
+        lookat:t="jpn_carrier_shokaku"
+        velocity:r=250.0
+      }
+
+      unitMoveTo{
+        target:t="lex_evac"
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=no
+        shouldKeepFormation:b=yes
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        fastClimb:b=no
+        destTimeMode:b=no
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        object:t="sbd_cut"
+      }
+
+      unitSetProperties{
+        object:t="sbd_cut"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+
+        plane{
+
+          targetDeviation{
+            trigger:t="gunner"
+            defaultVal:r=4.5
+            limits:p2=1.0, 4.5
+          }
+        }
+      }
+
+      unitSetProperties{
+        object:t="zero_cut"
+        object:t="jpn_carrier_shokaku"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        isImmortal:b=yes
+
+        plane{
+
+          targetDeviation{
+            trigger:t="machine gun"
+            defaultVal:r=0.0
+            limits:p2=0.0, 0.0
+          }
+        }
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="sbd_cut"
+        target:t="jpn_carrier_shokaku"
+        delayForObjects:p2=1.0, 2.0
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="zero_cut"
+        target:t="sbd_cut"
+      }
+
+      showSmartCutscene{
+        sceneType:t="unit_attack_unit"
+        startSubTypeOnTheMarch:t=""
+        startSubTypeGroundUnits:t=""
+        startSubTypeArea:t=""
+        startSubTypeUnitAttackUnit:t="object"
+        startSubTypeUnitMoveToUnit:t=""
+        startSubTypeTwoUnits:t=""
+        duration:r=18.0
+        changeCameras:b=yes
+        teleportAllAttackers:b=no
+        delayPlayer:b=yes
+        fadeOut:b=yes
+        allowDeadUnits:b=yes
+        allowTeleportAttackers:b=yes
+        fadeIn:b=no
+        inverseCameraDirection:b=no
+        startSubTypeTakeOff:t=""
+        startSubTypeTakeoff:t=""
+        startSubTypeFlyBy:t=""
+        wait:b=no
+        object:t="zero_cut"
+        target:t="sbd_cut"
+      }
+
+      showSmartCutscene{
+        sceneType:t="on_the_march"
+        startSubTypeOnTheMarch:t="back"
+        startSubTypeGroundUnits:t=""
+        startSubTypeArea:t=""
+        startSubTypeUnitAttackUnit:t=""
+        startSubTypeUnitMoveToUnit:t=""
+        startSubTypeTwoUnits:t=""
+        startSubTypeTakeoff:t=""
+        startSubTypeFlyBy:t=""
+        duration:r=6.0
+        changeCameras:b=no
+        teleportAllAttackers:b=no
+        allowTeleportAttackers:b=no
+        inverseCameraDirection:b=no
+        delayPlayer:b=yes
+        fadeIn:b=no
+        fadeOut:b=yes
+        allowDeadUnits:b=no
+        wait:b=no
+        object:t="sbd_cut"
+        finalLook:t="jpn_carrier_shokaku"
+        changeLookTime:r=5.0
+      }
+
+      showSmartCutscene{
+        sceneType:t="unit_attack_unit"
+        startSubTypeOnTheMarch:t=""
+        startSubTypeGroundUnits:t=""
+        startSubTypeArea:t=""
+        startSubTypeUnitAttackUnit:t="1to2"
+        startSubTypeUnitMoveToUnit:t=""
+        startSubTypeTwoUnits:t=""
+        duration:r=60.0
+        changeCameras:b=yes
+        teleportAllAttackers:b=no
+        delayPlayer:b=yes
+        fadeOut:b=yes
+        allowDeadUnits:b=yes
+        allowTeleportAttackers:b=yes
+        fadeIn:b=no
+        inverseCameraDirection:b=no
+        startSubTypeTakeOff:t=""
+        startSubTypeTakeoff:t=""
+        startSubTypeFlyBy:t=""
+        wait:b=no
+        object:t="zero_cut"
+        target:t="sbd_cut"
+      }
+
+      playHint{
+        hintType:t="custom"
+        name:t="hints/cutsc_skip"
+        action:t="show"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        item:t="ID_SKIP_CUTSCENE"
+        shouldBlink:b=no
+      }
+
+      playHint{
+        hintType:t="custom"
+        name:t="hints/cutsc_skip"
+        action:t="hide"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        item:t="ID_SKIP_CUTSCENE"
+        shouldBlink:b=no
+      }
+
+      triggerEnable{
+        target:t="debriefing_skip"
+        target:t="debriefing_dialogue"
+      }
+
+      unitDropAmmo{
+        object:t="sbd_cut"
+      }
+
+      triggerDisable{
+        target:t="debriefing_skip"
+      }
+
+      missionDebriefing{
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  debriefing_skip{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      timeExpires{
+        time:r=0.0
+      }
+    }
+
+    conditions{
+
+      playerShortcutPressed{
+        control:t="ID_SKIP_CUTSCENE"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="debriefing_cutscene"
+      }
+
+      missionStopSpeech{
+      }
+
+      playHint{
+        hintType:t="custom"
+        name:t="hints/cutsc_skip"
+        action:t="hide"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        item:t="ID_SKIP_CUTSCENE"
+        shouldBlink:b=no
+      }
+
+      missionStopCutscene{
+      }
+
+      missionDebriefing{
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  debriefing_dialogue{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      initMission{
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionPlayDialogue{
+        dialog:t="coral_m2_debriefing"
+        subtitles:b=yes
+      }
+
+      wait{
+        time:r=5.0
+      }
+
+      missionDebriefing{
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  only_player_target{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=10.0
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      unitSetProperties{
+        object:t="player"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        targetableByAi:b=no
+      }
+
+      unitSetProperties{
+        object:t="player_squad"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        targetableByAi:b=yes
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  arcade_diff{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      initMission{
+      }
+    }
+
+    conditions{
+
+      gameWhenDifficulty{
+        difficulty:t="arcade"
+        is:t="equal"
+      }
+    }
+
+    actions{
+
+      varSetInt{
+        value:i=4
+        var:t="f4f_kill"
+      }
+    }
+
+    else_actions{
+    }
+  }
+}
+
+mission_objectives{
+  isCategory:b=yes
+  is_enabled:b=yes
+
+  corS_mission02_fly00{
+    is_enabled:b=no
+    comments:t=""
+    type:t="abstractMissionObjective"
+
+    props{
+      isPrimary:b=yes
+      timeLimit:i=1800
+      scoreConst:i=100
+      scoreTime:i=400
+    }
+
+    onSuccess{
+    }
+
+    onFailed{
+    }
+  }
+
+  corS_mission02_att00{
+    is_enabled:b=no
+    comments:t=""
+    type:t="abstractMissionObjective"
+
+    props{
+      isPrimary:b=yes
+      timeLimit:i=1800
+      scoreConst:i=100
+      scoreTime:i=400
+    }
+
+    onSuccess{
+    }
+
+    onFailed{
+    }
+  }
+
+  corS_mission02_att01{
+    is_enabled:b=no
+    comments:t=""
+    type:t="abstractMissionObjective"
+
+    props{
+      isPrimary:b=yes
+      timeLimit:i=1800
+      scoreConst:i=100
+      scoreTime:i=400
+    }
+
+    onSuccess{
+    }
+
+    onFailed{
+    }
+  }
+
+  corS_mission02_fly01{
+    is_enabled:b=no
+    comments:t=""
+    type:t="abstractMissionObjective"
+
+    props{
+      isPrimary:b=no
+      timeLimit:i=1800
+      scoreConst:i=100
+      scoreTime:i=400
+    }
+
+    onSuccess{
+    }
+
+    onFailed{
+    }
+  }
+
+  corS_mission02_att02{
+    is_enabled:b=no
+    comments:t=""
+    type:t="abstractMissionObjective"
+
+    props{
+      isPrimary:b=yes
+      timeLimit:i=1800
+      scoreConst:i=100
+      scoreTime:i=400
+    }
+
+    onSuccess{
+    }
+
+    onFailed{
+    }
+  }
+}
+
+variables{
+  timer:i=0
+  for_torpedoPlanes:i=0
+  f4f_kill:i=2
+  f4f_kill_count:i=0
+}
+
+dialogs{
+
+  coral_m2_dialogue_01{
+
+    speech{
+      id:t="coral_mis2_dlg1_ph01"
+      speakerId:t="japanese_base_1"
+
+      props{
+        time:r=5.0
+      }
+    }
+
+    speech{
+      id:t="coral_mis2_dlg1_ph02"
+      speakerId:t="japanese_base_1"
+
+      props{
+        time:r=5.0
+      }
+    }
+
+    speech{
+      id:t="coral_mis2_dlg1_ph03"
+      speakerId:t="japanese_base_1"
+
+      props{
+        time:r=8.0
+      }
+    }
+
+    speech{
+      id:t="coral_mis2_dlg2_ph03"
+      speakerId:t="japanese_fighter_pilot_leader"
+
+      props{
+        time:r=2.0
+      }
+    }
+  }
+
+  coral_m2_dialogue_02{
+
+    speech{
+      id:t="coral_mis2_dlg2_ph01"
+      speakerId:t="japanese_base_1"
+
+      props{
+        time:r=6.0
+      }
+    }
+
+    speech{
+      id:t="coral_mis2_dlg2_ph02"
+      speakerId:t="japanese_base_1"
+
+      props{
+        time:r=5.0
+      }
+    }
+
+    speech{
+      id:t="coral_mis2_dlg2_ph03"
+      speakerId:t="japanese_fighter_pilot_leader"
+
+      props{
+        time:r=2.0
+      }
+    }
+  }
+
+  coral_m2_dialogue_03_part1{
+
+    speech{
+      id:t="coral_mis2_dlg3_ph01"
+      speakerId:t="japanese_fighter_pilot_leader"
+
+      props{
+        time:r=2.0
+      }
+    }
+
+    speech{
+      id:t="coral_mis2_dlg3_ph02"
+      speakerId:t="japanese_fighter_pilot_leader"
+
+      props{
+        time:r=5.0
+      }
+    }
+  }
+
+  coral_m2_dialogue_04{
+
+    speech{
+      id:t="coral_mis2_dlg4_ph02"
+      speakerId:t="japanese_fighter_pilot_3"
+
+      props{
+        time:r=6.0
+      }
+    }
+
+    speech{
+      id:t="coral_mis2_dlg4_ph03"
+      speakerId:t="japanese_base_1"
+
+      props{
+        time:r=8.0
+      }
+    }
+
+    speech{
+      id:t="coral_mis2_dlg4_ph04"
+      speakerId:t="japanese_fighter_pilot_leader"
+
+      props{
+        time:r=3.0
+      }
+    }
+
+    speech{
+      id:t="coral_mis2_dlg4_ph05"
+      speakerId:t="japanese_fighter_pilot_leader"
+
+      props{
+        time:r=5.0
+      }
+    }
+  }
+
+  coral_m2_debriefing{
+
+    speech{
+      id:t="coral_mis2_debriefing_part1"
+      speakerId:t=""
+
+      props{
+        time:r=4.0
+      }
+    }
+
+    speech{
+      id:t="coral_mis2_debriefing_part2"
+      speakerId:t=""
+
+      props{
+        time:r=4.0
+      }
+    }
+
+    speech{
+      id:t="coral_mis2_debriefing_part3"
+      speakerId:t=""
+
+      props{
+        time:r=4.0
+      }
+    }
+
+    speech{
+      id:t="coral_mis2_debriefing_part4"
+      speakerId:t=""
+
+      props{
+        time:r=4.0
+      }
+    }
+
+    speech{
+      id:t="coral_mis2_debriefing_part5"
+      speakerId:t=""
+
+      props{
+        time:r=4.0
+      }
+    }
+  }
+
+  coral_m2_dialogue_05_part1{
+
+    speech{
+      id:t="coral_mis2_dlg5_ph01"
+      speakerId:t="japanese_fighter_pilot_1"
+
+      props{
+        time:r=4.0
+      }
+    }
+  }
+
+  coral_m2_dialogue_05_part3{
+
+    speech{
+      id:t="coral_mis2_dlg5_ph04"
+      speakerId:t="japanese_fighter_pilot_leader"
+
+      props{
+        time:r=4.0
+      }
+    }
+
+    speech{
+      id:t="coral_mis2_dlg5_ph05"
+      speakerId:t="japanese_fighter_pilot_leader"
+
+      props{
+        time:r=4.0
+      }
+    }
+  }
+
+  coral_m2_dialogue_05_part2{
+
+    speech{
+      id:t="coral_mis2_dlg5_ph03"
+      speakerId:t="japanese_fighter_pilot_leader"
+
+      props{
+        time:r=4.0
+      }
+    }
+  }
+
+  coral_m2_dialogue_03_part2{
+
+    speech{
+      id:t="coral_mis2_dlg3_ph03"
+      speakerId:t="japanese_base_1"
+
+      props{
+        time:r=4.0
+      }
+    }
+
+    speech{
+      id:t="coral_mis2_dlg3_ph04"
+      speakerId:t="japanese_base_1"
+
+      props{
+        time:r=4.0
+      }
+    }
+
+    speech{
+      id:t="coral_mis2_dlg3_ph05"
+      speakerId:t="japanese_fighter_pilot_leader"
+
+      props{
+        time:r=4.0
+      }
+    }
+
+    speech{
+      id:t="coral_mis2_dlg3_ph06"
+      speakerId:t="japanese_fighter_pilot_leader"
+
+      props{
+        time:r=4.0
+      }
+    }
+  }
+}
+
+airfields{
+}
+
+effects{
+}
+
+units{
+
+  armada{
+    name:t="player"
+    tm:m=[[-0.976296, 0.0, -0.21644] [0.0, 1.0, 0.0] [0.21644, 0.0, -0.976296] [17001.5, -109.15, 33618.6]]
+    unit_class:t="a6m2_zero"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="a6m2_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      count:i=4
+      numInWing:i=2
+      targetableByAi:b=no
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="zero01"
+    tm:m=[[0.976296, 0.0, 0.21644] [0.0, 1.0, 0.0] [-0.21644, 0.0, 0.976296] [12032.9, 697.4, 34630.6]]
+    unit_class:t="a6m2_zero"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="a6m2_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      count:i=9
+      numInWing:i=3
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="zero02"
+    tm:m=[[0.737277, 0.0, -0.67559] [0.0, 1.0, 0.0] [0.67559, 0.0, 0.737277] [15296.1, 265.95, 36953.3]]
+    unit_class:t="a6m2_zero"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="a6m2_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      count:i=4
+      numInWing:i=3
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=2.0
+        col_distances:r=2.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="zero03"
+    tm:m=[[-0.300706, 0.0, -0.953717] [0.0, 1.0, 0.0] [0.953717, 0.0, -0.300706] [21284.0, 265.95, 38102.1]]
+    unit_class:t="a6m2_zero"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="a6m2_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      count:i=3
+      numInWing:i=3
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="york_sbd"
+    tm:m=[[0.819152, 0.0, 0.573576] [0.0, 1.0, 0.0] [-0.573576, 0.0, 0.819152] [13911.8, 2000.0, 27161.5]]
+    unit_class:t="sbd-3"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="sbd_3_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      free_distance:r=90.0
+      floating_distance:r=70.0
+      minimum_distance_to_earth:r=40.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      count:i=24
+      numInWing:i=3
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=2.0
+        super_col_distances:r=2.0
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="york_f4f00"
+    tm:m=[[0.819153, 0.0, 0.573576] [0.0, 1.0, 0.0] [-0.573576, 0.0, 0.819153] [13841.6, 2500.0, 27892.3]]
+    unit_class:t="f4f-3"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="f4f-3_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=2
+      count:i=8
+      numInWing:i=2
+      speed:r=250.0
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=4.0
+        col_distances:r=4.0
+        super_formation:t="Diamond"
+        super_row_distances:r=2.0
+        super_col_distances:r=2.0
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="york_tbd"
+    tm:m=[[0.953717, 0.0, 0.300706] [0.0, 1.0, 0.0] [-0.300706, 0.0, 0.953717] [11404.8, 1500.0, 27185.1]]
+    unit_class:t="tbf-1c"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="tbf_1c_mk13_torpedo"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      free_distance:r=90.0
+      floating_distance:r=70.0
+      minimum_distance_to_earth:r=40.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=3
+      count:i=9
+      numInWing:i=3
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=4.0
+        col_distances:r=4.0
+        super_formation:t="Diamond"
+        super_row_distances:r=2.0
+        super_col_distances:r=2.0
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="york_f4f01"
+    tm:m=[[0.953717, 0.0, 0.300705] [0.0, 1.0, 0.0] [-0.300705, 0.0, 0.953717] [11575.6, 2000.0, 26756.8]]
+    unit_class:t="f4f-3"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="f4f-3_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      count:i=6
+      numInWing:i=2
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=2.0
+        col_distances:r=2.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="lex_sbd"
+    tm:m=[[0.906308, 0.0, -0.422618] [0.0, 1.0, 0.0] [0.422618, 0.0, 0.906308] [18331.8, 800.3, 36689.6]]
+    unit_class:t="sbd-3"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="sbd_3_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      count:i=11
+      numInWing:i=3
+      targetableByAi:b=no
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+
+      lexington_bombers_wp_01{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [22854.4, 1200.0, 33395.6]]
+
+        props{
+          speed:r=300.0
+          moveType:t="MOVETO_STRAIGHT"
+          tas:b=no
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+    }
+  }
+
+  armada{
+    name:t="lex_f4f01"
+    tm:m=[[0.939692, 0.0, -0.342021] [0.0, 1.0, 0.0] [0.342021, 0.0, 0.939692] [15267.1, 3099.05, 36837.4]]
+    unit_class:t="f4f-3"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="f4f-3_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      count:i=9
+      numInWing:i=3
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="lex_f4f02"
+    tm:m=[[0.976296, 0.0, 0.216439] [0.0, 1.0, 0.0] [-0.216439, 0.0, 0.976296] [-2827.05, 3000.0, 37139.4]]
+    unit_class:t="f4f-3"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="f4f-3_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      count:i=8
+      numInWing:i=2
+
+      plane{
+        wing_formation:t="Finger"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="sbd_cut"
+    tm:m=[[0.976296, 0.0, 0.21644] [0.0, 1.0, 0.0] [-0.21644, 0.0, 0.976296] [-3134.45, 4300.0, 25811.3]]
+    unit_class:t="sbd-3"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="sbd_3_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      count:i=16
+      numInWing:i=3
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="ACE"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+
+      sbd_cut_wp_01{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [16581.8, 3300.0, 33450.9]]
+
+        props{
+          speed:r=300.0
+          moveType:t="MOVETO_STRAIGHT"
+          tas:b=no
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+    }
+  }
+
+  armada{
+    name:t="zero_cut"
+    tm:m=[[-0.939693, 0.0, -0.34202] [0.0, 1.0, 0.0] [0.34202, 0.0, -0.939693] [6938.12, 4000.0, 30155.5]]
+    unit_class:t="a6m2_zero"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="a6m2_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      count:i=3
+      numInWing:i=3
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=1.5
+        col_distances:r=1.5
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+
+      cutscene_friendly_fighters01_wp_01{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-27546.8, 3000.0, 16343.3]]
+
+        props{
+          speed:r=300.0
+          moveType:t="MOVETO_STRAIGHT"
+          tas:b=no
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+    }
+  }
+
+  armada{
+    name:t="fake_player"
+    tm:m=[[-0.976296, 0.0, -0.21644] [0.0, 1.0, 0.0] [0.21644, 0.0, -0.976296] [17597.7, 40.0, 33737.3]]
+    unit_class:t="a6m2_zero"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="a6m2_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      count:i=1
+      numInWing:i=2
+      isDelayed:b=yes
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=1.5
+        col_distances:r=1.5
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="tbd_end_cut"
+    tm:m=[[0.819152, 0.0, -0.573576] [0.0, 1.0, 0.0] [0.573576, 0.0, 0.819152] [18874.1, 1000.0, 36115.0]]
+    unit_class:t="sbd-3"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=9
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      isDelayed:b=yes
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+
+      tbd_end_cut_wp_01{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [22114.8, 1000.0, 33892.3]]
+
+        props{
+          speed:r=300.0
+          moveType:t="MOVETO_STRAIGHT"
+          tas:b=no
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+    }
+  }
+
+  armada{
+    name:t="sbd_lex_cut"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-3263.05, 1200.0, 5637.85]]
+    unit_class:t="sbd-3"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=3
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      isDelayed:b=yes
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="zero_end_cut"
+    tm:m=[[0.906308, 0.0, 0.422618] [0.0, 1.0, 0.0] [-0.422618, 0.0, 0.906308] [8818.6, 1000.0, 40964.9]]
+    unit_class:t="a6m2_zero"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=1
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      isDelayed:b=yes
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="f4f_end_cut"
+    tm:m=[[0.906308, 0.0, 0.422618] [0.0, 1.0, 0.0] [-0.422618, 0.0, 0.906308] [8906.95, 1000.0, 41008.3]]
+    unit_class:t="f4f-3"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="f4f-3_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      isDelayed:b=yes
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+
+      f4f_end_cut_wp_01{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [15695.1, 1000.0, 44142.7]]
+
+        props{
+          speed:r=300.0
+          moveType:t="MOVETO_STRAIGHT"
+          tas:b=no
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+    }
+  }
+
+  armada{
+    name:t="tbd_end_cut01"
+    tm:m=[[0.819152, 0.0, -0.573576] [0.0, 1.0, 0.0] [0.573576, 0.0, 0.819152] [20186.3, 100.0, 34975.7]]
+    unit_class:t="tbf-1c"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="tbf_1c_mk13_torpedo"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      isDelayed:b=yes
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+
+      tbd_end_cut01_wp_01{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [27494.5, 400.0, 30240.4]]
+
+        props{
+          speed:r=300.0
+          moveType:t="MOVETO_STRAIGHT"
+          tas:b=no
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+    }
+  }
+
+  armada{
+    name:t="tbd_end_cut02"
+    tm:m=[[0.939693, 0.0, -0.34202] [0.0, 1.0, 0.0] [0.34202, 0.0, 0.939693] [20477.5, 60.0, 35048.4]]
+    unit_class:t="tbf-1c"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="tbf_1c_mk13_torpedo"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      isDelayed:b=yes
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+
+      tbd_end_cut02_wp_01{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [23736.8, 400.0, 34091.6]]
+
+        props{
+          speed:r=300.0
+          moveType:t="MOVETO_STRAIGHT"
+          tas:b=no
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+    }
+  }
+
+  armada{
+    name:t="tbd_end_cut03"
+    tm:m=[[0.34202, 0.0, -0.939693] [0.0, 1.0, 0.0] [0.939693, 0.0, 0.34202] [20465.0, 100.0, 35335.6]]
+    unit_class:t="tbf-1c"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="tbf_1c_mk13_torpedo"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      isDelayed:b=yes
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+
+      tbd_end_cut03_wp_02{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [21369.6, 400.0, 32227.0]]
+
+        props{
+          speed:r=300.0
+          moveType:t="MOVETO_STRAIGHT"
+          tas:b=no
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+    }
+  }
+
+  armada{
+    name:t="york_tbd_cut"
+    tm:m=[[-0.67559, 0.0, 0.737278] [0.0, 1.0, 0.0] [-0.737278, 0.0, -0.67559] [14897.3, 500.0, 31133.3]]
+    unit_class:t="tbf-1c"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="tbf_1c_mk13_torpedo"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      count:i=1
+      numInWing:i=3
+      isDelayed:b=yes
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+
+      york_tbd_cut_wp_01{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [13791.3, 500.0, 32400.7]]
+
+        props{
+          speed:r=300.0
+          moveType:t="MOVETO_STRAIGHT"
+          tas:b=no
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+    }
+  }
+
+  armada{
+    name:t="york_zero_cut"
+    tm:m=[[-0.67559, 0.0, 0.737277] [0.0, 1.0, 0.0] [-0.737277, 0.0, -0.67559] [14925.4, 500.0, 31102.5]]
+    unit_class:t="a6m2_zero"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="a6m2_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      count:i=1
+      numInWing:i=3
+      isDelayed:b=yes
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="york_zero_cut01"
+    tm:m=[[-0.67559, 0.0, 0.737277] [0.0, 1.0, 0.0] [-0.737277, 0.0, -0.67559] [14661.8, 500.0, 31796.0]]
+    unit_class:t="a6m2_zero"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="a6m2_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      count:i=4
+      numInWing:i=3
+      isDelayed:b=yes
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+
+      york_zero_cut01_wp_01{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [12806.1, 500.0, 34340.7]]
+
+        props{
+          speed:r=300.0
+          moveType:t="MOVETO_STRAIGHT"
+          tas:b=no
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+    }
+  }
+
+  armada{
+    name:t="player_cut"
+    tm:m=[[-0.976296, 0.0, -0.21644] [0.0, 1.0, 0.0] [0.21644, 0.0, -0.976296] [16878.0, -109.15, 33181.5]]
+    unit_class:t="a6m2_zero"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="a6m2_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      count:i=4
+      numInWing:i=2
+      targetableByAi:b=no
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="jpn_carrier_zuikaku"
+    tm:m=[[-0.976296, 0.0, -0.21644] [0.0, 1.0, 0.0] [0.21644, 0.0, -0.976296] [17023.2, 0.0, 33625.3]]
+    unit_class:t="jp_aircraftcarrier_shokaku"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=1
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t="unic_zuikaku"
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+
+      jpn_carrier_zuikaku_wp_01{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [15865.0, 0.0, 33365.8]]
+
+        props{
+          speed:r=30.0
+          moveType:t="MOVETO_STRAIGHT"
+        }
+      }
+    }
+  }
+
+  ships{
+    name:t="jpn_carrier_shokaku"
+    tm:m=[[-0.976296, 0.0, -0.21644] [0.0, 1.0, 0.0] [0.21644, 0.0, -0.976296] [21062.5, 0.0, 34579.6]]
+    unit_class:t="jp_aircraftcarrier_shokaku"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=1
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t="unic_shokaku"
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="jpn_destroyer_01"
+    tm:m=[[-0.976296, 0.0, -0.21644] [0.0, 1.0, 0.0] [0.21644, 0.0, -0.976296] [14521.7, 0.0, 32120.9]]
+    unit_class:t="jp_destroyer_mutsuki_EC"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=1
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="jpn_destroyer_02"
+    tm:m=[[-0.976296, 0.0, -0.21644] [0.0, 1.0, 0.0] [0.21644, 0.0, -0.976296] [13339.8, 0.0, 32929.3]]
+    unit_class:t="jp_destroyer_mutsuki_EC"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=1
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="jpn_destroyer_03"
+    tm:m=[[-0.976296, 0.0, -0.21644] [0.0, 1.0, 0.0] [0.21644, 0.0, -0.976296] [13923.9, 0.0, 34214.8]]
+    unit_class:t="jp_destroyer_mutsuki_EC"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=1
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="jap_cruiser_myoko"
+    tm:m=[[-0.976296, 0.0, -0.21644] [0.0, 1.0, 0.0] [0.21644, 0.0, -0.976296] [15460.9, 0.0, 35523.7]]
+    unit_class:t="jp_cruiser_myoko"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=1
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="jap_cruiser_haguro"
+    tm:m=[[-0.976296, 0.0, -0.21644] [0.0, 1.0, 0.0] [0.21644, 0.0, -0.976296] [16522.6, 0.0, 31501.1]]
+    unit_class:t="jp_cruiser_furutaka_EC"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=1
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="jap_cruiser_kinugasa"
+    tm:m=[[-0.976296, 0.0, -0.21644] [0.0, 1.0, 0.0] [0.21644, 0.0, -0.976296] [22784.8, 0.0, 37065.9]]
+    unit_class:t="jp_cruiser_furutaka_EC"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=1
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="jap_cruiser_furutaka"
+    tm:m=[[-0.976296, 0.0, -0.21644] [0.0, 1.0, 0.0] [0.21644, 0.0, -0.976296] [23507.3, 0.0, 33367.9]]
+    unit_class:t="jp_cruiser_furutaka_EC"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=1
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  squad{
+    name:t="york_sbd_sq"
+    tm:m=[[-0.0436194, 0.0, -0.999048] [0.0, 1.0, 0.0] [0.999048, 0.0, -0.0436194] [12410.3, 0.0, 21844.3]]
+
+    props{
+      squad_members:t="york_sbd"
+      squad_members:t="york_f4f00"
+      object_marking:i=0
+    }
+  }
+
+  squad{
+    name:t="york_tbd_sq"
+    tm:m=[[-0.0436194, 0.0, -0.999048] [0.0, 1.0, 0.0] [0.999048, 0.0, -0.0436194] [16025.7, 0.0, 21766.6]]
+
+    props{
+      squad_members:t="york_tbd"
+      squad_members:t="york_f4f01"
+      object_marking:i=0
+    }
+  }
+
+  squad{
+    name:t="lex_sbd_sq"
+    tm:m=[[-0.976296, 0.0, -0.21644] [0.0, 1.0, 0.0] [0.21644, 0.0, -0.976296] [10596.8, 0.0, 24589.1]]
+
+    props{
+      squad_members:t="lex_sbd"
+      squad_members:t="lex_f4f01"
+      object_marking:i=0
+    }
+  }
+
+  squad{
+    name:t="lex_tbd_sq"
+    tm:m=[[-0.976296, 0.0, -0.21644] [0.0, 1.0, 0.0] [0.21644, 0.0, -0.976296] [13116.0, 0.0, 26177.2]]
+
+    props{
+      squad_members:t="lex_f4f02"
+      object_marking:i=0
+    }
+  }
+
+  squad{
+    name:t="ijn_fleet_sq"
+    tm:m=[[-0.976296, 0.0, -0.21644] [0.0, 1.0, 0.0] [0.21644, 0.0, -0.976296] [23663.7, 0.0, 39592.7]]
+
+    props{
+      squad_members:t="jpn_carrier_zuikaku"
+      squad_members:t="jpn_carrier_shokaku"
+      squad_members:t="jpn_destroyer_01"
+      squad_members:t="jpn_destroyer_02"
+      squad_members:t="jpn_destroyer_03"
+      squad_members:t="jap_cruiser_myoko"
+      squad_members:t="jap_cruiser_haguro"
+      squad_members:t="jap_cruiser_kinugasa"
+      squad_members:t="jap_cruiser_furutaka"
+      object_marking:i=0
+    }
+  }
+
+  squad{
+    name:t="us_planes_sq"
+    tm:m=[[-0.976296, 0.0, -0.21644] [0.0, 1.0, 0.0] [0.21644, 0.0, -0.976296] [8742.6, 0.0, 16215.5]]
+
+    props{
+      squad_members:t="york_sbd_sq"
+      squad_members:t="york_tbd_sq"
+      squad_members:t="lex_sbd_sq"
+      squad_members:t="lex_tbd_sq"
+      object_marking:i=0
+    }
+  }
+
+  squad{
+    name:t="player_squad"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-1386.35, 2.0, -27412.7]]
+
+    props{
+      squad_members:t="player"
+      object_type:t="isPlayer"
+      object_marking:i=0
+    }
+  }
+
+  squad{
+    name:t="fake_player_leader"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [17486.3, 1390.65, 33612.0]]
+
+    props{
+      squad_members:t="fake_player"
+      object_type:t="isFormationLeader"
+      object_marking:i=0
+    }
+  }
+
+  squad{
+    name:t="lex_sbd_leader"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [19548.7, 0.0, 37521.7]]
+
+    props{
+      squad_members:t="lex_sbd"
+      object_type:t="isFormationLeader"
+      object_marking:i=0
+    }
+  }
+
+  squad{
+    name:t="zero_sq"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [10585.4, 0.0, 33894.4]]
+
+    props{
+      squad_members:t="zero01"
+      squad_members:t="zero02"
+      squad_members:t="zero03"
+      object_marking:i=0
+    }
+  }
+}
+
+areas{
+
+  lex_evac{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, -1660.14] [0.0, 1.0, 0.0] [1660.14, 0.0, 1.0] [-52159.1, 2276.65, -92200.8]]
+
+    props{
+      forceReplication:b=yes
+    }
+  }
+
+  evac{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, -971.619] [0.0, 1.0, 0.0] [971.619, 0.0, 1.0] [-96372.4, 1184.05, 60646.3]]
+
+    props{
+      forceReplication:b=yes
+    }
+  }
+
+  takeOff_player_tele{
+    type:t="Point"
+    tm:m=[[76.3954, 0.0, -861.73] [0.0, 1.0, 0.0] [861.73, 0.0, 76.3954] [16061.2, 3061.1, 30610.2]]
+
+    props{
+      forceReplication:b=yes
+    }
+  }
+
+  portal_area04{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [19993.3, 3099.1, 33989.2]]
+
+    props{
+      forceReplication:b=yes
+    }
+  }
+
+  lex_player_tele{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, -865.109] [0.0, 1.0, 0.0] [865.109, 0.0, 1.0] [7324.1, 2000.0, 36659.7]]
+
+    props{
+      forceReplication:b=yes
+    }
+  }
+
+  zero_end_cut_tele{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [21053.0, 1000.0, 35415.5]]
+
+    props{
+      forceReplication:b=yes
+    }
+  }
+
+  zuikaku_move_point{
+    type:t="Point"
+    tm:m=[[10000.0, 0.0, 0.0] [0.0, 10000.0, 0.0] [0.0, 0.0, 10000.0] [17065.1, 1000.0, 34091.2]]
+
+    props{
+      forceReplication:b=yes
+    }
+  }
+
+  deb_cut_bombers_tele{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [19078.6, 1500.0, 33339.6]]
+
+    props{
+      forceReplication:b=yes
+    }
+  }
+
+  zero_end_moveTo{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [26005.5, 1000.0, 35744.7]]
+
+    props{
+      forceReplication:b=yes
+    }
+  }
+
+  shokaku3000{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [20986.3, 3000.0, 34365.1]]
+
+    props{
+      forceReplication:b=yes
+    }
+  }
+
+  shokaku3500{
+    type:t="Sphere"
+    tm:m=[[20000.0, 0.0, 0.0] [0.0, 20000.0, 0.0] [0.0, 0.0, 20000.0] [21180.4, 3500.0, 34445.7]]
+
+    props{
+      forceReplication:b=yes
+    }
+  }
+
+  takeOff_zero_tele{
+    type:t="Point"
+    tm:m=[[76.3954, 0.0, -861.73] [0.0, 1.0, 0.0] [861.73, 0.0, 76.3954] [15649.5, 3100.0, 30682.4]]
+
+    props{
+      forceReplication:b=yes
+    }
+  }
+
+  lex_zero02_tele{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, -865.109] [0.0, 1.0, 0.0] [865.109, 0.0, 1.0] [9051.45, 2000.0, 36656.6]]
+
+    props{
+      forceReplication:b=yes
+    }
+  }
+
+  shokaku2000{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [20986.3, 2000.0, 34365.1]]
+
+    props{
+      forceReplication:b=yes
+    }
+  }
+
+  shokaku1500{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [20986.3, 1500.0, 34365.1]]
+
+    props{
+      forceReplication:b=yes
+    }
+  }
+
+  lex_tbd_wp{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-9564.31, 2000.0, 39332.4]]
+
+    props{
+      forceReplication:b=yes
+    }
+  }
+
+  end_cut_area{
+    type:t="Point"
+    tm:m=[[0.766044, 0.0, 0.642788] [0.0, 1.0, 0.0] [-0.642788, 0.0, 0.766044] [8871.95, 0.0, 45216.8]]
+
+    props{
+      forceReplication:b=yes
+    }
+  }
+
+  takeOff_wp{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-3983.4, 1000.0, 24388.1]]
+
+    props{
+      forceReplication:b=yes
+    }
+  }
+
+  tbd_player_tele{
+    type:t="Point"
+    tm:m=[[76.3954, 0.0, -861.73] [0.0, 1.0, 0.0] [861.73, 0.0, 76.3954] [11494.4, 2061.1, 31280.9]]
+
+    props{
+      forceReplication:b=yes
+    }
+  }
+
+  tbd_zero02_tele{
+    type:t="Point"
+    tm:m=[[76.3954, 0.0, -861.73] [0.0, 1.0, 0.0] [861.73, 0.0, 76.3954] [10926.9, 2061.1, 30940.0]]
+
+    props{
+      forceReplication:b=yes
+    }
+  }
+
+  landing_point{
+    type:t="Point"
+    tm:m=[[4000.0, 0.0, 0.0] [0.0, 4000.0, 0.0] [0.0, 0.0, 4000.0] [11890.7, 400.0, 32950.8]]
+
+    props{
+      forceReplication:b=yes
+    }
+  }
+
+  sbd_start_briefing{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-15125.3, 0.0, 5793.9]]
+
+    props{
+      forceReplication:b=yes
+    }
+  }
+
+  ijn_destroyer_briefing{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [26689.8, 0.0, 42998.5]]
+
+    props{
+      forceReplication:b=yes
+    }
+  }
+
+  shokaku2500{
+    type:t="Point"
+    tm:m=[[20000.0, 0.0, 0.0] [0.0, 20000.0, 0.0] [0.0, 0.0, 20000.0] [21180.4, 2500.0, 34445.7]]
+
+    props{
+      forceReplication:b=yes
+    }
+  }
+}
+
+objLayers{
+}
+
+wayPoints{
+}

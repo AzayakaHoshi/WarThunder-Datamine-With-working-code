@@ -1,0 +1,412 @@
+selected_tag:t=""
+bin_dump_file:t=""
+
+mission_settings{
+
+  player{
+    army:i=1
+  }
+
+  player_teamB{
+    army:i=2
+  }
+
+  mission{
+    level:t="levels/avg_stalingrad_factory.bin"
+    type:t="domination"
+    environment:t="Day"
+    weather:t="hazy"
+    scoreLimit:i=20000
+    timeLimit:i=60
+    deathPenaltyMul:r=1.0
+    country_axis:t="germany"
+    country_allies:t="ussr"
+    restoreType:t="attempts"
+    optionalTakeOff:b=no
+
+    editSlotbar{
+      keepOwnUnits:b=no
+
+      country_usa{
+
+        us_m4a3_105_sherman{
+          crewSkillsPercent:i=100
+          crewSpecialization:i=2
+          allWeapons:b=yes
+          allModifications:b=yes
+        }
+
+        us_m4a1_76w_sherman{
+          crewSkillsPercent:i=100
+          crewSpecialization:i=2
+          allWeapons:b=yes
+          allModifications:b=yes
+        }
+
+        us_m24_chaffee{
+          crewSkillsPercent:i=100
+          crewSpecialization:i=2
+          allWeapons:b=yes
+          allModifications:b=yes
+        }
+
+        us_m4a1_1942_sherman{
+          crewSkillsPercent:i=100
+          crewSpecialization:i=2
+          allWeapons:b=yes
+          allModifications:b=yes
+        }
+      }
+
+      country_germany{
+
+        germ_pzkpfw_IV_ausf_G{
+          crewSkillsPercent:i=100
+          crewSpecialization:i=2
+          allWeapons:b=yes
+          allModifications:b=yes
+        }
+
+        germ_pzkpfw_IV_ausf_F2{
+          crewSkillsPercent:i=100
+          crewSpecialization:i=2
+          allWeapons:b=yes
+          allModifications:b=yes
+        }
+
+        germ_pzkpfw_IV_ausf_F2{
+          crewSkillsPercent:i=100
+          crewSpecialization:i=2
+          allWeapons:b=yes
+          allModifications:b=yes
+        }
+
+        germ_pzkpfw_IV_ausf_F2{
+          crewSkillsPercent:i=100
+          crewSpecialization:i=2
+          allWeapons:b=yes
+          allModifications:b=yes
+        }
+
+        germ_jgdpz_38t{
+          crewSkillsPercent:i=100
+          crewSpecialization:i=2
+          allWeapons:b=yes
+          allModifications:b=yes
+        }
+      }
+
+      country_ussr{
+
+        ussr_t_34_1942{
+          crewSkillsPercent:i=100
+          crewSpecialization:i=2
+          allWeapons:b=yes
+          allModifications:b=yes
+        }
+
+        ussr_t_34_1941_57{
+          crewSkillsPercent:i=100
+          crewSpecialization:i=2
+          allWeapons:b=yes
+          allModifications:b=yes
+        }
+
+        ussr_su_85_1943{
+          crewSkillsPercent:i=100
+          crewSpecialization:i=2
+          allWeapons:b=yes
+          allModifications:b=yes
+        }
+
+        ussr_su_122{
+          crewSkillsPercent:i=100
+          crewSpecialization:i=2
+          allWeapons:b=yes
+          allModifications:b=yes
+        }
+
+        ussr_kv_1_zis_5{
+          crewSkillsPercent:i=100
+          crewSpecialization:i=2
+          allWeapons:b=yes
+          allModifications:b=yes
+        }
+      }
+    }
+  }
+
+  spectator_points{
+  }
+}
+
+imports{
+
+  import_record{
+    file:t="gameData/missions/templates/navy_templates/ship_spawn_template.blk"
+    importAreas:b=yes
+    importUnits:b=yes
+    importTriggers:b=yes
+    importMissionObjectives:b=yes
+    importWayPoints:b=yes
+    showAreas:b=yes
+    showUnits:b=yes
+    showTriggers:b=yes
+    showMissionObjectives:b=yes
+    showWayPoints:b=yes
+
+    excludes{
+    }
+  }
+}
+
+triggers{
+  isCategory:b=yes
+  is_enabled:b=yes
+
+  nconq_init{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      initMission{
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t=""
+      }
+
+      varSetString{
+        value:t="nconq_capture_area"
+        var:t="zone_name"
+      }
+
+      triggerEnable{
+        target:t="nconq_start"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  nconq_start{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      initMission{
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionMarkAsCaptureZone{
+        army:i=0
+        timeMultiplier:r=10.0
+        disableZone:b=no
+        name_for_respawn_base:t=""
+        target:t="@zone_name"
+        canCaptureOnGround:b=yes
+        playAirfieldSound:b=no
+        canCaptureInAir:b=no
+        canCaptureByGM:b=yes
+        useHUDMarkers:b=yes
+        zoneType:t="domination"
+        showBorderOnMap:b=yes
+
+        zoneDefenders{
+        }
+      }
+
+      wait{
+        time:r=15.0
+      }
+
+      moAddMissionObjective{
+        target:t="avg_Conq_objective"
+        object_var_comp_op:t="equal"
+        object_var_name:t=""
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  draw_square{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      objectExists{
+        target:t="n_w_corner"
+        type:t="area"
+      }
+
+      objectExists{
+        target:t="n_e_corner"
+        type:t="area"
+      }
+
+      objectExists{
+        target:t="s_w_corner"
+        type:t="area"
+      }
+
+      objectExists{
+        type:t="area"
+        target:t="@zone_t1_name"
+        army:i=1
+        canCaptureByGM:b=yes
+        timeMultiplier:r=10.0
+        disableZone:b=no
+        name_for_respawn_base:t=""
+        captureNoPenalty:b=yes
+
+        tags{
+          tank:b=yes
+        }
+      }
+    }
+
+    actions{
+
+      missionShowMapLine{
+        areaNameFrom:t="n_w_corner"
+        areaNameTo:t="n_e_corner"
+        team:t="Both"
+        scale:r=0.7
+      }
+
+      missionShowMapLine{
+        areaNameFrom:t="n_e_corner"
+        areaNameTo:t="s_e_corner"
+        team:t="Both"
+        scale:r=0.7
+      }
+
+      missionShowMapLine{
+        areaNameFrom:t="s_e_corner"
+        areaNameTo:t="s_w_corner"
+        team:t="Both"
+        scale:r=0.7
+      }
+
+      missionShowMapLine{
+        areaNameFrom:t="s_w_corner"
+        areaNameTo:t="n_w_corner"
+        team:t="Both"
+        scale:r=0.7
+      }
+    }
+
+    else_actions{
+    }
+  }
+}
+
+mission_objectives{
+  isCategory:b=yes
+  is_enabled:b=yes
+
+  avg_Conq_objective{
+    is_enabled:b=no
+    comments:t=""
+    type:t="abstractMissionObjective"
+
+    props{
+      isPrimary:b=yes
+      timeLimit:i=3600
+    }
+
+    onSuccess{
+    }
+
+    onFailed{
+    }
+  }
+}
+
+variables{
+  modename:t="nconq_"
+  zone_name:t=""
+}
+
+dialogs{
+}
+
+airfields{
+}
+
+effects{
+}
+
+units{
+}
+
+areas{
+}
+
+objLayers{
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+}
+
+wayPoints{
+}

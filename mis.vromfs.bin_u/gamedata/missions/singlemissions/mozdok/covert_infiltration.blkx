@@ -1,0 +1,2178 @@
+selected_tag:t=""
+bin_dump_file:t=""
+
+mission_settings{
+
+  player{
+    army:i=1
+    wing:t="player_wing"
+  }
+
+  player_teamB{
+    army:i=2
+  }
+
+  mission{
+    level:t="levels/mozdok.bin"
+    type:t="singleMission"
+    environment:t="Morning"
+    weather:t="cloudy"
+    gt_cooperative:b=yes
+    restoreType:t="attempts"
+    optionalTakeOff:b=no
+    forceSkiesInitialRandomSeed:b=yes
+    skiesInitialRandomSeed:i=64
+
+    stars{
+      latitude:r=43.75
+      longitude:r=44.65
+      year:i=1942
+      month:i=9
+      day:i=15
+      localTime:r=11.0
+    }
+
+    customWeather{
+      windDir:p2=0.6, 0.8
+      wind_scale:r=1.0
+      max_wind_strength:r=6.0
+
+      sky{
+        mie_height:r=1.7
+      }
+
+      strata_clouds{
+        amount:r=0.5
+        altitude:r=11.0
+      }
+    }
+  }
+
+  atmosphere{
+    pressure:r=746.0
+    temperature:r=16.0
+  }
+
+  spectator_points{
+  }
+
+  briefing{
+    place_loc:t=""
+    date_loc:t=""
+    objective_loc:t=""
+    music:t="action_01"
+
+    part{
+      event:t=""
+      minTime:i=0
+
+      slide{
+        map:b=yes
+        minTime:i=4
+        picture:t=""
+        showAirMap:b=no
+
+        icon{
+          icontype:t="bomber"
+          side:t="player"
+          target:t="player_wing"
+          lookAt:t="battle_area"
+        }
+
+        icon{
+          icontype:t="bomber"
+          side:t="ally"
+          target:t="ju87_ai"
+          lookAt:t="battle_area"
+        }
+
+        icon{
+          icontype:t="artillery"
+          side:t="enemy"
+          target:t="ussr_artillery"
+        }
+      }
+    }
+  }
+}
+
+imports{
+
+  import_record{
+    file:t="gamedata/missions/bridges/mozdok_bridges.blk"
+    importAreas:b=yes
+    importUnits:b=yes
+    importTriggers:b=yes
+    importMissionObjectives:b=yes
+    importWayPoints:b=yes
+    showAreas:b=yes
+    showUnits:b=yes
+    showTriggers:b=yes
+    showMissionObjectives:b=yes
+    showWayPoints:b=yes
+
+    excludes{
+    }
+  }
+}
+
+triggers{
+  isCategory:b=yes
+  is_enabled:b=yes
+
+  start_mission{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      initMission{
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      unitSetProperties{
+        object:t="bf109_ai"
+        effShootingRate:r=0.4
+
+        plane{
+
+          targetDeviation{
+            trigger:t="machine gun"
+            defaultVal:r=0.6
+            limits:p2=0.6, 1.8
+          }
+        }
+      }
+
+      unitSetProperties{
+        object:t="ussr_main_air_def"
+        effShootingRate:r=0.1
+      }
+
+      unitSetProperties{
+        object:t="yak7_ai_01"
+        object:t="yak7_ai_02"
+        object:t="yak7_ai_03"
+        object:t="yak7_ai_04"
+        object:t="yak7_ai_05"
+        effShootingRate:r=0.3
+
+        plane{
+
+          targetDeviation{
+            trigger:t="machine gun"
+            defaultVal:r=0.6
+            limits:p2=0.6, 1.8
+          }
+        }
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="bf109_ai"
+        target:t="yak7_ai_01"
+        fireRandom:b=yes
+        fightInArea:t="battle_area"
+        fightAreaRadius:r=1500.0
+        fightAreaOuterRadius:r=2000.0
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="yak7_ai_01"
+        target:t="bf109_ai"
+        fireRandom:b=yes
+        fightInArea:t="battle_area"
+        fightAreaRadius:r=1500.0
+        fightAreaOuterRadius:r=2000.0
+      }
+
+      unitMoveTo{
+        target:t="bombing_point_for_ai"
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=no
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        fastClimb:b=no
+        destTimeMode:b=no
+        object:t="ju87_ai"
+      }
+
+      unitMoveTo{
+        target:t="side_area_01_point"
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=no
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        fastClimb:b=no
+        destTimeMode:b=no
+        object:t="yak7_ai_03"
+      }
+
+      unitMoveTo{
+        target:t="side_area_02_point"
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=no
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        fastClimb:b=no
+        destTimeMode:b=no
+        object:t="yak7_ai_02"
+      }
+
+      unitMoveTo{
+        target:t="bombing_point_for_ai"
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=no
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        fastClimb:b=no
+        destTimeMode:b=no
+        object:t="yak7_ai_04"
+      }
+
+      wait{
+        time:r=3.0
+      }
+
+      wait{
+        time:r=3.0
+      }
+
+      wait{
+        time:r=5.0
+      }
+
+      unitPutToSleep{
+        target:t="yak7_ai_05"
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=yes
+        primary:b=yes
+        oriented:b=no
+        ignoreDifficulty:b=no
+        scale:r=1.0
+        target:t="bombing_point"
+      }
+
+      moAddMissionObjective{
+        target:t="covert_infiltration_artillery"
+      }
+
+      moAddMissionObjective{
+        target:t="covert_infiltration_hide"
+      }
+
+      triggerDisable{
+        target:t="check1_ppl"
+        target:t="check2_ppl"
+        target:t="check3_ppl"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  check_ju87_ai_in_battle_zone{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenInArea{
+        math:t="3D"
+        object_type:t="isAlive"
+        object_marking:i=0
+        check_objects:t="any"
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="ju87_ai"
+        target:t="battle_area"
+      }
+    }
+
+    actions{
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="yak7_ai_01"
+        target:t="ju87_ai"
+        target:t="bf109_ai"
+        fireRandom:b=yes
+        effShootingRateInZone:r=0.4
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  check_player_in_battle_area{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ANY"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      playersWhenInArea{
+        math:t="3D"
+        players:t="isAlive"
+        check_players:t="all"
+        object_marking:i=0
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="battle_area"
+      }
+    }
+
+    actions{
+
+      unitWakeUp{
+        target:t="yak7_ai_05"
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="yak7_ai_05"
+        target:t="player_wing"
+        useForTriggerFiltered:b=yes
+        filterWhom:t="target"
+        fireRandom:b=yes
+      }
+
+      triggerDisable{
+        target:t="hide_succesful"
+      }
+
+      moSetObjectiveStatus{
+        target:t="covert_infiltration_hide"
+        status:i=3
+        object_marking:i=0
+        object_var_comp_op:t="equal"
+        object_var_name:t=""
+      }
+
+      triggerEnable{
+        target:t="attack_players_in_battle_area"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  check_player_in_side_area_01{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ANY"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      playersWhenInArea{
+        math:t="3D"
+        players:t="isAlive"
+        check_players:t="all"
+        object_marking:i=0
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="side_air_def_area_01"
+      }
+
+      playersWhenInArea{
+        math:t="3D"
+        players:t="isAlive"
+        check_players:t="all"
+        object_marking:i=0
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="side_air_def_area_01_02"
+      }
+    }
+
+    actions{
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="yak7_ai_03"
+        target:t="player_wing"
+        useForTriggerFiltered:b=yes
+        filterWhom:t="target"
+        fireRandom:b=yes
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="ussr_side_air_def_01"
+        attack_type:t="attack_target"
+        target:t="player_wing"
+        useForTriggerFiltered:b=yes
+        filterWhom:t="target"
+        fireRandom:b=yes
+      }
+
+      triggerDisable{
+        target:t="hide_succesful"
+      }
+
+      moSetObjectiveStatus{
+        target:t="covert_infiltration_hide"
+        status:i=3
+        object_marking:i=0
+        object_var_comp_op:t="equal"
+        object_var_name:t=""
+      }
+
+      triggerEnable{
+        target:t="attack_players_in_side_area_01"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  check_player_in_side_area_02{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ANY"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      playersWhenInArea{
+        math:t="3D"
+        players:t="isAlive"
+        check_players:t="all"
+        object_marking:i=0
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="side_air_def_area_02"
+      }
+
+      playersWhenInArea{
+        math:t="3D"
+        players:t="isAlive"
+        check_players:t="all"
+        object_marking:i=0
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="side_air_def_area_02_02"
+      }
+    }
+
+    actions{
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="yak7_ai_02"
+        target:t="player_wing"
+        useForTriggerFiltered:b=yes
+        filterWhom:t="target"
+        fireRandom:b=yes
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="ussr_side_air_def_02"
+        attack_type:t="attack_target"
+        target:t="player_wing"
+        useForTriggerFiltered:b=yes
+        filterWhom:t="target"
+        fireRandom:b=yes
+      }
+
+      triggerDisable{
+        target:t="hide_succesful"
+      }
+
+      moSetObjectiveStatus{
+        target:t="covert_infiltration_hide"
+        status:i=3
+        object_marking:i=0
+        object_var_comp_op:t="equal"
+        object_var_name:t=""
+      }
+
+      triggerEnable{
+        target:t="attack_players_in_side_area_02"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  hide_succesful{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      playersDistanceBetween{
+        value:r=1500.0
+        math:t="2D"
+        players:t="isAlive"
+        target_type:t="isAlive"
+        check_players:t="any"
+        check_targets:t="any"
+        target:t="bombing_point"
+      }
+    }
+
+    actions{
+
+      moSetObjectiveStatus{
+        target:t="covert_infiltration_hide"
+        status:i=2
+        object_marking:i=0
+        object_var_comp_op:t="equal"
+        object_var_name:t=""
+      }
+
+      triggerEnable{
+        target:t="near_battle_point"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  near_battle_point{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      playersDistanceBetween{
+        value:r=1500.0
+        math:t="2D"
+        players:t="isAlive"
+        target_type:t="isAlive"
+        check_players:t="any"
+        check_targets:t="any"
+        target:t="bombing_point"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="check_player_in_side_area_01"
+        target:t="check_player_in_side_area_02"
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=no
+        primary:b=yes
+        oriented:b=no
+        ignoreDifficulty:b=no
+        scale:r=1.0
+        target:t="bombing_point"
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=yes
+        object:t="yak7_ai_04"
+        target:t="ju87_ai"
+        target:t="player_wing"
+        fireRandom:b=yes
+        playerAttractedCount:i=2
+        playerAttractedEffRate:r=0.6
+      }
+
+      wait{
+        time:r=3.0
+      }
+
+      unitSetIndication{
+        set:b=yes
+        target:t="ussr_artillery"
+      }
+
+      triggerEnable{
+        target:t="update_indicator"
+        target:t="bombing_successful"
+        target:t="attack_players_in_side_area_01"
+        target:t="attack_players_in_side_area_02"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  update_indicator{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionSetTargetsIndicator{
+        target_type:t="isActive"
+        target_marking:i=0
+        delta:i=0
+        icon:t="cannon"
+        "icon army":i=2
+        set:b=yes
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="ussr_artillery"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  ju87_ai_near_battlepoint{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitDistanceBetween{
+        value:r=1500.0
+        math:t="2D"
+        object_type:t="isAlive"
+        target_type:t="isAlive"
+        check_objects:t="any"
+        check_targets:t="any"
+        object_marking:i=0
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="ju87_ai"
+        target:t="battle_area"
+      }
+    }
+
+    actions{
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="ju87_ai"
+        target:t="ussr_artillery"
+        delayForObjects:p2=2.0, 5.0
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="yak7_ai_04"
+        target:t="ju87_ai"
+        fireRandom:b=yes
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  bombing_successful{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isActive"
+        object_marking:i=0
+        func:t="less"
+        value:i=3
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="ussr_artillery"
+      }
+    }
+
+    actions{
+
+      moSetObjectiveStatus{
+        target:t="covert_infiltration_artillery"
+        status:i=2
+        object_marking:i=0
+        object_var_comp_op:t="equal"
+        object_var_name:t=""
+      }
+
+      wait{
+        time:r=3.0
+      }
+
+      unitSetIndication{
+        set:b=yes
+        target:t="ussr_artillery"
+      }
+
+      triggerDisable{
+        target:t="update_indicator"
+      }
+
+      missionSetTargetsIndicator{
+        target_type:t="isAlive"
+        target_marking:i=0
+        delta:i=0
+        icon:t="cannon"
+        "icon army":i=2
+        set:b=no
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="ussr_artillery"
+      }
+
+      moAddMissionObjective{
+        target:t="covert_infiltration_evacuate"
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=yes
+        primary:b=yes
+        oriented:b=no
+        ignoreDifficulty:b=no
+        scale:r=1.0
+        target:t="evacuate_point"
+      }
+
+      triggerEnable{
+        target:t="evacuate_succesful"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  evacuate_succesful{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      playersDistanceBetween{
+        value:r=1500.0
+        math:t="2D"
+        players:t="isAlive"
+        target_type:t="isAlive"
+        check_players:t="any"
+        check_targets:t="any"
+        target:t="evacuate_point"
+      }
+    }
+
+    actions{
+
+      missionMarkAsWaypoint{
+        visible:b=no
+        primary:b=yes
+        oriented:b=no
+        ignoreDifficulty:b=no
+        scale:r=1.0
+        target:t="evacuate_point"
+      }
+
+      moSetObjectiveStatus{
+        target:t="covert_infiltration_evacuate"
+        status:i=2
+        object_marking:i=0
+        object_var_comp_op:t="equal"
+        object_var_name:t=""
+      }
+
+      wait{
+        time:r=3.0
+      }
+
+      missionCompleted{
+        timer:b=no
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  check_player_near_yaks{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      playersDistanceBetween{
+        value:r=1500.0
+        math:t="2D"
+        players:t="isAlive"
+        target_type:t="isAlive"
+        check_players:t="any"
+        check_targets:t="any"
+        target:t="bombing_point"
+      }
+    }
+
+    actions{
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="yak7_ai_05"
+        target:t="player_wing"
+        useForTriggerFiltered:b=yes
+        fireRandom:b=yes
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  check1_ppl{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isOnline"
+        object_marking:i=0
+        func:t="less"
+        value:i=2
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="player_wing"
+      }
+    }
+
+    actions{
+
+      unitPutToSleep{
+        target:t="ussr_artillery"
+        numToSleep:i=12
+      }
+
+      triggerDisable{
+        target:t="check1_ppl"
+        target:t="check2_ppl"
+        target:t="check3_ppl"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  check2_ppl{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isOnline"
+        object_marking:i=0
+        func:t="equal"
+        value:i=2
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="player_wing"
+      }
+    }
+
+    actions{
+
+      unitPutToSleep{
+        target:t="ussr_artillery"
+        numToSleep:i=8
+      }
+
+      triggerDisable{
+        target:t="check1_ppl"
+        target:t="check2_ppl"
+        target:t="check3_ppl"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  check3_ppl{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isOnline"
+        object_marking:i=0
+        func:t="equal"
+        value:i=2
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="player_wing"
+      }
+    }
+
+    actions{
+
+      unitPutToSleep{
+        target:t="ussr_artillery"
+        numToSleep:i=4
+      }
+
+      triggerDisable{
+        target:t="check1_ppl"
+        target:t="check2_ppl"
+        target:t="check3_ppl"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  attack_players_in_battle_area{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      playersWhenInArea{
+        math:t="3D"
+        players:t="isAlive"
+        check_players:t="any"
+        object_marking:i=0
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="battle_area"
+      }
+    }
+
+    actions{
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="yak7_ai_05"
+        target:t="player_wing"
+        useForTriggerFiltered:b=yes
+        fireRandom:b=yes
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  attack_players_in_side_area_01{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ANY"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      playersWhenInArea{
+        math:t="3D"
+        players:t="isAlive"
+        check_players:t="any"
+        object_marking:i=0
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="side_air_def_area_01"
+      }
+
+      playersWhenInArea{
+        math:t="3D"
+        players:t="isAlive"
+        check_players:t="any"
+        object_marking:i=0
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="side_air_def_area_02"
+      }
+    }
+
+    actions{
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="yak7_ai_03"
+        target:t="player_wing"
+        useForTriggerFiltered:b=yes
+        filterWhom:t="target"
+        fireRandom:b=yes
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  attack_players_in_side_area_02{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ANY"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      playersWhenInArea{
+        math:t="3D"
+        players:t="isAlive"
+        check_players:t="any"
+        object_marking:i=0
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="side_air_def_area_02"
+      }
+
+      playersWhenInArea{
+        math:t="3D"
+        players:t="isAlive"
+        check_players:t="any"
+        object_marking:i=0
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="side_air_def_area_02_02"
+      }
+    }
+
+    actions{
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="yak7_ai_02"
+        target:t="player_wing"
+        useForTriggerFiltered:b=yes
+        filterWhom:t="target"
+        fireRandom:b=yes
+      }
+    }
+
+    else_actions{
+    }
+  }
+}
+
+mission_objectives{
+  isCategory:b=yes
+  is_enabled:b=yes
+
+  covert_infiltration_artillery{
+    is_enabled:b=no
+    comments:t=""
+    type:t="abstractMissionObjective"
+
+    props{
+      isPrimary:b=yes
+      timeLimit:i=1800
+      scoreConst:i=100
+      scoreTime:i=400
+    }
+
+    onSuccess{
+    }
+
+    onFailed{
+    }
+  }
+
+  covert_infiltration_evacuate{
+    is_enabled:b=no
+    comments:t=""
+    type:t="abstractMissionObjective"
+
+    props{
+      isPrimary:b=yes
+      timeLimit:i=1800
+      scoreConst:i=100
+      scoreTime:i=400
+    }
+
+    onSuccess{
+    }
+
+    onFailed{
+    }
+  }
+
+  covert_infiltration_hide{
+    is_enabled:b=no
+    comments:t=""
+    type:t="abstractMissionObjective"
+
+    props{
+      isPrimary:b=no
+      timeLimit:i=1800
+      scoreConst:i=100
+      scoreTime:i=400
+    }
+
+    onSuccess{
+    }
+
+    onFailed{
+    }
+  }
+}
+
+variables{
+}
+
+dialogs{
+}
+
+airfields{
+}
+
+effects{
+}
+
+units{
+
+  armada{
+    name:t="player_wing"
+    tm:m=[[0.966419, 0.0, 0.256974] [0.0, 1.0, 0.0] [-0.256974, 0.0, 0.966419] [-2117.05, 1300.0, -18146.4]]
+    unit_class:t="ju-87d-3"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="Ju87_D3_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=1
+      count:i=4
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=2
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="ju87_ai"
+    tm:m=[[0.966419, 0.0, 0.256974] [0.0, 1.0, 0.0] [-0.256974, 0.0, 0.966419] [-1645.01, 1300.0, -17979.3]]
+    unit_class:t="ju-87d-3"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="Ju87_D3_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=1
+      count:i=12
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=2
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="bf109_ai"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [7282.55, 1351.8, -8875.4]]
+    unit_class:t="bf-109g-2"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="Bf-109G-2_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=1
+      count:i=12
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=2
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="yak7_ai_01"
+    tm:m=[[-0.991445, 0.0, -0.130526] [0.0, 1.0, 0.0] [0.130526, 0.0, -0.991445] [10596.5, 1315.7, -9459.1]]
+    unit_class:t="yak-7b"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="Yak7b_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=18
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=2
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="yak7_ai_02"
+    tm:m=[[-0.991445, 0.0, -0.130526] [0.0, 1.0, 0.0] [0.130526, 0.0, -0.991445] [10596.5, 1315.7, -5083.35]]
+    unit_class:t="yak-7b"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="Yak7b_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=8
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=2
+      stealthRadius:r=1500.0
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="yak7_ai_03"
+    tm:m=[[-0.991445, 0.0, -0.130526] [0.0, 1.0, 0.0] [0.130526, 0.0, -0.991445] [10596.5, 1315.7, -14921.5]]
+    unit_class:t="yak-7b"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="Yak7b_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=8
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=2
+      stealthRadius:r=1500.0
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="yak7_ai_04"
+    tm:m=[[-0.991445, 0.0, -0.130526] [0.0, 1.0, 0.0] [0.130526, 0.0, -0.991445] [17984.3, 1724.3, -9459.1]]
+    unit_class:t="yak-7b"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="Yak7b_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=8
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=2
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="yak7_ai_05"
+    tm:m=[[-0.991445, 0.0, -0.130526] [0.0, 1.0, 0.0] [0.130526, 0.0, -0.991445] [12986.1, 1615.7, -9459.1]]
+    unit_class:t="yak-7b"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="Yak7b_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=12
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=2
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="ussr_side_air_def_02"
+    tm:m=[[0.21644, 0.0, 0.976296] [0.0, 1.0, 0.0] [-0.976296, 0.0, 0.21644] [8769.5, 303.65, -5073.6]]
+    unit_class:t="ussr_37mm_61k"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=6
+      formation_type:t="rows"
+      formation_div:i=1
+      formation_step:p2=5.0, 5.0
+      formation_noise:p2=0.1, 1.0
+      uniqueName:t=""
+      attack_type:t="hold_fire"
+      stealthRadius:r=1500.0
+      effShootingRate:r=1.0
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="ussr_side_air_def_01"
+    tm:m=[[0.21644, 0.0, 0.976296] [0.0, 1.0, 0.0] [-0.976296, 0.0, 0.21644] [8757.9, 415.5, -13171.5]]
+    unit_class:t="ussr_37mm_61k"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=6
+      formation_type:t="rows"
+      formation_div:i=1
+      formation_step:p2=5.0, 5.0
+      formation_noise:p2=0.1, 1.0
+      uniqueName:t=""
+      attack_type:t="hold_fire"
+      stealthRadius:r=1500.0
+      effShootingRate:r=1.0
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="ussr_main_air_def"
+    tm:m=[[-0.984808, 0.0, -0.173648] [0.0, 1.0, 0.0] [0.173648, 0.0, -0.984808] [17521.0, 412.25, -8852.26]]
+    unit_class:t="ussr_37mm_61k"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=6
+      formation_type:t="rows"
+      formation_div:i=1
+      formation_step:p2=5.0, 5.0
+      formation_noise:p2=0.1, 1.0
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+      effShootingRate:r=0.1
+    }
+
+    way{
+    }
+  }
+
+  tracked_vehicles{
+    name:t="germ_tanks_01"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [8155.6, 238.1, -12231.4]]
+    unit_class:t="germ_pzIVc"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=1
+      count:i=10
+      formation_type:t="rows"
+      formation_div:i=2
+      formation_step:p2=20.0, 10.0
+      formation_noise:p2=1.0, 1.0
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+      effShootingRate:r=0.1
+    }
+
+    way{
+    }
+  }
+
+  tracked_vehicles{
+    name:t="germ_tanks_02"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [8198.1, 238.1, -5945.9]]
+    unit_class:t="germ_pzIVc"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=1
+      count:i=10
+      formation_type:t="rows"
+      formation_div:i=2
+      formation_step:p2=20.0, 10.0
+      formation_noise:p2=1.0, 1.0
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+      effShootingRate:r=0.1
+    }
+
+    way{
+    }
+  }
+
+  tracked_vehicles{
+    name:t="ussr_tanks_01"
+    tm:m=[[-0.953717, 0.0, -0.300706] [0.0, 1.0, 0.0] [0.300706, 0.0, -0.953717] [9000.7, 238.1, -12330.5]]
+    unit_class:t="ussr_t34_mode41"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=10
+      formation_type:t="rows"
+      formation_div:i=2
+      formation_step:p2=20.0, 10.0
+      formation_noise:p2=1.0, 1.0
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+      effShootingRate:r=0.1
+    }
+
+    way{
+    }
+  }
+
+  tracked_vehicles{
+    name:t="ussr_tanks_02"
+    tm:m=[[-0.953717, 0.0, -0.300706] [0.0, 1.0, 0.0] [0.300706, 0.0, -0.953717] [9000.7, 238.1, -5768.85]]
+    unit_class:t="ussr_t34_mode41"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=10
+      formation_type:t="rows"
+      formation_div:i=2
+      formation_step:p2=20.0, 10.0
+      formation_noise:p2=1.0, 1.0
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+      effShootingRate:r=0.1
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="ussr_artillery"
+    tm:m=[[-0.984808, 0.0, -0.173648] [0.0, 1.0, 0.0] [0.173648, 0.0, -0.984808] [17003.9, 248.956, -8837.7]]
+    unit_class:t="ussr_152mm_ml20"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=16
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=5.0, 2.0
+      formation_noise:p2=0.9, 1.0
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+}
+
+areas{
+
+  battle_area{
+    type:t="Box"
+    tm:m=[[6589.58, 0.0, 0.0] [0.0, 2000.0, 0.0] [0.0, 0.0, 8500.61] [9048.35, 0.0, -8832.3]]
+
+    props{
+    }
+  }
+
+  side_air_def_area_01{
+    type:t="Box"
+    tm:m=[[4000.0, 0.0, 0.0] [0.0, 2000.0, 0.0] [0.0, 0.0, 2855.63] [8533.1, 0.0, -13122.4]]
+
+    props{
+    }
+  }
+
+  side_air_def_area_02{
+    type:t="Box"
+    tm:m=[[4000.0, 0.0, 0.0] [0.0, 2000.0, 0.0] [0.0, 0.0, 2855.63] [8658.15, 0.0, -5000.55]]
+
+    props{
+    }
+  }
+
+  bombing_point{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [15169.4, 2200.0, -9400.8]]
+
+    props{
+    }
+  }
+
+  side_area_01_point{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [8520.5, 1359.0, -13124.5]]
+
+    props{
+    }
+  }
+
+  side_area_02_point{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [8625.95, 1359.0, -5015.65]]
+
+    props{
+    }
+  }
+
+  evacuate_point{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [10443.8, 1564.55, -19173.5]]
+
+    props{
+    }
+  }
+
+  side_air_def_area_01_02{
+    type:t="Box"
+    tm:m=[[4000.0, 0.0, 0.0] [0.0, 2000.0, 0.0] [0.0, 0.0, 2668.6] [8533.1, 0.0, -15909.6]]
+
+    props{
+    }
+  }
+
+  side_air_def_area_02_02{
+    type:t="Box"
+    tm:m=[[4000.0, 0.0, 0.0] [0.0, 2000.0, 0.0] [0.0, 0.0, 2668.6] [8649.3, 0.0, -2223.45]]
+
+    props{
+    }
+  }
+
+  bombing_point_for_ai{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [15169.4, 1300.0, -9400.8]]
+
+    props{
+    }
+  }
+}
+
+objLayers{
+}
+
+wayPoints{
+}

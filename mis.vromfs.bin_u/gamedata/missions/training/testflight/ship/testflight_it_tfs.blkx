@@ -1,0 +1,464 @@
+selected_tag:t=""
+bin_dump_file:t=""
+
+mission_settings{
+
+  player{
+    army:i=1
+    wing:t="t1_player01"
+  }
+
+  player_teamB{
+    army:i=2
+  }
+
+  mission{
+    locName:t="missions/testSail"
+    level:t="levels/avn_fiji.bin"
+    type:t="testFlight"
+    restoreType:t="manual"
+    optionalTakeOff:b=no
+    environment:t="Day"
+    weather:t="good"
+    windDirection:p3=1.0, 0.0, 0.0
+  }
+
+  spectator_points{
+  }
+
+  briefing{
+    place_loc:t=""
+    date_loc:t=""
+    objective_loc:t=""
+    music:t="action_01"
+  }
+}
+
+imports{
+}
+
+triggers{
+  isCategory:b=yes
+  is_enabled:b=yes
+
+  init{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      initMission{
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      unitMoveTo{
+        target:t="wp_for_plane"
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=no
+        shouldKeepFormation:b=no
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object_marking:i=0
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="ai_plane"
+      }
+
+      missionBattleArea{
+        air:b=yes
+        ground:b=yes
+        mapArea:b=yes
+        killOutOfBattleArea:b=yes
+        target:t="battlearea"
+        killArea:b=no
+        detectionArea:b=no
+        newGridHorizontalCellCount:i=0
+        area:t="battlearea"
+      }
+
+      unitSetProperties{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="ai_ship02"
+        object:t="ai_ship01"
+        object:t="ai_ship"
+        object:t="ai_plane"
+        forceVisibleOnMap:b=yes
+      }
+
+      unitSetProperties{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="ai_ship02"
+        speed:r=90.0
+        lockSpeed:b=yes
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  end{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      playersWhenStatus{
+        players:t="isKilled"
+        check_players:t="any"
+      }
+    }
+
+    actions{
+
+      wait{
+        time:r=3.0
+      }
+
+      unitRespawn{
+        delay:r=1.0
+        offset:p3=0.0, 0.0, 0.0
+        object:t="t1_player01"
+        target:t="spawn01"
+      }
+    }
+
+    else_actions{
+    }
+  }
+}
+
+mission_objectives{
+  isCategory:b=yes
+  is_enabled:b=yes
+}
+
+variables{
+}
+
+dialogs{
+}
+
+airfields{
+}
+
+effects{
+}
+
+units{
+
+  ships{
+    name:t="t1_player01"
+    tm:m=[[0.382684, 0.0, 0.92388] [0.0, 1.0, 0.0] [-0.92388, 0.0, 0.382684] [662.422, -9.99976, -7.73108]]
+    unit_class:t="uk_dark_class"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=1000
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=1
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="ai_ship"
+    tm:m=[[-0.834158, 0.0, 0.551525] [0.0, 1.0, 0.0] [-0.551525, 0.0, -0.834158] [919.442, 0.000103951, 716.59]]
+    unit_class:t="uk_mtb_vosper_1series"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=1000
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="dont_aim"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="ai_ship01"
+    tm:m=[[-0.917257, 0.0, 0.398296] [0.0, 1.0, 0.0] [-0.398296, 0.0, -0.917257] [1324.71, 0.0, 2925.29]]
+    unit_class:t="uk_destroyer_tribal"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=1000
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="dont_aim"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="ai_ship02"
+    tm:m=[[-0.999644, 0.0, -0.0266706] [0.0, 1.0, 0.0] [0.0266706, 0.0, -0.999644] [2420.69, -0.000976563, 1447.03]]
+    unit_class:t="uk_mtb_vosper_1series"
+    objLayer:i=1
+    closed_waypoints:b=yes
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=1000
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="dont_aim"
+    }
+
+    way{
+
+      ai_ship02_wp_01{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2004.93, -0.000976563, 1443.16]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      ai_ship02_wp_02{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1390.5, -6.72632, 1502.71]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      ai_ship02_wp_03{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1009.68, 0.00012207, 2148.58]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      ai_ship02_wp_04{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2329.7, 0.0, 2342.44]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+    }
+  }
+
+  armada{
+    name:t="ai_plane"
+    tm:m=[[0.00754631, 0.0, -0.999972] [0.0, 1.0, 0.0] [0.999972, 0.0, 0.00754631] [1231.35, 500.0, 3380.11]]
+    unit_class:t="beaufighter_mk6c"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    dontOverrideHeight:b=yes
+    weapons:t="beaufighter_mk6c_torpedo"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=1000
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="hold_fire"
+      skill:i=4
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+}
+
+areas{
+
+  battlearea{
+    type:t="Box"
+    tm:m=[[5745.31, 0.0, -65.4884] [0.0, 712.125, 0.0] [65.4884, 0.0, 5745.31] [650.767, 0.0, 735.499]]
+    objLayer:i=3
+
+    props{
+    }
+  }
+
+  wp_for_plane{
+    type:t="Point"
+    tm:m=[[0.393189, 0.0, 0.919458] [0.0, 1.0, 0.0] [-0.919458, 0.0, 0.393189] [662.4, 500.0, -7.7]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  spawn01{
+    type:t="Sphere"
+    tm:m=[[8.65757, 0.0, 39.0518] [0.0, 40.0, 0.0] [-39.0518, 0.0, 8.65757] [662.413, 3.8147e-06, -7.76569]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+}
+
+objLayers{
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=no
+  }
+}
+
+wayPoints{
+}

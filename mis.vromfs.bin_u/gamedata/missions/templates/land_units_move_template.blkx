@@ -1,0 +1,523 @@
+selected_tag:t=""
+bin_dump_file:t=""
+
+mission_settings{
+
+  atmosphere{
+    pressure:r=760.0
+    temperature:r=0.0
+  }
+
+  player{
+    army:i=1
+    wing:t="t1_player01"
+    wing:t="t1_player02"
+    wing:t="t1_player03"
+    wing:t="t1_player04"
+    wing:t="t1_player05"
+    wing:t="t1_player06"
+    wing:t="t1_player07"
+    wing:t="t1_player08"
+    wing:t="t1_player09"
+    wing:t="t1_player10"
+    wing:t="t1_player11"
+    wing:t="t1_player12"
+    wing:t="t1_player13"
+    wing:t="t1_player14"
+    wing:t="t1_player15"
+    wing:t="t1_player16"
+  }
+
+  player_teamB{
+    army:i=2
+    wing:t="t2_player01"
+    wing:t="t2_player02"
+    wing:t="t2_player03"
+    wing:t="t2_player04"
+    wing:t="t2_player05"
+    wing:t="t2_player06"
+    wing:t="t2_player07"
+    wing:t="t2_player08"
+    wing:t="t2_player09"
+    wing:t="t2_player10"
+    wing:t="t2_player11"
+    wing:t="t2_player12"
+    wing:t="t2_player13"
+    wing:t="t2_player14"
+    wing:t="t2_player15"
+    wing:t="t2_player16"
+    wing:t="t2_player17"
+  }
+
+  mission{
+    level:t="levels/guadalcanal.bin"
+    type:t="domination"
+    restoreType:t="attempts"
+    optionalTakeOff:b=no
+    environment:t="Day"
+    weather:t="hazy"
+    openDiffLevels:b=yes
+    scoreLimit:i=5000
+    difficulty:t=""
+  }
+
+  spectator_points{
+  }
+}
+
+imports{
+}
+
+triggers{
+  isCategory:b=yes
+  is_enabled:b=yes
+
+  other_move_init{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      initMission{
+      }
+    }
+
+    conditions{
+
+      gameWhenDifficulty{
+        difficulty:t="arcade"
+        is:t="notEqual"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="arcade_move_init"
+      }
+
+      unitSetProperties{
+        object_marking:i=0
+        object:t="t1_heavy_units_squad"
+        object:t="t2_heavy_units_squad"
+        moveSpeedKAtShooting:r=0.6
+        slowWhenEnemyNear:r=0.6
+        slowWhenEnemyNearDistance:r=1000.0
+        minDistBetween:r=75.0
+      }
+
+      unitSetProperties{
+        object_marking:i=0
+        object:t="t1_light_units_squad"
+        object:t="t2_light_units_squad"
+        moveSpeedKAtShooting:r=0.4
+        slowWhenEnemyNear:r=0.4
+        slowWhenEnemyNearDistance:r=2500.0
+        minDistBetween:r=100.0
+        aiEnabled:b=yes
+      }
+
+      triggerEnable{
+        target:t="t1_nonarcade_enemy_near"
+        target:t="t2_nonarcade_enemy_near"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  arcade_move_init{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      initMission{
+      }
+    }
+
+    conditions{
+
+      gameWhenDifficulty{
+        difficulty:t="arcade"
+        is:t="equal"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="other_move_init"
+      }
+
+      unitSetProperties{
+        object_marking:i=0
+        object:t="t1_heavy_units_squad"
+        object:t="t2_heavy_units_squad"
+        moveSpeedKAtShooting:r=0.6
+        slowWhenEnemyNear:r=0.6
+        slowWhenEnemyNearDistance:r=1000.0
+        minDistBetween:r=75.0
+      }
+
+      unitSetProperties{
+        object_marking:i=0
+        object:t="t1_light_units_squad"
+        object:t="t2_light_units_squad"
+        moveSpeedKAtShooting:r=0.4
+        slowWhenEnemyNear:r=0.4
+        slowWhenEnemyNearDistance:r=2500.0
+        minDistBetween:r=90.0
+        aiEnabled:b=yes
+      }
+
+      triggerEnable{
+        target:t="t1_arcade_enemy_near"
+        target:t="t2_arcade_enemy_near"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  t1_arcade_enemy_near{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=10.0
+      }
+    }
+
+    conditions{
+
+      unitWhenEnemyNear{
+        object_type:t="isActive"
+        object_marking:i=0
+        enemy_type:t="isActive"
+        distance:r=1500.0
+        math:t="2D"
+        check_objects:t="any"
+        object:t="t1_movable_units_squad"
+      }
+    }
+
+    actions{
+
+      unitSetFormation{
+        formation_type:t="rows"
+        formation_div:i=3
+        formation_step:p2=6.0, 6.0
+        formation_noise:p2=0.4, 0.5
+        object:t="t1_movable_units_squad"
+        useForTriggerFiltered:b=yes
+        use_splines:b=yes
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  t1_nonarcade_enemy_near{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=10.0
+      }
+    }
+
+    conditions{
+
+      unitWhenEnemyNear{
+        object_type:t="isActive"
+        object_marking:i=0
+        enemy_type:t="isActive"
+        distance:r=1500.0
+        math:t="2D"
+        check_objects:t="any"
+        object:t="t1_movable_units_squad"
+      }
+    }
+
+    actions{
+
+      unitSetFormation{
+        formation_type:t="rows"
+        formation_div:i=3
+        formation_step:p2=2.0, 6.0
+        formation_noise:p2=0.4, 0.5
+        object:t="t1_movable_units_squad"
+        useForTriggerFiltered:b=yes
+        use_splines:b=yes
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  t1_enemy_far{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=20.0
+      }
+    }
+
+    conditions{
+
+      unitWhenEnemyNear{
+        object_type:t="isAlive"
+        object_marking:i=0
+        enemy_type:t="isAlive"
+        distance:r=2000.0
+        math:t="notNear2D"
+        check_objects:t="any"
+        object:t="t1_movable_units_squad"
+      }
+    }
+
+    actions{
+
+      unitSetFormation{
+        formation_type:t="rows"
+        formation_div:i=12
+        formation_step:p2=0.0, 8.0
+        formation_noise:p2=0.0, 0.0
+        object:t="t1_movable_units_squad"
+        useForTriggerFiltered:b=yes
+        use_splines:b=yes
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  t2_arcade_enemy_near{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=10.0
+      }
+    }
+
+    conditions{
+
+      unitWhenEnemyNear{
+        object_type:t="isActive"
+        object_marking:i=0
+        enemy_type:t="isActive"
+        distance:r=1500.0
+        math:t="2D"
+        check_objects:t="any"
+        object:t="t2_movable_units_squad"
+      }
+    }
+
+    actions{
+
+      unitSetFormation{
+        formation_type:t="rows"
+        formation_div:i=3
+        formation_step:p2=6.0, 6.0
+        formation_noise:p2=0.4, 0.5
+        object:t="t2_movable_units_squad"
+        useForTriggerFiltered:b=yes
+        use_splines:b=yes
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  t2_nonarcade_enemy_near{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=10.0
+      }
+    }
+
+    conditions{
+
+      unitWhenEnemyNear{
+        object_type:t="isActive"
+        object_marking:i=0
+        enemy_type:t="isActive"
+        distance:r=1500.0
+        math:t="2D"
+        check_objects:t="any"
+        object:t="t2_movable_units_squad"
+      }
+    }
+
+    actions{
+
+      unitSetFormation{
+        formation_type:t="rows"
+        formation_div:i=3
+        formation_step:p2=2.0, 6.0
+        formation_noise:p2=0.4, 0.5
+        object:t="t2_movable_units_squad"
+        useForTriggerFiltered:b=yes
+        use_splines:b=yes
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  t2_enemy_far{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=20.0
+      }
+    }
+
+    conditions{
+
+      unitWhenEnemyNear{
+        object_type:t="isAlive"
+        object_marking:i=0
+        enemy_type:t="isAlive"
+        distance:r=2000.0
+        math:t="notNear2D"
+        check_objects:t="any"
+        object:t="t2_movable_units_squad"
+      }
+    }
+
+    actions{
+
+      unitSetFormation{
+        formation_type:t="rows"
+        formation_div:i=12
+        formation_step:p2=0.0, 8.0
+        formation_noise:p2=0.0, 0.0
+        object:t="t2_movable_units_squad"
+        useForTriggerFiltered:b=yes
+        use_splines:b=yes
+      }
+    }
+
+    else_actions{
+    }
+  }
+}
+
+mission_objectives{
+  isCategory:b=yes
+  is_enabled:b=yes
+}
+
+variables{
+}
+
+dialogs{
+}
+
+airfields{
+}
+
+effects{
+}
+
+units{
+}
+
+areas{
+}
+
+objLayers{
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+}
+
+wayPoints{
+}

@@ -1,0 +1,1171 @@
+selected_tag:t=""
+bin_dump_file:t=""
+
+mission_settings{
+
+  player{
+    army:i=1
+    wing:t="armada_01"
+  }
+
+  player_teamB{
+    army:i=2
+  }
+
+  mission{
+    level:t="levels/krymsk.bin"
+    type:t="singleMission"
+    restoreType:t="manual"
+    optionalTakeOff:b=no
+    environment:t="Day"
+    weather:t="good"
+    windDirection:p3=1.0, 0.0, 0.0
+    locName:t="missions/i180_examination"
+    locDesc:t="missions/i180_examination/desc"
+  }
+
+  spectator_points{
+  }
+
+  briefing{
+    place_loc:t=""
+    date_loc:t=""
+    objective_loc:t=""
+    music:t="action_01"
+
+    part{
+      event:t=""
+      minTime:i=0
+
+      slide{
+        map:b=yes
+        minTime:i=4
+        picture:t=""
+        showAirMap:b=no
+
+        icon{
+          icontype:t="fighter"
+          side:t="player"
+          target:t="airfield00"
+          lookAt:t="airfield01"
+        }
+
+        icon{
+          icontype:t="airfield"
+          side:t="ally"
+          target:t="airfield01"
+        }
+      }
+    }
+  }
+}
+
+imports{
+
+  import_record{
+    file:t="gameData/missions/bridges/krymsk_bridges.blk"
+    importAreas:b=yes
+    importUnits:b=yes
+    importTriggers:b=yes
+    importMissionObjectives:b=yes
+    importWayPoints:b=yes
+    showAreas:b=yes
+    showUnits:b=yes
+    showTriggers:b=yes
+    showMissionObjectives:b=yes
+    showWayPoints:b=yes
+
+    excludes{
+    }
+  }
+}
+
+triggers{
+  isCategory:b=yes
+  is_enabled:b=yes
+
+  init{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      initMission{
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      addAirfield{
+        runwayStart:t="airfield00"
+        runwayEnd:t="airfield01"
+        runwayWidth:r=50.0
+        army:i=0
+        spawnPoint:t="spawnpoint"
+        visibleOnHud:b=no
+      }
+
+      spawnOnAirfield{
+        runwayName:t="airfield00"
+        objects:t="armada_01"
+      }
+
+      playerControls{
+        setStatus:t="disable"
+        control:t="ALL"
+      }
+
+      missionSetTimeSpeed{
+        speed:r=0.0
+        realtimeTriggers:b=yes
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  respawn{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      playersWhenStatus{
+        players:t="isKilled"
+        check_players:t="any"
+      }
+    }
+
+    actions{
+
+      wait{
+        time:r=3.0
+      }
+
+      spawnOnAirfield{
+        runwayName:t="airfield00"
+        objects:t="armada_01"
+      }
+
+      triggerEnable{
+        target:t="do_damage_preset01"
+        target:t="do_damage_preset02"
+        target:t="do_damage_preset03"
+        target:t="do_damage_preset04"
+        target:t="do_damage_preset05"
+        target:t="do_damage_preset06"
+        target:t="do_damage_preset07"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  hint_show_warning{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      unitWhenStatus{
+        object_type:t="isActive"
+        check_objects:t="any"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object:t="armada_01"
+      }
+    }
+
+    actions{
+
+      playHint{
+        hintType:t="standard"
+        name:t="hint/warning_aircraft_is_faulty"
+        action:t="show"
+        shouldFadeOut:b=no
+        isOverFade:b=no
+        time:r=-1.0
+        priority:i=0
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  hint_hide_warning{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playerShortcutPressed{
+        control:t="ID_CONTINUE"
+      }
+    }
+
+    actions{
+
+      missionSetTimeSpeed{
+        speed:r=1.0
+        realtimeTriggers:b=yes
+      }
+
+      playHint{
+        hintType:t="standard"
+        name:t="hint/warning_aircraft_is_faulty"
+        action:t="hide"
+        shouldFadeOut:b=no
+        isOverFade:b=no
+        time:r=-1.0
+        priority:i=0
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+      }
+
+      playerControls{
+        setStatus:t="enable"
+        control:t="ALL"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  hint_hide_xray{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      playerShortcutPressed{
+        control:t="ID_SHOW_HERO_MODULES"
+        pressed:b=yes
+      }
+    }
+
+    actions{
+
+      playHint{
+        hintType:t="standard"
+        name:t="hint/mechanic_should_relies_on_himself"
+        action:t="show"
+        shouldFadeOut:b=no
+        isOverFade:b=no
+        time:r=3.0
+        priority:i=0
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  initial_damage_presets{
+    isCategory:b=yes
+    is_enabled:b=yes
+
+    do_damage_preset01{
+      is_enabled:b=yes
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=0.1
+        }
+      }
+
+      conditions{
+
+        unitWhenStatus{
+          object_type:t="isActive"
+          check_objects:t="any"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          target_type:t="isAlive"
+          check_period:r=1.0
+          object:t="armada_01"
+        }
+
+        varCompareInt{
+          var_value:t="preset_id"
+          value:i=1
+          comparasion_func:t="equal"
+        }
+      }
+
+      actions{
+
+        unitSetProperties{
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          object:t="armada_01"
+          invulnerabilityTimer:r=0.0
+        }
+
+        unitDamage{
+          power:r=1.0
+          useEffect:b=no
+          countEffects:i=1
+          delay:p2=1.0, 1.0
+          offset:p3=0.0, 0.0, 0.0
+          radiusOffset:p2=10.0, 15.0
+          target:t="armada_01"
+          partName:t="wing1_l_dm"
+        }
+
+        unitDamage{
+          power:r=0.1
+          useEffect:b=no
+          countEffects:i=1
+          delay:p2=1.0, 1.0
+          offset:p3=0.0, 0.0, 0.0
+          radiusOffset:p2=10.0, 15.0
+          target:t="armada_01"
+          partName:t="oil1_dm"
+        }
+
+        unitDamage{
+          power:r=1.0
+          useEffect:b=no
+          countEffects:i=1
+          delay:p2=1.0, 1.0
+          offset:p3=0.0, 0.0, 0.0
+          radiusOffset:p2=10.0, 15.0
+          target:t="armada_01"
+          partName:t="wingcontrol_l_dm"
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    do_damage_preset02{
+      is_enabled:b=yes
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=0.1
+        }
+      }
+
+      conditions{
+
+        unitWhenStatus{
+          object_type:t="isActive"
+          check_objects:t="any"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          target_type:t="isAlive"
+          check_period:r=1.0
+          object:t="armada_01"
+        }
+
+        varCompareInt{
+          var_value:t="preset_id"
+          value:i=2
+          comparasion_func:t="equal"
+        }
+      }
+
+      actions{
+
+        unitSetProperties{
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          object:t="armada_01"
+          invulnerabilityTimer:r=0.0
+        }
+
+        unitDamage{
+          power:r=1.0
+          useEffect:b=no
+          countEffects:i=1
+          delay:p2=1.0, 1.0
+          offset:p3=0.0, 0.0, 0.0
+          radiusOffset:p2=10.0, 15.0
+          target:t="armada_01"
+          partName:t="fuse_dm"
+        }
+
+        unitDamage{
+          power:r=0.9
+          useEffect:b=no
+          countEffects:i=1
+          delay:p2=1.0, 1.0
+          offset:p3=0.0, 0.0, 0.0
+          radiusOffset:p2=10.0, 15.0
+          target:t="armada_01"
+          partName:t="tank1_dm"
+        }
+
+        unitDamage{
+          power:r=1.0
+          useEffect:b=no
+          countEffects:i=1
+          delay:p2=1.0, 1.0
+          offset:p3=0.0, 0.0, 0.0
+          radiusOffset:p2=10.0, 15.0
+          target:t="armada_01"
+          partName:t="rudder_dm"
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    do_damage_preset03{
+      is_enabled:b=yes
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=0.1
+        }
+      }
+
+      conditions{
+
+        unitWhenStatus{
+          object_type:t="isActive"
+          check_objects:t="any"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          target_type:t="isAlive"
+          check_period:r=1.0
+          object:t="armada_01"
+        }
+
+        varCompareInt{
+          var_value:t="preset_id"
+          value:i=3
+          comparasion_func:t="equal"
+        }
+      }
+
+      actions{
+
+        unitSetProperties{
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          object:t="armada_01"
+          invulnerabilityTimer:r=0.0
+        }
+
+        unitDamage{
+          power:r=1.0
+          useEffect:b=no
+          countEffects:i=1
+          delay:p2=1.0, 1.0
+          offset:p3=0.0, 0.0, 0.0
+          radiusOffset:p2=10.0, 15.0
+          target:t="armada_01"
+          partName:t="fuse_dm"
+        }
+
+        unitDamage{
+          power:r=1.0
+          useEffect:b=no
+          countEffects:i=1
+          delay:p2=1.0, 1.0
+          offset:p3=0.0, 0.0, 0.0
+          radiusOffset:p2=10.0, 15.0
+          target:t="armada_01"
+          partName:t="aileron_r_dm"
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    do_damage_preset04{
+      is_enabled:b=yes
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=0.1
+        }
+      }
+
+      conditions{
+
+        unitWhenStatus{
+          object_type:t="isActive"
+          check_objects:t="any"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          target_type:t="isAlive"
+          check_period:r=1.0
+          object:t="armada_01"
+        }
+
+        varCompareInt{
+          var_value:t="preset_id"
+          value:i=4
+          comparasion_func:t="equal"
+        }
+      }
+
+      actions{
+
+        unitSetProperties{
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          object:t="armada_01"
+          invulnerabilityTimer:r=0.0
+        }
+
+        unitDamage{
+          power:r=1.0
+          useEffect:b=no
+          countEffects:i=1
+          delay:p2=1.0, 1.0
+          offset:p3=0.0, 0.0, 0.0
+          radiusOffset:p2=10.0, 15.0
+          target:t="armada_01"
+          partName:t="wing1_r_dm"
+        }
+
+        unitDamage{
+          power:r=0.1
+          useEffect:b=no
+          countEffects:i=1
+          delay:p2=1.0, 1.0
+          offset:p3=0.0, 0.0, 0.0
+          radiusOffset:p2=10.0, 15.0
+          target:t="armada_01"
+          partName:t="oil1_dm"
+        }
+
+        unitDamage{
+          power:r=1.0
+          useEffect:b=no
+          countEffects:i=1
+          delay:p2=1.0, 1.0
+          offset:p3=0.0, 0.0, 0.0
+          radiusOffset:p2=10.0, 15.0
+          target:t="armada_01"
+          partName:t="wingcontrol_r_dm"
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    do_damage_preset05{
+      is_enabled:b=yes
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=0.1
+        }
+      }
+
+      conditions{
+
+        unitWhenStatus{
+          object_type:t="isActive"
+          check_objects:t="any"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          target_type:t="isAlive"
+          check_period:r=1.0
+          object:t="armada_01"
+        }
+
+        varCompareInt{
+          var_value:t="preset_id"
+          value:i=5
+          comparasion_func:t="equal"
+        }
+      }
+
+      actions{
+
+        unitSetProperties{
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          object:t="armada_01"
+          invulnerabilityTimer:r=0.0
+        }
+
+        unitDamage{
+          power:r=1.0
+          useEffect:b=no
+          countEffects:i=1
+          delay:p2=1.0, 1.0
+          offset:p3=0.0, 0.0, 0.0
+          radiusOffset:p2=10.0, 15.0
+          target:t="armada_01"
+          partName:t="stab_dm"
+        }
+
+        unitDamage{
+          power:r=0.9
+          useEffect:b=no
+          countEffects:i=1
+          delay:p2=1.0, 1.0
+          offset:p3=0.0, 0.0, 0.0
+          radiusOffset:p2=10.0, 15.0
+          target:t="armada_01"
+          partName:t="tank1_dm"
+        }
+
+        unitDamage{
+          power:r=1.0
+          useEffect:b=no
+          countEffects:i=1
+          delay:p2=1.0, 1.0
+          offset:p3=0.0, 0.0, 0.0
+          radiusOffset:p2=10.0, 15.0
+          target:t="armada_01"
+          partName:t="rudder_dm"
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    do_damage_preset06{
+      is_enabled:b=yes
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=0.1
+        }
+      }
+
+      conditions{
+
+        unitWhenStatus{
+          object_type:t="isActive"
+          check_objects:t="any"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          target_type:t="isAlive"
+          check_period:r=1.0
+          object:t="armada_01"
+        }
+
+        varCompareInt{
+          var_value:t="preset_id"
+          value:i=6
+          comparasion_func:t="equal"
+        }
+      }
+
+      actions{
+
+        unitSetProperties{
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          object:t="armada_01"
+          invulnerabilityTimer:r=0.0
+        }
+
+        unitDamage{
+          power:r=0.9
+          useEffect:b=no
+          countEffects:i=1
+          delay:p2=1.0, 1.0
+          offset:p3=0.0, 0.0, 0.0
+          radiusOffset:p2=10.0, 15.0
+          target:t="armada_01"
+          partName:t="tank1_dm"
+        }
+
+        unitDamage{
+          power:r=1.0
+          useEffect:b=no
+          countEffects:i=1
+          delay:p2=1.0, 1.0
+          offset:p3=0.0, 0.0, 0.0
+          radiusOffset:p2=10.0, 15.0
+          target:t="armada_01"
+          partName:t="aileron_l_dm"
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    do_damage_preset07{
+      is_enabled:b=yes
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=0.1
+        }
+      }
+
+      conditions{
+
+        unitWhenStatus{
+          object_type:t="isActive"
+          check_objects:t="any"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          target_type:t="isAlive"
+          check_period:r=1.0
+          object:t="armada_01"
+        }
+
+        varCompareInt{
+          var_value:t="preset_id"
+          value:i=7
+          comparasion_func:t="equal"
+        }
+      }
+
+      actions{
+
+        unitSetProperties{
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          object:t="armada_01"
+          invulnerabilityTimer:r=0.0
+        }
+
+        unitDamage{
+          power:r=1.0
+          useEffect:b=no
+          countEffects:i=1
+          delay:p2=1.0, 1.0
+          offset:p3=0.0, 0.0, 0.0
+          radiusOffset:p2=10.0, 15.0
+          target:t="armada_01"
+          partName:t="fin_dm"
+        }
+
+        unitDamage{
+          power:r=1.0
+          useEffect:b=no
+          countEffects:i=1
+          delay:p2=1.0, 1.0
+          offset:p3=0.0, 0.0, 0.0
+          radiusOffset:p2=10.0, 15.0
+          target:t="armada_01"
+          partName:t="tailcontrol_dm"
+        }
+      }
+
+      else_actions{
+      }
+    }
+  }
+
+  special_damages{
+    isCategory:b=yes
+    is_enabled:b=yes
+
+    preset06_broke_flaps_01{
+      is_enabled:b=yes
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=yes
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=0.3
+        }
+      }
+
+      conditions{
+
+        varCompareInt{
+          var_value:t="preset_id"
+          value:i=6
+          comparasion_func:t="equal"
+        }
+      }
+
+      actions{
+
+        playerEmulateShortcut{
+          control:t="ID_FLAPS_DOWN"
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    preset07_broke_engine_01{
+      is_enabled:b=yes
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=yes
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=1.8
+        }
+      }
+
+      conditions{
+
+        varCompareInt{
+          var_value:t="preset_id"
+          value:i=7
+          comparasion_func:t="equal"
+        }
+
+        unitWhenControls{
+          object:t="armada_01"
+          func:t="more"
+          value:r=1.0
+          property:t="power"
+        }
+      }
+
+      actions{
+
+        playerEmulateShortcut{
+          control:t="ID_TOGGLE_ENGINE"
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    preset07_broke_engine_02{
+      is_enabled:b=yes
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=yes
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=6.0
+        }
+      }
+
+      conditions{
+
+        varCompareInt{
+          var_value:t="preset_id"
+          value:i=7
+          comparasion_func:t="equal"
+        }
+
+        unitWhenProperties{
+          object:t="armada_01"
+          func:t="more"
+          value:r=222.0
+          property:t="speed"
+          check_filter:t="all"
+          object_type:t="isAlive"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+        }
+      }
+
+      actions{
+
+        playerEmulateShortcut{
+          control:t="ID_TOGGLE_ENGINE"
+        }
+      }
+
+      else_actions{
+      }
+    }
+  }
+}
+
+mission_objectives{
+  isCategory:b=yes
+  is_enabled:b=yes
+}
+
+variables{
+  preset_id:i=0
+}
+
+dialogs{
+}
+
+airfields{
+}
+
+effects{
+}
+
+units{
+
+  armada{
+    name:t="armada_01"
+    tm:m=[[0.488996, 0.0, 0.872286] [0.0, 1.0, 0.0] [-0.872286, 0.0, 0.488996] [8171.85, 212.2, 10492.3]]
+    unit_class:t="i_180"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      count:i=1
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=1.5
+        col_distances:r=1.5
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+}
+
+areas{
+
+  airfield00{
+    type:t="Sphere"
+    tm:m=[[-18.382, 0.0, 229.565] [0.0, 230.3, 0.0] [-229.565, 0.0, -18.382] [8172.95, 210.5, 10492.0]]
+
+    props{
+    }
+  }
+
+  airfield01{
+    type:t="Sphere"
+    tm:m=[[-18.382, 0.0, 229.565] [0.0, 230.3, 0.0] [-229.565, 0.0, -18.382] [8557.4, 210.5, 11224.0]]
+
+    props{
+    }
+  }
+
+  spawnpoint{
+    type:t="Sphere"
+    tm:m=[[-6.10606, 0.0, 76.2559] [0.0, 76.5, 0.0] [-76.2559, 0.0, -6.10606] [8169.78, 210.5, 10492.4]]
+
+    props{
+    }
+  }
+}
+
+objLayers{
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+}
+
+wayPoints{
+}

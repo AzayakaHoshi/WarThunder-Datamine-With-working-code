@@ -1,0 +1,845 @@
+selected_tag:t=""
+bin_dump_file:t=""
+
+mission_settings{
+
+  atmosphere{
+    pressure:r=760.0
+    temperature:r=0.0
+  }
+
+  player{
+    army:i=1
+    wing:t="player_unit"
+  }
+
+  player_teamB{
+    army:i=2
+  }
+
+  mission{
+    level:t="levels/guadalcanal.bin"
+    type:t="singleMission"
+    restoreType:t="tactical control"
+    optionalTakeOff:b=no
+    environment:t="Night"
+    weather:t="hazy"
+    windDirection:p3=1.0, 0.0, 0.0
+    gt_cooperative:b=yes
+  }
+
+  briefing{
+    place_loc:t=""
+    date_loc:t=""
+    objective_loc:t=""
+    music:t="japan_main_theme"
+
+    part{
+      event:t=""
+      minTime:i=0
+
+      slide{
+        map:b=yes
+        minTime:i=4
+        picture:t=""
+
+        arrow{
+          width:i=1
+          side:t="player"
+          point:t="player_unit"
+          point:t="f4u_group01"
+        }
+
+        icon{
+          icontype:t="fighter"
+          side:t="player"
+          target:t="player_unit"
+          lookAt:t="f4u_group01"
+        }
+
+        icon{
+          icontype:t="fighter"
+          side:t="enemy"
+          target:t="f4u_group01"
+          lookAt:t="player_unit"
+        }
+
+        icon{
+          icontype:t="fighter"
+          side:t="ally"
+          target:t="ki43_group"
+          lookAt:t="f4u_group01"
+        }
+
+        icon{
+          icontype:t="destroyer"
+          side:t="enemy"
+          target:t="cargo_ships01"
+          lookAt:t="cargo_ships02"
+        }
+
+        icon{
+          icontype:t="destroyer"
+          side:t="enemy"
+          target:t="cargo_ships03"
+          lookAt:t="cargo_ships02"
+        }
+      }
+    }
+  }
+}
+
+imports{
+}
+
+triggers{
+  isCategory:b=yes
+  is_enabled:b=yes
+
+  Gameplay_start{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      unitSetIndication{
+        set:b=yes
+        target:t="f4u_group01"
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=yes
+        object:t="f4u_group01"
+        target:t="player_unit"
+        target:t="ki43_group"
+        fireRandom:b=yes
+        playerAttractedCount:i=1
+        playerAttractedEffRate:r=0.05
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="player_unit"
+        object:t="ki43_group"
+        target:t="f4u_group01"
+        fireRandom:b=yes
+      }
+
+      unitSetProperties{
+        object:t="player_himself"
+        targetableByAi:b=yes
+      }
+
+      wait{
+        time:r=2.0
+      }
+
+      moAddMissionObjective{
+        target:t="single_guadalcanal_attack_group"
+      }
+    }
+  }
+
+  Mission_complete{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isActive"
+        object_marking:i=0
+        func:t="less"
+        value:i=2
+        object:t="f4u_group01"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="Target_indicator"
+      }
+
+      missionSetTargetsIndicator{
+        target_type:t="isAlive"
+        target_marking:i=0
+        delta:i=0
+        icon:t="air"
+        "icon army":i=2
+        set:b=no
+        target:t="f4u_group01"
+      }
+
+      moSetObjectiveStatus{
+        target:t="single_guadalcanal_attack_group"
+        status:i=2
+      }
+
+      unitSetIndication{
+        set:b=no
+        target:t="f4u_group01"
+      }
+
+      wait{
+        time:r=2.0
+      }
+
+      missionCompleted{
+        timer:b=no
+        debriefingTimer:i=2
+      }
+    }
+  }
+
+  Target_indicator{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionSetTargetsIndicator{
+        target_type:t="isAlive"
+        target_marking:i=0
+        delta:i=0
+        icon:t="air"
+        "icon army":i=2
+        set:b=yes
+        target:t="f4u_group01"
+      }
+    }
+  }
+
+  Hit_balance{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      unitSetProperties{
+        object:t="f4u_group01"
+        object:t="ki43_group"
+
+        plane{
+
+          targetDeviation{
+            trigger:t="machine gun"
+            defaultVal:r=2.0
+            limits:p2=1.0, 4.0
+          }
+
+          targetDeviation{
+            trigger:t="cannon"
+            defaultVal:r=3.0
+            limits:p2=2.0, 4.0
+          }
+        }
+      }
+
+      unitSetProperties{
+        object:t="georgetown_ship01"
+        object:t="georgetown_ship02"
+        object:t="georgetown_ship03"
+        object:t="cargo_ships01"
+        object:t="cargo_ships02"
+        object:t="cargo_ships03"
+        effShootingRate:r=0.1
+      }
+    }
+  }
+}
+
+mission_objectives{
+  isCategory:b=yes
+  is_enabled:b=yes
+
+  single_guadalcanal_attack_group{
+    is_enabled:b=no
+    comments:t=""
+    type:t="abstractMissionObjective"
+
+    props{
+      isPrimary:b=yes
+      timeLimit:i=1800
+      scoreConst:i=100
+      scoreTime:i=400
+    }
+
+    onSuccess{
+    }
+
+    onFailed{
+    }
+  }
+}
+
+variables{
+}
+
+dialogs{
+}
+
+airfields{
+}
+
+effects{
+}
+
+units{
+
+  armada{
+    name:t="player_unit"
+    tm:m=[[1.0, 0.0, 7.45058e-09] [0.0, 1.0, 0.0] [-7.45058e-09, 0.0, 1.0] [-957.3, 400.0, -12836.2]]
+    closed_waypoints:b=no
+    unit_class:t="ki_43_2"
+    weapons:t="ki_43_2_default"
+
+    props{
+      army:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      count:i=4
+      numInWing:i=2
+      targetableByAi:b=no
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="f4u_group01"
+    tm:m=[[-1.0, 0.0, -2.23517e-08] [0.0, 1.0, 0.0] [2.23517e-08, 0.0, -1.0] [6515.5, 400.0, -12999.6]]
+    closed_waypoints:b=no
+    unit_class:t="f4u-1a"
+    weapons:t="f4u-1a_default"
+
+    props{
+      army:i=2
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      count:i=10
+      numInWing:i=1
+
+      plane{
+        wing_formation:t="Echelon"
+        row_distances:r=4.0
+        col_distances:r=4.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="ki43_group"
+    tm:m=[[0.67559, 0.0, 0.737277] [0.0, 1.0, 0.0] [-0.737277, 0.0, 0.67559] [321.35, 400.0, -15935.8]]
+    closed_waypoints:b=no
+    unit_class:t="ki_43_2"
+    weapons:t=""
+
+    props{
+      army:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      count:i=5
+
+      plane{
+        wing_formation:t="Echelon"
+        row_distances:r=4.0
+        col_distances:r=4.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="cargo_ships01"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-1040.65, 66.6, -8503.15]]
+    closed_waypoints:b=no
+    unit_class:t="uss_cargo_ship"
+    weapons:t=""
+
+    props{
+      army:i=2
+      count:i=4
+      formation_type:t="rows"
+      formation_div:i=4
+      formation_step:p2=4.0, 10.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="cargo_ships02"
+    tm:m=[[0.999048, 0.0, 0.0436194] [0.0, 1.0, 0.0] [-0.0436194, 0.0, 0.999048] [4166.65, 66.6, -8951.0]]
+    closed_waypoints:b=no
+    unit_class:t="uss_cargo_ship"
+    weapons:t=""
+
+    props{
+      army:i=2
+      count:i=4
+      formation_type:t="rows"
+      formation_div:i=4
+      formation_step:p2=4.0, 10.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="cargo_ships03"
+    tm:m=[[0.906308, 0.0, -0.422618] [0.0, 1.0, 0.0] [0.422618, 0.0, 0.906308] [9081.75, 66.6, -10398.0]]
+    closed_waypoints:b=no
+    unit_class:t="uss_cargo_ship"
+    weapons:t=""
+
+    props{
+      army:i=2
+      count:i=4
+      formation_type:t="rows"
+      formation_div:i=4
+      formation_step:p2=4.0, 10.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="georgetown_ship01"
+    tm:m=[[0.999048, 0.0, 0.0436194] [0.0, 1.0, 0.0] [-0.0436194, 0.0, 0.999048] [1266.55, 66.6, -10161.1]]
+    closed_waypoints:b=no
+    unit_class:t="uss_dd_georgetown"
+    weapons:t=""
+
+    props{
+      army:i=2
+      count:i=2
+      formation_type:t="rows"
+      formation_div:i=4
+      formation_step:p2=4.0, 10.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="georgetown_ship02"
+    tm:m=[[0.939693, 0.0, -0.34202] [0.0, 1.0, 0.0] [0.34202, 0.0, 0.939693] [5545.55, 66.6, -10991.7]]
+    closed_waypoints:b=no
+    unit_class:t="uss_dd_georgetown"
+    weapons:t=""
+
+    props{
+      army:i=2
+      count:i=2
+      formation_type:t="rows"
+      formation_div:i=4
+      formation_step:p2=4.0, 10.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="georgetown_ship03"
+    tm:m=[[0.999048, 0.0, -0.0436194] [0.0, 1.0, 0.0] [0.0436194, 0.0, 0.999048] [8944.85, 66.6, -11876.2]]
+    closed_waypoints:b=no
+    unit_class:t="uss_dd_georgetown"
+    weapons:t=""
+
+    props{
+      army:i=2
+      count:i=2
+      formation_type:t="rows"
+      formation_div:i=4
+      formation_step:p2=4.0, 10.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="searchlight03"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1228.4, 30.3, -12637.7]]
+    closed_waypoints:b=no
+    unit_class:t="searchLight"
+    weapons:t=""
+
+    props{
+      army:i=1
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="searchlight06"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [3568.2, 30.3, -12906.4]]
+    closed_waypoints:b=no
+    unit_class:t="searchLight"
+    weapons:t=""
+
+    props{
+      army:i=1
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="searchlight08"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [5073.05, 30.3, -13345.5]]
+    closed_waypoints:b=no
+    unit_class:t="searchLight"
+    weapons:t=""
+
+    props{
+      army:i=1
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="searchlight04"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1863.4, 10.4657, -13632.7]]
+    closed_waypoints:b=no
+    unit_class:t="searchLight"
+    weapons:t=""
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="searchlight05"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1480.05, 9.03019, -11623.5]]
+    closed_waypoints:b=no
+    unit_class:t="searchLight"
+    weapons:t=""
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="searchlight00"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [419.15, 24.2788, -12671.1]]
+    closed_waypoints:b=no
+    unit_class:t="searchLight"
+    weapons:t=""
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="searchlight01"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2844.1, 24.3, -12636.5]]
+    closed_waypoints:b=no
+    unit_class:t="searchLight"
+    weapons:t=""
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="searchlight02"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [4006.55, 19.1726, -11878.5]]
+    closed_waypoints:b=no
+    unit_class:t="searchLight"
+    weapons:t=""
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="searchlight07"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [3052.95, 23.9071, -14101.8]]
+    closed_waypoints:b=no
+    unit_class:t="searchLight"
+    weapons:t=""
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="searchlight09"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [4746.75, 5.75867, -13812.2]]
+    closed_waypoints:b=no
+    unit_class:t="searchLight"
+    weapons:t=""
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="searchlight10"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [4777.55, 0.0, -12794.2]]
+    closed_waypoints:b=no
+    unit_class:t="searchLight"
+    weapons:t=""
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  squad{
+    name:t="player_himself"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [5687.05, -7.15, -15443.3]]
+    closed_waypoints:b=no
+    unit_class:t=""
+    weapons:t=""
+
+    props{
+      squad_members:t="player_unit"
+      object_type:t="isPlayer"
+    }
+
+    way{
+    }
+  }
+}
+
+areas{
+}

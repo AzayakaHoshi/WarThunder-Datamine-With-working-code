@@ -1,0 +1,3280 @@
+selected_tag:t=""
+bin_dump_file:t=""
+
+mission_settings{
+
+  player{
+    army:i=1
+    wing:t="player_wing"
+  }
+
+  player_teamB{
+    army:i=2
+  }
+
+  mission{
+    level:t="levels/peleliu.bin"
+    type:t="singleMission"
+    environment:t="Day"
+    weather:t="hazy"
+    gt_cooperative:b=yes
+    restoreType:t="attempts"
+    optionalTakeOff:b=no
+
+    stars{
+      year:i=1944
+      month:i=9
+      day:i=15
+    }
+  }
+
+  atmosphere{
+    pressure:r=760.0
+    temperature:r=24.0
+  }
+
+  spectator_points{
+  }
+
+  briefing{
+    place_loc:t=""
+    date_loc:t=""
+    objective_loc:t=""
+    music:t="action_01"
+    viewAreaScale:r=2.0
+
+    part{
+      event:t=""
+      minTime:i=0
+
+      slide{
+        map:b=yes
+        minTime:i=4
+        picture:t=""
+        showAirMap:b=no
+
+        icon{
+          icontype:t="fighter"
+          side:t="player"
+          target:t="player_wing"
+          lookAt:t="us_lcvp_01"
+        }
+
+        icon{
+          icontype:t="tank"
+          side:t="ally"
+          target:t="jpn_tanks"
+        }
+
+        icon{
+          icontype:t="tank"
+          side:t="enemy"
+          target:t="us_tanks_01"
+        }
+
+        icon{
+          icontype:t="tank"
+          side:t="enemy"
+          target:t="us_tanks_02"
+        }
+
+        icon{
+          icontype:t="artillery"
+          side:t="enemy"
+          target:t="us_artillery"
+        }
+
+        icon{
+          icontype:t="carrier"
+          side:t="enemy"
+          target:t="us_carrier_01"
+        }
+      }
+    }
+  }
+}
+
+imports{
+}
+
+triggers{
+  isCategory:b=yes
+  is_enabled:b=yes
+
+  start_mission{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      initMission{
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionSetWeatherParams{
+        waterWindStrengtMin:r=3.0
+        waterWindStrengtMax:r=4.0
+      }
+
+      unitLoadBehTree{
+        name:t="missionBomber"
+        objects:t="us_bombers_01"
+      }
+
+      unitSetProperties{
+        object:t="us_bombers_01"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+
+        plane{
+
+          targetDeviation{
+            trigger:t="bombs"
+            defaultVal:r=2.0
+            limits:p2=1.0, 3.0
+          }
+
+          targetDeviation{
+            trigger:t="gunner"
+            defaultVal:r=3.0
+            limits:p2=2.0, 4.0
+          }
+        }
+      }
+
+      unitSetProperties{
+        object:t="jpn_fighters_01"
+        object:t="jpn_fighters_02"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+
+        plane{
+
+          targetDeviation{
+            trigger:t="machine gun"
+            defaultVal:r=2.0
+            limits:p2=1.0, 4.0
+          }
+        }
+      }
+
+      unitSetProperties{
+        object:t="us_fighters_01"
+        object:t="us_fighters_02"
+        object:t="us_fighters_03"
+        object:t="us_fighters_04"
+        object:t="us_fighters_05"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        effShootingRate:r=0.4
+
+        plane{
+
+          targetDeviation{
+            trigger:t="machine gun"
+            defaultVal:r=3.0
+            limits:p2=1.5, 3.0
+          }
+
+          targetDeviation{
+            trigger:t="bombs"
+            defaultVal:r=2.0
+            limits:p2=1.5, 2.0
+          }
+
+          targetDeviation{
+            trigger:t="rockets"
+            defaultVal:r=2.0
+            limits:p2=1.5, 3.0
+          }
+        }
+      }
+
+      unitSetProperties{
+        object:t="us_carrier_01"
+        object:t="us_carrier_02"
+        object:t="us_carrier_03"
+        object:t="us_carrier_04"
+        object:t="us_destroyer_01"
+        object:t="us_destroyer_02"
+        object:t="us_destroyer_03"
+        object:t="us_destroyer_04"
+        object:t="us_lcvp_squad"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        effShootingRate:r=0.05
+      }
+
+      addAirfield{
+        runwayStart:t="airfield_start_01"
+        runwayEnd:t="airfield_end_01"
+        runwayWidth:r=30.0
+        army:i=1
+        spawnPoint:t="airfield_01_spawn_01"
+        spawnPoint:t="airfield_01_spawn_02"
+        spawnPoint:t="airfield_01_spawn_03"
+        spawnPoint:t="airfield_01_spawn_04"
+      }
+
+      addAirfield{
+        runwayStart:t="airfield_start_02"
+        runwayEnd:t="airfield_end_02"
+        runwayWidth:r=30.0
+        army:i=1
+        spawnPoint:t="airfield_02_spawn_01"
+        spawnPoint:t="airfield_02_spawn_02"
+        spawnPoint:t="airfield_02_spawn_03"
+        spawnPoint:t="airfield_02_spawn_04"
+      }
+
+      addAirfield{
+        runwayStart:t="airfield_start_03"
+        runwayEnd:t="airfield_end_03"
+        runwayWidth:r=30.0
+        army:i=1
+        spawnPoint:t="airfield_03_spawn_01"
+        spawnPoint:t="airfield_03_spawn_02"
+        spawnPoint:t="airfield_03_spawn_03"
+        spawnPoint:t="airfield_03_spawn_04"
+      }
+
+      spawnOnAirfield{
+        runwayName:t="airfield_start_01"
+        objects:t="player_wing"
+      }
+
+      spawnOnAirfield{
+        runwayName:t="airfield_start_02"
+        objects:t="jpn_fighters_01"
+      }
+
+      spawnOnAirfield{
+        runwayName:t="airfield_start_03"
+        objects:t="jpn_fighters_02"
+      }
+
+      spawnOnAirfield{
+        runwayName:t="us_carrier_01"
+        objects:t="us_fighters_01"
+      }
+
+      spawnOnAirfield{
+        runwayName:t="us_carrier_02"
+        objects:t="us_fighters_02"
+      }
+
+      spawnOnAirfield{
+        runwayName:t="us_carrier_03"
+        objects:t="us_fighters_03"
+      }
+
+      spawnOnAirfield{
+        runwayName:t="us_carrier_04"
+        objects:t="us_fighters_04"
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="us_fighters_squad"
+        target:t="jpn_tanks"
+        fireRandom:b=yes
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="jpn_fighters_squad"
+        target:t="us_fighters_squad"
+        fireRandom:b=yes
+      }
+
+      wait{
+        time:r=3.0
+      }
+
+      unitPutToSleep{
+        target:t="us_bombers_01"
+        target:t="us_fighters_05"
+      }
+
+      moAddMissionObjective{
+        target:t="pkg3_peleliu_mission_01_main"
+      }
+
+      unitSetIndication{
+        set:b=yes
+        target:t="jpn_tanks"
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+      }
+
+      unitSetIndication{
+        set:b=yes
+        target:t="us_fighters_squad"
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+      }
+
+      triggerEnable{
+        target:t="update_indicators"
+        target:t="us_fighters_damaged"
+        target:t="us_fighters_out_of_bombs_regular_check"
+        target:t="us_bombers_appear"
+      }
+
+      triggerDisable{
+        target:t="check_1ppl"
+        target:t="check_2ppl"
+        target:t="check_3ppl"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  us_fighters_damaged{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ANY"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isDamagedByPlayer"
+        object_marking:i=0
+        func:t="more"
+        value:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="us_fighters_squad"
+        object_var_value:i=0
+      }
+
+      unitWhenCountMatches{
+        object_type:t="isKilled"
+        object_marking:i=0
+        func:t="more"
+        value:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="us_fighters_squad"
+        object_var_value:i=0
+      }
+    }
+
+    actions{
+
+      unitAttackTarget{
+        playerAttracted:b=yes
+        object:t="us_fighters_01"
+        target:t="jpn_fighters_squad"
+        fireRandom:b=yes
+        playerAttractedCount:i=1
+        playerAttractedEffRate:r=0.4
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  us_fighters_out_of_bombs_regular_check{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="noBombs"
+        object_marking:i=0
+        func:t="more"
+        value:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="us_fighters_squad"
+        object_var_value:i=0
+      }
+    }
+
+    actions{
+
+      unitAttackTarget{
+        playerAttracted:b=yes
+        object:t="us_fighters_squad"
+        target:t="jpn_fighters_squad"
+        useForTriggerFiltered:b=yes
+        filterWhom:t="object"
+        fireRandom:b=yes
+        playerAttractedCount:i=1
+        playerAttractedEffRate:r=0.4
+        fightInArea:t="area_01"
+        fightAreaRadius:r=2000.0
+        fightAreaOuterRadius:r=4000.0
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  us_bombers_appear{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ANY"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="canBomb"
+        object_marking:i=0
+        func:t="less"
+        value:i=1
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="us_fighters_squad"
+        object_var_value:i=0
+      }
+
+      unitWhenCountMatches{
+        object_type:t="isAlive"
+        object_marking:i=0
+        func:t="less"
+        value:i=5
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="us_fighters_squad"
+        object_var_value:i=0
+      }
+
+      varCompareInt{
+        var_value:t="timer"
+        value:i=300
+        comparasion_func:t="more"
+      }
+    }
+
+    actions{
+
+      unitDropAmmo{
+        object:t="us_fighters_squad"
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=yes
+        object:t="us_fighters_squad"
+        target:t="jpn_fighters_squad"
+        fireRandom:b=yes
+        playerAttractedCount:i=1
+        playerAttractedEffRate:r=0.4
+      }
+
+      unitSetIndication{
+        set:b=no
+        target:t="jpn_fighters_squad"
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+      }
+
+      unitSetIndication{
+        set:b=yes
+        target:t="us_bombers_01"
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+      }
+
+      wait{
+        time:r=5.0
+      }
+
+      unitWakeUp{
+        target:t="us_bombers_01"
+        target:t="us_fighters_05"
+      }
+
+      unitMoveTo{
+        target:t="bomb_point"
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=yes
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        fastClimb:b=no
+        destTimeMode:b=no
+        object:t="us_bombers_01"
+        speed:r=220.0
+      }
+
+      unitMoveTo{
+        target:t="us_bombers_01"
+        follow_target:b=yes
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=yes
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        fastClimb:b=no
+        destTimeMode:b=no
+        object:t="us_fighters_05"
+        follow_offset:p3=-150.0, 300.0, 20.0
+      }
+
+      triggerEnable{
+        target:t="us_bombers_near_bomb_point"
+        target:t="jpn_near_us_bombers"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  fail_mission{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isAlive"
+        object_marking:i=0
+        func:t="less"
+        value:i=5
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="jpn_tanks"
+      }
+    }
+
+    actions{
+
+      moSetObjectiveStatus{
+        target:t="pkg3_peleliu_mission_01_main"
+        status:i=3
+        object_marking:i=0
+        object_var_comp_op:t="equal"
+        object_var_name:t=""
+      }
+
+      wait{
+        time:r=3.0
+      }
+
+      missionFailed{
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  update_indicators{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionSetTargetsIndicator{
+        target_type:t="isAlive"
+        target_marking:i=0
+        delta:i=0
+        icon:t="tank"
+        "icon army":i=1
+        set:b=yes
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="jpn_tanks"
+      }
+
+      varModify{
+        operator:t="add"
+        value:r=1.0
+        var:t="timer"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  jpn_near_us_bombers{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=5.0
+      }
+    }
+
+    conditions{
+
+      unitDistanceBetween{
+        value:r=5500.0
+        math:t="2D"
+        object_type:t="isAlive"
+        target_type:t="isAlive"
+        check_objects:t="any"
+        check_targets:t="any"
+        object_marking:i=0
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="us_bombers_01"
+        target:t="jpn_fighters_squad"
+        object_var_value:i=0
+      }
+    }
+
+    actions{
+
+      unitAttackTarget{
+        playerAttracted:b=yes
+        object:t="us_fighters_05"
+        target:t="jpn_fighters_squad"
+        useForTriggerFiltered:b=yes
+        filterWhom:t="target"
+        fireRandom:b=yes
+        playerAttractedCount:i=1
+        playerAttractedEffRate:r=0.4
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  us_bombers_near_bomb_point{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitDistanceBetween{
+        value:r=5500.0
+        math:t="2D"
+        object_type:t="isAlive"
+        target_type:t="isAlive"
+        check_objects:t="any"
+        check_targets:t="any"
+        object_marking:i=0
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="us_bombers_01"
+        target:t="bomb_point"
+      }
+    }
+
+    actions{
+
+      unitMoveTo{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="bombers_out_point"
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        follow_target:b=no
+        fastClimb:b=no
+        destTimeMode:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=no
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object:t="us_bombers_01"
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="us_bombers_01"
+        target:t="jpn_tanks"
+        delayForObjects:p2=1.0, 2.0
+        fireRandom:b=yes
+      }
+
+      triggerEnable{
+        target:t="us_bombers_out_of_bombs"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  us_bombers_out_of_bombs{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ANY"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="canBomb"
+        object_marking:i=0
+        func:t="less"
+        value:i=1
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="us_bombers_01"
+      }
+
+      unitWhenCountMatches{
+        object_type:t="isActive"
+        object_marking:i=0
+        func:t="less"
+        value:i=1
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="us_bombers_01"
+      }
+
+      unitDistanceBetween{
+        value:r=15000.0
+        math:t="2D"
+        object_type:t="isActive"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        target_type:t="isAlive"
+        target_marking:i=0
+        check_objects:t="all"
+        check_targets:t="any"
+        object:t="us_bombers_01"
+        target:t="bombers_out_point"
+        compareCenters:b=no
+        check_all_units:b=yes
+      }
+    }
+
+    actions{
+
+      unitSetIndication{
+        set:b=no
+        target:t="us_bombers_01"
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+      }
+
+      unitMoveTo{
+        target:t="us_carrier_01"
+        follow_target:b=yes
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=no
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        fastClimb:b=no
+        destTimeMode:b=no
+        object:t="us_bombers_01"
+        follow_offset:p3=-150.0, 1200.0, 20.0
+      }
+
+      wait{
+        time:r=20.0
+      }
+
+      triggerEnable{
+        target:t="complete_mission"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  complete_mission{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="fail_mission"
+      }
+
+      moSetObjectiveStatus{
+        target:t="pkg3_peleliu_mission_01_main"
+        status:i=2
+        object_marking:i=0
+        object_var_comp_op:t="equal"
+        object_var_name:t=""
+      }
+
+      wait{
+        time:r=3.0
+      }
+
+      missionCompleted{
+        timer:b=no
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  check_1ppl{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isOnline"
+        object_marking:i=0
+        func:t="less"
+        value:i=2
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="player_wing"
+        object_var_value:i=0
+      }
+    }
+
+    actions{
+
+      unitDamage{
+        part:i=1
+        power:r=1.0
+        useEffect:b=no
+        countEffects:i=1
+        delay:p2=1.0, 1.0
+        offset:p3=0.0, 0.0, 0.0
+        radiusOffset:p2=10.0, 15.0
+        target:t="us_fighters_01"
+        randomTargetsCount:i=6
+        doExplosion:b=yes
+      }
+
+      unitDamage{
+        part:i=1
+        power:r=1.0
+        useEffect:b=no
+        countEffects:i=1
+        delay:p2=1.0, 1.0
+        offset:p3=0.0, 0.0, 0.0
+        radiusOffset:p2=10.0, 15.0
+        target:t="us_fighters_02"
+        randomTargetsCount:i=6
+        doExplosion:b=yes
+      }
+
+      unitDamage{
+        part:i=1
+        power:r=1.0
+        useEffect:b=no
+        countEffects:i=1
+        delay:p2=1.0, 1.0
+        offset:p3=0.0, 0.0, 0.0
+        radiusOffset:p2=10.0, 15.0
+        target:t="us_fighters_03"
+        randomTargetsCount:i=6
+        doExplosion:b=yes
+      }
+
+      unitDamage{
+        part:i=1
+        power:r=1.0
+        useEffect:b=no
+        countEffects:i=1
+        delay:p2=1.0, 1.0
+        offset:p3=0.0, 0.0, 0.0
+        radiusOffset:p2=10.0, 15.0
+        target:t="us_fighters_04"
+        randomTargetsCount:i=6
+        doExplosion:b=yes
+      }
+
+      unitDamage{
+        part:i=1
+        power:r=1.0
+        useEffect:b=no
+        countEffects:i=1
+        delay:p2=1.0, 1.0
+        offset:p3=0.0, 0.0, 0.0
+        radiusOffset:p2=10.0, 15.0
+        target:t="us_fighters_05"
+        randomTargetsCount:i=6
+        doExplosion:b=yes
+      }
+
+      unitDamage{
+        part:i=1
+        power:r=1.0
+        useEffect:b=no
+        countEffects:i=1
+        delay:p2=1.0, 1.0
+        offset:p3=0.0, 0.0, 0.0
+        radiusOffset:p2=10.0, 15.0
+        target:t="us_bombers_01"
+        randomTargetsCount:i=12
+        doExplosion:b=yes
+      }
+
+      triggerEnable{
+        target:t="sleep_dead_units"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  check_2ppl{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isOnline"
+        object_marking:i=0
+        func:t="equal"
+        value:i=2
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="player_wing"
+        object_var_value:i=0
+      }
+    }
+
+    actions{
+
+      unitDamage{
+        part:i=1
+        power:r=1.0
+        useEffect:b=no
+        countEffects:i=1
+        delay:p2=1.0, 1.0
+        offset:p3=0.0, 0.0, 0.0
+        radiusOffset:p2=10.0, 15.0
+        target:t="us_fighters_01"
+        randomTargetsCount:i=4
+        doExplosion:b=yes
+      }
+
+      unitDamage{
+        part:i=1
+        power:r=1.0
+        useEffect:b=no
+        countEffects:i=1
+        delay:p2=1.0, 1.0
+        offset:p3=0.0, 0.0, 0.0
+        radiusOffset:p2=10.0, 15.0
+        target:t="us_fighters_02"
+        randomTargetsCount:i=4
+        doExplosion:b=yes
+      }
+
+      unitDamage{
+        part:i=1
+        power:r=1.0
+        useEffect:b=no
+        countEffects:i=1
+        delay:p2=1.0, 1.0
+        offset:p3=0.0, 0.0, 0.0
+        radiusOffset:p2=10.0, 15.0
+        target:t="us_fighters_03"
+        randomTargetsCount:i=4
+        doExplosion:b=yes
+      }
+
+      unitDamage{
+        part:i=1
+        power:r=1.0
+        useEffect:b=no
+        countEffects:i=1
+        delay:p2=1.0, 1.0
+        offset:p3=0.0, 0.0, 0.0
+        radiusOffset:p2=10.0, 15.0
+        target:t="us_fighters_04"
+        randomTargetsCount:i=4
+        doExplosion:b=yes
+      }
+
+      unitDamage{
+        part:i=1
+        power:r=1.0
+        useEffect:b=no
+        countEffects:i=1
+        delay:p2=1.0, 1.0
+        offset:p3=0.0, 0.0, 0.0
+        radiusOffset:p2=10.0, 15.0
+        target:t="us_fighters_05"
+        randomTargetsCount:i=4
+        doExplosion:b=yes
+      }
+
+      unitDamage{
+        part:i=1
+        power:r=1.0
+        useEffect:b=no
+        countEffects:i=1
+        delay:p2=1.0, 1.0
+        offset:p3=0.0, 0.0, 0.0
+        radiusOffset:p2=10.0, 15.0
+        target:t="us_bombers_01"
+        randomTargetsCount:i=8
+        doExplosion:b=yes
+      }
+
+      triggerEnable{
+        target:t="sleep_dead_units"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  check_3ppl{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isOnline"
+        object_marking:i=0
+        func:t="equal"
+        value:i=3
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="player_wing"
+        object_var_value:i=0
+      }
+    }
+
+    actions{
+
+      unitDamage{
+        part:i=1
+        power:r=1.0
+        useEffect:b=no
+        countEffects:i=1
+        delay:p2=1.0, 1.0
+        offset:p3=0.0, 0.0, 0.0
+        radiusOffset:p2=10.0, 15.0
+        target:t="us_fighters_01"
+        randomTargetsCount:i=2
+        doExplosion:b=yes
+      }
+
+      unitDamage{
+        part:i=1
+        power:r=1.0
+        useEffect:b=no
+        countEffects:i=1
+        delay:p2=1.0, 1.0
+        offset:p3=0.0, 0.0, 0.0
+        radiusOffset:p2=10.0, 15.0
+        target:t="us_fighters_02"
+        randomTargetsCount:i=2
+        doExplosion:b=yes
+      }
+
+      unitDamage{
+        part:i=1
+        power:r=1.0
+        useEffect:b=no
+        countEffects:i=1
+        delay:p2=1.0, 1.0
+        offset:p3=0.0, 0.0, 0.0
+        radiusOffset:p2=10.0, 15.0
+        target:t="us_fighters_03"
+        randomTargetsCount:i=2
+        doExplosion:b=yes
+      }
+
+      unitDamage{
+        part:i=1
+        power:r=1.0
+        useEffect:b=no
+        countEffects:i=1
+        delay:p2=1.0, 1.0
+        offset:p3=0.0, 0.0, 0.0
+        radiusOffset:p2=10.0, 15.0
+        target:t="us_fighters_04"
+        randomTargetsCount:i=2
+        doExplosion:b=yes
+      }
+
+      unitDamage{
+        part:i=1
+        power:r=1.0
+        useEffect:b=no
+        countEffects:i=1
+        delay:p2=1.0, 1.0
+        offset:p3=0.0, 0.0, 0.0
+        radiusOffset:p2=10.0, 15.0
+        target:t="us_fighters_05"
+        randomTargetsCount:i=2
+        doExplosion:b=yes
+      }
+
+      unitDamage{
+        part:i=1
+        power:r=1.0
+        useEffect:b=no
+        countEffects:i=1
+        delay:p2=1.0, 1.0
+        offset:p3=0.0, 0.0, 0.0
+        radiusOffset:p2=10.0, 15.0
+        target:t="us_bombers_01"
+        randomTargetsCount:i=4
+        doExplosion:b=yes
+      }
+
+      triggerEnable{
+        target:t="sleep_dead_units"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  check_simul{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      gameWhenDifficulty{
+        difficulty:t="simulator"
+        is:t="equal"
+      }
+    }
+
+    actions{
+
+      unitDamage{
+        part:i=1
+        power:r=1.0
+        useEffect:b=no
+        countEffects:i=1
+        delay:p2=1.0, 1.0
+        offset:p3=0.0, 0.0, 0.0
+        radiusOffset:p2=10.0, 15.0
+        target:t="us_fighters_01"
+        randomTargetsCount:i=4
+        doExplosion:b=yes
+      }
+
+      unitDamage{
+        part:i=1
+        power:r=1.0
+        useEffect:b=no
+        countEffects:i=1
+        delay:p2=1.0, 1.0
+        offset:p3=0.0, 0.0, 0.0
+        radiusOffset:p2=10.0, 15.0
+        target:t="us_fighters_02"
+        randomTargetsCount:i=4
+        doExplosion:b=yes
+      }
+
+      unitDamage{
+        part:i=1
+        power:r=1.0
+        useEffect:b=no
+        countEffects:i=1
+        delay:p2=1.0, 1.0
+        offset:p3=0.0, 0.0, 0.0
+        radiusOffset:p2=10.0, 15.0
+        target:t="us_fighters_03"
+        randomTargetsCount:i=4
+        doExplosion:b=yes
+      }
+
+      unitDamage{
+        part:i=1
+        power:r=1.0
+        useEffect:b=no
+        countEffects:i=1
+        delay:p2=1.0, 1.0
+        offset:p3=0.0, 0.0, 0.0
+        radiusOffset:p2=10.0, 15.0
+        target:t="us_fighters_04"
+        randomTargetsCount:i=4
+        doExplosion:b=yes
+      }
+
+      unitDamage{
+        part:i=1
+        power:r=1.0
+        useEffect:b=no
+        countEffects:i=1
+        delay:p2=1.0, 1.0
+        offset:p3=0.0, 0.0, 0.0
+        radiusOffset:p2=10.0, 15.0
+        target:t="us_fighters_05"
+        randomTargetsCount:i=4
+        doExplosion:b=yes
+      }
+
+      unitDamage{
+        part:i=1
+        power:r=1.0
+        useEffect:b=no
+        countEffects:i=1
+        delay:p2=1.0, 1.0
+        offset:p3=0.0, 0.0, 0.0
+        radiusOffset:p2=10.0, 15.0
+        target:t="us_bombers_01"
+        randomTargetsCount:i=4
+        doExplosion:b=yes
+      }
+
+      triggerDisable{
+        target:t="check_simul"
+        target:t="check_real"
+      }
+
+      triggerEnable{
+        target:t="sleep_dead_units"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  check_real{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      gameWhenDifficulty{
+        difficulty:t="simulator"
+        is:t="equal"
+      }
+    }
+
+    actions{
+
+      unitDamage{
+        part:i=1
+        power:r=1.0
+        useEffect:b=no
+        countEffects:i=1
+        delay:p2=1.0, 1.0
+        offset:p3=0.0, 0.0, 0.0
+        radiusOffset:p2=10.0, 15.0
+        target:t="us_fighters_01"
+        randomTargetsCount:i=2
+        doExplosion:b=yes
+      }
+
+      unitDamage{
+        part:i=1
+        power:r=1.0
+        useEffect:b=no
+        countEffects:i=1
+        delay:p2=1.0, 1.0
+        offset:p3=0.0, 0.0, 0.0
+        radiusOffset:p2=10.0, 15.0
+        target:t="us_fighters_02"
+        randomTargetsCount:i=2
+        doExplosion:b=yes
+      }
+
+      unitDamage{
+        part:i=1
+        power:r=1.0
+        useEffect:b=no
+        countEffects:i=1
+        delay:p2=1.0, 1.0
+        offset:p3=0.0, 0.0, 0.0
+        radiusOffset:p2=10.0, 15.0
+        target:t="us_fighters_03"
+        randomTargetsCount:i=2
+        doExplosion:b=yes
+      }
+
+      unitDamage{
+        part:i=1
+        power:r=1.0
+        useEffect:b=no
+        countEffects:i=1
+        delay:p2=1.0, 1.0
+        offset:p3=0.0, 0.0, 0.0
+        radiusOffset:p2=10.0, 15.0
+        target:t="us_fighters_04"
+        randomTargetsCount:i=2
+        doExplosion:b=yes
+      }
+
+      unitDamage{
+        part:i=1
+        power:r=1.0
+        useEffect:b=no
+        countEffects:i=1
+        delay:p2=1.0, 1.0
+        offset:p3=0.0, 0.0, 0.0
+        radiusOffset:p2=10.0, 15.0
+        target:t="us_fighters_05"
+        randomTargetsCount:i=2
+        doExplosion:b=yes
+      }
+
+      unitDamage{
+        part:i=1
+        power:r=1.0
+        useEffect:b=no
+        countEffects:i=1
+        delay:p2=1.0, 1.0
+        offset:p3=0.0, 0.0, 0.0
+        radiusOffset:p2=10.0, 15.0
+        target:t="us_bombers_01"
+        randomTargetsCount:i=2
+        doExplosion:b=yes
+      }
+
+      triggerDisable{
+        target:t="check_simul"
+        target:t="check_real"
+      }
+
+      triggerEnable{
+        target:t="sleep_dead_units"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  sleep_dead_units{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isKilled"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        func:t="more"
+        value:i=0
+        object:t="us_bombers_01"
+        object:t="us_fighters_squad"
+      }
+    }
+
+    actions{
+
+      unitPutToSleep{
+        target:t="us_bombers_01"
+        target:t="us_fighters_squad"
+        useForTriggerFiltered:b=yes
+      }
+    }
+
+    else_actions{
+    }
+  }
+}
+
+mission_objectives{
+  isCategory:b=yes
+  is_enabled:b=yes
+
+  pkg3_peleliu_mission_01_main{
+    is_enabled:b=no
+    comments:t=""
+    type:t="abstractMissionObjective"
+
+    props{
+      isPrimary:b=yes
+      timeLimit:i=1800
+      scoreConst:i=100
+      scoreTime:i=400
+    }
+
+    onSuccess{
+    }
+
+    onFailed{
+    }
+  }
+}
+
+variables{
+  timer:i=0
+}
+
+dialogs{
+}
+
+airfields{
+}
+
+effects{
+}
+
+units{
+
+  armada{
+    name:t="player_wing"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-666.6, 427.35, -11078.4]]
+    unit_class:t="a6m5_zero"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="a6m5_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=1
+      count:i=4
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=2
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="us_fighters_01"
+    tm:m=[[0.130526, 0.0, 0.991445] [0.0, 1.0, 0.0] [-0.991445, 0.0, 0.130526] [-878.9, 382.8, -18923.0]]
+    unit_class:t="f4u-1d"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="f4u-1d_rockets"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=14
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=2
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="us_fighters_02"
+    tm:m=[[0.130526, 0.0, 0.991445] [0.0, 1.0, 0.0] [-0.991445, 0.0, 0.130526] [-716.2, 382.8, -18950.3]]
+    unit_class:t="f4u-1d"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="f4u-1d_bombs"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=14
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=2
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="us_fighters_03"
+    tm:m=[[0.130526, 0.0, 0.991445] [0.0, 1.0, 0.0] [-0.991445, 0.0, 0.130526] [-543.4, 382.8, -18981.8]]
+    unit_class:t="f4u-1d"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="f4u-1d_bombs"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=14
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=2
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="us_fighters_04"
+    tm:m=[[0.130526, 0.0, 0.991445] [0.0, 1.0, 0.0] [-0.991445, 0.0, 0.130526] [-385.95, 382.8, -18998.3]]
+    unit_class:t="f4u-1d"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="f4u-1d_bombs"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=14
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=2
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="us_bombers_01"
+    tm:m=[[-0.906308, 0.0, -0.422618] [0.0, 1.0, 0.0] [0.422618, 0.0, -0.906308] [17126.9, 2382.8, -9580.85]]
+    unit_class:t="b_24d"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="b_24d_20x100lbs"
+    bullets0:t="50cal_turret_api"
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=24
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=2
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="us_fighters_05"
+    tm:m=[[-0.976296, 0.0, -0.21644] [0.0, 1.0, 0.0] [0.21644, 0.0, -0.976296] [17393.1, 3382.8, -9543.5]]
+    unit_class:t="f6f-3"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=14
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=2
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="jpn_fighters_01"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-666.6, 427.35, -10089.5]]
+    unit_class:t="a6m5_zero"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="a6m5_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=1
+      count:i=4
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=2
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="jpn_fighters_02"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-666.6, 427.35, -9102.2]]
+    unit_class:t="a6m5_zero"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="a6m5_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=1
+      count:i=4
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=2
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="us_lcvp_01"
+    tm:m=[[-0.707107, 0.0, 0.707107] [0.0, 1.0, 0.0] [-0.707107, 0.0, -0.707107] [-764.75, -1.45, -13338.3]]
+    unit_class:t="uss_lcvp_lite"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="us_lcvp_02"
+    tm:m=[[-0.707107, 0.0, 0.707107] [0.0, 1.0, 0.0] [-0.707107, 0.0, -0.707107] [-758.5, -1.45, -13329.9]]
+    unit_class:t="uss_lcvp_lite"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="us_lcvp_03"
+    tm:m=[[-0.707107, 0.0, 0.707107] [0.0, 1.0, 0.0] [-0.707107, 0.0, -0.707107] [-749.25, -1.45, -13319.2]]
+    unit_class:t="uss_lcvp_lite"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="us_lcvp_04"
+    tm:m=[[-0.707107, 0.0, 0.707107] [0.0, 1.0, 0.0] [-0.707107, 0.0, -0.707107] [-740.5, -1.45, -13307.3]]
+    unit_class:t="uss_lcvp_lite"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="us_lcvp_05"
+    tm:m=[[-0.707107, 0.0, 0.707107] [0.0, 1.0, 0.0] [-0.707107, 0.0, -0.707107] [-733.1, -1.45, -13292.1]]
+    unit_class:t="uss_lcvp_lite"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="us_lcvp_06"
+    tm:m=[[-0.707107, 0.0, 0.707107] [0.0, 1.0, 0.0] [-0.707107, 0.0, -0.707107] [-826.35, -1.45, -12955.0]]
+    unit_class:t="uss_lcvp_lite"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="us_lcvp_07"
+    tm:m=[[-0.707107, 0.0, 0.707107] [0.0, 1.0, 0.0] [-0.707107, 0.0, -0.707107] [-809.25, -1.45, -12942.8]]
+    unit_class:t="uss_lcvp_lite"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="us_lcvp_08"
+    tm:m=[[-0.707107, 0.0, 0.707107] [0.0, 1.0, 0.0] [-0.707107, 0.0, -0.707107] [-790.45, -1.45, -12928.4]]
+    unit_class:t="uss_lcvp_lite"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="us_lcvp_09"
+    tm:m=[[-0.707107, 0.0, 0.707107] [0.0, 1.0, 0.0] [-0.707107, 0.0, -0.707107] [-749.7, -1.45, -12908.0]]
+    unit_class:t="uss_lcvp_lite"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="us_lcvp_10"
+    tm:m=[[-0.707107, 0.0, 0.707107] [0.0, 1.0, 0.0] [-0.707107, 0.0, -0.707107] [-715.35, -1.45, -12887.8]]
+    unit_class:t="uss_lcvp_lite"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="us_lcvp_11"
+    tm:m=[[-0.707107, 0.0, 0.707107] [0.0, 1.0, 0.0] [-0.707107, 0.0, -0.707107] [-668.35, -1.45, -12865.1]]
+    unit_class:t="uss_lcvp_lite"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="us_lcvp_12"
+    tm:m=[[-0.707107, 0.0, 0.707107] [0.0, 1.0, 0.0] [-0.707107, 0.0, -0.707107] [-608.7, -1.45, -12843.7]]
+    unit_class:t="uss_lcvp_lite"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="us_lcvp_13"
+    tm:m=[[-0.707107, 0.0, 0.707107] [0.0, 1.0, 0.0] [-0.707107, 0.0, -0.707107] [-327.15, -1.45, -13049.3]]
+    unit_class:t="uss_lcvp_lite"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="us_lcvp_14"
+    tm:m=[[-0.707107, 0.0, 0.707107] [0.0, 1.0, 0.0] [-0.707107, 0.0, -0.707107] [-306.65, -1.45, -13040.5]]
+    unit_class:t="uss_lcvp_lite"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="us_lcvp_15"
+    tm:m=[[-0.707107, 0.0, 0.707107] [0.0, 1.0, 0.0] [-0.707107, 0.0, -0.707107] [-275.95, -1.45, -13023.3]]
+    unit_class:t="uss_lcvp_lite"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="us_carrier_01"
+    tm:m=[[0.0436195, 0.0, 0.999048] [0.0, 1.0, 0.0] [-0.999048, 0.0, 0.0436195] [330.5, -17.2, -19162.9]]
+    unit_class:t="uss_cv_lexington"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="us_carrier_02"
+    tm:m=[[-0.130526, 0.0, 0.991445] [0.0, 1.0, 0.0] [-0.991445, 0.0, -0.130526] [730.65, -17.2, -19162.9]]
+    unit_class:t="uss_cv_wasp"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="us_carrier_03"
+    tm:m=[[0.300706, 0.0, 0.953717] [0.0, 1.0, 0.0] [-0.953717, 0.0, 0.300706] [1203.35, -17.2, -19162.9]]
+    unit_class:t="uss_cv_immortal"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="us_carrier_04"
+    tm:m=[[0.173648, 0.0, 0.984808] [0.0, 1.0, 0.0] [-0.984808, 0.0, 0.173648] [-221.4, -17.2, -19162.9]]
+    unit_class:t="uss_cv_enterprise"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="us_destroyer_01"
+    tm:m=[[0.0436195, 0.0, 0.999048] [0.0, 1.0, 0.0] [-0.999048, 0.0, 0.0436195] [161.8, -17.2, -19995.2]]
+    unit_class:t="uss_dd_sims"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="us_destroyer_02"
+    tm:m=[[-0.21644, 0.0, 0.976296] [0.0, 1.0, 0.0] [-0.976296, 0.0, -0.21644] [991.5, -17.2, -18830.3]]
+    unit_class:t="uss_dd_versus"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="us_destroyer_03"
+    tm:m=[[0.67559, 0.0, 0.737277] [0.0, 1.0, 0.0] [-0.737277, 0.0, 0.67559] [102.0, -17.2, -18808.8]]
+    unit_class:t="uss_dd_sims"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="us_destroyer_04"
+    tm:m=[[0.0436195, 0.0, 0.999048] [0.0, 1.0, 0.0] [-0.999048, 0.0, 0.0436195] [1899.2, -17.2, -19404.8]]
+    unit_class:t="uss_dd_sims"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  squad{
+    name:t="us_lcvp_squad"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-580.6, -5.4, -13049.2]]
+
+    props{
+      squad_members:t="us_lcvp_01"
+      squad_members:t="us_lcvp_02"
+      squad_members:t="us_lcvp_03"
+      squad_members:t="us_lcvp_04"
+      squad_members:t="us_lcvp_05"
+      squad_members:t="us_lcvp_06"
+      squad_members:t="us_lcvp_07"
+      squad_members:t="us_lcvp_08"
+      squad_members:t="us_lcvp_09"
+      squad_members:t="us_lcvp_10"
+      squad_members:t="us_lcvp_11"
+      squad_members:t="us_lcvp_12"
+      squad_members:t="us_lcvp_13"
+      squad_members:t="us_lcvp_14"
+      squad_members:t="us_lcvp_15"
+    }
+  }
+
+  squad{
+    name:t="us_fighters_squad"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-106.5, -14.4, -17539.3]]
+
+    props{
+      squad_members:t="us_fighters_01"
+      squad_members:t="us_fighters_02"
+      squad_members:t="us_fighters_03"
+      squad_members:t="us_fighters_04"
+    }
+  }
+
+  squad{
+    name:t="jpn_fighters_squad"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-1488.65, 31.9, -10242.5]]
+
+    props{
+      squad_members:t="player_wing"
+      squad_members:t="jpn_fighters_01"
+      squad_members:t="jpn_fighters_02"
+    }
+  }
+
+  tracked_vehicles{
+    name:t="us_tanks_01"
+    tm:m=[[-0.258819, 0.0, 0.965926] [0.0, 1.0, 0.0] [-0.965926, 0.0, -0.258819] [-909.25, 15.1, -12668.5]]
+    unit_class:t="germ_hummel"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=6
+      formation_type:t="rows"
+      formation_div:i=2
+      formation_step:p2=10.0, 5.0
+      formation_noise:p2=1.0, 1.0
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+      effShootingRate:r=0.1
+    }
+
+    way{
+    }
+  }
+
+  tracked_vehicles{
+    name:t="us_tanks_02"
+    tm:m=[[-0.422618, 0.0, 0.906308] [0.0, 1.0, 0.0] [-0.906308, 0.0, -0.422618] [-647.2, 15.1, -12564.9]]
+    unit_class:t="germ_hummel"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=6
+      formation_type:t="rows"
+      formation_div:i=2
+      formation_step:p2=10.0, 5.0
+      formation_noise:p2=1.0, 1.0
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+      effShootingRate:r=0.1
+    }
+
+    way{
+    }
+  }
+
+  tracked_vehicles{
+    name:t="jpn_tanks"
+    tm:m=[[0.173648, 0.0, -0.984808] [0.0, 1.0, 0.0] [0.984808, 0.0, 0.173648] [-836.8, 32.95, -12149.3]]
+    unit_class:t="jpn_t97_Shinhoto_ChiHa"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=1
+      count:i=22
+      formation_type:t="rows"
+      formation_div:i=2
+      formation_step:p2=20.0, 10.0
+      formation_noise:p2=1.0, 1.0
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+      effShootingRate:r=0.4
+    }
+
+    way{
+
+      jpn_tanks_wp_01{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-782.3, 29.9, -12508.6]]
+
+        props{
+          speed:r=3.0
+          moveType:t="MOVETO_STRAIGHT"
+          tas:b=no
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      jpn_tanks_wp_02{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-729.75, 4.85, -12816.7]]
+
+        props{
+          speed:r=3.0
+          moveType:t="MOVETO_STRAIGHT"
+          tas:b=no
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+    }
+  }
+
+  structures{
+    name:t="us_artillery"
+    tm:m=[[-0.422618, 0.0, 0.906308] [0.0, 1.0, 0.0] [-0.906308, 0.0, -0.422618] [-756.7, 3.35, -12845.8]]
+    unit_class:t="us_57mm_m1_noground"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=5
+      formation_type:t="rows"
+      formation_div:i=1
+      formation_step:p2=7.0, 5.0
+      formation_noise:p2=1.0, 1.0
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+      effShootingRate:r=0.2
+    }
+
+    way{
+    }
+  }
+}
+
+areas{
+
+  airfield_start_01{
+    type:t="Sphere"
+    tm:m=[[75.5, 0.0, 0.0] [0.0, 75.5, 0.0] [0.0, 0.0, 75.5] [-115.6, 27.05, -10510.9]]
+
+    props{
+    }
+  }
+
+  airfield_end_01{
+    type:t="Sphere"
+    tm:m=[[75.5, 0.0, 0.0] [0.0, 75.5, 0.0] [0.0, 0.0, 75.5] [-1079.35, 27.05, -11452.3]]
+
+    props{
+    }
+  }
+
+  airfield_start_02{
+    type:t="Sphere"
+    tm:m=[[75.5, 0.0, 0.0] [0.0, 75.5, 0.0] [0.0, 0.0, 75.5] [-1145.8, 27.05, -10551.6]]
+
+    props{
+    }
+  }
+
+  airfield_end_02{
+    type:t="Sphere"
+    tm:m=[[75.5, 0.0, 0.0] [0.0, 75.5, 0.0] [0.0, 0.0, 75.5] [-360.6, 27.05, -11335.0]]
+
+    props{
+    }
+  }
+
+  airfield_start_03{
+    type:t="Sphere"
+    tm:m=[[75.5, 0.0, 0.0] [0.0, 75.5, 0.0] [0.0, 0.0, 75.5] [3480.35, 27.05, -3832.8]]
+
+    props{
+    }
+  }
+
+  airfield_end_03{
+    type:t="Sphere"
+    tm:m=[[75.5, 0.0, 0.0] [0.0, 75.5, 0.0] [0.0, 0.0, 75.5] [2596.15, 27.05, -4160.05]]
+
+    props{
+    }
+  }
+
+  airfield_01_spawn_01{
+    type:t="Sphere"
+    tm:m=[[24.3, 0.0, 0.0] [0.0, 24.3, 0.0] [0.0, 0.0, 24.3] [-159.7, 27.05, -10595.8]]
+
+    props{
+    }
+  }
+
+  airfield_01_spawn_02{
+    type:t="Sphere"
+    tm:m=[[24.3, 0.0, 0.0] [0.0, 24.3, 0.0] [0.0, 0.0, 24.3] [-194.75, 27.05, -10562.5]]
+
+    props{
+    }
+  }
+
+  airfield_01_spawn_03{
+    type:t="Sphere"
+    tm:m=[[24.3, 0.0, 0.0] [0.0, 24.3, 0.0] [0.0, 0.0, 24.3] [-133.95, 27.05, -10566.5]]
+
+    props{
+    }
+  }
+
+  airfield_01_spawn_04{
+    type:t="Sphere"
+    tm:m=[[24.3, 0.0, 0.0] [0.0, 24.3, 0.0] [0.0, 0.0, 24.3] [-164.95, 27.05, -10533.5]]
+
+    props{
+    }
+  }
+
+  airfield_02_spawn_01{
+    type:t="Sphere"
+    tm:m=[[24.3, 0.0, 0.0] [0.0, 24.3, 0.0] [0.0, 0.0, 24.3] [-1054.7, 27.05, -10608.3]]
+
+    props{
+    }
+  }
+
+  airfield_02_spawn_02{
+    type:t="Sphere"
+    tm:m=[[24.3, 0.0, 0.0] [0.0, 24.3, 0.0] [0.0, 0.0, 24.3] [-1092.3, 27.05, -10641.0]]
+
+    props{
+    }
+  }
+
+  airfield_02_spawn_03{
+    type:t="Sphere"
+    tm:m=[[24.3, 0.0, 0.0] [0.0, 24.3, 0.0] [0.0, 0.0, 24.3] [-1081.6, 27.05, -10580.3]]
+
+    props{
+    }
+  }
+
+  airfield_02_spawn_04{
+    type:t="Sphere"
+    tm:m=[[24.3, 0.0, 0.0] [0.0, 24.3, 0.0] [0.0, 0.0, 24.3] [-1116.3, 27.05, -10611.9]]
+
+    props{
+    }
+  }
+
+  airfield_03_spawn_01{
+    type:t="Sphere"
+    tm:m=[[24.3, 0.0, 0.0] [0.0, 24.3, 0.0] [0.0, 0.0, 24.3] [3402.0, 27.05, -3887.5]]
+
+    props{
+    }
+  }
+
+  airfield_03_spawn_02{
+    type:t="Sphere"
+    tm:m=[[24.3, 0.0, 0.0] [0.0, 24.3, 0.0] [0.0, 0.0, 24.3] [3393.5, 27.05, -3846.7]]
+
+    props{
+    }
+  }
+
+  airfield_03_spawn_03{
+    type:t="Sphere"
+    tm:m=[[24.3, 0.0, 0.0] [0.0, 24.3, 0.0] [0.0, 0.0, 24.3] [3438.9, 27.05, -3873.15]]
+
+    props{
+    }
+  }
+
+  airfield_03_spawn_04{
+    type:t="Sphere"
+    tm:m=[[24.3, 0.0, 0.0] [0.0, 24.3, 0.0] [0.0, 0.0, 24.3] [3430.9, 27.05, -3835.1]]
+
+    props{
+    }
+  }
+
+  bomb_point{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-716.45, 2320.7, -11762.7]]
+
+    props{
+    }
+  }
+
+  area_01{
+    type:t="Sphere"
+    tm:m=[[9000.0, 0.0, 0.0] [0.0, 9000.0, 0.0] [0.0, 0.0, 9000.0] [-750.55, 450.437, -12706.4]]
+
+    props{
+    }
+  }
+
+  bombers_out_point{
+    type:t="Sphere"
+    tm:m=[[30000.0, 0.0, 0.0] [0.0, 30000.0, 0.0] [0.0, 0.0, 30000.0] [14921.9, 1500.0, -25480.3]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+}
+
+objLayers{
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+}
+
+wayPoints{
+}

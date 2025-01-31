@@ -1,0 +1,1579 @@
+selected_tag:t=""
+bin_dump_file:t=""
+
+mission_settings{
+
+  player{
+    army:i=1
+  }
+
+  player_teamB{
+    army:i=2
+  }
+
+  mission{
+    level:t="levels/water.bin"
+    type:t="campaign"
+    restoreType:t="attempts"
+    optionalTakeOff:b=no
+    environment:t="Day"
+    weather:t="hazy"
+  }
+
+  spectator_points{
+  }
+}
+
+imports{
+}
+
+triggers{
+  isCategory:b=yes
+  is_enabled:b=yes
+
+  bto_init{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      initMission{
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      varSetString{
+        value:t="t1_bto_spawn_01"
+        var:t="t1_spawn_01_name"
+      }
+
+      varSetString{
+        value:t="t2_bto_spawn_01"
+        var:t="t2_spawn_01_name"
+      }
+
+      varSetString{
+        value:t="bto_battle_area"
+        var:t="battle_area_name"
+      }
+
+      varSetString{
+        value:t="t1_bto_circle_01"
+        var:t="t1_circle_name"
+      }
+
+      varSetString{
+        value:t="t1_bto_effect_01"
+        var:t="t1_effect_name"
+      }
+
+      varSetString{
+        value:t="t1_bto_capture_zone_01"
+        var:t="t1_capture_area_name"
+      }
+
+      varSetString{
+        value:t="t2_bto_circle_01"
+        var:t="t2_circle_name"
+      }
+
+      varSetString{
+        value:t="t2_bto_effect_01"
+        var:t="t2_effect_name"
+      }
+
+      varSetString{
+        value:t="t2_bto_capture_zone_01"
+        var:t="t2_capture_area_name"
+      }
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t=""
+      }
+
+      varSetInt{
+        value:i=1
+        var:t="t1_bto_cur_zone_num"
+        var:t="t2_bto_cur_zone_num"
+      }
+
+      triggerEnable{
+        target:t="bto_start"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  bto_start{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      initMission{
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionMarkAsRespawnPoint{
+        loc_name:t="missions/spawn_01"
+        spawnEffect:b=no
+        isAirfield:b=no
+        isUnit:b=no
+        offset:p3=0.0, 0.0, 0.0
+        radius:r=-1.0
+        isStrictSpawn:b=no
+        useExisting:b=no
+        removeAreas:b=no
+        canSpawnOnNeutral:b=no
+        showOnMap:b=yes
+        isIndividual:b=yes
+        target:t="@t1_spawn_01_name"
+        team:t="A"
+
+        tags{
+          tank:b=yes
+        }
+      }
+
+      missionMarkAsRespawnPoint{
+        loc_name:t="missions/spawn_01"
+        spawnEffect:b=no
+        isAirfield:b=no
+        isUnit:b=no
+        offset:p3=0.0, 0.0, 0.0
+        radius:r=-1.0
+        isStrictSpawn:b=no
+        useExisting:b=no
+        removeAreas:b=no
+        canSpawnOnNeutral:b=no
+        showOnMap:b=yes
+        isIndividual:b=yes
+        target:t="@t2_spawn_01_name"
+        team:t="B"
+
+        tags{
+          tank:b=yes
+        }
+      }
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t=""
+      }
+
+      moAddMissionObjective{
+        target:t="avg_Bto_objective_01"
+      }
+
+      moAddMissionObjective{
+        target:t="avg_Bto_objective_02"
+      }
+
+      triggerEnable{
+        target:t="battle_area_check"
+        target:t="bto_t1_fill_names"
+        target:t="bto_t2_fill_names"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  battle_area_check{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      initMission{
+      }
+    }
+
+    conditions{
+
+      objectExists{
+        target:t="@battle_area_name"
+        type:t="area"
+      }
+    }
+
+    actions{
+
+      missionBattleArea{
+        air:b=no
+        ground:b=yes
+        mapArea:b=yes
+        killOutOfBattleArea:b=yes
+        target:t="@battle_area_name"
+        area:t="@battle_area_name"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  bto_t1_draw_lines_start{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.1
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t=""
+      }
+
+      varModify{
+        operator:t="add"
+        value:r=1.0
+        var:t="t1_bto_draw_line_idx"
+      }
+
+      varModify{
+        operator:t="add"
+        value:r=1.0
+        var:t="t1_bto_draw_next_line_idx"
+      }
+
+      varSetInt{
+        value:i=0
+        var:t="t1_bto_draw_next_line_idx"
+        input_var:t="t1_bto_draw_line_idx"
+      }
+
+      varSetString{
+        value:t="t1_bto_effect_"
+        var:t="t1_bto_line_start_point"
+      }
+
+      varSetString{
+        value:t="t1_bto_effect_"
+        var:t="t1_bto_line_end_point"
+      }
+
+      varAddString{
+        value:t="@t1_bto_draw_line_idx"
+        digits:i=2
+        var:t="t1_bto_line_start_point"
+      }
+
+      varAddString{
+        value:t="@t1_bto_draw_next_line_idx"
+        digits:i=2
+        var:t="t1_bto_line_end_point"
+      }
+
+      triggerEnable{
+        target:t="bto_t1_draw_line_drawing"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  bto_t2_draw_lines_start{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.1
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t=""
+      }
+
+      varModify{
+        operator:t="add"
+        value:r=1.0
+        var:t="t2_bto_draw_line_idx"
+      }
+
+      varModify{
+        operator:t="add"
+        value:r=1.0
+        var:t="t2_bto_draw_next_line_idx"
+      }
+
+      varSetInt{
+        value:i=0
+        var:t="t2_bto_draw_next_line_idx"
+        input_var:t="t2_bto_draw_line_idx"
+      }
+
+      varSetString{
+        value:t="t2_bto_effect_"
+        var:t="t2_bto_line_start_point"
+      }
+
+      varSetString{
+        value:t="t2_bto_effect_"
+        var:t="t2_bto_line_end_point"
+      }
+
+      varAddString{
+        value:t="@t2_bto_draw_line_idx"
+        digits:i=2
+        var:t="t2_bto_line_start_point"
+      }
+
+      varAddString{
+        value:t="@t2_bto_draw_next_line_idx"
+        digits:i=2
+        var:t="t2_bto_line_end_point"
+      }
+
+      triggerEnable{
+        target:t="bto_t2_draw_line_drawing"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  bto_t1_draw_line_drawing{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.1
+      }
+    }
+
+    conditions{
+
+      objectExists{
+        target:t="@t1_bto_line_start_point"
+        type:t="area"
+      }
+
+      objectExists{
+        target:t="@t1_bto_line_end_point"
+        type:t="area"
+      }
+    }
+
+    actions{
+
+      missionShowMapLine{
+        areaNameFrom:t="@t1_bto_line_start_point"
+        areaNameTo:t="@t1_bto_line_end_point"
+        show:b=yes
+        team:t="Both"
+        colorCode:t="Team A"
+        scale:r=0.5
+      }
+
+      missionShowMapIcon{
+        areaName:t="@t1_bto_line_start_point"
+        show:b=yes
+        iconName:t="ui/gameuiskin#objective_captureZone_next_default.svg"
+        colorCode:t="Team A"
+        scale:r=0.75
+      }
+
+      missionShowMapIcon{
+        areaName:t="@t1_bto_line_end_point"
+        show:b=yes
+        iconName:t="ui/gameuiskin#objective_captureZone_next_default.svg"
+        colorCode:t="Team A"
+        scale:r=0.75
+      }
+
+      triggerEnable{
+        target:t="bto_t1_draw_lines_start"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  bto_t2_draw_line_drawing{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.1
+      }
+    }
+
+    conditions{
+
+      objectExists{
+        target:t="@t2_bto_line_start_point"
+        type:t="area"
+      }
+
+      objectExists{
+        target:t="@t2_bto_line_end_point"
+        type:t="area"
+      }
+    }
+
+    actions{
+
+      missionShowMapLine{
+        areaNameFrom:t="@t2_bto_line_start_point"
+        areaNameTo:t="@t2_bto_line_end_point"
+        show:b=yes
+        team:t="Both"
+        colorCode:t="Team B"
+        scale:r=0.5
+      }
+
+      missionShowMapIcon{
+        areaName:t="@t2_bto_line_start_point"
+        show:b=yes
+        iconName:t="ui/gameuiskin#objective_captureZone_next_default.svg"
+        colorCode:t="Team B"
+        scale:r=0.75
+      }
+
+      missionShowMapIcon{
+        areaName:t="@t2_bto_line_end_point"
+        show:b=yes
+        iconName:t="ui/gameuiskin#objective_captureZone_next_default.svg"
+        colorCode:t="Team B"
+        scale:r=0.75
+      }
+
+      triggerEnable{
+        target:t="bto_t2_draw_lines_start"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  bto_t1_activate_next_zone{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.1
+      }
+    }
+
+    conditions{
+
+      objectExists{
+        target:t="@t1_capture_area_name"
+        type:t="area"
+      }
+    }
+
+    actions{
+
+      unitWakeUp{
+        target:t="@t1_circle_name"
+      }
+
+      unitPlayEffect{
+        effect_type:t="specify"
+        effect:t="pv_point_smoke_blue"
+        offset:p3=0.0, 0.0, 0.0
+        radiusOffset:p2=0.0, 0.0
+        show:b=yes
+        attach:b=yes
+        scale:r=1.0
+        loopSpawn:b=yes
+        delay:p2=1.0, 1.0
+        target:t="@t1_effect_name"
+      }
+
+      missionMarkAsCaptureZone{
+        army:i=1
+        name_for_respawn_base:t=""
+        timeMultiplier:r=1.5
+        disableZone:b=no
+        target:t="@t1_capture_area_name"
+        canCaptureOnGround:b=no
+        canCaptureInAir:b=no
+        canCaptureByGM:b=yes
+        captureNoPenalty:b=yes
+      }
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t="proveryaem novyj spavn protivopolozhnjo komandy"
+      }
+
+      triggerEnable{
+        target:t="bto_t1_draw_lines_start"
+        target:t="bto_t2_draw_lines_start"
+        target:t="bto_t1_zone_captured"
+      }
+
+      triggerEnable{
+        target:t="bto_t2_check_new_spawn"
+      }
+    }
+
+    else_actions{
+
+      comment{
+        value:t="zahvachena final~'naya zona"
+      }
+
+      triggerEnable{
+        target:t="bto_t2_win"
+      }
+    }
+  }
+
+  bto_t2_activate_next_zone{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.1
+      }
+    }
+
+    conditions{
+
+      objectExists{
+        target:t="@t2_capture_area_name"
+        type:t="area"
+      }
+    }
+
+    actions{
+
+      unitWakeUp{
+        target:t="@t2_circle_name"
+      }
+
+      unitPlayEffect{
+        effect_type:t="specify"
+        effect:t="pv_point_smoke_blue"
+        offset:p3=0.0, 0.0, 0.0
+        radiusOffset:p2=0.0, 0.0
+        show:b=yes
+        attach:b=yes
+        scale:r=1.0
+        loopSpawn:b=yes
+        delay:p2=1.0, 1.0
+        target:t="@t2_effect_name"
+      }
+
+      missionMarkAsCaptureZone{
+        army:i=2
+        name_for_respawn_base:t=""
+        timeMultiplier:r=1.5
+        disableZone:b=no
+        target:t="@t2_capture_area_name"
+        canCaptureOnGround:b=no
+        canCaptureInAir:b=no
+        canCaptureByGM:b=yes
+        captureNoPenalty:b=yes
+      }
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t="proveryaem novyj spavn protivopolozhnjo komandy"
+      }
+
+      triggerEnable{
+        target:t="bto_t1_draw_lines_start"
+        target:t="bto_t2_draw_lines_start"
+        target:t="bto_t2_zone_captured"
+      }
+
+      triggerEnable{
+        target:t="bto_t1_check_new_spawn"
+      }
+    }
+
+    else_actions{
+
+      comment{
+        value:t="zahvachena final~'naya zona"
+      }
+
+      triggerEnable{
+        target:t="bto_t1_win"
+      }
+    }
+  }
+
+  bto_t1_check_new_spawn{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      objectExists{
+        target:t="@t1_spawn_01_name"
+        type:t="squad"
+      }
+
+      varCompareInt{
+        var_value:t="t2_bto_cur_zone_num"
+        value:i=1
+        comparasion_func:t="more"
+      }
+    }
+
+    actions{
+
+      comment{
+        value:t="na spavn 1 nichego ne delaem"
+      }
+
+      comment{
+        value:t="dobavlyaem indeks zony protivopolozhnoj komandy"
+      }
+
+      comment{
+        value:t=""
+      }
+
+      varSetString{
+        value:t="missions/spawn_"
+        var:t="t1_spawn_loc_name"
+      }
+
+      varAddString{
+        value:t="@t2_bto_cur_zone_num"
+        digits:i=2
+        var:t="t1_spawn_loc_name"
+      }
+
+      missionMarkAsRespawnPoint{
+        loc_name:t="@t1_spawn_loc_name"
+        spawnEffect:b=no
+        isAirfield:b=no
+        isUnit:b=no
+        offset:p3=0.0, 0.0, 0.0
+        radius:r=-1.0
+        isStrictSpawn:b=no
+        useExisting:b=no
+        removeAreas:b=no
+        canSpawnOnNeutral:b=no
+        showOnMap:b=yes
+        isIndividual:b=yes
+        target:t="@t1_spawn_01_name"
+        team:t="A"
+
+        tags{
+          tank:b=yes
+        }
+      }
+
+      playHint{
+        hintType:t="custom"
+        name:t="hints/new_respawn_point"
+        action:t="show"
+        shouldFadeOut:b=no
+        time:r=10.0
+        priority:i=0
+        team:t="A"
+      }
+
+      playHint{
+        hintType:t="custom"
+        name:t="hints/new_respawn_point"
+        action:t="hide"
+        shouldFadeOut:b=no
+        time:r=0.0
+        priority:i=0
+        team:t="A"
+      }
+
+      wait{
+        time:r=10.0
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  bto_t2_check_new_spawn{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      objectExists{
+        target:t="@t2_spawn_01_name"
+        type:t="squad"
+      }
+
+      varCompareInt{
+        var_value:t="t1_bto_cur_zone_num"
+        value:i=1
+        comparasion_func:t="more"
+      }
+    }
+
+    actions{
+
+      comment{
+        value:t="na spavn 1 nichego ne delaem"
+      }
+
+      comment{
+        value:t="dobavlyaem indeks zony protivopolozhnoj komandy"
+      }
+
+      varSetString{
+        value:t="missions/spawn_"
+        var:t="t2_spawn_loc_name"
+      }
+
+      varAddString{
+        value:t="@t1_bto_cur_zone_num"
+        digits:i=2
+        var:t="t2_spawn_loc_name"
+      }
+
+      missionMarkAsRespawnPoint{
+        loc_name:t="@t2_spawn_loc_name"
+        spawnEffect:b=no
+        isAirfield:b=no
+        isUnit:b=no
+        offset:p3=0.0, 0.0, 0.0
+        radius:r=-1.0
+        isStrictSpawn:b=no
+        useExisting:b=no
+        removeAreas:b=no
+        canSpawnOnNeutral:b=no
+        showOnMap:b=yes
+        isIndividual:b=yes
+        target:t="@t2_spawn_01_name"
+        team:t="B"
+
+        tags{
+          tank:b=yes
+        }
+      }
+
+      playHint{
+        hintType:t="custom"
+        name:t="hints/new_respawn_point"
+        action:t="show"
+        shouldFadeOut:b=no
+        time:r=10.0
+        priority:i=0
+        team:t="B"
+      }
+
+      playHint{
+        hintType:t="custom"
+        name:t="hints/new_respawn_point"
+        action:t="hide"
+        shouldFadeOut:b=no
+        time:r=0.0
+        priority:i=0
+        team:t="B"
+      }
+
+      wait{
+        time:r=10.0
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  bto_t1_zone_captured{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      missionIsZoneCaptured{
+        target:t="@t1_capture_area_name"
+        army:i=2
+      }
+    }
+
+    actions{
+
+      unitPutToSleep{
+        target:t="@t1_circle_name"
+      }
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t=""
+      }
+
+      missionMarkAsCaptureZone{
+        army:i=0
+        timeMultiplier:r=1.0
+        disableZone:b=yes
+        name_for_respawn_base:t=""
+        target:t="@t1_capture_area_name"
+      }
+
+      missionShowMapLine{
+        areaNameFrom:t="@t1_bto_line_start_point"
+        areaNameTo:t="@t1_bto_line_end_point"
+        show:b=no
+        team:t="Both"
+        colorCode:t="Team A"
+        scale:r=0.75
+        clear:b=yes
+      }
+
+      varSetString{
+        value:t="t1_bto_effect_"
+        var:t="t1_bto_line_start_point"
+      }
+
+      varAddString{
+        value:t="@t1_bto_cur_zone_num"
+        digits:i=2
+        var:t="t1_bto_line_start_point"
+      }
+
+      missionShowMapIcon{
+        areaName:t="@t1_bto_line_start_point"
+        show:b=no
+        iconName:t="ui/gameuiskin#objective_captureZone_next_default.svg"
+        colorCode:t="Team A"
+        scale:r=0.75
+      }
+
+      varModify{
+        operator:t="add"
+        value:r=1.0
+        var:t="t1_bto_cur_zone_num"
+      }
+
+      triggerEnable{
+        target:t="bto_t1_fill_names"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  bto_t2_zone_captured{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      missionIsZoneCaptured{
+        target:t="@t2_capture_area_name"
+        army:i=1
+      }
+    }
+
+    actions{
+
+      unitPutToSleep{
+        target:t="@t2_circle_name"
+      }
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t=""
+      }
+
+      missionMarkAsCaptureZone{
+        army:i=0
+        timeMultiplier:r=1.0
+        disableZone:b=yes
+        name_for_respawn_base:t=""
+        target:t="@t2_capture_area_name"
+      }
+
+      missionShowMapLine{
+        areaNameFrom:t="@t2_bto_line_start_point"
+        areaNameTo:t="@t2_bto_line_end_point"
+        show:b=no
+        team:t="Both"
+        colorCode:t="Team B"
+        scale:r=0.75
+        clear:b=yes
+      }
+
+      varSetString{
+        value:t="t2_bto_effect_"
+        var:t="t2_bto_line_start_point"
+      }
+
+      varAddString{
+        value:t="@t2_bto_cur_zone_num"
+        digits:i=2
+        var:t="t2_bto_line_start_point"
+      }
+
+      missionShowMapIcon{
+        areaName:t="@t2_bto_line_start_point"
+        show:b=no
+        iconName:t="ui/gameuiskin#objective_captureZone_next_default.svg"
+        colorCode:t="Team B"
+        scale:r=0.75
+      }
+
+      varModify{
+        operator:t="add"
+        value:r=1.0
+        var:t="t2_bto_cur_zone_num"
+      }
+
+      triggerEnable{
+        target:t="bto_t2_fill_names"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  bto_t1_fill_names{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.1
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      varSetString{
+        value:t="t1_bto_spawn_"
+        var:t="t1_spawn_01_name"
+      }
+
+      varSetString{
+        value:t="t1_bto_circle_"
+        var:t="t1_circle_name"
+      }
+
+      varSetString{
+        value:t="t1_bto_effect_"
+        var:t="t1_effect_name"
+      }
+
+      varSetString{
+        value:t="t1_bto_capture_zone_"
+        var:t="t1_capture_area_name"
+      }
+
+      varSetString{
+        value:t="t2_bto_spawn_"
+        var:t="t2_spawn_01_name"
+      }
+
+      varAddString{
+        value:t="@t1_bto_cur_zone_num"
+        digits:i=2
+        var:t="t1_spawn_01_name"
+      }
+
+      varAddString{
+        value:t="@t1_bto_cur_zone_num"
+        digits:i=2
+        var:t="t1_circle_name"
+      }
+
+      varAddString{
+        value:t="@t1_bto_cur_zone_num"
+        digits:i=2
+        var:t="t1_effect_name"
+      }
+
+      varAddString{
+        value:t="@t1_bto_cur_zone_num"
+        digits:i=2
+        var:t="t1_capture_area_name"
+      }
+
+      varAddString{
+        value:t="@t1_bto_cur_zone_num"
+        digits:i=2
+        var:t="t2_spawn_01_name"
+      }
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t="zapolnyaem spavn protivopolozhnoj komandy"
+      }
+
+      comment{
+        value:t=""
+      }
+
+      varSetInt{
+        value:i=0
+        var:t="t1_bto_draw_line_idx"
+        input_var:t="t1_bto_cur_zone_num"
+      }
+
+      varSetInt{
+        value:i=0
+        var:t="t2_bto_draw_line_idx"
+        input_var:t="t2_bto_cur_zone_num"
+      }
+
+      varModify{
+        operator:t="add"
+        value:r=-1.0
+        var:t="t1_bto_draw_line_idx"
+      }
+
+      varModify{
+        operator:t="add"
+        value:r=-1.0
+        var:t="t2_bto_draw_line_idx"
+      }
+
+      triggerEnable{
+        target:t="bto_t1_activate_next_zone"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  bto_t2_fill_names{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.1
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      varSetString{
+        value:t="t2_bto_spawn_"
+        var:t="t2_spawn_01_name"
+      }
+
+      varSetString{
+        value:t="t2_bto_circle_"
+        var:t="t2_circle_name"
+      }
+
+      varSetString{
+        value:t="t2_bto_effect_"
+        var:t="t2_effect_name"
+      }
+
+      varSetString{
+        value:t="t2_bto_capture_zone_"
+        var:t="t2_capture_area_name"
+      }
+
+      varSetString{
+        value:t="t1_bto_spawn_"
+        var:t="t1_spawn_01_name"
+      }
+
+      varAddString{
+        value:t="@t2_bto_cur_zone_num"
+        digits:i=2
+        var:t="t2_spawn_01_name"
+      }
+
+      varAddString{
+        value:t="@t2_bto_cur_zone_num"
+        digits:i=2
+        var:t="t2_circle_name"
+      }
+
+      varAddString{
+        value:t="@t2_bto_cur_zone_num"
+        digits:i=2
+        var:t="t2_effect_name"
+      }
+
+      varAddString{
+        value:t="@t2_bto_cur_zone_num"
+        digits:i=2
+        var:t="t2_capture_area_name"
+      }
+
+      varAddString{
+        value:t="@t2_bto_cur_zone_num"
+        digits:i=2
+        var:t="t1_spawn_01_name"
+      }
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t="zapolnyaem spavn protivopolozhnoj komandy"
+      }
+
+      comment{
+        value:t=""
+      }
+
+      varSetInt{
+        value:i=0
+        var:t="t1_bto_draw_line_idx"
+        input_var:t="t1_bto_cur_zone_num"
+      }
+
+      varSetInt{
+        value:i=0
+        var:t="t2_bto_draw_line_idx"
+        input_var:t="t2_bto_cur_zone_num"
+      }
+
+      varModify{
+        operator:t="add"
+        value:r=-1.0
+        var:t="t1_bto_draw_line_idx"
+      }
+
+      varModify{
+        operator:t="add"
+        value:r=-1.0
+        var:t="t2_bto_draw_line_idx"
+      }
+
+      triggerEnable{
+        target:t="bto_t2_activate_next_zone"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  bto_t1_win{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      gameMPChangeScore{
+        value:i=-2
+        valueSystem:t="percentage"
+        team:t="B"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  bto_t2_win{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      gameMPChangeScore{
+        value:i=-2
+        valueSystem:t="percentage"
+        team:t="A"
+      }
+    }
+
+    else_actions{
+    }
+  }
+}
+
+mission_objectives{
+  isCategory:b=yes
+  is_enabled:b=yes
+
+  avg_Bto_objective_01{
+    is_enabled:b=no
+    comments:t=""
+    type:t="abstractMissionObjective"
+
+    props{
+      isPrimary:b=yes
+      timeLimit:i=3600
+      team:t="Both"
+    }
+
+    onSuccess{
+    }
+
+    onFailed{
+    }
+  }
+
+  avg_Bto_objective_02{
+    is_enabled:b=no
+    comments:t=""
+    type:t="abstractMissionObjective"
+
+    props{
+      isPrimary:b=yes
+      timeLimit:i=3600
+      team:t="Both"
+    }
+
+    onSuccess{
+    }
+
+    onFailed{
+    }
+  }
+}
+
+variables{
+  bto_max_zones:i=3
+  t1_spawn_01_name:t=""
+  t2_spawn_01_name:t=""
+  battle_area_name:t=""
+  t1_bto_cur_zone_num:i=0
+  t2_bto_cur_zone_num:i=0
+  t1_bto_line_start_point:t=""
+  t1_bto_line_end_point:t=""
+  t2_bto_line_start_point:t=""
+  t2_bto_line_end_point:t=""
+  t1_bto_draw_line_idx:i=0
+  t2_bto_draw_line_idx:i=0
+  t1_bto_draw_next_line_idx:i=0
+  t2_bto_draw_next_line_idx:i=0
+  t1_capture_area_name:t=""
+  t1_circle_name:t=""
+  t1_effect_name:t=""
+  t2_capture_area_name:t=""
+  t2_circle_name:t=""
+  t2_effect_name:t=""
+  t1_spawn_loc_name:t=""
+  t2_spawn_loc_name:t=""
+}
+
+dialogs{
+}
+
+airfields{
+}
+
+effects{
+}
+
+units{
+}
+
+areas{
+}
+
+objLayers{
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+}
+
+wayPoints{
+}

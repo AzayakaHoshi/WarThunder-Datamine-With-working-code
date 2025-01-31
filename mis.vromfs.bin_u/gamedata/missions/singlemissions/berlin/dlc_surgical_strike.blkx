@@ -1,0 +1,4927 @@
+selected_tag:t=""
+bin_dump_file:t=""
+
+mission_settings{
+
+  player{
+    army:i=1
+    wing:t="player_wing"
+  }
+
+  player_teamB{
+    army:i=2
+  }
+
+  mission{
+    level:t="levels/berlin.bin"
+    type:t="singleMission"
+    environment:t="Day"
+    weather:t="cloudy"
+    gt_reload_explosives:b=yes
+    restoreType:t="attempts"
+    optionalTakeOff:b=no
+    windSpeed:p2=4.0, 5.0
+    windDirectionDeg:p2=235.0, 240.0
+
+    stars{
+      year:i=1945
+      month:i=4
+      day:i=20
+    }
+  }
+
+  atmosphere{
+    pressure:r=756.0
+    temperature:r=17.0
+  }
+
+  spectator_points{
+  }
+
+  briefing{
+    place_loc:t=""
+    date_loc:t=""
+    objective_loc:t=""
+    music:t="action_01"
+
+    part{
+      event:t=""
+      minTime:i=0
+
+      slide{
+        map:b=yes
+        minTime:i=4
+        picture:t=""
+        showAirMap:b=no
+
+        arrow{
+          width:i=1
+          side:t="ally"
+          point:t="ussr_tanks_01"
+          point:t="waypoint_01_area_03"
+          point:t="waypoint_02_area_03"
+          point:t="waypoint_03_area_03"
+          point:t="waypoint_04_area_03"
+          point:t="waypoint_05_area_03"
+          point:t="waypoint_06_area_03"
+          point:t="waypoint_07_area_03"
+          point:t="waypoint_08_area_03"
+          point:t="waypoint_08_area_03"
+        }
+
+        icon{
+          icontype:t="tank"
+          side:t="ally"
+          target:t="ussr_tanks_01"
+        }
+
+        icon{
+          icontype:t="bomber"
+          side:t="player"
+          target:t="player_wing"
+          lookAt:t="ussr_tanks_01"
+        }
+      }
+    }
+  }
+}
+
+imports{
+
+  import_record{
+    file:t="gameData/missions/bridges/berlin_bridges.blk"
+    importAreas:b=yes
+    importUnits:b=yes
+    importTriggers:b=yes
+    importMissionObjectives:b=yes
+    importWayPoints:b=yes
+    showAreas:b=yes
+    showUnits:b=yes
+    showTriggers:b=yes
+    showMissionObjectives:b=yes
+    showWayPoints:b=yes
+
+    excludes{
+    }
+  }
+}
+
+triggers{
+  isCategory:b=yes
+  is_enabled:b=yes
+
+  start_mission{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      initMission{
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionSetWeatherParams{
+        waterWindStrengtMin:r=4.0
+        waterWindStrengtMax:r=5.0
+      }
+
+      unitSetProperties{
+        object:t="germ_artillery_01_squad"
+        object:t="germ_artillery_02_squad"
+        object:t="germ_pz_vi_01"
+        object:t="germ_artillery_03_squad"
+        object:t="pziv_01"
+        object:t="germ_artillery_04_01"
+        object:t="germ_tiger_01"
+        object:t="germ_tiger_02"
+        object:t="germ_tiger_03"
+        object_type:t="isAlive"
+        targetableByAi:b=no
+        stealthRadius:r=100.0
+        attack_type:t="dont_aim"
+        effShootingRate:r=0.6
+      }
+
+      unitSetProperties{
+        object:t="final_germ_tank_01"
+        object:t="final_germ_tank_02"
+        object:t="final_germ_tank_03"
+        object:t="final_germ_tank_04"
+        object:t="final_germ_tank_05"
+        object:t="final_germ_tank_06"
+        object_type:t="isAlive"
+        targetableByAi:b=no
+        stealthRadius:r=100.0
+        attack_type:t="dont_aim"
+        effShootingRate:r=0.6
+      }
+
+      unitSetProperties{
+        object:t="ussr_tanks_01"
+        targetableByAi:b=no
+        attack_type:t="hold_fire"
+        effShootingRate:r=0.2
+      }
+
+      unitSetProperties{
+        object:t="player_wing"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        bombDelayExplosion:r=1.2
+      }
+
+      missionDestroyArea{
+        target_type:t="ALL"
+        area:t="wp3_destr_area"
+      }
+
+      missionDestroyArea{
+        target_type:t="rendinsts"
+        area:t="waypoint_05_area_04"
+      }
+
+      missionDestroyArea{
+        target_type:t="ALL"
+        area:t="area_01"
+        area:t="area_02"
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      wait{
+        time:r=2.0
+      }
+
+      unitSetIndication{
+        set:b=yes
+        target:t="ussr_tanks_01"
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+      }
+
+      moAddMissionObjective{
+        target:t="dlc_surgical_strike_main"
+      }
+
+      comment{
+        value:t="delay for bombs"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  tanks_waypoint_01_near{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitDistanceBetween{
+        value:r=50.0
+        math:t="2D"
+        object_type:t="isAlive"
+        target_type:t="isAlive"
+        check_objects:t="any"
+        check_targets:t="any"
+        object_marking:i=0
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="ussr_tanks_01"
+        target:t="artillery_point_01"
+      }
+    }
+
+    actions{
+
+      __missionDestroyArea{
+        target_type:t="ALL"
+        area:t="waypoint_01_area_01"
+        area:t="waypoint_01_area_02"
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      unitSetProperties{
+        object:t="germ_artillery_01_squad"
+        targetableByAi:b=yes
+        stealthRadius:r=4500.0
+        attack_type:t="fire_at_will"
+      }
+
+      unitSetProperties{
+        object:t="air_defence_01"
+        targetableByAi:b=no
+        stealthRadius:r=7500.0
+        attack_type:t="fire_at_will"
+        effShootingRate:r=0.1
+      }
+
+      unitSetIndication{
+        set:b=yes
+        target:t="germ_artillery_01_squad"
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+      }
+
+      triggerEnable{
+        target:t="tanks_waypoint_01_in_prepare"
+        target:t="tanks_waypoints_out"
+        target:t="tanks_waypoint_02_near"
+        target:t="waypoint_01_destroyed"
+      }
+
+      unitMark{
+        target_marking:i=1
+        target:t="germ_artillery_01_squad"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  tanks_waypoint_01_in_prepare{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isAlive"
+        object_marking:i=0
+        func:t="notLess"
+        value:i=1
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="germ_artillery_01_squad"
+      }
+    }
+
+    actions{
+
+      triggerActivate{
+        target:t="tanks_waypoint_01_in"
+        activate_type:t="checkConidtions"
+        check_trigger_status:b=no
+        after_activation:t="disable"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  tanks_waypoint_01_in{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.1
+      }
+    }
+
+    conditions{
+
+      unitWhenInArea{
+        math:t="2D"
+        object_type:t="isAlive"
+        object_marking:i=0
+        check_objects:t="any"
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="ussr_tanks_01"
+        target:t="waypoint_01_area_03"
+      }
+    }
+
+    actions{
+
+      unitSetProperties{
+        object:t="ussr_tanks_01"
+        useForTriggerFiltered:b=yes
+        targetableByAi:b=yes
+        attack_type:t="fire_at_will"
+        effShootingRate:r=0.2
+        speed:r=5.0
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  tanks_waypoints_out{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenInArea{
+        math:t="notNear2D"
+        object_type:t="isAlive"
+        object_marking:i=0
+        check_objects:t="any"
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="ussr_tanks_01"
+        target:t="waypoint_01_area_03"
+      }
+
+      unitWhenInArea{
+        math:t="notNear2D"
+        object_type:t="isAlive"
+        object_marking:i=0
+        check_objects:t="any"
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="ussr_tanks_01"
+        target:t="waypoint_02_area_03"
+      }
+
+      unitWhenInArea{
+        math:t="notNear2D"
+        object_type:t="isAlive"
+        object_marking:i=0
+        check_objects:t="any"
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="ussr_tanks_01"
+        target:t="waypoint_03_area_03"
+      }
+
+      unitWhenInArea{
+        math:t="notNear2D"
+        object_type:t="isAlive"
+        object_marking:i=0
+        check_objects:t="any"
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="ussr_tanks_01"
+        target:t="waypoint_04_area_03"
+      }
+
+      unitWhenInArea{
+        math:t="notNear2D"
+        object_type:t="isAlive"
+        object_marking:i=0
+        check_objects:t="any"
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="ussr_tanks_01"
+        target:t="waypoint_05_area_03"
+      }
+
+      unitWhenInArea{
+        math:t="notNear2D"
+        object_type:t="isAlive"
+        object_marking:i=0
+        check_objects:t="any"
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="ussr_tanks_01"
+        target:t="waypoint_05_area_04"
+      }
+
+      unitWhenInArea{
+        math:t="notNear2D"
+        object_type:t="isAlive"
+        object_marking:i=0
+        check_objects:t="any"
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="ussr_tanks_01"
+        target:t="waypoint_06_area_03"
+      }
+
+      unitWhenInArea{
+        math:t="notNear2D"
+        object_type:t="isAlive"
+        object_marking:i=0
+        check_objects:t="any"
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="ussr_tanks_01"
+        target:t="waypoint_07_area_03"
+      }
+
+      unitWhenInArea{
+        math:t="notNear2D"
+        object_type:t="isAlive"
+        object_marking:i=0
+        check_objects:t="any"
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="ussr_tanks_01"
+        target:t="waypoint_08_area_03"
+      }
+
+      unitWhenInArea{
+        math:t="notNear2D"
+        object_type:t="isAlive"
+        object_marking:i=0
+        check_objects:t="any"
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="ussr_tanks_01"
+        target:t="taks_wave_zone"
+      }
+    }
+
+    actions{
+
+      unitSetProperties{
+        object:t="ussr_tanks_01"
+        useForTriggerFiltered:b=yes
+        targetableByAi:b=no
+        attack_type:t="dont_aim"
+        speed:r=30.0
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  marker{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenStatus{
+        object_type:t="isKilled"
+        object_marking:i=0
+        check_objects:t="any"
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="germ_artillery_01_squad"
+        object:t="germ_artillery_02_squad"
+        object:t="germ_pz_vi_01"
+        object:t="germ_artillery_03_01"
+        object:t="pziv_01"
+        object:t="germ_artillery_04_01"
+        object:t="germ_tiger_01"
+        object:t="germ_tiger_02"
+        object:t="germ_tiger_03"
+        object:t="final_germ_squad"
+        object:t="germ_tigers_wave"
+      }
+    }
+
+    actions{
+
+      unitMark{
+        target_marking:i=2
+        target:t="germ_artillery_01_01"
+        target:t="germ_artillery_01_02"
+        target:t="germ_artillery_02_01"
+        target:t="germ_pz_vi_01"
+        target:t="germ_artillery_03_01"
+        target:t="pziv_01"
+        target:t="germ_artillery_04_01"
+        target:t="germ_tiger_01"
+        target:t="germ_tiger_02"
+        target:t="germ_tiger_03"
+        target:t="final_germ_squad"
+        target:t="germ_tigers_wave"
+        useForTriggerFiltered:b=yes
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  update_indicators{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionSetTargetsIndicator{
+        target_type:t="isAlive"
+        target_marking:i=0
+        delta:i=0
+        icon:t="tank"
+        "icon army":i=1
+        set:b=yes
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="ussr_tanks_01"
+      }
+
+      missionSetTargetsIndicator{
+        target_type:t="isMarked"
+        target_marking:i=1
+        delta:i=0
+        icon:t="cannon"
+        "icon army":i=2
+        set:b=yes
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="germ_artillery_01_squad"
+        target:t="germ_artillery_02_squad"
+        target:t="germ_artillery_03_01"
+        target:t="germ_artillery_04_01"
+      }
+
+      missionSetTargetsIndicator{
+        target_type:t="isMarked"
+        target_marking:i=1
+        delta:i=0
+        icon:t="tank"
+        "icon army":i=2
+        set:b=yes
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="germ_pz_vi_01"
+        target:t="pziv_01"
+        target:t="germ_tiger_01"
+        target:t="germ_tiger_02"
+        target:t="germ_tiger_03"
+        target:t="final_germ_squad"
+        target:t="germ_tigers_wave"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  fail_mission{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ANY"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isAlive"
+        object_marking:i=0
+        func:t="less"
+        value:i=3
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="ussr_tanks_01"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="complete_mission"
+      }
+
+      moSetObjectiveStatus{
+        target:t="dlc_surgical_strike_main"
+        status:i=3
+        object_marking:i=0
+        object_var_comp_op:t="equal"
+        object_var_name:t=""
+      }
+
+      wait{
+        time:r=3.0
+      }
+
+      missionFailed{
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  tanks_waypoint_02_near{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitDistanceBetween{
+        value:r=50.0
+        math:t="2D"
+        object_type:t="isAlive"
+        target_type:t="isAlive"
+        check_objects:t="any"
+        check_targets:t="any"
+        object_marking:i=0
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="ussr_tanks_01"
+        target:t="artillery_point_02"
+      }
+    }
+
+    actions{
+
+      __missionDestroyArea{
+        target_type:t="ALL"
+        area:t="waypoint_02_area_01"
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      unitSetProperties{
+        object:t="germ_artillery_02_squad"
+        targetableByAi:b=yes
+        stealthRadius:r=4500.0
+        attack_type:t="fire_at_will"
+      }
+
+      unitSetProperties{
+        object:t="air_defence_02"
+        targetableByAi:b=no
+        stealthRadius:r=7500.0
+        attack_type:t="fire_at_will"
+        effShootingRate:r=0.1
+      }
+
+      unitSetIndication{
+        set:b=yes
+        target:t="germ_artillery_02_squad"
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+      }
+
+      triggerEnable{
+        target:t="tanks_waypoint_02_in_prepare"
+        target:t="tanks_waypoint_03_near"
+        target:t="waypoint_02_destroyed"
+      }
+
+      unitMark{
+        target_marking:i=1
+        target:t="germ_artillery_02_01"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  tanks_waypoint_02_in_prepare{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isAlive"
+        object_marking:i=0
+        func:t="notLess"
+        value:i=1
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="germ_artillery_02_squad"
+      }
+    }
+
+    actions{
+
+      triggerActivate{
+        target:t="tanks_waypoint_02_in"
+        activate_type:t="checkConidtions"
+        check_trigger_status:b=no
+        after_activation:t="disable"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  tanks_waypoint_02_in{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.1
+      }
+    }
+
+    conditions{
+
+      unitWhenInArea{
+        math:t="2D"
+        object_type:t="isAlive"
+        object_marking:i=0
+        check_objects:t="any"
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="ussr_tanks_01"
+        target:t="waypoint_02_area_03"
+      }
+    }
+
+    actions{
+
+      unitSetProperties{
+        object:t="ussr_tanks_01"
+        useForTriggerFiltered:b=yes
+        targetableByAi:b=yes
+        attack_type:t="fire_at_will"
+        effShootingRate:r=0.2
+        speed:r=5.0
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  tanks_waypoint_03_near{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitDistanceBetween{
+        value:r=50.0
+        math:t="2D"
+        object_type:t="isAlive"
+        target_type:t="isAlive"
+        check_objects:t="any"
+        check_targets:t="any"
+        object_marking:i=0
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="ussr_tanks_01"
+        target:t="tanks_point_01"
+      }
+    }
+
+    actions{
+
+      unitSetProperties{
+        object:t="germ_pz_vi_01"
+        attack_type:t="hold_fire"
+        effShootingRate:r=0.2
+      }
+
+      unitSetProperties{
+        object:t="germ_pz_vi_01"
+        targetableByAi:b=yes
+        stealthRadius:r=4500.0
+        attack_type:t="fire_at_will"
+        effShootingRate:r=0.2
+      }
+
+      unitSetProperties{
+        object:t="air_defence_03"
+        targetableByAi:b=no
+        stealthRadius:r=4500.0
+        attack_type:t="fire_at_will"
+        effShootingRate:r=0.1
+      }
+
+      unitMoveTo{
+        target:t="pz_vi_01_point"
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=no
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        fastClimb:b=no
+        destTimeMode:b=no
+        object:t="germ_pz_vi_01"
+        speed:r=15.0
+      }
+
+      wait{
+        time:r=10.0
+      }
+
+      unitSetIndication{
+        set:b=yes
+        target:t="germ_pz_vi_01"
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+      }
+
+      triggerEnable{
+        target:t="tanks_waypoint_03_in_prepare"
+        target:t="tanks_waypoint_04_near"
+        target:t="waypoint_03_destroyed"
+      }
+
+      unitMark{
+        target_marking:i=1
+        target:t="germ_pz_vi_01"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  tanks_waypoint_03_in_prepare{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isAlive"
+        object_marking:i=0
+        func:t="notLess"
+        value:i=1
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="germ_pz_vi_01"
+      }
+    }
+
+    actions{
+
+      triggerActivate{
+        target:t="tanks_waypoint_03_in"
+        activate_type:t="checkConidtions"
+        check_trigger_status:b=no
+        after_activation:t="disable"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  tanks_waypoint_03_in{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.1
+      }
+    }
+
+    conditions{
+
+      unitWhenInArea{
+        math:t="2D"
+        object_type:t="isAlive"
+        object_marking:i=0
+        check_objects:t="any"
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="ussr_tanks_01"
+        target:t="waypoint_03_area_03"
+      }
+    }
+
+    actions{
+
+      unitSetProperties{
+        object:t="ussr_tanks_01"
+        useForTriggerFiltered:b=yes
+        targetableByAi:b=yes
+        attack_type:t="fire_at_will"
+        effShootingRate:r=0.4
+        speed:r=4.0
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  tanks_waypoint_04_near{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitDistanceBetween{
+        value:r=50.0
+        math:t="2D"
+        object_type:t="isAlive"
+        target_type:t="isAlive"
+        check_objects:t="any"
+        check_targets:t="any"
+        object_marking:i=0
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="ussr_tanks_01"
+        target:t="waypoint_04_area_03"
+      }
+    }
+
+    actions{
+
+      unitSetProperties{
+        object:t="germ_artillery_03_squad"
+        targetableByAi:b=yes
+        stealthRadius:r=4500.0
+        attack_type:t="fire_at_will"
+      }
+
+      unitSetProperties{
+        object:t="air_defence_04"
+        targetableByAi:b=no
+        stealthRadius:r=7500.0
+        attack_type:t="fire_at_will"
+        effShootingRate:r=0.1
+      }
+
+      unitSetIndication{
+        set:b=yes
+        target:t="germ_artillery_03_squad"
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+      }
+
+      triggerEnable{
+        target:t="tanks_waypoint_04_in_prepare"
+        target:t="tanks_waypoint_05_near"
+        target:t="waypoint_04_destroyed"
+      }
+
+      unitMark{
+        target_marking:i=1
+        target:t="germ_artillery_03_01"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  tanks_waypoint_04_in_prepare{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isAlive"
+        object_marking:i=0
+        func:t="notLess"
+        value:i=1
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="germ_artillery_03_squad"
+      }
+    }
+
+    actions{
+
+      triggerActivate{
+        target:t="tanks_waypoint_04_in"
+        activate_type:t="checkConidtions"
+        check_trigger_status:b=no
+        after_activation:t="disable"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  tanks_waypoint_04_in{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.1
+      }
+    }
+
+    conditions{
+
+      unitWhenInArea{
+        math:t="2D"
+        object_type:t="isAlive"
+        object_marking:i=0
+        check_objects:t="any"
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="ussr_tanks_01"
+        target:t="waypoint_04_area_03"
+      }
+    }
+
+    actions{
+
+      unitSetProperties{
+        object:t="ussr_tanks_01"
+        useForTriggerFiltered:b=yes
+        targetableByAi:b=yes
+        attack_type:t="fire_at_will"
+        effShootingRate:r=0.4
+        speed:r=5.0
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  tanks_waypoint_05_near{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitDistanceBetween{
+        value:r=50.0
+        math:t="2D"
+        object_type:t="isAlive"
+        target_type:t="isAlive"
+        check_objects:t="any"
+        check_targets:t="any"
+        object_marking:i=0
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="ussr_tanks_01"
+        target:t="pziv_01_point"
+      }
+    }
+
+    actions{
+
+      unitSetProperties{
+        object:t="pziv_01"
+        targetableByAi:b=yes
+        stealthRadius:r=4500.0
+        attack_type:t="fire_at_will"
+      }
+
+      unitSetProperties{
+        object:t="air_defence_05"
+        targetableByAi:b=no
+        stealthRadius:r=7500.0
+        attack_type:t="fire_at_will"
+        effShootingRate:r=0.1
+      }
+
+      unitSetProperties{
+        object:t="germ_tigers_wave"
+        targetableByAi:b=no
+        stealthRadius:r=7500.0
+        attack_type:t="hold_fire"
+        effShootingRate:r=0.8
+        speed:r=45.0
+      }
+
+      unitSetIndication{
+        set:b=yes
+        target:t="pziv_01"
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+      }
+
+      unitSetIndication{
+        set:b=yes
+        target:t="germ_tigers_wave"
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        delayForObjects:p2=1.0, 5.0
+      }
+
+      triggerEnable{
+        target:t="tanks_waypoint_05_in_prepare"
+        target:t="tanks_waypoint_06_near"
+        target:t="waypoint_05_destroyed"
+      }
+
+      unitMark{
+        target_marking:i=1
+        target:t="pziv_01"
+      }
+
+      unitMark{
+        target_marking:i=1
+        target:t="germ_tigers_wave"
+      }
+
+      wait{
+        time:r=30.0
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  tanks_waypoint_05_in_prepare{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isAlive"
+        object_marking:i=0
+        func:t="notLess"
+        value:i=1
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="pziv_01"
+      }
+    }
+
+    actions{
+
+      triggerActivate{
+        target:t="tanks_waypoint_05_in"
+        activate_type:t="checkConidtions"
+        check_trigger_status:b=no
+        after_activation:t="disable"
+      }
+
+      triggerActivate{
+        target:t="tanks_waypoint_05_to_back_door"
+        activate_type:t="checkConidtions"
+        check_trigger_status:b=no
+        after_activation:t="disable"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  tanks_waypoint_05_in{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.1
+      }
+    }
+
+    conditions{
+
+      unitWhenInArea{
+        math:t="2D"
+        object_type:t="isAlive"
+        object_marking:i=0
+        check_objects:t="any"
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="ussr_tanks_01"
+        target:t="waypoint_05_area_03"
+        target:t="waypoint_05_area_04"
+      }
+    }
+
+    actions{
+
+      unitSetProperties{
+        object:t="ussr_tanks_01"
+        useForTriggerFiltered:b=yes
+        targetableByAi:b=yes
+        attack_type:t="fire_at_will"
+        effShootingRate:r=0.5
+        speed:r=5.0
+      }
+
+      wait{
+        time:r=45.0
+      }
+
+      triggerEnable{
+        target:t="tanks_wave_zone_near"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  tanks_waypoint_05_to_back_door{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenInArea{
+        math:t="2D"
+        object_type:t="isAlive"
+        object_marking:i=0
+        check_objects:t="any"
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="ussr_tanks_01"
+        target:t="waypoint_05_area_05"
+      }
+    }
+
+    actions{
+
+      unitMoveTo{
+        target:t="back_door_point"
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=no
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        fastClimb:b=no
+        destTimeMode:b=no
+        object:t="ussr_tanks_01"
+        useForTriggerFiltered:b=yes
+      }
+
+      triggerEnable{
+        target:t="tanks_waypoint_05_back_door"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  tanks_waypoint_05_back_door{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.2
+      }
+    }
+
+    conditions{
+
+      unitDistanceBetween{
+        value:r=50.0
+        math:t="2D"
+        object_type:t="isAlive"
+        target_type:t="isAlive"
+        check_objects:t="any"
+        check_targets:t="any"
+        object_marking:i=0
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="ussr_tanks_01"
+        target:t="back_door_point"
+      }
+    }
+
+    actions{
+
+      unitFollowWaypoints{
+        followWaypoints:b=yes
+        target:t="ussr_tanks_01"
+        useForTriggerFiltered:b=yes
+      }
+
+      unitSetProperties{
+        object:t="ussr_tanks_01"
+        useForTriggerFiltered:b=yes
+        speed:r=60.0
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  tanks_waypoint_06_near{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitDistanceBetween{
+        value:r=50.0
+        math:t="2D"
+        object_type:t="isAlive"
+        target_type:t="isAlive"
+        check_objects:t="any"
+        check_targets:t="any"
+        object_marking:i=0
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="ussr_tanks_01"
+        target:t="waypoint_06_area_03"
+      }
+    }
+
+    actions{
+
+      unitSetProperties{
+        object:t="germ_artillery_04_01"
+        targetableByAi:b=yes
+        stealthRadius:r=4500.0
+        attack_type:t="fire_at_will"
+      }
+
+      unitSetProperties{
+        object:t="air_defence_06"
+        targetableByAi:b=no
+        stealthRadius:r=7500.0
+        attack_type:t="fire_at_will"
+        effShootingRate:r=0.1
+      }
+
+      unitSetIndication{
+        set:b=yes
+        target:t="germ_artillery_04_01"
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+      }
+
+      triggerEnable{
+        target:t="tanks_waypoint_06_in_prepare"
+        target:t="tanks_waypoint_07_near"
+        target:t="waypoint_06_destroyed"
+      }
+
+      unitMark{
+        target_marking:i=1
+        target:t="germ_artillery_04_01"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  tanks_waypoint_06_in_prepare{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isAlive"
+        object_marking:i=0
+        func:t="notLess"
+        value:i=1
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="germ_artillery_04_01"
+      }
+    }
+
+    actions{
+
+      triggerActivate{
+        target:t="tanks_waypoint_06_in"
+        activate_type:t="checkConidtions"
+        check_trigger_status:b=no
+        after_activation:t="disable"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  tanks_waypoint_06_in{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.1
+      }
+    }
+
+    conditions{
+
+      unitWhenInArea{
+        math:t="2D"
+        object_type:t="isAlive"
+        object_marking:i=0
+        check_objects:t="any"
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="ussr_tanks_01"
+        target:t="waypoint_06_area_03"
+      }
+    }
+
+    actions{
+
+      unitSetProperties{
+        object:t="ussr_tanks_01"
+        useForTriggerFiltered:b=yes
+        targetableByAi:b=yes
+        attack_type:t="fire_at_will"
+        effShootingRate:r=0.4
+        speed:r=5.0
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  tanks_waypoint_07_near{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitDistanceBetween{
+        value:r=50.0
+        math:t="2D"
+        object_type:t="isAlive"
+        target_type:t="isAlive"
+        check_objects:t="any"
+        check_targets:t="any"
+        object_marking:i=0
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="ussr_tanks_01"
+        target:t="tiger_02_point"
+      }
+    }
+
+    actions{
+
+      unitSetProperties{
+        object:t="germ_tiger_01"
+        object:t="germ_tiger_02"
+        object:t="germ_tiger_03"
+        attack_type:t="hold_fire"
+      }
+
+      unitSetProperties{
+        object:t="germ_tiger_01"
+        object:t="germ_tiger_02"
+        object:t="germ_tiger_03"
+        targetableByAi:b=yes
+        stealthRadius:r=4500.0
+        attack_type:t="fire_at_will"
+        effShootingRate:r=0.9
+      }
+
+      unitSetProperties{
+        object:t="air_defence_07"
+        targetableByAi:b=no
+        stealthRadius:r=7500.0
+        attack_type:t="fire_at_will"
+        effShootingRate:r=0.1
+      }
+
+      unitMoveTo{
+        target:t="tiger_01_point"
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=no
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        fastClimb:b=no
+        destTimeMode:b=no
+        object:t="germ_tiger_01"
+        speed:r=25.0
+      }
+
+      unitMoveTo{
+        target:t="tiger_02_point"
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=no
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        fastClimb:b=no
+        destTimeMode:b=no
+        object:t="germ_tiger_02"
+        speed:r=25.0
+      }
+
+      unitMoveTo{
+        target:t="tiger_03_point"
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=no
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        fastClimb:b=no
+        destTimeMode:b=no
+        object:t="germ_tiger_03"
+        speed:r=25.0
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      wait{
+        time:r=4.0
+      }
+
+      triggerEnable{
+        target:t="tanks_waypoint_07_in_prepare"
+        target:t="tanks_waypoint_08_near"
+      }
+
+      unitSetIndication{
+        set:b=yes
+        target:t="germ_tiger_01"
+        target:t="germ_tiger_02"
+        target:t="germ_tiger_03"
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+      }
+
+      unitMark{
+        target_marking:i=1
+        target:t="germ_tiger_01"
+        target:t="germ_tiger_02"
+        target:t="germ_tiger_03"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  tanks_waypoint_07_in_prepare{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isAlive"
+        object_marking:i=0
+        func:t="notLess"
+        value:i=1
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="germ_tiger_01"
+        object:t="germ_tiger_02"
+        object:t="germ_tiger_03"
+      }
+    }
+
+    actions{
+
+      triggerActivate{
+        target:t="tanks_waypoint_07_in"
+        activate_type:t="checkConidtions"
+        check_trigger_status:b=no
+        after_activation:t="disable"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  tanks_waypoint_07_in{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.1
+      }
+    }
+
+    conditions{
+
+      unitWhenInArea{
+        math:t="2D"
+        object_type:t="isAlive"
+        object_marking:i=0
+        check_objects:t="any"
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="ussr_tanks_01"
+        target:t="waypoint_07_area_03"
+      }
+    }
+
+    actions{
+
+      unitSetProperties{
+        object:t="ussr_tanks_01"
+        useForTriggerFiltered:b=yes
+        targetableByAi:b=yes
+        attack_type:t="fire_at_will"
+        effShootingRate:r=0.8
+        speed:r=5.0
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  tanks_waypoint_08_near{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitDistanceBetween{
+        value:r=150.0
+        math:t="2D"
+        object_type:t="isAlive"
+        target_type:t="isAlive"
+        check_objects:t="any"
+        check_targets:t="any"
+        object_marking:i=0
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="ussr_tanks_01"
+        target:t="final_point"
+      }
+    }
+
+    actions{
+
+      unitSetProperties{
+        object:t="final_germ_squad"
+        targetableByAi:b=yes
+        delayForObjects:p2=1.0, 5.0
+        stealthRadius:r=4500.0
+        attack_type:t="fire_at_will"
+        effShootingRate:r=0.9
+        speed:r=5.0
+      }
+
+      unitSetProperties{
+        object:t="air_defence_08"
+        object:t="air_defence_09"
+        object:t="air_defence_10"
+        targetableByAi:b=no
+        stealthRadius:r=7500.0
+        attack_type:t="fire_at_will"
+        effShootingRate:r=0.1
+      }
+
+      unitSetIndication{
+        set:b=yes
+        target:t="final_germ_squad"
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        delayForObjects:p2=1.0, 5.0
+      }
+
+      triggerEnable{
+        target:t="tanks_waypoint_08_in_prepare"
+        target:t="complete_mission"
+      }
+
+      unitMark{
+        target_marking:i=1
+        target:t="final_germ_squad"
+      }
+
+      moSetObjectiveStatus{
+        target:t="dlc_surgical_strike_main"
+        status:i=2
+        object_marking:i=0
+        object_var_comp_op:t="equal"
+        object_var_name:t=""
+        extendedEnding:b=yes
+      }
+
+      wait{
+        time:r=3.0
+      }
+
+      moAddMissionObjective{
+        target:t="dlc_surgical_strike_final"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  tanks_waypoint_08_in_prepare{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isAlive"
+        object_marking:i=0
+        func:t="notLess"
+        value:i=1
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="final_germ_squad"
+      }
+    }
+
+    actions{
+
+      triggerActivate{
+        target:t="tanks_waypoint_08_in"
+        activate_type:t="checkConidtions"
+        check_trigger_status:b=no
+        after_activation:t="disable"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  tanks_waypoint_08_in{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.1
+      }
+    }
+
+    conditions{
+
+      unitWhenInArea{
+        math:t="2D"
+        object_type:t="isAlive"
+        object_marking:i=0
+        check_objects:t="any"
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="ussr_tanks_01"
+        target:t="waypoint_08_area_03"
+      }
+    }
+
+    actions{
+
+      unitSetProperties{
+        object:t="ussr_tanks_01"
+        useForTriggerFiltered:b=yes
+        targetableByAi:b=yes
+        attack_type:t="fire_at_will"
+        effShootingRate:r=0.5
+        speed:r=5.0
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  complete_mission{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenInArea{
+        math:t="2D"
+        object_type:t="isAlive"
+        object_marking:i=0
+        check_objects:t="all"
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="ussr_tanks_01"
+        target:t="waypoint_08_area_03"
+      }
+
+      unitWhenCountMatches{
+        object_type:t="isAlive"
+        object_marking:i=0
+        func:t="less"
+        value:i=1
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="final_germ_squad"
+      }
+    }
+
+    actions{
+
+      moSetObjectiveStatus{
+        target:t="dlc_surgical_strike_final"
+        status:i=2
+        object_marking:i=0
+        object_var_comp_op:t="equal"
+        object_var_name:t=""
+        extendedEnding:b=yes
+      }
+
+      wait{
+        time:r=5.0
+      }
+
+      missionCompleted{
+        timer:b=no
+        debriefingTimer:i=3
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  fail_mission_bridge{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenStatus{
+        object_type:t="isKilled"
+        object_marking:i=0
+        check_objects:t="any"
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="structures_01"
+      }
+
+      unitWhenInArea{
+        math:t="2D"
+        object_type:t="isAlive"
+        object_marking:i=0
+        check_objects:t="any"
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="ussr_tanks_01"
+        target:t="area_03"
+      }
+    }
+
+    actions{
+
+      moSetObjectiveStatus{
+        target:t="dlc_surgical_strike_main"
+        status:i=3
+        object_marking:i=0
+        object_var_comp_op:t="equal"
+        object_var_name:t=""
+      }
+
+      unitSetProperties{
+        object:t="ussr_tanks_01"
+        speed:r=0.0
+        lockSpeed:b=yes
+      }
+
+      wait{
+        time:r=3.0
+      }
+
+      missionFailed{
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  waypoint_01_destroyed{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isAlive"
+        object_marking:i=0
+        func:t="less"
+        value:i=1
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="germ_artillery_01_02"
+        object:t="germ_artillery_01_01"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="tanks_waypoint_01_in_prepare"
+        target:t="tanks_waypoint_01_in"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  waypoint_02_destroyed{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isAlive"
+        object_marking:i=0
+        func:t="less"
+        value:i=1
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="germ_artillery_02_01"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="tanks_waypoint_02_in_prepare"
+        target:t="tanks_waypoint_02_in"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  waypoint_03_destroyed{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isAlive"
+        object_marking:i=0
+        func:t="less"
+        value:i=1
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="germ_pz_vi_01"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="tanks_waypoint_03_in_prepare"
+        target:t="tanks_waypoint_03_in"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  waypoint_04_destroyed{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isAlive"
+        object_marking:i=0
+        func:t="less"
+        value:i=1
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="germ_artillery_03_01"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="tanks_waypoint_04_in_prepare"
+        target:t="tanks_waypoint_04_in"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  waypoint_05_destroyed{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isAlive"
+        object_marking:i=0
+        func:t="less"
+        value:i=1
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="pziv_01"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="tanks_waypoint_05_in_prepare"
+        target:t="tanks_waypoint_05_in"
+        target:t="tanks_waypoint_05_to_back_door"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  waypoint_06_destroyed{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isAlive"
+        object_marking:i=0
+        func:t="less"
+        value:i=1
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="germ_artillery_04_01"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="tanks_waypoint_06_in_prepare"
+        target:t="tanks_waypoint_06_in"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  waypoint_07_destroyed{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isAlive"
+        object_marking:i=0
+        func:t="less"
+        value:i=1
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="germ_tiger_01"
+        object:t="germ_tiger_02"
+        object:t="germ_tiger_03"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="tanks_waypoint_07_in_prepare"
+        target:t="tanks_waypoint_07_in"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  tanks_wave_zone_near{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitDistanceBetween{
+        value:r=50.0
+        math:t="2D"
+        object_type:t="isAlive"
+        target_type:t="isAlive"
+        check_objects:t="any"
+        check_targets:t="any"
+        object_marking:i=0
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="ussr_tanks_01"
+        target:t="taks_wave_zone"
+      }
+    }
+
+    actions{
+
+      unitSetProperties{
+        object:t="germ_tigers_wave"
+        targetableByAi:b=yes
+        stealthRadius:r=7500.0
+        attack_type:t="fire_at_will"
+        effShootingRate:r=0.6
+        speed:r=5.0
+      }
+
+      triggerEnable{
+        target:t="tanks_wave_zone_in_prepare"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  tanks_wave_zone_in_prepare{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isAlive"
+        object_marking:i=0
+        func:t="notLess"
+        value:i=1
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="germ_tigers_wave"
+      }
+    }
+
+    actions{
+
+      triggerActivate{
+        target:t="tanks_wave_zone_in"
+        activate_type:t="checkConidtions"
+        check_trigger_status:b=no
+        after_activation:t="disable"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  tanks_wave_zone_in{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.1
+      }
+    }
+
+    conditions{
+
+      unitWhenInArea{
+        math:t="2D"
+        object_type:t="isAlive"
+        object_marking:i=0
+        check_objects:t="any"
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="ussr_tanks_01"
+        target:t="taks_wave_zone"
+      }
+    }
+
+    actions{
+
+      unitSetProperties{
+        object:t="ussr_tanks_01"
+        useForTriggerFiltered:b=yes
+        targetableByAi:b=yes
+        attack_type:t="fire_at_will"
+        effShootingRate:r=0.6
+        speed:r=5.0
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  simul_check{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      gameWhenDifficulty{
+        difficulty:t="simulator"
+        is:t="equal"
+      }
+    }
+
+    actions{
+
+      unitDamage{
+        part:i=0
+        power:r=1.0
+        useEffect:b=no
+        countEffects:i=1
+        delay:p2=1.0, 1.0
+        offset:p3=0.0, 0.0, 0.0
+        radiusOffset:p2=10.0, 15.0
+        target:t="germ_artillery_01_01"
+        randomTargetsCount:i=1
+        doExplosion:b=yes
+      }
+
+      unitDamage{
+        part:i=0
+        power:r=1.0
+        useEffect:b=no
+        countEffects:i=1
+        delay:p2=1.0, 1.0
+        offset:p3=0.0, 0.0, 0.0
+        radiusOffset:p2=10.0, 15.0
+        target:t="germ_artillery_01_02"
+        randomTargetsCount:i=1
+        doExplosion:b=yes
+      }
+
+      unitDamage{
+        part:i=0
+        power:r=1.0
+        useEffect:b=no
+        countEffects:i=1
+        delay:p2=1.0, 1.0
+        offset:p3=0.0, 0.0, 0.0
+        radiusOffset:p2=10.0, 15.0
+        target:t="germ_artillery_02_01"
+        randomTargetsCount:i=2
+        doExplosion:b=yes
+      }
+
+      unitDamage{
+        part:i=0
+        power:r=1.0
+        useEffect:b=no
+        countEffects:i=1
+        delay:p2=1.0, 1.0
+        offset:p3=0.0, 0.0, 0.0
+        radiusOffset:p2=10.0, 15.0
+        target:t="germ_pz_vi_01"
+        randomTargetsCount:i=2
+        doExplosion:b=yes
+      }
+
+      unitDamage{
+        part:i=0
+        power:r=1.0
+        useEffect:b=no
+        countEffects:i=1
+        delay:p2=1.0, 1.0
+        offset:p3=0.0, 0.0, 0.0
+        radiusOffset:p2=10.0, 15.0
+        target:t="pziv_01"
+        randomTargetsCount:i=3
+        doExplosion:b=yes
+      }
+
+      unitDamage{
+        part:i=0
+        power:r=1.0
+        useEffect:b=no
+        countEffects:i=1
+        delay:p2=1.0, 1.0
+        offset:p3=0.0, 0.0, 0.0
+        radiusOffset:p2=10.0, 15.0
+        target:t="germ_tiger_01"
+        target:t="final_germ_tank_01"
+        target:t="final_germ_tank_03"
+        target:t="final_germ_tank_05"
+        doExplosion:b=yes
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  fake_death_if_near{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitDistanceBetween{
+        value:r=50.0
+        math:t="2D"
+        object_type:t="isAlive"
+        target_type:t="isAlive"
+        check_objects:t="any"
+        check_targets:t="any"
+        object_marking:i=0
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="germ_tanks_squad"
+        target:t="ussr_tanks_01"
+      }
+    }
+
+    actions{
+
+      unitDamage{
+        part:i=1
+        power:r=1.0
+        useEffect:b=no
+        countEffects:i=1
+        delay:p2=1.0, 1.0
+        offset:p3=0.0, 0.0, 0.0
+        radiusOffset:p2=10.0, 15.0
+        target:t="germ_tanks_squad"
+        randomTargetsCount:i=1
+        doExplosion:b=yes
+        useForTriggerFiltered:b=yes
+      }
+    }
+
+    else_actions{
+    }
+  }
+}
+
+mission_objectives{
+  isCategory:b=yes
+  is_enabled:b=yes
+
+  dlc_surgical_strike_main{
+    is_enabled:b=no
+    comments:t=""
+    type:t="abstractMissionObjective"
+
+    props{
+      isPrimary:b=yes
+      timeLimit:i=2100
+      scoreConst:i=100
+      scoreTime:i=400
+    }
+
+    onSuccess{
+    }
+
+    onFailed{
+    }
+  }
+
+  dlc_surgical_strike_final{
+    is_enabled:b=no
+    comments:t=""
+    type:t="abstractMissionObjective"
+
+    props{
+      isPrimary:b=yes
+      timeLimit:i=2100
+      scoreConst:i=100
+      scoreTime:i=400
+    }
+
+    onSuccess{
+    }
+
+    onFailed{
+    }
+  }
+}
+
+variables{
+}
+
+dialogs{
+}
+
+airfields{
+}
+
+effects{
+}
+
+units{
+
+  armada{
+    name:t="player_wing"
+    tm:m=[[-0.999048, 0.0, -0.0436193] [0.0, 1.0, 0.0] [0.0436193, 0.0, -0.999048] [6905.9, 816.0, 7588.35]]
+    unit_class:t="il-2m"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="il_2m_fab250"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=1
+      count:i=4
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=2
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  tracked_vehicles{
+    name:t="ussr_tanks_01"
+    tm:m=[[-0.996195, 0.0, -0.0871557] [0.0, 1.0, 0.0] [0.0871557, 0.0, -0.996195] [3726.45, 42.9429, 7492.8]]
+    unit_class:t="ussr_t34_85_increased_pitch"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=1
+      count:i=16
+      formation_type:t="rows"
+      formation_div:i=8
+      formation_step:p2=1.0, 2.0
+      formation_noise:p2=0.2, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+
+      ussr_tanks_01_wp_01{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [3682.53, 43.0746, 7497.95]]
+
+        props{
+          speed:r=30.0
+          moveType:t="GATHER_TO"
+        }
+      }
+
+      ussr_tanks_01_wp_03{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [3001.12, 53.7502, 7435.1]]
+
+        props{
+          speed:r=30.0
+          moveType:t="USE_SPLINES"
+          shouldKeepFormation:b=no
+        }
+      }
+
+      ussr_tanks_01_wp_04{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2866.86, 60.0, 7520.54]]
+
+        props{
+          speed:r=30.0
+          moveType:t="USE_SPLINES"
+          shouldKeepFormation:b=no
+        }
+      }
+
+      ussr_tanks_01_wp_08{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2986.13, 50.9881, 8062.01]]
+
+        props{
+          speed:r=30.0
+          moveType:t="USE_SPLINES"
+          shouldKeepFormation:b=no
+        }
+      }
+
+      ussr_tanks_01_wp_13{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2533.1, 72.4, 8391.1]]
+
+        props{
+          speed:r=30.0
+          moveType:t="USE_SPLINES"
+          shouldKeepFormation:b=no
+        }
+      }
+
+      ussr_tanks_01_wp_06{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2210.41, 72.2101, 8545.48]]
+
+        props{
+          speed:r=30.0
+          moveType:t="USE_SPLINES"
+        }
+      }
+
+      ussr_tanks_01_wp_14{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2013.35, 74.7491, 8615.3]]
+
+        props{
+          speed:r=30.0
+          moveType:t="USE_SPLINES"
+          shouldKeepFormation:b=no
+        }
+      }
+
+      ussr_tanks_01_wp_15{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1855.0, 68.35, 8705.1]]
+
+        props{
+          speed:r=30.0
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+        }
+      }
+
+      ussr_tanks_01_wp_16{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1472.23, 72.022, 8896.0]]
+
+        props{
+          speed:r=30.0
+          moveType:t="USE_SPLINES"
+        }
+      }
+
+      ussr_tanks_01_wp_17{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1382.44, 76.0434, 8933.48]]
+
+        props{
+          speed:r=30.0
+          moveType:t="USE_SPLINES"
+        }
+      }
+
+      ussr_tanks_01_wp_18{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [943.87, 72.0498, 8837.72]]
+
+        props{
+          speed:r=30.0
+          moveType:t="MOVETO_STRAIGHT"
+        }
+      }
+
+      ussr_tanks_01_wp_19{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [500.0, 72.0504, 8799.85]]
+
+        props{
+          speed:r=30.0
+          moveType:t="MOVETO_STRAIGHT"
+        }
+      }
+
+      ussr_tanks_01_wp_20{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [203.55, 72.0497, 8594.95]]
+
+        props{
+          speed:r=30.0
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+        }
+      }
+    }
+  }
+
+  tracked_vehicles{
+    name:t="germ_pz_vi_01"
+    tm:m=[[0.984808, 0.0, -0.173648] [0.0, 1.0, 0.0] [0.173648, 0.0, 0.984808] [2885.35, 54.8109, 8024.63]]
+    unit_class:t="germ_pzIVc"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=4
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="hold_fire"
+    }
+
+    way{
+    }
+  }
+
+  tracked_vehicles{
+    name:t="pziv_01"
+    tm:m=[[-0.737277, 0.0, 0.67559] [0.0, 1.0, 0.0] [-0.67559, 0.0, -0.737277] [2580.59, 58.95, 8319.46]]
+    unit_class:t="germ_pzIVh"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=6
+      formation_type:t="rows"
+      formation_div:i=1
+      formation_step:p2=2.5, 5.0
+      formation_noise:p2=0.1, 1.0
+      uniqueName:t=""
+      attack_type:t="hold_fire"
+    }
+
+    way{
+    }
+  }
+
+  tracked_vehicles{
+    name:t="germ_tiger_01"
+    tm:m=[[0.0871558, 0.0, 0.996195] [0.0, 1.0, 0.0] [-0.996195, 0.0, 0.0871558] [1173.7, 72.0358, 8930.05]]
+    unit_class:t="germ_hummel"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  tracked_vehicles{
+    name:t="germ_tiger_02"
+    tm:m=[[-0.5, 0.0, -0.866025] [0.0, 1.0, 0.0] [0.866025, 0.0, -0.5] [1313.55, 72.0265, 8976.8]]
+    unit_class:t="germ_hummel"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  tracked_vehicles{
+    name:t="germ_tiger_03"
+    tm:m=[[6.70552e-08, 0.0, 1.0] [0.0, 1.0, 0.0] [-1.0, 0.0, 6.70552e-08] [1041.85, 72.0397, 8962.45]]
+    unit_class:t="germ_hummel"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  tracked_vehicles{
+    name:t="final_germ_tank_01"
+    tm:m=[[-0.258819, 0.0, 0.965926] [0.0, 1.0, 0.0] [-0.965926, 0.0, -0.258819] [517.1, 72.0501, 7991.9]]
+    unit_class:t="germ_pzV_g_panter"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+
+      final_germ_tank_01_wp_01{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [319.3, 66.0, 8368.05]]
+
+        props{
+          speed:r=0.0
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+        }
+      }
+    }
+  }
+
+  tracked_vehicles{
+    name:t="final_germ_tank_02"
+    tm:m=[[-0.258819, 0.0, 0.965926] [0.0, 1.0, 0.0] [-0.965926, 0.0, -0.258819] [236.2, 72.0434, 7830.3]]
+    unit_class:t="germ_stugIV"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+
+      final_germ_tank_02_wp_01{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [246.1, 66.0, 8223.95]]
+
+        props{
+          speed:r=0.0
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+        }
+      }
+    }
+  }
+
+  tracked_vehicles{
+    name:t="final_germ_tank_03"
+    tm:m=[[0.130526, 0.0, 0.991445] [0.0, 1.0, 0.0] [-0.991445, 0.0, 0.130526] [109.25, 72.0432, 7859.15]]
+    unit_class:t="germ_tigerI"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+
+      final_germ_tank_03_wp_01{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [135.0, 66.0, 8308.1]]
+
+        props{
+          speed:r=0.0
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+        }
+      }
+    }
+  }
+
+  tracked_vehicles{
+    name:t="final_germ_tank_04"
+    tm:m=[[0.130526, 0.0, 0.991445] [0.0, 1.0, 0.0] [-0.991445, 0.0, 0.130526] [-37.15, 72.0501, 7968.15]]
+    unit_class:t="germ_tigerI"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+
+      final_germ_tank_04_wp_01{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [237.3, 66.0, 8379.95]]
+
+        props{
+          speed:r=0.0
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+        }
+      }
+    }
+  }
+
+  tracked_vehicles{
+    name:t="final_germ_tank_05"
+    tm:m=[[0.130526, 0.0, 0.991445] [0.0, 1.0, 0.0] [-0.991445, 0.0, 0.130526] [-258.1, 72.0493, 8104.1]]
+    unit_class:t="germ_pzIVh"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+
+      final_germ_tank_05_wp_01{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [58.2, 66.0, 8418.9]]
+
+        props{
+          speed:r=0.0
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+        }
+      }
+    }
+  }
+
+  tracked_vehicles{
+    name:t="final_germ_tank_06"
+    tm:m=[[-0.737277, 0.0, 0.67559] [0.0, 1.0, 0.0] [-0.67559, 0.0, -0.737277] [750.95, 72.0495, 8239.7]]
+    unit_class:t="germ_pzV_g_panter"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+
+      final_germ_tank_06_wp_01{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [510.5, 66.0, 8439.9]]
+
+        props{
+          speed:r=0.0
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+        }
+      }
+    }
+  }
+
+  tracked_vehicles{
+    name:t="germ_tigers_wave"
+    tm:m=[[-0.0314109, 0.0, -0.999506] [0.0, 1.0, 0.0] [0.999506, 0.0, -0.0314109] [2034.88, 59.5369, 9677.15]]
+    unit_class:t="germ_tigerI"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=8
+      formation_type:t="rows"
+      formation_div:i=8
+      formation_step:p2=2.5, 4.0
+      formation_noise:p2=0.1, 0.4
+      uniqueName:t=""
+      attack_type:t="hold_fire"
+      stealthRadius:r=50.0
+      effShootingRate:r=0.4
+    }
+
+    way{
+
+      tracked_vehicles_01_wp_01{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2034.94, 57.999, 9653.67]]
+
+        props{
+          speed:r=0.0
+          moveType:t="GATHER_TO"
+        }
+      }
+
+      tracked_vehicles_01_wp_02{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2283.65, 70.0359, 8817.19]]
+
+        props{
+          speed:r=30.0
+          moveType:t="USE_SPLINES"
+          shouldKeepFormation:b=no
+        }
+      }
+
+      germ_tigers_wave_wp_01{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1995.27, 78.2936, 8719.79]]
+
+        props{
+          speed:r=30.0
+          moveType:t="USE_SPLINES"
+        }
+      }
+
+      tracked_vehicles_01_wp_03{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1927.5, 83.35, 8808.3]]
+
+        props{
+          speed:r=30.0
+          moveType:t="USE_SPLINES"
+          shouldKeepFormation:b=no
+        }
+      }
+
+      germ_tigers_wave_wp_02{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1872.58, 72.0049, 8707.37]]
+
+        props{
+          speed:r=30.0
+          moveType:t="MOVETO_STRAIGHT"
+        }
+      }
+
+      germ_tigers_wave_wp_03{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1818.41, 72.0093, 8630.69]]
+
+        props{
+          speed:r=30.0
+          moveType:t="MOVETO_STRAIGHT"
+        }
+      }
+    }
+  }
+
+  structures{
+    name:t="germ_artillery_01_02"
+    tm:m=[[-0.461748, 0.0, -0.887011] [0.0, 1.0, 0.0] [0.887011, 0.0, -0.461748] [3256.4, 43.35, 7522.95]]
+    unit_class:t="germ_88mm_pak43_noground"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=2
+      formation_step:p2=2.4, 1.0
+      formation_noise:p2=0.1, 1.0
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="germ_artillery_01_01"
+    tm:m=[[0.5, 0.0, 0.866025] [0.0, 1.0, 0.0] [-0.866025, 0.0, 0.5] [3181.05, 45.3, 7393.6]]
+    unit_class:t="germ_88mm_pak43_noground"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.3, 1.0
+      formation_noise:p2=1.0, 1.0
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="germ_artillery_02_01"
+    tm:m=[[-0.866025, 0.0, 0.5] [0.0, 1.0, 0.0] [-0.5, 0.0, -0.866025] [2921.5, 59.85, 7601.8]]
+    unit_class:t="germ_88mm_pak43_noground"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=2
+      formation_step:p2=0.8, 4.0
+      formation_noise:p2=0.3, 0.4
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="structures_01"
+    tm:m=[[3.35276e-08, 0.0, 0.5] [0.0, 1.0, 0.0] [-0.924, 0.0, 5.73695e-08] [3639.75, 43.35, 7496.55]]
+    unit_class:t="berlin_bridge_01"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=1
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+      targetableByAi:b=no
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="germ_artillery_03_01"
+    tm:m=[[-0.173648, 0.0, 0.984808] [0.0, 1.0, 0.0] [-0.984808, 0.0, -0.173648] [2461.05, 64.2, 7991.65]]
+    unit_class:t="germ_88mm_pak43_noground"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=1.6, 2.0
+      formation_noise:p2=1.0, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="germ_artillery_04_01"
+    tm:m=[[0.0436195, 0.0, 0.999048] [0.0, 1.0, 0.0] [-0.999048, 0.0, 0.0436195] [1969.6, 78.95, 8493.15]]
+    unit_class:t="germ_88mm_pak43_noground"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=4
+      formation_type:t="rows"
+      formation_div:i=1
+      formation_step:p2=5.0, 2.0
+      formation_noise:p2=1.0, 1.0
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="germ_artillery_01_03"
+    tm:m=[[-0.461748, 0.0, -0.887011] [0.0, 1.0, 0.0] [0.887011, 0.0, -0.461748] [3272.55, 43.35, 7529.75]]
+    unit_class:t="germ_88mm_pak43_noground"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=2
+      formation_step:p2=2.4, 1.0
+      formation_noise:p2=0.1, 1.0
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="germ_artillery_01_04"
+    tm:m=[[0.5, 0.0, 0.866025] [0.0, 1.0, 0.0] [-0.866025, 0.0, 0.5] [3185.3, 45.3, 7376.2]]
+    unit_class:t="germ_88mm_pak43_noground"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.3, 1.0
+      formation_noise:p2=1.0, 1.0
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="germ_artillery_02_02"
+    tm:m=[[-0.866025, 0.0, 0.5] [0.0, 1.0, 0.0] [-0.5, 0.0, -0.866025] [2914.1, 59.85, 7568.1]]
+    unit_class:t="germ_88mm_pak43_noground"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=2
+      formation_step:p2=0.8, 4.0
+      formation_noise:p2=0.3, 0.4
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="germ_artillery_02_03"
+    tm:m=[[-0.898948, 0.0, -0.438054] [0.0, 1.0, 0.0] [0.438054, 0.0, -0.898948] [2936.0, 59.85, 7701.7]]
+    unit_class:t="germ_88mm_pak43_noground"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=2
+      formation_step:p2=0.8, 4.0
+      formation_noise:p2=0.3, 0.4
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="germ_artillery_03_02"
+    tm:m=[[-0.173648, 0.0, 0.984808] [0.0, 1.0, 0.0] [-0.984808, 0.0, -0.173648] [2496.35, 64.2, 8005.25]]
+    unit_class:t="germ_88mm_pak43_noground"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=1.6, 2.0
+      formation_noise:p2=1.0, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="germ_artillery_03_03"
+    tm:m=[[-0.173648, 0.0, 0.984808] [0.0, 1.0, 0.0] [-0.984808, 0.0, -0.173648] [2478.95, 64.2, 7954.65]]
+    unit_class:t="germ_88mm_pak43_noground"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=1.6, 2.0
+      formation_noise:p2=1.0, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  squad{
+    name:t="final_germ_squad"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [328.15, 66.0, 7985.95]]
+
+    props{
+      squad_members:t="final_germ_tank_01"
+      squad_members:t="final_germ_tank_02"
+      squad_members:t="final_germ_tank_03"
+      squad_members:t="final_germ_tank_04"
+      squad_members:t="final_germ_tank_05"
+      squad_members:t="final_germ_tank_06"
+    }
+  }
+
+  squad{
+    name:t="germ_tanks_squad"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [432.35, 58.1716, 10163.8]]
+
+    props{
+      squad_members:t="germ_pz_vi_01"
+      squad_members:t="pziv_01"
+      squad_members:t="germ_tiger_01"
+      squad_members:t="germ_tiger_02"
+      squad_members:t="germ_tiger_03"
+      squad_members:t="final_germ_tank_01"
+      squad_members:t="final_germ_tank_02"
+      squad_members:t="final_germ_tank_03"
+      squad_members:t="final_germ_tank_04"
+      squad_members:t="final_germ_tank_05"
+      squad_members:t="final_germ_tank_06"
+      squad_members:t="germ_tigers_wave"
+    }
+  }
+
+  squad{
+    name:t="germ_artillery_01_squad"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [3254.6, 44.3, 7394.3]]
+
+    props{
+      squad_members:t="germ_artillery_01_01"
+      squad_members:t="germ_artillery_01_02"
+      squad_members:t="germ_artillery_01_03"
+      squad_members:t="germ_artillery_01_04"
+    }
+  }
+
+  squad{
+    name:t="germ_artillery_02_squad"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2948.8, 59.85, 7715.9]]
+
+    props{
+      squad_members:t="germ_artillery_02_01"
+      squad_members:t="germ_artillery_02_02"
+      squad_members:t="germ_artillery_02_03"
+    }
+  }
+
+  squad{
+    name:t="germ_artillery_03_squad"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2502.55, 64.2, 7882.7]]
+
+    props{
+      squad_members:t="germ_artillery_03_01"
+      squad_members:t="germ_artillery_03_02"
+      squad_members:t="germ_artillery_03_03"
+    }
+  }
+
+  air_defence{
+    name:t="air_defence_01"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2922.35, 52.65, 7213.25]]
+    unit_class:t="germ_37mm_flak43"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="hold_fire"
+      stealthRadius:r=50.0
+      effShootingRate:r=0.1
+      targetableByAi:b=no
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="air_defence_02"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [3044.5, 52.65, 7806.55]]
+    unit_class:t="germ_37mm_flak43"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="hold_fire"
+      stealthRadius:r=50.0
+      effShootingRate:r=0.1
+      targetableByAi:b=no
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="air_defence_03"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2423.15, 66.2, 7347.35]]
+    unit_class:t="germ_37mm_flak43"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="hold_fire"
+      stealthRadius:r=50.0
+      effShootingRate:r=0.1
+      targetableByAi:b=no
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="air_defence_04"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2341.8, 66.2, 7563.15]]
+    unit_class:t="germ_37mm_flak43"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="hold_fire"
+      stealthRadius:r=50.0
+      effShootingRate:r=0.1
+      targetableByAi:b=no
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="air_defence_05"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2873.35, 66.2, 8426.15]]
+    unit_class:t="germ_37mm_flak43"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="hold_fire"
+      stealthRadius:r=50.0
+      effShootingRate:r=0.1
+      targetableByAi:b=no
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="air_defence_06"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2263.6, 66.2, 9391.25]]
+    unit_class:t="germ_37mm_flak43"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="hold_fire"
+      stealthRadius:r=50.0
+      effShootingRate:r=0.1
+      targetableByAi:b=no
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="air_defence_07"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1068.85, 66.2, 9532.2]]
+    unit_class:t="germ_37mm_flak43"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="hold_fire"
+      stealthRadius:r=50.0
+      effShootingRate:r=0.1
+      targetableByAi:b=no
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="air_defence_08"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [871.6, 66.2, 7764.1]]
+    unit_class:t="germ_37mm_flak43"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="hold_fire"
+      stealthRadius:r=50.0
+      effShootingRate:r=0.1
+      targetableByAi:b=no
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="air_defence_09"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-300.5, 66.2, 7541.15]]
+    unit_class:t="germ_37mm_flak43"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="hold_fire"
+      stealthRadius:r=50.0
+      effShootingRate:r=0.1
+      targetableByAi:b=no
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="air_defence_10"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [245.35, 66.2, 9384.2]]
+    unit_class:t="germ_37mm_flak43"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="hold_fire"
+      stealthRadius:r=50.0
+      effShootingRate:r=0.1
+      targetableByAi:b=no
+    }
+
+    way{
+    }
+  }
+}
+
+areas{
+
+  artillery_point_01{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [3231.05, 45.65, 7461.9]]
+
+    props{
+    }
+  }
+
+  waypoint_01_area_01{
+    type:t="Sphere"
+    tm:m=[[30.0, 0.0, 0.0] [0.0, 30.0, 0.0] [0.0, 0.0, 30.0] [3218.5, 46.35, 7439.3]]
+
+    props{
+    }
+  }
+
+  waypoint_01_area_02{
+    type:t="Sphere"
+    tm:m=[[30.0, 0.0, 0.0] [0.0, 30.0, 0.0] [0.0, 0.0, 30.0] [3239.35, 46.35, 7493.05]]
+
+    props{
+    }
+  }
+
+  waypoint_01_area_03{
+    type:t="Sphere"
+    tm:m=[[103.951, 0.0, 0.0] [0.0, 128.334, 0.0] [0.0, 0.0, 128.334] [3233.4, 46.35, 7462.2]]
+
+    props{
+    }
+  }
+
+  artillery_point_02{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2870.45, 60.2, 7631.8]]
+
+    props{
+    }
+  }
+
+  waypoint_02_area_01{
+    type:t="Sphere"
+    tm:m=[[22.2, 0.0, 0.0] [0.0, 22.2, 0.0] [0.0, 0.0, 22.2] [2889.8, 59.4, 7621.2]]
+
+    props{
+    }
+  }
+
+  waypoint_02_area_03{
+    type:t="Sphere"
+    tm:m=[[163.688, 0.0, 0.0] [0.0, 60.0, 0.0] [0.0, 0.0, 163.688] [2885.35, 70.15, 7648.95]]
+
+    props{
+    }
+  }
+
+  pz_vi_01_point{
+    type:t="Point"
+    tm:m=[[-0.130526, 0.0, -0.991445] [0.0, 1.0, 0.0] [0.991445, 0.0, -0.130526] [2929.95, 50.55, 8020.15]]
+
+    props{
+    }
+  }
+
+  tanks_point_01{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2896.3, 50.05, 7811.95]]
+
+    props{
+    }
+  }
+
+  waypoint_03_area_03{
+    type:t="Box"
+    tm:m=[[18.2122, 0.0, 103.286] [0.0, 19.734, 0.0] [-34.4324, 0.0, 6.07136] [2904.25, 49.95, 7849.65]]
+
+    props{
+    }
+  }
+
+  area_02{
+    type:t="Sphere"
+    tm:m=[[28.3, 0.0, 0.0] [0.0, 28.3, 0.0] [0.0, 0.0, 28.3] [3593.4, 38.4, 7461.15]]
+
+    props{
+    }
+  }
+
+  area_01{
+    type:t="Sphere"
+    tm:m=[[28.3, 0.0, 0.0] [0.0, 28.3, 0.0] [0.0, 0.0, 28.3] [3574.5, 38.4, 7518.55]]
+
+    props{
+    }
+  }
+
+  artillery_point_03{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2490.25, 71.55, 8054.95]]
+
+    props{
+    }
+  }
+
+  waypoint_04_area_03{
+    type:t="Sphere"
+    tm:m=[[217.003, 0.0, 0.0] [0.0, 217.003, 0.0] [0.0, 0.0, 217.003] [2462.45, 71.95, 8070.9]]
+
+    props{
+    }
+  }
+
+  waypoint_05_area_03{
+    type:t="Box"
+    tm:m=[[-142.653, 0.0, 66.5202] [0.0, 21.9, 0.0] [-40.3099, 0.0, -86.4448] [2468.2, 58.25, 8394.5]]
+
+    props{
+    }
+  }
+
+  waypoint_05_area_04{
+    type:t="Box"
+    tm:m=[[-60.2344, 0.0, -145.419] [0.0, 21.9, 0.0] [149.805, 0.0, -62.0514] [2599.7, 58.25, 8264.2]]
+
+    props{
+    }
+  }
+
+  pziv_01_point{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2516.25, 65.25, 8354.95]]
+
+    props{
+    }
+  }
+
+  back_door_point{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2623.0, 60.85, 8247.7]]
+
+    props{
+    }
+  }
+
+  waypoint_05_area_05{
+    type:t="Sphere"
+    tm:m=[[95.3, 0.0, 0.0] [0.0, 95.3, 0.0] [0.0, 0.0, 95.3] [2462.35, 66.95, 8219.95]]
+
+    props{
+    }
+  }
+
+  waypoint_06_area_03{
+    type:t="Sphere"
+    tm:m=[[161.886, 0.0, 0.0] [0.0, 161.886, 0.0] [0.0, 0.0, 161.886] [1996.4, 71.95, 8605.5]]
+
+    props{
+    }
+  }
+
+  tiger_01_point{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1184.35, 60.1, 8969.2]]
+
+    props{
+    }
+  }
+
+  tiger_02_point{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1293.45, 57.4, 8941.85]]
+
+    props{
+    }
+  }
+
+  tiger_03_point{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1042.15, 64.3, 9007.65]]
+
+    props{
+    }
+  }
+
+  waypoint_07_area_03{
+    type:t="Box"
+    tm:m=[[386.223, 0.0, -85.6235] [0.0, 44.7, 0.0] [26.7257, 1.06812e-05, 120.552] [1110.65, 57.1, 8981.0]]
+
+    props{
+    }
+  }
+
+  final_point{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1041.8, 81.2, 8857.9]]
+
+    props{
+    }
+  }
+
+  waypoint_08_area_03{
+    type:t="Sphere"
+    tm:m=[[1978.11, 0.0, 0.0] [0.0, 1978.11, 0.0] [0.0, 0.0, 1978.11] [361.6, 79.35, 8639.35]]
+
+    props{
+    }
+  }
+
+  area_03{
+    type:t="Box"
+    tm:m=[[-365.502, 0.0, -15.9582] [0.0, 46.9, 0.0] [3.51681, 0.0, -80.5483] [3790.43, 41.0, 7492.38]]
+
+    props{
+    }
+  }
+
+  taks_wave_zone{
+    type:t="Sphere"
+    tm:m=[[303.552, 0.0, 0.0] [0.0, 632.4, 0.0] [0.0, 0.0, 303.552] [1867.6, 83.0, 8693.65]]
+
+    props{
+    }
+  }
+
+  wp3_destr_area{
+    type:t="Sphere"
+    tm:m=[[85.2, 0.0, 0.0] [0.0, 85.2, 0.0] [0.0, 0.0, 85.2] [2932.1, 51.15, 8030.7]]
+
+    props{
+    }
+  }
+}
+
+objLayers{
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+}
+
+wayPoints{
+}

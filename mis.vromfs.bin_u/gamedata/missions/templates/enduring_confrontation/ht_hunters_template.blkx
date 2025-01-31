@@ -1,0 +1,1301 @@
+selected_tag:t=""
+bin_dump_file:t=""
+
+mission_settings{
+
+  player{
+    army:i=1
+  }
+
+  player_teamB{
+    army:i=2
+  }
+
+  mission{
+    type:t="singleMission"
+    level:t="levels/water.bin"
+    environment:t="Day"
+    weather:t="hazy"
+  }
+}
+
+imports{
+}
+
+triggers{
+  isCategory:b=yes
+  is_enabled:b=yes
+
+  ht_init{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      unitLoadBehTree{
+        name:t="missionFighter"
+        objects:t="ht_t1_hunter"
+        objects:t="ht_t2_hunter"
+      }
+
+      unitSetProperties{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="ht_t1_hunter"
+        object:t="ht_t2_hunter"
+        stealthRadius:r=1500.0
+        calmDetection:b=yes
+      }
+
+      triggerEnable{
+        target:t="ht_t1_restart"
+        target:t="ht_t2_restart"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  ht_t1_routine{
+    isCategory:b=yes
+    is_enabled:b=yes
+
+    ht_t1_restart{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=30.0
+          var:t="ht_restart_delay_timer"
+        }
+      }
+
+      conditions{
+      }
+
+      actions{
+
+        triggerEnable{
+          target:t="ht_t1_start"
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    ht_t1_start{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=1.0
+        }
+      }
+
+      conditions{
+
+        varCompareBool{
+          var_value:t="ht_t1_is_active"
+          value:b=no
+          comparasion_func:t="equal"
+        }
+      }
+
+      actions{
+
+        comment{
+          value:t=""
+        }
+
+        comment{
+          value:t=""
+        }
+
+        triggerDisable{
+          target:t="ht_t1_attack"
+          target:t="ht_t1_retreat"
+        }
+
+        triggerEnable{
+          target:t="ht_t1_choose_bombers"
+        }
+      }
+
+      else_actions{
+
+        triggerEnable{
+          target:t="ht_t1_restart"
+        }
+      }
+    }
+
+    ht_t1_choose_bombers{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=1.0
+        }
+      }
+
+      conditions{
+
+        varCompareBool{
+          var_value:t="bt_t2_is_active"
+          value:b=yes
+          comparasion_func:t="equal"
+        }
+
+        unitWhenCountMatches{
+          object_type:t="isActive"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          func:t="more"
+          value:i=3
+          object:t="@ht_t1_bomber_target_name"
+        }
+      }
+
+      actions{
+
+        comment{
+          value:t="bombers template is active"
+        }
+
+        comment{
+          value:t=""
+        }
+
+        varGetStringValue{
+          from_var_name:t="ht_t1_bomber_target_name"
+          var:t="ht_t1_cur_target_name"
+        }
+
+        varGetStringValue{
+          from_var_name:t="ht_t1_bomber_cover_name"
+          var:t="ht_t1_cur_cover_name"
+        }
+
+        triggerEnable{
+          target:t="ht_t1_spawn"
+        }
+      }
+
+      else_actions{
+
+        comment{
+          value:t="bombers template is no active"
+        }
+
+        triggerEnable{
+          target:t="ht_t1_choose_sea_bombers"
+        }
+      }
+    }
+
+    ht_t1_choose_sea_bombers{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=1.0
+        }
+      }
+
+      conditions{
+
+        varCompareBool{
+          var_value:t="sbt_t2_is_active"
+          value:b=yes
+          comparasion_func:t="equal"
+        }
+
+        unitWhenCountMatches{
+          object_type:t="isActive"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          func:t="more"
+          value:i=3
+          object:t="@ht_t1_sea_bomber_target_name"
+        }
+      }
+
+      actions{
+
+        comment{
+          value:t="sea bombers template is active"
+        }
+
+        comment{
+          value:t=""
+        }
+
+        varGetStringValue{
+          from_var_name:t="ht_t1_sea_bomber_target_name"
+          var:t="ht_t1_cur_target_name"
+        }
+
+        varGetStringValue{
+          from_var_name:t="ht_t1_sea_bomber_cover_name"
+          var:t="ht_t1_cur_cover_name"
+        }
+
+        triggerEnable{
+          target:t="ht_t1_spawn"
+        }
+      }
+
+      else_actions{
+
+        comment{
+          value:t="sea bombers template is no active"
+        }
+
+        triggerEnable{
+          target:t="ht_t1_choose_assaults"
+        }
+      }
+    }
+
+    ht_t1_choose_assaults{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=1.0
+        }
+      }
+
+      conditions{
+
+        varCompareBool{
+          var_value:t="at_t2_is_active"
+          value:b=yes
+          comparasion_func:t="equal"
+        }
+
+        unitWhenCountMatches{
+          object_type:t="isActive"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          func:t="more"
+          value:i=3
+          object:t="@ht_t1_assault_target_name"
+        }
+      }
+
+      actions{
+
+        comment{
+          value:t="assaults template is active"
+        }
+
+        comment{
+          value:t=""
+        }
+
+        varGetStringValue{
+          from_var_name:t="ht_t1_assault_target_name"
+          var:t="ht_t1_cur_target_name"
+        }
+
+        varGetStringValue{
+          from_var_name:t="ht_t1_assault_cover_name"
+          var:t="ht_t1_cur_cover_name"
+        }
+
+        triggerEnable{
+          target:t="ht_t1_spawn"
+        }
+      }
+
+      else_actions{
+
+        comment{
+          value:t="assaults template is no active"
+        }
+
+        triggerEnable{
+          target:t="ht_t1_restart"
+        }
+      }
+    }
+
+    ht_t1_spawn{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=1.0
+        }
+      }
+
+      conditions{
+      }
+
+      actions{
+
+        comment{
+          value:t=""
+        }
+
+        comment{
+          value:t=""
+        }
+
+        comment{
+          value:t=""
+        }
+
+        comment{
+          value:t=""
+        }
+
+        comment{
+          value:t=""
+        }
+
+        varSetBool{
+          value:b=yes
+          var:t="ht_t1_is_active"
+        }
+
+        unitRespawn{
+          delay:r=0.0
+          offset:p3=0.0, 0.0, 0.0
+          object:t="ht_t1_hunter"
+          target:t="ht_t1_hunter_spawn_point"
+          isStealth:b=yes
+          resetFormation:b=yes
+        }
+
+        wait{
+          time:r=1.0
+        }
+
+        unitMoveTo{
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          target:t="@ht_t1_cur_target_name"
+          target_marking:i=0
+          waypointReachedDist:r=10.0
+          recalculatePathDist:r=-1.0
+          follow_target:b=yes
+          fastClimb:b=no
+          destTimeMode:b=no
+          teleportHeightType:t="absolute"
+          useUnitHeightForTele:b=yes
+          shouldKeepFormation:b=yes
+          teleportHeightValue:r=1000.0
+          horizontalDirectionForTeleport:b=yes
+          target_var_name:t=""
+          target_var_comp_op:t="equal"
+          target_var_value:i=0
+          object:t="ht_t1_hunter"
+          useFormationCenter:b=no
+          teleportOffset:p3=0.0, 1000.0, 0.0
+        }
+
+        triggerEnable{
+          target:t="ht_t1_attack"
+          target:t="ht_t1_died"
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    ht_t1_attack{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=1.0
+        }
+      }
+
+      conditions{
+
+        unitDistanceBetween{
+          value:r=3500.0
+          math:t="2D"
+          object_type:t="isActive"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          target_type:t="isActive"
+          target_marking:i=0
+          check_objects:t="any"
+          check_targets:t="any"
+          object:t="ht_t1_hunter"
+          target:t="@ht_t1_cur_target_name"
+          compareCenters:b=no
+        }
+      }
+
+      actions{
+
+        unitMoveTo{
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          target:t="ht_t1_hunter_retreat_point"
+          target_marking:i=0
+          waypointReachedDist:r=10.0
+          recalculatePathDist:r=-1.0
+          follow_target:b=no
+          fastClimb:b=no
+          destTimeMode:b=no
+          teleportHeightType:t="absolute"
+          useUnitHeightForTele:b=yes
+          shouldKeepFormation:b=no
+          teleportHeightValue:r=1000.0
+          horizontalDirectionForTeleport:b=yes
+          target_var_name:t=""
+          target_var_comp_op:t="equal"
+          target_var_value:i=0
+          object:t="ht_t1_hunter"
+        }
+
+        unitAttackTarget{
+          playerAttracted:b=no
+          object:t="ht_t1_hunter"
+          target:t="@ht_t1_cur_target_name"
+          target:t="@ht_t1_cur_cover_name"
+          target:t="t2_players_squad"
+          fireRandom:b=yes
+          anchorTarget:t="@ht_t1_cur_target_name"
+          targetToAnchorDist:p2=3500.0, 5000.0
+        }
+
+        comment{
+          value:t=""
+        }
+
+        triggerEnable{
+          target:t="ht_t1_retreat"
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    ht_t1_retreat{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=yes
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=1.0
+        }
+      }
+
+      conditions{
+
+        unitDistanceBetween{
+          value:r=4500.0
+          math:t="2D"
+          object_type:t="isActive"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          target_type:t="isActive"
+          target_marking:i=0
+          check_objects:t="any"
+          check_targets:t="any"
+          object:t="ht_t1_hunter"
+          target:t="ht_t1_hunter_retreat_point"
+          compareCenters:b=no
+        }
+      }
+
+      actions{
+
+        unitPutToSleep{
+          target:t="ht_t1_hunter"
+          useForTriggerFiltered:b=yes
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    ht_t1_died{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=1.0
+        }
+      }
+
+      conditions{
+
+        unitWhenCountMatches{
+          object_type:t="isActive"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          func:t="less"
+          value:i=1
+          object:t="ht_t1_hunter"
+        }
+      }
+
+      actions{
+
+        triggerDisable{
+          target:t="ht_t1_attack"
+          target:t="ht_t1_retreat"
+        }
+      }
+
+      else_actions{
+      }
+    }
+  }
+
+  ht_t2_routine{
+    isCategory:b=yes
+    is_enabled:b=yes
+
+    ht_t2_restart{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=30.0
+          var:t="ht_restart_delay_timer"
+        }
+      }
+
+      conditions{
+      }
+
+      actions{
+
+        triggerEnable{
+          target:t="ht_t2_start"
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    ht_t2_start{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=1.0
+        }
+      }
+
+      conditions{
+
+        varCompareBool{
+          var_value:t="ht_t2_is_active"
+          value:b=no
+          comparasion_func:t="equal"
+        }
+      }
+
+      actions{
+
+        comment{
+          value:t=""
+        }
+
+        comment{
+          value:t=""
+        }
+
+        triggerDisable{
+          target:t="ht_t2_attack"
+          target:t="ht_t2_retreat"
+        }
+
+        triggerEnable{
+          target:t="ht_t2_choose_bombers"
+        }
+      }
+
+      else_actions{
+
+        triggerEnable{
+          target:t="ht_t2_restart"
+        }
+      }
+    }
+
+    ht_t2_choose_bombers{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=1.0
+        }
+      }
+
+      conditions{
+
+        varCompareBool{
+          var_value:t="bt_t1_is_active"
+          value:b=yes
+          comparasion_func:t="equal"
+        }
+
+        unitWhenCountMatches{
+          object_type:t="isActive"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          func:t="more"
+          value:i=3
+          object:t="@ht_t2_bomber_target_name"
+        }
+      }
+
+      actions{
+
+        comment{
+          value:t="bombers template is active"
+        }
+
+        comment{
+          value:t=""
+        }
+
+        varGetStringValue{
+          from_var_name:t="ht_t2_bomber_target_name"
+          var:t="ht_t2_cur_target_name"
+        }
+
+        varGetStringValue{
+          from_var_name:t="ht_t2_bomber_cover_name"
+          var:t="ht_t2_cur_cover_name"
+        }
+
+        triggerEnable{
+          target:t="ht_t2_spawn"
+        }
+      }
+
+      else_actions{
+
+        comment{
+          value:t="bombers template is no active"
+        }
+
+        triggerEnable{
+          target:t="ht_t2_choose_sea_bombers"
+        }
+      }
+    }
+
+    ht_t2_choose_sea_bombers{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=1.0
+        }
+      }
+
+      conditions{
+
+        varCompareBool{
+          var_value:t="sbt_t1_is_active"
+          value:b=yes
+          comparasion_func:t="equal"
+        }
+
+        unitWhenCountMatches{
+          object_type:t="isActive"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          func:t="more"
+          value:i=3
+          object:t="@ht_t2_sea_bomber_target_name"
+        }
+      }
+
+      actions{
+
+        comment{
+          value:t="sea bombers template is active"
+        }
+
+        comment{
+          value:t=""
+        }
+
+        varGetStringValue{
+          from_var_name:t="ht_t2_sea_bomber_target_name"
+          var:t="ht_t2_cur_target_name"
+        }
+
+        varGetStringValue{
+          from_var_name:t="ht_t2_sea_bomber_cover_name"
+          var:t="ht_t2_cur_cover_name"
+        }
+
+        triggerEnable{
+          target:t="ht_t2_spawn"
+        }
+      }
+
+      else_actions{
+
+        comment{
+          value:t="sea bombers template is no active"
+        }
+
+        triggerEnable{
+          target:t="ht_t2_choose_assaults"
+        }
+      }
+    }
+
+    ht_t2_choose_assaults{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=1.0
+        }
+      }
+
+      conditions{
+
+        varCompareBool{
+          var_value:t="at_t1_is_active"
+          value:b=yes
+          comparasion_func:t="equal"
+        }
+
+        unitWhenCountMatches{
+          object_type:t="isActive"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          func:t="more"
+          value:i=3
+          object:t="@ht_t2_assault_target_name"
+        }
+      }
+
+      actions{
+
+        comment{
+          value:t="assaults template is active"
+        }
+
+        comment{
+          value:t=""
+        }
+
+        varGetStringValue{
+          from_var_name:t="ht_t2_assault_target_name"
+          var:t="ht_t2_cur_target_name"
+        }
+
+        varGetStringValue{
+          from_var_name:t="ht_t2_assault_cover_name"
+          var:t="ht_t2_cur_cover_name"
+        }
+
+        triggerEnable{
+          target:t="ht_t2_spawn"
+        }
+      }
+
+      else_actions{
+
+        comment{
+          value:t="assaults template is no active"
+        }
+
+        triggerEnable{
+          target:t="ht_t2_restart"
+        }
+      }
+    }
+
+    ht_t2_spawn{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=1.0
+        }
+      }
+
+      conditions{
+      }
+
+      actions{
+
+        comment{
+          value:t=""
+        }
+
+        comment{
+          value:t=""
+        }
+
+        comment{
+          value:t=""
+        }
+
+        comment{
+          value:t=""
+        }
+
+        comment{
+          value:t=""
+        }
+
+        varSetBool{
+          value:b=yes
+          var:t="ht_t2_is_active"
+        }
+
+        unitRespawn{
+          delay:r=0.0
+          offset:p3=0.0, 0.0, 0.0
+          object:t="ht_t2_hunter"
+          target:t="ht_t2_hunter_spawn_point"
+          isStealth:b=yes
+          resetFormation:b=yes
+        }
+
+        wait{
+          time:r=1.0
+        }
+
+        unitMoveTo{
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          target:t="@ht_t2_cur_target_name"
+          target_marking:i=0
+          waypointReachedDist:r=10.0
+          recalculatePathDist:r=-1.0
+          follow_target:b=yes
+          fastClimb:b=no
+          destTimeMode:b=no
+          teleportHeightType:t="absolute"
+          useUnitHeightForTele:b=yes
+          shouldKeepFormation:b=yes
+          teleportHeightValue:r=1000.0
+          horizontalDirectionForTeleport:b=yes
+          target_var_name:t=""
+          target_var_comp_op:t="equal"
+          target_var_value:i=0
+          object:t="ht_t2_hunter"
+          useFormationCenter:b=no
+          teleportOffset:p3=0.0, 1000.0, 0.0
+        }
+
+        triggerEnable{
+          target:t="ht_t2_attack"
+          target:t="ht_t2_died"
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    ht_t2_attack{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=1.0
+        }
+      }
+
+      conditions{
+
+        unitDistanceBetween{
+          value:r=3500.0
+          math:t="2D"
+          object_type:t="isActive"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          target_type:t="isActive"
+          target_marking:i=0
+          check_objects:t="any"
+          check_targets:t="any"
+          object:t="ht_t2_hunter"
+          target:t="@ht_t2_cur_target_name"
+          compareCenters:b=no
+        }
+      }
+
+      actions{
+
+        unitMoveTo{
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          target:t="ht_t2_hunter_retreat_point"
+          target_marking:i=0
+          waypointReachedDist:r=10.0
+          recalculatePathDist:r=-1.0
+          follow_target:b=no
+          fastClimb:b=no
+          destTimeMode:b=no
+          teleportHeightType:t="absolute"
+          useUnitHeightForTele:b=yes
+          shouldKeepFormation:b=no
+          teleportHeightValue:r=1000.0
+          horizontalDirectionForTeleport:b=yes
+          target_var_name:t=""
+          target_var_comp_op:t="equal"
+          target_var_value:i=0
+          object:t="ht_t2_hunter"
+        }
+
+        unitAttackTarget{
+          playerAttracted:b=no
+          object:t="ht_t2_hunter"
+          target:t="@ht_t2_cur_target_name"
+          target:t="@ht_t2_cur_cover_name"
+          target:t="t1_players_squad"
+          fireRandom:b=yes
+          anchorTarget:t="@ht_t2_cur_target_name"
+          targetToAnchorDist:p2=3500.0, 5000.0
+        }
+
+        comment{
+          value:t=""
+        }
+
+        triggerEnable{
+          target:t="ht_t2_retreat"
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    ht_t2_retreat{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=yes
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=1.0
+        }
+      }
+
+      conditions{
+
+        unitDistanceBetween{
+          value:r=4500.0
+          math:t="2D"
+          object_type:t="isActive"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          target_type:t="isActive"
+          target_marking:i=0
+          check_objects:t="any"
+          check_targets:t="any"
+          object:t="ht_t2_hunter"
+          target:t="ht_t2_hunter_retreat_point"
+          compareCenters:b=no
+        }
+      }
+
+      actions{
+
+        unitPutToSleep{
+          target:t="ht_t2_hunter"
+          useForTriggerFiltered:b=yes
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    ht_t2_died{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=1.0
+        }
+      }
+
+      conditions{
+
+        unitWhenCountMatches{
+          object_type:t="isActive"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          func:t="less"
+          value:i=1
+          object:t="ht_t2_hunter"
+        }
+      }
+
+      actions{
+
+        triggerDisable{
+          target:t="ht_t2_attack"
+          target:t="ht_t2_retreat"
+        }
+      }
+
+      else_actions{
+      }
+    }
+  }
+}
+
+mission_objectives{
+  isCategory:b=yes
+  is_enabled:b=yes
+}
+
+variables{
+  ht_t1_is_active:b=no
+  ht_t2_is_active:b=no
+  ht_t1_bomber_target_name:t="bt_t2_bomber"
+  ht_t1_bomber_cover_name:t="bt_t2_fighter"
+  ht_t1_sea_bomber_target_name:t="sbt_t2_bomber"
+  ht_t1_sea_bomber_cover_name:t="sbt_t2_fighter"
+  ht_t1_assault_target_name:t="at_t2_assault"
+  ht_t1_assault_cover_name:t="at_t2_fighter"
+  ht_t1_cur_target_name:t=""
+  ht_t1_cur_cover_name:t=""
+  ht_t2_bomber_target_name:t="bt_t1_bomber"
+  ht_t2_bomber_cover_name:t="bt_t1_fighter"
+  ht_t2_sea_bomber_target_name:t="sbt_t1_bomber"
+  ht_t2_sea_bomber_cover_name:t="sbt_t1_fighter"
+  ht_t2_assault_target_name:t="at_t1_assault"
+  ht_t2_assault_cover_name:t="at_t1_fighter"
+  ht_t2_cur_target_name:t=""
+  ht_t2_cur_cover_name:t=""
+  ht_restart_delay_timer:i=120
+}
+
+dialogs{
+}
+
+airfields{
+}
+
+effects{
+}
+
+units{
+}
+
+areas{
+}
+
+objLayers{
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+}
+
+wayPoints{
+}

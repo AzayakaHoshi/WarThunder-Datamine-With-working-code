@@ -1,0 +1,4233 @@
+selected_tag:t=""
+bin_dump_file:t=""
+
+mission_settings{
+
+  player{
+    army:i=1
+    wing:t="player"
+  }
+
+  player_teamB{
+    army:i=2
+  }
+
+  mission{
+    level:t="levels/stalingrad.bin"
+    type:t="training"
+    gt_training:b=no
+    environment:t="Evening"
+    weather:t="cloudy"
+    isLimitedFuel:b=no
+    isLimitedAmmo:b=no
+    openDiffLevels:b=no
+    restoreType:t="manual"
+    difficulty:t="arcade"
+    optionalTakeOff:b=no
+    forceSkiesInitialRandomSeed:b=yes
+    skiesInitialRandomSeed:i=34
+
+    customWeather{
+      windDir:p2=0.6, 0.8
+      wind_scale:r=1.0
+      max_wind_strength:r=6.0
+
+      sky{
+        mie_height:r=1.0
+      }
+
+      strata_clouds{
+        amount:r=0.5
+        altitude:r=11.0
+      }
+    }
+  }
+
+  atmosphere{
+    pressure:r=760.0
+    temperature:r=0.0
+  }
+
+  spectator_points{
+  }
+
+  briefing{
+    place_loc:t=""
+    date_loc:t=""
+    objective_loc:t=""
+    music:t="action_01"
+    viewAreaScale:r=4.0
+
+    part{
+      event:t=""
+      minTime:i=0
+
+      slide{
+        map:b=yes
+        minTime:i=4
+        picture:t=""
+        showAirMap:b=no
+
+        icon{
+          icontype:t="fighter"
+          side:t="player"
+          target:t="player_spawn03"
+          lookAt:t="bombing_point"
+        }
+
+        icon{
+          icontype:t="truck"
+          side:t="neutral"
+          target:t="bombing_point"
+        }
+
+        icon{
+          icontype:t="truck"
+          side:t="neutral"
+          target:t="target_truck02"
+        }
+      }
+    }
+  }
+}
+
+imports{
+
+  import_record{
+    file:t="gameData/missions/bridges/stalingrad_bridges.blk"
+    importAreas:b=yes
+    importUnits:b=yes
+    importTriggers:b=yes
+    importMissionObjectives:b=yes
+    importWayPoints:b=yes
+    importDialogs:b=yes
+    showAreas:b=yes
+    showUnits:b=yes
+    showTriggers:b=yes
+    showMissionObjectives:b=yes
+    showWayPoints:b=yes
+    showDialogs:b=yes
+
+    excludes{
+    }
+  }
+}
+
+triggers{
+  isCategory:b=yes
+  is_enabled:b=yes
+
+  flight_initial{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.0
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="retry_flight_hint"
+        target:t="flight_waypoint"
+        target:t="flight_near_target"
+        target:t="mission_timer"
+        target:t="flight_start"
+      }
+
+      triggerDisable{
+        target:t="dialogue_intro_p01"
+        target:t="dialogue_intro_p02"
+        target:t="dialogue_intro_p03"
+        target:t="dialogue_intro_p04"
+        target:t="dialogue_intro_p05"
+        target:t="dialogue_intro_p06"
+        target:t="dialogue_bombing_p01"
+        target:t="dialogue_bombing_p02"
+        target:t="dialogue_bombing_p03"
+        target:t="dialogue_bombing_p04"
+        target:t="dialogue_bombing_p05"
+        target:t="dialogue_bombing_p06"
+        target:t="dialogue_bombing_p07"
+        target:t="dialogue_bombing_MA_p07"
+        target:t="dialogue_bombing_p08"
+        target:t="dialogue_rockets_p01"
+        target:t="dialogue_rockets_p02"
+        target:t="dialogue_rockets_p03"
+        target:t="dialogue_rockets_p04"
+        target:t="bombing_climb_hint_Thrustmaster"
+      }
+
+      varSetInt{
+        value:i=0
+        var:t="timer"
+      }
+
+      missionStopSpeech{
+      }
+
+      missionSetFade{
+        mode:t="fadeOut"
+        color:p3=0.0, 0.0, 0.0
+        time:r=0.1
+      }
+
+      missionSetFade{
+        mode:t="fadeIn"
+        color:p3=0.0, 0.0, 0.0
+        time:r=0.5
+      }
+
+      playerControls{
+        setStatus:t="disable"
+        control:t="ALL"
+      }
+
+      playerControls{
+        setStatus:t="enable"
+        control:t="ID_FLIGHTMENU"
+        control:t="ID_FLIGHTMENU_SETUP"
+        control:t="ID_CONTINUE"
+        control:t="ID_CONTINUE_SETUP"
+      }
+
+      unitPutToSleep{
+        target:t="enemies_squad"
+      }
+
+      bigQueryAddRecord{
+        name:t="tutorialB_assaulter"
+        params:t="task 1/5: start mission"
+        event:t=""
+      }
+
+      wait{
+        time:r=0.8
+      }
+
+      wait{
+        time:r=0.15
+      }
+
+      wait{
+        time:r=0.7
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      wait{
+        time:r=2.0
+      }
+
+      unitRestore{
+        ressurectIfDead:b=yes
+        fullRestore:b=yes
+        target_marking:i=0
+        target:t="player"
+        ammoRestore:b=yes
+      }
+
+      playerOptions{
+        respawnBullets:b=yes
+      }
+
+      playerOptions{
+        currentView:t="3rdperson"
+      }
+
+      unitMoveTo{
+        target:t="player_start"
+        follow_target:b=no
+        teleportHeightType:t="target"
+        useUnitHeightForTele:b=no
+        shouldKeepFormation:b=no
+        teleportHeightValue:r=0.0
+        horizontalDirectionForTeleport:b=yes
+        object_marking:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        fastClimb:b=no
+        destTimeMode:b=no
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        object:t="player"
+        move_type:t="teleport"
+        speed:r=350.0
+        lookat:t="player_waypoint"
+        velocity:r=200.0
+      }
+
+      missionKillEffects{
+        area:t="big_area"
+      }
+
+      unitSetControls{
+        controls:t="power"
+        value:r=1.0
+        force:b=yes
+        objects:t="player"
+      }
+
+      unitForceRearmSpeed{
+        rearmSpeedK:r=100000.0
+        target:t="player"
+      }
+
+      missionSetTimeSpeed{
+        speed:r=0.0
+        realtimeTriggers:b=yes
+      }
+
+      triggerEnable{
+        target:t="dialogue_intro_p01"
+      }
+
+      triggerEnable{
+        target:t="flight_intro_skip"
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorialB_assault_intro"
+        action:t="show"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        shouldBlink:b=no
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorialB_assault_intro_continue"
+        action:t="show"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        shouldBlink:b=no
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  flight_intro_skip{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playerShortcutPressed{
+        control:t="ID_CONTINUE"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="flight_initial"
+        target:t="dialogue_intro_p01"
+        target:t="dialogue_intro_p02"
+      }
+
+      missionStopSpeech{
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t=""
+        action:t="hideCur"
+        shouldFadeOut:b=yes
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        shouldBlink:b=no
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorialB_about_assault"
+        action:t="show"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        shouldBlink:b=no
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorialB_about_assault_continue"
+        action:t="show"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        shouldBlink:b=no
+      }
+
+      wait{
+        time:r=0.5
+      }
+
+      wait{
+        time:r=2.0
+      }
+
+      triggerEnable{
+        target:t="dialogue_intro_p03"
+      }
+
+      triggerEnable{
+        target:t="flight_waypoint"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  flight_waypoint{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.0
+      }
+    }
+
+    conditions{
+
+      playerShortcutPressed{
+        control:t="ID_CONTINUE"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="flight_intro_skip"
+        target:t="dialogue_intro_p03"
+        target:t="dialogue_intro_p04"
+        target:t="dialogue_intro_p05"
+      }
+
+      missionStopSpeech{
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorialB_about_assault"
+        action:t="hideCur"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        shouldBlink:b=no
+      }
+
+      wait{
+        time:r=0.1
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=yes
+        primary:b=yes
+        oriented:b=no
+        ignoreDifficulty:b=no
+        scale:r=1.0
+        target:t="player_waypoint"
+      }
+
+      triggerEnable{
+        target:t="flight_start"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  flight_start{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.0
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="flight_waypoint"
+      }
+
+      missionSetTimeSpeed{
+        speed:r=1.0
+        realtimeTriggers:b=yes
+      }
+
+      playerControls{
+        setStatus:t="enable"
+        control:t="ALL"
+      }
+
+      playerControls{
+        setStatus:t="disable"
+        control:t="ID_FIRE"
+        control:t="ID_FIRE_MGUNS"
+        control:t="ID_FIRE_CANNONS"
+        control:t="ID_BOMBS"
+        control:t="ID_ROCKETS"
+        control:t="AXIS_FIRE"
+        control:t="AXIS_THROTTLE"
+        control:t="ID_TOGGLE_VIEW"
+      }
+
+      triggerEnable{
+        target:t="mission_timer"
+        target:t="flight_near_target"
+        target:t="retry_flight_hint"
+      }
+
+      triggerEnable{
+        target:t="dialogue_intro_p06"
+      }
+
+      triggerActivate{
+        target:t="tutorialB_assaulter_waypoint_objective_init"
+        activate_type:t="checkConidtions"
+        check_trigger_status:b=no
+        after_activation:t="disable"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  flight_near_target{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      unitWhenInArea{
+        math:t="3D"
+        object_type:t="isAlive"
+        object_marking:i=0
+        check_objects:t="any"
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="player"
+        target:t="player_waypoint"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="flight_initial"
+        target:t="flight_waypoint"
+        target:t="retry_flight_hint"
+        target:t="flight_start"
+        target:t="mission_timer"
+        target:t="flight_intro_skip"
+        target:t="dialogue_intro_p06"
+      }
+
+      varSetInt{
+        value:i=0
+        var:t="timer"
+      }
+
+      missionStopSpeech{
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=no
+        primary:b=yes
+        oriented:b=no
+        ignoreDifficulty:b=no
+        scale:r=1.0
+        target:t="player_waypoint"
+      }
+
+      moSetObjectiveStatus{
+        target:t="tutorialB_assaulter_waypoint"
+        status:i=2
+        object_var_comp_op:t="equal"
+        object_var_name:t=""
+        object_marking:i=0
+      }
+
+      bigQueryAddRecord{
+        name:t="tutorialB_assaulter"
+        params:t="task 2/5: player reached the waypoint"
+        event:t=""
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      triggerEnable{
+        target:t="bombing_initial"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  retry_flight_hint{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ANY"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      varCompareInt{
+        var_value:t="timer"
+        value:i=60
+        comparasion_func:t="more"
+      }
+
+      unitWhenStatus{
+        object_type:t="isUseless"
+        object_marking:i=0
+        check_objects:t="all"
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="player"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="flight_initial"
+        target:t="flight_waypoint"
+        target:t="flight_near_target"
+        target:t="flight_start"
+        target:t="mission_timer"
+        target:t="bombing_climb_hint_Thrustmaster"
+      }
+
+      triggerDisable{
+        target:t="dialogue_intro_p01"
+        target:t="dialogue_intro_p02"
+        target:t="dialogue_intro_p03"
+        target:t="dialogue_intro_p04"
+        target:t="dialogue_intro_p05"
+        target:t="dialogue_intro_p06"
+        target:t="dialogue_bombing_p01"
+        target:t="dialogue_bombing_p02"
+        target:t="dialogue_bombing_p03"
+        target:t="dialogue_bombing_p04"
+        target:t="dialogue_bombing_p05"
+        target:t="dialogue_bombing_p06"
+        target:t="dialogue_bombing_p07"
+        target:t="dialogue_bombing_MA_p07"
+        target:t="dialogue_bombing_p08"
+        target:t="dialogue_rockets_p01"
+        target:t="dialogue_rockets_p02"
+        target:t="dialogue_rockets_p03"
+        target:t="dialogue_rockets_p04"
+      }
+
+      varSetInt{
+        value:i=0
+        var:t="timer"
+      }
+
+      missionStopSpeech{
+      }
+
+      playerControls{
+        setStatus:t="disable"
+        control:t="ALL"
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t=""
+        action:t="hideCur"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        shouldBlink:b=no
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorialB_retry"
+        action:t="show"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        shouldBlink:b=no
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorialB_retry"
+        action:t="hide"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        shouldBlink:b=no
+      }
+
+      missionSetTimeSpeed{
+        speed:r=1.0
+        realtimeTriggers:b=no
+      }
+
+      wait{
+        time:r=2.0
+      }
+
+      wait{
+        time:r=0.5
+      }
+
+      triggerEnable{
+        target:t="flight_initial"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  bombing_initial{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="bombing_drop_bomb"
+        target:t="bombing_climb"
+        target:t="retry_truck_hint"
+        target:t="flight_initial"
+        target:t="flight_waypoint"
+        target:t="flight_near_target"
+        target:t="retry_flight_hint"
+        target:t="flight_start"
+        target:t="bombing_sight_hint"
+        target:t="bombing_how_to_aim"
+        target:t="bombing_aim_now"
+        target:t="bombing_drop_bomb"
+        target:t="bombing_climb_hint"
+        target:t="bombing_climb_hint_Thrustmaster"
+      }
+
+      triggerDisable{
+        target:t="dialogue_intro_p01"
+        target:t="dialogue_intro_p02"
+        target:t="dialogue_intro_p03"
+        target:t="dialogue_intro_p04"
+        target:t="dialogue_intro_p05"
+        target:t="dialogue_intro_p06"
+        target:t="dialogue_bombing_p01"
+        target:t="dialogue_bombing_p02"
+        target:t="dialogue_bombing_p03"
+        target:t="dialogue_bombing_p04"
+        target:t="dialogue_bombing_p05"
+        target:t="dialogue_bombing_p06"
+        target:t="dialogue_bombing_p07"
+        target:t="dialogue_bombing_MA_p07"
+        target:t="dialogue_bombing_p08"
+        target:t="dialogue_rockets_p01"
+        target:t="dialogue_rockets_p02"
+        target:t="dialogue_rockets_p03"
+        target:t="dialogue_rockets_p04"
+      }
+
+      missionSetFade{
+        mode:t="fadeOut"
+        color:p3=0.0, 0.0, 0.0
+        time:r=0.1
+      }
+
+      missionSetFade{
+        mode:t="fadeIn"
+        color:p3=0.0, 0.0, 0.0
+        time:r=0.5
+      }
+
+      missionStopSpeech{
+      }
+
+      playerControls{
+        setStatus:t="disable"
+        control:t="ALL"
+      }
+
+      playerControls{
+        setStatus:t="enable"
+        control:t="ID_FLIGHTMENU"
+        control:t="ID_FLIGHTMENU_SETUP"
+        control:t="ID_CONTINUE"
+        control:t="ID_CONTINUE_SETUP"
+      }
+
+      wait{
+        time:r=0.6
+      }
+
+      wait{
+        time:r=0.15
+      }
+
+      wait{
+        time:r=0.7
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      wait{
+        time:r=2.0
+      }
+
+      unitWakeUp{
+        target:t="target_truck01"
+      }
+
+      unitRestore{
+        ressurectIfDead:b=yes
+        fullRestore:b=yes
+        target_marking:i=0
+        target:t="player"
+        target:t="target_truck01"
+        ammoRestore:b=yes
+      }
+
+      playerOptions{
+        respawnBullets:b=yes
+      }
+
+      unitMoveTo{
+        target:t="player_spawn03"
+        follow_target:b=no
+        teleportHeightType:t="target"
+        useUnitHeightForTele:b=no
+        shouldKeepFormation:b=no
+        teleportHeightValue:r=0.0
+        horizontalDirectionForTeleport:b=no
+        object_marking:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        fastClimb:b=no
+        destTimeMode:b=no
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        object:t="player"
+        move_type:t="teleport"
+        speed:r=200.0
+        lookat:t="player_bombing_view"
+        velocity:r=200.0
+      }
+
+      missionKillEffects{
+        area:t="big_area"
+      }
+
+      unitForceRearmSpeed{
+        rearmSpeedK:r=100000.0
+        target:t="player"
+      }
+
+      missionSetTimeSpeed{
+        speed:r=0.0
+        realtimeTriggers:b=yes
+      }
+
+      triggerActivate{
+        target:t="tutorialB_assaulter_kill_truck_objective_init"
+        activate_type:t="checkConidtions"
+        check_trigger_status:b=no
+        after_activation:t="disable"
+      }
+
+      triggerEnable{
+        target:t="dialogue_bombing_p01"
+      }
+
+      triggerEnable{
+        target:t="bombing_sight_hint"
+        target:t="retry_truck_hint"
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorialB_howTo_ground"
+        action:t="show"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        shouldBlink:b=no
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorialB_howTo_ground_continue"
+        action:t="show"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        shouldBlink:b=no
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  bombing_sight_hint{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playerShortcutPressed{
+        control:t="ID_CONTINUE"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="bombing_initial"
+        target:t="dialogue_bombing_p01"
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorialB_howTo_ground"
+        action:t="hideCur"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        shouldBlink:b=no
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorialB_where_bombs_fall"
+        action:t="show"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        shouldBlink:b=no
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorialB_where_bombs_fall_continue"
+        action:t="show"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        shouldBlink:b=no
+      }
+
+      missionStopSpeech{
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      wait{
+        time:r=2.0
+      }
+
+      triggerEnable{
+        target:t="dialogue_bombing_p02"
+      }
+
+      triggerEnable{
+        target:t="bombing_how_to_aim"
+      }
+
+      hudElementBlink{
+        element:t="bombSight"
+        time:r=10.0
+        blink:b=yes
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  bombing_how_to_aim{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playerShortcutPressed{
+        control:t="ID_CONTINUE"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="bombing_sight_hint"
+        target:t="dialogue_bombing_p02"
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorialB_where_bombs_fall"
+        action:t="hideCur"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        shouldBlink:b=no
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorialB_howTo_aim"
+        action:t="show"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        shouldBlink:b=no
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorialB_howTo_aim_continue"
+        action:t="show"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        shouldBlink:b=no
+      }
+
+      missionStopSpeech{
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      wait{
+        time:r=2.0
+      }
+
+      triggerEnable{
+        target:t="dialogue_bombing_p03"
+      }
+
+      triggerEnable{
+        target:t="bombing_aim_now"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  bombing_aim_now{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playerShortcutPressed{
+        control:t="ID_CONTINUE"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="bombing_how_to_aim"
+        target:t="dialogue_bombing_p03"
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorialB_howTo_aim"
+        action:t="hideCur"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        shouldBlink:b=no
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorialB_red_sight"
+        action:t="show"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        item:t="ID_BOMBS"
+        shouldBlink:b=no
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      wait{
+        time:r=4.0
+      }
+
+      wait{
+        time:r=0.5
+      }
+
+      missionSetTimeSpeed{
+        speed:r=0.4
+        realtimeTriggers:b=yes
+      }
+
+      missionSetTimeSpeed{
+        speed:r=0.0
+        realtimeTriggers:b=yes
+      }
+
+      missionStopSpeech{
+      }
+
+      playerControls{
+        setStatus:t="enable"
+        control:t="ID_BOMBS"
+      }
+
+      triggerEnable{
+        target:t="bombing_drop_bomb"
+        target:t="dialogue_bombing_p04"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  bombing_drop_bomb{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.0
+      }
+    }
+
+    conditions{
+
+      playerShortcutPressed{
+        control:t="ID_BOMBS"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="dialogue_bombing_p04"
+        target:t="dialogue_bombing_p05"
+        target:t="bombing_aim_now"
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorialB_red_sight"
+        action:t="hide"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        item:t="ID_BOMBS"
+        shouldBlink:b=no
+      }
+
+      missionSetTimeSpeed{
+        speed:r=1.0
+        realtimeTriggers:b=no
+      }
+
+      missionStopSpeech{
+      }
+
+      wait{
+        time:r=0.1
+      }
+
+      wait{
+        time:r=0.5
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      wait{
+        time:r=3.5
+      }
+
+      showSmartCutscene{
+        sceneType:t="follow_bomb"
+        startSubTypeOnTheMarch:t=""
+        startSubTypeGroundUnits:t=""
+        startSubTypeArea:t=""
+        startSubTypeUnitAttackUnit:t=""
+        startSubTypeUnitMoveToUnit:t=""
+        startSubTypeTwoUnits:t=""
+        startSubTypeTakeoff:t=""
+        startSubTypeFlyBy:t=""
+        duration:r=5.0
+        wait:b=yes
+        changeCameras:b=no
+        teleportAllAttackers:b=no
+        allowTeleportAttackers:b=no
+        inverseCameraDirection:b=no
+        delayPlayer:b=yes
+        fadeIn:b=yes
+        fadeOut:b=no
+        allowDeadUnits:b=no
+        object:t="player"
+      }
+
+      showSmartCutscene{
+        sceneType:t="area"
+        startSubTypeOnTheMarch:t=""
+        startSubTypeGroundUnits:t=""
+        startSubTypeArea:t="a1"
+        startSubTypeUnitAttackUnit:t=""
+        startSubTypeUnitMoveToUnit:t=""
+        startSubTypeTwoUnits:t=""
+        startSubTypeTakeoff:t=""
+        startSubTypeFlyBy:t=""
+        duration:r=5.0
+        wait:b=no
+        changeCameras:b=no
+        teleportAllAttackers:b=no
+        allowTeleportAttackers:b=no
+        inverseCameraDirection:b=no
+        delayPlayer:b=yes
+        fadeIn:b=no
+        fadeOut:b=yes
+        allowDeadUnits:b=no
+        object:t="bombing_area_cutscene"
+        zoom:r=1.25
+      }
+
+      unitDamage{
+        part:i=1
+        power:r=1.0
+        useEffect:b=no
+        countEffects:i=1
+        delay:p2=1.0, 1.0
+        offset:p3=0.0, 0.0, 0.0
+        radiusOffset:p2=10.0, 15.0
+        target:t="target_truck01"
+        doExplosion:b=yes
+      }
+
+      triggerEnable{
+        target:t="dialogue_bombing_p08"
+      }
+
+      triggerEnable{
+        target:t="bombing_climb_hint"
+        target:t="bombing_climb_hint_MA"
+        target:t="bombing_climb_hint_Thrustmaster"
+      }
+
+      playerCenterMouseAim{
+      }
+
+      playerOptions{
+        currentView:t="3rdperson"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  bombing_climb_hint{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playerWhenOptions{
+        isGamepadPseudoMouseAim:b=no
+      }
+
+      playerWhenOptions{
+        isMouseAim:b=no
+      }
+
+      playerWhenOptions{
+        isThrustmasterHotas4:b=no
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="bombing_climb_hint_MA"
+        target:t="dialogue_bombing_p08"
+        target:t="bombing_drop_bomb"
+      }
+
+      missionSetTimeSpeed{
+        speed:r=0.0
+        realtimeTriggers:b=yes
+      }
+
+      missionStopSpeech{
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorialB_change_direction"
+        action:t="show"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        item:t="elevator=max"
+        shouldBlink:b=no
+      }
+
+      playerControls{
+        setStatus:t="enable"
+        control:t="AXIS_AILERONS"
+        control:t="AXIS_ELEVATOR"
+        control:t="AXIS_RUDDER"
+        control:t="AXIS_THROTTLE"
+        control:t="AXIS_MOUSE_AIM_X"
+        control:t="AXIS_MOUSE_AIM_Y"
+      }
+
+      triggerEnable{
+        target:t="bombing_climb"
+        target:t="dialogue_bombing_p06"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  bombing_climb_hint_Thrustmaster{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playerWhenOptions{
+        isThrustmasterHotas4:b=yes
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="bombing_climb_hint_MA"
+        target:t="dialogue_bombing_p08"
+        target:t="bombing_drop_bomb"
+        target:t="bombing_climb_hint"
+      }
+
+      missionSetTimeSpeed{
+        speed:r=0.0
+        realtimeTriggers:b=yes
+      }
+
+      missionStopSpeech{
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorialB_change_direction"
+        action:t="show"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        item:t="#ui/gameuiskin#tm_stick_down"
+        shouldBlink:b=no
+      }
+
+      playerControls{
+        setStatus:t="enable"
+        control:t="AXIS_AILERONS"
+        control:t="AXIS_ELEVATOR"
+        control:t="AXIS_RUDDER"
+        control:t="AXIS_THROTTLE"
+        control:t="AXIS_MOUSE_AIM_X"
+        control:t="AXIS_MOUSE_AIM_Y"
+      }
+
+      triggerEnable{
+        target:t="bombing_climb"
+        target:t="dialogue_bombing_p06"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  bombing_climb{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playerAxisValueReached{
+        value:r=0.1
+        func:t="more"
+        axis:t="AXIS_ELEVATOR"
+      }
+    }
+
+    actions{
+
+      missionSetTimeSpeed{
+        speed:r=1.0
+        realtimeTriggers:b=yes
+      }
+
+      triggerEnable{
+        target:t="bombing_plane_levelled"
+        target:t="retry_truck_hint"
+        target:t="mission_timer"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  bombing_climb_hint_MA{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ANY"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playerWhenOptions{
+        isMouseAim:b=yes
+      }
+
+      playerWhenOptions{
+        isGamepadPseudoMouseAim:b=yes
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="bombing_climb_hint"
+        target:t="dialogue_bombing_p08"
+        target:t="bombing_drop_bomb"
+      }
+
+      missionSetTimeSpeed{
+        speed:r=0.0
+        realtimeTriggers:b=yes
+      }
+
+      hudElementSelectionShade{
+        element:t="screenTop"
+      }
+
+      missionStopSpeech{
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorialB_climb"
+        action:t="show"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        shouldBlink:b=no
+      }
+
+      playerControls{
+        setStatus:t="enable"
+        control:t="AXIS_AILERONS"
+        control:t="AXIS_ELEVATOR"
+        control:t="AXIS_RUDDER"
+        control:t="AXIS_THROTTLE"
+        control:t="AXIS_MOUSE_AIM_X"
+        control:t="AXIS_MOUSE_AIM_Y"
+      }
+
+      triggerEnable{
+        target:t="bombing_climb_MA"
+        target:t="dialogue_bombing_MA_p06"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  bombing_climb_MA{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playerWhenCursorIn{
+        cursor:t="mouseAim"
+        element:t="screenTop"
+      }
+    }
+
+    actions{
+
+      missionSetTimeSpeed{
+        speed:r=1.0
+        realtimeTriggers:b=yes
+      }
+
+      triggerEnable{
+        target:t="bombing_plane_levelled"
+        target:t="retry_truck_hint"
+        target:t="mission_timer"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  bombing_plane_levelled{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playerWhenOrientation{
+        value:r=-5.0
+        orientation:t="pitch"
+        comparasion_func:t="more"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="dialogue_bombing_p06"
+        target:t="dialogue_bombing_p07"
+        target:t="dialogue_bombing_MA_p06"
+        target:t="dialogue_bombing_MA_p07"
+        target:t="bombing_climb_hint"
+        target:t="bombing_climb"
+        target:t="bombing_climb_hint_MA"
+        target:t="bombing_climb_MA"
+      }
+
+      missionStopSpeech{
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t=""
+        action:t="hideCur"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        shouldBlink:b=no
+      }
+
+      hudElementSelectionShade{
+        element:t=""
+      }
+
+      triggerEnable{
+        target:t="bombing_truck_killed"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  bombing_truck_killed{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playerWhenOrientation{
+        value:r=-20.0
+        orientation:t="pitch"
+        comparasion_func:t="more"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="retry_truck_hint"
+        target:t="mission_timer"
+        target:t="bombing_initial"
+        target:t="bombing_drop_bomb"
+        target:t="bombing_climb"
+        target:t="flight_initial"
+        target:t="flight_waypoint"
+        target:t="flight_near_target"
+        target:t="retry_flight_hint"
+        target:t="flight_start"
+        target:t="bombing_sight_hint"
+        target:t="bombing_how_to_aim"
+        target:t="bombing_aim_now"
+        target:t="bombing_drop_bomb"
+        target:t="bombing_climb_hint"
+        target:t="bombing_climb_hint_MA"
+        target:t="bombing_climb_MA"
+      }
+
+      bigQueryAddRecord{
+        name:t="tutorialB_assaulter"
+        params:t="task 3/5: player divebombed the truck and pulled out of dive"
+        event:t=""
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      wait{
+        time:r=2.0
+      }
+
+      moSetObjectiveStatus{
+        target:t="tutorialB_assaulter_kill_truck"
+        status:i=2
+        object_var_comp_op:t="equal"
+        object_var_name:t=""
+        object_marking:i=0
+      }
+
+      triggerEnable{
+        target:t="bombing_kill_other_trucks"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  retry_truck_hint{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ANY"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      varCompareInt{
+        var_value:t="timer"
+        value:i=15
+        comparasion_func:t="more"
+      }
+
+      varCompareInt{
+        var_value:t="timer_slow"
+        value:i=13
+        comparasion_func:t="more"
+      }
+
+      unitWhenStatus{
+        object_type:t="isUseless"
+        object_marking:i=0
+        check_objects:t="all"
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="player"
+      }
+
+      unitWhenInArea{
+        math:t="notNear3D"
+        object_type:t="isAlive"
+        object_marking:i=0
+        check_objects:t="any"
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="player"
+        target:t="big_area"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="bombing_initial"
+        target:t="bombing_drop_bomb"
+        target:t="bombing_climb"
+        target:t="mission_timer"
+        target:t="bombing_truck_killed"
+        target:t="mission_slow_timer"
+        target:t="flight_initial"
+        target:t="flight_waypoint"
+        target:t="flight_near_target"
+        target:t="retry_flight_hint"
+        target:t="flight_start"
+        target:t="bombing_sight_hint"
+        target:t="bombing_how_to_aim"
+        target:t="bombing_aim_now"
+        target:t="bombing_drop_bomb"
+        target:t="bombing_climb_hint"
+        target:t="bombing_climb_hint_Thrustmaster"
+      }
+
+      triggerDisable{
+        target:t="dialogue_intro_p01"
+        target:t="dialogue_intro_p02"
+        target:t="dialogue_intro_p03"
+        target:t="dialogue_intro_p04"
+        target:t="dialogue_intro_p05"
+        target:t="dialogue_intro_p06"
+        target:t="dialogue_bombing_p01"
+        target:t="dialogue_bombing_p02"
+        target:t="dialogue_bombing_p03"
+        target:t="dialogue_bombing_p04"
+        target:t="dialogue_bombing_p05"
+        target:t="dialogue_bombing_p06"
+        target:t="dialogue_bombing_p07"
+        target:t="dialogue_bombing_MA_p07"
+        target:t="dialogue_bombing_p08"
+        target:t="dialogue_rockets_p01"
+        target:t="dialogue_rockets_p02"
+        target:t="dialogue_rockets_p03"
+        target:t="dialogue_rockets_p04"
+      }
+
+      varSetInt{
+        value:i=0
+        var:t="timer"
+      }
+
+      varSetInt{
+        value:i=0
+        var:t="timer_slow"
+      }
+
+      missionStopSpeech{
+      }
+
+      playerControls{
+        setStatus:t="disable"
+        control:t="ALL"
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t=""
+        action:t="hideCur"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        shouldBlink:b=no
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorialB_retry"
+        action:t="show"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        shouldBlink:b=no
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorialB_retry"
+        action:t="hide"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        shouldBlink:b=no
+      }
+
+      missionSetTimeSpeed{
+        speed:r=1.0
+        realtimeTriggers:b=no
+      }
+
+      wait{
+        time:r=2.0
+      }
+
+      wait{
+        time:r=0.5
+      }
+
+      triggerEnable{
+        target:t="bombing_initial"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  bombing_kill_other_trucks{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="bombing_initial"
+        target:t="bombing_drop_bomb"
+        target:t="bombing_climb"
+        target:t="mission_timer"
+        target:t="bombing_truck_killed"
+        target:t="bombing_all_trucks_killed"
+        target:t="retry_truck_hint"
+        target:t="retry_trucks_hint"
+        target:t="bombing_fire_button_pressed"
+        target:t="flight_initial"
+        target:t="flight_waypoint"
+        target:t="flight_near_target"
+        target:t="retry_flight_hint"
+        target:t="flight_start"
+        target:t="bombing_sight_hint"
+        target:t="bombing_how_to_aim"
+        target:t="bombing_aim_now"
+        target:t="bombing_drop_bomb"
+        target:t="bombing_climb_hint"
+        target:t="bombing_climb_hint_Thrustmaster"
+      }
+
+      triggerDisable{
+        target:t="dialogue_intro_p01"
+        target:t="dialogue_intro_p02"
+        target:t="dialogue_intro_p03"
+        target:t="dialogue_intro_p04"
+        target:t="dialogue_intro_p05"
+        target:t="dialogue_intro_p06"
+        target:t="dialogue_bombing_p01"
+        target:t="dialogue_bombing_p02"
+        target:t="dialogue_bombing_p03"
+        target:t="dialogue_bombing_p04"
+        target:t="dialogue_bombing_p05"
+        target:t="dialogue_bombing_p06"
+        target:t="dialogue_bombing_p07"
+        target:t="dialogue_bombing_MA_p07"
+        target:t="dialogue_bombing_p08"
+        target:t="dialogue_rockets_p01"
+        target:t="dialogue_rockets_p02"
+        target:t="dialogue_rockets_p03"
+        target:t="dialogue_rockets_p04"
+      }
+
+      missionStopSpeech{
+      }
+
+      missionSetFade{
+        mode:t="fadeOut"
+        color:p3=0.0, 0.0, 0.0
+        time:r=0.5
+      }
+
+      missionSetFade{
+        mode:t="fadeIn"
+        color:p3=0.0, 0.0, 0.0
+        time:r=0.5
+      }
+
+      playerControls{
+        setStatus:t="disable"
+        control:t="ALL"
+      }
+
+      playerControls{
+        setStatus:t="enable"
+        control:t="ID_FLIGHTMENU"
+        control:t="ID_FLIGHTMENU_SETUP"
+        control:t="ID_CONTINUE"
+        control:t="ID_CONTINUE_SETUP"
+      }
+
+      playerControls{
+        setStatus:t="enable"
+        control:t="ID_ROCKETS"
+        control:t="ID_FLIGHTMENU"
+        control:t="ID_FLIGHTMENU_SETUP"
+        control:t="ID_CONTINUE"
+        control:t="ID_CONTINUE_SETUP"
+      }
+
+      wait{
+        time:r=0.6
+      }
+
+      wait{
+        time:r=0.1
+      }
+
+      wait{
+        time:r=0.4
+      }
+
+      wait{
+        time:r=0.6
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      unitRestore{
+        ressurectIfDead:b=yes
+        fullRestore:b=yes
+        target_marking:i=0
+        target:t="target_truck02"
+        target:t="player"
+        ammoRestore:b=yes
+      }
+
+      unitWakeUp{
+        target:t="target_truck02"
+      }
+
+      playerOptions{
+        respawnBullets:b=yes
+      }
+
+      missionKillEffects{
+        area:t="big_area"
+      }
+
+      unitMoveTo{
+        target:t="player_spawn05"
+        follow_target:b=no
+        teleportHeightType:t="target"
+        useUnitHeightForTele:b=no
+        shouldKeepFormation:b=no
+        teleportHeightValue:r=0.0
+        horizontalDirectionForTeleport:b=no
+        object_marking:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        fastClimb:b=no
+        destTimeMode:b=no
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        object:t="player"
+        move_type:t="teleport"
+        lookat:t="trucks_area"
+        velocity:r=250.0
+      }
+
+      triggerEnable{
+        target:t="dialogue_rockets_p01"
+      }
+
+      triggerEnable{
+        target:t="bombing_fire_button_pressed"
+        target:t="retry_trucks_hint"
+      }
+
+      unitForceRearmSpeed{
+        rearmSpeedK:r=100000.0
+        target:t="player"
+      }
+
+      missionSetTimeSpeed{
+        speed:r=0.0
+        realtimeTriggers:b=yes
+      }
+
+      triggerActivate{
+        target:t="tutorialB_assaulter_destroy_all_trucks_objective_init"
+        activate_type:t="checkConidtions"
+        check_trigger_status:b=no
+        after_activation:t="disable"
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorialB_rockets"
+        action:t="show"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        item:t="ID_ROCKETS"
+        shouldBlink:b=no
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  bombing_fire_button_pressed{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.0
+      }
+    }
+
+    conditions{
+
+      playerShortcutPressed{
+        control:t="ID_ROCKETS"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="bombing_kill_other_trucks"
+        target:t="dialogue_rockets_p01"
+        target:t="dialogue_rockets_p02"
+      }
+
+      missionStopSpeech{
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorialB_rockets"
+        action:t="hide"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        item:t="ID_ROCKETS"
+        shouldBlink:b=no
+      }
+
+      playerControls{
+        setStatus:t="enable"
+        control:t="ALL"
+      }
+
+      missionSetTimeSpeed{
+        speed:r=1.0
+        realtimeTriggers:b=no
+      }
+
+      bigQueryAddRecord{
+        name:t="tutorialB_assaulter"
+        params:t="task 4/5: player used rockets"
+        event:t=""
+      }
+
+      wait{
+        time:r=0.5
+      }
+
+      triggerEnable{
+        target:t="retry_trucks_hint"
+        target:t="bombing_all_trucks_killed"
+        target:t="mission_timer"
+        target:t="dialogue_rockets_p03"
+      }
+
+      unitSetIndication{
+        set:b=yes
+        target:t="target_truck02"
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  bombing_all_trucks_killed{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenStatus{
+        object_type:t="isKilled"
+        object_marking:i=0
+        check_objects:t="all"
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="target_truck02"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="retry_trucks_hint"
+        target:t="mission_timer"
+        target:t="bombing_initial"
+        target:t="bombing_drop_bomb"
+        target:t="bombing_climb"
+        target:t="retry_truck_hint"
+        target:t="bombing_kill_other_trucks"
+        target:t="bombing_fire_button_pressed"
+        target:t="flight_initial"
+        target:t="flight_waypoint"
+        target:t="flight_near_target"
+        target:t="retry_flight_hint"
+        target:t="flight_start"
+        target:t="bombing_sight_hint"
+        target:t="bombing_how_to_aim"
+        target:t="bombing_aim_now"
+        target:t="bombing_drop_bomb"
+        target:t="bombing_climb_hint"
+      }
+
+      triggerDisable{
+        target:t="dialogue_intro_p01"
+        target:t="dialogue_intro_p02"
+        target:t="dialogue_intro_p03"
+        target:t="dialogue_intro_p04"
+        target:t="dialogue_intro_p05"
+        target:t="dialogue_intro_p06"
+        target:t="dialogue_bombing_p01"
+        target:t="dialogue_bombing_p02"
+        target:t="dialogue_bombing_p03"
+        target:t="dialogue_bombing_p04"
+        target:t="dialogue_bombing_p05"
+        target:t="dialogue_bombing_p06"
+        target:t="dialogue_bombing_p07"
+        target:t="dialogue_bombing_MA_p07"
+        target:t="dialogue_bombing_p08"
+        target:t="dialogue_rockets_p01"
+        target:t="dialogue_rockets_p02"
+        target:t="dialogue_rockets_p03"
+        target:t="dialogue_rockets_p04"
+      }
+
+      missionStopSpeech{
+      }
+
+      moSetObjectiveStatus{
+        target:t="tutorialB_assaulter_destroy_all_trucks"
+        status:i=2
+        object_var_comp_op:t="equal"
+        object_var_name:t=""
+        object_marking:i=0
+      }
+
+      bigQueryAddRecord{
+        name:t="tutorialB_assaulter"
+        params:t="task 5/5: player killed the rest of the trucks and finished the tutorial"
+        event:t=""
+      }
+
+      wait{
+        time:r=0.5
+      }
+
+      triggerEnable{
+        target:t="dialogue_rockets_p04"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  retry_trucks_hint{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ANY"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      varCompareInt{
+        var_value:t="timer"
+        value:i=100
+        comparasion_func:t="more"
+      }
+
+      unitWhenStatus{
+        object_type:t="isUseless"
+        object_marking:i=0
+        check_objects:t="all"
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="player"
+      }
+
+      unitWhenInArea{
+        math:t="notNear2D"
+        object_type:t="isAlive"
+        object_marking:i=0
+        check_objects:t="any"
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="player"
+        target:t="trucks_area"
+      }
+
+      unitWhenInArea{
+        math:t="notNear2D"
+        object_type:t="isAlive"
+        object_marking:i=0
+        check_objects:t="any"
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="player"
+        target:t="big_area"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="bombing_initial"
+        target:t="bombing_drop_bomb"
+        target:t="bombing_climb"
+        target:t="mission_timer"
+        target:t="bombing_truck_killed"
+        target:t="bombing_all_trucks_killed"
+        target:t="retry_truck_hint"
+        target:t="bombing_kill_other_trucks"
+        target:t="bombing_fire_button_pressed"
+        target:t="flight_initial"
+        target:t="flight_waypoint"
+        target:t="flight_near_target"
+        target:t="retry_flight_hint"
+        target:t="flight_start"
+        target:t="bombing_climb_hint_Thrustmaster"
+      }
+
+      triggerDisable{
+        target:t="dialogue_intro_p01"
+        target:t="dialogue_intro_p02"
+        target:t="dialogue_intro_p03"
+        target:t="dialogue_intro_p04"
+        target:t="dialogue_intro_p05"
+        target:t="dialogue_intro_p06"
+        target:t="dialogue_bombing_p01"
+        target:t="dialogue_bombing_p02"
+        target:t="dialogue_bombing_p03"
+        target:t="dialogue_bombing_p04"
+        target:t="dialogue_bombing_p05"
+        target:t="dialogue_bombing_p06"
+        target:t="dialogue_bombing_p07"
+        target:t="dialogue_bombing_MA_p07"
+        target:t="dialogue_bombing_p08"
+        target:t="dialogue_rockets_p01"
+        target:t="dialogue_rockets_p02"
+        target:t="dialogue_rockets_p03"
+        target:t="dialogue_rockets_p04"
+      }
+
+      varSetInt{
+        value:i=0
+        var:t="timer"
+      }
+
+      missionStopSpeech{
+      }
+
+      playerControls{
+        setStatus:t="disable"
+        control:t="ALL"
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t=""
+        action:t="hideCur"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        shouldBlink:b=no
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorialB_retry"
+        action:t="show"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        shouldBlink:b=no
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorialB_retry"
+        action:t="hide"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        shouldBlink:b=no
+      }
+
+      wait{
+        time:r=2.0
+      }
+
+      triggerEnable{
+        target:t="bombing_kill_other_trucks"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  mission_timer{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      varModify{
+        operator:t="add"
+        value:r=1.0
+        var:t="timer"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  mission_slow_timer{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.1
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      varModify{
+        operator:t="add"
+        value:r=1.0
+        var:t="timer_slow"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  forever_full_ammo{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=10.0
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      unitRestore{
+        ressurectIfDead:b=no
+        fullRestore:b=yes
+        target_marking:i=0
+        target:t="player"
+        ammoRestore:b=yes
+      }
+
+      playerOptions{
+        respawnBullets:b=yes
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  dialogue_intro_p01{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionPlayDialogue{
+        dialog:t="tutorialB_assault_intro_p01"
+        subtitles:b=no
+      }
+
+      triggerEnable{
+        target:t="dialogue_intro_p02"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  dialogue_intro_p02{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionPlayDialogue{
+        dialog:t="tutorialB_assault_intro_p02"
+        subtitles:b=no
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  dialogue_intro_p03{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionPlayDialogue{
+        dialog:t="tutorialB_assault_intro_p03"
+        subtitles:b=no
+      }
+
+      triggerEnable{
+        target:t="dialogue_intro_p04"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  dialogue_intro_p04{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionPlayDialogue{
+        dialog:t="tutorialB_assault_intro_p04"
+        subtitles:b=no
+      }
+
+      triggerEnable{
+        target:t="dialogue_intro_p05"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  dialogue_intro_p05{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionPlayDialogue{
+        dialog:t="tutorialB_assault_intro_p05"
+        subtitles:b=no
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  dialogue_intro_p06{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionPlayDialogue{
+        dialog:t="tutorialB_assault_intro_p06"
+        subtitles:b=no
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  dialogue_bombing_p01{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionPlayDialogue{
+        dialog:t="tutorialB_assault_bombing_p01"
+        subtitles:b=no
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  dialogue_bombing_p02{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionPlayDialogue{
+        dialog:t="tutorialB_assault_bombing_p02"
+        subtitles:b=no
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  dialogue_bombing_p03{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionPlayDialogue{
+        dialog:t="tutorialB_assault_bombing_p03"
+        subtitles:b=no
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  dialogue_bombing_p04{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionPlayDialogue{
+        dialog:t="tutorialB_assault_bombing_p04"
+        subtitles:b=no
+      }
+
+      triggerEnable{
+        target:t="dialogue_bombing_p05"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  dialogue_bombing_p05{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionPlayDialogue{
+        dialog:t="tutorialB_assault_bombing_p05"
+        subtitles:b=no
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  dialogue_bombing_p06{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionPlayDialogue{
+        dialog:t="tutorialB_assault_bombing_p06"
+        subtitles:b=no
+      }
+
+      triggerEnable{
+        target:t="dialogue_bombing_p07"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  dialogue_bombing_p07{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionPlayDialogue{
+        dialog:t="tutorialB_assault_bombing_p07"
+        subtitles:b=no
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  dialogue_bombing_MA_p06{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionPlayDialogue{
+        dialog:t="tutorialB_assault_bombing_p06"
+        subtitles:b=no
+      }
+
+      triggerEnable{
+        target:t="dialogue_bombing_MA_p07"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  dialogue_bombing_MA_p07{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionPlayDialogue{
+        dialog:t="tutorialB_assault_bombing_MA_p07"
+        subtitles:b=no
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  dialogue_bombing_p08{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionPlayDialogue{
+        dialog:t="tutorialB_assault_bombing_p08"
+        subtitles:b=no
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  dialogue_rockets_p01{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionPlayDialogue{
+        dialog:t="tutorialB_assault_rockets_p01"
+        subtitles:b=no
+      }
+
+      triggerEnable{
+        target:t="dialogue_rockets_p02"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  dialogue_rockets_p02{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionPlayDialogue{
+        dialog:t="tutorialB_assault_rockets_p02"
+        subtitles:b=no
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  dialogue_rockets_p03{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionPlayDialogue{
+        dialog:t="tutorialB_assault_rockets_p03"
+        subtitles:b=no
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  dialogue_rockets_p04{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionPlayDialogue{
+        dialog:t="tutorialB_assault_rockets_p04"
+        subtitles:b=no
+      }
+
+      missionCompleted{
+        timer:b=no
+        debriefingTimer:i=2
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  tutorialB_assaulter_waypoint_objective_init{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.0
+      }
+    }
+
+    conditions{
+
+      misObjStatus{
+        target:t="tutorialB_assaulter_waypoint"
+        status:t="notInProgress"
+      }
+    }
+
+    actions{
+
+      moAddMissionObjective{
+        target:t="tutorialB_assaulter_waypoint"
+        object_var_comp_op:t="equal"
+        object_var_name:t=""
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  tutorialB_assaulter_kill_truck_objective_init{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.0
+      }
+    }
+
+    conditions{
+
+      misObjStatus{
+        target:t="tutorialB_assaulter_kill_truck"
+        status:t="notInProgress"
+      }
+    }
+
+    actions{
+
+      moAddMissionObjective{
+        target:t="tutorialB_assaulter_kill_truck"
+        object_var_comp_op:t="equal"
+        object_var_name:t=""
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  tutorialB_assaulter_destroy_all_trucks_objective_init{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.0
+      }
+    }
+
+    conditions{
+
+      misObjStatus{
+        target:t="tutorialB_assaulter_destroy_all_trucks"
+        status:t="notInProgress"
+      }
+    }
+
+    actions{
+
+      moAddMissionObjective{
+        target:t="tutorialB_assaulter_destroy_all_trucks"
+        object_var_comp_op:t="equal"
+        object_var_name:t=""
+      }
+    }
+
+    else_actions{
+    }
+  }
+}
+
+mission_objectives{
+  isCategory:b=yes
+  is_enabled:b=yes
+
+  tutorialB_assaulter_waypoint{
+    is_enabled:b=no
+    comments:t=""
+    type:t="abstractMissionObjective"
+
+    props{
+      isPrimary:b=yes
+      timeLimit:i=1800
+      scoreConst:i=100
+      scoreTime:i=400
+    }
+
+    onSuccess{
+    }
+
+    onFailed{
+    }
+  }
+
+  tutorialB_assaulter_kill_truck{
+    is_enabled:b=no
+    comments:t=""
+    type:t="abstractMissionObjective"
+
+    props{
+      isPrimary:b=yes
+      timeLimit:i=1800
+      scoreConst:i=100
+      scoreTime:i=400
+    }
+
+    onSuccess{
+    }
+
+    onFailed{
+    }
+  }
+
+  tutorialB_assaulter_destroy_all_trucks{
+    is_enabled:b=no
+    comments:t=""
+    type:t="abstractMissionObjective"
+
+    props{
+      isPrimary:b=yes
+      timeLimit:i=1800
+      scoreConst:i=100
+      scoreTime:i=400
+    }
+
+    onSuccess{
+    }
+
+    onFailed{
+    }
+  }
+}
+
+variables{
+  timer:i=0
+  timer_slow:i=0
+}
+
+dialogs{
+
+  tutorialB_assault_intro_p01{
+
+    speech{
+      id:t="tutorialB_assault_intro_p01"
+      speakerId:t=""
+
+      props{
+        time:r=1.0
+      }
+    }
+  }
+
+  tutorialB_assault_intro_p02{
+
+    speech{
+      id:t="tutorialB_assault_intro_p02"
+      speakerId:t=""
+
+      props{
+        time:r=1.0
+      }
+    }
+  }
+
+  tutorialB_assault_intro_p03{
+
+    speech{
+      id:t="tutorialB_assault_intro_p03"
+      speakerId:t=""
+
+      props{
+        time:r=1.0
+      }
+    }
+  }
+
+  tutorialB_assault_intro_p04{
+
+    speech{
+      id:t="tutorialB_assault_intro_p04"
+      speakerId:t=""
+
+      props{
+        time:r=1.0
+      }
+    }
+  }
+
+  tutorialB_assault_intro_p05{
+
+    speech{
+      id:t="tutorialB_assault_intro_p05"
+      speakerId:t=""
+
+      props{
+        time:r=1.0
+      }
+    }
+  }
+
+  tutorialB_assault_intro_p06{
+
+    speech{
+      id:t="tutorialB_assault_intro_p06"
+      speakerId:t=""
+
+      props{
+        time:r=1.0
+      }
+    }
+  }
+
+  tutorialB_assault_bombing_p01{
+
+    speech{
+      id:t="tutorialB_assault_bombing_p01"
+      speakerId:t=""
+
+      props{
+        time:r=1.0
+      }
+    }
+  }
+
+  tutorialB_assault_bombing_p02{
+
+    speech{
+      id:t="tutorialB_assault_bombing_p02"
+      speakerId:t=""
+
+      props{
+        time:r=1.0
+      }
+    }
+  }
+
+  tutorialB_assault_bombing_p03{
+
+    speech{
+      id:t="tutorialB_assault_bombing_p03"
+      speakerId:t=""
+
+      props{
+        time:r=1.0
+      }
+    }
+  }
+
+  tutorialB_assault_bombing_p04{
+
+    speech{
+      id:t="tutorialB_assault_bombing_p04"
+      speakerId:t=""
+
+      props{
+        time:r=1.0
+      }
+    }
+  }
+
+  tutorialB_assault_bombing_p05{
+
+    speech{
+      id:t="tutorialB_assault_bombing_p05"
+      speakerId:t=""
+
+      props{
+        time:r=1.0
+      }
+    }
+  }
+
+  tutorialB_assault_bombing_p06{
+
+    speech{
+      id:t="tutorialB_assault_bombing_p06"
+      speakerId:t=""
+
+      props{
+        time:r=1.0
+      }
+    }
+  }
+
+  tutorialB_assault_bombing_p07{
+
+    speech{
+      id:t="tutorialB_assault_bombing_p07"
+      speakerId:t=""
+
+      props{
+        time:r=1.0
+      }
+    }
+  }
+
+  tutorialB_assault_bombing_MA_p07{
+
+    speech{
+      id:t="tutorialB_assault_bombing_MA_p07"
+      speakerId:t=""
+
+      props{
+        time:r=1.0
+      }
+    }
+  }
+
+  tutorialB_assault_bombing_p08{
+
+    speech{
+      id:t="tutorialB_assault_bombing_p08"
+      speakerId:t=""
+
+      props{
+        time:r=1.0
+      }
+    }
+  }
+
+  tutorialB_assault_rockets_p01{
+
+    speech{
+      id:t="tutorialB_assault_rockets_p01"
+      speakerId:t=""
+
+      props{
+        time:r=1.0
+      }
+    }
+  }
+
+  tutorialB_assault_rockets_p02{
+
+    speech{
+      id:t="tutorialB_assault_rockets_p02"
+      speakerId:t=""
+
+      props{
+        time:r=1.0
+      }
+    }
+  }
+
+  tutorialB_assault_rockets_p03{
+
+    speech{
+      id:t="tutorialB_assault_rockets_p03"
+      speakerId:t=""
+
+      props{
+        time:r=1.0
+      }
+    }
+  }
+
+  tutorialB_assault_rockets_p04{
+
+    speech{
+      id:t="tutorialB_assault_rockets_p04"
+      speakerId:t=""
+
+      props{
+        time:r=1.0
+      }
+    }
+  }
+}
+
+airfields{
+}
+
+effects{
+}
+
+units{
+
+  armada{
+    name:t="player"
+    tm:m=[[-0.461748, 0.0, -0.887011] [0.0, 1.0, 0.0] [0.887011, 0.0, -0.461748] [-3299.15, 900.0, -8279.7]]
+    unit_class:t="il-2i"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="il-2i_fab100_rs132"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=1
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      uniqueName:t=""
+      speed:r=400.0
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  tracked_vehicles{
+    name:t="target_truck01"
+    tm:m=[[-0.461748, 0.0, -0.887011] [0.0, 1.0, 0.0] [0.887011, 0.0, -0.461748] [-5270.0, -1.55, -12090.5]]
+    unit_class:t="germ_stugIII"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  wheeled_vehicles{
+    name:t="target_truck02"
+    tm:m=[[0.573577, 0.0, -0.819152] [0.0, 1.0, 0.0] [0.819152, 0.0, 0.573577] [-6363.1, -1.55, -13631.4]]
+    unit_class:t="germ_opelBlitz_fuel"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=5
+      formation_type:t="cols"
+      formation_div:i=3
+      formation_step:p2=12.0, 7.3
+      formation_noise:p2=-0.2, -0.4
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  squad{
+    name:t="enemies_squad"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-3944.85, -2.6, -11501.7]]
+
+    props{
+      squad_members:t="target_truck01"
+      squad_members:t="target_truck02"
+      object_marking:i=0
+    }
+  }
+}
+
+areas{
+
+  target_balloon_area{
+    type:t="Sphere"
+    tm:m=[[3400.0, 0.0, 0.0] [0.0, 3400.0, 0.0] [0.0, 0.0, 3400.0] [-3945.9, -3.15, -9577.25]]
+
+    props{
+      forceReplication:b=yes
+    }
+  }
+
+  player_spawn01{
+    type:t="Sphere"
+    tm:m=[[358.9, 0.0, 0.0] [0.0, 358.9, 0.0] [0.0, 0.0, 358.9] [-3192.6, 900.0, -8194.4]]
+
+    props{
+      forceReplication:b=yes
+    }
+  }
+
+  player_spawn02{
+    type:t="Sphere"
+    tm:m=[[358.9, 0.0, 0.0] [0.0, 358.9, 0.0] [0.0, 0.0, 358.9] [-4133.65, 900.0, -9848.9]]
+
+    props{
+      forceReplication:b=yes
+    }
+  }
+
+  player_spawn03{
+    type:t="Sphere"
+    tm:m=[[358.9, 0.0, 0.0] [0.0, 358.9, 0.0] [0.0, 0.0, 358.9] [-5078.3, 800.0, -11979.0]]
+
+    props{
+      forceReplication:b=yes
+    }
+  }
+
+  big_area{
+    type:t="Sphere"
+    tm:m=[[14000.0, 0.0, 0.0] [0.0, 14000.0, 0.0] [0.0, 0.0, 14000.0] [-4101.7, -6.05, -12822.4]]
+
+    props{
+      forceReplication:b=yes
+    }
+  }
+
+  player_spawn04{
+    type:t="Sphere"
+    tm:m=[[358.9, 0.0, 0.0] [0.0, 358.9, 0.0] [0.0, 0.0, 358.9] [-4485.7, 900.0, -10997.0]]
+
+    props{
+      forceReplication:b=yes
+    }
+  }
+
+  bombing_point{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-5238.6, -1.4, -12183.0]]
+
+    props{
+      forceReplication:b=yes
+    }
+  }
+
+  trucks_area{
+    type:t="Sphere"
+    tm:m=[[6000.0, 0.0, 0.0] [0.0, 6000.0, 0.0] [0.0, 0.0, 6000.0] [-6361.45, -0.3, -13633.7]]
+
+    props{
+      forceReplication:b=yes
+    }
+  }
+
+  player_start{
+    type:t="Sphere"
+    tm:m=[[358.9, 0.0, 0.0] [0.0, 358.9, 0.0] [0.0, 0.0, 358.9] [-4377.75, 1200.0, -5048.15]]
+
+    props{
+      forceReplication:b=yes
+    }
+  }
+
+  player_waypoint{
+    type:t="Sphere"
+    tm:m=[[358.9, 0.0, 0.0] [0.0, 358.9, 0.0] [0.0, 0.0, 358.9] [-4416.65, 1200.0, -6489.75]]
+
+    props{
+      forceReplication:b=yes
+    }
+  }
+
+  truck_spotting_area{
+    type:t="Sphere"
+    tm:m=[[1200.0, 0.0, 0.0] [0.0, 1200.0, 0.0] [0.0, 0.0, 1200.0] [-5270.15, -1.1, -12090.9]]
+
+    props{
+      forceReplication:b=yes
+    }
+  }
+
+  player_spawn05{
+    type:t="Sphere"
+    tm:m=[[358.9, 0.0, 0.0] [0.0, 358.9, 0.0] [0.0, 0.0, 358.9] [-5731.1, 700.0, -13090.5]]
+
+    props{
+      forceReplication:b=yes
+    }
+  }
+
+  bombing_area_cutscene{
+    type:t="Sphere"
+    tm:m=[[200.0, 0.0, 0.0] [0.0, 200.0, 0.0] [0.0, 0.0, 200.0] [-5270.15, 2.45, -12090.9]]
+
+    props{
+      forceReplication:b=yes
+    }
+  }
+
+  player_bombing_view{
+    type:t="Sphere"
+    tm:m=[[2.0, 0.0, 0.0] [0.0, 2.0, 0.0] [0.0, 0.0, 2.0] [-5349.96, -1.09992, -12139.9]]
+
+    props{
+      forceReplication:b=yes
+    }
+  }
+}
+
+objLayers{
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+}
+
+wayPoints{
+}

@@ -1,0 +1,1504 @@
+selected_tag:t=""
+bin_dump_file:t=""
+
+mission_settings{
+
+  player{
+    army:i=1
+    wing:t="armada_01"
+  }
+
+  player_teamB{
+    army:i=2
+  }
+
+  mission{
+    level:t="levels/stalingrad.bin"
+    type:t="testFlight"
+    environment:t="Day"
+    weather:t="good"
+    windDirection:p3=1.0, 0.0, 0.0
+    locName:t="missions/testFlight"
+    restoreType:t="manual"
+    optionalTakeOff:b=no
+  }
+
+  spectator_points{
+  }
+
+  briefing{
+    place_loc:t=""
+    date_loc:t=""
+    objective_loc:t=""
+    music:t="action_01"
+
+    part{
+      event:t=""
+      minTime:i=0
+
+      slide{
+        map:b=yes
+        minTime:i=4
+        picture:t=""
+        showAirMap:b=no
+
+        icon{
+          icontype:t="fighter"
+          side:t="player"
+          target:t="armada_01"
+        }
+      }
+    }
+  }
+}
+
+imports{
+}
+
+triggers{
+  isCategory:b=yes
+  is_enabled:b=yes
+
+  init_train{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      initMission{
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      unitsSetColumn{
+        numKilledUnitsToStop:i=4
+        stopKilledUnits:b=no
+        stopAfterCollision:b=no
+        distanceBetweenUnits:r=0.8
+        object:t="train"
+        killLeaderToStop:b=yes
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  ai_plane_logic{
+    isCategory:b=yes
+    is_enabled:b=yes
+
+    ai_move_to_randevu{
+      is_enabled:b=yes
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        initMission{
+        }
+      }
+
+      conditions{
+      }
+
+      actions{
+
+        unitMoveTo{
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          target:t="ai_plane_atackers"
+          target_marking:i=0
+          waypointReachedDist:r=10.0
+          recalculatePathDist:r=-1.0
+          follow_target:b=yes
+          teleportHeightType:t="absolute"
+          useUnitHeightForTele:b=no
+          shouldKeepFormation:b=no
+          teleportHeightValue:r=1000.0
+          horizontalDirectionForTeleport:b=yes
+          target_var_name:t=""
+          target_var_comp_op:t="equal"
+          target_var_value:i=0
+          fastClimb:b=no
+          destTimeMode:b=no
+          object:t="ai_plane_fighters"
+          follow_radius:r=400.0
+          follow_offset:p3=-250.0, 100.0, 20.0
+        }
+
+        unitMoveTo{
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          target:t="randevu_point"
+          target_marking:i=0
+          waypointReachedDist:r=10.0
+          recalculatePathDist:r=-1.0
+          follow_target:b=no
+          teleportHeightType:t="absolute"
+          useUnitHeightForTele:b=no
+          shouldKeepFormation:b=no
+          teleportHeightValue:r=1000.0
+          horizontalDirectionForTeleport:b=yes
+          target_var_name:t=""
+          target_var_comp_op:t="equal"
+          target_var_value:i=0
+          fastClimb:b=no
+          destTimeMode:b=no
+          object:t="ai_plane_atackers"
+        }
+
+        unitSetProperties{
+          object:t="ai_plane_fighters"
+          object:t="ai_plane_atackers"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          stealthRadius:r=3000.0
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    atackers_move_to_frontline{
+      is_enabled:b=yes
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=1.0
+        }
+      }
+
+      conditions{
+
+        unitDistanceBetween{
+          value:r=500.0
+          math:t="2D"
+          object_type:t="isAlive"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          target_type:t="isAlive"
+          target_marking:i=0
+          check_objects:t="any"
+          check_targets:t="any"
+          object:t="ai_plane_atackers"
+          target:t="randevu_point"
+          object_var_value:i=0
+        }
+      }
+
+      actions{
+
+        unitMoveTo{
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          target:t="frontline_point"
+          target_marking:i=0
+          waypointReachedDist:r=10.0
+          recalculatePathDist:r=-1.0
+          follow_target:b=no
+          teleportHeightType:t="absolute"
+          useUnitHeightForTele:b=no
+          shouldKeepFormation:b=no
+          teleportHeightValue:r=1000.0
+          horizontalDirectionForTeleport:b=yes
+          target_var_name:t=""
+          target_var_comp_op:t="equal"
+          target_var_value:i=0
+          fastClimb:b=no
+          destTimeMode:b=no
+          object:t="ai_plane_atackers"
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    ai_put_to_sleep{
+      is_enabled:b=yes
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=1.0
+        }
+      }
+
+      conditions{
+
+        unitDistanceBetween{
+          value:r=1000.0
+          math:t="2D"
+          object_type:t="isAlive"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          target_type:t="isAlive"
+          target_marking:i=0
+          check_objects:t="any"
+          check_targets:t="any"
+          object:t="ai_plane_atackers"
+          target:t="frontline_point"
+          object_var_value:i=0
+        }
+      }
+
+      actions{
+
+        unitPutToSleep{
+          target:t="ai_plane_fighters"
+          target:t="ai_plane_atackers"
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    fighters_back_to_field{
+      is_enabled:b=yes
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=1.0
+        }
+      }
+
+      conditions{
+
+        unitWhenCountMatches{
+          object_type:t="isActive"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          func:t="less"
+          value:i=1
+          object:t="ai_plane_atackers"
+          object_var_value:i=0
+        }
+      }
+
+      actions{
+
+        unitLandOnAirfield{
+          onWater:b=no
+          "rearmOnAirfield ":b=no
+          disappearAfterLanding:b=yes
+          runwayName:t="st_airfileld_unic_prefab"
+          objects:t="ai_plane_fighters"
+        }
+      }
+
+      else_actions{
+      }
+    }
+  }
+
+  locomotive_logic{
+    isCategory:b=yes
+    is_enabled:b=yes
+
+    bridge01_is_dead{
+      is_enabled:b=yes
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ANY"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=1.0
+        }
+      }
+
+      conditions{
+
+        unitWhenStatus{
+          object_type:t="isKilled"
+          check_objects:t="any"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          target_type:t="isAlive"
+          check_period:r=1.0
+          object:t="bridge_01"
+        }
+      }
+
+      actions{
+
+        unitSetProperties{
+          object:t="locomotive"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          speed:r=0.0
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    loco_come_to_01_point{
+      is_enabled:b=yes
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=1.0
+        }
+      }
+
+      conditions{
+
+        unitDistanceBetween{
+          value:r=50.0
+          math:t="2D"
+          object_type:t="isAlive"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          target_type:t="isAlive"
+          target_marking:i=0
+          check_objects:t="any"
+          check_targets:t="any"
+          object:t="locomotive"
+          target:t="train_point01"
+          object_var_value:i=0
+        }
+      }
+
+      actions{
+
+        triggerDisable{
+          target:t="bridge01_is_dead"
+        }
+
+        triggerEnable{
+          target:t="bridge02_is_dead"
+          target:t="loco_come_to_02_point"
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    bridge02_is_dead{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ANY"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=1.0
+        }
+      }
+
+      conditions{
+
+        unitWhenStatus{
+          object_type:t="isKilled"
+          check_objects:t="any"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          target_type:t="isAlive"
+          check_period:r=1.0
+          object:t="bridge_09"
+        }
+      }
+
+      actions{
+
+        unitSetProperties{
+          object:t="locomotive"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          speed:r=0.0
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    loco_come_to_02_point{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=1.0
+        }
+      }
+
+      conditions{
+
+        unitDistanceBetween{
+          value:r=50.0
+          math:t="2D"
+          object_type:t="isAlive"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          target_type:t="isAlive"
+          target_marking:i=0
+          check_objects:t="any"
+          check_targets:t="any"
+          object:t="locomotive"
+          target:t="train_point02"
+          object_var_value:i=0
+        }
+      }
+
+      actions{
+
+        triggerDisable{
+          target:t="bridge02_is_dead"
+        }
+
+        triggerEnable{
+          target:t="bridge03_is_dead"
+          target:t="loco_come_to_03_point"
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    bridge03_is_dead{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ANY"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=1.0
+        }
+      }
+
+      conditions{
+
+        unitWhenStatus{
+          object_type:t="isKilled"
+          check_objects:t="any"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          target_type:t="isAlive"
+          check_period:r=1.0
+          object:t="bridge_07"
+        }
+      }
+
+      actions{
+
+        unitSetProperties{
+          object:t="locomotive"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          speed:r=0.0
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    loco_come_to_03_point{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=1.0
+        }
+      }
+
+      conditions{
+
+        unitDistanceBetween{
+          value:r=50.0
+          math:t="2D"
+          object_type:t="isAlive"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          target_type:t="isAlive"
+          target_marking:i=0
+          check_objects:t="any"
+          check_targets:t="any"
+          object:t="locomotive"
+          target:t="train_point03"
+          object_var_value:i=0
+        }
+      }
+
+      actions{
+
+        triggerDisable{
+          target:t="bridge03_is_dead"
+        }
+      }
+
+      else_actions{
+      }
+    }
+  }
+}
+
+mission_objectives{
+  isCategory:b=yes
+  is_enabled:b=yes
+}
+
+variables{
+  bridge01:t="bridge_01"
+  bridge02:t="bridge_09"
+  bridge03:t="bridge_07"
+  bridge_int:i=1
+  bridge_var:t="bridge01"
+  bridge04:t="fake_var"
+}
+
+dialogs{
+}
+
+airfields{
+}
+
+effects{
+}
+
+units{
+
+  squad{
+    name:t="train"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-5147.79, 48.7267, 3141.17]]
+
+    props{
+      squad_members:t="locomotive"
+      squad_members:t="freight_car"
+    }
+  }
+
+  wheeled_vehicles{
+    name:t="locomotive"
+    tm:m=[[0.883015, 0.0, 0.469346] [0.0, 1.0, 0.0] [-0.469346, 0.0, 0.883015] [-5633.98, 112.342, 2684.9]]
+    unit_class:t="ussr_locomotive_e_1298"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=1
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+      stealthRadius:r=6000.0
+      setStealth:b=yes
+      targetableByAi:b=no
+    }
+
+    way{
+
+      locomotive_wp_01{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-5614.8, 112.934, 2696.83]]
+
+        props{
+          speed:r=300.0
+          moveType:t="GATHER_TO"
+          tas:b=no
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      locomotive_wp_02{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-2893.87, 8.2384, 2634.45]]
+
+        props{
+          speed:r=60.0
+          moveType:t="USE_SPLINES"
+          tas:b=no
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      locomotive_wp_03{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-2876.55, 8.39285, 2631.94]]
+
+        props{
+          speed:r=60.0
+          moveType:t="GATHER_TO"
+          tas:b=no
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      locomotive_wp_04{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-1711.46, -3.84773, 3306.94]]
+
+        props{
+          speed:r=60.0
+          moveType:t="USE_SPLINES"
+          tas:b=no
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      locomotive_wp_05{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-1688.89, -7.21668, 3554.61]]
+
+        props{
+          speed:r=60.0
+          moveType:t="GATHER_TO"
+          tas:b=no
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      locomotive_wp_06{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-1510.22, 2.39807, 5786.77]]
+
+        props{
+          speed:r=60.0
+          moveType:t="USE_SPLINES"
+          tas:b=no
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      locomotive_wp_07{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-1391.57, 1.43085, 5991.71]]
+
+        props{
+          speed:r=60.0
+          moveType:t="GATHER_TO"
+          tas:b=no
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      locomotive_wp_08{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2283.03, 5.46664, 7956.36]]
+
+        props{
+          speed:r=60.0
+          moveType:t="USE_SPLINES"
+          tas:b=no
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      locomotive_wp_09{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2428.26, 8.6819, 8191.94]]
+
+        props{
+          speed:r=60.0
+          moveType:t="GATHER_TO"
+          tas:b=no
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      locomotive_wp_10{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1845.96, 118.448, 14474.6]]
+
+        props{
+          speed:r=60.0
+          moveType:t="USE_SPLINES"
+          tas:b=no
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      locomotive_wp_11{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1817.77, 116.969, 14501.7]]
+
+        props{
+          speed:r=60.0
+          moveType:t="GATHER_TO"
+          tas:b=no
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      locomotive_wp_12{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-14237.6, 238.43, 11919.8]]
+
+        props{
+          speed:r=60.0
+          moveType:t="USE_SPLINES"
+          tas:b=no
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+    }
+  }
+
+  wheeled_vehicles{
+    name:t="freight_car"
+    tm:m=[[0.883015, 0.0, 0.469346] [0.0, 1.0, 0.0] [-0.469346, 0.0, 0.883015] [-5651.24, 116.324, 2676.72]]
+    unit_class:t="ussr_freight_car_1926"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=1
+      count:i=10
+      formation_type:t="cols"
+      formation_div:i=1
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+      stealthRadius:r=0.1
+      setStealth:b=yes
+      targetableByAi:b=no
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="ships_01"
+    tm:m=[[0.957253, 0.0, -0.289251] [0.0, 1.0, 0.0] [0.289251, 0.0, 0.957253] [-4208.12, -11.0, 6105.99]]
+    unit_class:t="ussr_mo_4"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=yes
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=1
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="dont_aim"
+      stealthRadius:r=6000.0
+      setStealth:b=yes
+    }
+
+    way{
+
+      ships_01_wp_01{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-3939.74, -11.0, 6015.39]]
+
+        props{
+          speed:r=66.0
+          moveType:t="MOVETO_STRAIGHT"
+          tas:b=no
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      ships_01_wp_02{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-3420.46, -11.0, 5911.23]]
+
+        props{
+          speed:r=66.0
+          moveType:t="MOVETO_STRAIGHT"
+          tas:b=no
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      ships_01_wp_03{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-2944.76, -11.0, 5893.67]]
+
+        props{
+          speed:r=66.0
+          moveType:t="MOVETO_STRAIGHT"
+          tas:b=no
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      ships_01_wp_04{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-2731.85, -11.0, 5951.15]]
+
+        props{
+          speed:r=66.0
+          moveType:t="MOVETO_STRAIGHT"
+          tas:b=no
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      ships_01_wp_05{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-2613.16, -11.0, 5949.19]]
+
+        props{
+          speed:r=66.0
+          moveType:t="MOVETO_STRAIGHT"
+          tas:b=no
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      ships_01_wp_06{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-2242.4, -11.0, 5816.65]]
+
+        props{
+          speed:r=66.0
+          moveType:t="MOVETO_STRAIGHT"
+          tas:b=no
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      ships_01_wp_07{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-1968.33, -11.0, 5840.45]]
+
+        props{
+          speed:r=66.0
+          moveType:t="MOVETO_STRAIGHT"
+          tas:b=no
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      ships_01_wp_08{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-1746.01, -11.0, 5892.68]]
+
+        props{
+          speed:r=66.0
+          moveType:t="MOVETO_STRAIGHT"
+          tas:b=no
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      ships_01_wp_09{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-1327.14, -11.0, 5901.68]]
+
+        props{
+          speed:r=66.0
+          moveType:t="MOVETO_STRAIGHT"
+          tas:b=no
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      ships_01_wp_10{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-1012.32, -11.0, 5957.67]]
+
+        props{
+          speed:r=66.0
+          moveType:t="MOVETO_STRAIGHT"
+          tas:b=no
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      ships_01_wp_11{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-822.569, -11.0, 5874.35]]
+
+        props{
+          speed:r=66.0
+          moveType:t="MOVETO_STRAIGHT"
+          tas:b=no
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      ships_01_wp_12{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-536.6, -11.0, 5841.5]]
+
+        props{
+          speed:r=66.0
+          moveType:t="MOVETO_STRAIGHT"
+          tas:b=no
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      ships_01_wp_13{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-205.007, -11.0, 5911.83]]
+
+        props{
+          speed:r=66.0
+          moveType:t="MOVETO_STRAIGHT"
+          tas:b=no
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      ships_01_wp_14{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [108.237, -11.0, 5905.67]]
+
+        props{
+          speed:r=66.0
+          moveType:t="MOVETO_STRAIGHT"
+          tas:b=no
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      ships_01_wp_15{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [521.895, -11.0, 6031.87]]
+
+        props{
+          speed:r=66.0
+          moveType:t="MOVETO_STRAIGHT"
+          tas:b=no
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      ships_01_wp_16{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1085.12, -11.0, 6193.18]]
+
+        props{
+          speed:r=66.0
+          moveType:t="MOVETO_STRAIGHT"
+          tas:b=no
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      ships_01_wp_17{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1292.94, -11.0, 6337.87]]
+
+        props{
+          speed:r=66.0
+          moveType:t="MOVETO_STRAIGHT"
+          tas:b=no
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      ships_01_wp_18{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1737.92, -11.0, 6444.27]]
+
+        props{
+          speed:r=66.0
+          moveType:t="MOVETO_STRAIGHT"
+          tas:b=no
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      ships_01_wp_19{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2007.35, -11.0, 6730.35]]
+
+        props{
+          speed:r=66.0
+          moveType:t="MOVETO_STRAIGHT"
+          tas:b=no
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      ships_01_wp_20{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2220.88, -11.0, 6927.33]]
+
+        props{
+          speed:r=66.0
+          moveType:t="MOVETO_STRAIGHT"
+          tas:b=no
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      ships_01_wp_21{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2402.34, -11.0, 7014.03]]
+
+        props{
+          speed:r=66.0
+          moveType:t="MOVETO_STRAIGHT"
+          tas:b=no
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      ships_01_wp_22{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2619.66, -11.0, 7212.73]]
+
+        props{
+          speed:r=66.0
+          moveType:t="MOVETO_STRAIGHT"
+          tas:b=no
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      ships_01_wp_23{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2853.74, -11.0, 7507.73]]
+
+        props{
+          speed:r=66.0
+          moveType:t="MOVETO_STRAIGHT"
+          tas:b=no
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      ships_01_wp_24{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [3013.02, -11.0001, 7534.82]]
+
+        props{
+          speed:r=66.0
+          moveType:t="MOVETO_STRAIGHT"
+          tas:b=no
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      ships_01_wp_25{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [3355.0, -11.0, 7411.6]]
+
+        props{
+          speed:r=66.0
+          moveType:t="MOVETO_STRAIGHT"
+          tas:b=no
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      ships_01_wp_26{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [4208.93, -11.0, 7410.68]]
+
+        props{
+          speed:r=66.0
+          moveType:t="MOVETO_STRAIGHT"
+          tas:b=no
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      ships_01_wp_27{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [4484.2, -11.0, 7484.76]]
+
+        props{
+          speed:r=66.0
+          moveType:t="MOVETO_STRAIGHT"
+          tas:b=no
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      ships_01_wp_28{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [4616.9, -11.0, 7450.55]]
+
+        props{
+          speed:r=66.0
+          moveType:t="MOVETO_STRAIGHT"
+          tas:b=no
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      ships_01_wp_29{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [4824.8, -11.0, 7594.15]]
+
+        props{
+          speed:r=66.0
+          moveType:t="MOVETO_STRAIGHT"
+          tas:b=no
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      ships_01_wp_30{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [5065.25, -11.0, 7616.65]]
+
+        props{
+          speed:r=66.0
+          moveType:t="MOVETO_STRAIGHT"
+          tas:b=no
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      ships_01_wp_31{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [5294.05, -11.0, 7594.45]]
+
+        props{
+          speed:r=66.0
+          moveType:t="MOVETO_STRAIGHT"
+          tas:b=no
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      ships_01_wp_32{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [5613.72, -11.0, 7549.33]]
+
+        props{
+          speed:r=66.0
+          moveType:t="MOVETO_STRAIGHT"
+          tas:b=no
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      ships_01_wp_33{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [5864.9, -11.0, 7409.6]]
+
+        props{
+          speed:r=66.0
+          moveType:t="MOVETO_STRAIGHT"
+          tas:b=no
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      ships_01_wp_34{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [6406.25, -11.0, 7247.1]]
+
+        props{
+          speed:r=66.0
+          moveType:t="MOVETO_STRAIGHT"
+          tas:b=no
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      ships_01_wp_35{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [6176.97, -11.0001, 6278.27]]
+
+        props{
+          speed:r=66.0
+          moveType:t="MOVETO_STRAIGHT"
+          tas:b=no
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      ships_01_wp_36{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [5404.44, -11.0, 5280.45]]
+
+        props{
+          speed:r=66.0
+          moveType:t="MOVETO_STRAIGHT"
+          tas:b=no
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      ships_01_wp_37{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [5076.27, -11.0, 5090.31]]
+
+        props{
+          speed:r=66.0
+          moveType:t="MOVETO_STRAIGHT"
+          tas:b=no
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      ships_01_wp_38{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [4497.85, -11.0, 4594.05]]
+
+        props{
+          speed:r=66.0
+          moveType:t="MOVETO_STRAIGHT"
+          tas:b=no
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+    }
+  }
+}
+
+areas{
+
+  area_01{
+    type:t="Sphere"
+    tm:m=[[3000.0, 0.0, 0.0] [0.0, 3000.0, 0.0] [0.0, 0.0, 3000.0] [-2823.2, 175.75, 3131.5]]
+
+    props{
+    }
+  }
+
+  train_point01{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-1687.6, -4.55, 3957.55]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  train_point02{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-1108.95, -5.75, 6154.9]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  train_point03{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2576.65, 2.45, 8459.45]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+}
+
+objLayers{
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+}
+
+wayPoints{
+}

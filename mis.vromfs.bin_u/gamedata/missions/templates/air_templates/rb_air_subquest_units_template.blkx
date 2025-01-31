@@ -1,0 +1,1401 @@
+selected_tag:t=""
+bin_dump_file:t=""
+
+mission_settings{
+
+  atmosphere{
+    pressure:r=760.0
+    temperature:r=0.0
+  }
+
+  player{
+    army:i=1
+    wing:t="t1_player02"
+    wing:t="t1_player03"
+    wing:t="t1_player04"
+    wing:t="t1_player05"
+    wing:t="t1_player06"
+    wing:t="t1_player07"
+    wing:t="t1_player08"
+    wing:t="t1_player09"
+    wing:t="t1_player10"
+    wing:t="t1_player11"
+    wing:t="t1_player12"
+    wing:t="t1_player13"
+    wing:t="t1_player14"
+    wing:t="t1_player15"
+    wing:t="t1_player16"
+    wing:t="t1_player17"
+    wing:t="t1_player18"
+    wing:t="t1_player19"
+    wing:t="t1_player20"
+    wing:t="t1_player21"
+    wing:t="t1_player22"
+    wing:t="t1_player23"
+    wing:t="t1_player24"
+    wing:t="t1_player25"
+    wing:t="t1_player26"
+    wing:t="t1_player27"
+    wing:t="t1_player28"
+    wing:t="t1_player29"
+    wing:t="t1_player30"
+    wing:t="t1_player31"
+    wing:t="t1_player32"
+  }
+
+  player_teamB{
+    army:i=2
+    wing:t="t2_player01"
+    wing:t="t2_player02"
+    wing:t="t2_player03"
+    wing:t="t2_player04"
+    wing:t="t2_player05"
+    wing:t="t2_player06"
+    wing:t="t2_player07"
+    wing:t="t2_player08"
+    wing:t="t2_player09"
+    wing:t="t2_player10"
+    wing:t="t2_player11"
+    wing:t="t2_player12"
+    wing:t="t2_player13"
+    wing:t="t2_player14"
+    wing:t="t2_player15"
+    wing:t="t2_player16"
+    wing:t="t2_player17"
+    wing:t="t2_player18"
+    wing:t="t2_player19"
+    wing:t="t2_player20"
+    wing:t="t2_player21"
+    wing:t="t2_player22"
+    wing:t="t2_player23"
+    wing:t="t2_player24"
+    wing:t="t2_player25"
+    wing:t="t2_player26"
+    wing:t="t2_player27"
+    wing:t="t2_player28"
+    wing:t="t2_player29"
+    wing:t="t2_player30"
+    wing:t="t2_player31"
+    wing:t="t2_player32"
+    wing:t="t2_player33"
+  }
+
+  mission{
+    level:t="levels/guadalcanal.bin"
+    type:t="domination"
+    restoreType:t="attempts"
+    optionalTakeOff:b=no
+    environment:t="Evening"
+    weather:t="clear"
+    scoreLimit:i=5000
+  }
+
+  spectator_points{
+  }
+}
+
+imports{
+}
+
+triggers{
+  isCategory:b=yes
+  is_enabled:b=yes
+
+  subquest_init{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      objectExists{
+        target:t="t1_subquest_units_squad"
+        type:t="squad"
+      }
+
+      objectExists{
+        target:t="t2_subquest_units_squad"
+        type:t="squad"
+      }
+    }
+
+    actions{
+
+      comment{
+        value:t="est~' skvady, mozhno zapuskat~' logiku"
+      }
+
+      triggerEnable{
+        target:t="subquest_timer_check"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  subquest_timer_check{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+        var:t="subquest_delay_timer"
+      }
+    }
+
+    conditions{
+
+      varCompareBool{
+        var_value:t="players_related_spawns"
+        value:b=no
+        comparasion_func:t="equal"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="subquest_players_check"
+      }
+
+      comment{
+        value:t="proshlo vremya s nachala missii, vklyuchaem dop targety"
+      }
+
+      comment{
+        value:t=""
+      }
+
+      triggerEnable{
+        target:t="subquest_spawn_01"
+        target:t="subquest_spawn_02"
+        target:t="subquest_spawn_03"
+      }
+
+      playHint{
+        hintType:t="custom"
+        name:t="hints/subquest_units_avaible"
+        action:t="show"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+      }
+
+      playHint{
+        hintType:t="custom"
+        name:t="hints/subquest_units_avaible"
+        action:t="hide"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+      }
+
+      wait{
+        time:r=5.0
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  subquest_players_check{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+        var:t="subquest_players_timer"
+      }
+    }
+
+    conditions{
+
+      varCompareBool{
+        var_value:t="players_related_spawns"
+        value:b=yes
+        comparasion_func:t="equal"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="subquest_timer_check"
+      }
+
+      comment{
+        value:t=""
+      }
+
+      triggerEnable{
+        target:t="subquest_players_processing"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  subquest_players_processing{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ANY"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isOnline"
+        object_marking:i=0
+        func:t="less"
+        value:i=3
+        object:t="t1_players_squad"
+      }
+
+      unitWhenCountMatches{
+        object_type:t="isOnline"
+        object_marking:i=0
+        func:t="less"
+        value:i=3
+        object:t="t2_players_squad"
+      }
+    }
+
+    actions{
+
+      comment{
+        value:t="proshlo vremya s nachala missii, vklyuchaem dop targety"
+      }
+
+      comment{
+        value:t=""
+      }
+
+      triggerEnable{
+        target:t="subquest_spawn_01"
+        target:t="subquest_spawn_02"
+        target:t="subquest_spawn_03"
+      }
+
+      playHint{
+        hintType:t="custom"
+        name:t="hints/subquest_units_avaible"
+        action:t="show"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+      }
+
+      playHint{
+        hintType:t="custom"
+        name:t="hints/subquest_units_avaible"
+        action:t="hide"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+      }
+
+      wait{
+        time:r=5.0
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  subquest_spawn_01{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      objectExists{
+        target:t="t1_subquest_area_01"
+        type:t="area"
+      }
+
+      objectExists{
+        target:t="t2_subquest_area_01"
+        type:t="area"
+      }
+    }
+
+    actions{
+
+      comment{
+        value:t="spavnim yunit"
+      }
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t=""
+      }
+
+      unitRespawn{
+        delay:r=0.0
+        offset:p3=0.0, 0.0, 0.0
+        object:t="t1_subquest_units_01"
+        object_type:t="isInactive"
+        target:t="t1_subquest_area_01"
+        randomObjectsCount:i=6
+        randomSpawn:b=yes
+      }
+
+      unitRespawn{
+        delay:r=0.0
+        offset:p3=0.0, 0.0, 0.0
+        object:t="t2_subquest_units_01"
+        object_type:t="isInactive"
+        target:t="t2_subquest_area_01"
+        randomObjectsCount:i=6
+        randomSpawn:b=yes
+      }
+
+      wait{
+        time:r=3.0
+      }
+
+      moAddMissionObjective{
+        target:t="t1_subquest_01_units_task"
+        unit_or_area:t="t2_subquest_area_01"
+      }
+
+      moAddMissionObjective{
+        target:t="t2_subquest_01_units_task"
+        unit_or_area:t="t1_subquest_area_01"
+      }
+
+      unitSetIndication{
+        set:b=yes
+        target_marking:i=0
+        target:t="t1_subquest_units_01"
+        team:t="B"
+      }
+
+      unitSetIndication{
+        set:b=yes
+        target_marking:i=0
+        target:t="t2_subquest_units_01"
+        team:t="A"
+      }
+
+      triggerEnable{
+        target:t="subquest_t1_task_01_completed"
+        target:t="subquest_t2_task_01_completed"
+        target:t="subquest_t1_task_01_inprogress"
+        target:t="subquest_t2_task_01_inprogress"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  subquest_t1_task_01_completed{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isActive"
+        object_marking:i=0
+        func:t="less"
+        value:i=1
+        object:t="t2_subquest_units_01"
+      }
+    }
+
+    actions{
+
+      comment{
+        value:t="zhivyh net"
+      }
+
+      comment{
+        value:t=""
+      }
+
+      triggerDisable{
+        target:t="subquest_t1_task_01_inprogress"
+      }
+
+      moSetObjectiveStatus{
+        target:t="t1_subquest_01_units_task"
+        status:i=2
+        team:t="A"
+      }
+
+      triggerEnable{
+        target:t="t1_task_completed"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  subquest_t2_task_01_completed{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isActive"
+        object_marking:i=0
+        func:t="less"
+        value:i=1
+        object:t="t1_subquest_units_01"
+      }
+    }
+
+    actions{
+
+      comment{
+        value:t="zhivyh net"
+      }
+
+      comment{
+        value:t=""
+      }
+
+      triggerDisable{
+        target:t="subquest_t2_task_01_inprogress"
+      }
+
+      moSetObjectiveStatus{
+        target:t="t2_subquest_01_units_task"
+        status:i=2
+        team:t="B"
+      }
+
+      triggerEnable{
+        target:t="t2_task_completed"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  subquest_t1_task_01_inprogress{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=20.0
+      }
+    }
+
+    conditions{
+
+      misObjStatus{
+        target:t="t1_subquest_01_units_task"
+        status:t="inProgress"
+      }
+    }
+
+    actions{
+
+      moSetObjectiveStatus{
+        target:t="t1_subquest_01_units_task"
+        status:i=1
+        team:t="A"
+        unit_or_area:t="t2_subquest_units_01"
+        object_type:t="isActive"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  subquest_t2_task_01_inprogress{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=20.0
+      }
+    }
+
+    conditions{
+
+      misObjStatus{
+        target:t="t2_subquest_01_units_task"
+        status:t="inProgress"
+      }
+    }
+
+    actions{
+
+      moSetObjectiveStatus{
+        target:t="t2_subquest_01_units_task"
+        status:i=1
+        team:t="B"
+        unit_or_area:t="t1_subquest_units_01"
+        object_type:t="isActive"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  subquest_spawn_02{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      objectExists{
+        target:t="t1_subquest_area_02"
+        type:t="area"
+      }
+
+      objectExists{
+        target:t="t2_subquest_area_02"
+        type:t="area"
+      }
+    }
+
+    actions{
+
+      comment{
+        value:t="spavnim yunit"
+      }
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t=""
+      }
+
+      unitRespawn{
+        delay:r=0.0
+        offset:p3=0.0, 0.0, 0.0
+        object:t="t1_subquest_units_02"
+        object_type:t="isInactive"
+        target:t="t1_subquest_area_02"
+        randomObjectsCount:i=6
+        randomSpawn:b=yes
+      }
+
+      unitRespawn{
+        delay:r=0.0
+        offset:p3=0.0, 0.0, 0.0
+        object:t="t2_subquest_units_02"
+        object_type:t="isInactive"
+        target:t="t2_subquest_area_02"
+        randomObjectsCount:i=6
+        randomSpawn:b=yes
+      }
+
+      wait{
+        time:r=3.0
+      }
+
+      moAddMissionObjective{
+        target:t="t1_subquest_02_units_task"
+        unit_or_area:t="t2_subquest_area_02"
+      }
+
+      moAddMissionObjective{
+        target:t="t2_subquest_02_units_task"
+        unit_or_area:t="t1_subquest_area_02"
+      }
+
+      unitSetIndication{
+        set:b=yes
+        target_marking:i=0
+        target:t="t1_subquest_units_02"
+        team:t="B"
+      }
+
+      unitSetIndication{
+        set:b=yes
+        target_marking:i=0
+        target:t="t2_subquest_units_02"
+        team:t="A"
+      }
+
+      triggerEnable{
+        target:t="subquest_t1_task_02_completed"
+        target:t="subquest_t2_task_02_completed"
+        target:t="subquest_t1_task_02_inprogress"
+        target:t="subquest_t2_task_02_inprogress"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  subquest_t1_task_02_completed{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isActive"
+        object_marking:i=0
+        func:t="less"
+        value:i=1
+        object:t="t2_subquest_units_02"
+      }
+    }
+
+    actions{
+
+      comment{
+        value:t="zhivyh net"
+      }
+
+      comment{
+        value:t=""
+      }
+
+      triggerDisable{
+        target:t="subquest_t1_task_02_inprogress"
+      }
+
+      moSetObjectiveStatus{
+        target:t="t1_subquest_02_units_task"
+        status:i=2
+        team:t="A"
+      }
+
+      triggerEnable{
+        target:t="t1_task_completed"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  subquest_t2_task_02_completed{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isActive"
+        object_marking:i=0
+        func:t="less"
+        value:i=1
+        object:t="t1_subquest_units_02"
+      }
+    }
+
+    actions{
+
+      comment{
+        value:t="zhivyh net"
+      }
+
+      comment{
+        value:t=""
+      }
+
+      triggerDisable{
+        target:t="subquest_t2_task_02_inprogress"
+      }
+
+      moSetObjectiveStatus{
+        target:t="t2_subquest_02_units_task"
+        status:i=2
+        team:t="B"
+      }
+
+      triggerEnable{
+        target:t="t2_task_completed"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  subquest_t1_task_02_inprogress{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=20.0
+      }
+    }
+
+    conditions{
+
+      misObjStatus{
+        target:t="t1_subquest_02_units_task"
+        status:t="inProgress"
+      }
+    }
+
+    actions{
+
+      moSetObjectiveStatus{
+        target:t="t1_subquest_02_units_task"
+        status:i=1
+        team:t="A"
+        unit_or_area:t="t2_subquest_units_02"
+        object_type:t="isActive"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  subquest_t2_task_02_inprogress{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=20.0
+      }
+    }
+
+    conditions{
+
+      misObjStatus{
+        target:t="t2_subquest_02_units_task"
+        status:t="inProgress"
+      }
+    }
+
+    actions{
+
+      moSetObjectiveStatus{
+        target:t="t2_subquest_02_units_task"
+        status:i=1
+        team:t="B"
+        unit_or_area:t="t1_subquest_units_02"
+        object_type:t="isActive"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  subquest_spawn_03{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      objectExists{
+        target:t="t1_subquest_area_03"
+        type:t="area"
+      }
+
+      objectExists{
+        target:t="t2_subquest_area_03"
+        type:t="area"
+      }
+    }
+
+    actions{
+
+      comment{
+        value:t="spavnim yunit"
+      }
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t=""
+      }
+
+      unitRespawn{
+        delay:r=0.0
+        offset:p3=0.0, 0.0, 0.0
+        object:t="t1_subquest_units_03"
+        object_type:t="isInactive"
+        target:t="t1_subquest_area_03"
+        randomObjectsCount:i=6
+        randomSpawn:b=yes
+      }
+
+      unitRespawn{
+        delay:r=0.0
+        offset:p3=0.0, 0.0, 0.0
+        object:t="t2_subquest_units_03"
+        object_type:t="isInactive"
+        target:t="t2_subquest_area_03"
+        randomObjectsCount:i=6
+        randomSpawn:b=yes
+      }
+
+      wait{
+        time:r=3.0
+      }
+
+      moAddMissionObjective{
+        target:t="t1_subquest_03_units_task"
+        unit_or_area:t="t2_subquest_area_03"
+      }
+
+      moAddMissionObjective{
+        target:t="t2_subquest_03_units_task"
+        unit_or_area:t="t1_subquest_area_03"
+      }
+
+      unitSetIndication{
+        set:b=yes
+        target_marking:i=0
+        target:t="t1_subquest_units_03"
+        team:t="B"
+      }
+
+      unitSetIndication{
+        set:b=yes
+        target_marking:i=0
+        target:t="t2_subquest_units_03"
+        team:t="A"
+      }
+
+      triggerEnable{
+        target:t="subquest_t1_task_03_completed"
+        target:t="subquest_t2_task_03_completed"
+        target:t="subquest_t1_task_03_inprogress"
+        target:t="subquest_t2_task_03_inprogress"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  subquest_t1_task_03_completed{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isActive"
+        object_marking:i=0
+        func:t="less"
+        value:i=1
+        object:t="t2_subquest_units_03"
+      }
+    }
+
+    actions{
+
+      comment{
+        value:t="zhivyh net"
+      }
+
+      comment{
+        value:t=""
+      }
+
+      triggerDisable{
+        target:t="subquest_t1_task_03_inprogress"
+      }
+
+      moSetObjectiveStatus{
+        target:t="t1_subquest_03_units_task"
+        status:i=2
+        team:t="A"
+      }
+
+      triggerEnable{
+        target:t="t1_task_completed"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  subquest_t2_task_03_completed{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isActive"
+        object_marking:i=0
+        func:t="less"
+        value:i=1
+        object:t="t1_subquest_units_03"
+      }
+    }
+
+    actions{
+
+      comment{
+        value:t="zhivyh net"
+      }
+
+      comment{
+        value:t=""
+      }
+
+      triggerDisable{
+        target:t="subquest_t2_task_03_inprogress"
+      }
+
+      moSetObjectiveStatus{
+        target:t="t2_subquest_03_units_task"
+        status:i=2
+        team:t="B"
+      }
+
+      triggerEnable{
+        target:t="t2_task_completed"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  subquest_t1_task_03_inprogress{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=20.0
+      }
+    }
+
+    conditions{
+
+      misObjStatus{
+        target:t="t1_subquest_03_units_task"
+        status:t="inProgress"
+      }
+    }
+
+    actions{
+
+      moSetObjectiveStatus{
+        target:t="t1_subquest_03_units_task"
+        status:i=1
+        team:t="A"
+        unit_or_area:t="t2_subquest_units_03"
+        object_type:t="isActive"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  subquest_t2_task_03_inprogress{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=20.0
+      }
+    }
+
+    conditions{
+
+      misObjStatus{
+        target:t="t2_subquest_03_units_task"
+        status:t="inProgress"
+      }
+    }
+
+    actions{
+
+      moSetObjectiveStatus{
+        target:t="t2_subquest_03_units_task"
+        status:i=1
+        team:t="B"
+        unit_or_area:t="t1_subquest_units_03"
+        object_type:t="isActive"
+      }
+    }
+
+    else_actions{
+    }
+  }
+}
+
+mission_objectives{
+  isCategory:b=yes
+  is_enabled:b=yes
+
+  t1_subquest_01_units_task{
+    is_enabled:b=no
+    comments:t=""
+    type:t="abstractMissionObjective"
+
+    props{
+      isPrimary:b=yes
+      timeLimit:i=3600
+      team:t="A"
+    }
+
+    onSuccess{
+    }
+
+    onFailed{
+    }
+  }
+
+  t2_subquest_01_units_task{
+    is_enabled:b=no
+    comments:t=""
+    type:t="abstractMissionObjective"
+
+    props{
+      isPrimary:b=yes
+      timeLimit:i=3600
+      team:t="B"
+    }
+
+    onSuccess{
+    }
+
+    onFailed{
+    }
+  }
+
+  t1_subquest_02_units_task{
+    is_enabled:b=no
+    comments:t=""
+    type:t="abstractMissionObjective"
+
+    props{
+      isPrimary:b=yes
+      timeLimit:i=3600
+      team:t="A"
+    }
+
+    onSuccess{
+    }
+
+    onFailed{
+    }
+  }
+
+  t2_subquest_02_units_task{
+    is_enabled:b=no
+    comments:t=""
+    type:t="abstractMissionObjective"
+
+    props{
+      isPrimary:b=yes
+      timeLimit:i=3600
+      team:t="B"
+    }
+
+    onSuccess{
+    }
+
+    onFailed{
+    }
+  }
+
+  t1_subquest_03_units_task{
+    is_enabled:b=no
+    comments:t=""
+    type:t="abstractMissionObjective"
+
+    props{
+      isPrimary:b=yes
+      timeLimit:i=3600
+      team:t="A"
+    }
+
+    onSuccess{
+    }
+
+    onFailed{
+    }
+  }
+
+  t2_subquest_03_units_task{
+    is_enabled:b=no
+    comments:t=""
+    type:t="abstractMissionObjective"
+
+    props{
+      isPrimary:b=yes
+      timeLimit:i=3600
+      team:t="B"
+    }
+
+    onSuccess{
+    }
+
+    onFailed{
+    }
+  }
+}
+
+variables{
+  subquest_delay_timer:i=1200
+  players_related_spawns:b=no
+  subquest_players_timer:i=300
+}
+
+dialogs{
+}
+
+airfields{
+}
+
+effects{
+}
+
+units{
+}
+
+areas{
+}
+
+objLayers{
+}
+
+wayPoints{
+}

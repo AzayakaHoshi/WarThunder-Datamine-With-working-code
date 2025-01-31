@@ -1,0 +1,1374 @@
+selected_tag:t=""
+bin_dump_file:t=""
+
+mission_settings{
+
+  player{
+    army:i=1
+    wing:t="player"
+  }
+
+  player_teamB{
+    army:i=2
+  }
+
+  mission{
+    type:t="training"
+    gt_training:b=no
+    level:t="levels/avg_vlaanderen.bin"
+    environment:t="Day"
+    weather:t="cloudy"
+    gt_reload_explosives:b=no
+    isLimitedFuel:b=no
+    isLimitedAmmo:b=no
+    timeLimit:i=30
+  }
+
+  briefing{
+    place_loc:t=""
+    date_loc:t=""
+    objective_loc:t=""
+    music:t="action_01"
+    viewAreaScale:r=1.0
+
+    part{
+      event:t=""
+      minTime:i=0
+
+      slide{
+        map:b=yes
+        minTime:i=4
+        picture:t=""
+        showAirMap:b=no
+
+        icon{
+          icontype:t="tank"
+          side:t="player"
+          target:t="player"
+          lookAt:t="player_look"
+        }
+
+        icon{
+          icontype:t="tank"
+          side:t="enemy"
+          target:t="target_tank01"
+          lookAt:t="player"
+        }
+
+        battleArea{
+          target:t="briefing_area"
+        }
+      }
+    }
+  }
+}
+
+imports{
+}
+
+triggers{
+  isCategory:b=yes
+  is_enabled:b=yes
+
+  init{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      initMission{
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      unitMoveTo{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="player_respawn"
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        follow_target:b=no
+        fastClimb:b=no
+        destTimeMode:b=no
+        teleportHeightType:t="target"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=no
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object:t="player"
+        move_type:t="teleport"
+        lookat:t="player_look"
+      }
+
+      unitSetProperties{
+        object:t="target_tank01"
+        calmDetection:b=yes
+        forceVisibleOnMap:b=yes
+        forceLockTarget:b=no
+      }
+
+      playerOptions{
+        allowBailout:b=no
+      }
+
+      playerControls{
+        setStatus:t="disable"
+        control:t="ALL"
+      }
+
+      playerControls{
+        setStatus:t="enable"
+        control:t="ID_RANGEFINDER"
+        control:t="AXIS_GM_SIGHT_DISTANCE"
+        control:t="ID_ZOOM_TOGGLE"
+        control:t="AXIS_TURRET_X"
+        control:t="AXIS_TURRET_Y"
+        control:t="AXIS_GM_MOUSE_AIM_X"
+        control:t="AXIS_GM_MOUSE_AIM_Y"
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      playHint{
+        hintType:t="standard"
+        name:t="hints/tank_binocular_tft/info1"
+        action:t="show"
+        shouldFadeOut:b=no
+        isOverFade:b=no
+        time:r=-1.0
+        priority:i=0
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        item:t="ID_CAMERA_BINOCULARS"
+      }
+
+      triggerEnable{
+        target:t="binoculars_activate_msg"
+      }
+
+      playerSetMouseAim{
+        lookat:t="player_look"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  binoculars_activate_msg{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      playerControls{
+        setStatus:t="enable"
+        control:t="ID_CAMERA_BINOCULARS"
+      }
+
+      triggerEnable{
+        target:t="binoculars_activate"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  binoculars_activate{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playerShortcutPressed{
+        control:t="ID_CAMERA_BINOCULARS"
+      }
+    }
+
+    actions{
+
+      triggerEnable{
+        target:t="binoculars_check_skip"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  binoculars_check_skip{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      varCompareBool{
+        var_value:t="is_skip"
+        value:b=no
+        comparasion_func:t="equal"
+      }
+    }
+
+    actions{
+
+      triggerEnable{
+        target:t="rangefinder_skip"
+      }
+    }
+
+    else_actions{
+
+      triggerEnable{
+        target:t="binoculars_check_skip_arcade"
+      }
+    }
+  }
+
+  binoculars_check_skip_arcade{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      gameWhenDifficulty{
+        difficulty:t="arcade"
+        is:t="equal"
+      }
+    }
+
+    actions{
+
+      playerControls{
+        setStatus:t="enable"
+        control:t="ID_FIRE_GM"
+      }
+
+      triggerEnable{
+        target:t="rangefinder_skip"
+      }
+    }
+
+    else_actions{
+
+      playHint{
+        hintType:t="standard"
+        name:t="hints/tank_binocular_tft/shoot_again"
+        action:t="show"
+        shouldFadeOut:b=no
+        isOverFade:b=no
+        time:r=-1.0
+        priority:i=0
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        item:t="ID_TOGGLE_VIEW_GM"
+      }
+
+      playerControls{
+        setStatus:t="enable"
+        control:t="ID_TOGGLE_VIEW_GM"
+      }
+
+      triggerEnable{
+        target:t="shoot_aim_view_button"
+      }
+    }
+  }
+
+  binoculars_look_at_target{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playerWhenCursorIn{
+        cursor:t="mouseJoy"
+        element:t="curTarget"
+        targetName:t="target_tank01"
+      }
+    }
+
+    actions{
+
+      hudElementSelectionShade{
+        element:t=""
+      }
+
+      playHint{
+        hintType:t="standard"
+        name:t="hints/tank_binocular_tft/binocular_shoot"
+        action:t="show"
+        shouldFadeOut:b=no
+        isOverFade:b=no
+        time:r=-1.0
+        priority:i=0
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        item:t="ID_FIRE_GM"
+      }
+
+      playerControls{
+        setStatus:t="enable"
+        control:t="ID_FIRE_GM"
+      }
+
+      playerControls{
+        setStatus:t="disable"
+        control:t="ID_CAMERA_BINOCULARS"
+      }
+
+      triggerEnable{
+        target:t="binoculars_wait_weapon"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  binoculars_wait_weapon{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playerShortcutPressed{
+        control:t="ID_FIRE_GM"
+      }
+    }
+
+    actions{
+
+      playHint{
+        hintType:t="standard"
+        name:t="hints/tank_binocular_tft/binocular_wait_weapon"
+        action:t="show"
+        shouldFadeOut:b=no
+        isOverFade:b=no
+        time:r=-1.0
+        priority:i=0
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+      }
+
+      triggerEnable{
+        target:t="binoculars_weapon_look_at_target"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  binoculars_weapon_look_at_target{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playerWhenCursorIn{
+        cursor:t="crosshair"
+        element:t="curTarget"
+        targetName:t="target_tank01"
+      }
+    }
+
+    actions{
+
+      __playerControls{
+        setStatus:t="disable"
+        control:t="ID_FIRE_GM"
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      playHint{
+        hintType:t="standard"
+        name:t="hints/tank_binocular_tft/rangefinder"
+        action:t="show"
+        shouldFadeOut:b=no
+        isOverFade:b=no
+        time:r=-1.0
+        priority:i=0
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        item:t="ID_RANGEFINDER"
+      }
+
+      triggerEnable{
+        target:t="rangefinder_check_button"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  rangefinder_skip{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      gameWhenDifficulty{
+        difficulty:t="arcade"
+        is:t="notEqual"
+      }
+    }
+
+    actions{
+
+      varSetString{
+        value:t="hints/tank_binocular_tft/shoot"
+        var:t="fire_msg"
+      }
+
+      __playerControls{
+        setStatus:t="disable"
+        control:t="ID_CAMERA_BINOCULARS"
+      }
+
+      playerControls{
+        setStatus:t="enable"
+        control:t="AXIS_THROTTLE"
+        control:t="AXIS_RUDDER"
+      }
+
+      playHint{
+        hintType:t="standard"
+        name:t="hints/tank_modifications/find_target"
+        action:t="show"
+        shouldFadeOut:b=no
+        isOverFade:b=no
+        time:r=-1.0
+        priority:i=0
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+      }
+
+      hudElementSelectionShade{
+        element:t="curTarget"
+        targetName:t="target_tank01"
+      }
+
+      triggerEnable{
+        target:t="binoculars_look_at_target"
+      }
+    }
+
+    else_actions{
+
+      playerControls{
+        setStatus:t="enable"
+        control:t="ID_FIRE_GM"
+        control:t="AXIS_THROTTLE"
+        control:t="AXIS_RUDDER"
+      }
+
+      varSetString{
+        value:t="hints/tank_modifications/fire"
+        var:t="fire_msg"
+      }
+
+      playHint{
+        hintType:t="standard"
+        name:t="hints/tank_binocular_tft/aim_target_arcade"
+        action:t="show"
+        shouldFadeOut:b=no
+        isOverFade:b=no
+        time:r=-1.0
+        priority:i=0
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        item:t="ID_FIRE_GM"
+      }
+
+      hudElementSelectionShade{
+        element:t="curTarget"
+        targetName:t="target_tank01"
+      }
+
+      triggerEnable{
+        target:t="shoot_aim_arcade"
+      }
+    }
+  }
+
+  rangefinder_check_button{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playerShortcutPressed{
+        control:t="ID_RANGEFINDER"
+      }
+
+      playerWhenCursorIn{
+        cursor:t="crosshair"
+        element:t="curTarget"
+        targetName:t="target_tank01"
+      }
+    }
+
+    actions{
+
+      wait{
+        time:r=6.0
+      }
+
+      triggerEnable{
+        target:t="rangefinder_range"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  rangefinder_range{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playerTankRangefinderValue{
+        func:t="more"
+        dist:i=400
+      }
+    }
+
+    actions{
+
+      playHint{
+        hintType:t="standard"
+        name:t="hints/tank_binocular_tft/info2"
+        action:t="show"
+        shouldFadeOut:b=no
+        isOverFade:b=no
+        time:r=-1.0
+        priority:i=0
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        item:t="ID_TOGGLE_VIEW_GM"
+      }
+
+      playerControls{
+        setStatus:t="enable"
+        control:t="ID_TOGGLE_VIEW_GM"
+      }
+
+      triggerEnable{
+        target:t="shoot_aim_view_button"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  shoot_aim_arcade{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ANY"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playerShortcutPressed{
+        control:t="ID_FIRE_GM"
+      }
+    }
+
+    actions{
+
+      playHint{
+        hintType:t="standard"
+        name:t="hints/tank_binocular_tft/aim_arcade"
+        action:t="show"
+        shouldFadeOut:b=no
+        isOverFade:b=no
+        time:r=-1.0
+        priority:i=0
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        item:t="ID_TOGGLE_VIEW_GM"
+      }
+
+      playerControls{
+        setStatus:t="enable"
+        control:t="ID_TOGGLE_VIEW_GM"
+      }
+
+      triggerEnable{
+        target:t="shoot_aim_view_button"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  shoot_aim_view_button{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playerShortcutPressed{
+        control:t="ID_TOGGLE_VIEW_GM"
+      }
+    }
+
+    actions{
+
+      hudElementSelectionShade{
+        element:t=""
+      }
+
+      triggerEnable{
+        target:t="shoot_aim_view"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  shoot_aim_view{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ANY"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      playHint{
+        hintType:t="standard"
+        name:t="@fire_msg"
+        action:t="show"
+        shouldFadeOut:b=no
+        isOverFade:b=no
+        time:r=-1.0
+        priority:i=0
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        item:t="ID_FIRE_GM"
+      }
+
+      playerControls{
+        setStatus:t="enable"
+        control:t="ID_FIRE_GM"
+      }
+
+      triggerEnable{
+        target:t="shoot_fire"
+        target:t="shoot_target_hit"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  shoot_fire{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playerShortcutPressed{
+        control:t="ID_FIRE_GM"
+      }
+    }
+
+    actions{
+
+      triggerEnable{
+        target:t="shoot_bullet_restore"
+      }
+
+      triggerEnable{
+        target:t="shoot_check_binoculars"
+      }
+
+      wait{
+        time:r=0.5
+      }
+
+      playerControls{
+        setStatus:t="disable"
+        control:t="ID_FIRE_GM"
+        control:t="ID_TOGGLE_VIEW_GM"
+      }
+
+      playerControls{
+        setStatus:t="enable"
+        control:t="ID_CAMERA_BINOCULARS"
+      }
+
+      missionSetTimeSpeed{
+        speed:r=0.0
+        realtimeTriggers:b=yes
+      }
+
+      playHint{
+        hintType:t="standard"
+        name:t="hints/tank_binocular_tft/binocular_check_shoot"
+        action:t="show"
+        shouldFadeOut:b=no
+        isOverFade:b=no
+        time:r=-1.0
+        priority:i=0
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        item:t="ID_CAMERA_BINOCULARS"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  shoot_bullet_restore{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      wait{
+        time:r=1.0
+      }
+
+      unitRestore{
+        target_marking:i=0
+        ressurectIfDead:b=no
+        fullRestore:b=yes
+        target:t="player"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  shoot_check_binoculars{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playerShortcutPressed{
+        control:t="ID_CAMERA_BINOCULARS"
+      }
+    }
+
+    actions{
+
+      missionSetTimeSpeed{
+        speed:r=1.0
+        realtimeTriggers:b=yes
+      }
+
+      playHint{
+        hintType:t="standard"
+        name:t=""
+        action:t="show"
+        shouldFadeOut:b=no
+        isOverFade:b=no
+        time:r=-1.0
+        priority:i=0
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+      }
+
+      playerControls{
+        setStatus:t="disable"
+        control:t="ID_CAMERA_BINOCULARS"
+      }
+
+      playerControls{
+        setStatus:t="enable"
+        control:t="ID_FIRE_GM"
+      }
+
+      triggerEnable{
+        target:t="shoot_missed"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  shoot_missed{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      wait{
+        time:r=3.0
+      }
+
+      varSetBool{
+        value:b=yes
+        var:t="is_skip"
+      }
+
+      triggerEnable{
+        target:t="binoculars_check_skip"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  shoot_target_hit{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ANY"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      unitWhenHit{
+        target:t="target_tank01"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="shoot_missed"
+      }
+
+      wait{
+        time:r=0.1
+      }
+
+      triggerEnable{
+        target:t="mission_completed"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  mission_completed{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      playHint{
+        hintType:t="standard"
+        name:t=""
+        action:t="hide"
+        shouldFadeOut:b=no
+        isOverFade:b=no
+        time:r=-1.0
+        priority:i=0
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+      }
+
+      missionCompleted{
+        timer:b=no
+        debriefingTimer:i=5
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  debug{
+    isCategory:b=yes
+    is_enabled:b=yes
+  }
+}
+
+mission_objectives{
+  isCategory:b=yes
+  is_enabled:b=yes
+}
+
+variables{
+  is_skip:b=no
+  fire_msg:t=""
+}
+
+dialogs{
+}
+
+airfields{
+}
+
+effects{
+}
+
+units{
+
+  tankModels{
+    name:t="target_tank01"
+    tm:m=[[-0.211921, -0.00285852, -0.977283] [0.00861799, 0.999951, -0.00479362] [0.977249, -0.00943809, -0.211888] [893.608, 2.81371, 1186.21]]
+    unit_class:t="ussr_bt_7_1937"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="ussr_bt_7_1937_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      attack_type:t="dont_aim"
+    }
+
+    way{
+    }
+  }
+
+  tankModels{
+    name:t="player"
+    tm:m=[[1.0, 0.0, 0.0] [2.38419e-07, 1.0, -2.59723e-07] [-4.27892e-07, 0.0, 1.0] [338.546, 0.690674, 1237.28]]
+    unit_class:t="germ_pzkpfw_III_ausf_N"
+    objLayer:i=0
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=50
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=1
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="target_object"
+    tm:m=[[0.883033, 0.0, -0.469311] [0.0, 1.0, 0.0] [0.469311, 0.0, 0.883033] [893.607, 2.81369, 1186.21]]
+    unit_class:t="tank_target_8_char"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      isDelayed:b=yes
+      setStealth:b=yes
+      targetAir:b=no
+      targetGnd:b=no
+    }
+
+    way{
+    }
+  }
+}
+
+areas{
+
+  player_respawn{
+    type:t="Sphere"
+    tm:m=[[0.435425, 0.0, -0.900225] [0.0, 1.0, 0.0] [0.900225, 0.0, 0.435425] [461.45, 0.425116, 1350.0]]
+    objLayer:i=0
+
+    props{
+      forceReplication:b=yes
+    }
+  }
+
+  player_look{
+    type:t="Sphere"
+    tm:m=[[0.957067, 0.0, 0.289868] [0.0, 1.0, 0.0] [-0.289868, 0.0, 0.957067] [895.22, 3.60366, 1152.78]]
+    objLayer:i=0
+
+    props{
+      forceReplication:b=yes
+    }
+  }
+
+  briefing_area{
+    type:t="Box"
+    tm:m=[[-1000.0, 0.0, 0.0] [0.0, 139.15, 0.0] [0.0, 2.94731e-06, -1000.0] [646.601, 8.3999, 1227.47]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+}
+
+objLayers{
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=no
+  }
+}
+
+wayPoints{
+}

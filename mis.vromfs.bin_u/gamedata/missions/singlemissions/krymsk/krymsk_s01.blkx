@@ -1,0 +1,2943 @@
+selected_tag:t=""
+bin_dump_file:t=""
+
+mission_settings{
+
+  player{
+    army:i=1
+    wing:t="player"
+  }
+
+  player_teamB{
+    army:i=2
+  }
+
+  mission{
+    level:t="levels/krymsk.bin"
+    type:t="singleMission"
+    environment:t="Day"
+    weather:t="hazy"
+    windDirection:p3=1.0, 0.0, 0.0
+    restoreType:t="tactical control"
+    optionalTakeOff:b=no
+  }
+
+  atmosphere{
+    pressure:r=760.0
+    temperature:r=0.0
+  }
+
+  spectator_points{
+  }
+
+  briefing{
+    place_loc:t=""
+    date_loc:t=""
+    objective_loc:t=""
+    music:t="ussr_main_theme"
+
+    part{
+      event:t=""
+      minTime:i=0
+
+      slide{
+        map:b=yes
+        minTime:i=4
+        picture:t=""
+        showAirMap:b=no
+
+        arrow{
+          width:i=1
+          side:t="player"
+          point:t="player"
+          point:t="waypoint24"
+        }
+
+        icon{
+          icontype:t="fighter"
+          side:t="player"
+          target:t="player"
+          lookAt:t="waypoint24"
+        }
+
+        icon{
+          icontype:t="fighter"
+          side:t="enemy"
+          target:t="enemy"
+          lookAt:t="player"
+        }
+
+        icon{
+          icontype:t="artillery"
+          side:t="ally"
+          target:t="structures_01"
+        }
+      }
+    }
+  }
+}
+
+imports{
+
+  import_record{
+    file:t="gameData/missions/bridges/krymsk_bridges.blk"
+    importAreas:b=yes
+    importUnits:b=yes
+    importTriggers:b=yes
+    importMissionObjectives:b=yes
+    importWayPoints:b=yes
+    showAreas:b=yes
+    showUnits:b=yes
+    showTriggers:b=yes
+    showMissionObjectives:b=yes
+    showWayPoints:b=yes
+
+    excludes{
+    }
+  }
+}
+
+triggers{
+  isCategory:b=yes
+  is_enabled:b=yes
+
+  waypoint00{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      initMission{
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      unitDamage{
+        part:i=2
+        power:r=1.0
+        useEffect:b=no
+        countEffects:i=1
+        delay:p2=1.0, 1.0
+        offset:p3=0.0, 0.0, 0.0
+        radiusOffset:p2=10.0, 15.0
+        target:t="player"
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="enemy"
+        object:t="enemy01"
+        target:t="player"
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=yes
+        primary:b=yes
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint00"
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=yes
+        primary:b=no
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint01"
+      }
+
+      triggerEnable{
+        target:t="waypoint01"
+      }
+
+      unitSetProperties{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="enemy"
+        object:t="enemy01"
+        object:t="enemy02"
+        object:t="enemy03"
+        object:t="enemy04"
+        object:t="enemy05"
+        object:t="enemy06"
+        effShootingRate:r=0.1
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  waypoint01{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playersWhenInArea{
+        math:t="3D"
+        players:t="isAlive"
+        check_players:t="any"
+        object_marking:i=0
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="waypoint00"
+      }
+    }
+
+    actions{
+
+      missionMarkAsWaypoint{
+        visible:b=no
+        primary:b=yes
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint00"
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=yes
+        primary:b=yes
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint01"
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=yes
+        primary:b=no
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint02"
+      }
+
+      triggerEnable{
+        target:t="waypoint02"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  waypoint02{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playersWhenInArea{
+        math:t="3D"
+        players:t="isAlive"
+        check_players:t="any"
+        object_marking:i=0
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="waypoint01"
+      }
+    }
+
+    actions{
+
+      missionMarkAsWaypoint{
+        visible:b=no
+        primary:b=yes
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint01"
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=yes
+        primary:b=yes
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint02"
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=yes
+        primary:b=no
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint03"
+      }
+
+      triggerEnable{
+        target:t="waypoint03"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  waypoint03{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playersWhenInArea{
+        math:t="3D"
+        players:t="isAlive"
+        check_players:t="any"
+        object_marking:i=0
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="waypoint02"
+      }
+    }
+
+    actions{
+
+      missionMarkAsWaypoint{
+        visible:b=no
+        primary:b=yes
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint02"
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=yes
+        primary:b=yes
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint03"
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=yes
+        primary:b=no
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint04"
+      }
+
+      triggerEnable{
+        target:t="waypoint04"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  waypoint04{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playersWhenInArea{
+        math:t="3D"
+        players:t="isAlive"
+        check_players:t="any"
+        object_marking:i=0
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="waypoint03"
+      }
+    }
+
+    actions{
+
+      missionMarkAsWaypoint{
+        visible:b=no
+        primary:b=yes
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint03"
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=yes
+        primary:b=yes
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint04"
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=yes
+        primary:b=no
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint05"
+      }
+
+      triggerEnable{
+        target:t="waypoint05"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  waypoint05{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playersWhenInArea{
+        math:t="3D"
+        players:t="isAlive"
+        check_players:t="any"
+        object_marking:i=0
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="waypoint04"
+      }
+    }
+
+    actions{
+
+      missionMarkAsWaypoint{
+        visible:b=no
+        primary:b=yes
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint04"
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=yes
+        primary:b=yes
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint05"
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=yes
+        primary:b=no
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint06"
+      }
+
+      triggerEnable{
+        target:t="waypoint06"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  waypoint06{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playersWhenInArea{
+        math:t="3D"
+        players:t="isAlive"
+        check_players:t="any"
+        object_marking:i=0
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="waypoint05"
+      }
+    }
+
+    actions{
+
+      missionMarkAsWaypoint{
+        visible:b=no
+        primary:b=yes
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint05"
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=yes
+        primary:b=yes
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint06"
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=yes
+        primary:b=no
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint07"
+      }
+
+      triggerEnable{
+        target:t="waypoint07"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  waypoint07{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playersWhenInArea{
+        math:t="3D"
+        players:t="isAlive"
+        check_players:t="any"
+        object_marking:i=0
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="waypoint06"
+      }
+    }
+
+    actions{
+
+      missionMarkAsWaypoint{
+        visible:b=no
+        primary:b=yes
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint06"
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=yes
+        primary:b=yes
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint07"
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=yes
+        primary:b=no
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint08"
+      }
+
+      triggerEnable{
+        target:t="waypoint08"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  waypoint08{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playersWhenInArea{
+        math:t="3D"
+        players:t="isAlive"
+        check_players:t="any"
+        object_marking:i=0
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="waypoint07"
+      }
+    }
+
+    actions{
+
+      missionMarkAsWaypoint{
+        visible:b=no
+        primary:b=yes
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint07"
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=yes
+        primary:b=yes
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint08"
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=yes
+        primary:b=no
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint09"
+      }
+
+      triggerEnable{
+        target:t="waypoint09"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  waypoint09{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playersWhenInArea{
+        math:t="3D"
+        players:t="isAlive"
+        check_players:t="any"
+        object_marking:i=0
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="waypoint08"
+      }
+    }
+
+    actions{
+
+      missionMarkAsWaypoint{
+        visible:b=no
+        primary:b=yes
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint08"
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=yes
+        primary:b=yes
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint09"
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=yes
+        primary:b=no
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint10"
+      }
+
+      triggerEnable{
+        target:t="waypoint10"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  waypoint10{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playersWhenInArea{
+        math:t="3D"
+        players:t="isAlive"
+        check_players:t="any"
+        object_marking:i=0
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="waypoint09"
+      }
+    }
+
+    actions{
+
+      missionMarkAsWaypoint{
+        visible:b=no
+        primary:b=yes
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint09"
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=yes
+        primary:b=yes
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint10"
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=yes
+        primary:b=no
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint11"
+      }
+
+      triggerEnable{
+        target:t="waypoint11"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  waypoint11{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playersWhenInArea{
+        math:t="3D"
+        players:t="isAlive"
+        check_players:t="any"
+        object_marking:i=0
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="waypoint10"
+      }
+    }
+
+    actions{
+
+      missionMarkAsWaypoint{
+        visible:b=no
+        primary:b=yes
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint10"
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=yes
+        primary:b=yes
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint11"
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=yes
+        primary:b=no
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint12"
+      }
+
+      triggerEnable{
+        target:t="waypoint12"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  waypoint12{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playersWhenInArea{
+        math:t="3D"
+        players:t="isAlive"
+        check_players:t="any"
+        object_marking:i=0
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="waypoint11"
+      }
+    }
+
+    actions{
+
+      missionMarkAsWaypoint{
+        visible:b=no
+        primary:b=yes
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint11"
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=yes
+        primary:b=yes
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint12"
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=yes
+        primary:b=no
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint13"
+      }
+
+      triggerEnable{
+        target:t="waypoint13"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  waypoint13{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playersWhenInArea{
+        math:t="3D"
+        players:t="isAlive"
+        check_players:t="any"
+        object_marking:i=0
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="waypoint12"
+      }
+    }
+
+    actions{
+
+      missionMarkAsWaypoint{
+        visible:b=no
+        primary:b=yes
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint12"
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=yes
+        primary:b=yes
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint13"
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=yes
+        primary:b=no
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint14"
+      }
+
+      triggerEnable{
+        target:t="waypoint14"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  waypoint14{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playersWhenInArea{
+        math:t="3D"
+        players:t="isAlive"
+        check_players:t="any"
+        object_marking:i=0
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="waypoint13"
+      }
+    }
+
+    actions{
+
+      missionMarkAsWaypoint{
+        visible:b=no
+        primary:b=yes
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint13"
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=yes
+        primary:b=yes
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint14"
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=yes
+        primary:b=no
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint15"
+      }
+
+      triggerEnable{
+        target:t="waypoint15"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  waypoint15{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playersWhenInArea{
+        math:t="3D"
+        players:t="isAlive"
+        check_players:t="any"
+        object_marking:i=0
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="waypoint14"
+      }
+    }
+
+    actions{
+
+      missionMarkAsWaypoint{
+        visible:b=no
+        primary:b=yes
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint14"
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=yes
+        primary:b=yes
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint15"
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=yes
+        primary:b=no
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint16"
+      }
+
+      triggerEnable{
+        target:t="waypoint16"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  waypoint16{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playersWhenInArea{
+        math:t="3D"
+        players:t="isAlive"
+        check_players:t="any"
+        object_marking:i=0
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="waypoint15"
+      }
+    }
+
+    actions{
+
+      missionMarkAsWaypoint{
+        visible:b=no
+        primary:b=yes
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint15"
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=yes
+        primary:b=yes
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint16"
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=yes
+        primary:b=no
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint17"
+      }
+
+      triggerEnable{
+        target:t="waypoint17"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  waypoint17{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playersWhenInArea{
+        math:t="3D"
+        players:t="isAlive"
+        check_players:t="any"
+        object_marking:i=0
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="waypoint16"
+      }
+    }
+
+    actions{
+
+      missionMarkAsWaypoint{
+        visible:b=no
+        primary:b=yes
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint16"
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=yes
+        primary:b=yes
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint17"
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=yes
+        primary:b=no
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint18"
+      }
+
+      triggerEnable{
+        target:t="waypoint18"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  waypoint18{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playersWhenInArea{
+        math:t="3D"
+        players:t="isAlive"
+        check_players:t="any"
+        object_marking:i=0
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="waypoint17"
+      }
+    }
+
+    actions{
+
+      missionMarkAsWaypoint{
+        visible:b=no
+        primary:b=yes
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint17"
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=yes
+        primary:b=yes
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint18"
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=yes
+        primary:b=no
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint19"
+      }
+
+      triggerEnable{
+        target:t="waypoint19"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  waypoint19{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playersWhenInArea{
+        math:t="3D"
+        players:t="isAlive"
+        check_players:t="any"
+        object_marking:i=0
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="waypoint18"
+      }
+    }
+
+    actions{
+
+      missionMarkAsWaypoint{
+        visible:b=no
+        primary:b=yes
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint18"
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=yes
+        primary:b=yes
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint19"
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=yes
+        primary:b=no
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint20"
+      }
+
+      triggerEnable{
+        target:t="waypoint20"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  waypoint20{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playersWhenInArea{
+        math:t="3D"
+        players:t="isAlive"
+        check_players:t="any"
+        object_marking:i=0
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="waypoint19"
+      }
+    }
+
+    actions{
+
+      missionMarkAsWaypoint{
+        visible:b=no
+        primary:b=yes
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint19"
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=yes
+        primary:b=yes
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint20"
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=yes
+        primary:b=no
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint21"
+      }
+
+      triggerEnable{
+        target:t="waypoint21"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  waypoint21{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playersWhenInArea{
+        math:t="3D"
+        players:t="isAlive"
+        check_players:t="any"
+        object_marking:i=0
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="waypoint20"
+      }
+    }
+
+    actions{
+
+      missionMarkAsWaypoint{
+        visible:b=no
+        primary:b=yes
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint20"
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=yes
+        primary:b=yes
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint21"
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=yes
+        primary:b=no
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint22"
+      }
+
+      triggerEnable{
+        target:t="waypoint22"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  waypoint22{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playersWhenInArea{
+        math:t="3D"
+        players:t="isAlive"
+        check_players:t="any"
+        object_marking:i=0
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="waypoint21"
+      }
+    }
+
+    actions{
+
+      missionMarkAsWaypoint{
+        visible:b=no
+        primary:b=yes
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint21"
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=yes
+        primary:b=yes
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint22"
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=yes
+        primary:b=no
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint23"
+      }
+
+      triggerEnable{
+        target:t="waypoint23"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  waypoint23{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playersWhenInArea{
+        math:t="3D"
+        players:t="isAlive"
+        check_players:t="any"
+        object_marking:i=0
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="waypoint22"
+      }
+    }
+
+    actions{
+
+      missionMarkAsWaypoint{
+        visible:b=no
+        primary:b=yes
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint22"
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=yes
+        primary:b=yes
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint23"
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=yes
+        primary:b=no
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint24"
+      }
+
+      triggerEnable{
+        target:t="waypoint24"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  waypoint24{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playersWhenInArea{
+        math:t="3D"
+        players:t="isAlive"
+        check_players:t="any"
+        object_marking:i=0
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="waypoint23"
+      }
+    }
+
+    actions{
+
+      missionMarkAsWaypoint{
+        visible:b=no
+        primary:b=yes
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint23"
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=yes
+        primary:b=yes
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint24"
+      }
+
+      triggerEnable{
+        target:t="mission_completed"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  mission_completed{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playersWhenInArea{
+        math:t="3D"
+        players:t="isAlive"
+        check_players:t="any"
+        object_marking:i=0
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="waypoint24"
+      }
+    }
+
+    actions{
+
+      missionMarkAsWaypoint{
+        visible:b=no
+        primary:b=yes
+        scale:r=0.3
+        oriented:b=yes
+        ignoreDifficulty:b=yes
+        target:t="waypoint24"
+      }
+
+      moSetObjectiveStatus{
+        target:t="single_krymsk_m01_fly00"
+        status:i=2
+        object_marking:i=0
+        object_var_comp_op:t="equal"
+        object_var_name:t=""
+      }
+
+      missionCompleted{
+        timer:b=no
+        debriefingTimer:i=2
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  enemies_wake01{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      unitWhenInArea{
+        math:t="3D"
+        object_type:t="isAlive"
+        object_marking:i=0
+        check_objects:t="any"
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="player"
+        target:t="point01"
+      }
+    }
+
+    actions{
+
+      unitWakeUp{
+        target:t="enemy02"
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="enemy02"
+        target:t="player"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  enemies_wake02{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      unitWhenInArea{
+        math:t="3D"
+        object_type:t="isAlive"
+        object_marking:i=0
+        check_objects:t="any"
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="player"
+        target:t="point02"
+      }
+    }
+
+    actions{
+
+      unitWakeUp{
+        target:t="enemy03"
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="enemy03"
+        target:t="player"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  enemies_wake03{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      unitWhenInArea{
+        math:t="3D"
+        object_type:t="isAlive"
+        object_marking:i=0
+        check_objects:t="any"
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="player"
+        target:t="point03"
+      }
+    }
+
+    actions{
+
+      unitWakeUp{
+        target:t="enemy04"
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="enemy04"
+        target:t="player"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  enemies_wake04{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      unitWhenInArea{
+        math:t="3D"
+        object_type:t="isAlive"
+        object_marking:i=0
+        check_objects:t="any"
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="player"
+        target:t="point04"
+      }
+    }
+
+    actions{
+
+      unitWakeUp{
+        target:t="enemy05"
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="enemy05"
+        target:t="player"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  enemies_wake05{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      unitWhenInArea{
+        math:t="3D"
+        object_type:t="isAlive"
+        object_marking:i=0
+        check_objects:t="any"
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="player"
+        target:t="point05"
+      }
+    }
+
+    actions{
+
+      unitWakeUp{
+        target:t="enemy06"
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="enemy06"
+        target:t="player"
+      }
+    }
+
+    else_actions{
+    }
+  }
+}
+
+mission_objectives{
+  isCategory:b=yes
+  is_enabled:b=yes
+
+  single_krymsk_m01_fly00{
+    is_enabled:b=yes
+    comments:t=""
+    type:t="abstractMissionObjective"
+
+    props{
+      isPrimary:b=yes
+      timeLimit:i=1800
+      scoreConst:i=100
+      scoreTime:i=400
+    }
+
+    onSuccess{
+    }
+
+    onFailed{
+    }
+  }
+}
+
+variables{
+}
+
+dialogs{
+}
+
+airfields{
+}
+
+effects{
+}
+
+units{
+
+  armada{
+    name:t="player"
+    tm:m=[[-0.300706, 0.0, -0.953717] [0.0, 1.0, 0.0] [0.953717, 0.0, -0.300706] [8721.8, 544.95, 11504.3]]
+    unit_class:t="la-5fn"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="LA5_FN_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      count:i=1
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=1.5
+        col_distances:r=1.5
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="enemy"
+    tm:m=[[-0.258819, 0.0, -0.965926] [0.0, 1.0, 0.0] [0.965926, 0.0, -0.258819] [8822.05, 592.2, 11823.3]]
+    unit_class:t="fw-190f-8"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="Fw-190F-8_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      count:i=6
+      numInWing:i=2
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=2.0
+        super_col_distances:r=2.0
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="enemy01"
+    tm:m=[[-0.984808, 0.0, -0.173648] [0.0, 1.0, 0.0] [0.173648, 0.0, -0.984808] [10410.2, 2038.75, 7990.1]]
+    unit_class:t="fw-190f-8"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="Fw-190F-8_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      count:i=6
+      numInWing:i=2
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=2.0
+        super_col_distances:r=2.0
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="enemy02"
+    tm:m=[[-0.382684, 0.0, 0.92388] [0.0, 1.0, 0.0] [-0.92388, 0.0, -0.382684] [6484.0, 1039.05, 4542.65]]
+    unit_class:t="fw-190f-8"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="Fw-190F-8_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      count:i=6
+      numInWing:i=2
+      isDelayed:b=yes
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=2.0
+        super_col_distances:r=2.0
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="enemy03"
+    tm:m=[[0.766045, 0.0, -0.642788] [0.0, 1.0, 0.0] [0.642788, 0.0, 0.766045] [4340.95, 710.95, 4064.35]]
+    unit_class:t="fw-190f-8"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="Fw-190F-8_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      count:i=6
+      numInWing:i=2
+      isDelayed:b=yes
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=2.0
+        super_col_distances:r=2.0
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="enemy04"
+    tm:m=[[0.21644, 0.0, 0.976296] [0.0, 1.0, 0.0] [-0.976296, 0.0, 0.21644] [6295.1, 1084.45, -158.0]]
+    unit_class:t="fw-190f-8"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="Fw-190F-8_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      count:i=6
+      numInWing:i=2
+      isDelayed:b=yes
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=2.0
+        super_col_distances:r=2.0
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="enemy05"
+    tm:m=[[-1.0, 0.0, 2.98023e-08] [0.0, 1.0, 0.0] [-2.98023e-08, 0.0, -1.0] [10502.5, 554.4, -273.25]]
+    unit_class:t="fw-190f-8"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="Fw-190F-8_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      count:i=6
+      numInWing:i=2
+      isDelayed:b=yes
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=2.0
+        super_col_distances:r=2.0
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="enemy06"
+    tm:m=[[-0.707107, 0.0, 0.707107] [0.0, 1.0, 0.0] [-0.707107, 0.0, -0.707107] [11690.0, 975.5, -2358.6]]
+    unit_class:t="fw-190f-8"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="Fw-190F-8_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      count:i=6
+      numInWing:i=2
+      isDelayed:b=yes
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=2.0
+        super_col_distances:r=2.0
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="structures_01"
+    tm:m=[[0.642788, 0.0, 0.766044] [0.0, 1.0, 0.0] [-0.766044, 0.0, 0.642788] [9142.5, 78.8, -5565.7]]
+    unit_class:t="ussr_57mm_zis2"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=1
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="structures_02"
+    tm:m=[[0.642788, 0.0, 0.766044] [0.0, 1.0, 0.0] [-0.766044, 0.0, 0.642788] [9719.75, 107.0, -5580.8]]
+    unit_class:t="ussr_57mm_zis2"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=1
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="structures_03"
+    tm:m=[[-0.422619, 0.0, -0.906308] [0.0, 1.0, 0.0] [0.906308, 0.0, -0.422619] [9464.65, 171.25, -4569.15]]
+    unit_class:t="ussr_57mm_zis2"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=1
+      count:i=2
+      formation_type:t="cols"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+}
+
+areas{
+
+  waypoint00{
+    type:t="Sphere"
+    tm:m=[[-33.8095, 0.0, -72.5046] [0.0, 80.0, 0.0] [72.5046, 0.0, -33.8095] [8191.05, 324.25, 8830.95]]
+
+    props{
+    }
+  }
+
+  waypoint01{
+    type:t="Sphere"
+    tm:m=[[-20.7055, 0.0, -77.2741] [0.0, 80.0, 0.0] [77.2741, 0.0, -20.7055] [7646.35, 400.0, 7416.2]]
+
+    props{
+    }
+  }
+
+  waypoint02{
+    type:t="Sphere"
+    tm:m=[[-56.5685, 0.0, -56.5685] [0.0, 80.0, 0.0] [56.5685, 0.0, -56.5685] [7468.55, 414.65, 6752.6]]
+
+    props{
+    }
+  }
+
+  waypoint03{
+    type:t="Sphere"
+    tm:m=[[-77.2741, 0.0, -20.7055] [0.0, 80.0, 0.0] [20.7055, 0.0, -77.2741] [7055.75, 414.65, 6343.35]]
+
+    props{
+    }
+  }
+
+  waypoint04{
+    type:t="Sphere"
+    tm:m=[[-72.5046, 0.0, -33.8095] [0.0, 80.0, 0.0] [33.8095, 0.0, -72.5046] [6331.7, 452.05, 6125.95]]
+
+    props{
+    }
+  }
+
+  waypoint05{
+    type:t="Sphere"
+    tm:m=[[-54.0472, 0.0, -58.9822] [0.0, 80.0, 0.0] [58.9822, 0.0, -54.0472] [5705.35, 485.2, 5789.9]]
+
+    props{
+    }
+  }
+
+  waypoint06{
+    type:t="Sphere"
+    tm:m=[[-10.4421, 0.0, -79.3156] [0.0, 80.0, 0.0] [79.3156, 0.0, -10.4421] [5324.25, 485.2, 5352.25]]
+
+    props{
+    }
+  }
+
+  waypoint07{
+    type:t="Sphere"
+    tm:m=[[-13.8918, 0.0, -78.7846] [0.0, 80.0, 0.0] [78.7846, 0.0, -13.8918] [5211.85, 514.75, 4525.7]]
+
+    props{
+    }
+  }
+
+  waypoint08{
+    type:t="Sphere"
+    tm:m=[[13.8919, 0.0, -78.7846] [0.0, 80.0, 0.0] [78.7846, 0.0, 13.8919] [5061.5, 514.75, 3829.0]]
+
+    props{
+    }
+  }
+
+  waypoint09{
+    type:t="Sphere"
+    tm:m=[[45.8861, 0.0, -65.5322] [0.0, 80.0, 0.0] [65.5322, 0.0, 45.8861] [5216.35, 553.3, 2912.0]]
+
+    props{
+    }
+  }
+
+  waypoint10{
+    type:t="Sphere"
+    tm:m=[[45.8861, 0.0, -65.5322] [0.0, 80.0, 0.0] [65.5322, 0.0, 45.8861] [5531.44, 599.027, 2413.63]]
+
+    props{
+    }
+  }
+
+  waypoint11{
+    type:t="Sphere"
+    tm:m=[[51.423, 0.0, -61.2836] [0.0, 80.0, 0.0] [61.2836, 0.0, 51.423] [5983.95, 618.531, 2104.2]]
+
+    props{
+    }
+  }
+
+  waypoint12{
+    type:t="Sphere"
+    tm:m=[[65.5322, 0.0, -45.8861] [0.0, 80.0, 0.0] [45.8861, 0.0, 65.5322] [6462.78, 652.76, 1395.9]]
+
+    props{
+    }
+  }
+
+  waypoint13{
+    type:t="Sphere"
+    tm:m=[[79.3156, 0.0, -10.4421] [0.0, 80.0, 0.0] [10.4421, 0.0, 79.3156] [6953.72, 760.251, 1073.9]]
+
+    props{
+    }
+  }
+
+  waypoint14{
+    type:t="Sphere"
+    tm:m=[[65.5322, 0.0, -45.8861] [0.0, 80.0, 0.0] [45.8861, 0.0, 65.5322] [7716.25, 616.0, 838.45]]
+
+    props{
+    }
+  }
+
+  waypoint15{
+    type:t="Sphere"
+    tm:m=[[56.5685, 0.0, -56.5685] [0.0, 80.0, 0.0] [56.5685, 0.0, 56.5685] [8461.3, 634.85, 285.35]]
+
+    props{
+    }
+  }
+
+  waypoint16{
+    type:t="Sphere"
+    tm:m=[[72.5046, 0.0, -33.8095] [0.0, 80.0, 0.0] [33.8095, 0.0, 72.5046] [9046.95, 627.8, -306.1]]
+
+    props{
+    }
+  }
+
+  waypoint17{
+    type:t="Sphere"
+    tm:m=[[63.4683, 0.0, -48.7009] [0.0, 80.0, 0.0] [48.7009, 0.0, 63.4683] [9616.85, 635.85, -582.95]]
+
+    props{
+    }
+  }
+
+  waypoint18{
+    type:t="Sphere"
+    tm:m=[[45.8861, 0.0, -65.5322] [0.0, 80.0, 0.0] [65.5322, 0.0, 45.8861] [10195.1, 635.85, -1028.8]]
+
+    props{
+    }
+  }
+
+  waypoint19{
+    type:t="Sphere"
+    tm:m=[[20.7055, 0.0, -77.2741] [0.0, 80.0, 0.0] [77.2741, 0.0, 20.7055] [10654.4, 635.85, -1782.15]]
+
+    props{
+    }
+  }
+
+  waypoint20{
+    type:t="Sphere"
+    tm:m=[[-13.8919, 0.0, -78.7846] [0.0, 80.0, 0.0] [78.7846, 0.0, -13.8919] [10766.9, 679.55, -2360.85]]
+
+    props{
+    }
+  }
+
+  waypoint21{
+    type:t="Sphere"
+    tm:m=[[-40.0, 0.0, -69.282] [0.0, 80.0, 0.0] [69.282, 0.0, -40.0] [10597.7, 782.0, -3166.45]]
+
+    props{
+    }
+  }
+
+  waypoint22{
+    type:t="Sphere"
+    tm:m=[[-42.984, 0.0, -67.4713] [0.0, 80.0, 0.0] [67.4713, 0.0, -42.984] [10172.5, 390.65, -4054.15]]
+
+    props{
+    }
+  }
+
+  waypoint23{
+    type:t="Sphere"
+    tm:m=[[-63.4683, 0.0, -48.7009] [0.0, 80.0, 0.0] [48.7009, 0.0, -63.4683] [9852.8, 268.45, -4580.8]]
+
+    props{
+    }
+  }
+
+  waypoint24{
+    type:t="Sphere"
+    tm:m=[[-54.0472, 0.0, -58.9822] [0.0, 80.0, 0.0] [58.9822, 0.0, -54.0472] [9279.6, 164.45, -5106.35]]
+
+    props{
+    }
+  }
+
+  point01{
+    type:t="Box"
+    tm:m=[[2459.27, 0.0, -1872.45] [0.0, 2851.3, 0.0] [174.94, 3.05176e-05, 63.6448] [6709.4, 22.05, 6138.6]]
+
+    props{
+    }
+  }
+
+  point02{
+    type:t="Box"
+    tm:m=[[2806.25, 0.0, -1295.78] [0.0, 2851.3, 0.0] [157.018, 3.05176e-05, 100.0] [5179.95, 22.05, 4212.5]]
+
+    props{
+    }
+  }
+
+  point03{
+    type:t="Box"
+    tm:m=[[1977.94, 0.0, 2375.26] [0.0, 2851.3, 0.0] [-55.9534, 3.05176e-05, 177.549] [6248.8, 22.05, 2016.75]]
+
+    props{
+    }
+  }
+
+  point04{
+    type:t="Box"
+    tm:m=[[1650.99, 0.0, 2613.11] [0.0, 2851.3, 0.0] [-78.6496, 3.05176e-05, 168.727] [8528.2, 22.05, 374.8]]
+
+    props{
+    }
+  }
+
+  point05{
+    type:t="Box"
+    tm:m=[[1650.99, 0.0, 2613.11] [0.0, 2851.3, 0.0] [-78.6496, 3.05176e-05, 168.727] [10523.0, 22.05, -1591.8]]
+
+    props{
+    }
+  }
+}
+
+objLayers{
+}
+
+wayPoints{
+}

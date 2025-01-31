@@ -1,0 +1,2323 @@
+selected_tag:t=""
+bin_dump_file:t=""
+
+mission_settings{
+
+  player{
+    army:i=1
+    wing:t="player"
+  }
+
+  player_teamB{
+    army:i=2
+  }
+
+  mission{
+    level:t="levels/moscow.bin"
+    type:t="singleMission"
+    restoreType:t="attempts"
+    optionalTakeOff:b=no
+    environment:t="Night"
+    weather:t="hazy"
+  }
+
+  spectator_points{
+  }
+
+  briefing{
+    place_loc:t=""
+    date_loc:t=""
+    objective_loc:t=""
+    music:t="action_01"
+
+    part{
+      event:t=""
+      minTime:i=0
+
+      slide{
+        map:b=yes
+        minTime:i=4
+        picture:t=""
+
+        icon{
+          icontype:t="fighter"
+          side:t="player"
+          target:t="player"
+          lookAt:t="moscow"
+        }
+
+        icon{
+          icontype:t="bomber"
+          side:t="ally"
+          target:t="ge_bombers_01"
+          lookAt:t="moscow"
+        }
+
+        icon{
+          icontype:t="bomber"
+          side:t="ally"
+          target:t="ge_bombers_03"
+          lookAt:t="moscow"
+        }
+
+        icon{
+          icontype:t="building"
+          side:t="enemy"
+          target:t="bombtarget_03"
+        }
+
+        icon{
+          icontype:t="building"
+          side:t="enemy"
+          target:t="bombtarget_09"
+        }
+
+        icon{
+          icontype:t="artillery"
+          side:t="enemy"
+          target:t="ussr_air_def_08"
+        }
+
+        icon{
+          icontype:t="artillery"
+          side:t="enemy"
+          target:t="ussr_air_def_02"
+        }
+      }
+    }
+  }
+}
+
+imports{
+
+  import_record{
+    file:t="gameData/missions/bridges/moscow_bridges.blk"
+    importAreas:b=yes
+    importUnits:b=yes
+    importTriggers:b=yes
+    importMissionObjectives:b=yes
+    showAreas:b=yes
+    showUnits:b=yes
+    showTriggers:b=yes
+    showMissionObjectives:b=yes
+
+    excludes{
+    }
+  }
+}
+
+triggers{
+  isCategory:b=yes
+  is_enabled:b=yes
+
+  initial{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      unitMoveTo{
+        target:t="waypoint01"
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=no
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object:t="ge_bombers_squad"
+      }
+
+      unitMoveTo{
+        target:t="ge_bombers_01"
+        follow_target:b=yes
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=no
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object:t="ge_fighters_01"
+      }
+
+      unitPutToSleep{
+        target:t="ussr_air_defence_squad"
+        target:t="ussr_searchlights_squad"
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=yes
+        object:t="ussr_fighters_squad"
+        target:t="ge_bombers_squad"
+        target:t="ge_fighters_01"
+        target:t="player"
+        fireRandom:b=yes
+        playerAttractedCount:i=2
+        playerAttractedEffRate:r=0.1
+      }
+
+      unitSetProperties{
+        object:t="bombtargets_squad"
+        stealthRadius:r=0.0
+      }
+
+      unitSetIndication{
+        set:b=yes
+        target:t="ge_bombers_squad"
+        target_type:t="isFormationLeader"
+      }
+
+      unitSetCalmDetection{
+        set:b=yes
+        target:t="ussr_fighters_squad"
+        target:t="ussr_air_defence_squad"
+        target:t="ussr_searchlights_squad"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  bombers_counter{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionSetTargetsIndicator{
+        target_type:t="isAlive"
+        target_marking:i=0
+        delta:i=0
+        icon:t="air"
+        "icon army":i=1
+        set:b=yes
+        target:t="ge_bombers_squad"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  fighters_first_wave{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      wait{
+        time:r=20.0
+      }
+
+      wait{
+        time:r=50.0
+      }
+
+      unitWakeUp{
+        target:t="ussr_fighters_01"
+      }
+
+      unitWakeUp{
+        target:t="ussr_air_defence_squad"
+        target:t="ussr_searchlights_squad"
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="ge_fighters_01"
+        target:t="ussr_fighters_01"
+        fireRandom:b=yes
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=yes
+        object:t="ussr_fighters_squad"
+        target:t="ge_bombers_squad"
+        target:t="ge_fighters_01"
+        target:t="player"
+        fireRandom:b=yes
+        playerAttractedCount:i=2
+        playerAttractedEffRate:r=0.1
+      }
+
+      triggerEnable{
+        target:t="fighters_second_wave"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  fighters_second_wave{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      wait{
+        time:r=30.0
+      }
+
+      unitWakeUp{
+        target:t="ussr_fighters_02"
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="ge_fighters_01"
+        target:t="ussr_fighters_01"
+        target:t="ussr_fighters_02"
+        fireRandom:b=yes
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=yes
+        object:t="ussr_fighters_squad"
+        target:t="ge_bombers_squad"
+        target:t="ge_fighters_01"
+        target:t="player"
+        fireRandom:b=yes
+        playerAttractedCount:i=2
+        playerAttractedEffRate:r=0.1
+      }
+
+      triggerEnable{
+        target:t="fighters_third_wave"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  fighters_third_wave{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      wait{
+        time:r=30.0
+      }
+
+      unitWakeUp{
+        target:t="ussr_fighters_03"
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="ge_fighters_01"
+        target:t="ussr_fighters_01"
+        target:t="ussr_fighters_02"
+        target:t="ussr_fighters_03"
+        fireRandom:b=yes
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=yes
+        object:t="ussr_fighters_squad"
+        target:t="ge_bombers_squad"
+        target:t="ge_fighters_01"
+        target:t="player"
+        fireRandom:b=yes
+        playerAttractedCount:i=2
+        playerAttractedEffRate:r=0.1
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  bombers_near_target{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.1
+      }
+    }
+
+    conditions{
+
+      unitWhenInArea{
+        math:t="2D"
+        object_type:t="isAlive"
+        object_marking:i=0
+        check_objects:t="any"
+        object:t="ge_bombers_squad"
+        target:t="waypoint01"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="bombers_counter"
+        target:t="bombers_are_dead"
+      }
+
+      unitMoveTo{
+        target:t="retreat_point"
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=no
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object:t="ge_bombers_squad"
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="ge_bombers_squad"
+        target:t="bombtargets_squad"
+        fireRandom:b=yes
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=yes
+        object:t="ussr_fighters_04"
+        target:t="player"
+        target:t="ge_fighters_01"
+        fireRandom:b=yes
+        playerAttractedCount:i=2
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="ge_fighters_01"
+        target:t="ussr_fighters_04"
+        fireRandom:b=yes
+      }
+
+      moSetObjectiveStatus{
+        target:t="de_single_moscow01_cover_obj"
+        status:i=2
+      }
+
+      unitWakeUp{
+        target:t="ussr_fighters_04"
+      }
+
+      missionSetTargetsIndicator{
+        target_type:t="isAlive"
+        target_marking:i=0
+        delta:i=0
+        icon:t="air"
+        "icon army":i=1
+        set:b=no
+        target:t="ge_bombers_squad"
+      }
+
+      missionSetTargetsIndicator{
+        target_type:t="isAlive"
+        target_marking:i=0
+        delta:i=0
+        icon:t="air"
+        "icon army":i=1
+        set:b=no
+        target:t="ge_bombers_squad"
+      }
+
+      wait{
+        time:r=2.0
+      }
+
+      wait{
+        time:r=6.0
+      }
+
+      moAddMissionObjective{
+        target:t="de_single_moscow01_destroy_fighters_obj"
+      }
+
+      moAddMissionObjective{
+        target:t="de_single_moscow01_destroy_searchlights_obj"
+      }
+
+      unitSetIndication{
+        set:b=yes
+        target:t="ussr_fighters_04"
+      }
+
+      triggerEnable{
+        target:t="enemy_fighters_dead"
+        target:t="enemy_fighters_counter"
+        target:t="searchlights_are_dead"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  enemy_fighters_dead{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isAlive"
+        object_marking:i=0
+        func:t="less"
+        value:i=2
+        object:t="ussr_fighters_04"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="enemy_fighters_counter"
+      }
+
+      missionSetTargetsIndicator{
+        target_type:t="isAlive"
+        target_marking:i=0
+        delta:i=0
+        icon:t="air"
+        "icon army":i=2
+        set:b=no
+        target:t="ussr_fighters_04"
+      }
+
+      moSetObjectiveStatus{
+        target:t="de_single_moscow01_destroy_fighters_obj"
+        status:i=2
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=yes
+        primary:b=yes
+        oriented:b=no
+        ignoreDifficulty:b=no
+        scale:r=1.0
+        target:t="retreat_point"
+      }
+
+      wait{
+        time:r=2.0
+      }
+
+      moAddMissionObjective{
+        target:t="de_single_moscow01_retreat_obj"
+      }
+
+      triggerEnable{
+        target:t="player_at_retreat_point"
+        target:t="searchlights_are_alive"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  enemy_fighters_counter{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionSetTargetsIndicator{
+        target_type:t="isAlive"
+        target_marking:i=0
+        delta:i=0
+        icon:t="air"
+        "icon army":i=2
+        set:b=yes
+        target:t="ussr_fighters_04"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  player_at_retreat_point{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenInArea{
+        math:t="2D"
+        object_type:t="isAlive"
+        object_marking:i=0
+        check_objects:t="any"
+        object:t="player"
+        target:t="retreat_point"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="searchlights_are_alive"
+      }
+
+      moSetObjectiveStatus{
+        target:t="de_single_moscow01_retreat_obj"
+        status:i=2
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=no
+        primary:b=yes
+        oriented:b=no
+        ignoreDifficulty:b=no
+        scale:r=1.0
+        target:t="retreat_point"
+      }
+
+      wait{
+        time:r=2.0
+      }
+
+      missionCompleted{
+        timer:b=no
+        debriefingTimer:i=3
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  searchlights_are_alive{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenStatus{
+        object_type:t="isAlive"
+        check_objects:t="any"
+        object_marking:i=0
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object:t="ussr_searchlights_squad"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="searchlights_are_dead"
+      }
+
+      moSetObjectiveStatus{
+        target:t="de_single_moscow01_destroy_searchlights_obj"
+        status:i=3
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  searchlights_are_dead{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenStatus{
+        object_type:t="isKilled"
+        check_objects:t="all"
+        object_marking:i=0
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object:t="ussr_searchlights_squad"
+      }
+    }
+
+    actions{
+
+      moSetObjectiveStatus{
+        target:t="de_single_moscow01_destroy_searchlights_obj"
+        status:i=2
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  bombers_are_dead{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isKilled"
+        object_marking:i=0
+        func:t="more"
+        value:i=15
+        object:t="ge_bombers_squad"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="bombers_near_target"
+        target:t="bombers_counter"
+        target:t="enemy_fighters_dead"
+        target:t="enemy_fighters_counter"
+      }
+
+      moSetObjectiveStatus{
+        target:t="de_single_moscow01_cover_obj"
+        status:i=3
+      }
+
+      missionSetTargetsIndicator{
+        target_type:t="isAlive"
+        target_marking:i=0
+        delta:i=0
+        icon:t="air"
+        "icon army":i=1
+        set:b=no
+        target:t="ge_bombers_squad"
+      }
+
+      wait{
+        time:r=2.0
+      }
+
+      missionFailed{
+        debriefingTimer:i=3
+        timer:b=no
+      }
+    }
+
+    else_actions{
+    }
+  }
+}
+
+mission_objectives{
+  isCategory:b=yes
+  is_enabled:b=yes
+
+  de_single_moscow01_cover_obj{
+    is_enabled:b=yes
+    comments:t=""
+    type:t="abstractMissionObjective"
+
+    props{
+      isPrimary:b=yes
+      timeLimit:i=1800
+      scoreConst:i=100
+      scoreTime:i=400
+    }
+
+    onSuccess{
+    }
+
+    onFailed{
+    }
+  }
+
+  de_single_moscow01_destroy_fighters_obj{
+    is_enabled:b=no
+    comments:t=""
+    type:t="abstractMissionObjective"
+
+    props{
+      isPrimary:b=yes
+      timeLimit:i=1800
+      scoreConst:i=100
+      scoreTime:i=400
+    }
+
+    onSuccess{
+    }
+
+    onFailed{
+    }
+  }
+
+  de_single_moscow01_destroy_searchlights_obj{
+    is_enabled:b=no
+    comments:t=""
+    type:t="abstractMissionObjective"
+
+    props{
+      isPrimary:b=no
+      timeLimit:i=1800
+      scoreConst:i=100
+      scoreTime:i=400
+    }
+
+    onSuccess{
+    }
+
+    onFailed{
+    }
+  }
+
+  de_single_moscow01_retreat_obj{
+    is_enabled:b=no
+    comments:t=""
+    type:t="abstractMissionObjective"
+
+    props{
+      isPrimary:b=yes
+      timeLimit:i=1800
+      scoreConst:i=100
+      scoreTime:i=400
+    }
+
+    onSuccess{
+    }
+
+    onFailed{
+    }
+  }
+}
+
+variables{
+}
+
+dialogs{
+}
+
+airfields{
+}
+
+effects{
+}
+
+units{
+
+  armada{
+    name:t="player"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-3261.8, 2842.4, 27189.9]]
+    closed_waypoints:b=no
+    unit_class:t="bf-109f-4"
+    weapons:t="Bf-109F-4_4xSC50"
+    objLayer:i=1
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=1
+      count:i=4
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="ussr_fighters_01"
+    tm:m=[[-0.994905, 0.0, -0.100818] [0.0, 1.0, 0.0] [0.100818, 0.0, -0.994905] [7187.8, 2476.5, 28641.0]]
+    closed_waypoints:b=no
+    unit_class:t="i-16_type28"
+    weapons:t=""
+    objLayer:i=1
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=8
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=2
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="ussr_fighters_02"
+    tm:m=[[-0.994905, 0.0, -0.100818] [0.0, 1.0, 0.0] [0.100818, 0.0, -0.994905] [14481.5, 2476.5, 30957.2]]
+    closed_waypoints:b=no
+    unit_class:t="i-16_type28"
+    weapons:t=""
+    objLayer:i=1
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=12
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=2
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="ge_bombers_01"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-1115.85, 2451.35, 27509.5]]
+    closed_waypoints:b=no
+    unit_class:t="he-111h-16_winter"
+    weapons:t="He_111H16_8x250kg"
+    objLayer:i=1
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=1
+      count:i=9
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=3
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="ge_bombers_02"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-2192.0, 2451.35, 27483.7]]
+    closed_waypoints:b=no
+    unit_class:t="he-111h-16_winter"
+    weapons:t="He_111H16_8x250kg"
+    objLayer:i=1
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=1
+      count:i=9
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=3
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="ge_bombers_03"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-1562.8, 2451.35, 26403.8]]
+    closed_waypoints:b=no
+    unit_class:t="he-111h-16_winter"
+    weapons:t="He_111H16_8x250kg"
+    objLayer:i=1
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=1
+      count:i=9
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=3
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="ge_bombers_04"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-1867.9, 2451.35, 28405.2]]
+    closed_waypoints:b=no
+    unit_class:t="he-111h-16_winter"
+    weapons:t="He_111H16_8x250kg"
+    objLayer:i=1
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=1
+      count:i=9
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=3
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="ge_fighters_01"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-3461.35, 2842.4, 27156.4]]
+    closed_waypoints:b=no
+    unit_class:t="bf-109f-4"
+    weapons:t="Bf-109F-4_4xSC50"
+    objLayer:i=1
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=1
+      count:i=9
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=3
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="ussr_fighters_03"
+    tm:m=[[-0.994905, 0.0, -0.100818] [0.0, 1.0, 0.0] [0.100818, 0.0, -0.994905] [23739.3, 3019.55, 30742.7]]
+    closed_waypoints:b=no
+    unit_class:t="i-16_type28"
+    weapons:t=""
+    objLayer:i=1
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=18
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=2
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="ussr_fighters_04"
+    tm:m=[[-0.994905, 0.0, -0.100818] [0.0, 1.0, 0.0] [0.100818, 0.0, -0.994905] [38190.9, 1728.55, 31565.9]]
+    closed_waypoints:b=no
+    unit_class:t="i-16_type28"
+    weapons:t=""
+    objLayer:i=1
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=8
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=2
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="ussr_air_def_01"
+    tm:m=[[-0.994287, 0.0, -0.10674] [0.0, 1.0, 0.0] [0.10674, 0.0, -0.994287] [26091.9, 11.65, 31090.6]]
+    closed_waypoints:b=no
+    unit_class:t="ussr_85mm_52k"
+    weapons:t=""
+    objLayer:i=1
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=3
+      formation_type:t="rows"
+      formation_div:i=1
+      formation_step:p2=6.0, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="ussr_air_def_02"
+    tm:m=[[-0.953837, 0.0, -0.300324] [0.0, 1.0, 0.0] [0.300324, 0.0, -0.953837] [26716.5, 11.65, 28675.4]]
+    closed_waypoints:b=no
+    unit_class:t="ussr_85mm_52k"
+    weapons:t=""
+    objLayer:i=1
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=3
+      formation_type:t="rows"
+      formation_div:i=1
+      formation_step:p2=6.0, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="ussr_air_def_03"
+    tm:m=[[-0.996586, 0.0, 0.0825622] [0.0, 1.0, 0.0] [-0.0825622, 0.0, -0.996586] [26218.2, 11.65, 32885.6]]
+    closed_waypoints:b=no
+    unit_class:t="ussr_85mm_52k"
+    weapons:t=""
+    objLayer:i=1
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=3
+      formation_type:t="rows"
+      formation_div:i=1
+      formation_step:p2=6.0, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="ussr_air_def_04"
+    tm:m=[[-0.992035, 0.0, -0.125962] [0.0, 1.0, 0.0] [0.125962, 0.0, -0.992035] [23754.7, 11.65, 34899.7]]
+    closed_waypoints:b=no
+    unit_class:t="ussr_85mm_52k"
+    weapons:t=""
+    objLayer:i=1
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=3
+      formation_type:t="rows"
+      formation_div:i=1
+      formation_step:p2=6.0, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="ussr_air_def_05"
+    tm:m=[[-0.667264, 0.0, 0.744821] [0.0, 1.0, 0.0] [-0.744821, 0.0, -0.667264] [25027.0, 11.65, 36461.9]]
+    closed_waypoints:b=no
+    unit_class:t="ussr_85mm_52k"
+    weapons:t=""
+    objLayer:i=1
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=3
+      formation_type:t="rows"
+      formation_div:i=1
+      formation_step:p2=6.0, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="ussr_air_def_06"
+    tm:m=[[-0.985374, 0.0, -0.170403] [0.0, 1.0, 0.0] [0.170403, 0.0, -0.985374] [23248.0, 11.65, 33101.0]]
+    closed_waypoints:b=no
+    unit_class:t="searchLight"
+    weapons:t=""
+    objLayer:i=1
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=1
+      formation_step:p2=6.0, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="ussr_air_def_07"
+    tm:m=[[-0.985374, 0.0, -0.170403] [0.0, 1.0, 0.0] [0.170403, 0.0, -0.985374] [24120.3, 11.65, 30510.1]]
+    closed_waypoints:b=no
+    unit_class:t="searchLight"
+    weapons:t=""
+    objLayer:i=1
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=1
+      formation_step:p2=6.0, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="ussr_air_def_08"
+    tm:m=[[-0.985374, 0.0, -0.170403] [0.0, 1.0, 0.0] [0.170403, 0.0, -0.985374] [24054.9, 11.65, 36300.0]]
+    closed_waypoints:b=no
+    unit_class:t="searchLight"
+    weapons:t=""
+    objLayer:i=1
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=1
+      formation_step:p2=6.0, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="ussr_air_def_09"
+    tm:m=[[-0.985374, 0.0, -0.170403] [0.0, 1.0, 0.0] [0.170403, 0.0, -0.985374] [25432.1, 11.65, 32790.9]]
+    closed_waypoints:b=no
+    unit_class:t="searchLight"
+    weapons:t=""
+    objLayer:i=1
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=1
+      formation_step:p2=6.0, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="ussr_air_def_10"
+    tm:m=[[-0.985374, 0.0, -0.170403] [0.0, 1.0, 0.0] [0.170403, 0.0, -0.985374] [26810.6, 11.65, 34382.9]]
+    closed_waypoints:b=no
+    unit_class:t="searchLight"
+    weapons:t=""
+    objLayer:i=1
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=1
+      formation_step:p2=6.0, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="ussr_air_def_11"
+    tm:m=[[-0.985374, 0.0, -0.170403] [0.0, 1.0, 0.0] [0.170403, 0.0, -0.985374] [25033.1, 11.65, 28049.3]]
+    closed_waypoints:b=no
+    unit_class:t="searchLight"
+    weapons:t=""
+    objLayer:i=1
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=1
+      formation_step:p2=6.0, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  squad{
+    name:t="ge_bombers_squad"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-4347.2, 76.4, 25538.3]]
+    closed_waypoints:b=no
+    unit_class:t=""
+    weapons:t=""
+    objLayer:i=3
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      squad_members:t="ge_bombers_01"
+      squad_members:t="ge_bombers_02"
+      squad_members:t="ge_bombers_03"
+      squad_members:t="ge_bombers_04"
+    }
+
+    way{
+    }
+  }
+
+  squad{
+    name:t="ussr_fighters_squad"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-2694.95, 71.3, 25476.5]]
+    closed_waypoints:b=no
+    unit_class:t=""
+    weapons:t=""
+    objLayer:i=3
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      squad_members:t="ussr_fighters_01"
+      squad_members:t="ussr_fighters_02"
+      squad_members:t="ussr_fighters_03"
+    }
+
+    way{
+    }
+  }
+
+  squad{
+    name:t="ussr_air_defence_squad"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [7136.85, 63.8, 27257.8]]
+    closed_waypoints:b=no
+    unit_class:t=""
+    weapons:t=""
+    objLayer:i=3
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      squad_members:t="ussr_air_def_01"
+      squad_members:t="ussr_air_def_02"
+      squad_members:t="ussr_air_def_03"
+      squad_members:t="ussr_air_def_04"
+      squad_members:t="ussr_air_def_05"
+    }
+
+    way{
+    }
+  }
+
+  squad{
+    name:t="ussr_searchlights_squad"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [7634.25, 67.2, 26021.9]]
+    closed_waypoints:b=no
+    unit_class:t=""
+    weapons:t=""
+    objLayer:i=3
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      squad_members:t="ussr_air_def_06"
+      squad_members:t="ussr_air_def_07"
+      squad_members:t="ussr_air_def_08"
+      squad_members:t="ussr_air_def_09"
+      squad_members:t="ussr_air_def_10"
+      squad_members:t="ussr_air_def_11"
+    }
+
+    way{
+    }
+  }
+
+  squad{
+    name:t="bombtargets_squad"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [27200.4, 37.2, 27194.5]]
+    closed_waypoints:b=no
+    unit_class:t=""
+    weapons:t=""
+    objLayer:i=3
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      squad_members:t="bombtarget_01"
+      squad_members:t="bombtarget_02"
+      squad_members:t="bombtarget_03"
+      squad_members:t="bombtarget_04"
+      squad_members:t="bombtarget_05"
+      squad_members:t="bombtarget_06"
+      squad_members:t="bombtarget_07"
+      squad_members:t="bombtarget_08"
+      squad_members:t="bombtarget_09"
+      squad_members:t="bombtarget_10"
+      squad_members:t="bombtarget_11"
+      squad_members:t="bombtarget_12"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="bombtarget_01"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [28145.7, 58.55, 33798.3]]
+    closed_waypoints:b=no
+    unit_class:t="dummy"
+    weapons:t=""
+    objLayer:i=1
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="bombtarget_02"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [28320.5, 58.55, 32856.8]]
+    closed_waypoints:b=no
+    unit_class:t="dummy"
+    weapons:t=""
+    objLayer:i=1
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="bombtarget_03"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [28389.3, 58.55, 31690.3]]
+    closed_waypoints:b=no
+    unit_class:t="dummy"
+    weapons:t=""
+    objLayer:i=1
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="bombtarget_04"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [29413.0, 58.55, 29842.6]]
+    closed_waypoints:b=no
+    unit_class:t="dummy"
+    weapons:t=""
+    objLayer:i=1
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="bombtarget_05"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [30030.6, 58.55, 31215.7]]
+    closed_waypoints:b=no
+    unit_class:t="dummy"
+    weapons:t=""
+    objLayer:i=1
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="bombtarget_06"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [30012.7, 58.55, 34458.3]]
+    closed_waypoints:b=no
+    unit_class:t="dummy"
+    weapons:t=""
+    objLayer:i=1
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="bombtarget_07"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [28900.6, 58.55, 35182.2]]
+    closed_waypoints:b=no
+    unit_class:t="dummy"
+    weapons:t=""
+    objLayer:i=1
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="bombtarget_08"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [29541.8, 58.55, 36638.4]]
+    closed_waypoints:b=no
+    unit_class:t="dummy"
+    weapons:t=""
+    objLayer:i=1
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="bombtarget_09"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [27255.5, 58.55, 35099.7]]
+    closed_waypoints:b=no
+    unit_class:t="dummy"
+    weapons:t=""
+    objLayer:i=1
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="bombtarget_10"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [27257.8, 58.55, 32242.5]]
+    closed_waypoints:b=no
+    unit_class:t="dummy"
+    weapons:t=""
+    objLayer:i=1
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="bombtarget_11"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [28456.8, 58.55, 29385.3]]
+    closed_waypoints:b=no
+    unit_class:t="dummy"
+    weapons:t=""
+    objLayer:i=1
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="bombtarget_12"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [29534.0, 58.55, 27736.9]]
+    closed_waypoints:b=no
+    unit_class:t="dummy"
+    weapons:t=""
+    objLayer:i=1
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+}
+
+areas{
+
+  moscow{
+    type:t="Sphere"
+    tm:m=[[17475.2, 0.0, 0.0] [0.0, 17475.2, 0.0] [0.0, 0.0, 17475.2] [34505.9, 53.7, 32343.4]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  istra{
+    type:t="Sphere"
+    tm:m=[[3560.4, 0.0, 0.0] [0.0, 3560.4, 0.0] [0.0, 0.0, 3560.4] [-7298.55, -3.8, 46200.6]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  airfield{
+    type:t="Sphere"
+    tm:m=[[2084.3, 0.0, 0.0] [0.0, 2084.3, 0.0] [0.0, 0.0, 2084.3] [30204.0, 42.3, 35957.4]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  waypoint01{
+    type:t="Sphere"
+    tm:m=[[1000.0, 0.0, 0.0] [0.0, 1000.0, 0.0] [0.0, 0.0, 1000.0] [18066.6, 2603.15, 32276.2]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  retreat_point{
+    type:t="Sphere"
+    tm:m=[[366.4, 0.0, 0.0] [0.0, 366.4, 0.0] [0.0, 0.0, 366.4] [3823.55, 2413.4, 28976.9]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+}
+
+objLayers{
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+}
+
+wayPoints{
+}
