@@ -16,6 +16,9 @@ gyroSight:b=yes
 haveCCRPForBombs:b=yes
 havePointOfInterestDesignator:b=yes
 hasPointOfInterestMemory:b=yes
+isBwOpticSight:b=yes
+opticsInBombBay:b=yes
+laserDesignator:b=yes
 ilsASG23:b=yes
 rwrIndicator:t="AN/APS-109"
 tpsCameraTargetOffsetAtZoom:p3=30.0, 20.0, 0.0
@@ -38,7 +41,6 @@ explosion_dmBlk:t="gameData/FlightModels/DM/commonExplosion.blk"
 fireParamsPreset:t="2200kph"
 fightAiBehaviour:t="assault"
 autopilotImpl:t="FBW"
-laserDesignator:b=yes
 paratrooper:t="usa_f_111_ejection_cabin_para"
 
 DamageParts{
@@ -2911,13 +2913,41 @@ cockpit{
 
 nightVision{
 
+  sightThermal{
+    resolution:ip2=500, 300
+    noiseFactor:r=0.05
+    index:i=1
+  }
+
   sightTPodThermal{
     resolution:ip2=500, 300
     noiseFactor:r=0.05
+    index:i=2
   }
 }
 
 gunnerOpticFps{
+
+  TV{
+    pos:p3=12.0, 0.7, 0.0
+    head:t="optic1_turret"
+    crosshairPreset:t="test_crosshair"
+    angularLimits:p4=-38.0, 38.0, -55.0, 38.0
+    opticType:t="tv"
+    turretNo:i=0
+    nvIndex:i=1
+  }
+
+  TV1{
+    pos:p3=12.0, 0.7, 0.0
+    head:t="optic1_turret"
+    crosshairPreset:t="test_crosshair"
+    angularLimits:p4=-38.0, 38.0, -55.0, 38.0
+    opticType:t="tv"
+    turretNo:i=0
+    nvIndex:i=1
+    name:t="GBU15V2"
+  }
 
   Target{
     pos:p3=0.7, 0.0, 0.0
@@ -2926,6 +2956,7 @@ gunnerOpticFps{
     angularLimits:p4=-89.0, 89.0, -159.0, 14.0
     opticType:t="targeting"
     turretNo:i=0
+    nvIndex:i=2
   }
 }
 
@@ -2942,6 +2973,11 @@ sensors{
 
   sensor{
     blk:t="gameData/sensors/us_an_alr_2002_mlws.blk"
+  }
+
+  sensor{
+    blk:t="gameData/sensors/ir_tracker_tgp.blk"
+    node:t="optic1_gun"
   }
 }
 
@@ -2998,6 +3034,11 @@ weapon_presets{
   preset{
     name:t="f_111c_gbu_24"
     blk:t="gameData/FlightModels/weaponPresets/f_111c_gbu_24.blk"
+  }
+
+  preset{
+    name:t="f_111c_gbu_15_ir"
+    blk:t="gameData/FlightModels/weaponPresets/f_111c_gbu_15_ir.blk"
   }
 }
 
@@ -3139,12 +3180,44 @@ WeaponSlots{
 
   WeaponSlot{
     index:i=1
-    tier:i=8
+    tier:i=9
     order:i=1
 
     WeaponPreset{
       iconType:t="missile_type_b_air_to_air"
       name:t="aim_9l_default"
+
+      ShowNodes{
+        node:t="aero_3b_1"
+        node:t="pylon_pivot1"
+      }
+
+      Weapon{
+        trigger:t="aam"
+        blk:t="gameData/Weapons/rocketGuns/us_aim9l_sidewinder_default.blk"
+        emitter:t="aim_9_1"
+        bullets:i=1
+        external:b=yes
+        separate:b=yes
+        jettisonable:b=no
+      }
+
+      BannedWeaponPreset{
+        slot:i=2
+        preset:t="gbu15v2_out"
+      }
+    }
+  }
+
+  WeaponSlot{
+    index:i=2
+    tier:i=8
+    order:i=3
+
+    WeaponPreset{
+      iconType:t="missile_type_b_air_to_air"
+      name:t="aim_9l"
+      reqModification:t="us_aim_9l"
 
       ShowNodes{
         node:t="aero_3b_2"
@@ -3153,7 +3226,7 @@ WeaponSlots{
 
       Weapon{
         trigger:t="aam"
-        blk:t="gameData/Weapons/rocketGuns/us_aim9l_sidewinder_default.blk"
+        blk:t="gameData/Weapons/rocketGuns/us_aim9l_sidewinder.blk"
         emitter:t="aim_9_2"
         bullets:i=1
         external:b=yes
@@ -3327,6 +3400,28 @@ WeaponSlots{
     }
 
     WeaponPreset{
+      iconType:t="guided_bomb_green"
+      name:t="gbu15v2_out"
+      reqModification:t="us_gbu_15v1"
+
+      ShowNodes{
+        node:t="pylon_pivot1_lapa"
+        node:t="pylon_pivot1"
+      }
+
+      Weapon{
+        trigger:t="guided bombs"
+        blk:t="gameData/Weapons/BombGuns/us_2000lb_gbu_15v2.blk"
+        emitter:t="bomb3_gbu"
+        bullets:i=1
+        external:b=yes
+        separate:b=yes
+        machLimit:r=1.01
+        flapsRange:p2=0.0, 0.1
+      }
+    }
+
+    WeaponPreset{
       iconType:t="ptb"
       name:t="ptb_1"
       showInWeaponMenu:b=yes
@@ -3357,9 +3452,9 @@ WeaponSlots{
   }
 
   WeaponSlot{
-    index:i=2
+    index:i=3
     tier:i=7
-    order:i=3
+    order:i=5
 
     WeaponPreset{
       iconType:t="missile_type_b_air_to_air"
@@ -3524,6 +3619,29 @@ WeaponSlots{
     }
 
     WeaponPreset{
+      iconType:t="guided_bomb_green"
+      name:t="gbu15v2"
+      reqModification:t="us_gbu_15v1"
+
+      ShowNodes{
+        node:t="pylon_pivot2_lapa"
+        node:t="pylon_pivot2"
+      }
+
+      Weapon{
+        trigger:t="guided bombs"
+        blk:t="gameData/Weapons/BombGuns/us_2000lb_gbu_15v2.blk"
+        emitter:t="bomb4_gbu"
+        bullets:i=1
+        external:b=yes
+        separate:b=yes
+        machLimit:r=1.01
+        flapsRange:p2=0.0, 0.1
+        sweepRange:p2=0.0, 0.75
+      }
+    }
+
+    WeaponPreset{
       iconType:t="ptb"
       name:t="ptb_2"
       showInWeaponMenu:b=yes
@@ -3554,9 +3672,9 @@ WeaponSlots{
   }
 
   WeaponSlot{
-    index:i=3
+    index:i=4
     tier:i=6
-    order:i=5
+    order:i=7
     notUseforDisbalanceCalculation:b=yes
 
     WeaponPreset{
@@ -3644,9 +3762,9 @@ WeaponSlots{
   }
 
   WeaponSlot{
-    index:i=4
+    index:i=5
     tier:i=5
-    order:i=4
+    order:i=6
 
     WeaponPreset{
       iconType:t="missile_type_b_air_to_air"
@@ -3811,6 +3929,29 @@ WeaponSlots{
     }
 
     WeaponPreset{
+      iconType:t="guided_bomb_green"
+      name:t="gbu15v2"
+      reqModification:t="us_gbu_15v1"
+
+      ShowNodes{
+        node:t="pylon_pivot3_lapa"
+        node:t="pylon_pivot3"
+      }
+
+      Weapon{
+        trigger:t="guided bombs"
+        blk:t="gameData/Weapons/BombGuns/us_2000lb_gbu_15v2.blk"
+        emitter:t="bomb5_gbu"
+        bullets:i=1
+        external:b=yes
+        separate:b=yes
+        machLimit:r=1.01
+        flapsRange:p2=0.0, 0.1
+        sweepRange:p2=0.0, 0.75
+      }
+    }
+
+    WeaponPreset{
       iconType:t="ptb"
       name:t="ptb_3"
       showInWeaponMenu:b=yes
@@ -3841,13 +3982,14 @@ WeaponSlots{
   }
 
   WeaponSlot{
-    index:i=5
+    index:i=6
     tier:i=4
-    order:i=2
+    order:i=4
 
     WeaponPreset{
       iconType:t="missile_type_b_air_to_air"
-      name:t="aim_9l_default"
+      name:t="aim_9l"
+      reqModification:t="us_aim_9l"
 
       ShowNodes{
         node:t="aero_3b_7"
@@ -3856,7 +3998,7 @@ WeaponSlots{
 
       Weapon{
         trigger:t="aam"
-        blk:t="gameData/Weapons/rocketGuns/us_aim9l_sidewinder_default.blk"
+        blk:t="gameData/Weapons/rocketGuns/us_aim9l_sidewinder.blk"
         emitter:t="aim_9_7"
         bullets:i=1
         external:b=yes
@@ -4030,6 +4172,28 @@ WeaponSlots{
     }
 
     WeaponPreset{
+      iconType:t="guided_bomb_green"
+      name:t="gbu15v2_out"
+      reqModification:t="us_gbu_15v1"
+
+      ShowNodes{
+        node:t="pylon_pivot4_lapa"
+        node:t="pylon_pivot4"
+      }
+
+      Weapon{
+        trigger:t="guided bombs"
+        blk:t="gameData/Weapons/BombGuns/us_2000lb_gbu_15v2.blk"
+        emitter:t="bomb6_gbu"
+        bullets:i=1
+        external:b=yes
+        separate:b=yes
+        machLimit:r=1.01
+        flapsRange:p2=0.0, 0.1
+      }
+    }
+
+    WeaponPreset{
       iconType:t="ptb"
       name:t="ptb_4"
       showInWeaponMenu:b=yes
@@ -4055,6 +4219,37 @@ WeaponSlots{
       DependentWeaponPreset{
         slot:i=1
         preset:t="ptb_1"
+      }
+    }
+  }
+
+  WeaponSlot{
+    index:i=7
+    tier:i=3
+    order:i=2
+
+    WeaponPreset{
+      iconType:t="missile_type_b_air_to_air"
+      name:t="aim_9l_default"
+
+      ShowNodes{
+        node:t="aero_3b_8"
+        node:t="pylon_pivot4"
+      }
+
+      Weapon{
+        trigger:t="aam"
+        blk:t="gameData/Weapons/rocketGuns/us_aim9l_sidewinder_default.blk"
+        emitter:t="aim_9_8"
+        bullets:i=1
+        external:b=yes
+        separate:b=yes
+        jettisonable:b=no
+      }
+
+      BannedWeaponPreset{
+        slot:i=6
+        preset:t="gbu15v2_out"
       }
     }
   }
@@ -4281,8 +4476,14 @@ modifications{
 
   us_gbu_10_gbu_24{
     reqModification:t="us_gbu_12"
-    tier:i=4
+    tier:i=3
     modClass:t="weapon"
+  }
+
+  us_gbu_15v1{
+    modClass:t="weapon"
+    tier:i=4
+    reqModification:t="us_gbu_10_gbu_24"
   }
 
   us_aim_9l{
