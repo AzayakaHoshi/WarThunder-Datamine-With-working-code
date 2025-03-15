@@ -4,15 +4,30 @@
 
   **Added**:
 ```diff
-+ duplicatedTime:r=5.0
-+ chatMessagesTime:r=2.0
-+ collisionDamageMult:r=2.5
++ p{
++ name:t="wheel_r_01_"
++ modelNames:t="fiat_6614_firos"
++ }
++ 
++ p{
++ name:t="wheel_l_01_"
++ modelNames:t="fiat_6614_firos"
++ }
++ 
++ p{
++ name:t="wheel_r_02_"
++ modelNames:t="fiat_6614_firos"
++ }
++ 
++ p{
++ name:t="wheel_l_02_"
++ modelNames:t="fiat_6614_firos"
++ }
++ 
 ```
 
   **Removed**:
 ```diff
-- duplicatedTime:r=10.0
-- chatMessagesTime:r=10.0
 ```
 
 
@@ -20,39 +35,12 @@
 
   **Added**:
 ```diff
-+ 
-+ 9NW46Q333DCL{
-+ }
-+ 
-+ 9N7PX7DZ3WX4{
-+ }
-+ EE01790000000000{
-+ }
-+ 
-+ EE01800000000000{
-+ }
-+ 
-+ JJ01790000000000{
-+ }
-+ 
-+ JJ01800000000000{
-+ }
-+ 
-+ 
-+ UU01790000000000{
-+ }
-+ 
-+ UU01800000000000{
-+ }
-+ wt_challenger_2_megatron_pack:t="9NW46Q333DCL"
-+ wt_thunder_cup_2025_pack:t="9N7PX7DZ3WX4"
-+ wt_challenger_2_megatron_ps_prem:t="EE01790000000000"
-+ wt_thunder_cup_ps_prem:t="EE01800000000000"
-+ wt_challenger_2_megatron_ps_prem:t="UU01790000000000"
-+ wt_thunder_cup_ps_prem:t="UU01800000000000"
-+ wt_challenger_2_megatron_ps_prem:t="JJ01790000000000"
-+ wt_thunder_cup_ps_prem:t="JJ01800000000000"
-+ 2025_02_air:t="unlocks/chapter/2025_02_air"
++ login_layer_football_event_2025:r=8.0
++ login_layer_ship_marathon_strasbourg:r=8.0
++ login_layer_football_event_2025:t="loading_screen_football_event_2025"
++ login_layer_ship_marathon_strasbourg:t="loading_screen_strasbourg"
++ 2025_02_ship:t="unlocks/chapter/2025_02_ship"
++ 2025_03_tank:t="unlocks/chapter/2025_03_tank"
 ```
 
   **Removed**:
@@ -64,126 +52,353 @@
 
   **Added**:
 ```diff
-+ signUpURL:t="https://warthunder.ru/en/enjoy#/register"
++ publisher:t="pixelstorm"
 ```
 
   **Removed**:
 ```diff
-- signUpURL:t="https://login.pixstorm.ru/ru/profile/register"
 ```
 
 
-- **aces.vromfs.bin_u/config/rendinst_dmg.blkx**:
+- **aces.vromfs.bin_u/config/tanksights.blkx**:
 
   **Added**:
 ```diff
-+ dmg{
-+ name:t="tree_birch_snow_bush_a"
-+ destructionImpulse:r=3000.0
-+ destrCollisionHeightScale:r=1.0
-+ bushBehaviour:b=yes
-+ dmPreset:t="bush_props"
++ it_fiat_6614_firos{
++ crosshairHorVertSize:p2=3.0, 2.0
++ rangefinderProgressBarColor1:c=0, 255, 0, 64
++ rangefinderProgressBarColor2:c=255, 255, 255, 64
++ rangefinderTextScale:r=0.7
++ rangefinderUseThousandth:b=no
++ rangefinderVerticalOffset:r=0.1
++ rangefinderHorizontalOffset:r=5.0
++ detectAllyTextScale:r=0.7
++ detectAllyOffset:p2=4.0, 0.05
++ fontSizeMult:r=1.0
++ lineSizeMult:r=1.0
++ drawCentralLineVert:b=yes
++ drawCentralLineHorz:b=yes
++ drawSightMask:b=yes
++ crosshairDistHorSizeMain:p2=0.03, 0.02
++ crosshairDistHorSizeAdditional:p2=0.005, 0.003
++ distanceCorrectionPos:p2=-0.2, -0.05
++ drawDistanceCorrection:b=yes
++ 
++ matchExpClass{
++ it_fiat_6614_firos:b=yes
 + }
 + 
-+ dmg{
-+ name:t="tree_birch_snow_bush_b"
-+ destructionImpulse:r=3000.0
-+ destrCollisionHeightScale:r=1.0
-+ bushBehaviour:b=yes
-+ dmPreset:t="bush_props"
++ crosshair_distances{
++ distance:p3=200.0, 0.0, 0.0
++ distance:p3=400.0, 4.0, 0.0
++ distance:p3=600.0, 0.0, 0.0
++ distance:p3=800.0, 8.0, 0.0
++ distance:p3=1000.0, 0.0, 0.0
++ distance:p3=1200.0, 12.0, 0.0
++ distance:p3=1400.0, 0.0, 0.0
++ distance:p3=1600.0, 16.0, 0.0
++ distance:p3=1800.0, 0.0, 0.0
++ distance:p3=2000.0, 20.0, 0.0
++ distance:p3=2200.0, 0.0, 0.0
++ distance:p3=2400.0, 24.0, 0.0
++ distance:p3=2600.0, 0.0, 0.0
++ distance:p3=2800.0, 28.0, 0.0
++ distance:p3=3000.0, 0.0, 0.0
++ distance:p3=3200.0, 32.0, 0.0
++ distance:p3=3400.0, 0.0, 0.0
++ distance:p3=3600.0, 36.0, 0.0
++ distance:p3=3800.0, 0.0, 0.0
++ distance:p3=4000.0, 40.0, 0.0
 + }
 + 
-+ dmg{
-+ name:t="tree_birch_bush_a_winter"
-+ destructionImpulse:r=3000.0
-+ destrCollisionHeightScale:r=1.0
-+ bushBehaviour:b=yes
-+ dmPreset:t="bush_props"
++ crosshair_hor_ranges{
++ range:p2=-32.0, 32.0
++ range:p2=-28.0, 0.0
++ range:p2=-24.0, 24.0
++ range:p2=-20.0, 0.0
++ range:p2=-16.0, 16.0
++ range:p2=-12.0, 0.0
++ range:p2=-8.0, 8.0
++ range:p2=-4.0, 0.0
++ range:p2=4.0, 0.0
++ range:p2=8.0, 8.0
++ range:p2=12.0, 0.0
++ range:p2=16.0, 16.0
++ range:p2=20.0, 0.0
++ range:p2=24.0, 24.0
++ range:p2=28.0, 0.0
++ range:p2=32.0, 32.0
 + }
 + 
-+ dmg{
-+ name:t="tree_birch_bush_b_winter"
-+ destructionImpulse:r=3000.0
-+ destrCollisionHeightScale:r=1.0
-+ bushBehaviour:b=yes
-+ dmPreset:t="bush_props"
++ drawLines{
++ 
++ line{
++ line:p4=1.7, 30.8195, -1.7, 30.8195
++ move:b=yes
++ thousandth:b=yes
 + }
 + 
-+ dmg{
-+ name:t="tree_birch_bush_c_winter"
-+ destructionImpulse:r=3000.0
-+ destrCollisionHeightScale:r=1.0
-+ bushBehaviour:b=yes
-+ dmPreset:t="bush_props"
++ line{
++ line:p4=1.7, 37.3448, -1.7, 37.3448
++ move:b=yes
++ thousandth:b=yes
 + }
 + 
-+ dmg{
-+ name:t="tree_snow_bush_a"
-+ destructionImpulse:r=3000.0
-+ destrCollisionHeightScale:r=1.0
-+ bushBehaviour:b=yes
-+ dmPreset:t="bush_props"
++ line{
++ line:p4=1.7, 41.2469, -1.7, 41.2469
++ move:b=yes
++ thousandth:b=yes
 + }
 + 
-+ dmg{
-+ name:t="tree_snow_bush_b"
-+ destructionImpulse:r=3000.0
-+ destrCollisionHeightScale:r=1.0
-+ bushBehaviour:b=yes
-+ dmPreset:t="bush_props"
++ line{
++ line:p4=1.7, 44.6336, -1.7, 44.6336
++ move:b=yes
++ thousandth:b=yes
 + }
 + 
-+ dmg{
-+ name:t="tree_snow_small_a"
-+ destructionImpulse:r=3000.0
-+ destrCollisionHeightScale:r=1.0
-+ bushBehaviour:b=yes
-+ dmPreset:t="bush_props"
++ line{
++ line:p4=1.7, 47.9474, -1.7, 47.9474
++ move:b=yes
++ thousandth:b=yes
 + }
 + 
-+ dmg{
-+ name:t="tree_snow_small_b"
-+ destructionImpulse:r=3000.0
-+ destrCollisionHeightScale:r=1.0
-+ bushBehaviour:b=yes
-+ dmPreset:t="bush_props"
++ line{
++ line:p4=1.7, 51.4263, -1.7, 51.4263
++ move:b=yes
++ thousandth:b=yes
 + }
 + 
-+ name:t="tree_snow_large_a"
-+ destructionImpulse:r=15000.0
-+ name:t="tree_snow_large_b"
-+ destructionImpulse:r=15000.0
-+ name:t="tree_snow_large_c"
-+ destructionImpulse:r=15000.0
++ line{
++ line:p4=1.7, 55.1068, -1.7, 55.1068
++ move:b=yes
++ thousandth:b=yes
++ }
++ 
++ line{
++ line:p4=1.7, 59.1035, -1.7, 59.1035
++ move:b=yes
++ thousandth:b=yes
++ }
++ 
++ line{
++ line:p4=1.7, 63.5547, -1.7, 63.5547
++ move:b=yes
++ thousandth:b=yes
++ }
++ 
++ line{
++ line:p4=1.7, 68.3003, -1.7, 68.3003
++ move:b=yes
++ thousandth:b=yes
++ }
++ 
++ line{
++ line:p4=1.7, 73.6584, -1.7, 73.6584
++ move:b=yes
++ thousandth:b=yes
++ }
++ 
++ line{
++ line:p4=1.7, 78.821, -1.7, 78.821
++ move:b=yes
++ thousandth:b=yes
++ }
++ 
++ line{
++ line:p4=1.7, 85.2388, -1.7, 85.2388
++ move:b=yes
++ thousandth:b=yes
++ }
++ 
++ line{
++ line:p4=1.7, 92.2617, -1.7, 92.2617
++ move:b=yes
++ thousandth:b=yes
++ }
++ 
++ line{
++ line:p4=1.7, 99.7669, -1.7, 99.7669
++ move:b=yes
++ thousandth:b=yes
++ }
++ }
++ 
++ drawTexts{
++ 
++ text{
++ text:t="ARF/8M3"
++ pos:p2=10.0, 10.0
++ move:b=no
++ thousandth:b=yes
++ size:r=0.7
++ highlight:b=yes
++ }
++ 
++ text{
++ text:t="200"
++ align:i=0
++ pos:p2=10.0, 30.8195
++ move:b=yes
++ thousandth:b=yes
++ size:r=0.7
++ highlight:b=yes
++ }
++ 
++ text{
++ text:t="400"
++ align:i=0
++ pos:p2=10.0, 37.3448
++ move:b=yes
++ thousandth:b=yes
++ size:r=0.7
++ highlight:b=yes
++ }
++ 
++ text{
++ text:t="600"
++ align:i=0
++ pos:p2=10.0, 41.2469
++ move:b=yes
++ thousandth:b=yes
++ size:r=0.7
++ highlight:b=yes
++ }
++ 
++ text{
++ text:t="800"
++ align:i=0
++ pos:p2=10.0, 44.6336
++ move:b=yes
++ thousandth:b=yes
++ size:r=0.7
++ highlight:b=yes
++ }
++ 
++ text{
++ text:t="1000"
++ align:i=0
++ pos:p2=10.0, 47.9474
++ move:b=yes
++ thousandth:b=yes
++ size:r=0.7
++ highlight:b=yes
++ }
++ 
++ text{
++ text:t="1200"
++ align:i=0
++ pos:p2=10.0, 51.4263
++ move:b=yes
++ thousandth:b=yes
++ size:r=0.7
++ highlight:b=yes
++ }
++ 
++ text{
++ text:t="1400"
++ align:i=0
++ pos:p2=10.0, 55.1068
++ move:b=yes
++ thousandth:b=yes
++ size:r=0.7
++ highlight:b=yes
++ }
++ 
++ text{
++ text:t="1600"
++ align:i=0
++ pos:p2=10.0, 59.1035
++ move:b=yes
++ thousandth:b=yes
++ size:r=0.7
++ highlight:b=yes
++ }
++ 
++ text{
++ text:t="1800"
++ align:i=0
++ pos:p2=10.0, 63.5547
++ move:b=yes
++ thousandth:b=yes
++ size:r=0.7
++ highlight:b=yes
++ }
++ 
++ text{
++ text:t="2000"
++ align:i=0
++ pos:p2=10.0, 68.3003
++ move:b=yes
++ thousandth:b=yes
++ size:r=0.7
++ highlight:b=yes
++ }
++ 
++ text{
++ text:t="2200"
++ align:i=0
++ pos:p2=10.0, 73.6584
++ move:b=yes
++ thousandth:b=yes
++ size:r=0.7
++ highlight:b=yes
++ }
++ 
++ text{
++ text:t="2400"
++ align:i=0
++ pos:p2=10.0, 78.821
++ move:b=yes
++ thousandth:b=yes
++ size:r=0.7
++ highlight:b=yes
++ }
++ 
++ text{
++ text:t="2600"
++ align:i=0
++ pos:p2=10.0, 85.2388
++ move:b=yes
++ thousandth:b=yes
++ size:r=0.7
++ highlight:b=yes
++ }
++ 
++ text{
++ text:t="2800"
++ align:i=0
++ pos:p2=10.0, 92.2617
++ move:b=yes
++ thousandth:b=yes
++ size:r=0.7
++ highlight:b=yes
++ }
++ 
++ text{
++ text:t="3000"
++ align:i=0
++ pos:p2=10.0, 99.7669
++ move:b=yes
++ thousandth:b=yes
++ size:r=0.7
++ highlight:b=yes
++ }
++ }
++ }
++ 
 ```
 
   **Removed**:
 ```diff
-- name:t="tree_snow_large_b"
-- destructionImpulse:r=10000.0
-- canopyTriangle:b=no
-- canopyTopPart:r=0.55
-- canopyTopOffset:r=0.1
-- canopyWidthPart:r=0.28
-- canopyOpacity:r=0.3
-- name:t="tree_snow_large_a"
-- destructionImpulse:r=10000.0
-- canopyTriangle:b=no
-- canopyTopPart:r=0.55
-- canopyTopOffset:r=0.1
-- canopyWidthPart:r=0.28
-- canopyOpacity:r=0.3
-- name:t="tree_snow_larger_c"
-- destructionImpulse:r=25000.0
 ```
 
 
-- **aces.vromfs.bin_u/gamedata/attachables/decor_bomb_on_tank.blkx**:
+- **aces.vromfs.bin_u/gamedata/attachables/benelli_m4.blkx**:
 
   **Added**:
 ```diff
-+ model:t="decor_bomb_on_tank"
-+ collision:t="decor_bomb_on_tank_collision"
++ model:t="benelli_m4"
++ collision:t="benelli_m4_collision"
 + bboxMult:r=0.1
 + breakFx:t="destruction_decorators_model_small"
 + mass:r=15.0
@@ -214,8518 +429,17492 @@
 ```
 
 
-- **aces.vromfs.bin_u/gamedata/attachables/decor_kubanka_hat.blkx**:
+- **aces.vromfs.bin_u/gamedata/environments/weather_types_afghan_clouds_altitude.blkx**:
 
   **Added**:
 ```diff
-+ model:t="decor_kubanka_hat"
-+ collision:t="decor_kubanka_hat_collision"
-+ bboxMult:r=0.1
-+ breakFx:t="destruction_decorators_model_small"
-+ mass:r=15.0
-+ 
-+ DamageParts{
-+ 
-+ body{
-+ hp:r=50.0
-+ armorClass:t="tank_structural_steel"
-+ armorThickness:r=0.01
-+ }
-+ }
-+ 
-+ DamageEffects{
-+ 
-+ part{
-+ name:t="body"
-+ 
-+ onKill{
-+ cut:r=1.0
-+ }
-+ }
-+ }
-```
-
-  **Removed**:
-```diff
-```
-
-
-- **aces.vromfs.bin_u/gamedata/environments/weather_types_air.blkx**:
-
-  **Added**:
-```diff
-+ clear{
-+ scatteringEffect:p2=0.0, 0.0
-+ cloud_shadow_intensity:r=0.8
-+ addWhiteTemp:r=-250.0
-+ wind_strength:r=1.0
-+ waterWindStrength:r=2.0
-+ dustMul:r=1.0
-+ mudMul:r=1.0
-+ rainSplashEnabled:b=no
-+ rainSound:t="rain"
-+ rainCockpitSound:t="rain_cockpit"
-+ skyLightFactor:r=1.0
-+ cloudAircraftReflectMul:r=4.0
-+ cloudAircraftReflectPowerMul:r=0.5
-+ clouds_fly_cube_tex:t="cloud_fly_cube"
-+ adaptMinMul:r=1.1
-+ 
-+ clouds_weather_gen{
-+ "layers[0].coverage":p2=0.0, 0.2
-+ "layers[1].coverage":p2=0.0, 0.2
-+ "layers[0].seed":p2=0.0, 32768.0
-+ "layers[1].seed":p2=0.0, 32768.0
-+ }
-+ 
-+ clouds_form{
-+ "layers[0].startAt":p2=0.8, 1.1
-+ "layers[0].thickness":p2=7.0, 8.2
-+ "layers[0].density":p2=1.0, 0.8
-+ "layers[0].clouds_type":p2=0.0, 0.2
-+ "layers[0].clouds_type_variance":p2=1.0, 1.0
-+ "layers[1].startAt":p2=6.0, 6.5
-+ "layers[1].thickness":p2=3.5, 4.25
-+ "layers[1].density":p2=1.0, 2.0
-+ "layers[1].clouds_type":p2=0.0, 0.2
-+ "layers[1].clouds_type_variance":p2=0.5, 0.5
-+ extinction:p2=0.75, 0.75
-+ turbulenceStrength:p2=0.25, 0.3
-+ shapeNoiseScale:i=11
-+ cumulonimbusShapeScale:i=4
-+ turbulenceFreq:i=1
-+ }
-+ 
-+ sky{
-+ mie_scale:p2=1.0, 2.0
-+ mie2_thickness:r=450.0
-+ mie2_scale:r=7.0
-+ multiple_scattering_factor:r=1.13
-+ sun_brightness:r=0.85
-+ moon_brightness:r=0.85
-+ }
-+ 
-+ clouds_gen{
-+ humidity:p2=-0.1, 0.2
-+ persistence:p2=0.36, 0.5
-+ asymmetry:p2=0.05, 0.12
-+ }
-+ 
-+ clouds_position{
-+ sizeX:p2=111.0, 111.0
-+ sizeZ:p2=99.0, 99.0
-+ start_altitude:p2=1.2, 2.5
-+ thickness:p2=2.2, 5.0
-+ light_extinction:p2=0.25, 0.5
-+ amb_extinction_mul:p2=0.5, 1.0
-+ }
-+ 
-+ clouds_render{
-+ silver_lining:p2=0.5, 0.7
-+ sun_light:p2=0.5, 0.6
-+ ambient:p2=0.35, 0.5
-+ silver_lining_eccentricity:p2=0.4, 0.7
-+ }
-+ 
-+ strata_clouds{
-+ amount:p2=-0.15, 0.22
-+ altitude:p2=8.0, 11.9
-+ }
-+ 
-+ windParams{
-+ cloudsWindSpeedMult:r=100.0
-+ cloudsWindSpeedLimit:r=30.0
-+ strataCloudsWindSpeedMult:r=2.0
-+ defaultWindSpeed:r=0.1
-+ height0:r=500.0
-+ turbulence0:r=0.9
-+ windMul0:r=1.0
-+ height1:r=2000.0
-+ turbulence1:r=0.3
-+ windMul1:r=0.5
-+ height2:r=8000.0
-+ turbulence2:r=0.01
-+ windMul2:r=0.01
-+ }
-+ 
-+ rain{
-+ probability:r=0.0
-+ }
-+ 
-+ clouds_rendering{
-+ forward_eccentricity:r=0.73
-+ back_eccentricity:r=0.42
-+ forward_eccentricity_weight:r=0.75
-+ erosion_noise_size:r=42.0
-+ ambient_desaturation:r=0.5
-+ ms_contribution:r=0.7
-+ ms_attenuation:r=0.3
-+ ms_ecc_attenuation:r=0.3
-+ erosionWindSpeed:r=50.0
-+ }
-+ 
-+ rainDroplets{
-+ droplets_reflection_min:r=0.1
-+ droplets_reflection_max:r=0.3
-+ droplets_size_scale:p3=20.0, 20.0, 4.0
-+ droplets_speed:r=1.5
-+ }
-+ 
-+ waterFlowmapParams{
-+ simulationSpeed:r=2.0
-+ crossfadeTime:r=4.0
-+ }
-+ 
-+ puddlesPower{
-+ 
-+ p{
-+ value:p2=0.0, 0.0
-+ weight:r=1.0
-+ }
-+ }
-+ }
-+ 
-+ good{
-+ scatteringEffect:p2=0.0, 0.0
-+ cloud_shadow_intensity:r=0.7
-+ addWhiteTemp:r=-150.0
-+ wind_strength:r=2.5
-+ waterWindStrength:r=2.5
-+ dustMul:r=1.0
-+ mudMul:r=1.0
-+ rainSplashEnabled:b=no
-+ rainSound:t="rain"
-+ rainCockpitSound:t="rain_cockpit"
-+ skyLightFactor:r=1.0
-+ cloudAircraftReflectMul:r=4.0
-+ cloudAircraftReflectPowerMul:r=0.5
-+ clouds_fly_cube_tex:t="cloud_fly_cube"
-+ 
-+ clouds_weather_gen{
-+ "layers[0].coverage":p2=0.22, 0.37
-+ "layers[1].coverage":p2=0.22, 0.37
-+ "layers[0].seed":p2=0.0, 32768.0
-+ "layers[1].seed":p2=0.0, 32768.0
-+ epicness:r=0.09
-+ }
-+ 
-+ clouds_form{
-+ "layers[0].startAt":p2=0.8, 2.29
-+ "layers[0].thickness":p2=7.2, 8.2
-+ "layers[0].density":p2=1.0, 0.8
-+ "layers[0].clouds_type":p2=0.5, 0.15
-+ "layers[0].clouds_type_variance":p2=1.0, 0.9
-+ "layers[1].startAt":p2=6.5, 6.5
-+ "layers[1].thickness":p2=3.5, 4.25
-+ "layers[1].density":p2=1.0, 1.2
-+ "layers[1].clouds_type":p2=0.25, 0.49
-+ "layers[1].clouds_type_variance":p2=0.5, 0.89
-+ extinction:p2=0.75, 0.84
-+ turbulenceStrength:p2=0.25, 0.3
-+ shapeNoiseScale:i=11
-+ cumulonimbusShapeScale:i=4
-+ turbulencFreq:i=1
-+ }
-+ 
-+ sky{
-+ mie_scale:p2=1.0, 3.0
-+ mie2_thickness:r=250.0
-+ mie2_scale:r=13.0
-+ multiple_scattering_factor:r=1.2
-+ moon_brightness:r=0.775
-+ }
-+ 
-+ clouds_gen{
-+ humidity:p2=0.22, 0.37
-+ persistence:p2=0.36, 0.74
-+ asymmetry:p2=0.1, 0.2
-+ }
-+ 
-+ clouds_position{
-+ sizeX:p2=111.0, 111.0
-+ sizeZ:p2=99.0, 99.0
-+ start_altitude:p2=1.2, 2.0
-+ thickness:p2=2.0, 3.5
-+ amb_extinction_mul:p2=0.5, 1.2
-+ 
-+ light_extinction{
-+ 
-+ p{
-+ value:p2=0.6, 0.85
-+ weight:r=1.0
-+ }
-+ 
-+ p{
-+ value:p2=0.85, 1.2
-+ weight:r=5.0
-+ }
-+ }
-+ }
-+ 
-+ clouds_render{
-+ silver_lining:p2=0.5, 1.0
-+ sun_light:p2=0.4, 0.6
-+ ambient:p2=0.3, 0.6
-+ silver_lining_eccentricity:p2=0.4, 0.7
-+ }
-+ 
-+ strata_clouds{
-+ amount:p2=0.25, 0.5
-+ altitude:p2=9.2, 11.9
-+ }
-+ 
-+ windParams{
-+ cloudsWindSpeedMult:r=100.0
-+ cloudsWindSpeedLimit:r=30.0
-+ strataCloudsWindSpeedMult:r=4.0
-+ defaultWindSpeed:r=0.1
-+ height0:r=300.0
-+ turbulence0:r=1.0
-+ windMul0:r=1.0
-+ height1:r=2000.0
-+ turbulence1:r=0.8
-+ windMul1:r=1.0
-+ height2:r=8000.0
-+ turbulence2:r=0.2
-+ windMul2:r=0.01
-+ }
-+ 
-+ rain{
-+ probability:r=0.0
-+ }
-+ 
-+ clouds_rendering{
-+ forward_eccentricity:r=0.73
-+ back_eccentricity:r=0.42
-+ forward_eccentricity_weight:r=0.75
-+ erosion_noise_size:r=42.0
-+ ambient_desaturation:r=0.5
-+ ms_contribution:r=0.7
-+ ms_attenuation:r=0.3
-+ ms_ecc_attenuation:r=0.3
-+ erosionWindSpeed:r=50.0
-+ }
-+ 
-+ rainX7{
-+ alphaFadeSpeedBegin:r=20.0
-+ alphaFadeSpeedEnd:r=170.0
-+ length:r=0.75
-+ speed:r=8.5
-+ width:r=0.02
-+ density:r=2.0
-+ wind:r=1.0
-+ alpha:r=0.2
-+ lighting:p3=0.3, 0.3, 0.32
-+ perPassMul:r=5.0
-+ }
-+ 
-+ rainDroplets{
-+ droplets_reflection_min:r=0.1
-+ droplets_reflection_max:r=0.3
-+ droplets_size_scale:p3=20.0, 20.0, 4.0
-+ droplets_speed:r=1.5
-+ }
-+ 
-+ waterFlowmapParams{
-+ simulationSpeed:r=2.0
-+ crossfadeTime:r=4.0
-+ }
-+ 
-+ puddlesPower{
-+ 
-+ p{
-+ value:p2=0.0, 0.0
-+ weight:r=1.0
-+ }
-+ }
-+ }
-+ 
-+ hazy{
-+ addWhiteTemp:r=-150.0
-+ cloud_shadow_intensity:r=0.8
-+ cloudDropletsScale:r=0.1
-+ cloudDropletsLayerThickness:r=1.0
-+ wind_strength:r=2.2
-+ waterWindStrength:r=2.5
-+ dustMul:r=1.0
-+ mudMul:r=1.0
-+ rainSplashEnabled:b=no
-+ rainSound:t="rain"
-+ rainCockpitSound:t="rain_cockpit"
-+ skyLightFactor:r=1.0
-+ cloudAircraftReflectMul:r=4.0
-+ cloudAircraftReflectPowerMul:r=0.5
-+ clouds_fly_cube_tex:t="cloud_fly_cube"
-+ 
-+ clouds_weather_gen{
-+ "layers[0].coverage":p2=0.2, 0.3
-+ "layers[0].freq":p2=3.0, 6.23
-+ "layers[1].coverage":p2=0.28, 0.36
-+ "layers[1].freq":p2=6.0, 8.0
-+ "layers[0].seed":p2=0.0, 32768.0
-+ "layers[1].seed":p2=0.0, 32768.0
-+ }
-+ 
-+ clouds_form{
-+ "layers[0].startAt":p2=0.8, 2.97
-+ "layers[0].thickness":p2=8.0, 8.35
-+ "layers[0].density":p2=1.0, 1.62
-+ "layers[0].clouds_type":p2=0.5, 0.81
-+ "layers[0].clouds_type_variance":p2=1.0, 0.9
-+ "layers[1].startAt":p2=6.5, 6.87
-+ "layers[1].thickness":p2=3.5, 7.1
-+ "layers[1].density":p2=1.0, 1.87
-+ "layers[1].clouds_type":p2=0.25, 0.52
-+ "layers[1].clouds_type_variance":p2=0.5, 0.13
-+ extinction:p2=0.65, 2.25
-+ turbulenceStrength:p2=0.25, 0.25
-+ shapeNoiseScale:i=15
-+ cumulonimbusShapeScale:i=4
-+ turbulenceFreq:i=2
-+ }
-+ 
-+ sky{
-+ mie_scale:p2=5.0, 11.0
-+ mie2_thickness:r=570.0
-+ mie2_scale:r=37.0
-+ sun_brightness:r=0.85
-+ moon_brightness:r=0.37
-+ multiple_scattering_factor:r=1.23
-+ }
-+ 
-+ clouds_gen{
-+ humidity:p2=0.22, 0.38
-+ persistence:p2=0.5, 0.8
-+ asymmetry:p2=0.1, 0.2
-+ }
-+ 
-+ clouds_position{
-+ sizeX:p2=111.0, 111.0
-+ sizeZ:p2=99.0, 99.0
-+ start_altitude:p2=1.8, 3.0
-+ thickness:p2=3.5, 5.5
-+ 
-+ thickness{
-+ 
-+ p{
-+ value:p2=2.6, 3.0
-+ weight:r=0.5
-+ }
-+ 
-+ p{
-+ value:p2=3.0, 4.0
-+ weight:r=5.0
-+ }
-+ 
-+ p{
-+ value:p2=4.0, 5.0
-+ weight:r=1.0
-+ }
-+ }
-+ light_extinction:p2=0.6, 1.9
-+ 
-+ light_extinction{
-+ 
-+ p{
-+ value:p2=0.6, 0.85
-+ weight:r=1.0
-+ }
-+ 
-+ p{
-+ value:p2=0.85, 1.05
-+ weight:r=5.0
-+ }
-+ }
-+ amb_extinction_mul:p2=0.12, 0.3
-+ }
-+ 
-+ clouds_render{
-+ silver_lining:p2=0.4, 0.7
-+ sun_light:p2=0.3, 0.55
-+ ambient:p2=0.35, 0.6
-+ silver_lining_eccentricity:p2=0.4, 0.75
-+ }
-+ 
-+ strata_clouds{
-+ amount:p2=0.25, 0.7
-+ altitude:p2=8.0, 11.9
-+ }
-+ 
-+ windParams{
-+ cloudsWindSpeedLimit:r=10.0
-+ defaultWindSpeed:r=0.05
-+ height0:r=1000.0
-+ turbulence0:r=0.3
-+ windMul0:r=1.0
-+ height1:r=3000.0
-+ turbulence1:r=0.3
-+ windMul1:r=1.0
-+ height2:r=8000.0
-+ turbulence2:r=0.3
-+ windMul2:r=0.01
-+ }
-+ 
-+ rain{
-+ probability:r=0.0
-+ }
-+ 
-+ clouds_rendering{
-+ forward_eccentricity:r=0.73
-+ back_eccentricity:r=0.42
-+ forward_eccentricity_weight:r=0.75
-+ erosion_noise_size:r=42.0
-+ ambient_desaturation:r=0.5
-+ ms_contribution:r=0.7
-+ ms_attenuation:r=0.3
-+ ms_ecc_attenuation:r=0.3
-+ erosionWindSpeed:r=50.0
-+ }
-+ 
-+ rainX7{
-+ alphaFadeSpeedBegin:r=20.0
-+ alphaFadeSpeedEnd:r=170.0
-+ length:r=0.75
-+ speed:r=8.5
-+ width:r=0.02
-+ density:r=2.0
-+ wind:r=1.0
-+ alpha:r=0.2
-+ lighting:p3=0.3, 0.3, 0.32
-+ perPassMul:r=5.0
-+ }
-+ 
-+ rainDroplets{
-+ droplets_reflection_min:r=0.1
-+ droplets_reflection_max:r=0.3
-+ droplets_size_scale:p3=20.0, 20.0, 4.0
-+ droplets_speed:r=1.5
-+ }
-+ 
-+ waterFlowmapParams{
-+ simulationSpeed:r=2.0
-+ crossfadeTime:r=4.0
-+ }
-+ 
-+ puddlesPower{
-+ 
-+ p{
-+ value:p2=0.0, 0.0
-+ weight:r=1.0
-+ }
-+ }
-+ }
-+ 
-+ cloudy{
-+ scatteringEffect:p2=0.0, 0.0
-+ cloud_shadow_intensity:r=0.7
-+ addWhiteTemp:r=0.0
-+ cloudDropletsScale:r=0.3
-+ cloudDropletsLayerThickness:r=2.0
-+ wind_strength:r=3.0
-+ waterWindStrength:r=3.0
-+ dustMul:r=1.0
-+ mudMul:r=1.0
-+ rainSplashEnabled:b=no
-+ rainSound:t="rain"
-+ rainCockpitSound:t="rain_cockpit"
-+ skyLightFactor:r=1.0
-+ cloudAircraftReflectMul:r=4.0
-+ cloudAircraftReflectPowerMul:r=0.5
-+ clouds_fly_cube_tex:t="cloud_fly_cube"
-+ 
-+ clouds_weather_gen{
-+ "layers[0].coverage":p2=0.4, 0.5
-+ "layers[1].coverage":p2=0.45, 0.55
-+ "layers[0].seed":p2=0.0, 32768.0
-+ "layers[1].seed":p2=0.0, 32768.0
-+ epicness:r=1.0
-+ }
-+ 
-+ clouds_form{
-+ "layers[0].thickness":p2=8.0, 9.0
-+ "layers[0].density":p2=1.0, 1.2
-+ "layers[0].clouds_type":p2=0.45, 0.55
-+ "layers[0].clouds_type_variance":p2=0.75, 1.0
-+ "layers[1].thickness":p2=3.5, 3.5
-+ "layers[1].density":p2=1.0, 1.0
-+ "layers[1].clouds_type":p2=0.25, 0.35
-+ "layers[1].clouds_type_variance":p2=0.5, 0.75
-+ extinction:p2=0.75, 0.9
-+ turbulenceStrength:p2=0.25, 0.25
-+ shapeNoiseScale:i=9
-+ cumulonimbusShapeScale:i=4
-+ turbulenceFreq:i=1
-+ "layers[0].startAt":p2=1.8, 2.0
-+ "layers[1].startAt":p2=7.0, 7.5
-+ }
-+ 
-+ sky{
-+ mie_scale:p2=5.0, 8.0
-+ mie_height:p2=0.8, 1.1
-+ mie2_thickness:r=300.0
-+ mie2_scale:r=15.0
-+ multiple_scattering_factor:r=1.4
-+ moon_brightness:r=0.32
-+ }
-+ 
-+ clouds_gen{
-+ humidity:p2=0.47, 0.62
-+ persistence:p2=0.58, 0.7
-+ asymmetry:p2=0.08, 0.22
-+ }
-+ 
-+ clouds_position{
-+ sizeX:p2=111.0, 111.0
-+ sizeZ:p2=99.0, 99.0
-+ 
-+ start_altitude{
-+ 
-+ p{
-+ value:p2=1.2, 1.4
-+ weight:r=8.0
-+ }
-+ 
-+ p{
-+ value:p2=1.4, 2.0
-+ weight:r=1.0
-+ }
-+ }
-+ 
-+ thickness{
-+ 
-+ p{
-+ value:p2=2.6, 3.0
-+ weight:r=0.5
-+ }
-+ 
-+ p{
-+ value:p2=3.0, 3.5
-+ weight:r=5.0
-+ }
-+ 
-+ p{
-+ value:p2=3.5, 5.0
-+ weight:r=1.0
-+ }
-+ }
-+ 
-+ light_extinction{
-+ 
-+ p{
-+ value:p2=0.6, 0.85
-+ weight:r=1.0
-+ }
-+ 
-+ p{
-+ value:p2=0.85, 1.05
-+ weight:r=5.0
-+ }
-+ }
-+ 
-+ amb_extinction_mul{
-+ 
-+ p{
-+ value:p2=0.3, 1.0
-+ weight:r=1.0
-+ }
-+ }
-+ }
-+ 
-+ strata_clouds{
-+ amount:p2=0.4, 0.85
-+ altitude:p2=9.0, 11.9
-+ }
-+ 
-+ windParams{
-+ cloudsWindSpeedMult:r=100.0
-+ cloudsWindSpeedLimit:r=40.0
-+ strataCloudsWindSpeedMult:r=4.0
-+ defaultWindSpeed:r=0.1
-+ height0:r=600.0
-+ turbulence0:r=0.7
-+ windMul0:r=1.0
-+ height1:r=2000.0
-+ turbulence1:r=0.7
-+ windMul1:r=1.0
-+ height2:r=8000.0
-+ turbulence2:r=0.3
-+ windMul2:r=0.01
-+ }
-+ 
-+ rain{
-+ probability:r=0.45
-+ }
-+ 
-+ clouds_rendering{
-+ forward_eccentricity:r=0.73
-+ back_eccentricity:r=0.42
-+ forward_eccentricity_weight:r=0.75
-+ erosion_noise_size:r=42.0
-+ ambient_desaturation:r=0.5
-+ ms_contribution:r=0.7
-+ ms_attenuation:r=0.3
-+ ms_ecc_attenuation:r=0.3
-+ erosionWindSpeed:r=50.0
-+ }
-+ 
-+ rainX7{
-+ alphaFadeSpeedBegin:r=20.0
-+ alphaFadeSpeedEnd:r=170.0
-+ length:r=0.75
-+ speed:r=8.5
-+ width:r=0.02
-+ density:r=2.0
-+ wind:r=1.0
-+ alpha:r=0.2
-+ lighting:p3=0.3, 0.3, 0.32
-+ perPassMul:r=5.0
-+ }
-+ 
-+ rainDroplets{
-+ droplets_reflection_min:r=0.1
-+ droplets_reflection_max:r=0.3
-+ droplets_size_scale:p3=20.0, 20.0, 4.0
-+ droplets_speed:r=1.5
-+ }
-+ 
-+ waterFlowmapParams{
-+ simulationSpeed:r=2.0
-+ crossfadeTime:r=4.0
-+ }
-+ 
-+ puddlesPower{
-+ 
-+ p{
-+ value:p2=0.02, 0.03
-+ weight:r=2.0
-+ }
-+ 
-+ p{
-+ value:p2=0.1, 0.2
-+ weight:r=1.0
-+ }
-+ 
-+ p{
-+ value:p2=0.3, 0.35
-+ weight:r=1.0
-+ }
-+ }
-+ }
-+ 
-+ thin_clouds{
-+ scatteringEffect:p2=0.0, 0.0
-+ addWhiteTemp:r=0.0
-+ cloud_shadow_intensity:r=0.7
-+ wind_strength:r=3.0
-+ waterWindStrength:r=3.0
-+ dustMul:r=1.0
-+ mudMul:r=1.0
-+ rainSplashEnabled:b=no
-+ rainSound:t="rain"
-+ rainCockpitSound:t="rain_cockpit"
-+ skyLightFactor:r=1.0
-+ cloudAircraftReflectMul:r=4.0
-+ cloudAircraftReflectPowerMul:r=0.5
-+ clouds_fly_cube_tex:t="cloud_fly_cube"
-+ 
-+ clouds_weather_gen{
-+ "layers[0].coverage":p2=0.3, 0.36
-+ "layers[0].freq":p2=3.0, 3.0
-+ "layers[1].coverage":p2=0.5, 0.54
-+ "layers[1].freq":p2=6.0, 6.0
-+ epicness:r=0.9
-+ }
-+ 
-+ clouds_form{
-+ "layers[0].thickness":p2=8.0, 3.85
-+ "layers[0].density":p2=1.0, 1.0
-+ "layers[0].clouds_type":p2=0.5, 0.5
-+ "layers[0].clouds_type_variance":p2=1.0, 1.0
-+ "layers[1].thickness":p2=3.5, 2.4
-+ "layers[1].density":p2=1.0, 1.0
-+ "layers[1].clouds_type":p2=0.25, 0.25
-+ "layers[1].clouds_type_variance":p2=0.5, 0.5
-+ extinction:p2=0.75, 0.83
-+ turbulenceStrength:p2=0.25, 0.65
-+ shapeNoiseScale:i=5
-+ cumulonimbusShapeScale:i=15
-+ turbulenceFreq:i=5
-+ "layers[0].startAt":p2=1.8, 2.43
-+ "layers[1].startAt":p2=7.13, 7.5
-+ }
-+ 
-+ sky{
-+ mie_scale:p2=2.7, 7.3
-+ mie_height:p2=0.8, 2.43
-+ mie2_thickness:r=500.0
-+ mie2_scale:r=10.0
-+ multiple_scattering_factor:r=1.4
-+ moon_brightness:r=0.39
-+ }
-+ 
-+ clouds_gen{
-+ humidity:p2=0.38, 0.55
-+ persistence:p2=0.3, 0.6
-+ asymmetry:p2=0.9, 2.0
-+ }
-+ 
-+ clouds_position{
-+ sizeX:p2=111.0, 111.0
-+ sizeZ:p2=99.0, 99.0
-+ start_altitude:p2=2.0, 2.5
-+ thickness:p2=5.0, 8.0
-+ light_extinction:p2=0.5, 1.0
-+ amb_extinction_mul:p2=0.5, 1.0
-+ }
-+ 
-+ clouds_render{
-+ silver_lining:p2=0.5, 1.0
-+ sun_light:p2=0.35, 0.6
-+ ambient:p2=0.35, 0.8
-+ silver_lining_eccentricity:p2=0.4, 0.7
-+ }
-+ 
-+ strata_clouds{
-+ amount:p2=0.4, 0.85
-+ altitude:p2=9.0, 11.9
-+ }
-+ 
-+ windParams{
-+ cloudsWindSpeedLimit:r=25.0
-+ cloudsWindSpeedMult:r=100.0
-+ strataCloudsWindSpeedMult:r=4.0
-+ defaultWindSpeed:r=0.1
-+ height0:r=600.0
-+ turbulence0:r=0.7
-+ windMul0:r=1.0
-+ height1:r=2000.0
-+ turbulence1:r=0.7
-+ windMul1:r=1.0
-+ height2:r=8000.0
-+ turbulence2:r=0.3
-+ windMul2:r=0.01
-+ }
-+ 
-+ rain{
-+ probability:r=0.05
-+ }
-+ 
-+ clouds_rendering{
-+ forward_eccentricity:r=0.73
-+ back_eccentricity:r=0.42
-+ forward_eccentricity_weight:r=0.75
-+ erosion_noise_size:r=42.0
-+ ambient_desaturation:r=0.5
-+ ms_contribution:r=0.7
-+ ms_attenuation:r=0.3
-+ ms_ecc_attenuation:r=0.3
-+ erosionWindSpeed:r=50.0
-+ }
-+ 
-+ rainX7{
-+ alphaFadeSpeedBegin:r=20.0
-+ alphaFadeSpeedEnd:r=170.0
-+ length:r=0.75
-+ speed:r=8.5
-+ width:r=0.02
-+ density:r=2.0
-+ wind:r=1.0
-+ alpha:r=0.2
-+ lighting:p3=0.3, 0.3, 0.32
-+ perPassMul:r=5.0
-+ }
-+ 
-+ rainDroplets{
-+ droplets_reflection_min:r=0.1
-+ droplets_reflection_max:r=0.3
-+ droplets_size_scale:p3=20.0, 20.0, 4.0
-+ droplets_speed:r=1.5
-+ }
-+ 
-+ waterFlowmapParams{
-+ simulationSpeed:r=2.0
-+ crossfadeTime:r=4.0
-+ }
-+ 
-+ puddlesPower{
-+ 
-+ p{
-+ value:p2=0.0, 0.0
-+ weight:r=1.0
-+ }
-+ 
-+ p{
-+ value:p2=0.14, 0.16
-+ }
-+ 
-+ p{
-+ value:p2=0.22, 0.25
-+ }
-+ }
-+ }
-+ 
-+ thin_clouds_storm{
-+ scatteringEffect:p2=0.0, 0.0
-+ addWhiteTemp:r=0.0
-+ cloud_shadow_intensity:r=0.7
-+ wind_strength:r=5.0
-+ waterWindStrength:r=2.8
-+ dustMul:r=1.0
-+ mudMul:r=1.0
-+ rainSplashEnabled:b=no
-+ rainSound:t="rain"
-+ rainCockpitSound:t="rain_cockpit"
-+ skyLightFactor:r=1.0
-+ cloudAircraftReflectMul:r=4.0
-+ cloudAircraftReflectPowerMul:r=0.5
-+ clouds_fly_cube_tex:t="cloud_fly_cube"
-+ 
-+ clouds_weather_gen{
-+ "layers[0].coverage":p2=0.3, 0.36
-+ "layers[0].freq":p2=3.0, 3.0
-+ "layers[1].coverage":p2=0.5, 0.54
-+ "layers[1].freq":p2=6.0, 6.0
-+ epicness:r=0.9
-+ }
-+ 
-+ clouds_form{
-+ "layers[0].thickness":p2=8.0, 3.85
-+ "layers[0].density":p2=1.0, 1.0
-+ "layers[0].clouds_type":p2=0.5, 0.5
-+ "layers[0].clouds_type_variance":p2=1.0, 1.0
-+ "layers[1].thickness":p2=3.5, 2.4
-+ "layers[1].density":p2=1.0, 1.0
-+ "layers[1].clouds_type":p2=0.25, 0.25
-+ "layers[1].clouds_type_variance":p2=0.5, 0.5
-+ extinction:p2=0.75, 0.83
-+ turbulenceStrength:p2=0.25, 0.65
-+ shapeNoiseScale:i=5
-+ cumulonimbusShapeScale:i=15
-+ turbulenceFreq:i=5
-+ "layers[0].startAt":p2=1.8, 2.43
-+ "layers[1].startAt":p2=7.13, 7.5
-+ }
-+ 
-+ sky{
-+ mie_scale:p2=2.7, 7.3
-+ mie_height:p2=0.8, 2.43
-+ mie2_thickness:r=500.0
-+ mie2_scale:r=10.0
-+ multiple_scattering_factor:r=1.4
-+ moon_brightness:r=0.39
-+ }
-+ 
-+ clouds_gen{
-+ humidity:p2=0.38, 0.55
-+ persistence:p2=0.3, 0.6
-+ asymmetry:p2=0.9, 2.0
-+ }
-+ 
-+ clouds_position{
-+ sizeX:p2=111.0, 111.0
-+ sizeZ:p2=99.0, 99.0
-+ start_altitude:p2=2.0, 2.5
-+ thickness:p2=5.0, 8.0
-+ light_extinction:p2=0.5, 1.0
-+ amb_extinction_mul:p2=0.5, 1.0
-+ }
-+ 
-+ clouds_render{
-+ silver_lining:p2=0.5, 1.0
-+ sun_light:p2=0.35, 0.6
-+ ambient:p2=0.35, 0.8
-+ silver_lining_eccentricity:p2=0.4, 0.7
-+ }
-+ 
-+ strata_clouds{
-+ amount:p2=0.4, 0.85
-+ altitude:p2=9.0, 11.9
-+ }
-+ 
-+ windParams{
-+ cloudsWindSpeedLimit:r=25.0
-+ cloudsWindSpeedMult:r=100.0
-+ strataCloudsWindSpeedMult:r=4.0
-+ defaultWindSpeed:r=0.1
-+ height0:r=600.0
-+ turbulence0:r=0.7
-+ windMul0:r=1.0
-+ height1:r=2000.0
-+ turbulence1:r=0.7
-+ windMul1:r=1.0
-+ height2:r=8000.0
-+ turbulence2:r=0.3
-+ windMul2:r=0.01
-+ }
-+ 
-+ rain{
-+ probability:r=0.05
-+ }
-+ 
-+ clouds_rendering{
-+ forward_eccentricity:r=0.73
-+ back_eccentricity:r=0.42
-+ forward_eccentricity_weight:r=0.75
-+ erosion_noise_size:r=42.0
-+ ambient_desaturation:r=0.5
-+ ms_contribution:r=0.7
-+ ms_attenuation:r=0.3
-+ ms_ecc_attenuation:r=0.3
-+ erosionWindSpeed:r=50.0
-+ }
-+ 
-+ rainX7{
-+ alphaFadeSpeedBegin:r=20.0
-+ alphaFadeSpeedEnd:r=170.0
-+ length:r=0.75
-+ speed:r=8.5
-+ width:r=0.02
-+ density:r=2.0
-+ wind:r=1.0
-+ alpha:r=0.2
-+ lighting:p3=0.3, 0.3, 0.32
-+ perPassMul:r=5.0
-+ }
-+ 
-+ rainDroplets{
-+ droplets_reflection_min:r=0.1
-+ droplets_reflection_max:r=0.3
-+ droplets_size_scale:p3=20.0, 20.0, 4.0
-+ droplets_speed:r=1.5
-+ }
-+ 
-+ waterFlowmapParams{
-+ simulationSpeed:r=2.0
-+ crossfadeTime:r=4.0
-+ }
-+ 
-+ puddlesPower{
-+ 
-+ p{
-+ value:p2=0.0, 0.0
-+ weight:r=1.0
-+ }
-+ 
-+ p{
-+ value:p2=0.14, 0.16
-+ }
-+ 
-+ p{
-+ value:p2=0.22, 0.25
-+ }
-+ }
-+ }
-+ 
-+ poor{
-+ scatteringEffect:p2=0.0, 0.0
-+ cloud_shadow_intensity:r=0.7
-+ addWhiteTemp:r=0.0
-+ cloudDropletsScale:r=0.3
-+ cloudDropletsLayerThickness:r=2.0
-+ wind_strength:r=5.0
-+ waterWindStrength:r=3.0
-+ dustMul:r=1.0
-+ mudMul:r=1.0
-+ rainSplashEnabled:b=no
-+ rainSound:t="rain"
-+ rainCockpitSound:t="rain_cockpit"
-+ skyLightFactor:r=1.0
-+ cloudAircraftReflectMul:r=4.0
-+ cloudAircraftReflectPowerMul:r=0.5
-+ clouds_fly_cube_tex:t="cloud_fly_cube"
-+ wetnessPower:r=0.3
-+ cloudsShadowInfluence:r=0.82
-+ enableCloudsHole:b=no
-+ cloudsShadowWaterInfluence:r=0.0
-+ 
-+ clouds_weather_gen{
-+ "layers[0].freq":p2=7.461, 8.461
-+ "layers[1].freq":p2=6.13, 7.0
-+ cumulonimbusCoverage:p2=0.17, 0.19
-+ epicness:r=0.0
-+ "layers[0].seed":p2=0.0, 32768.0
-+ "layers[1].seed":p2=0.0, 32768.0
-+ cumulonimbusSeed:p2=0.0, 32768.0
-+ "layers[0].coverage":p2=0.1, 0.1
-+ "layers[1].coverage":p2=0.95, 1.0
-+ }
-+ 
-+ clouds_form{
-+ "layers[0].thickness":p2=1.728, 1.74
-+ "layers[0].density":p2=1.521, 1.747
-+ "layers[0].clouds_type":p2=0.9, 1.0
-+ "layers[0].clouds_type_variance":p2=0.652, 0.099
-+ "layers[1].thickness":p2=3.68, 4.336
-+ "layers[1].density":p2=1.135, 1.135
-+ "layers[1].clouds_type":p2=0.5, 0.6
-+ "layers[1].clouds_type_variance":p2=0.019, 0.019
-+ extinction:p2=0.75, 0.75
-+ turbulenceStrength:p2=0.25, 0.25
-+ shapeNoiseScale:i=7
-+ cumulonimbusShapeScale:i=4
-+ turbulenceFreq:i=3
-+ "layers[0].startAt":p2=2.5, 2.68
-+ "layers[1].startAt":p2=6.0, 7.5
-+ }
-+ 
-+ sky{
-+ mie_scale:p2=11.0, 13.7
-+ mie_height:p2=0.8, 1.1
-+ mie2_thickness:r=220.0
-+ mie2_scale:r=30.0
-+ multiple_scattering_factor:r=0.04
-+ moon_brightness:r=0.32
-+ }
-+ 
-+ clouds_gen{
-+ humidity:p2=0.47, 0.62
-+ persistence:p2=0.58, 0.7
-+ asymmetry:p2=0.08, 0.22
-+ }
-+ 
-+ clouds_position{
-+ sizeX:p2=111.0, 111.0
-+ sizeZ:p2=99.0, 99.0
-+ 
-+ start_altitude{
-+ 
-+ p{
-+ value:p2=1.2, 1.4
-+ weight:r=8.0
-+ }
-+ 
-+ p{
-+ value:p2=1.4, 2.0
-+ weight:r=1.0
-+ }
-+ }
-+ 
-+ thickness{
-+ 
-+ p{
-+ value:p2=2.6, 3.0
-+ weight:r=0.5
-+ }
-+ 
-+ p{
-+ value:p2=3.0, 3.5
-+ weight:r=5.0
-+ }
-+ 
-+ p{
-+ value:p2=3.5, 5.0
-+ weight:r=1.0
-+ }
-+ }
-+ 
-+ light_extinction{
-+ 
-+ p{
-+ value:p2=0.6, 0.85
-+ weight:r=1.0
-+ }
-+ 
-+ p{
-+ value:p2=0.85, 1.05
-+ weight:r=5.0
-+ }
-+ }
-+ 
-+ amb_extinction_mul{
-+ 
-+ p{
-+ value:p2=0.3, 1.0
-+ weight:r=1.0
-+ }
-+ }
-+ }
-+ 
-+ strata_clouds{
-+ amount:p2=0.4, 0.85
-+ altitude:p2=9.0, 11.9
-+ }
-+ 
-+ windParams{
-+ cloudsWindSpeedMult:r=100.0
-+ cloudsWindSpeedLimit:r=40.0
-+ strataCloudsWindSpeedMult:r=4.0
-+ defaultWindSpeed:r=0.1
-+ height0:r=600.0
-+ turbulence0:r=0.7
-+ windMul0:r=1.0
-+ height1:r=2000.0
-+ turbulence1:r=0.7
-+ windMul1:r=1.0
-+ height2:r=8000.0
-+ turbulence2:r=0.3
-+ windMul2:r=0.01
-+ }
-+ 
-+ rain{
-+ probability:r=0.15
-+ }
-+ 
-+ clouds_rendering{
-+ forward_eccentricity:r=0.73
-+ back_eccentricity:r=0.42
-+ forward_eccentricity_weight:r=0.75
-+ erosion_noise_size:r=42.0
-+ ambient_desaturation:r=0.5
-+ ms_contribution:r=0.7
-+ ms_attenuation:r=0.3
-+ ms_ecc_attenuation:r=0.3
-+ erosionWindSpeed:r=50.0
-+ }
-+ 
-+ rainX7{
-+ alphaFadeSpeedBegin:r=20.0
-+ alphaFadeSpeedEnd:r=170.0
-+ length:r=0.75
-+ speed:r=8.5
-+ width:r=0.02
-+ density:r=2.0
-+ wind:r=1.0
-+ alpha:r=0.2
-+ lighting:p3=0.3, 0.3, 0.32
-+ perPassMul:r=5.0
-+ }
-+ 
-+ rainDroplets{
-+ droplets_reflection_min:r=0.1
-+ droplets_reflection_max:r=0.3
-+ droplets_size_scale:p3=20.0, 20.0, 4.0
-+ droplets_speed:r=1.5
-+ }
-+ 
-+ waterFlowmapParams{
-+ simulationSpeed:r=2.0
-+ crossfadeTime:r=4.0
-+ }
-+ 
-+ puddlesPower{
-+ 
-+ p{
-+ value:p2=0.0, 0.1
-+ weight:r=1.0
-+ }
-+ 
-+ p{
-+ value:p2=0.1, 0.2
-+ weight:r=3.0
-+ }
-+ 
-+ p{
-+ value:p2=0.2, 0.32
-+ weight:r=9.0
-+ }
-+ 
-+ p{
-+ value:p2=0.32, 0.35
-+ weight:r=3.0
-+ }
-+ }
-+ }
-+ 
-+ blind{
-+ cloudDropletsScale:r=0.8
-+ cloudDropletsLayerThickness:r=3.5
-+ addWhiteTemp:r=600.0
-+ scatteringEffect:p2=0.9, 1.0
-+ weatherScaleSearchLight:r=0.2
-+ cloud_shadow_intensity:r=0.8
-+ wind_strength:r=6.5
-+ waterWindStrength:r=4.5
-+ dustMul:r=0.0
-+ mudMul:r=2.0
-+ rainSplashEnabled:b=no
-+ rainSound:t="rain"
-+ rainCockpitSound:t="rain_cockpit"
-+ skyLightFactor:r=1.0
-+ cloudAircraftReflectMul:r=4.0
-+ cloudAircraftReflectPowerMul:r=0.5
-+ clouds_fly_cube_tex:t="cloud_fly_cube"
-+ 
-+ clouds_weather_gen{
-+ "layers[0].freq":p2=2.5, 3.4298
-+ "layers[1].freq":p2=4.16, 5.19
-+ cumulonimbusCoverage:p2=0.89, 0.95
-+ epicness:r=0.0
-+ "layers[0].seed":p2=0.0, 32768.0
-+ "layers[1].seed":p2=0.0, 32768.0
-+ cumulonimbusSeed:p2=1.78, 1.78
-+ worldSize:r=65536.0
-+ "layers[0].coverage":p2=0.72, 0.9
-+ "layers[1].coverage":p2=0.9, 0.97
-+ }
-+ 
-+ clouds_form{
-+ "layers[0].thickness":p2=8.0, 2.05
-+ "layers[0].density":p2=1.0, 1.21313
-+ "layers[0].clouds_type":p2=0.5, 0.88
-+ "layers[0].clouds_type_variance":p2=1.0, 1.0
-+ "layers[1].thickness":p2=3.25, 3.5
-+ "layers[1].density":p2=1.0, 1.0
-+ "layers[1].clouds_type":p2=0.25, 0.61
-+ "layers[1].clouds_type_variance":p2=0.5, 0.75
-+ extinction:p2=0.75, 0.897926
-+ turbulenceStrength:p2=0.25, 0.25039
-+ shapeNoiseScale:i=7
-+ cumulonimbusShapeScale:i=4
-+ turbulenceFreq:i=1
-+ "layers[0].startAt":p2=1.8, 2.68
-+ "layers[1].startAt":p2=6.5, 7.2
-+ }
-+ 
-+ sky{
-+ mie_scale:p2=37.0, 73.0
-+ mie2_thickness:r=500.0
-+ mie2_scale:r=570.0
-+ mie2_altitude:r=850.0
-+ multiple_scattering_factor:r=1.6
-+ sun_brightness:r=0.71
-+ moon_brightness:r=0.47
-+ }
-+ 
-+ clouds_gen{
-+ humidity:p2=0.75, 0.95
-+ persistence:p2=0.5, 0.8
-+ asymmetry:p2=0.1, 0.2
-+ }
-+ 
-+ clouds_position{
-+ sizeX:p2=111.0, 111.0
-+ sizeZ:p2=99.0, 99.0
-+ start_altitude:p2=1.0, 2.0
-+ thickness:p2=3.0, 6.0
-+ light_extinction:p2=0.8, 2.8
-+ amb_extinction_mul:p2=0.9, 1.5
-+ }
-+ 
-+ strata_clouds{
-+ amount:p2=0.9, 1.0
-+ altitude:p2=9.0, 11.9
-+ }
-+ 
-+ windParams{
-+ cloudsWindSpeedLimit:r=30.0
-+ defaultWindSpeed:r=0.1
-+ height0:r=600.0
-+ turbulence0:r=0.1
-+ windMul0:r=1.0
-+ height1:r=2000.0
-+ turbulence1:r=0.7
-+ windMul1:r=1.0
-+ height2:r=8000.0
-+ turbulence2:r=0.1
-+ windMul2:r=0.01
-+ }
-+ 
-+ rain{
-+ probability:r=0.05
-+ }
-+ 
-+ clouds_rendering{
-+ forward_eccentricity:r=0.73
-+ back_eccentricity:r=0.42
-+ forward_eccentricity_weight:r=0.75
-+ erosion_noise_size:r=42.0
-+ ambient_desaturation:r=0.5
-+ ms_contribution:r=0.7
-+ ms_attenuation:r=0.3
-+ ms_ecc_attenuation:r=0.3
-+ erosionWindSpeed:r=50.0
-+ }
-+ 
-+ rainDroplets{
-+ droplets_reflection_min:r=0.1
-+ droplets_reflection_max:r=0.3
-+ droplets_size_scale:p3=20.0, 20.0, 4.0
-+ droplets_speed:r=1.5
-+ }
-+ 
-+ puddlesPower{
-+ 
-+ p{
-+ value:p2=0.0, 0.1
-+ weight:r=1.0
-+ }
-+ 
-+ p{
-+ value:p2=0.1, 0.2
-+ weight:r=2.0
-+ }
-+ 
-+ p{
-+ value:p2=0.2, 0.3
-+ weight:r=4.0
-+ }
-+ 
-+ p{
-+ value:p2=0.3, 0.4
-+ weight:r=3.0
-+ }
-+ }
-+ 
-+ waterFlowmapParams{
-+ simulationSpeed:r=2.0
-+ crossfadeTime:r=4.0
-+ }
-+ }
-+ 
-+ rain{
-+ scatteringEffect:p2=0.3, 1.0
-+ addWhiteTemp:r=400.0
-+ weatherScaleSearchLight:r=0.2
-+ cloud_shadow_intensity:r=0.8
-+ cloudDropletsScale:r=5.0
-+ cloudDropletsLayerThickness:r=3.5
-+ cloudsShadowWaterInfluence:r=0.0
-+ rainSplashEnabled:b=yes
-+ rainSplashEnabled:b=no
-+ wind_strength:r=5.0
-+ waterWindStrength:r=4.0
-+ dustMul:r=0.0
-+ mudMul:r=2.0
-+ rainSound:t="rain"
-+ rainCockpitSound:t="rain_cockpit"
-+ skyLightFactor:r=1.0
-+ cloudAircraftReflectMul:r=4.0
-+ cloudAircraftReflectPowerMul:r=0.5
-+ clouds_fly_cube_tex:t="cloud_fly_cube"
-+ wetnessPower:p2=0.7, 0.9
-+ 
-+ clouds_weather_gen{
-+ "layers[0].freq":p2=3.0, 5.85953
-+ "layers[1].freq":p2=6.0, 5.94466
-+ cumulonimbusCoverage:p2=0.3, 0.57
-+ epicness:r=0.93
-+ "layers[0].seed":p2=0.0, 32768.0
-+ "layers[1].seed":p2=0.0, 32768.0
-+ cumulonimbusSeed:p2=0.0, 32768.0
-+ "layers[0].coverage":p2=0.58, 0.69
-+ "layers[1].coverage":p2=0.77, 0.83
-+ }
-+ 
-+ clouds_form{
-+ "layers[0].thickness":p2=8.0, 7.67274
-+ "layers[0].density":p2=1.0, 1.2372
-+ "layers[0].clouds_type":p2=0.5, 0.787738
-+ "layers[0].clouds_type_variance":p2=1.0, 1.0
-+ "layers[1].thickness":p2=3.5, 3.80162
-+ "layers[1].density":p2=1.0, 1.34507
-+ "layers[1].clouds_type":p2=0.25, 0.936038
-+ "layers[1].clouds_type_variance":p2=0.5, 0.918658
-+ extinction:p2=0.75, 2.23208
-+ turbulenceStrength:p2=0.25, 0.75
-+ shapeNoiseScale:i=9
-+ cumulonimbusShapeScale:i=8
-+ turbulenceFreq:i=5
-+ "layers[0].startAt":p2=1.8, 2.09744
-+ "layers[1].startAt":p2=7.5, 8.0
-+ }
-+ 
-+ sky{
-+ mie_scale:p2=9.0, 13.2
-+ mie_height:p2=1.1, 2.02208
-+ mie2_thickness:r=370.0
-+ mie2_altitude:r=800.0
-+ mie2_scale:r=26.0
-+ multiple_scattering_factor:r=1.4
-+ moon_brightness:r=0.73
-+ }
-+ 
-+ clouds_gen{
-+ humidity:p2=0.7, 0.85
-+ persistence:p2=0.6, 0.8
-+ asymmetry:p2=0.11, 0.2
-+ }
-+ 
-+ clouds_position{
-+ sizeX:p2=111.0, 111.0
-+ sizeZ:p2=99.0, 99.0
-+ start_altitude:p2=1.3, 2.5
-+ thickness:p2=3.0, 6.0
-+ light_extinction:p2=0.8, 1.4
-+ amb_extinction_mul:p2=0.5, 1.0
-+ }
-+ 
-+ clouds_render{
-+ silver_lining:p2=0.5, 0.8
-+ sun_light:p2=0.2, 0.5
-+ ambient:p2=0.3, 0.8
-+ silver_lining_eccentricity:p2=0.5, 0.8
-+ }
-+ 
-+ strata_clouds{
-+ amount:p2=0.3, 0.95
-+ altitude:p2=10.0, 11.9
-+ }
-+ 
-+ windParams{
-+ cloudsWindSpeedMult:r=120.0
-+ strataCloudsWindSpeedMult:r=1.0
-+ defaultWindSpeed:r=0.5
-+ height0:r=1200.0
-+ turbulence0:r=2.0
-+ windMul0:r=1.0
-+ height1:r=2000.0
-+ turbulence1:r=1.5
-+ windMul1:r=1.0
-+ height2:r=8000.0
-+ turbulence2:r=0.5
-+ windMul2:r=0.01
-+ }
-+ 
-+ rain{
-+ rainFromInvisibleClouds:b=yes
-+ probability:r=1.0
-+ }
-+ 
-+ clouds_rendering{
-+ forward_eccentricity:r=0.73
-+ back_eccentricity:r=0.42
-+ forward_eccentricity_weight:r=0.75
-+ erosion_noise_size:r=42.0
-+ ambient_desaturation:r=0.5
-+ ms_contribution:r=0.7
-+ ms_attenuation:r=0.3
-+ ms_ecc_attenuation:r=0.3
-+ erosionWindSpeed:r=50.0
-+ }
-+ 
-+ rainX7{
-+ alphaFadeSpeedBegin:r=20.0
-+ alphaFadeSpeedEnd:r=170.0
-+ length:r=0.75
-+ speed:r=8.5
-+ width:r=0.02
-+ density:r=2.0
-+ wind:r=1.0
-+ alpha:r=0.2
-+ lighting:p3=0.3, 0.3, 0.32
-+ perPassMul:r=5.0
-+ }
-+ 
-+ rainDroplets{
-+ droplets_reflection_min:r=0.1
-+ droplets_reflection_max:r=0.3
-+ droplets_size_scale:p3=20.0, 20.0, 4.0
-+ droplets_speed:r=1.5
-+ }
-+ 
-+ waterFlowmapParams{
-+ simulationSpeed:r=2.0
-+ crossfadeTime:r=4.0
-+ }
-+ 
-+ puddlesPower{
-+ 
-+ p{
-+ value:p2=0.35, 0.45
-+ weight:r=5.0
-+ }
-+ }
-+ 
-+ dafx_rain{
-+ density:r=10.0
-+ speed:r=1.0
-+ width:r=1.0
-+ length:r=1.0
-+ alpha:r=1.0
-+ fmaxDensity:r=10.0
-+ 
-+ effect_templates{
-+ template:t="camera_rain_light_effect"
-+ template:t="camera_rain_drop_splashes_effect"
-+ }
-+ }
-+ }
-+ 
-+ thunder{
-+ scatteringEffect:p2=0.95, 1.0
-+ addWhiteTemp:r=600.0
-+ weatherScaleSearchLight:r=0.2
-+ cloudDropletsScale:r=5.0
-+ cloudDropletsLayerThickness:r=6.0
-+ cloud_shadow_intensity:r=1.0
-+ rainSplashEnabled:b=yes
-+ rainSplashEnabled:b=no
-+ adaptationMultiplierMul:r=0.7
-+ wind_strength:r=5.0
-+ waterWindStrength:r=7.0
-+ dustMul:r=0.0
-+ mudMul:r=2.0
-+ rainSound:t="rain"
-+ rainCockpitSound:t="rain_cockpit"
-+ skyLightFactor:r=1.0
-+ cloudAircraftReflectMul:r=4.0
-+ cloudAircraftReflectPowerMul:r=0.5
-+ clouds_fly_cube_tex:t="cloud_fly_cube"
-+ wetnessPower:r=0.3
-+ cloudsShadowInfluence:r=0.82
-+ enableCloudsHole:b=no
-+ 
-+ clouds_weather_gen{
-+ "layers[0].coverage":p2=0.89, 0.92
-+ "layers[0].freq":p2=7.85, 3.79
-+ "layers[0].seed":p2=0.0, 32768.0
-+ "layers[1].coverage":p2=0.73, 0.79
-+ "layers[1].freq":p2=5.39352, 7.53
-+ "layers[1].seed":p2=0.0, 32768.0
-+ epicness:r=0.02
-+ cumulonimbusCoverage:p2=0.46, 0.55
-+ cumulonimbusSeed:p2=0.0, 7.12
-+ worldSize:r=65536.0
-+ }
-+ 
-+ clouds_form{
-+ "layers[0].thickness":p2=1.7, 2.1
-+ "layers[0].density":p2=1.64, 1.72
-+ "layers[0].clouds_type":p2=0.72944, 0.96
-+ "layers[0].clouds_type_variance":p2=0.954509, 1.0
-+ "layers[1].thickness":p2=2.45, 2.87
-+ "layers[1].density":p2=1.04319, 1.15
-+ "layers[1].clouds_type":p2=0.270934, 0.8
-+ "layers[1].clouds_type_variance":p2=0.199411, 0.58
-+ extinction:p2=0.73, 1.94
-+ turbulenceStrength:p2=1.019, 1.349
-+ shapeNoiseScale:i=17
-+ cumulonimbusShapeScale:i=6
-+ turbulenceFreq:i=5
-+ "layers[0].startAt":p2=2.11, 2.37
-+ "layers[1].startAt":p2=4.86, 5.06
-+ }
-+ 
-+ sky{
-+ mie_scale:p2=40.0, 40.0
-+ mie_height:p2=0.8, 1.1
-+ mie2_thickness:r=300.0
-+ mie2_scale:r=40.0
-+ moon_brightness:r=0.77
-+ multiple_scattering_factor:r=0.4
-+ }
-+ 
-+ clouds_gen{
-+ humidity:p2=0.98, 1.0
-+ persistence:p2=0.55, 0.9
-+ asymmetry:p2=0.12, 0.2
-+ }
-+ 
-+ clouds_position{
-+ start_altitude:p2=1.2, 2.5
-+ thickness:p2=6.0, 9.5
-+ light_extinction:p2=1.55, 2.2
-+ amb_extinction_mul:p2=1.9, 2.0
-+ }
-+ 
-+ clouds_render{
-+ silver_lining:p2=0.5, 0.9
-+ sun_light:p2=0.25, 0.55
-+ ambient:p2=0.3, 0.8
-+ silver_lining_eccentricity:p2=0.5, 0.8
-+ }
-+ 
-+ strata_clouds{
-+ amount:p2=0.9, 1.0
-+ altitude:p2=9.0, 11.9
-+ }
-+ 
-+ rain{
-+ rainFromInvisibleClouds:b=yes
-+ probability:r=0.0
-+ }
-+ 
-+ windParams{
-+ cloudsWindSpeedMult:r=80.0
-+ strataCloudsWindSpeedMult:r=2.0
-+ defaultWindSpeed:r=1.0
-+ height0:r=300.0
-+ turbulence0:r=4.0
-+ windMul0:r=1.0
-+ height1:r=2000.0
-+ turbulence1:r=4.0
-+ windMul1:r=1.0
-+ height2:r=8000.0
-+ turbulence2:r=0.5
-+ windMul2:r=0.01
-+ }
-+ 
-+ clouds_rendering{
-+ forward_eccentricity:r=0.73
-+ back_eccentricity:r=0.42
-+ forward_eccentricity_weight:r=0.75
-+ erosion_noise_size:r=42.0
-+ ambient_desaturation:r=0.5
-+ ms_contribution:r=0.7
-+ ms_attenuation:r=0.3
-+ ms_ecc_attenuation:r=0.3
-+ erosionWindSpeed:r=50.0
-+ }
-+ 
-+ rainDroplets{
-+ droplets_reflection_min:r=0.1
-+ droplets_reflection_max:r=0.3
-+ droplets_size_scale:p3=20.0, 20.0, 4.0
-+ droplets_speed:r=1.5
-+ }
-+ 
-+ waterFlowmapParams{
-+ simulationSpeed:r=2.0
-+ crossfadeTime:r=4.0
-+ }
-+ 
-+ puddlesPower{
-+ 
-+ p{
-+ value:p2=0.4, 0.55
-+ weight:r=5.0
-+ }
-+ }
-+ 
-+ rainX7{
-+ alphaFadeSpeedBegin:r=140.0
-+ alphaFadeSpeedEnd:r=400.0
-+ length:r=0.75
-+ speed:r=8.5
-+ width:r=0.025
-+ density:r=2.0
-+ wind:r=7.0
-+ alpha:r=0.2
-+ lighting:p3=0.4, 0.4, 0.4
-+ perPassMul:r=5.0
-+ }
-+ }
-+ 
-+ storm{
-+ scatteringEffect:p2=0.95, 1.0
-+ addWhiteTemp:r=600.0
-+ weatherScaleSearchLight:r=0.2
-+ cloudDropletsScale:r=5.0
-+ cloudDropletsLayerThickness:r=6.0
-+ cloud_shadow_intensity:r=1.0
-+ rainSplashEnabled:b=yes
-+ rainSplashEnabled:b=no
-+ adaptationMultiplierMul:r=0.7
-+ wind_strength:r=7.0
-+ waterWindStrength:r=7.0
-+ dustMul:r=0.0
-+ mudMul:r=2.0
-+ rainSound:t="rain"
-+ rainCockpitSound:t="rain_cockpit"
-+ skyLightFactor:r=1.0
-+ cloudAircraftReflectMul:r=4.0
-+ cloudAircraftReflectPowerMul:r=0.5
-+ clouds_fly_cube_tex:t="cloud_fly_cube"
-+ wetnessPower:r=0.3
-+ cloudsShadowInfluence:r=0.82
-+ enableCloudsHole:b=no
-+ 
-+ clouds_weather_gen{
-+ "layers[0].coverage":p2=0.89, 0.92
-+ "layers[0].freq":p2=7.85, 3.79
-+ "layers[0].seed":p2=0.0, 32768.0
-+ "layers[1].coverage":p2=0.73, 0.79
-+ "layers[1].freq":p2=5.39352, 7.53
-+ "layers[1].seed":p2=0.0, 32768.0
-+ epicness:r=0.02
-+ cumulonimbusCoverage:p2=0.46, 0.55
-+ cumulonimbusSeed:p2=0.0, 7.12
-+ worldSize:r=65536.0
-+ }
-+ 
-+ clouds_form{
-+ "layers[0].thickness":p2=1.7, 2.1
-+ "layers[0].density":p2=1.64, 1.72
-+ "layers[0].clouds_type":p2=0.72944, 0.96
-+ "layers[0].clouds_type_variance":p2=0.954509, 1.0
-+ "layers[1].thickness":p2=2.45, 2.87
-+ "layers[1].density":p2=1.04319, 1.15
-+ "layers[1].clouds_type":p2=0.270934, 0.8
-+ "layers[1].clouds_type_variance":p2=0.199411, 0.58
-+ extinction:p2=0.73, 1.94
-+ turbulenceStrength:p2=1.019, 1.349
-+ shapeNoiseScale:i=17
-+ cumulonimbusShapeScale:i=6
-+ turbulenceFreq:i=5
-+ "layers[0].startAt":p2=2.11, 2.37
-+ "layers[1].startAt":p2=4.86, 5.06
-+ }
-+ 
-+ sky{
-+ mie_scale:p2=40.0, 40.0
-+ mie_height:p2=0.8, 1.1
-+ mie2_thickness:r=300.0
-+ mie2_scale:r=40.0
-+ moon_brightness:r=0.77
-+ multiple_scattering_factor:r=0.4
-+ }
-+ 
-+ clouds_gen{
-+ humidity:p2=0.98, 1.0
-+ persistence:p2=0.55, 0.9
-+ asymmetry:p2=0.12, 0.2
-+ }
-+ 
-+ clouds_position{
-+ start_altitude:p2=1.2, 2.5
-+ thickness:p2=6.0, 9.5
-+ light_extinction:p2=1.55, 2.2
-+ amb_extinction_mul:p2=1.9, 2.0
-+ }
-+ 
-+ clouds_render{
-+ silver_lining:p2=0.5, 0.9
-+ sun_light:p2=0.25, 0.55
-+ ambient:p2=0.3, 0.8
-+ silver_lining_eccentricity:p2=0.5, 0.8
-+ }
-+ 
-+ strata_clouds{
-+ amount:p2=0.9, 1.0
-+ altitude:p2=9.0, 11.9
-+ }
-+ 
-+ rain{
-+ rainFromInvisibleClouds:b=yes
-+ probability:r=0.0
-+ }
-+ 
-+ windParams{
-+ cloudsWindSpeedMult:r=80.0
-+ strataCloudsWindSpeedMult:r=2.0
-+ defaultWindSpeed:r=1.0
-+ height0:r=300.0
-+ turbulence0:r=4.0
-+ windMul0:r=1.0
-+ height1:r=2000.0
-+ turbulence1:r=4.0
-+ windMul1:r=1.0
-+ height2:r=8000.0
-+ turbulence2:r=0.5
-+ windMul2:r=0.01
-+ }
-+ 
-+ clouds_rendering{
-+ forward_eccentricity:r=0.73
-+ back_eccentricity:r=0.42
-+ forward_eccentricity_weight:r=0.75
-+ erosion_noise_size:r=42.0
-+ ambient_desaturation:r=0.5
-+ ms_contribution:r=0.7
-+ ms_attenuation:r=0.3
-+ ms_ecc_attenuation:r=0.3
-+ erosionWindSpeed:r=50.0
-+ }
-+ 
-+ rainDroplets{
-+ droplets_reflection_min:r=0.1
-+ droplets_reflection_max:r=0.3
-+ droplets_size_scale:p3=20.0, 20.0, 4.0
-+ droplets_speed:r=1.5
-+ }
-+ 
-+ waterFlowmapParams{
-+ simulationSpeed:r=2.0
-+ crossfadeTime:r=4.0
-+ }
-+ 
-+ puddlesPower{
-+ 
-+ p{
-+ value:p2=0.4, 0.55
-+ weight:r=5.0
-+ }
-+ }
-+ 
-+ rainX7{
-+ alphaFadeSpeedBegin:r=140.0
-+ alphaFadeSpeedEnd:r=400.0
-+ length:r=0.75
-+ speed:r=8.5
-+ width:r=0.025
-+ density:r=2.0
-+ wind:r=7.0
-+ alpha:r=0.2
-+ lighting:p3=0.4, 0.4, 0.4
-+ perPassMul:r=5.0
-+ }
-+ }
-+ 
-+ cloudy_windy{
-+ scatteringEffect:p2=0.0, 0.0
-+ cloud_shadow_intensity:r=0.7
-+ addWhiteTemp:r=0.0
-+ cloudDropletsScale:r=0.3
-+ cloudDropletsLayerThickness:r=2.0
-+ wind_strength:r=5.5
-+ waterWindStrength:r=3.0
-+ dustMul:r=1.0
-+ mudMul:r=1.0
-+ rainSplashEnabled:b=no
-+ rainSound:t="rain"
-+ rainCockpitSound:t="rain_cockpit"
-+ skyLightFactor:r=1.0
-+ cloudAircraftReflectMul:r=4.0
-+ cloudAircraftReflectPowerMul:r=0.5
-+ clouds_fly_cube_tex:t="cloud_fly_cube"
-+ 
-+ clouds_weather_gen{
-+ "layers[0].coverage":p2=0.604, 0.701
-+ "layers[0].freq":p2=16.765, 16.765
-+ "layers[0].seed":p2=0.0, 32768.0
-+ "layers[1].coverage":p2=0.629, 0.478
-+ "layers[1].freq":p2=5.0, 8.0
-+ "layers[1].seed":p2=0.0, 32768.0
-+ epicness:r=0.0
-+ cumulonimbusCoverage:p2=0.101, 0.195
-+ cumulonimbusSeed:p2=0.0, 32768.0
-+ }
-+ 
-+ clouds_form{
-+ "layers[0].thickness":p2=2.906, 1.995
-+ "layers[0].density":p2=0.768, 0.902
-+ "layers[0].clouds_type":p2=0.8, 1.0
-+ "layers[0].clouds_type_variance":p2=0.0, 0.2
-+ "layers[1].thickness":p2=6.336, 3.795
-+ "layers[1].density":p2=0.5, 0.784
-+ "layers[1].clouds_type":p2=1.0, 0.621
-+ "layers[1].clouds_type_variance":p2=0.016, 0.016
-+ extinction:p2=3.182, 4.784
-+ turbulenceStrength:p2=0.503, 0.749
-+ shapeNoiseScale:i=15
-+ cumulonimbusShapeScale:i=5
-+ turbulenceFreq:i=1
-+ "layers[0].startAt":p2=1.7, 2.0
-+ "layers[1].startAt":p2=7.0, 8.01
-+ }
-+ 
-+ sky{
-+ mie_scale:p2=5.0, 8.0
-+ mie_height:p2=0.8, 1.1
-+ mie2_thickness:r=220.0
-+ mie2_scale:r=30.0
-+ multiple_scattering_factor:r=0.4
-+ moon_brightness:r=0.32
-+ }
-+ 
-+ clouds_gen{
-+ humidity:p2=0.47, 0.62
-+ persistence:p2=0.58, 0.7
-+ asymmetry:p2=0.08, 0.22
-+ }
-+ 
-+ clouds_position{
-+ sizeX:p2=111.0, 111.0
-+ sizeZ:p2=99.0, 99.0
-+ 
-+ start_altitude{
-+ 
-+ p{
-+ value:p2=1.2, 1.4
-+ weight:r=8.0
-+ }
-+ 
-+ p{
-+ value:p2=1.4, 2.0
-+ weight:r=1.0
-+ }
-+ }
-+ 
-+ thickness{
-+ 
-+ p{
-+ value:p2=2.6, 3.0
-+ weight:r=0.5
-+ }
-+ 
-+ p{
-+ value:p2=3.0, 3.5
-+ weight:r=5.0
-+ }
-+ 
-+ p{
-+ value:p2=3.5, 5.0
-+ weight:r=1.0
-+ }
-+ }
-+ 
-+ light_extinction{
-+ 
-+ p{
-+ value:p2=0.6, 0.85
-+ weight:r=1.0
-+ }
-+ 
-+ p{
-+ value:p2=0.85, 1.05
-+ weight:r=5.0
-+ }
-+ }
-+ 
-+ amb_extinction_mul{
-+ 
-+ p{
-+ value:p2=0.3, 1.0
-+ weight:r=1.0
-+ }
-+ }
-+ }
-+ 
-+ strata_clouds{
-+ amount:p2=0.4, 0.85
-+ altitude:p2=9.0, 11.9
-+ }
-+ 
-+ windParams{
-+ cloudsWindSpeedMult:r=100.0
-+ cloudsWindSpeedLimit:r=40.0
-+ strataCloudsWindSpeedMult:r=4.0
-+ defaultWindSpeed:r=0.1
-+ height0:r=600.0
-+ turbulence0:r=0.7
-+ windMul0:r=1.0
-+ height1:r=2000.0
-+ turbulence1:r=0.7
-+ windMul1:r=1.0
-+ height2:r=8000.0
-+ turbulence2:r=0.3
-+ windMul2:r=0.01
-+ }
-+ 
-+ rain{
-+ probability:r=0.25
-+ }
-+ 
-+ clouds_rendering{
-+ forward_eccentricity:r=0.73
-+ back_eccentricity:r=0.42
-+ forward_eccentricity_weight:r=0.75
-+ erosion_noise_size:r=42.0
-+ ambient_desaturation:r=0.5
-+ ms_contribution:r=0.7
-+ ms_attenuation:r=0.3
-+ ms_ecc_attenuation:r=0.3
-+ erosionWindSpeed:r=50.0
-+ }
-+ 
-+ rainX7{
-+ alphaFadeSpeedBegin:r=20.0
-+ alphaFadeSpeedEnd:r=170.0
-+ length:r=0.75
-+ speed:r=8.5
-+ width:r=0.02
-+ density:r=2.0
-+ wind:r=1.0
-+ alpha:r=0.2
-+ lighting:p3=0.3, 0.3, 0.32
-+ perPassMul:r=5.0
-+ }
-+ 
-+ rainDroplets{
-+ droplets_reflection_min:r=0.1
-+ droplets_reflection_max:r=0.3
-+ droplets_size_scale:p3=20.0, 20.0, 4.0
-+ droplets_speed:r=1.5
-+ }
-+ 
-+ waterFlowmapParams{
-+ simulationSpeed:r=2.0
-+ crossfadeTime:r=4.0
-+ }
-+ 
-+ puddlesPower{
-+ 
-+ p{
-+ value:p2=0.03, 0.06
-+ weight:r=1.0
-+ }
-+ 
-+ p{
-+ value:p2=0.15, 0.2
-+ weight:r=1.0
-+ }
-+ 
-+ p{
-+ value:p2=0.3, 0.35
-+ weight:r=1.0
-+ }
-+ }
-+ }
-+ 
-+ mist{
-+ scatteringEffect:p2=0.95, 1.0
-+ addWhiteTemp:r=600.0
-+ weatherScaleSearchLight:r=0.2
-+ cloudDropletsScale:r=5.0
-+ cloudDropletsLayerThickness:r=6.0
-+ cloud_shadow_intensity:r=1.0
-+ adaptationMultiplierMul:r=0.7
-+ wind_strength:r=3.0
-+ waterWindStrength:r=2.0
-+ dustMul:r=0.0
-+ mudMul:r=1.2
-+ rainSplashEnabled:b=no
-+ rainSound:t="rain"
-+ rainCockpitSound:t="rain_cockpit"
-+ skyLightFactor:r=1.0
-+ cloudAircraftReflectMul:r=4.0
-+ cloudAircraftReflectPowerMul:r=0.5
-+ clouds_fly_cube_tex:t="cloud_fly_cube"
-+ wetnessPower:r=0.2
-+ cloudsShadowWaterInfluence:r=0.0
-+ 
-+ clouds_weather_gen{
-+ "layers[0].coverage":p2=0.146, 0.202
-+ "layers[0].freq":p2=2.993, 3.0
-+ "layers[0].seed":p2=32.721, 32.721
-+ "layers[1].coverage":p2=0.367, 0.415
-+ "layers[1].freq":p2=5.776, 6.0
-+ "layers[1].seed":p2=22.059, 22.059
-+ epicness:r=0.0
-+ cumulonimbusCoverage:p2=0.068, 0.0
-+ cumulonimbusSeed:p2=0.0, 0.0
-+ worldSize:r=65536.0
-+ }
-+ 
-+ clouds_form{
-+ "layers[0].thickness":p2=1.708, 2.39
-+ "layers[0].density":p2=0.721, 0.721
-+ "layers[0].clouds_type":p2=0.5, 0.5
-+ "layers[0].clouds_type_variance":p2=1.0, 1.0
-+ "layers[1].thickness":p2=1.751, 2.324
-+ "layers[1].density":p2=1.0, 1.0
-+ "layers[1].clouds_type":p2=0.25, 0.25
-+ "layers[1].clouds_type_variance":p2=0.5, 0.5
-+ extinction:p2=0.75, 0.75
-+ turbulenceStrength:p2=0.25, 0.25
-+ shapeNoiseScale:i=9
-+ cumulonimbusShapeScale:i=4
-+ turbulenceFreq:i=1
-+ "layers[0].startAt":p2=2.4, 3.0
-+ "layers[1].startAt":p2=7.0, 7.5
-+ }
-+ 
-+ sky{
-+ mie_height:p2=1.1, 2.0
-+ mie_scale:p2=13.0, 26.5
-+ mie2_thickness:r=250.0
-+ mie2_scale:r=430.0
-+ moon_brightness:r=0.77
-+ multiple_scattering_factor:r=1.2
-+ }
-+ 
-+ clouds_gen{
-+ humidity:p2=0.98, 1.0
-+ persistence:p2=0.55, 0.9
-+ asymmetry:p2=0.12, 0.2
-+ }
-+ 
-+ clouds_position{
-+ start_altitude:p2=1.2, 2.5
-+ thickness:p2=6.0, 9.5
-+ light_extinction:p2=1.55, 2.2
-+ amb_extinction_mul:p2=1.9, 2.0
-+ }
-+ 
-+ clouds_render{
-+ silver_lining:p2=0.5, 0.9
-+ sun_light:p2=0.25, 0.55
-+ ambient:p2=0.3, 0.8
-+ silver_lining_eccentricity:p2=0.5, 0.8
-+ }
-+ 
-+ strata_clouds{
-+ amount:p2=0.5, 0.75
-+ altitude:p2=9.0, 12.0
-+ }
-+ 
-+ rain{
-+ probability:r=0.0
-+ }
-+ 
-+ windParams{
-+ cloudsWindSpeedMult:r=80.0
-+ strataCloudsWindSpeedMult:r=2.0
-+ defaultWindSpeed:r=1.0
-+ height0:r=300.0
-+ turbulence0:r=4.0
-+ windMul0:r=1.0
-+ height1:r=2000.0
-+ turbulence1:r=4.0
-+ windMul1:r=1.0
-+ height2:r=8000.0
-+ turbulence2:r=0.5
-+ windMul2:r=0.01
-+ }
-+ 
-+ clouds_rendering{
-+ forward_eccentricity:r=0.73
-+ back_eccentricity:r=0.42
-+ forward_eccentricity_weight:r=0.75
-+ erosion_noise_size:r=42.0
-+ ambient_desaturation:r=0.5
-+ ms_contribution:r=0.7
-+ ms_attenuation:r=0.3
-+ ms_ecc_attenuation:r=0.3
-+ erosionWindSpeed:r=50.0
-+ }
-+ 
-+ rainX7{
-+ alphaFadeSpeedBegin:r=20.0
-+ alphaFadeSpeedEnd:r=170.0
-+ length:r=0.75
-+ speed:r=8.5
-+ width:r=0.02
-+ density:r=2.0
-+ wind:r=1.0
-+ alpha:r=0.2
-+ lighting:p3=0.3, 0.3, 0.32
-+ perPassMul:r=5.0
-+ }
-+ 
-+ rainDroplets{
-+ droplets_reflection_min:r=0.1
-+ droplets_reflection_max:r=0.3
-+ droplets_size_scale:p3=20.0, 20.0, 4.0
-+ droplets_speed:r=1.5
-+ }
-+ 
-+ waterFlowmapParams{
-+ simulationSpeed:r=2.0
-+ crossfadeTime:r=4.0
-+ }
-+ 
-+ puddlesPower{
-+ 
-+ p{
-+ value:p2=0.0, 0.0
-+ weight:r=1.0
-+ }
-+ 
-+ p{
-+ value:p2=0.12, 0.15
-+ weight:r=1.0
-+ }
-+ }
-+ }
-+ 
-+ overcast{
-+ scatteringEffect:p2=0.0, 0.0
-+ cloud_shadow_intensity:r=0.7
-+ addWhiteTemp:r=0.0
-+ cloudDropletsScale:r=0.3
-+ cloudDropletsLayerThickness:r=2.0
-+ wind_strength:r=5.0
-+ waterWindStrength:r=3.0
-+ dustMul:r=1.0
-+ mudMul:r=1.0
-+ rainSplashEnabled:b=no
-+ rainSound:t="rain"
-+ rainCockpitSound:t="rain_cockpit"
-+ skyLightFactor:r=1.0
-+ cloudAircraftReflectMul:r=4.0
-+ cloudAircraftReflectPowerMul:r=0.5
-+ clouds_fly_cube_tex:t="cloud_fly_cube"
-+ wetnessPower:r=0.3
-+ cloudsShadowInfluence:r=0.82
-+ enableCloudsHole:b=no
-+ cloudsShadowWaterInfluence:r=0.0
-+ 
-+ clouds_weather_gen{
-+ "layers[0].coverage":p2=0.5, 0.71
-+ "layers[0].freq":p2=1.461, 2.461
-+ "layers[1].coverage":p2=1.0, 1.0
-+ "layers[1].freq":p2=6.0, 6.0
-+ cumulonimbusCoverage:p2=0.0, 0.179
-+ epicness:r=0.0
-+ "layers[0].seed":p2=0.0, 32768.0
-+ "layers[1].seed":p2=0.0, 32768.0
-+ cumulonimbusSeed:p2=0.0, 32768.0
-+ }
-+ 
-+ clouds_form{
-+ "layers[0].thickness":p2=1.728, 4.04
-+ "layers[0].density":p2=0.821, 1.047
-+ "layers[0].clouds_type":p2=0.9, 1.0
-+ "layers[0].clouds_type_variance":p2=0.652, 0.099
-+ "layers[1].thickness":p2=4.68, 5.336
-+ "layers[1].density":p2=1.135, 1.135
-+ "layers[1].clouds_type":p2=1.0, 1.0
-+ "layers[1].clouds_type_variance":p2=0.019, 0.019
-+ extinction:p2=0.75, 0.75
-+ turbulenceStrength:p2=0.25, 0.25
-+ shapeNoiseScale:i=12
-+ cumulonimbusShapeScale:i=4
-+ turbulenceFreq:i=1
-+ "layers[0].startAt":p2=1.996, 3.184
-+ "layers[1].startAt":p2=7.938, 9.065
-+ }
-+ 
-+ sky{
-+ mie_scale:p2=60.0, 90.0
-+ mie_height:p2=0.8, 1.1
-+ mie2_thickness:r=220.0
-+ mie2_scale:r=30.0
-+ multiple_scattering_factor:r=0.04
-+ moon_brightness:r=0.32
-+ }
-+ 
-+ clouds_gen{
-+ humidity:p2=0.47, 0.62
-+ persistence:p2=0.58, 0.7
-+ asymmetry:p2=0.08, 0.22
-+ }
-+ 
-+ clouds_position{
-+ sizeX:p2=111.0, 111.0
-+ sizeZ:p2=99.0, 99.0
-+ 
-+ start_altitude{
-+ 
-+ p{
-+ value:p2=1.2, 1.4
-+ weight:r=8.0
-+ }
-+ 
-+ p{
-+ value:p2=1.4, 2.0
-+ weight:r=1.0
-+ }
-+ }
-+ 
-+ thickness{
-+ 
-+ p{
-+ value:p2=2.6, 3.0
-+ weight:r=0.5
-+ }
-+ 
-+ p{
-+ value:p2=3.0, 3.5
-+ weight:r=5.0
-+ }
-+ 
-+ p{
-+ value:p2=3.5, 5.0
-+ weight:r=1.0
-+ }
-+ }
-+ 
-+ light_extinction{
-+ 
-+ p{
-+ value:p2=0.6, 0.85
-+ weight:r=1.0
-+ }
-+ 
-+ p{
-+ value:p2=0.85, 1.05
-+ weight:r=5.0
-+ }
-+ }
-+ 
-+ amb_extinction_mul{
-+ 
-+ p{
-+ value:p2=0.3, 1.0
-+ weight:r=1.0
-+ }
-+ }
-+ }
-+ 
-+ strata_clouds{
-+ amount:p2=0.4, 0.85
-+ altitude:p2=9.0, 11.9
-+ }
-+ 
-+ windParams{
-+ cloudsWindSpeedMult:r=100.0
-+ cloudsWindSpeedLimit:r=40.0
-+ strataCloudsWindSpeedMult:r=4.0
-+ defaultWindSpeed:r=0.1
-+ height0:r=600.0
-+ turbulence0:r=0.7
-+ windMul0:r=1.0
-+ height1:r=2000.0
-+ turbulence1:r=0.7
-+ windMul1:r=1.0
-+ height2:r=8000.0
-+ turbulence2:r=0.3
-+ windMul2:r=0.01
-+ }
-+ 
-+ rain{
-+ probability:r=0.15
-+ }
-+ 
-+ clouds_rendering{
-+ forward_eccentricity:r=0.73
-+ back_eccentricity:r=0.42
-+ forward_eccentricity_weight:r=0.75
-+ erosion_noise_size:r=42.0
-+ ambient_desaturation:r=0.5
-+ ms_contribution:r=0.7
-+ ms_attenuation:r=0.3
-+ ms_ecc_attenuation:r=0.3
-+ erosionWindSpeed:r=50.0
-+ }
-+ 
-+ rainX7{
-+ alphaFadeSpeedBegin:r=20.0
-+ alphaFadeSpeedEnd:r=170.0
-+ length:r=0.75
-+ speed:r=8.5
-+ width:r=0.02
-+ density:r=2.0
-+ wind:r=1.0
-+ alpha:r=0.2
-+ lighting:p3=0.3, 0.3, 0.32
-+ perPassMul:r=5.0
-+ }
-+ 
-+ rainDroplets{
-+ droplets_reflection_min:r=0.1
-+ droplets_reflection_max:r=0.3
-+ droplets_size_scale:p3=20.0, 20.0, 4.0
-+ droplets_speed:r=1.5
-+ }
-+ 
-+ waterFlowmapParams{
-+ simulationSpeed:r=2.0
-+ crossfadeTime:r=4.0
-+ }
-+ 
-+ puddlesPower{
-+ 
-+ p{
-+ value:p2=0.0, 0.1
-+ weight:r=1.0
-+ }
-+ 
-+ p{
-+ value:p2=0.1, 0.2
-+ weight:r=3.0
-+ }
-+ 
-+ p{
-+ value:p2=0.2, 0.32
-+ weight:r=9.0
-+ }
-+ 
-+ p{
-+ value:p2=0.32, 0.35
-+ weight:r=3.0
-+ }
-+ }
-+ }
-```
-
-  **Removed**:
-```diff
-```
-
-
-- **aces.vromfs.bin_u/gamedata/environments/weather_types_canyon.blkx**:
-
-  **Added**:
-```diff
-+ "layers[0].coverage":p2=0.0, 0.0
-+ "layers[0].coverage":p2=0.1, 0.0
-+ "layers[0].coverage":p2=0.0, 0.0
-+ "layers[0].coverage":p2=0.0, 0.0
-+ "layers[0].coverage":p2=0.0, 0.0
-+ "layers[0].coverage":p2=0.1, 0.1
-+ "layers[1].coverage":p2=0.95, 1.0
-+ "layers[1].startAt":p2=3.5, 5.0
-+ "layers[0].coverage":p2=0.0, 0.0
-+ "layers[1].coverage":p2=0.77, 0.83
 + "layers[0].coverage":p2=0.0, 0.0
 + cumulonimbusCoverage:p2=0.0, 0.0
++ "layers[0].startAt":p2=4.0, 4.38
++ "layers[0].thickness":p2=1.75, 3.0
++ "layers[1].startAt":p2=6.5, 7.5
++ "layers[0].startAt":p2=4.0, 4.38
++ "layers[0].startAt":p2=4.0, 4.38
++ "layers[0].startAt":p2=4.0, 4.38
++ "layers[0].startAt":p2=4.0, 4.38
++ "layers[0].startAt":p2=4.0, 4.38
++ "layers[0].startAt":p2=4.0, 4.38
++ "layers[0].startAt":p2=4.0, 4.38
++ "layers[0].coverage":p2=0.0, 0.0
++ "layers[0].startAt":p2=4.0, 4.38
++ "layers[0].startAt":p2=4.0, 4.38
++ "layers[0].startAt":p2=4.0, 4.38
 ```
 
   **Removed**:
 ```diff
-- "layers[0].coverage":p2=0.0, 0.2
-- "layers[0].coverage":p2=0.22, 0.37
-- "layers[0].coverage":p2=0.2, 0.3
-- "layers[0].coverage":p2=0.5, 0.61
-- "layers[0].coverage":p2=0.3, 0.36
-- "layers[0].coverage":p2=1.0, 1.0
-- "layers[1].coverage":p2=0.4, 0.41
-- "layers[1].startAt":p2=4.5, 6.0
-- "layers[0].coverage":p2=0.77, 0.83
-- "layers[1].coverage":p2=0.58, 0.69
+- "layers[0].coverage":p2=0.4, 0.5
+- "layers[0].thickness":p2=8.0, 9.0
+- "layers[1].startAt":p2=6.5, 6.5
+- "layers[0].startAt":p2=2.12, 2.98
+- "layers[0].startAt":p2=2.12, 2.98
+- "layers[0].startAt":p2=2.12, 2.98
+- "layers[0].startAt":p2=2.12, 2.98
+- "layers[0].startAt":p2=2.12, 2.98
+- "layers[0].startAt":p2=2.12, 2.98
+- "layers[0].startAt":p2=0.8, 2.43
+- "layers[0].startAt":p2=2.12, 2.98
 - "layers[0].coverage":p2=0.604, 0.701
-- cumulonimbusCoverage:p2=0.101, 0.195
+- "layers[0].startAt":p2=2.12, 2.98
+- "layers[0].startAt":p2=2.12, 2.98
+- "layers[0].startAt":p2=2.12, 2.98
 ```
 
 
-- **aces.vromfs.bin_u/gamedata/environments/weather_types_winter.blkx**:
+- **aces.vromfs.bin_u/gamedata/units/ships/fr_battleship_strasbourg.blkx**:
 
   **Added**:
 ```diff
-+ "layers[0].startAt":p2=1.8, 2.0
-+ "layers[1].startAt":p2=7.0, 7.5
-+ "layers[0].startAt":p2=1.8, 2.43
-+ "layers[1].startAt":p2=7.13, 7.5
-+ wind_strength:r=5.0
-+ "layers[0].startAt":p2=1.8, 2.43
-+ "layers[1].startAt":p2=7.13, 7.5
-+ "layers[0].coverage":p2=0.1, 0.1
-+ "layers[1].coverage":p2=0.95, 1.0
-+ "layers[0].startAt":p2=2.5, 2.68
-+ "layers[1].startAt":p2=6.0, 7.5
-+ "layers[0].coverage":p2=0.72, 0.9
-+ "layers[1].coverage":p2=0.9, 0.97
-+ "layers[0].startAt":p2=1.8, 2.68
-+ "layers[1].startAt":p2=6.5, 7.2
-+ "layers[0].coverage":p2=0.58, 0.69
-+ "layers[1].coverage":p2=0.77, 0.83
-+ "layers[0].startAt":p2=1.8, 2.09744
-+ "layers[1].startAt":p2=7.5, 8.0
-+ "layers[0].startAt":p2=2.11, 2.37
-+ "layers[1].startAt":p2=4.86, 5.06
-+ "layers[0].startAt":p2=2.11, 2.37
-+ "layers[1].startAt":p2=4.86, 5.06
-+ "layers[0].startAt":p2=1.7, 2.0
-+ "layers[1].startAt":p2=7.0, 8.01
-+ "layers[0].startAt":p2=2.4, 3.0
-+ "layers[1].startAt":p2=7.0, 7.5
-+ scatteringEffect:p2=0.0, 0.0
-+ cloud_shadow_intensity:r=0.7
-+ addWhiteTemp:r=0.0
-+ cloudDropletsScale:r=0.3
-+ cloudDropletsLayerThickness:r=2.0
-+ wind_strength:r=5.0
-+ waterWindStrength:r=3.0
-+ dustMul:r=1.0
-+ mudMul:r=1.0
-+ rainSplashEnabled:b=no
-+ skyLightFactor:r=1.0
-+ cloudAircraftReflectMul:r=4.0
-+ cloudAircraftReflectPowerMul:r=0.5
-+ clouds_fly_cube_tex:t="cloud_fly_cube"
-+ wetnessPower:r=0.3
-+ cloudsShadowInfluence:r=0.82
-+ enableCloudsHole:b=no
-+ cloudsShadowWaterInfluence:r=0.0
-+ clouds_weather_gen{
-+ "layers[0].coverage":p2=0.5, 0.71
-+ "layers[0].freq":p2=1.461, 2.461
-+ "layers[1].coverage":p2=1.0, 1.0
-+ "layers[1].freq":p2=6.0, 6.0
-+ cumulonimbusCoverage:p2=0.0, 0.179
-+ epicness:r=0.0
-+ "layers[0].seed":p2=0.0, 32768.0
-+ "layers[1].seed":p2=0.0, 32768.0
-+ cumulonimbusSeed:p2=0.0, 32768.0
-+ }
-+ 
-+ clouds_form{
-+ "layers[0].thickness":p2=1.728, 4.04
-+ "layers[0].density":p2=0.821, 1.047
-+ "layers[0].clouds_type":p2=0.9, 1.0
-+ "layers[0].clouds_type_variance":p2=0.652, 0.099
-+ "layers[1].thickness":p2=4.68, 5.336
-+ "layers[1].density":p2=1.135, 1.135
-+ "layers[1].clouds_type":p2=1.0, 1.0
-+ "layers[1].clouds_type_variance":p2=0.019, 0.019
-+ extinction:p2=0.75, 0.75
-+ turbulenceStrength:p2=0.25, 0.25
-+ shapeNoiseScale:i=12
-+ cumulonimbusShapeScale:i=4
-+ turbulenceFreq:i=1
-+ "layers[0].startAt":p2=1.996, 3.184
-+ "layers[1].startAt":p2=7.938, 9.065
-+ }
-+ 
-+ sky{
-+ mie_scale:p2=60.0, 90.0
-+ mie_height:p2=0.8, 1.1
-+ mie2_thickness:r=220.0
-+ mie2_scale:r=30.0
-+ multiple_scattering_factor:r=0.04
-+ moon_brightness:r=0.32
-+ }
-+ 
-+ clouds_gen{
-+ humidity:p2=0.47, 0.62
-+ persistence:p2=0.58, 0.7
-+ asymmetry:p2=0.08, 0.22
-+ }
-+ 
-+ clouds_position{
-+ sizeX:p2=111.0, 111.0
-+ sizeZ:p2=99.0, 99.0
-+ 
-+ start_altitude{
-+ 
-+ p{
-+ value:p2=1.2, 1.4
-+ weight:r=8.0
-+ }
-+ 
-+ p{
-+ value:p2=1.4, 2.0
-+ weight:r=1.0
-+ }
-+ }
-+ 
-+ thickness{
-+ 
-+ p{
-+ value:p2=2.6, 3.0
-+ weight:r=0.5
-+ }
-+ 
-+ p{
-+ value:p2=3.0, 3.5
-+ weight:r=5.0
-+ }
-+ 
-+ p{
-+ value:p2=3.5, 5.0
-+ weight:r=1.0
-+ }
-+ }
-+ 
-+ light_extinction{
-+ 
-+ p{
-+ value:p2=0.6, 0.85
-+ weight:r=1.0
-+ }
-+ 
-+ p{
-+ value:p2=0.85, 1.05
-+ weight:r=5.0
-+ }
-+ }
-+ 
-+ amb_extinction_mul{
-+ 
-+ p{
-+ value:p2=0.3, 1.0
-+ weight:r=1.0
-+ }
-+ }
-+ }
-+ 
-+ strata_clouds{
-+ amount:p2=0.4, 0.85
-+ altitude:p2=9.0, 11.9
-+ }
-+ 
-+ windParams{
-+ cloudsWindSpeedMult:r=100.0
-+ cloudsWindSpeedLimit:r=40.0
-+ strataCloudsWindSpeedMult:r=4.0
-+ defaultWindSpeed:r=0.1
-+ height0:r=600.0
-+ turbulence0:r=0.7
-+ windMul0:r=1.0
-+ height1:r=2000.0
-+ turbulence1:r=0.7
-+ windMul1:r=1.0
-+ height2:r=8000.0
-+ turbulence2:r=0.3
-+ windMul2:r=0.01
-+ }
-+ 
-+ clouds_rendering{
-+ forward_eccentricity:r=0.73
-+ back_eccentricity:r=0.42
-+ forward_eccentricity_weight:r=0.75
-+ erosion_noise_size:r=42.0
-+ ambient_desaturation:r=0.5
-+ ms_contribution:r=0.7
-+ ms_attenuation:r=0.3
-+ ms_ecc_attenuation:r=0.3
-+ erosionWindSpeed:r=50.0
-+ }
-+ 
-+ rainDroplets{
-+ droplets_reflection_min:r=0.1
-+ droplets_reflection_max:r=0.3
-+ droplets_size_scale:p3=20.0, 20.0, 4.0
-+ droplets_speed:r=1.5
-+ }
-+ 
-+ waterFlowmapParams{
-+ simulationSpeed:r=2.0
-+ crossfadeTime:r=4.0
-+ }
-+ 
-+ puddlesPower{
-+ 
-+ p{
-+ value:p2=0.0, 0.1
-+ weight:r=1.0
-+ }
-+ 
-+ p{
-+ value:p2=0.1, 0.2
-+ weight:r=3.0
-+ }
-+ 
-+ p{
-+ value:p2=0.2, 0.32
-+ weight:r=9.0
-+ }
-+ 
-+ p{
-+ value:p2=0.32, 0.35
-+ weight:r=3.0
-+ }
-+ }
-+ 
-```
-
-  **Removed**:
-```diff
-- "layers[0].startAt":p2=0.8, 1.0
-- "layers[1].startAt":p2=6.5, 6.5
-- "layers[0].startAt":p2=0.8, 2.43
-- "layers[1].startAt":p2=6.5, 6.13
-- wind_strength:r=7.0
-- "layers[0].startAt":p2=0.8, 2.43
-- "layers[1].startAt":p2=6.5, 6.13
-- "layers[0].coverage":p2=1.0, 1.0
-- "layers[1].coverage":p2=0.4, 0.41
-- "layers[0].startAt":p2=0.916, 1.118
-- "layers[1].startAt":p2=2.438, 3.165
-- "layers[0].coverage":p2=0.9, 1.0
-- "layers[1].coverage":p2=0.72, 0.9
-- "layers[0].startAt":p2=0.8, 1.01
-- "layers[1].startAt":p2=6.5, 3.18
-- "layers[0].coverage":p2=0.77, 0.83
-- "layers[1].coverage":p2=0.58, 0.69
-- "layers[0].startAt":p2=0.8, 1.09744
-- "layers[1].startAt":p2=6.5, 6.33745
-- "layers[0].startAt":p2=1.11, 1.37
-- "layers[1].startAt":p2=3.86, 4.06
-- "layers[0].startAt":p2=1.11, 1.37
-- "layers[1].startAt":p2=3.86, 4.06
-- "layers[0].startAt":p2=0.658, 1.078
-- "layers[1].startAt":p2=7.065, 5.914
-- "layers[0].startAt":p2=1.399, 1.399
-- "layers[1].startAt":p2=6.5, 6.5
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/a_7k.blkx**:
-
-  **Added**:
-```diff
-+ maxloadMass:r=8130.0
-+ maxloadMassLeftConsoles:r=4065.0
-+ maxloadMassRightConsoles:r=4065.0
-```
-
-  **Removed**:
-```diff
-- maxloadMass:r=7260.0
-- maxloadMassLeftConsoles:r=3630.0
-- maxloadMassRightConsoles:r=3630.0
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/f-4c.blkx**:
-
-  **Added**:
-```diff
-+ tier:i=1
-+ tier:i=2
-```
-
-  **Removed**:
-```diff
-- tier:i=2
-- tier:i=3
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/f-5ag_norway.blkx**:
-
-  **Added**:
-```diff
-+ model:t="f_5ag_norway"
-+ fmFile:t="fm/f_5a.blk"
-+ viewDistKInSight:r=6.0
-+ MetaPartsBlk:t="gameData/FlightModels/dm/metaparts/jet_fighter_metaparts.blk"
++ hasQualityModels:b=yes
++ model:t="battleship_strasbourg"
++ subclass:t="warShip"
++ dustFx:t="water_units_dust"
++ useBotForAi:b=yes
 + harmonizationSuffix:t="_tomoe"
-+ gearSinkRangeLR:r=0.234
-+ gearSinkRangeC:r=0.221
-+ jetEnginePowerFullScale:b=yes
-+ rwrIndicator:t="AN/ALR-46"
-+ isBwOpticSight:b=yes
-+ gyroSight:b=yes
-+ havePointOfInterestDesignator:b=yes
-+ ilsElbit967:b=yes
-+ mfdCamTads:b=yes
-+ type:t="typeFighter"
-+ advancedInstructor:b=yes
-+ advancedMouseAim:b=yes
-+ standardExhaustFxType:t="jet_exhaust"
-+ afterburnerExhaustFxType:t="jet_afterburner_exhaust"
-+ startExhaustFxType:t="jet_start_exhaust"
-+ disableExhaustFxIfContrailIsActive:b=yes
-+ overheatBlk:t="gameData/FlightModels/DM/overheat.blk"
-+ damagePartsToCollisionObjectsMapBlk:t="gameData/FlightModels/DM/dm_parts_to_collision_objects.blk"
-+ damagePartsToFmPartsMapBlk:t="gameData/FlightModels/DM/dm_parts_to_fm_parts_map.blk"
-+ damagePartsToHudPartsMapBlk:t="gameData/FlightModels/DM/dm_parts_to_hud_parts_map.blk"
-+ damagePartsDependencyMapBlk:t="gameData/FlightModels/DM/dm_parts_additional_dependency_map.blk"
-+ damagePartsToCollisionPointsMapBlk:t="gameData/FlightModels/DM/dm_parts_to_collision_points_map.blk"
-+ damagePartsToWeaponsMapBlk:t="gameData/FlightModels/DM/dm_parts_to_weapons_map.blk"
-+ damagePartsToAvionicsPartsMapBlk:t="gameData/FlightModels/DM/dm_parts_to_avionics_parts_map.blk"
-+ damagePartsToVisualEffectsMapBlk:t="gameData/FlightModels/DM/dm_parts_to_visual_effects_map.blk"
-+ damagePartsExcludeFromHoleBlk:t="gameData/FlightModels/DM/dm_parts_exclude_from_hole.blk"
-+ explosion_dmBlk:t="gameData/FlightModels/DM/commonExplosion.blk"
-+ fireParamsPreset:t="1800kph"
-+ fightAiBehaviour:t="fighter"
-+ autopilotImpl:t="FBW"
-+ paratrooper:t="usa_irvin_5000_ejection_para"
++ moveType:t="ship"
++ maxFwdSpeed:r=80.0
++ maxRevSpeed:r=5.0
++ maxAngSpeed:r=15.0
++ maxAccel:r=20.0
++ maxDecel:r=5.0
++ maxAngAccel:r=15.0
++ maxAngAccel0:r=2.0
++ maxAngAccelV:r=15.0
++ groundNormSmoothViscosity:r=0.1
++ customUpdateDiv:i=5
++ SoundMove:t="models.Ship"
++ tailStartOffset:r=10.0
++ ikPilotMaxUpdateDistance:r=170.0
++ ikPilotMaxRenderDistance:r=170.0
++ useSimpleDeathConditionsAndEffects:b=no
++ type:t="typeDestroyer"
++ expClass:t="exp_cruiser"
++ timeToFire:r=40.0
++ timeToSmoke:r=300.0
++ hasExpl:b=no
++ exhaustFx:t="ship_exhaust_big"
++ explosionFx:t="explosion_ship_large"
++ decorCutProps:t="battleship"
++ propSplashEffects:t="propSplashEffects_underwater"
++ shipsDisableDeadCoverParts:b=yes
++ smokeScreenActivateTime:r=5.0
++ smokeScreenEffectTime:r=30.0
++ smokeScreenRad:r=60.0
++ smokeScreenFxType:t="tank_smokescreen"
++ smokeScreenFx:t="smokescreen_hydroplane"
++ smokeScreenOffset:p3=-80.0, 2.0, 0.0
++ isStackRearm:b=yes
++ supportsCombinedPriSecTriggers:b=yes
++ depthTraceWarningDepth:r=14.0
++ depthTraceCriticalDepth:r=11.0
++ debrisPreset:t="debris_preset_battleship"
++ haveAnchor:b=yes
++ anchorPos:p3=100.039, 6.764, -2.17
 + 
-+ DamageParts{
-+ 
-+ armor10{
-+ 
-+ cannon1_dm{
-+ hp:r=15.0
-+ }
-+ 
-+ cannon2_dm{
-+ hp:r=15.0
-+ }
-+ 
-+ cannon3_dm{
-+ hp:r=15.0
-+ }
-+ }
-+ 
-+ armor_jet_engine{
-+ 
-+ engine1_dm{
-+ genericDamageMult:r=1.6
-+ hp:r=50.5
-+ }
-+ 
-+ engine2_dm{
-+ genericDamageMult:r=1.6
-+ hp:r=50.5
-+ }
-+ }
-+ 
-+ c_dural3{
-+ 
-+ aileron_l_dm{
-+ genericDamageMult:r=0.3
-+ hp:r=14.5
-+ }
-+ 
-+ aileron_r_dm{
-+ genericDamageMult:r=0.3
-+ hp:r=14.5
-+ }
-+ 
-+ elevator0_dm{
-+ genericDamageMult:r=0.3
-+ hp:r=30.5
-+ }
-+ 
-+ elevator1_dm{
-+ genericDamageMult:r=0.3
-+ hp:r=30.5
-+ }
-+ 
-+ fin_dm{
-+ hp:r=30.5
-+ }
-+ 
-+ flap_l_dm{
-+ hp:r=25.3
-+ }
-+ 
-+ flap_r_dm{
-+ hp:r=24.8
-+ }
-+ 
-+ rudder_dm{
-+ genericDamageMult:r=0.3
-+ hp:r=14.5
-+ }
-+ }
-+ 
-+ c_dural7{
-+ 
-+ fuse1_dm{
-+ hp:r=79.7
-+ }
-+ 
-+ fuse_dm{
-+ hp:r=95.5
-+ }
-+ 
-+ tail_dm{
-+ genericDamageMult:r=0.5
-+ hp:r=100.5
-+ }
-+ 
-+ wing1_l_dm{
-+ genericDamageMult:r=0.3
-+ hp:r=40.5
-+ }
-+ 
-+ wing1_r_dm{
-+ genericDamageMult:r=0.3
-+ hp:r=40.5
-+ }
-+ 
-+ wing2_l_dm{
-+ genericDamageMult:r=0.3
-+ hp:r=40.5
-+ }
-+ 
-+ wing2_r_dm{
-+ genericDamageMult:r=0.3
-+ hp:r=40.5
-+ }
-+ 
-+ wing_l_dm{
-+ genericDamageMult:r=0.3
-+ hp:r=60.5
-+ }
-+ 
-+ wing_r_dm{
-+ genericDamageMult:r=0.3
-+ hp:r=60.5
-+ }
-+ }
-+ 
-+ dural{
-+ 
-+ cover1_dm{
-+ hp:r=19.5
-+ }
-+ 
-+ cover2_dm{
-+ hp:r=19.5
-+ }
-+ }
-+ 
-+ dural40{
-+ 
-+ spar1_l_dm{
-+ hp:r=19.5
-+ }
-+ 
-+ spar1_r_dm{
-+ hp:r=19.5
-+ }
-+ 
-+ spar2_l_dm{
-+ hp:r=19.5
-+ }
-+ 
-+ spar2_r_dm{
-+ hp:r=19.5
-+ }
-+ 
-+ spar_l_dm{
-+ hp:r=19.5
-+ }
-+ 
-+ spar_r_dm{
-+ hp:r=19.5
-+ }
-+ }
-+ 
-+ dural5{
-+ 
-+ radar_dm{
-+ hp:r=35.0
-+ }
-+ }
-+ 
-+ protected_controls{
-+ 
-+ tailcontrol_dm{
-+ hp:r=60.5
-+ }
-+ 
-+ wingcontrol_l_dm{
-+ hp:r=60.5
-+ }
-+ 
-+ wingcontrol_r_dm{
-+ hp:r=60.5
-+ }
-+ }
-+ 
-+ steel{
-+ 
-+ gear_c_dm{
-+ hp:r=39.5
-+ }
-+ 
-+ gear_l_dm{
-+ hp:r=39.5
-+ }
-+ 
-+ gear_r_dm{
-+ hp:r=39.5
-+ }
-+ }
-+ 
-+ steel_cooling_sys{
-+ 
-+ oil1_dm{
-+ hp:r=11.5
-+ }
-+ 
-+ oil2_dm{
-+ hp:r=11.5
-+ }
-+ }
-+ 
-+ steel_pilot{
-+ 
-+ pilot_dm{
-+ fireProtectionHp:r=20.0
-+ hp:r=20.0
-+ }
-+ }
-+ 
-+ steel_tank_armor{
-+ 
-+ tank1_dm{
-+ hp:r=106.1
-+ }
-+ 
-+ tank2_dm{
-+ hp:r=120.5
-+ }
-+ }
-+ 
-+ steel_tank_s{
-+ 
-+ tank3_dm{
-+ hp:r=80.5
-+ }
-+ 
-+ tank4_dm{
-+ hp:r=78.2
-+ }
-+ 
-+ tank5_dm{
-+ hp:r=80.5
-+ }
-+ }
-+ }
-+ 
-+ DamageEffects{
-+ 
-+ part{
-+ name:t="aileron_l_dm"
-+ 
-+ onHit{
-+ damage:r=10.0
-+ cut:r=0.1
-+ }
-+ 
-+ onHit{
-+ damage:r=20.0
-+ cut:r=0.4
-+ }
-+ 
-+ onHit{
-+ damage:r=30.0
-+ cut:r=0.7
-+ }
-+ 
-+ onHit{
-+ damage:r=50.0
-+ cut:r=1.0
-+ }
-+ 
-+ onKill{
-+ cut:r=1.0
-+ nothing:r=4.0
-+ }
-+ 
-+ onKill{
-+ damage:r=20.0
-+ cut:r=1.0
-+ nothing:r=2.0
-+ }
-+ 
-+ onKill{
-+ damage:r=30.0
-+ cut:r=1.0
-+ nothing:r=1.0
-+ }
-+ 
-+ onKill{
-+ damage:r=50.0
-+ cut:r=1.0
-+ }
-+ }
-+ 
-+ part{
-+ name:t="aileron_r_dm"
-+ 
-+ onHit{
-+ damage:r=10.0
-+ cut:r=0.1
-+ }
-+ 
-+ onHit{
-+ damage:r=20.0
-+ cut:r=0.4
-+ }
-+ 
-+ onHit{
-+ damage:r=30.0
-+ cut:r=0.7
-+ }
-+ 
-+ onHit{
-+ damage:r=50.0
-+ cut:r=1.0
-+ }
-+ 
-+ onKill{
-+ cut:r=1.0
-+ nothing:r=4.0
-+ }
-+ 
-+ onKill{
-+ damage:r=20.0
-+ cut:r=1.0
-+ nothing:r=2.0
-+ }
-+ 
-+ onKill{
-+ damage:r=30.0
-+ cut:r=1.0
-+ nothing:r=1.0
-+ }
-+ 
-+ onKill{
-+ damage:r=50.0
-+ cut:r=1.0
-+ }
-+ }
-+ 
-+ part{
-+ name:t="cannon1_dm"
-+ }
-+ 
-+ part{
-+ name:t="cannon2_dm"
-+ }
-+ 
-+ part{
-+ name:t="cannon3_dm"
-+ }
-+ 
-+ part{
-+ name:t="cover1_dm"
-+ }
-+ 
-+ part{
-+ name:t="cover2_dm"
-+ }
-+ 
-+ part{
-+ name:t="elevator0_dm"
-+ 
-+ onHit{
-+ damage:r=10.0
-+ cut:r=0.1
-+ }
-+ 
-+ onHit{
-+ damage:r=20.0
-+ cut:r=0.4
-+ }
-+ 
-+ onHit{
-+ damage:r=30.0
-+ cut:r=0.7
-+ }
-+ 
-+ onHit{
-+ damage:r=50.0
-+ cut:r=1.0
-+ }
-+ 
-+ onKill{
-+ cut:r=1.0
-+ nothing:r=4.0
-+ }
-+ 
-+ onKill{
-+ damage:r=20.0
-+ cut:r=1.0
-+ nothing:r=2.0
-+ }
-+ 
-+ onKill{
-+ damage:r=30.0
-+ cut:r=1.0
-+ nothing:r=1.0
-+ }
-+ 
-+ onKill{
-+ damage:r=50.0
-+ cut:r=1.0
-+ }
-+ }
-+ 
-+ part{
-+ name:t="elevator1_dm"
-+ 
-+ onHit{
-+ damage:r=10.0
-+ cut:r=0.1
-+ }
-+ 
-+ onHit{
-+ damage:r=20.0
-+ cut:r=0.4
-+ }
-+ 
-+ onHit{
-+ damage:r=30.0
-+ cut:r=0.7
-+ }
-+ 
-+ onHit{
-+ damage:r=50.0
-+ cut:r=1.0
-+ }
-+ 
-+ onKill{
-+ cut:r=1.0
-+ nothing:r=4.0
-+ }
-+ 
-+ onKill{
-+ damage:r=20.0
-+ cut:r=1.0
-+ nothing:r=2.0
-+ }
-+ 
-+ onKill{
-+ damage:r=30.0
-+ cut:r=1.0
-+ nothing:r=1.0
-+ }
-+ 
-+ onKill{
-+ damage:r=50.0
-+ cut:r=1.0
-+ }
-+ }
-+ 
-+ part{
-+ name:t="engine1_dm"
-+ 
-+ onHit{
-+ fire:r=0.001
-+ cut:r=0.0
-+ }
-+ 
-+ onHit{
-+ damage:r=30.0
-+ fire:r=0.005
-+ cut:r=0.0
-+ }
-+ 
-+ onKill{
-+ fire:r=0.1
-+ cut:r=0.0
-+ }
-+ 
-+ onKill{
-+ damage:r=30.0
-+ fire:r=1.0
-+ cut:r=0.0
-+ }
-+ }
-+ 
-+ part{
-+ name:t="engine2_dm"
-+ 
-+ onHit{
-+ fire:r=0.001
-+ cut:r=0.0
-+ }
-+ 
-+ onHit{
-+ damage:r=30.0
-+ fire:r=0.005
-+ cut:r=0.0
-+ }
-+ 
-+ onKill{
-+ fire:r=0.1
-+ cut:r=0.0
-+ }
-+ 
-+ onKill{
-+ damage:r=30.0
-+ fire:r=1.0
-+ cut:r=0.0
-+ }
-+ }
-+ 
-+ part{
-+ name:t="fin_dm"
-+ 
-+ onHit{
-+ tailcontrol_dm:r=0.001
-+ }
-+ 
-+ onHit{
-+ damage:r=30.0
-+ cut:r=0.6
-+ }
-+ 
-+ onHit{
-+ damage:r=60.0
-+ cut:r=1.0
-+ }
-+ 
-+ onKill{
-+ tailcontrol_dm:r=1.0
-+ nothing:r=9.0
-+ }
-+ 
-+ onKill{
-+ damage:r=10.0
-+ cut:r=1.0
-+ nothing:r=10.0
-+ }
-+ 
-+ onKill{
-+ damage:r=30.0
-+ cut:r=2.0
-+ nothing:r=5.0
-+ }
-+ 
-+ onKill{
-+ damage:r=50.0
-+ cut:r=1.0
-+ nothing:r=0.0
-+ }
-+ }
-+ 
-+ part{
-+ name:t="flap_l_dm"
-+ 
-+ onHit{
-+ damage:r=10.0
-+ cut:r=0.1
-+ }
-+ 
-+ onHit{
-+ damage:r=20.0
-+ cut:r=0.4
-+ }
-+ 
-+ onHit{
-+ damage:r=30.0
-+ cut:r=0.7
-+ }
-+ 
-+ onHit{
-+ damage:r=50.0
-+ cut:r=1.0
-+ }
-+ 
-+ onKill{
-+ cut:r=1.0
-+ nothing:r=9.0
-+ }
-+ 
-+ onKill{
-+ damage:r=10.0
-+ cut:r=1.0
-+ nothing:r=2.0
-+ }
-+ 
-+ onKill{
-+ damage:r=20.0
-+ cut:r=1.0
-+ nothing:r=1.0
-+ }
-+ 
-+ onKill{
-+ damage:r=30.0
-+ cut:r=1.0
-+ }
-+ }
-+ 
-+ part{
-+ name:t="flap_r_dm"
-+ 
-+ onHit{
-+ damage:r=10.0
-+ cut:r=0.1
-+ }
-+ 
-+ onHit{
-+ damage:r=20.0
-+ cut:r=0.4
-+ }
-+ 
-+ onHit{
-+ damage:r=30.0
-+ cut:r=0.7
-+ }
-+ 
-+ onHit{
-+ damage:r=50.0
-+ cut:r=1.0
-+ }
-+ 
-+ onKill{
-+ cut:r=1.0
-+ nothing:r=9.0
-+ }
-+ 
-+ onKill{
-+ damage:r=10.0
-+ cut:r=1.0
-+ nothing:r=2.0
-+ }
-+ 
-+ onKill{
-+ damage:r=20.0
-+ cut:r=1.0
-+ nothing:r=1.0
-+ }
-+ 
-+ onKill{
-+ damage:r=30.0
-+ cut:r=1.0
-+ }
-+ }
-+ 
-+ part{
-+ name:t="fuse1_dm"
-+ 
-+ onHit{
-+ flame:r=0.2
-+ smoke:r=0.2
-+ }
-+ 
-+ onHit{
-+ damage:r=30.0
-+ wing_r_dm:r=0.3
-+ wing_l_dm:r=0.3
-+ }
-+ 
-+ onHit{
-+ damage:r=50.0
-+ wing_r_dm:r=0.5
-+ wing_l_dm:r=0.5
-+ }
-+ 
-+ onHit{
-+ damage:r=200.0
-+ wingcontrol_dm:r=0.2
-+ wingcontrol_l_dm:r=0.2
-+ wingcontrol_r_dm:r=0.2
-+ }
-+ 
-+ onKill{
-+ wingcontrol_l_dm:r=1.0
-+ wingcontrol_r_dm:r=1.0
-+ nothing:r=9.0
-+ }
-+ 
-+ onKill{
-+ damage:r=7.0
-+ wing_l_dm:r=1.0
-+ wing_r_dm:r=1.0
-+ nothing:r=5.0
-+ }
-+ 
-+ onKill{
-+ damage:r=10.0
-+ wing_l_dm:r=1.0
-+ wing_r_dm:r=1.0
-+ nothing:r=4.0
-+ }
-+ 
-+ onKill{
-+ damage:r=20.0
-+ wing_l_dm:r=1.0
-+ wing_r_dm:r=1.0
-+ nothing:r=3.0
-+ }
-+ 
-+ onKill{
-+ damage:r=30.0
-+ wing_l_dm:r=1.0
-+ wing_r_dm:r=1.0
-+ nothing:r=2.0
-+ }
-+ 
-+ onKill{
-+ damage:r=50.0
-+ fire:r=5.0
-+ wing_l_dm:r=1.0
-+ wing_r_dm:r=1.0
-+ }
-+ 
-+ onKill{
-+ damage:r=200.0
-+ wingcontrol_dm:r=0.4
-+ wingcontrol_l_dm:r=0.4
-+ wingcontrol_r_dm:r=0.4
-+ }
-+ }
-+ 
-+ part{
-+ name:t="fuse_dm"
-+ 
-+ onHit{
-+ flame:r=0.2
-+ smoke:r=0.2
-+ }
-+ 
-+ onHit{
-+ damage:r=45.0
-+ tail_dm:r=0.4
-+ }
-+ 
-+ onHit{
-+ damage:r=40.0
-+ tail_dm:r=0.6
-+ }
-+ 
-+ onHit{
-+ damage:r=50.0
-+ tail_dm:r=1.0
-+ }
-+ 
-+ onHit{
-+ damage:r=200.0
-+ wingcontrol_dm:r=0.2
-+ wingcontrol_l_dm:r=0.2
-+ wingcontrol_r_dm:r=0.2
-+ }
-+ 
-+ onKill{
-+ tail_dm:r=1.0
-+ nothing:r=10.0
-+ }
-+ 
-+ onKill{
-+ damage:r=3.0
-+ tail_dm:r=1.0
-+ nothing:r=7.0
-+ }
-+ 
-+ onKill{
-+ damage:r=7.0
-+ tail_dm:r=1.0
-+ nothing:r=6.0
-+ }
-+ 
-+ onKill{
-+ damage:r=10.0
-+ tail_dm:r=1.0
-+ nothing:r=5.0
-+ }
-+ 
-+ onKill{
-+ damage:r=20.0
-+ tail_dm:r=1.0
-+ nothing:r=4.0
-+ }
-+ 
-+ onKill{
-+ damage:r=30.0
-+ tail_dm:r=1.0
-+ nothing:r=3.0
-+ }
-+ 
-+ onKill{
-+ damage:r=40.0
-+ tail_dm:r=1.0
-+ nothing:r=2.0
-+ }
-+ 
-+ onKill{
-+ damage:r=50.0
-+ tail_dm:r=1.0
-+ nothing:r=1.0
-+ }
-+ 
-+ onKill{
-+ damage:r=200.0
-+ wingcontrol_dm:r=0.4
-+ wingcontrol_l_dm:r=0.4
-+ wingcontrol_r_dm:r=0.4
-+ }
-+ }
-+ 
-+ part{
-+ name:t="gear_c_dm"
-+ 
-+ onHit{
-+ damage:r=15.0
-+ cut:r=0.1
-+ }
-+ 
-+ onHit{
-+ damage:r=25.0
-+ cut:r=0.4
-+ }
-+ 
-+ onHit{
-+ damage:r=40.0
-+ cut:r=0.7
-+ }
-+ 
-+ onHit{
-+ damage:r=60.0
-+ cut:r=1.0
-+ }
-+ 
-+ onKill{
-+ cut:r=1.0
-+ }
-+ }
-+ 
-+ part{
-+ name:t="gear_l_dm"
-+ 
-+ onHit{
-+ damage:r=15.0
-+ cut:r=0.1
-+ }
-+ 
-+ onHit{
-+ damage:r=25.0
-+ cut:r=0.4
-+ }
-+ 
-+ onHit{
-+ damage:r=40.0
-+ cut:r=0.7
-+ }
-+ 
-+ onHit{
-+ damage:r=60.0
-+ cut:r=1.0
-+ }
-+ 
-+ onKill{
-+ cut:r=1.0
-+ }
-+ }
-+ 
-+ part{
-+ name:t="gear_r_dm"
-+ 
-+ onHit{
-+ damage:r=15.0
-+ cut:r=0.1
-+ }
-+ 
-+ onHit{
-+ damage:r=25.0
-+ cut:r=0.4
-+ }
-+ 
-+ onHit{
-+ damage:r=40.0
-+ cut:r=0.7
-+ }
-+ 
-+ onHit{
-+ damage:r=60.0
-+ cut:r=1.0
-+ }
-+ 
-+ onKill{
-+ cut:r=1.0
-+ }
-+ }
-+ 
-+ part{
-+ name:t="oil1_dm"
-+ 
-+ onHit{
-+ leak_oil:r=0.95
-+ }
-+ 
-+ onKill{
-+ leak_oil:r=1.0
-+ }
-+ }
-+ 
-+ part{
-+ name:t="oil2_dm"
-+ 
-+ onHit{
-+ leak_oil:r=0.95
-+ }
-+ 
-+ onKill{
-+ leak_oil:r=1.0
-+ }
-+ }
-+ 
-+ part{
-+ name:t="pilot_dm"
-+ }
-+ 
-+ part{
-+ name:t="radar_dm"
-+ }
-+ 
-+ part{
-+ name:t="rudder_dm"
-+ 
-+ onHit{
-+ damage:r=10.0
-+ cut:r=0.1
-+ }
-+ 
-+ onHit{
-+ damage:r=20.0
-+ cut:r=0.4
-+ }
-+ 
-+ onHit{
-+ damage:r=30.0
-+ cut:r=0.7
-+ }
-+ 
-+ onHit{
-+ damage:r=50.0
-+ cut:r=1.0
-+ }
-+ 
-+ onKill{
-+ cut:r=1.0
-+ nothing:r=4.0
-+ }
-+ 
-+ onKill{
-+ damage:r=20.0
-+ cut:r=1.0
-+ nothing:r=2.0
-+ }
-+ 
-+ onKill{
-+ damage:r=30.0
-+ cut:r=1.0
-+ nothing:r=1.0
-+ }
-+ 
-+ onKill{
-+ damage:r=50.0
-+ cut:r=1.0
-+ }
-+ }
-+ 
-+ part{
-+ name:t="spar1_l_dm"
-+ 
-+ onKill{
-+ nothing:r=2.0
-+ cut:r=3.0
-+ }
-+ }
-+ 
-+ part{
-+ name:t="spar1_r_dm"
-+ 
-+ onKill{
-+ nothing:r=2.0
-+ cut:r=3.0
-+ }
-+ }
-+ 
-+ part{
-+ name:t="spar2_l_dm"
-+ 
-+ onKill{
-+ nothing:r=2.0
-+ cut:r=3.0
-+ }
-+ }
-+ 
-+ part{
-+ name:t="spar2_r_dm"
-+ 
-+ onKill{
-+ nothing:r=2.0
-+ cut:r=3.0
-+ }
-+ }
-+ 
-+ part{
-+ name:t="spar_l_dm"
-+ 
-+ onKill{
-+ nothing:r=100.0
-+ cut:r=0.001
-+ }
-+ }
-+ 
-+ part{
-+ name:t="spar_r_dm"
-+ 
-+ onKill{
-+ nothing:r=100.0
-+ cut:r=0.001
-+ }
-+ }
-+ 
-+ part{
-+ name:t="tail_dm"
-+ 
-+ onHit{
-+ flame:r=0.2
-+ smoke:r=0.2
-+ }
-+ 
-+ onKill{
-+ tailcontrol_dm:r=1.0
-+ nothing:r=19.0
-+ }
-+ 
-+ onKill{
-+ damage:r=10.0
-+ tailcontrol_dm:r=1.0
-+ nothing:r=9.0
-+ }
-+ }
-+ 
-+ part{
-+ name:t="tailcontrol_dm"
-+ }
-+ 
-+ part{
-+ name:t="tank1_dm"
-+ 
-+ onHit{
-+ fire:r=0.0001
-+ leak:r=0.3
-+ }
-+ 
-+ onHit{
-+ damage:r=3.0
-+ fire:r=0.001
-+ leak:r=0.5
-+ }
-+ 
-+ onHit{
-+ damage:r=20.0
-+ fire:r=0.005
-+ leak:r=0.7
-+ }
-+ 
-+ onHit{
-+ damage:r=80.0
-+ expl:r=0.5
-+ fire:r=0.01
-+ leak:r=0.9
-+ }
-+ 
-+ onKill{
-+ fire:r=0.01
-+ leak:r=9.99
-+ }
-+ 
-+ onKill{
-+ damage:r=50.0
-+ fire:r=50.0
-+ leak:r=15.0
-+ }
-+ 
-+ onKill{
-+ damage:r=80.0
-+ fire:r=50.0
-+ leak:r=10.0
-+ }
-+ }
-+ 
-+ part{
-+ name:t="tank2_dm"
-+ 
-+ onHit{
-+ fire:r=0.0001
-+ leak:r=0.3
-+ }
-+ 
-+ onHit{
-+ damage:r=3.0
-+ fire:r=0.001
-+ leak:r=0.5
-+ }
-+ 
-+ onHit{
-+ damage:r=20.0
-+ fire:r=0.005
-+ leak:r=0.7
-+ }
-+ 
-+ onHit{
-+ damage:r=80.0
-+ expl:r=0.5
-+ fire:r=0.01
-+ leak:r=0.9
-+ }
-+ 
-+ onKill{
-+ fire:r=0.01
-+ leak:r=9.99
-+ }
-+ 
-+ onKill{
-+ damage:r=50.0
-+ fire:r=50.0
-+ leak:r=15.0
-+ }
-+ 
-+ onKill{
-+ damage:r=80.0
-+ fire:r=50.0
-+ leak:r=10.0
-+ }
-+ }
-+ 
-+ part{
-+ name:t="tank3_dm"
-+ 
-+ onHit{
-+ fire:r=0.05
-+ leak:r=0.7
-+ }
-+ 
-+ onHit{
-+ damage:r=20.0
-+ fire:r=0.3
-+ leak:r=0.8
-+ }
-+ 
-+ onHit{
-+ damage:r=50.0
-+ fire:r=0.9
-+ leak:r=0.9
-+ }
-+ 
-+ onHit{
-+ damage:r=80.0
-+ expl:r=0.5
-+ fire:r=0.9
-+ leak:r=0.9
-+ }
-+ 
-+ onKill{
-+ fire:r=10.0
-+ leak:r=10.0
-+ nothing:r=80.0
-+ }
-+ 
-+ onKill{
-+ damage:r=50.0
-+ fire:r=25.0
-+ leak:r=35.0
-+ }
-+ 
-+ onKill{
-+ damage:r=80.0
-+ fire:r=50.0
-+ leak:r=30.0
-+ }
-+ }
-+ 
-+ part{
-+ name:t="tank4_dm"
-+ 
-+ onHit{
-+ fire:r=0.05
-+ leak:r=0.7
-+ }
-+ 
-+ onHit{
-+ damage:r=20.0
-+ fire:r=0.3
-+ leak:r=0.8
-+ }
-+ 
-+ onHit{
-+ damage:r=50.0
-+ fire:r=0.9
-+ leak:r=0.9
-+ }
-+ 
-+ onHit{
-+ damage:r=80.0
-+ expl:r=0.5
-+ fire:r=0.9
-+ leak:r=0.9
-+ }
-+ 
-+ onKill{
-+ fire:r=10.0
-+ leak:r=10.0
-+ nothing:r=80.0
-+ }
-+ 
-+ onKill{
-+ damage:r=50.0
-+ fire:r=25.0
-+ leak:r=35.0
-+ }
-+ 
-+ onKill{
-+ damage:r=80.0
-+ fire:r=50.0
-+ leak:r=30.0
-+ }
-+ }
-+ 
-+ part{
-+ name:t="tank5_dm"
-+ 
-+ onHit{
-+ fire:r=0.05
-+ leak:r=0.7
-+ }
-+ 
-+ onHit{
-+ damage:r=20.0
-+ fire:r=0.3
-+ leak:r=0.8
-+ }
-+ 
-+ onHit{
-+ damage:r=50.0
-+ fire:r=0.9
-+ leak:r=0.9
-+ }
-+ 
-+ onHit{
-+ damage:r=80.0
-+ expl:r=0.5
-+ fire:r=0.9
-+ leak:r=0.9
-+ }
-+ 
-+ onKill{
-+ fire:r=10.0
-+ leak:r=10.0
-+ nothing:r=80.0
-+ }
-+ 
-+ onKill{
-+ damage:r=50.0
-+ fire:r=25.0
-+ leak:r=35.0
-+ }
-+ 
-+ onKill{
-+ damage:r=80.0
-+ fire:r=50.0
-+ leak:r=30.0
-+ }
-+ }
-+ 
-+ part{
-+ name:t="wing1_l_dm"
-+ defaultEffectPart:t="spar1_l_dm"
-+ 
-+ onHit{
-+ smoke:r=0.1
-+ flame:r=0.2
-+ }
-+ 
-+ onHit{
-+ damage:r=10.0
-+ cut:r=0.0
-+ smoke:r=0.3
-+ flame:r=0.3
-+ 
-+ part{
-+ ratio:r=0.1
-+ canCut:b=yes
-+ }
-+ }
-+ 
-+ onHit{
-+ damage:r=20.0
-+ cut:r=0.0
-+ smoke:r=0.3
-+ flame:r=0.3
-+ 
-+ part{
-+ ratio:r=0.2
-+ canCut:b=yes
-+ }
-+ }
-+ 
-+ onHit{
-+ damage:r=30.0
-+ cut:r=0.0
-+ smoke:r=0.4
-+ flame:r=0.4
-+ 
-+ part{
-+ ratio:r=0.4
-+ canCut:b=yes
-+ }
-+ }
-+ 
-+ onHit{
-+ damage:r=50.0
-+ cut:r=0.0
-+ smoke:r=0.6
-+ flame:r=0.6
-+ 
-+ part{
-+ ratio:r=0.8
-+ canCut:b=yes
-+ }
-+ }
-+ 
-+ onHit{
-+ damage:r=70.0
-+ cut:r=0.0
-+ smoke:r=0.8
-+ flame:r=0.8
-+ 
-+ part{
-+ ratio:r=1.0
-+ canCut:b=yes
-+ }
-+ }
-+ 
-+ onKill{
-+ damage:r=10.0
-+ cut:r=0.0
-+ smoke:r=1.0
-+ flame:r=1.0
-+ nothing:r=9.0
-+ 
-+ part{
-+ ratio:r=1.0
-+ canCut:b=yes
-+ }
-+ }
-+ 
-+ onKill{
-+ damage:r=20.0
-+ cut:r=0.0
-+ smoke:r=2.0
-+ flame:r=2.0
-+ nothing:r=5.0
-+ 
-+ part{
-+ ratio:r=1.0
-+ canCut:b=yes
-+ }
-+ }
-+ 
-+ onKill{
-+ damage:r=30.0
-+ cut:r=0.0
-+ smoke:r=2.0
-+ flame:r=2.0
-+ nothing:r=3.0
-+ 
-+ part{
-+ ratio:r=1.0
-+ canCut:b=yes
-+ }
-+ }
-+ 
-+ onKill{
-+ damage:r=50.0
-+ cut:r=0.0
-+ smoke:r=2.0
-+ flame:r=2.0
-+ nothing:r=1.0
-+ 
-+ part{
-+ ratio:r=1.0
-+ canCut:b=yes
-+ }
-+ }
-+ 
-+ onKill{
-+ damage:r=70.0
-+ cut:r=0.0
-+ smoke:r=2.0
-+ flame:r=2.0
-+ 
-+ part{
-+ ratio:r=1.0
-+ canCut:b=yes
-+ }
-+ }
-+ }
-+ 
-+ part{
-+ name:t="wing1_r_dm"
-+ defaultEffectPart:t="spar1_r_dm"
-+ 
-+ onHit{
-+ smoke:r=0.1
-+ flame:r=0.2
-+ }
-+ 
-+ onHit{
-+ damage:r=10.0
-+ cut:r=0.0
-+ smoke:r=0.3
-+ flame:r=0.3
-+ 
-+ part{
-+ ratio:r=0.1
-+ canCut:b=yes
++ hideNodesInDmg{
++ node:t="flag"
 + }
-+ }
-+ 
-+ onHit{
-+ damage:r=20.0
-+ cut:r=0.0
-+ smoke:r=0.3
-+ flame:r=0.3
-+ 
-+ part{
-+ ratio:r=0.2
-+ canCut:b=yes
-+ }
-+ }
-+ 
-+ onHit{
-+ damage:r=30.0
-+ cut:r=0.0
-+ smoke:r=0.4
-+ flame:r=0.4
-+ 
-+ part{
-+ ratio:r=0.4
-+ canCut:b=yes
-+ }
-+ }
-+ 
-+ onHit{
-+ damage:r=50.0
-+ cut:r=0.0
-+ smoke:r=0.6
-+ flame:r=0.6
-+ 
-+ part{
-+ ratio:r=0.8
-+ canCut:b=yes
-+ }
-+ }
-+ 
-+ onHit{
-+ damage:r=70.0
-+ cut:r=0.0
-+ smoke:r=0.8
-+ flame:r=0.8
-+ 
-+ part{
-+ ratio:r=1.0
-+ canCut:b=yes
-+ }
-+ }
-+ 
-+ onKill{
-+ damage:r=10.0
-+ cut:r=0.0
-+ smoke:r=1.0
-+ flame:r=1.0
-+ nothing:r=9.0
-+ 
-+ part{
-+ ratio:r=1.0
-+ canCut:b=yes
-+ }
-+ }
-+ 
-+ onKill{
-+ damage:r=20.0
-+ cut:r=0.0
-+ smoke:r=2.0
-+ flame:r=2.0
-+ nothing:r=5.0
-+ 
-+ part{
-+ ratio:r=1.0
-+ canCut:b=yes
-+ }
-+ }
-+ 
-+ onKill{
-+ damage:r=30.0
-+ cut:r=0.0
-+ smoke:r=2.0
-+ flame:r=2.0
-+ nothing:r=3.0
-+ 
-+ part{
-+ ratio:r=1.0
-+ canCut:b=yes
-+ }
-+ }
-+ 
-+ onKill{
-+ damage:r=50.0
-+ cut:r=0.0
-+ smoke:r=2.0
-+ flame:r=2.0
-+ nothing:r=1.0
-+ 
-+ part{
-+ ratio:r=1.0
-+ canCut:b=yes
-+ }
-+ }
-+ 
-+ onKill{
-+ damage:r=70.0
-+ cut:r=0.0
-+ smoke:r=2.0
-+ flame:r=2.0
-+ 
-+ part{
-+ ratio:r=1.0
-+ canCut:b=yes
-+ }
-+ }
-+ }
-+ 
-+ part{
-+ name:t="wing2_l_dm"
-+ defaultEffectPart:t="spar2_l_dm"
-+ 
-+ onHit{
-+ smoke:r=0.1
-+ flame:r=0.2
-+ }
-+ 
-+ onHit{
-+ damage:r=10.0
-+ cut:r=0.0
-+ smoke:r=0.3
-+ flame:r=0.3
-+ 
-+ part{
-+ ratio:r=0.1
-+ canCut:b=yes
-+ }
-+ }
-+ 
-+ onHit{
-+ damage:r=20.0
-+ cut:r=0.0
-+ smoke:r=0.3
-+ flame:r=0.3
-+ 
-+ part{
-+ ratio:r=0.2
-+ canCut:b=yes
-+ }
-+ }
-+ 
-+ onHit{
-+ damage:r=30.0
-+ cut:r=0.0
-+ smoke:r=0.4
-+ flame:r=0.4
-+ 
-+ part{
-+ ratio:r=0.4
-+ canCut:b=yes
-+ }
-+ }
-+ 
-+ onHit{
-+ damage:r=50.0
-+ cut:r=0.0
-+ smoke:r=0.6
-+ flame:r=0.6
-+ 
-+ part{
-+ ratio:r=0.8
-+ canCut:b=yes
-+ }
-+ }
-+ 
-+ onHit{
-+ damage:r=70.0
-+ cut:r=0.0
-+ smoke:r=0.8
-+ flame:r=0.8
-+ 
-+ part{
-+ ratio:r=1.0
-+ canCut:b=yes
-+ }
-+ }
-+ 
-+ onKill{
-+ damage:r=10.0
-+ cut:r=0.0
-+ smoke:r=1.0
-+ flame:r=1.0
-+ nothing:r=9.0
-+ 
-+ part{
-+ ratio:r=1.0
-+ canCut:b=yes
-+ }
-+ }
-+ 
-+ onKill{
-+ damage:r=20.0
-+ cut:r=0.0
-+ smoke:r=2.0
-+ flame:r=2.0
-+ nothing:r=5.0
-+ 
-+ part{
-+ ratio:r=1.0
-+ canCut:b=yes
-+ }
-+ }
-+ 
-+ onKill{
-+ damage:r=30.0
-+ cut:r=0.0
-+ smoke:r=2.0
-+ flame:r=2.0
-+ nothing:r=3.0
-+ 
-+ part{
-+ ratio:r=1.0
-+ canCut:b=yes
-+ }
-+ }
-+ 
-+ onKill{
-+ damage:r=50.0
-+ cut:r=0.0
-+ smoke:r=2.0
-+ flame:r=2.0
-+ nothing:r=1.0
-+ 
-+ part{
-+ ratio:r=1.0
-+ canCut:b=yes
-+ }
-+ }
-+ 
-+ onKill{
-+ damage:r=70.0
-+ cut:r=0.0
-+ smoke:r=2.0
-+ flame:r=2.0
-+ 
-+ part{
-+ ratio:r=1.0
-+ canCut:b=yes
-+ }
-+ }
-+ }
-+ 
-+ part{
-+ name:t="wing2_r_dm"
-+ defaultEffectPart:t="spar2_r_dm"
-+ 
-+ onHit{
-+ smoke:r=0.1
-+ flame:r=0.2
-+ }
-+ 
-+ onHit{
-+ damage:r=10.0
-+ cut:r=0.0
-+ smoke:r=0.3
-+ flame:r=0.3
-+ 
-+ part{
-+ ratio:r=0.1
-+ canCut:b=yes
-+ }
-+ }
-+ 
-+ onHit{
-+ damage:r=20.0
-+ cut:r=0.0
-+ smoke:r=0.3
-+ flame:r=0.3
-+ 
-+ part{
-+ ratio:r=0.2
-+ canCut:b=yes
-+ }
-+ }
-+ 
-+ onHit{
-+ damage:r=30.0
-+ cut:r=0.0
-+ smoke:r=0.4
-+ flame:r=0.4
-+ 
-+ part{
-+ ratio:r=0.4
-+ canCut:b=yes
-+ }
-+ }
-+ 
-+ onHit{
-+ damage:r=50.0
-+ cut:r=0.0
-+ smoke:r=0.6
-+ flame:r=0.6
-+ 
-+ part{
-+ ratio:r=0.8
-+ canCut:b=yes
-+ }
-+ }
-+ 
-+ onHit{
-+ damage:r=70.0
-+ cut:r=0.0
-+ smoke:r=0.8
-+ flame:r=0.8
-+ 
-+ part{
-+ ratio:r=1.0
-+ canCut:b=yes
-+ }
-+ }
-+ 
-+ onKill{
-+ damage:r=10.0
-+ cut:r=0.0
-+ smoke:r=1.0
-+ flame:r=1.0
-+ nothing:r=9.0
-+ 
-+ part{
-+ ratio:r=1.0
-+ canCut:b=yes
-+ }
-+ }
-+ 
-+ onKill{
-+ damage:r=20.0
-+ cut:r=0.0
-+ smoke:r=2.0
-+ flame:r=2.0
-+ nothing:r=5.0
-+ 
-+ part{
-+ ratio:r=1.0
-+ canCut:b=yes
-+ }
-+ }
-+ 
-+ onKill{
-+ damage:r=30.0
-+ cut:r=0.0
-+ smoke:r=2.0
-+ flame:r=2.0
-+ nothing:r=3.0
-+ 
-+ part{
-+ ratio:r=1.0
-+ canCut:b=yes
-+ }
-+ }
-+ 
-+ onKill{
-+ damage:r=50.0
-+ cut:r=0.0
-+ smoke:r=2.0
-+ flame:r=2.0
-+ nothing:r=1.0
-+ 
-+ part{
-+ ratio:r=1.0
-+ canCut:b=yes
-+ }
-+ }
-+ 
-+ onKill{
-+ damage:r=70.0
-+ cut:r=0.0
-+ smoke:r=2.0
-+ flame:r=2.0
-+ 
-+ part{
-+ ratio:r=1.0
-+ canCut:b=yes
-+ }
-+ }
-+ }
 + 
-+ part{
-+ name:t="wing_l_dm"
++ default_skin_tomoe{
 + 
-+ onHit{
-+ smoke:r=0.1
-+ flame:r=0.2
++ replace_tex{
++ from:t="flag_ussr_01_c*"
++ to:t="flag_ussr_01_c_tomoe*"
 + }
 + 
-+ onHit{
-+ damage:r=10.0
-+ smoke:r=0.2
-+ flame:r=0.3
++ replace_tex{
++ from:t="flag_ussr_03_c*"
++ to:t="flag_ussr_01_c_tomoe*"
 + }
 + 
-+ onHit{
-+ damage:r=20.0
-+ smoke:r=0.3
-+ flame:r=0.4
++ replace_tex{
++ from:t="flag_usa_01_c*"
++ to:t="flag_usa_01_c_tomoe*"
 + }
 + 
-+ onHit{
-+ damage:r=30.0
-+ smoke:r=0.4
-+ flame:r=0.5
++ replace_tex{
++ from:t="flag_usa_02_c*"
++ to:t="flag_usa_01_c_tomoe*"
 + }
 + 
-+ onHit{
-+ damage:r=50.0
-+ smoke:r=0.5
-+ flame:r=0.6
++ replace_tex{
++ from:t="flag_uk_01_c*"
++ to:t="flag_uk_01_c_tomoe*"
 + }
 + 
-+ onHit{
-+ damage:r=70.0
-+ smoke:r=0.8
-+ flame:r=0.8
++ replace_tex{
++ from:t="flag_poland_01_c*"
++ to:t="flag_uk_01_c_tomoe*"
 + }
 + 
-+ onKill{
-+ damage:r=10.0
-+ smoke:r=0.2
-+ flame:r=0.2
++ replace_tex{
++ from:t="flag_japan_01_c*"
++ to:t="flag_japan_01_c_tomoe*"
 + }
 + 
-+ onKill{
-+ damage:r=20.0
-+ smoke:r=0.2
-+ flame:r=0.2
++ replace_tex{
++ from:t="flag_japan_02_c*"
++ to:t="flag_japan_01_c_tomoe*"
 + }
 + 
-+ onKill{
-+ damage:r=30.0
-+ smoke:r=0.5
-+ flame:r=0.6
++ replace_tex{
++ from:t="flag_italy_01_c*"
++ to:t="flag_italy_01_c_tomoe*"
 + }
 + 
-+ onKill{
-+ damage:r=50.0
-+ smoke:r=1.0
-+ flame:r=1.1
++ replace_tex{
++ from:t="flag_italy_02_c*"
++ to:t="flag_italy_01_c_tomoe*"
 + }
 + 
-+ onKill{
-+ damage:r=70.0
-+ smoke:r=1.0
-+ flame:r=1.1
++ replace_tex{
++ from:t="flag_italy_03_c*"
++ to:t="flag_italy_01_c_tomoe*"
 + }
-+ }
 + 
-+ part{
-+ name:t="wing_r_dm"
-+ 
-+ onHit{
-+ smoke:r=0.1
-+ flame:r=0.2
++ replace_tex{
++ from:t="flag_germany_01_c*"
++ to:t="flag_germany_01_c_tomoe*"
 + }
 + 
-+ onHit{
-+ damage:r=10.0
-+ smoke:r=0.2
-+ flame:r=0.3
++ replace_tex{
++ from:t="flag_germany_02_c*"
++ to:t="flag_germany_01_c_tomoe*"
 + }
 + 
-+ onHit{
-+ damage:r=20.0
-+ smoke:r=0.3
-+ flame:r=0.4
++ replace_tex{
++ from:t="flag_germany_03_c*"
++ to:t="flag_germany_01_c_tomoe*"
 + }
 + 
-+ onHit{
-+ damage:r=30.0
-+ smoke:r=0.4
-+ flame:r=0.5
++ replace_tex{
++ from:t="flag_germany_04_c*"
++ to:t="flag_germany_01_c_tomoe*"
 + }
 + 
-+ onHit{
-+ damage:r=50.0
-+ smoke:r=0.5
-+ flame:r=0.6
++ replace_tex{
++ from:t="flag_germany_05_c*"
++ to:t="flag_germany_01_c_tomoe*"
 + }
 + 
-+ onHit{
-+ damage:r=70.0
-+ smoke:r=0.8
-+ flame:r=0.8
++ replace_tex{
++ from:t="flag_ireland_01_c*"
++ to:t="flag_uk_01_c_tomoe*"
 + }
 + 
-+ onKill{
-+ damage:r=10.0
-+ smoke:r=0.2
-+ flame:r=0.2
++ replace_tex{
++ from:t="flag_france_01_c*"
++ to:t="flag_france_01_c_tomoe*"
 + }
 + 
-+ onKill{
-+ damage:r=20.0
-+ smoke:r=0.2
-+ flame:r=0.2
++ replace_tex{
++ from:t="flag_egypt_01_c*"
++ to:t="flag_ussr_01_c_tomoe*"
 + }
 + 
-+ onKill{
-+ damage:r=30.0
-+ smoke:r=0.5
-+ flame:r=0.6
++ replace_tex{
++ from:t="airplane_ger_ar196_c*"
++ to:t="airplane_ger_ar196_c_tomoe*"
 + }
 + 
-+ onKill{
-+ damage:r=50.0
-+ smoke:r=1.0
-+ flame:r=1.1
++ replace_tex{
++ from:t="airplane_japan_e7k2_c*"
++ to:t="airplane_japan_e7k2_c_tomoe*"
 + }
 + 
-+ onKill{
-+ damage:r=70.0
-+ smoke:r=1.0
-+ flame:r=1.1
-+ }
++ replace_tex{
++ from:t="airplane_japan_e13a1_c*"
++ to:t="airplane_japan_e13a1_c_tomoe*"
 + }
 + 
-+ part{
-+ name:t="wingcontrol_l_dm"
++ replace_tex{
++ from:t="airplane_usa_curtiss_sc_seahawk_c*"
++ to:t="airplane_usa_curtiss_sc_seahawk_c_tomoe*"
 + }
 + 
-+ part{
-+ name:t="wingcontrol_r_dm"
++ replace_tex{
++ from:t="airplane_uk_vought_os2u_kingfisher_usa_c*"
++ to:t="airplane_uk_vought_os2u_kingfisher_usa_c_tomoe*"
 + }
 + }
 + 
-+ ikPilot{
-+ model:t="pilot_italy_late_char"
++ ikGunner{
++ model:t="french_sailor_char"
 + maxHeadHorAngle:r=60.0
 + maxHeadDownAngle:r=60.0
 + maxHeadUpAngle:r=10.0
 + headNode:t="Bip01 Head"
 + pelvisNode:t="Bip01 Pelvis"
-+ pelvisTargetNode:t="Bip01 Pelvis01"
++ pelvisTargetNode:t="Bip01 Pelvis_"
++ crouchDelta:p3=0.0, 0.0, 0.0
++ suffix:t="1"
++ deadHeadAttitudeMin:r=-55.0
++ deadHeadAttitudeMax:r=-40.0
 + 
 + ikNode{
 + downNode:t="Bip01 L Hand"
 + midNode:t="Bip01 L Forearm"
 + upNode:t="Bip01 L UpperArm"
-+ targetNode:t="throttle_lhand_1"
-+ flexionDir:p3=0.0, -1.0, 0.2
-+ type:t="leftHand"
-+ detachedNodeYpr:p3=0.0, -15.0, -90.0
-+ detachedNodeScale:p3=1.0, -1.0, 1.0
++ targetNode:t="lefthand_"
++ flexionDir:p3=0.5, -0.5, 0.3
 + }
 + 
 + ikNode{
 + downNode:t="Bip01 R Hand"
 + midNode:t="Bip01 R Forearm"
 + upNode:t="Bip01 R UpperArm"
-+ targetNode:t="stick_rhand_1"
-+ flexionDir:p3=0.0, -1.0, -0.5
-+ type:t="rightHand"
-+ detachedNodeYpr:p3=0.0, -15.0, 90.0
-+ detachedNodeScale:p3=1.0, -1.0, 1.0
++ targetNode:t="righthand_"
++ flexionDir:p3=-0.5, -0.5, 0.3
 + }
 + 
 + ikNode{
 + downNode:t="Bip01 L Foot"
 + midNode:t="Bip01 L Calf"
 + upNode:t="Bip01 L Thigh"
-+ targetNode:t="pedal_lfoot_1"
-+ flexionDir:p3=0.0, 1.0, 0.3
++ targetNode:t="pedal_lfoot_"
++ flexionDir:p3=-0.2, 1.0, -1.0
 + }
 + 
 + ikNode{
 + downNode:t="Bip01 R Foot"
 + midNode:t="Bip01 R Calf"
 + upNode:t="Bip01 R Thigh"
-+ targetNode:t="pedal_rfoot_1"
-+ flexionDir:p3=0.0, 1.0, -0.3
++ targetNode:t="pedal_rfoot_"
++ flexionDir:p3=-0.6, 1.0, -1.0
++ }
++ }
++ 
++ ikGunner{
++ model:t="french_sailor_char"
++ maxHeadHorAngle:r=60.0
++ maxHeadDownAngle:r=60.0
++ maxHeadUpAngle:r=10.0
++ headNode:t="Bip01 Head"
++ pelvisNode:t="Bip01 Pelvis"
++ pelvisTargetNode:t="Bip01 Pelvis_"
++ crouchDelta:p3=0.0, 0.0, 0.0
++ suffix:t="2"
++ deadHeadAttitudeMin:r=-55.0
++ deadHeadAttitudeMax:r=-40.0
++ 
++ ikNode{
++ downNode:t="Bip01 L Hand"
++ midNode:t="Bip01 L Forearm"
++ upNode:t="Bip01 L UpperArm"
++ targetNode:t="lefthand_"
++ flexionDir:p3=0.5, -0.5, 0.3
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 R Hand"
++ midNode:t="Bip01 R Forearm"
++ upNode:t="Bip01 R UpperArm"
++ targetNode:t="righthand_"
++ flexionDir:p3=-0.5, -0.5, 0.3
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 L Foot"
++ midNode:t="Bip01 L Calf"
++ upNode:t="Bip01 L Thigh"
++ targetNode:t="pedal_lfoot_"
++ flexionDir:p3=-0.2, 1.0, -1.0
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 R Foot"
++ midNode:t="Bip01 R Calf"
++ upNode:t="Bip01 R Thigh"
++ targetNode:t="pedal_rfoot_"
++ flexionDir:p3=-0.6, 1.0, -1.0
++ }
++ }
++ 
++ ikGunner{
++ model:t="french_officer_char"
++ maxHeadHorAngle:r=60.0
++ maxHeadDownAngle:r=60.0
++ maxHeadUpAngle:r=10.0
++ headNode:t="Bip01 Head"
++ pelvisNode:t="Bip01 Pelvis"
++ pelvisTargetNode:t="Bip01 Pelvis_"
++ crouchDelta:p3=0.0, 0.0, 0.0
++ suffix:t="3"
++ deadHeadAttitudeMin:r=-55.0
++ deadHeadAttitudeMax:r=-40.0
++ 
++ ikNode{
++ downNode:t="Bip01 L Hand"
++ midNode:t="Bip01 L Forearm"
++ upNode:t="Bip01 L UpperArm"
++ targetNode:t="lefthand_"
++ flexionDir:p3=0.5, -0.5, 0.3
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 R Hand"
++ midNode:t="Bip01 R Forearm"
++ upNode:t="Bip01 R UpperArm"
++ targetNode:t="righthand_"
++ flexionDir:p3=-0.5, -0.5, 0.3
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 L Foot"
++ midNode:t="Bip01 L Calf"
++ upNode:t="Bip01 L Thigh"
++ targetNode:t="pedal_lfoot_"
++ flexionDir:p3=-0.2, 1.0, -1.0
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 R Foot"
++ midNode:t="Bip01 R Calf"
++ upNode:t="Bip01 R Thigh"
++ targetNode:t="pedal_rfoot_"
++ flexionDir:p3=-0.6, 1.0, -1.0
++ }
++ }
++ 
++ ikGunner{
++ model:t="french_sailor_char"
++ maxHeadHorAngle:r=60.0
++ maxHeadDownAngle:r=60.0
++ maxHeadUpAngle:r=10.0
++ headNode:t="Bip01 Head"
++ pelvisNode:t="Bip01 Pelvis"
++ pelvisTargetNode:t="Bip01 Pelvis_"
++ crouchDelta:p3=-0.7, -0.7, 0.5
++ suffix:t="4"
++ deadHeadAttitudeMin:r=-55.0
++ deadHeadAttitudeMax:r=-40.0
++ 
++ ikNode{
++ downNode:t="Bip01 L Hand"
++ midNode:t="Bip01 L Forearm"
++ upNode:t="Bip01 L UpperArm"
++ targetNode:t="lefthand_"
++ flexionDir:p3=0.5, -0.5, 0.3
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 R Hand"
++ midNode:t="Bip01 R Forearm"
++ upNode:t="Bip01 R UpperArm"
++ targetNode:t="righthand_"
++ flexionDir:p3=-0.5, -0.5, 0.3
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 L Foot"
++ midNode:t="Bip01 L Calf"
++ upNode:t="Bip01 L Thigh"
++ targetNode:t="pedal_lfoot_"
++ flexionDir:p3=-0.2, 1.0, -1.0
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 R Foot"
++ midNode:t="Bip01 R Calf"
++ upNode:t="Bip01 R Thigh"
++ targetNode:t="pedal_rfoot_"
++ flexionDir:p3=-0.6, 1.0, -1.0
++ }
++ }
++ 
++ ikGunner{
++ model:t="french_sailor_char"
++ maxHeadHorAngle:r=60.0
++ maxHeadDownAngle:r=60.0
++ maxHeadUpAngle:r=10.0
++ headNode:t="Bip01 Head"
++ pelvisNode:t="Bip01 Pelvis"
++ pelvisTargetNode:t="Bip01 Pelvis_"
++ crouchDelta:p3=-0.7, -0.7, 0.5
++ suffix:t="5"
++ deadHeadAttitudeMin:r=-55.0
++ deadHeadAttitudeMax:r=-40.0
++ 
++ ikNode{
++ downNode:t="Bip01 L Hand"
++ midNode:t="Bip01 L Forearm"
++ upNode:t="Bip01 L UpperArm"
++ targetNode:t="lefthand_"
++ flexionDir:p3=0.5, -0.5, 0.3
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 R Hand"
++ midNode:t="Bip01 R Forearm"
++ upNode:t="Bip01 R UpperArm"
++ targetNode:t="righthand_"
++ flexionDir:p3=-0.5, -0.5, 0.3
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 L Foot"
++ midNode:t="Bip01 L Calf"
++ upNode:t="Bip01 L Thigh"
++ targetNode:t="pedal_lfoot_"
++ flexionDir:p3=-0.2, 1.0, -1.0
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 R Foot"
++ midNode:t="Bip01 R Calf"
++ upNode:t="Bip01 R Thigh"
++ targetNode:t="pedal_rfoot_"
++ flexionDir:p3=-0.6, 1.0, -1.0
++ }
++ }
++ 
++ ikGunner{
++ model:t="french_sailor_char"
++ maxHeadHorAngle:r=60.0
++ maxHeadDownAngle:r=60.0
++ maxHeadUpAngle:r=10.0
++ headNode:t="Bip01 Head"
++ pelvisNode:t="Bip01 Pelvis"
++ pelvisTargetNode:t="Bip01 Pelvis_"
++ crouchDelta:p3=0.0, 0.0, 0.0
++ suffix:t="6"
++ deadHeadAttitudeMin:r=-55.0
++ deadHeadAttitudeMax:r=-40.0
++ 
++ ikNode{
++ downNode:t="Bip01 L Hand"
++ midNode:t="Bip01 L Forearm"
++ upNode:t="Bip01 L UpperArm"
++ targetNode:t="lefthand_"
++ flexionDir:p3=0.5, -0.5, 0.3
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 R Hand"
++ midNode:t="Bip01 R Forearm"
++ upNode:t="Bip01 R UpperArm"
++ targetNode:t="righthand_"
++ flexionDir:p3=-0.5, -0.5, 0.3
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 L Foot"
++ midNode:t="Bip01 L Calf"
++ upNode:t="Bip01 L Thigh"
++ targetNode:t="pedal_lfoot_"
++ flexionDir:p3=-0.2, 1.0, -1.0
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 R Foot"
++ midNode:t="Bip01 R Calf"
++ upNode:t="Bip01 R Thigh"
++ targetNode:t="pedal_rfoot_"
++ flexionDir:p3=-0.6, 1.0, -1.0
++ }
++ }
++ 
++ ikGunner{
++ model:t="french_sailor_char"
++ maxHeadHorAngle:r=60.0
++ maxHeadDownAngle:r=60.0
++ maxHeadUpAngle:r=10.0
++ headNode:t="Bip01 Head"
++ pelvisNode:t="Bip01 Pelvis"
++ pelvisTargetNode:t="Bip01 Pelvis_"
++ crouchDelta:p3=0.0, 0.0, 0.0
++ suffix:t="7"
++ deadHeadAttitudeMin:r=-55.0
++ deadHeadAttitudeMax:r=-40.0
++ 
++ ikNode{
++ downNode:t="Bip01 L Hand"
++ midNode:t="Bip01 L Forearm"
++ upNode:t="Bip01 L UpperArm"
++ targetNode:t="lefthand_"
++ flexionDir:p3=0.5, -0.5, 0.3
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 R Hand"
++ midNode:t="Bip01 R Forearm"
++ upNode:t="Bip01 R UpperArm"
++ targetNode:t="righthand_"
++ flexionDir:p3=-0.5, -0.5, 0.3
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 L Foot"
++ midNode:t="Bip01 L Calf"
++ upNode:t="Bip01 L Thigh"
++ targetNode:t="pedal_lfoot_"
++ flexionDir:p3=-0.2, 1.0, -1.0
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 R Foot"
++ midNode:t="Bip01 R Calf"
++ upNode:t="Bip01 R Thigh"
++ targetNode:t="pedal_rfoot_"
++ flexionDir:p3=-0.6, 1.0, -1.0
++ }
++ }
++ 
++ ikGunner{
++ model:t="french_sailor_char"
++ maxHeadHorAngle:r=60.0
++ maxHeadDownAngle:r=60.0
++ maxHeadUpAngle:r=10.0
++ headNode:t="Bip01 Head"
++ pelvisNode:t="Bip01 Pelvis"
++ pelvisTargetNode:t="Bip01 Pelvis_"
++ crouchDelta:p3=0.0, 0.0, 0.0
++ suffix:t="8"
++ deadHeadAttitudeMin:r=-55.0
++ deadHeadAttitudeMax:r=-40.0
++ 
++ ikNode{
++ downNode:t="Bip01 L Hand"
++ midNode:t="Bip01 L Forearm"
++ upNode:t="Bip01 L UpperArm"
++ targetNode:t="lefthand_"
++ flexionDir:p3=0.5, -0.5, 0.3
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 R Hand"
++ midNode:t="Bip01 R Forearm"
++ upNode:t="Bip01 R UpperArm"
++ targetNode:t="righthand_"
++ flexionDir:p3=-0.5, -0.5, 0.3
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 L Foot"
++ midNode:t="Bip01 L Calf"
++ upNode:t="Bip01 L Thigh"
++ targetNode:t="pedal_lfoot_"
++ flexionDir:p3=-0.2, 1.0, -1.0
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 R Foot"
++ midNode:t="Bip01 R Calf"
++ upNode:t="Bip01 R Thigh"
++ targetNode:t="pedal_rfoot_"
++ flexionDir:p3=-0.6, 1.0, -1.0
++ }
++ }
++ 
++ ikGunner{
++ model:t="french_sailor_char"
++ maxHeadHorAngle:r=60.0
++ maxHeadDownAngle:r=60.0
++ maxHeadUpAngle:r=10.0
++ headNode:t="Bip01 Head"
++ pelvisNode:t="Bip01 Pelvis"
++ pelvisTargetNode:t="Bip01 Pelvis_"
++ crouchDelta:p3=0.0, 0.0, 0.0
++ suffix:t="9"
++ deadHeadAttitudeMin:r=-55.0
++ deadHeadAttitudeMax:r=-40.0
++ 
++ ikNode{
++ downNode:t="Bip01 L Hand"
++ midNode:t="Bip01 L Forearm"
++ upNode:t="Bip01 L UpperArm"
++ targetNode:t="lefthand_"
++ flexionDir:p3=0.5, -0.5, 0.3
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 R Hand"
++ midNode:t="Bip01 R Forearm"
++ upNode:t="Bip01 R UpperArm"
++ targetNode:t="righthand_"
++ flexionDir:p3=-0.5, -0.5, 0.3
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 L Foot"
++ midNode:t="Bip01 L Calf"
++ upNode:t="Bip01 L Thigh"
++ targetNode:t="pedal_lfoot_"
++ flexionDir:p3=-0.2, 1.0, -1.0
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 R Foot"
++ midNode:t="Bip01 R Calf"
++ upNode:t="Bip01 R Thigh"
++ targetNode:t="pedal_rfoot_"
++ flexionDir:p3=-0.6, 1.0, -1.0
++ }
++ }
++ 
++ ikGunner{
++ model:t="french_sailor_char"
++ maxHeadHorAngle:r=60.0
++ maxHeadDownAngle:r=60.0
++ maxHeadUpAngle:r=10.0
++ headNode:t="Bip01 Head"
++ pelvisNode:t="Bip01 Pelvis"
++ pelvisTargetNode:t="Bip01 Pelvis_"
++ crouchDelta:p3=0.0, 0.0, 0.0
++ suffix:t="10"
++ deadHeadAttitudeMin:r=-55.0
++ deadHeadAttitudeMax:r=-40.0
++ 
++ ikNode{
++ downNode:t="Bip01 L Hand"
++ midNode:t="Bip01 L Forearm"
++ upNode:t="Bip01 L UpperArm"
++ targetNode:t="lefthand_"
++ flexionDir:p3=0.5, -0.5, 0.3
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 R Hand"
++ midNode:t="Bip01 R Forearm"
++ upNode:t="Bip01 R UpperArm"
++ targetNode:t="righthand_"
++ flexionDir:p3=-0.5, -0.5, 0.3
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 L Foot"
++ midNode:t="Bip01 L Calf"
++ upNode:t="Bip01 L Thigh"
++ targetNode:t="pedal_lfoot_"
++ flexionDir:p3=-0.2, 1.0, -1.0
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 R Foot"
++ midNode:t="Bip01 R Calf"
++ upNode:t="Bip01 R Thigh"
++ targetNode:t="pedal_rfoot_"
++ flexionDir:p3=-0.6, 1.0, -1.0
++ }
++ }
++ 
++ ikGunner{
++ model:t="french_sailor_char"
++ maxHeadHorAngle:r=60.0
++ maxHeadDownAngle:r=60.0
++ maxHeadUpAngle:r=10.0
++ headNode:t="Bip01 Head"
++ pelvisNode:t="Bip01 Pelvis"
++ pelvisTargetNode:t="Bip01 Pelvis_"
++ crouchDelta:p3=0.0, 0.0, 0.0
++ suffix:t="11"
++ deadHeadAttitudeMin:r=-55.0
++ deadHeadAttitudeMax:r=-40.0
++ 
++ ikNode{
++ downNode:t="Bip01 L Hand"
++ midNode:t="Bip01 L Forearm"
++ upNode:t="Bip01 L UpperArm"
++ targetNode:t="lefthand_"
++ flexionDir:p3=0.5, -0.5, 0.3
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 R Hand"
++ midNode:t="Bip01 R Forearm"
++ upNode:t="Bip01 R UpperArm"
++ targetNode:t="righthand_"
++ flexionDir:p3=-0.5, -0.5, 0.3
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 L Foot"
++ midNode:t="Bip01 L Calf"
++ upNode:t="Bip01 L Thigh"
++ targetNode:t="pedal_lfoot_"
++ flexionDir:p3=-0.2, 1.0, -1.0
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 R Foot"
++ midNode:t="Bip01 R Calf"
++ upNode:t="Bip01 R Thigh"
++ targetNode:t="pedal_rfoot_"
++ flexionDir:p3=-0.6, 1.0, -1.0
++ }
++ }
++ 
++ ikGunner{
++ model:t="french_sailor_char"
++ maxHeadHorAngle:r=60.0
++ maxHeadDownAngle:r=60.0
++ maxHeadUpAngle:r=10.0
++ headNode:t="Bip01 Head"
++ pelvisNode:t="Bip01 Pelvis"
++ pelvisTargetNode:t="Bip01 Pelvis_"
++ crouchDelta:p3=0.0, 0.0, 0.0
++ suffix:t="12"
++ deadHeadAttitudeMin:r=-55.0
++ deadHeadAttitudeMax:r=-40.0
++ 
++ ikNode{
++ downNode:t="Bip01 L Hand"
++ midNode:t="Bip01 L Forearm"
++ upNode:t="Bip01 L UpperArm"
++ targetNode:t="lefthand_"
++ flexionDir:p3=0.5, -0.5, 0.3
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 R Hand"
++ midNode:t="Bip01 R Forearm"
++ upNode:t="Bip01 R UpperArm"
++ targetNode:t="righthand_"
++ flexionDir:p3=-0.5, -0.5, 0.3
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 L Foot"
++ midNode:t="Bip01 L Calf"
++ upNode:t="Bip01 L Thigh"
++ targetNode:t="pedal_lfoot_"
++ flexionDir:p3=-0.2, 1.0, -1.0
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 R Foot"
++ midNode:t="Bip01 R Calf"
++ upNode:t="Bip01 R Thigh"
++ targetNode:t="pedal_rfoot_"
++ flexionDir:p3=-0.6, 1.0, -1.0
++ }
++ }
++ 
++ ikGunner{
++ model:t="french_sailor_char"
++ maxHeadHorAngle:r=60.0
++ maxHeadDownAngle:r=60.0
++ maxHeadUpAngle:r=10.0
++ headNode:t="Bip01 Head"
++ pelvisNode:t="Bip01 Pelvis"
++ pelvisTargetNode:t="Bip01 Pelvis_"
++ crouchDelta:p3=0.0, 0.0, 0.0
++ suffix:t="13"
++ deadHeadAttitudeMin:r=-55.0
++ deadHeadAttitudeMax:r=-40.0
++ 
++ ikNode{
++ downNode:t="Bip01 L Hand"
++ midNode:t="Bip01 L Forearm"
++ upNode:t="Bip01 L UpperArm"
++ targetNode:t="lefthand_"
++ flexionDir:p3=0.5, -0.5, 0.3
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 R Hand"
++ midNode:t="Bip01 R Forearm"
++ upNode:t="Bip01 R UpperArm"
++ targetNode:t="righthand_"
++ flexionDir:p3=-0.5, -0.5, 0.3
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 L Foot"
++ midNode:t="Bip01 L Calf"
++ upNode:t="Bip01 L Thigh"
++ targetNode:t="pedal_lfoot_"
++ flexionDir:p3=-0.2, 1.0, -1.0
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 R Foot"
++ midNode:t="Bip01 R Calf"
++ upNode:t="Bip01 R Thigh"
++ targetNode:t="pedal_rfoot_"
++ flexionDir:p3=-0.6, 1.0, -1.0
++ }
++ }
++ 
++ ikGunner{
++ model:t="french_sailor_char"
++ maxHeadHorAngle:r=60.0
++ maxHeadDownAngle:r=60.0
++ maxHeadUpAngle:r=10.0
++ headNode:t="Bip01 Head"
++ pelvisNode:t="Bip01 Pelvis"
++ pelvisTargetNode:t="Bip01 Pelvis_"
++ crouchDelta:p3=0.0, 0.0, 0.0
++ suffix:t="14"
++ deadHeadAttitudeMin:r=-55.0
++ deadHeadAttitudeMax:r=-40.0
++ 
++ ikNode{
++ downNode:t="Bip01 L Hand"
++ midNode:t="Bip01 L Forearm"
++ upNode:t="Bip01 L UpperArm"
++ targetNode:t="lefthand_"
++ flexionDir:p3=0.5, -0.5, 0.3
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 R Hand"
++ midNode:t="Bip01 R Forearm"
++ upNode:t="Bip01 R UpperArm"
++ targetNode:t="righthand_"
++ flexionDir:p3=-0.5, -0.5, 0.3
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 L Foot"
++ midNode:t="Bip01 L Calf"
++ upNode:t="Bip01 L Thigh"
++ targetNode:t="pedal_lfoot_"
++ flexionDir:p3=-0.2, 1.0, -1.0
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 R Foot"
++ midNode:t="Bip01 R Calf"
++ upNode:t="Bip01 R Thigh"
++ targetNode:t="pedal_rfoot_"
++ flexionDir:p3=-0.6, 1.0, -1.0
++ }
++ }
++ 
++ ikGunner{
++ model:t="french_sailor_char"
++ maxHeadHorAngle:r=60.0
++ maxHeadDownAngle:r=60.0
++ maxHeadUpAngle:r=10.0
++ headNode:t="Bip01 Head"
++ pelvisNode:t="Bip01 Pelvis"
++ pelvisTargetNode:t="Bip01 Pelvis_"
++ crouchDelta:p3=0.0, 0.0, 0.0
++ suffix:t="15"
++ deadHeadAttitudeMin:r=-55.0
++ deadHeadAttitudeMax:r=-40.0
++ 
++ ikNode{
++ downNode:t="Bip01 L Hand"
++ midNode:t="Bip01 L Forearm"
++ upNode:t="Bip01 L UpperArm"
++ targetNode:t="lefthand_"
++ flexionDir:p3=0.5, -0.5, 0.3
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 R Hand"
++ midNode:t="Bip01 R Forearm"
++ upNode:t="Bip01 R UpperArm"
++ targetNode:t="righthand_"
++ flexionDir:p3=-0.5, -0.5, 0.3
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 L Foot"
++ midNode:t="Bip01 L Calf"
++ upNode:t="Bip01 L Thigh"
++ targetNode:t="pedal_lfoot_"
++ flexionDir:p3=-0.2, 1.0, -1.0
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 R Foot"
++ midNode:t="Bip01 R Calf"
++ upNode:t="Bip01 R Thigh"
++ targetNode:t="pedal_rfoot_"
++ flexionDir:p3=-0.6, 1.0, -1.0
++ }
++ }
++ 
++ ikGunner{
++ model:t="french_sailor_char"
++ maxHeadHorAngle:r=60.0
++ maxHeadDownAngle:r=60.0
++ maxHeadUpAngle:r=10.0
++ headNode:t="Bip01 Head"
++ pelvisNode:t="Bip01 Pelvis"
++ pelvisTargetNode:t="Bip01 Pelvis_"
++ crouchDelta:p3=0.0, 0.0, 0.0
++ suffix:t="16"
++ deadHeadAttitudeMin:r=-55.0
++ deadHeadAttitudeMax:r=-40.0
++ 
++ ikNode{
++ downNode:t="Bip01 L Hand"
++ midNode:t="Bip01 L Forearm"
++ upNode:t="Bip01 L UpperArm"
++ targetNode:t="lefthand_"
++ flexionDir:p3=0.5, -0.5, 0.3
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 R Hand"
++ midNode:t="Bip01 R Forearm"
++ upNode:t="Bip01 R UpperArm"
++ targetNode:t="righthand_"
++ flexionDir:p3=-0.5, -0.5, 0.3
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 L Foot"
++ midNode:t="Bip01 L Calf"
++ upNode:t="Bip01 L Thigh"
++ targetNode:t="pedal_lfoot_"
++ flexionDir:p3=-0.2, 1.0, -1.0
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 R Foot"
++ midNode:t="Bip01 R Calf"
++ upNode:t="Bip01 R Thigh"
++ targetNode:t="pedal_rfoot_"
++ flexionDir:p3=-0.6, 1.0, -1.0
++ }
++ }
++ 
++ ikGunner{
++ model:t="french_sailor_char"
++ maxHeadHorAngle:r=60.0
++ maxHeadDownAngle:r=60.0
++ maxHeadUpAngle:r=10.0
++ headNode:t="Bip01 Head"
++ pelvisNode:t="Bip01 Pelvis"
++ pelvisTargetNode:t="Bip01 Pelvis_"
++ crouchDelta:p3=0.0, 0.0, 0.0
++ suffix:t="17"
++ deadHeadAttitudeMin:r=-55.0
++ deadHeadAttitudeMax:r=-40.0
++ 
++ ikNode{
++ downNode:t="Bip01 L Hand"
++ midNode:t="Bip01 L Forearm"
++ upNode:t="Bip01 L UpperArm"
++ targetNode:t="lefthand_"
++ flexionDir:p3=0.5, -0.5, 0.3
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 R Hand"
++ midNode:t="Bip01 R Forearm"
++ upNode:t="Bip01 R UpperArm"
++ targetNode:t="righthand_"
++ flexionDir:p3=-0.5, -0.5, 0.3
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 L Foot"
++ midNode:t="Bip01 L Calf"
++ upNode:t="Bip01 L Thigh"
++ targetNode:t="pedal_lfoot_"
++ flexionDir:p3=-0.2, 1.0, -1.0
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 R Foot"
++ midNode:t="Bip01 R Calf"
++ upNode:t="Bip01 R Thigh"
++ targetNode:t="pedal_rfoot_"
++ flexionDir:p3=-0.6, 1.0, -1.0
++ }
++ }
++ 
++ ikGunner{
++ model:t="french_sailor_char"
++ maxHeadHorAngle:r=60.0
++ maxHeadDownAngle:r=60.0
++ maxHeadUpAngle:r=10.0
++ headNode:t="Bip01 Head"
++ pelvisNode:t="Bip01 Pelvis"
++ pelvisTargetNode:t="Bip01 Pelvis_"
++ crouchDelta:p3=0.0, 0.0, 0.0
++ suffix:t="18"
++ deadHeadAttitudeMin:r=-55.0
++ deadHeadAttitudeMax:r=-40.0
++ 
++ ikNode{
++ downNode:t="Bip01 L Hand"
++ midNode:t="Bip01 L Forearm"
++ upNode:t="Bip01 L UpperArm"
++ targetNode:t="lefthand_"
++ flexionDir:p3=0.5, -0.5, 0.3
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 R Hand"
++ midNode:t="Bip01 R Forearm"
++ upNode:t="Bip01 R UpperArm"
++ targetNode:t="righthand_"
++ flexionDir:p3=-0.5, -0.5, 0.3
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 L Foot"
++ midNode:t="Bip01 L Calf"
++ upNode:t="Bip01 L Thigh"
++ targetNode:t="pedal_lfoot_"
++ flexionDir:p3=-0.2, 1.0, -1.0
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 R Foot"
++ midNode:t="Bip01 R Calf"
++ upNode:t="Bip01 R Thigh"
++ targetNode:t="pedal_rfoot_"
++ flexionDir:p3=-0.6, 1.0, -1.0
++ }
++ }
++ 
++ ikGunner{
++ model:t="french_sailor_char"
++ maxHeadHorAngle:r=60.0
++ maxHeadDownAngle:r=60.0
++ maxHeadUpAngle:r=10.0
++ headNode:t="Bip01 Head"
++ pelvisNode:t="Bip01 Pelvis"
++ pelvisTargetNode:t="Bip01 Pelvis_"
++ crouchDelta:p3=0.0, 0.0, 0.0
++ suffix:t="19"
++ deadHeadAttitudeMin:r=-55.0
++ deadHeadAttitudeMax:r=-40.0
++ 
++ ikNode{
++ downNode:t="Bip01 L Hand"
++ midNode:t="Bip01 L Forearm"
++ upNode:t="Bip01 L UpperArm"
++ targetNode:t="lefthand_"
++ flexionDir:p3=0.5, -0.5, 0.3
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 R Hand"
++ midNode:t="Bip01 R Forearm"
++ upNode:t="Bip01 R UpperArm"
++ targetNode:t="righthand_"
++ flexionDir:p3=-0.5, -0.5, 0.3
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 L Foot"
++ midNode:t="Bip01 L Calf"
++ upNode:t="Bip01 L Thigh"
++ targetNode:t="pedal_lfoot_"
++ flexionDir:p3=-0.2, 1.0, -1.0
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 R Foot"
++ midNode:t="Bip01 R Calf"
++ upNode:t="Bip01 R Thigh"
++ targetNode:t="pedal_rfoot_"
++ flexionDir:p3=-0.6, 1.0, -1.0
++ }
++ }
++ 
++ ikGunner{
++ model:t="french_sailor_char"
++ maxHeadHorAngle:r=60.0
++ maxHeadDownAngle:r=60.0
++ maxHeadUpAngle:r=10.0
++ headNode:t="Bip01 Head"
++ pelvisNode:t="Bip01 Pelvis"
++ pelvisTargetNode:t="Bip01 Pelvis_"
++ crouchDelta:p3=0.0, 0.0, 0.0
++ suffix:t="20"
++ deadHeadAttitudeMin:r=-55.0
++ deadHeadAttitudeMax:r=-40.0
++ 
++ ikNode{
++ downNode:t="Bip01 L Hand"
++ midNode:t="Bip01 L Forearm"
++ upNode:t="Bip01 L UpperArm"
++ targetNode:t="lefthand_"
++ flexionDir:p3=0.5, -0.5, 0.3
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 R Hand"
++ midNode:t="Bip01 R Forearm"
++ upNode:t="Bip01 R UpperArm"
++ targetNode:t="righthand_"
++ flexionDir:p3=-0.5, -0.5, 0.3
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 L Foot"
++ midNode:t="Bip01 L Calf"
++ upNode:t="Bip01 L Thigh"
++ targetNode:t="pedal_lfoot_"
++ flexionDir:p3=-0.2, 1.0, -1.0
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 R Foot"
++ midNode:t="Bip01 R Calf"
++ upNode:t="Bip01 R Thigh"
++ targetNode:t="pedal_rfoot_"
++ flexionDir:p3=-0.6, 1.0, -1.0
++ }
++ }
++ 
++ ikGunner{
++ model:t="french_sailor_char"
++ maxHeadHorAngle:r=60.0
++ maxHeadDownAngle:r=60.0
++ maxHeadUpAngle:r=10.0
++ headNode:t="Bip01 Head"
++ pelvisNode:t="Bip01 Pelvis"
++ pelvisTargetNode:t="Bip01 Pelvis_"
++ crouchDelta:p3=-0.7, -0.7, 0.5
++ suffix:t="21"
++ deadHeadAttitudeMin:r=-55.0
++ deadHeadAttitudeMax:r=-40.0
++ 
++ ikNode{
++ downNode:t="Bip01 L Hand"
++ midNode:t="Bip01 L Forearm"
++ upNode:t="Bip01 L UpperArm"
++ targetNode:t="lefthand_"
++ flexionDir:p3=0.5, -0.5, 0.3
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 R Hand"
++ midNode:t="Bip01 R Forearm"
++ upNode:t="Bip01 R UpperArm"
++ targetNode:t="righthand_"
++ flexionDir:p3=-0.5, -0.5, 0.3
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 L Foot"
++ midNode:t="Bip01 L Calf"
++ upNode:t="Bip01 L Thigh"
++ targetNode:t="pedal_lfoot_"
++ flexionDir:p3=-0.2, 1.0, -1.0
++ }
++ 
++ ikNode{
++ downNode:t="Bip01 R Foot"
++ midNode:t="Bip01 R Calf"
++ upNode:t="Bip01 R Thigh"
++ targetNode:t="pedal_rfoot_"
++ flexionDir:p3=-0.6, 1.0, -1.0
 + }
 + }
 + 
 + attach{
-+ pilot1:t="pilot_it_late_500"
++ "Bip01 Pelvis_1":t="french_sailor_sit"
++ "Bip01 Pelvis_2":t="french_sailor_sit"
++ "Bip01 Pelvis_3":t="french_officer_standing"
++ "Bip01 Pelvis_4":t="french_sailor_standing"
++ "Bip01 Pelvis_5":t="french_sailor_standing"
++ "Bip01 Pelvis_6":t="french_sailor_sit"
++ "Bip01 Pelvis_7":t="french_sailor_standing"
++ "Bip01 Pelvis_8":t="french_sailor_sit"
++ "Bip01 Pelvis_9":t="french_sailor_sit"
++ "Bip01 Pelvis_10":t="french_sailor_sit"
++ "Bip01 Pelvis_11":t="french_sailor_sit"
++ "Bip01 Pelvis_12":t="french_sailor_standing"
++ "Bip01 Pelvis_13":t="french_sailor_standing"
++ "Bip01 Pelvis_14":t="french_sailor_sit"
++ "Bip01 Pelvis_15":t="french_sailor_sit"
++ "Bip01 Pelvis_16":t="french_sailor_sit"
++ "Bip01 Pelvis_17":t="french_sailor_sit"
++ "Bip01 Pelvis_18":t="french_sailor_sit"
++ "Bip01 Pelvis_19":t="french_sailor_sit"
++ "Bip01 Pelvis_20":t="french_sailor_sit"
++ "Bip01 Pelvis_21":t="french_sailor_standing"
 + }
 + 
-+ Params{
-+ Range:r=1050.0
++ controlDevices{
++ 
++ device{
++ type:t="turretTurnH"
++ turnSpeed:r=0.6
++ node:t="bone_roll_turret_h"
++ node_handle:t="bone_roll_turret_h_handle"
 + }
 + 
-+ Sound{
-+ Engine:t="engine05_J85_N1_WEP"
-+ gun:t="gun_default"
++ device{
++ type:t="turretTurnV"
++ turnSpeed:r=-1.0
++ node:t="bone_roll_turret_v"
++ node_handle:t="bone_roll_turret_v_handle"
++ }
++ 
++ device{
++ type:t="steeringWheel"
++ turnSpeed:r=-3.0
++ node:t="bone_roll_driver"
++ absoluteValue:b=yes
++ }
++ 
++ device{
++ type:t="engineFan"
++ turnSpeed:r=1.0
++ node:t="bone_roll_engine_01"
++ }
++ 
++ device{
++ type:t="engineFan"
++ turnSpeed:r=1.0
++ node:t="bone_roll_engine_02"
++ }
++ 
++ device{
++ type:t="engineFan"
++ turnSpeed:r=1.0
++ node:t="bone_roll_engine_03"
++ }
++ 
++ device{
++ type:t="engineFan"
++ turnSpeed:r=1.0
++ node:t="bone_roll_engine_04"
++ }
++ 
++ device{
++ type:t="engineFan"
++ turnSpeed:r=1.0
++ node:t="bone_roll_engine_05"
++ }
++ 
++ device{
++ type:t="engineFan"
++ turnSpeed:r=1.0
++ node:t="bone_roll_engine_06"
++ }
++ 
++ device{
++ type:t="waterJetShutter"
++ turnSpeed:r=1.5
++ maxValue:r=-1.7
++ node:t="body_shutter_l"
++ absoluteValue:b=yes
++ progressive:b=yes
++ }
++ 
++ device{
++ type:t="waterJetShutter"
++ turnSpeed:r=1.5
++ maxValue:r=1.7
++ node:t="body_shutter_r"
++ absoluteValue:b=yes
++ progressive:b=yes
++ }
++ 
++ device{
++ type:t="steeringWheel"
++ turnSpeed:r=-0.5
++ node:t="bone_roll_driver_l_01"
++ absoluteValue:b=yes
++ }
++ 
++ device{
++ type:t="steeringWheel"
++ turnSpeed:r=-0.2
++ node:t="bone_roll_driver_l_02"
++ absoluteValue:b=yes
++ }
++ 
++ device{
++ type:t="steeringWheel"
++ turnSpeed:r=0.2
++ node:t="bone_roll_driver_l_03"
++ absoluteValue:b=yes
++ }
++ 
++ device{
++ type:t="steeringWheel"
++ turnSpeed:r=0.2
++ node:t="bone_roll_driver_l_04"
++ absoluteValue:b=yes
++ }
++ 
++ device{
++ type:t="steeringWheel"
++ turnSpeed:r=-0.5
++ node:t="bone_roll_driver_r_01"
++ absoluteValue:b=yes
++ }
++ 
++ device{
++ type:t="steeringWheel"
++ turnSpeed:r=-0.2
++ node:t="bone_roll_driver_r_02"
++ absoluteValue:b=yes
++ }
++ 
++ device{
++ type:t="steeringWheel"
++ turnSpeed:r=0.2
++ node:t="bone_roll_driver_r_03"
++ absoluteValue:b=yes
++ }
++ 
++ device{
++ type:t="steeringWheel"
++ turnSpeed:r=0.2
++ node:t="bone_roll_driver_r_04"
++ absoluteValue:b=yes
++ }
++ 
++ device{
++ type:t="steeringWheel"
++ turnSpeed:r=0.2
++ node:t="bone_roll_driver_l_05"
++ absoluteValue:b=yes
++ }
++ 
++ device{
++ type:t="steeringWheel"
++ turnSpeed:r=0.2
++ node:t="bone_roll_driver_l_06"
++ absoluteValue:b=yes
++ }
++ 
++ device{
++ type:t="steeringWheel"
++ turnSpeed:r=0.2
++ node:t="bone_roll_driver_l_07"
++ absoluteValue:b=yes
++ }
++ 
++ device{
++ type:t="steeringWheel"
++ turnSpeed:r=0.2
++ node:t="bone_roll_driver_l_08"
++ absoluteValue:b=yes
++ }
++ }
++ 
++ DamageParts{
++ formatVersion:i=2
++ createSecondaryShatters:b=no
++ 
++ crew_compartments{
++ fireParamsPreset:t="ship_compartment_battleship"
++ armorClass:t="ship_structural_steel"
++ armorThickness:r=2.2
++ genericDamageMult:r=0.15
++ armorThrough:r=25.0
++ oneSided:b=yes
++ 
++ compartment_01_dm{
++ hp:r=5200.0
++ }
++ 
++ compartment_02_dm{
++ hp:r=6800.0
++ }
++ 
++ compartment_03_dm{
++ hp:r=6800.0
++ }
++ 
++ compartment_04_dm{
++ hp:r=6800.0
++ }
++ 
++ compartment_05_dm{
++ hp:r=5908.0
++ }
++ 
++ compartment_06_dm{
++ hp:r=5200.0
++ }
++ }
++ 
++ control_compartments{
++ armorClass:t="ship_structural_steel"
++ armorThickness:r=2.2
++ genericDamageMult:r=0.2
++ napalmDamageMult:r=1.0
++ oneSided:b=yes
++ 
++ bridge_dm{
++ fireParamsPreset:t="ship_bridge"
++ hp:r=1000.0
++ }
++ 
++ radio_station_dm{
++ hp:r=1000.0
++ }
++ 
++ radio_station_02_dm{
++ hp:r=1000.0
++ }
++ 
++ fire_control_room_01_dm{
++ napalmDamageMult:r=0.0
++ hp:r=1100.0
++ }
++ }
++ 
++ ammo_storages_shells{
++ armorClass:t="ship_structural_steel"
++ fireParamsPreset:t="ship_ammo_fire_total"
++ armorThrough:r=500.0
++ armorThickness:r=2.2
++ fireProtectionHp:r=10.0
++ 
++ ammunition_storage_shells_01_dm{
++ hp:r=4700.0
++ }
++ 
++ ammunition_storage_shells_02_dm{
++ hp:r=4700.0
++ }
++ }
++ 
++ ammo_storages_charges{
++ armorClass:t="ship_structural_steel"
++ fireParamsPreset:t="ship_ammo_fire_total"
++ armorThrough:r=500.0
++ armorThickness:r=2.2
++ fireProtectionHp:r=15.0
++ 
++ ammunition_storage_charges_01_dm{
++ hp:r=10800.0
++ }
++ 
++ ammunition_storage_charges_02_dm{
++ hp:r=10800.0
++ }
++ }
++ 
++ ammo_storages_auxiliary{
++ armorClass:t="ship_structural_steel"
++ fireParamsPreset:t="ship_ammo_fire_aux"
++ armorThickness:r=2.2
++ fireProtectionHp:r=15.0
++ armorThrough:r=200.0
++ 
++ ammunition_storage_aux_01_dm{
++ hp:r=3000.0
++ }
++ 
++ ammunition_storage_aux_02_dm{
++ hp:r=3000.0
++ }
++ 
++ ammunition_storage_aux_03_dm{
++ hp:r=3000.0
++ }
++ 
++ ammunition_storage_aux_04_dm{
++ hp:r=3000.0
++ }
++ 
++ ammunition_storage_aux_05_dm{
++ hp:r=3000.0
++ }
++ 
++ ammunition_storage_aux_06_dm{
++ hp:r=3000.0
++ }
++ 
++ ammunition_storage_aux_07_dm{
++ hp:r=2300.0
++ }
++ }
++ 
++ ammo_first_stage{
++ shatterArmorQuality:r=2.0
++ armorClass:t="ship_structural_steel"
++ fireParamsPreset:t="ship_ammo_fire_aux"
++ armorThrough:r=200.0
++ armorThickness:r=2.2
++ fireProtectionHp:r=5.0
++ 
++ ammo_turret_01_dm{
++ hp:r=1500.0
++ }
++ 
++ ammo_turret_02_dm{
++ hp:r=1500.0
++ }
++ 
++ ammo_turret_03_dm{
++ hp:r=1500.0
++ }
++ 
++ ammo_turret_04_dm{
++ hp:r=1500.0
++ }
++ 
++ ammo_turret_05_dm{
++ hp:r=1500.0
++ }
++ }
++ 
++ elevators{
++ armorClass:t="ship_structural_steel"
++ genericDamageMult:r=0.5
++ armorThickness:r=2.2
++ fireProtectionHp:r=11.0
++ 
++ elevator_05_dm{
++ hp:r=3000.0
++ }
++ 
++ elevator_06_dm{
++ hp:r=3000.0
++ }
++ 
++ elevator_07_dm{
++ hp:r=3000.0
++ }
++ 
++ elevator_01_dm{
++ fireParamsPreset:t="ship_barbettes"
++ hp:r=3900.0
++ }
++ 
++ elevator_02_dm{
++ fireParamsPreset:t="ship_barbettes"
++ hp:r=3900.0
++ }
++ 
++ elevator_03_dm{
++ fireParamsPreset:t="ship_barbettes"
++ hp:r=3000.0
++ }
++ 
++ elevator_04_dm{
++ fireParamsPreset:t="ship_barbettes"
++ hp:r=3000.0
++ }
++ }
++ 
++ turrets_main_caliber{
++ fireParamsPreset:t="ship_heavy_turrets"
++ armorClass:t="ship_structural_steel"
++ armorThickness:r=2.2
++ pressureDamageMult:r=6.0
++ hydroShockDamageMult:r=0.0
++ 
++ main_caliber_turret_01_dm{
++ hp:r=1500.0
++ }
++ 
++ main_caliber_turret_02_dm{
++ hp:r=1500.0
++ }
++ }
++ 
++ turrets_aux_caliber{
++ fireParamsPreset:t="ship_turrets"
++ armorClass:t="ship_structural_steel"
++ armorThickness:r=2.2
++ pressureDamageMult:r=5.0
++ hydroShockDamageMult:r=0.0
++ napalmDamageMult:r=1.0
++ 
++ auxiliary_caliber_turret_01_dm{
++ hp:r=700.0
++ }
++ 
++ auxiliary_caliber_turret_02_dm{
++ hp:r=700.0
++ }
++ 
++ auxiliary_caliber_turret_03_dm{
++ hp:r=700.0
++ }
++ 
++ auxiliary_caliber_turret_04_dm{
++ hp:r=700.0
++ }
++ 
++ auxiliary_caliber_turret_05_dm{
++ hp:r=700.0
++ }
++ }
++ 
++ turrets_aa_caliber{
++ armorClass:t="ship_structural_steel"
++ armorThickness:r=2.2
++ fireDamageMult:r=2.0
++ pressureDamageMult:r=6.0
++ hydroShockDamageMult:r=0.0
++ napalmDamageMult:r=1.0
++ 
++ aa_turret_01_dm{
++ hp:r=100.0
++ }
++ 
++ aa_turret_02_dm{
++ hp:r=100.0
++ }
++ 
++ aa_turret_03_dm{
++ hp:r=138.0
++ }
++ 
++ aa_turret_04_dm{
++ hp:r=138.0
++ }
++ 
++ aa_turret_05_dm{
++ hp:r=100.0
++ }
++ 
++ aa_turret_06_dm{
++ hp:r=100.0
++ }
++ 
++ aa_turret_07_dm{
++ hp:r=100.0
++ }
++ 
++ aa_turret_08_dm{
++ hp:r=100.0
++ }
++ 
++ aa_turret_09_dm{
++ hp:r=100.0
++ }
++ 
++ aa_turret_10_dm{
++ hp:r=100.0
++ }
++ 
++ aa_turret_11_dm{
++ hp:r=100.0
++ }
++ 
++ aa_turret_12_dm{
++ hp:r=100.0
++ }
++ 
++ aa_turret_13_dm{
++ hp:r=100.0
++ }
++ 
++ aa_turret_14_dm{
++ hp:r=100.0
++ }
++ 
++ aa_turret_15_dm{
++ hp:r=100.0
++ }
++ }
++ 
++ gun_main_caliber{
++ armorClass:t="tank_barrel"
++ armorThickness:r=20.0
++ fireDamageMult:r=0.1
++ 
++ main_caliber_gun_01_dm{
++ hp:r=1500.0
++ }
++ 
++ main_caliber_gun_02_dm{
++ hp:r=1500.0
++ }
++ 
++ main_caliber_gun_03_dm{
++ hp:r=1500.0
++ }
++ 
++ main_caliber_gun_04_dm{
++ hp:r=1500.0
++ }
++ }
++ 
++ gun_aux_caliber{
++ armorClass:t="tank_barrel"
++ armorThickness:r=15.0
++ fireDamageMult:r=0.1
++ 
++ auxiliary_caliber_gun_01_dm{
++ hp:r=500.0
++ }
++ 
++ auxiliary_caliber_gun_02_dm{
++ hp:r=500.0
++ }
++ 
++ auxiliary_caliber_gun_03_dm{
++ hp:r=500.0
++ }
++ 
++ auxiliary_caliber_gun_04_dm{
++ hp:r=500.0
++ }
++ 
++ auxiliary_caliber_gun_05_dm{
++ hp:r=500.0
++ }
++ 
++ auxiliary_caliber_gun_06_dm{
++ hp:r=500.0
++ }
++ 
++ auxiliary_caliber_gun_07_dm{
++ hp:r=500.0
++ }
++ 
++ auxiliary_caliber_gun_08_dm{
++ hp:r=500.0
++ }
++ }
++ 
++ gun_aa_caliber{
++ armorClass:t="tank_barrel"
++ armorThickness:r=5.0
++ 
++ aa_gun_01_dm{
++ hp:r=50.0
++ }
++ 
++ aa_gun_02_dm{
++ hp:r=50.0
++ }
++ 
++ aa_gun_03_dm{
++ hp:r=50.0
++ }
++ 
++ aa_gun_04_dm{
++ hp:r=50.0
++ }
++ 
++ aa_gun_05_dm{
++ hp:r=50.0
++ }
++ 
++ aa_gun_06_dm{
++ hp:r=50.0
++ }
++ 
++ aa_gun_07_dm{
++ hp:r=50.0
++ }
++ 
++ aa_gun_08_dm{
++ hp:r=50.0
++ }
++ 
++ aa_gun_09_dm{
++ hp:r=50.0
++ }
++ 
++ aa_gun_10_dm{
++ hp:r=50.0
++ }
++ 
++ aa_gun_11_dm{
++ hp:r=50.0
++ }
++ 
++ aa_gun_12_dm{
++ hp:r=50.0
++ }
++ 
++ aa_gun_13_dm{
++ hp:r=50.0
++ }
++ 
++ aa_gun_14_dm{
++ hp:r=50.0
++ }
++ 
++ aa_gun_15_dm{
++ hp:r=50.0
++ }
++ }
++ 
++ gun_barrels{
++ armorClass:t="tank_barrel"
++ armorThickness:r=10.0
++ }
++ 
++ torpedoes{
++ armorClass:t="ship_structural_steel"
++ armorThickness:r=2.0
++ }
++ 
++ boiler_rooms{
++ fireParamsPreset:t="ship_boiler_room"
++ armorClass:t="ship_structural_steel"
++ armorThickness:r=16.0
++ armorThrough:r=500.0
++ fireDamageMult:r=2.65
++ explosionDamageMult:r=1.5
++ shatterDamageMult:r=1.5
++ 
++ engine_room_01_dm{
++ hp:r=4000.0
++ }
++ 
++ engine_room_02_dm{
++ hp:r=4000.0
++ }
++ 
++ engine_room_03_dm{
++ hp:r=4000.0
++ }
++ }
++ 
++ engine_rooms{
++ fireParamsPreset:t="ship_engine_room"
++ armorClass:t="ship_structural_steel"
++ armorThickness:r=16.0
++ armorThrough:r=500.0
++ explosionDamageMult:r=1.5
++ 
++ transmission_01_dm{
++ hp:r=5400.0
++ }
++ 
++ transmission_02_dm{
++ hp:r=5400.0
++ }
++ 
++ transmission_03_dm{
++ hp:r=5400.0
++ }
++ 
++ transmission_04_dm{
++ hp:r=6164.0
++ }
++ }
++ 
++ shafts{
++ armorClass:t="ship_structural_steel"
++ armorThickness:r=80.0
++ armorThrough:r=500.0
++ 
++ shaft_01_dm{
++ hp:r=2000.0
++ }
++ 
++ shaft_02_dm{
++ hp:r=2000.0
++ }
++ 
++ shaft_03_dm{
++ hp:r=2000.0
++ }
++ 
++ shaft_04_dm{
++ hp:r=2000.0
++ }
++ }
++ 
++ pumps{
++ armorClass:t="ship_structural_steel"
++ armorThickness:r=3.0
++ 
++ pump_01_dm{
++ hp:r=1000.0
++ }
++ 
++ pump_02_dm{
++ hp:r=1000.0
++ }
++ }
++ 
++ torpedo_tubes{
++ fireParamsPreset:t="ship_turrets"
++ armorClass:t="ship_structural_steel"
++ armorThickness:r=10.0
++ }
++ 
++ radiolocation{
++ armorClass:t="ship_structural_steel"
++ armorThickness:r=5.0
++ dmgState:r=0.0
++ napalmDamageMult:r=1.0
++ 
++ antenna_target_location_01_dm{
++ hp:r=350.0
++ }
++ 
++ antenna_target_location_02_dm{
++ hp:r=350.0
++ }
++ 
++ antenna_target_location_03_dm{
++ hp:r=350.0
++ }
++ 
++ antenna_target_location_04_dm{
++ hp:r=350.0
++ }
++ }
++ 
++ fire_control{
++ armorClass:t="ship_structural_steel"
++ armorThickness:r=3.0
++ dmgState:r=0.0
++ pressureDamageMult:r=1.0
++ hydroShockDamageMult:r=0.0
++ napalmDamageMult:r=1.0
++ 
++ fire_director_01_dm{
++ hp:r=250.0
++ }
++ 
++ fire_director_02_dm{
++ hp:r=250.0
++ }
++ 
++ fire_director_03_dm{
++ hp:r=250.0
++ }
++ 
++ fire_director_04_dm{
++ hp:r=250.0
++ }
++ 
++ fire_director_05_dm{
++ hp:r=250.0
++ }
++ 
++ fire_director_06_dm{
++ hp:r=215.0
++ }
++ 
++ fire_director_07_dm{
++ hp:r=215.0
++ }
++ 
++ rangefinder_01_dm{
++ hp:r=100.0
++ }
++ 
++ rangefinder_02_dm{
++ hp:r=100.0
++ }
++ 
++ rangefinder_03_dm{
++ hp:r=100.0
++ }
++ 
++ rangefinder_04_dm{
++ hp:r=100.0
++ }
++ 
++ rangefinder_05_dm{
++ hp:r=100.0
++ }
++ 
++ rangefinder_06_dm{
++ hp:r=100.0
++ }
++ 
++ rangefinder_07_dm{
++ armorClass:t="ship_RHA"
++ armorThickness:r=80.0
++ hp:r=150.0
++ }
++ }
++ 
++ aircrafts{
++ armorClass:t="ship_structural_steel"
++ armorThickness:r=5.0
++ napalmDamageMult:r=1.0
++ 
++ catapult_01_dm{
++ hp:r=761.0
++ }
++ 
++ aircraft_01_dm{
++ hp:r=750.0
++ }
++ 
++ aircraft_02_dm{
++ hp:r=750.0
++ }
++ }
++ 
++ cover{
++ armorClass:t="ship_structural_steel"
++ armorThickness:r=25.4
++ hidableInViewer:b=yes
++ genericDamageMult:r=0.1
++ shatterDamageMult:r=0.1
++ hydroShockDamageMult:r=15.0
++ hydroShockArmorQuality:r=0.2
++ pressureDamageMult:r=0.0
++ 
++ cover_01_dm{
++ hp:r=12839.0
++ }
++ 
++ cover_02_dm{
++ hp:r=13074.0
++ }
++ 
++ cover_03_dm{
++ hp:r=12286.0
++ }
++ 
++ cover_04_dm{
++ hp:r=14300.0
++ }
++ 
++ cover_05_dm{
++ hp:r=12470.0
++ }
++ 
++ cover_06_dm{
++ hp:r=14300.0
++ }
++ 
++ cover_07_dm{
++ hp:r=14300.0
++ }
++ 
++ cover_08_dm{
++ hp:r=11000.0
++ }
++ 
++ cover_09_dm{
++ hp:r=11000.0
++ }
++ 
++ cover_10_dm{
++ hp:r=11000.0
++ }
++ }
++ 
++ superstructures{
++ armorClass:t="ship_structural_steel"
++ armorThickness:r=16.0
++ genericDamageMult:r=0.5
++ 
++ superstructure_back_dm{
++ hp:r=15000.0
++ }
++ 
++ superstructure_front_dm{
++ hp:r=10000.0
++ }
++ 
++ superstructure_bottom_dm{
++ hp:r=10000.0
++ }
++ 
++ superstructure_side_dm{
++ hp:r=15000.0
++ }
++ 
++ superstructure_top_dm{
++ hp:r=10000.0
++ }
++ 
++ superstructure_dm{
++ hp:r=15000.0
++ }
++ }
++ 
++ hull_construction{
++ armorClass:t="ship_structural_steel"
++ armorThickness:r=25.4
++ fireDamageMult:r=0.1
++ genericDamageMult:r=0.1
++ 
++ mid_bottom_dm{
++ hp:r=50000.0
++ }
++ }
++ 
++ bulkheads{
++ armorClass:t="ship_structural_steel"
++ armorThickness:r=25.4
++ fireDamageMult:r=0.1
++ 
++ bulkhead_01_dm{
++ hp:r=10000.0
++ }
++ 
++ bulkhead_02_dm{
++ hp:r=10000.0
++ }
++ 
++ bulkhead_03_dm{
++ hp:r=10000.0
++ }
++ 
++ bulkhead_04_dm{
++ hp:r=10000.0
++ }
++ 
++ bulkhead_05_dm{
++ hp:r=10000.0
++ }
++ 
++ bulkhead_06_dm{
++ hp:r=10000.0
++ }
++ 
++ bulkhead_07_dm{
++ hp:r=10000.0
++ }
++ 
++ bulkhead_08_dm{
++ hp:r=10000.0
++ }
++ 
++ bulkhead_09_dm{
++ hp:r=10000.0
++ }
++ }
++ 
++ citadel_armor{
++ fireProtectionHp:r=120.0
++ armorClass:t="ship_RHA"
++ armorThickness:r=40.0
++ fireDamageMult:r=0.1
++ 
++ armor_cit_17_dm{
++ hidableInViewer:b=no
++ armorClass:t="ship_RHA"
++ armorThickness:r=115.0
++ hp:r=10000.0
++ }
++ 
++ armor_cit_18_dm{
++ hidableInViewer:b=no
++ armorClass:t="ship_RHA"
++ armorThickness:r=125.0
++ hp:r=10000.0
++ }
++ 
++ armor_cit_19_dm{
++ armorClass:t="ship_RHA"
++ armorThickness:r=150.0
++ hp:r=10000.0
++ }
++ 
++ armor_cit_20_dm{
++ armorClass:t="ship_RHA"
++ armorThickness:r=100.0
++ hp:r=10000.0
++ }
++ 
++ armor_cit_21_dm{
++ armorThickness:r=40.0
++ hp:r=10000.0
++ }
++ 
++ armor_cit_22_dm{
++ armorThickness:r=30.0
++ hp:r=10000.0
++ }
++ 
++ armor_cit_23_dm{
++ armorThickness:r=20.0
++ hp:r=10000.0
++ }
++ 
++ armor_cit_24_dm{
++ armorThickness:r=22.0
++ hp:r=10000.0
++ }
++ 
++ armor_cit_01_dm{
++ hidableInViewer:b=no
++ armorClass:t="ship_RGA"
++ armorThickness:r=340.0
++ hp:r=10000.0
++ }
++ 
++ armor_cit_02_dm{
++ armorThickness:r=50.0
++ hp:r=10000.0
++ }
++ 
++ armor_cit_03_dm{
++ hidableInViewer:b=no
++ armorClass:t="ship_RGA"
++ armorThickness:r=120.0
++ hp:r=10000.0
++ }
++ 
++ armor_cit_04_dm{
++ hidableInViewer:b=no
++ armorThickness:r=40.0
++ hp:r=10000.0
++ }
++ 
++ armor_cit_25_dm{
++ armorThickness:r=35.0
++ hp:r=10000.0
++ }
++ 
++ armor_cit_26_dm{
++ armorThickness:r=70.0
++ hp:r=10000.0
++ }
++ 
++ armor_cit_27_dm{
++ armorThickness:r=12.0
++ hp:r=10000.0
++ }
++ 
++ armor_cit_28_dm{
++ armorThickness:r=16.0
++ hp:r=10000.0
++ }
++ 
++ armor_cit_29_dm{
++ armorClass:t="ship_RGA"
++ armorThickness:r=100.0
++ hp:r=10000.0
++ }
++ 
++ armor_cit_30_dm{
++ armorClass:t="ship_RGA"
++ armorThickness:r=120.0
++ hp:r=10000.0
++ }
++ 
++ armor_cit_41_dm{
++ armorClass:t="ship_RGA"
++ armorThickness:r=150.0
++ hp:r=10000.0
++ }
++ 
++ armor_cit_42_dm{
++ armorClass:t="ship_RGA"
++ armorThickness:r=150.0
++ hp:r=10000.0
++ }
++ 
++ armor_cit_05_dm{
++ armorClass:t="ship_RGA"
++ armorThickness:r=260.0
++ hp:r=10000.0
++ }
++ 
++ armor_cit_06_dm{
++ armorClass:t="ship_RGA"
++ armorThickness:r=210.0
++ hp:r=10000.0
++ }
++ 
++ armor_cit_07_dm{
++ armorClass:t="ship_RGA"
++ armorThickness:r=130.0
++ hp:r=10000.0
++ }
++ 
++ armor_cit_08_dm{
++ armorClass:t="ship_RGA"
++ armorThickness:r=80.0
++ hp:r=10000.0
++ }
++ 
++ armor_cit_09_dm{
++ armorClass:t="ship_structural_steel"
++ armorThickness:r=18.0
++ hp:r=10000.0
++ }
++ 
++ armor_cit_31_dm{
++ armorThickness:r=20.0
++ hp:r=10000.0
++ }
++ 
++ armor_cit_32_dm{
++ armorThickness:r=30.0
++ hp:r=10000.0
++ }
++ 
++ armor_cit_34_dm{
++ armorThickness:r=20.0
++ hp:r=10000.0
++ }
++ 
++ armor_cit_35_dm{
++ armorClass:t="ship_RGA"
++ armorThickness:r=100.0
++ hp:r=10000.0
++ }
++ 
++ armor_cit_36_dm{
++ armorClass:t="ship_RGA"
++ armorThickness:r=100.0
++ hp:r=10000.0
++ }
++ 
++ armor_cit_37_dm{
++ armorThickness:r=40.0
++ hp:r=10000.0
++ }
++ 
++ armor_cit_38_dm{
++ armorThickness:r=20.0
++ hp:r=10000.0
++ }
++ 
++ armor_cit_39_dm{
++ armorThickness:r=40.0
++ hp:r=10000.0
++ }
++ 
++ armor_cit_40_dm{
++ armorThickness:r=20.0
++ hp:r=10000.0
++ }
++ 
++ armor_cit_10_dm{
++ armorClass:t="ship_RGA"
++ armorThickness:r=270.0
++ hp:r=10000.0
++ }
++ 
++ armor_cit_11_dm{
++ armorClass:t="ship_RGA"
++ armorThickness:r=130.0
++ hp:r=10000.0
++ }
++ 
++ armor_cit_12_dm{
++ armorClass:t="ship_RGA"
++ armorThickness:r=220.0
++ hp:r=10000.0
++ }
++ 
++ armor_cit_14_dm{
++ armorClass:t="ship_RGA"
++ armorThickness:r=150.0
++ hp:r=10000.0
++ }
++ 
++ armor_cit_15_dm{
++ armorClass:t="ship_RHA"
++ armorThickness:r=100.0
++ hp:r=10000.0
++ }
++ 
++ armor_cit_43_dm{
++ armorClass:t="ship_RHA"
++ armorThickness:r=270.0
++ hp:r=10000.0
++ }
++ 
++ armor_cit_44_dm{
++ armorClass:t="ship_RHA"
++ armorThickness:r=220.0
++ hp:r=10000.0
++ }
++ 
++ armor_cit_16_dm{
++ armorThickness:r=20.0
++ hp:r=10000.0
++ }
++ 
++ armor_cit_33_dm{
++ armorClass:t="ship_RHA"
++ armorThickness:r=160.0
++ hp:r=10000.0
++ }
++ }
++ 
++ citadel_armor_plates{
++ fireProtectionHp:r=120.0
++ armorClass:t="ship_RHA"
++ armorThickness:r=40.0
++ hidableInViewer:b=yes
++ fireDamageMult:r=0.001
++ shatterDamageMult:r=0.001
++ genericDamageMult:r=0.6
++ stopChanceOnDeadPart:r=0.7
++ restrainDamage:r=0.5
++ kineticPenetrationToArmorThreshold:r=0.8
++ 
++ armor_cit_l_01_dm{
++ hidableInViewer:b=no
++ armorThickness:r=150.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_l_02_dm{
++ hidableInViewer:b=no
++ armorThickness:r=100.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_l_31_dm{
++ hidableInViewer:b=no
++ armorThickness:r=20.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_r_01_dm{
++ hidableInViewer:b=no
++ armorThickness:r=150.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_r_02_dm{
++ hidableInViewer:b=no
++ armorThickness:r=100.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_r_31_dm{
++ hidableInViewer:b=no
++ armorThickness:r=20.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_l_03_dm{
++ hidableInViewer:b=no
++ armorThickness:r=50.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_l_04_dm{
++ hidableInViewer:b=no
++ armorThickness:r=50.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_l_05_dm{
++ hidableInViewer:b=no
++ armorThickness:r=50.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_l_06_dm{
++ hidableInViewer:b=no
++ armorThickness:r=50.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_l_07_dm{
++ hidableInViewer:b=no
++ armorThickness:r=50.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_l_08_dm{
++ hidableInViewer:b=no
++ armorThickness:r=50.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_r_03_dm{
++ hidableInViewer:b=no
++ armorThickness:r=50.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_r_04_dm{
++ hidableInViewer:b=no
++ armorThickness:r=50.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_r_05_dm{
++ hidableInViewer:b=no
++ armorThickness:r=50.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_r_06_dm{
++ hidableInViewer:b=no
++ armorThickness:r=50.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_r_07_dm{
++ hidableInViewer:b=no
++ armorThickness:r=50.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_r_08_dm{
++ hidableInViewer:b=no
++ armorThickness:r=50.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_l_09_dm{
++ hidableInViewer:b=no
++ armorThickness:r=50.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_l_10_dm{
++ hidableInViewer:b=no
++ armorThickness:r=50.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_l_11_dm{
++ hidableInViewer:b=no
++ armorThickness:r=40.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_l_12_dm{
++ hidableInViewer:b=no
++ armorThickness:r=40.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_l_13_dm{
++ hidableInViewer:b=no
++ armorThickness:r=30.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_l_14_dm{
++ hidableInViewer:b=no
++ armorThickness:r=30.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_l_15_dm{
++ hidableInViewer:b=no
++ armorThickness:r=30.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_l_16_dm{
++ hidableInViewer:b=no
++ armorThickness:r=30.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_r_09_dm{
++ hidableInViewer:b=no
++ armorThickness:r=50.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_r_10_dm{
++ hidableInViewer:b=no
++ armorThickness:r=50.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_r_11_dm{
++ hidableInViewer:b=no
++ armorThickness:r=40.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_r_12_dm{
++ hidableInViewer:b=no
++ armorThickness:r=40.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_r_13_dm{
++ hidableInViewer:b=no
++ armorThickness:r=30.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_r_14_dm{
++ hidableInViewer:b=no
++ armorThickness:r=30.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_r_15_dm{
++ hidableInViewer:b=no
++ armorThickness:r=30.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_r_16_dm{
++ hidableInViewer:b=no
++ armorThickness:r=30.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_l_17_dm{
++ hidableInViewer:b=no
++ armorThickness:r=20.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_l_18_dm{
++ hidableInViewer:b=no
++ armorThickness:r=20.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_l_19_dm{
++ hidableInViewer:b=no
++ armorThickness:r=20.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_l_20_dm{
++ hidableInViewer:b=no
++ armorThickness:r=20.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_l_21_dm{
++ hidableInViewer:b=no
++ armorThickness:r=20.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_l_22_dm{
++ hidableInViewer:b=no
++ armorThickness:r=20.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_l_23_dm{
++ hidableInViewer:b=no
++ armorThickness:r=20.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_l_24_dm{
++ hidableInViewer:b=no
++ armorThickness:r=20.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_l_25_dm{
++ hidableInViewer:b=no
++ armorThickness:r=20.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_l_26_dm{
++ hidableInViewer:b=no
++ armorThickness:r=20.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_l_27_dm{
++ hidableInViewer:b=no
++ armorThickness:r=20.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_l_28_dm{
++ hidableInViewer:b=no
++ armorThickness:r=20.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_r_17_dm{
++ hidableInViewer:b=no
++ armorThickness:r=20.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_r_18_dm{
++ hidableInViewer:b=no
++ armorThickness:r=20.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_r_19_dm{
++ hidableInViewer:b=no
++ armorThickness:r=20.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_r_20_dm{
++ hidableInViewer:b=no
++ armorThickness:r=20.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_r_21_dm{
++ hidableInViewer:b=no
++ armorThickness:r=20.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_r_22_dm{
++ hidableInViewer:b=no
++ armorThickness:r=20.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_r_23_dm{
++ hidableInViewer:b=no
++ armorThickness:r=20.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_r_24_dm{
++ hidableInViewer:b=no
++ armorThickness:r=20.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_r_25_dm{
++ hidableInViewer:b=no
++ armorThickness:r=20.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_r_26_dm{
++ hidableInViewer:b=no
++ armorThickness:r=20.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_r_27_dm{
++ hidableInViewer:b=no
++ armorThickness:r=20.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_r_28_dm{
++ hidableInViewer:b=no
++ armorThickness:r=20.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_l_29_dm{
++ hidableInViewer:b=no
++ armorThickness:r=10.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_l_30_dm{
++ hidableInViewer:b=no
++ armorThickness:r=10.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_r_29_dm{
++ hidableInViewer:b=no
++ armorThickness:r=10.0
++ hp:r=8500.0
++ }
++ 
++ armor_cit_r_30_dm{
++ hidableInViewer:b=no
++ armorThickness:r=10.0
++ hp:r=8500.0
++ }
++ }
++ 
++ belt_armor{
++ fireProtectionHp:r=120.0
++ armorClass:t="ship_RHA"
++ armorThickness:r=40.0
++ hidableInViewer:b=yes
++ fireDamageMult:r=0.1
++ }
++ 
++ belt_armor_plates{
++ fireProtectionHp:r=120.0
++ armorClass:t="ship_RGA"
++ armorThickness:r=40.0
++ hidableInViewer:b=yes
++ fireDamageMult:r=0.001
++ shatterDamageMult:r=0.001
++ genericDamageMult:r=0.4
++ stopChanceOnDeadPart:r=0.7
++ ignoreDeadWithSplash:b=yes
++ restrainDamage:r=0.5
++ kineticPenetrationToArmorThreshold:r=0.8
++ 
++ armor_belt_l_01_dm{
++ armorThickness:r=283.0
++ hp:r=8500.0
++ }
++ 
++ armor_belt_l_02_dm{
++ armorThickness:r=283.0
++ hp:r=8500.0
++ }
++ 
++ armor_belt_l_03_dm{
++ armorThickness:r=283.0
++ hp:r=8500.0
++ }
++ 
++ armor_belt_l_04_dm{
++ armorThickness:r=283.0
++ hp:r=8500.0
++ }
++ 
++ armor_belt_l_05_dm{
++ armorThickness:r=283.0
++ hp:r=8500.0
++ }
++ 
++ armor_belt_l_06_dm{
++ armorThickness:r=283.0
++ hp:r=8500.0
++ }
++ 
++ armor_belt_l_07_dm{
++ armorThickness:r=141.0
++ hp:r=8500.0
++ }
++ 
++ armor_belt_l_08_dm{
++ armorThickness:r=141.0
++ hp:r=8500.0
++ }
++ 
++ armor_belt_l_09_dm{
++ armorThickness:r=141.0
++ hp:r=8500.0
++ }
++ 
++ armor_belt_l_10_dm{
++ armorThickness:r=141.0
++ hp:r=8500.0
++ }
++ 
++ armor_belt_l_11_dm{
++ armorThickness:r=141.0
++ hp:r=8500.0
++ }
++ 
++ armor_belt_l_12_dm{
++ armorThickness:r=141.0
++ hp:r=8500.0
++ }
++ 
++ armor_belt_r_01_dm{
++ armorThickness:r=283.0
++ hp:r=8500.0
++ }
++ 
++ armor_belt_r_02_dm{
++ armorThickness:r=283.0
++ hp:r=8500.0
++ }
++ 
++ armor_belt_r_03_dm{
++ armorThickness:r=283.0
++ hp:r=8500.0
++ }
++ 
++ armor_belt_r_04_dm{
++ armorThickness:r=283.0
++ hp:r=8500.0
++ }
++ 
++ armor_belt_r_05_dm{
++ armorThickness:r=283.0
++ hp:r=8500.0
++ }
++ 
++ armor_belt_r_06_dm{
++ armorThickness:r=283.0
++ hp:r=8500.0
++ }
++ 
++ armor_belt_r_07_dm{
++ armorThickness:r=141.0
++ hp:r=8500.0
++ }
++ 
++ armor_belt_r_08_dm{
++ armorThickness:r=141.0
++ hp:r=8500.0
++ }
++ 
++ armor_belt_r_09_dm{
++ armorThickness:r=141.0
++ hp:r=8500.0
++ }
++ 
++ armor_belt_r_10_dm{
++ armorThickness:r=141.0
++ hp:r=8500.0
++ }
++ 
++ armor_belt_r_11_dm{
++ armorThickness:r=141.0
++ hp:r=8500.0
++ }
++ 
++ armor_belt_r_12_dm{
++ armorThickness:r=141.0
++ hp:r=8500.0
++ }
++ }
++ 
++ turret_armor{
++ fireProtectionHp:r=120.0
++ armorClass:t="ship_RGA"
++ armorThickness:r=15.0
++ 
++ turret_01_front_dm{
++ armorThickness:r=360.0
++ hp:r=10000.0
++ }
++ 
++ turret_01_top_dm{
++ armorThickness:r=160.0
++ hp:r=10000.0
++ }
++ 
++ turret_01_back_dm{
++ armorThickness:r=352.0
++ hp:r=10000.0
++ }
++ 
++ turret_01_side_dm{
++ armorThickness:r=250.0
++ hp:r=10000.0
++ }
++ 
++ turret_01_bottom_dm{
++ armorClass:t="ship_RHA"
++ armorThickness:r=85.0
++ hp:r=10000.0
++ }
++ 
++ turret_02_front_dm{
++ armorThickness:r=360.0
++ hp:r=10000.0
++ }
++ 
++ turret_02_top_dm{
++ armorThickness:r=160.0
++ hp:r=10000.0
++ }
++ 
++ turret_02_back_dm{
++ armorThickness:r=342.0
++ hp:r=10000.0
++ }
++ 
++ turret_02_side_dm{
++ armorThickness:r=250.0
++ hp:r=10000.0
++ }
++ 
++ turret_02_bottom_dm{
++ armorClass:t="ship_RHA"
++ armorThickness:r=85.0
++ hp:r=10000.0
++ }
++ 
++ turret_03_front_dm{
++ armorClass:t="ship_RHA"
++ armorThickness:r=80.0
++ hp:r=10000.0
++ }
++ 
++ turret_03_top_dm{
++ armorClass:t="ship_RHA"
++ armorThickness:r=80.0
++ hp:r=10000.0
++ }
++ 
++ turret_03_back_dm{
++ armorClass:t="ship_RHA"
++ armorThickness:r=80.0
++ hp:r=10000.0
++ }
++ 
++ turret_03_side_dm{
++ armorClass:t="ship_RHA"
++ armorThickness:r=80.0
++ hp:r=10000.0
++ }
++ 
++ turret_03_bottom_dm{
++ armorClass:t="ship_RHA"
++ armorThickness:r=20.0
++ hp:r=10000.0
++ }
++ 
++ turret_04_front_dm{
++ armorClass:t="ship_RHA"
++ armorThickness:r=80.0
++ hp:r=10000.0
++ }
++ 
++ turret_04_top_dm{
++ armorClass:t="ship_RHA"
++ armorThickness:r=80.0
++ hp:r=10000.0
++ }
++ 
++ turret_04_back_dm{
++ armorClass:t="ship_RHA"
++ armorThickness:r=80.0
++ hp:r=10000.0
++ }
++ 
++ turret_04_side_dm{
++ armorClass:t="ship_RHA"
++ armorThickness:r=80.0
++ hp:r=10000.0
++ }
++ 
++ turret_04_bottom_dm{
++ armorClass:t="ship_RHA"
++ armorThickness:r=20.0
++ hp:r=10000.0
++ }
++ 
++ turret_05_front_dm{
++ armorClass:t="ship_RHA"
++ armorThickness:r=135.0
++ hp:r=10000.0
++ }
++ 
++ turret_05_top_dm{
++ armorClass:t="ship_RHA"
++ armorThickness:r=90.0
++ hp:r=10000.0
++ }
++ 
++ turret_05_back_dm{
++ armorClass:t="ship_RHA"
++ armorThickness:r=80.0
++ hp:r=10000.0
++ }
++ 
++ turret_05_side_dm{
++ armorClass:t="ship_RHA"
++ armorThickness:r=90.0
++ hp:r=10000.0
++ }
++ 
++ turret_05_bottom_dm{
++ armorClass:t="ship_RHA"
++ armorThickness:r=75.0
++ hp:r=10000.0
++ }
++ 
++ turret_06_front_dm{
++ armorClass:t="ship_RHA"
++ armorThickness:r=135.0
++ hp:r=10000.0
++ }
++ 
++ turret_06_top_dm{
++ armorClass:t="ship_RHA"
++ armorThickness:r=90.0
++ hp:r=10000.0
++ }
++ 
++ turret_06_back_dm{
++ armorClass:t="ship_RHA"
++ armorThickness:r=80.0
++ hp:r=10000.0
++ }
++ 
++ turret_06_side_dm{
++ armorClass:t="ship_RHA"
++ armorThickness:r=90.0
++ hp:r=10000.0
++ }
++ 
++ turret_06_bottom_dm{
++ armorClass:t="ship_RHA"
++ armorThickness:r=75.0
++ hp:r=10000.0
++ }
++ 
++ turret_07_front_dm{
++ armorClass:t="ship_RHA"
++ armorThickness:r=135.0
++ hp:r=10000.0
++ }
++ 
++ turret_07_top_dm{
++ armorClass:t="ship_RHA"
++ armorThickness:r=90.0
++ hp:r=10000.0
++ }
++ 
++ turret_07_back_dm{
++ armorClass:t="ship_RHA"
++ armorThickness:r=80.0
++ hp:r=10000.0
++ }
++ 
++ turret_07_side_dm{
++ armorClass:t="ship_RHA"
++ armorThickness:r=90.0
++ hp:r=10000.0
++ }
++ 
++ turret_07_bottom_dm{
++ armorClass:t="ship_RHA"
++ armorThickness:r=75.0
++ hp:r=10000.0
++ }
++ }
++ 
++ hull_armor{
++ fireProtectionHp:r=120.0
++ armorClass:t="ship_structural_steel"
++ armorThickness:r=56.4
++ fireDamageMult:r=0.1
++ 
++ ex_armor_01_dm{
++ hp:r=869.0
++ }
++ 
++ ex_armor_02_dm{
++ hp:r=1000.0
++ }
++ 
++ ex_armor_03_dm{
++ hp:r=594.0
++ }
++ 
++ ex_armor_04_dm{
++ hp:r=619.0
++ }
++ 
++ ex_armor_l_01_dm{
++ hp:r=943.0
++ }
++ 
++ ex_armor_l_02_dm{
++ hp:r=1000.0
++ }
++ 
++ ex_armor_r_01_dm{
++ hp:r=941.0
++ }
++ 
++ ex_armor_r_02_dm{
++ hp:r=1000.0
++ }
++ }
++ 
++ bulges{
++ armorClass:t="ship_structural_steel"
++ armorThickness:r=30.0
++ stopChanceOnDeadPart:r=0.0
++ ignoreDeadWithSplash:b=yes
++ explosionArmorQuality:r=8.96
++ fireDamageMult:r=0.001
++ hidableInViewer:b=yes
++ pressureDamageMult:r=150.0
++ hydroShockDamageMult:r=0.0
++ 
++ at_bulge_01_dm{
++ hp:r=2000.0
++ }
++ 
++ at_bulge_02_dm{
++ hp:r=2000.0
++ }
++ }
++ 
++ masts{
++ armorClass:t="ship_structural_steel"
++ armorThickness:r=15.0
++ 
++ mast_01_dm{
++ hp:r=15000.0
++ }
++ }
++ 
++ funnels{
++ armorClass:t="ship_structural_steel"
++ armorThickness:r=10.0
++ genericDamageMult:r=0.15
++ explosionDamageMult:r=1.5
++ fireDamageMult:r=0.1
++ 
++ funnel_01_dm{
++ hp:r=3000.0
++ }
++ }
++ 
++ steering_gear{
++ shatterDamageMult:r=0.5
++ armorClass:t="ship_structural_steel"
++ armorThickness:r=25.0
++ fireProtectionHp:r=30.0
++ 
++ steering_gear_01_dm{
++ hp:r=1000.0
++ }
++ }
++ 
++ fuel_tanks{
++ armorClass:t="ships_oil_fuel_tank"
++ armorThickness:r=10.0
++ stopChanceOnDeadPart:r=0.5
++ ignoreDeadWithSplash:b=yes
++ oneSided:b=yes
++ 
++ fuel_tank_01_dm{
++ hp:r=6000.0
++ }
++ 
++ fuel_tank_02_dm{
++ hp:r=6000.0
++ }
++ 
++ fuel_tank_03_dm{
++ hp:r=6000.0
++ }
++ 
++ fuel_tank_04_dm{
++ hp:r=6000.0
++ }
++ 
++ fuel_tank_05_dm{
++ hp:r=6000.0
++ }
++ 
++ fuel_tank_06_dm{
++ hp:r=5302.0
++ }
++ 
++ fuel_tank_07_dm{
++ hp:r=3000.0
++ }
++ }
++ 
++ coal_bunkers{
++ armorThickness:r=3.0
++ armorClass:t="ships_coal_bunker"
++ stopChanceOnDeadPart:r=0.05
++ variableThickness:b=yes
++ kineticProtectionEquivalentPerMeter:r=27.3
++ }
++ 
++ gun_masks{
++ armorClass:t="ship_RHA"
++ armorThickness:r=80.0
++ 
++ gun_mask_01_dm{
++ hp:r=200.0
++ }
++ 
++ gun_mask_02_dm{
++ hp:r=200.0
++ }
++ 
++ gun_mask_03_dm{
++ hp:r=200.0
++ }
++ 
++ gun_mask_04_dm{
++ hp:r=200.0
++ }
++ 
++ gun_mask_05_dm{
++ hp:r=200.0
++ }
++ 
++ gun_mask_06_dm{
++ hp:r=200.0
++ }
++ 
++ gun_mask_07_dm{
++ hp:r=200.0
++ }
++ 
++ gun_mask_08_dm{
++ hp:r=200.0
++ }
++ 
++ gun_mask_09_dm{
++ armorThickness:r=20.0
++ hp:r=100.0
++ }
++ 
++ gun_mask_10_dm{
++ armorThickness:r=20.0
++ hp:r=100.0
++ }
++ 
++ gun_mask_11_dm{
++ armorThickness:r=50.0
++ hp:r=100.0
++ }
++ 
++ gun_mask_12_dm{
++ armorThickness:r=50.0
++ hp:r=100.0
++ }
++ 
++ gun_mask_13_dm{
++ armorThickness:r=50.0
++ hp:r=100.0
++ }
++ 
++ gun_mask_14_dm{
++ armorThickness:r=50.0
++ hp:r=100.0
++ }
++ 
++ gun_mask_15_dm{
++ armorThickness:r=50.0
++ hp:r=100.0
++ }
++ 
++ gun_mask_16_dm{
++ armorThickness:r=50.0
++ hp:r=100.0
++ }
++ }
++ }
++ 
++ tank_crew{
++ minCrewMemberRepairCount:i=455
++ minCrewMemberAliveCount:i=390
++ 
++ sailor1{
++ dmPart:t="bridge_dm"
++ role:t="sailor"
++ crew:i=11
++ }
++ 
++ sailor2{
++ dmPart:t="radio_station_dm"
++ role:t="sailor"
++ crew:i=10
++ }
++ 
++ sailor3{
++ dmPart:t="main_caliber_turret_01_dm"
++ role:t="sailor"
++ crew:i=20
++ }
++ 
++ sailor4{
++ dmPart:t="main_caliber_turret_02_dm"
++ role:t="sailor"
++ crew:i=20
++ }
++ 
++ sailor5{
++ dmPart:t="auxiliary_caliber_turret_01_dm"
++ role:t="sailor"
++ crew:i=6
++ }
++ 
++ sailor6{
++ dmPart:t="auxiliary_caliber_turret_02_dm"
++ role:t="sailor"
++ crew:i=6
++ }
++ 
++ sailor7{
++ dmPart:t="auxiliary_caliber_turret_03_dm"
++ role:t="sailor"
++ crew:i=6
++ }
++ 
++ sailor8{
++ dmPart:t="auxiliary_caliber_turret_04_dm"
++ role:t="sailor"
++ crew:i=6
++ }
++ 
++ sailor9{
++ dmPart:t="auxiliary_caliber_turret_05_dm"
++ role:t="sailor"
++ crew:i=6
++ }
++ 
++ sailor10{
++ dmPart:t="engine_room_01_dm"
++ role:t="sailor"
++ crew:i=70
++ }
++ 
++ sailor11{
++ dmPart:t="engine_room_02_dm"
++ role:t="sailor"
++ crew:i=70
++ }
++ 
++ sailor12{
++ dmPart:t="engine_room_03_dm"
++ role:t="sailor"
++ crew:i=70
++ }
++ 
++ sailor13{
++ dmPart:t="transmission_01_dm"
++ role:t="sailor"
++ crew:i=70
++ }
++ 
++ sailor14{
++ dmPart:t="transmission_02_dm"
++ role:t="sailor"
++ crew:i=70
++ }
++ 
++ sailor15{
++ dmPart:t="transmission_03_dm"
++ role:t="sailor"
++ crew:i=70
++ }
++ 
++ sailor16{
++ dmPart:t="transmission_04_dm"
++ role:t="sailor"
++ crew:i=70
++ }
++ 
++ sailor17{
++ dmPart:t="elevator_01_dm"
++ role:t="sailor"
++ crew:i=22
++ }
++ 
++ sailor18{
++ dmPart:t="elevator_02_dm"
++ role:t="sailor"
++ crew:i=22
++ }
++ 
++ sailor19{
++ dmPart:t="ammunition_storage_shells_01_dm"
++ role:t="sailor"
++ crew:i=35
++ }
++ 
++ sailor20{
++ dmPart:t="ammunition_storage_shells_02_dm"
++ role:t="sailor"
++ crew:i=35
++ }
++ 
++ sailor21{
++ dmPart:t="ammunition_storage_aux_01_dm"
++ role:t="sailor"
++ crew:i=14
++ }
++ 
++ sailor22{
++ dmPart:t="ammunition_storage_aux_02_dm"
++ role:t="sailor"
++ crew:i=14
++ }
++ 
++ sailor23{
++ dmPart:t="ammunition_storage_aux_03_dm"
++ role:t="sailor"
++ crew:i=14
++ }
++ 
++ sailor24{
++ dmPart:t="ammunition_storage_aux_04_dm"
++ role:t="sailor"
++ crew:i=14
++ }
++ 
++ sailor25{
++ dmPart:t="ammunition_storage_aux_05_dm"
++ role:t="sailor"
++ crew:i=14
++ }
++ 
++ sailor26{
++ dmPart:t="ammunition_storage_aux_06_dm"
++ role:t="sailor"
++ crew:i=14
++ }
++ 
++ sailor27{
++ dmPart:t="ammunition_storage_aux_07_dm"
++ role:t="sailor"
++ crew:i=14
++ }
++ 
++ sailor28{
++ dmPart:t="compartment_01_dm"
++ role:t="sailor"
++ crew:i=64
++ }
++ 
++ sailor29{
++ dmPart:t="compartment_02_dm"
++ role:t="sailor"
++ crew:i=84
++ }
++ 
++ sailor30{
++ dmPart:t="compartment_03_dm"
++ role:t="sailor"
++ crew:i=84
++ }
++ 
++ sailor31{
++ dmPart:t="compartment_04_dm"
++ role:t="sailor"
++ crew:i=84
++ }
++ 
++ sailor32{
++ dmPart:t="compartment_05_dm"
++ role:t="sailor"
++ crew:i=74
++ }
++ 
++ sailor33{
++ dmPart:t="compartment_06_dm"
++ role:t="sailor"
++ crew:i=63
++ }
++ 
++ sailor34{
++ dmPart:t="fire_control_room_01_dm"
++ role:t="sailor"
++ crew:i=11
++ }
++ 
++ sailor35{
++ dmPart:t="fire_director_01_dm"
++ role:t="sailor"
++ crew:i=5
++ }
++ 
++ sailor36{
++ dmPart:t="fire_director_02_dm"
++ role:t="sailor"
++ crew:i=5
++ }
++ 
++ sailor37{
++ dmPart:t="fire_director_03_dm"
++ role:t="sailor"
++ crew:i=5
++ }
++ 
++ sailor38{
++ dmPart:t="fire_director_04_dm"
++ role:t="sailor"
++ crew:i=5
++ }
++ 
++ sailor39{
++ dmPart:t="fire_director_05_dm"
++ role:t="sailor"
++ crew:i=5
++ }
++ 
++ sailor40{
++ dmPart:t="fire_director_06_dm"
++ role:t="sailor"
++ crew:i=5
++ }
++ 
++ sailor41{
++ dmPart:t="fire_director_07_dm"
++ role:t="sailor"
++ crew:i=5
++ }
++ 
++ sailor42{
++ dmPart:t="radio_station_02_dm"
++ role:t="sailor"
++ crew:i=10
++ }
++ }
++ 
++ DamageEffects{
++ 
++ ammunition_storage_shells{
++ 
++ onKill{
++ expl:r=1.0
++ fHitCritical:b=no
++ }
++ 
++ onHit{
++ damageType:t="fire"
++ expl:r=0.03
++ damage:r=55.0
++ fHitCritical:b=no
++ }
++ 
++ onHit{
++ damageType:t="fire"
++ expl:r=0.05
++ damage:r=74.0
++ fHitCritical:b=no
++ }
++ }
++ 
++ ammunition_storage_charges{
++ 
++ onKill{
++ fire:r=1.0
++ fHitCritical:b=no
++ }
++ 
++ onHit{
++ damageType:t="fire"
++ fire:r=0.05
++ damage:r=55.0
++ fHitCritical:b=no
++ }
++ 
++ onHit{
++ damageType:t="fire"
++ fire:r=0.08
++ damage:r=74.0
++ fHitCritical:b=no
++ }
++ }
++ 
++ ammunition_storage_aux{
++ 
++ onKill{
++ fire:r=0.49
++ expl:r=0.51
++ fHitCritical:b=no
++ }
++ 
++ onHit{
++ damageType:t="fire"
++ fire:r=0.15
++ damage:r=79.0
++ fHitCritical:b=no
++ }
++ }
++ 
++ ammunition_first_stage{
++ 
++ onKill{
++ fire:r=1.0
++ fHitCritical:b=no
++ }
++ 
++ onHit{
++ damageType:t="fire"
++ fire:r=0.1
++ damage:r=50.0
++ fHitCritical:b=no
++ }
++ }
++ 
++ ammunition_torpedoes{
++ 
++ onKill{
++ expl:r=0.07
++ nothing:r=0.93
++ fHitCritical:b=no
++ }
++ 
++ onHit{
++ damageType:t="fire"
++ expl:r=0.07
++ damage:r=60.0
++ fHitCritical:b=no
++ }
++ }
++ 
++ handling_room{
++ 
++ onKill{
++ expl:r=0.2
++ fire:r=0.3
++ nothing:r=0.5
++ fHitCritical:b=no
++ }
++ }
++ 
++ part{
++ name:t="engine_room_01_dm"
++ name:t="engine_room_02_dm"
++ name:t="engine_room_03_dm"
++ name:t="engine_room_04_dm"
++ name:t="engine_room_05_dm"
++ name:t="engine_room_06_dm"
++ name:t="transmission_01_dm"
++ name:t="transmission_02_dm"
++ name:t="transmission_03_dm"
++ name:t="transmission_04_dm"
++ name:t="transmission_05_dm"
++ name:t="transmission_06_dm"
++ 
++ onKill{
++ fire:r=0.15
++ nothing:r=0.85
++ fHitCritical:b=no
++ }
++ }
++ 
++ part{
++ name:t="compartment_01_dm"
++ name:t="compartment_02_dm"
++ name:t="compartment_03_dm"
++ name:t="compartment_04_dm"
++ name:t="compartment_05_dm"
++ name:t="compartment_06_dm"
++ name:t="compartment_07_dm"
++ name:t="compartment_08_dm"
++ name:t="compartment_09_dm"
++ name:t="compartment_10_dm"
++ name:t="compartment_11_dm"
++ name:t="compartment_12_dm"
++ name:t="compartment_13_dm"
++ name:t="compartment_14_dm"
++ name:t="compartment_15_dm"
++ 
++ onHit{
++ damageType:t="shatter"
++ fire:r=0.001
++ damage:r=22.0
++ fHitCritical:b=no
++ }
++ 
++ onHit{
++ damageType:t="explosion"
++ fire:r=0.15
++ damage:r=300.0
++ }
++ }
++ 
++ part{
++ name:t="bridge_dm"
++ name:t="bridge_01_dm"
++ name:t="bridge_02_dm"
++ 
++ onKill{
++ fire:r=0.1
++ nothing:r=0.9
++ fHitCritical:b=no
++ }
++ }
++ 
++ part{
++ name:t="main_caliber_turret_01_dm"
++ name:t="main_caliber_turret_02_dm"
++ name:t="main_caliber_turret_03_dm"
++ name:t="main_caliber_turret_04_dm"
++ name:t="main_caliber_turret_05_dm"
++ name:t="main_caliber_turret_06_dm"
++ name:t="main_caliber_turret_07_dm"
++ name:t="main_caliber_turret_08_dm"
++ name:t="main_caliber_turret_09_dm"
++ name:t="main_caliber_turret_10_dm"
++ name:t="main_caliber_turret_11_dm"
++ name:t="main_caliber_turret_12_dm"
++ name:t="main_caliber_turret_13_dm"
++ name:t="main_caliber_turret_14_dm"
++ name:t="main_caliber_turret_15_dm"
++ 
++ onKill{
++ fire:r=0.49
++ nothing:r=0.51
++ }
++ }
++ 
++ part{
++ name:t="elevator_01_dm"
++ name:t="elevator_02_dm"
++ name:t="elevator_03_dm"
++ name:t="elevator_04_dm"
++ name:t="elevator_05_dm"
++ name:t="elevator_06_dm"
++ name:t="elevator_07_dm"
++ name:t="elevator_08_dm"
++ name:t="elevator_09_dm"
++ name:t="elevator_10_dm"
++ name:t="elevator_11_dm"
++ name:t="elevator_12_dm"
++ name:t="elevator_13_dm"
++ name:t="elevator_14_dm"
++ name:t="elevator_15_dm"
++ 
++ onHit{
++ damageType:t="fire"
++ fire:r=0.2
++ damage:r=50.0
++ }
++ 
++ onHit{
++ damageType:t="explosion"
++ fire:r=0.2
++ damage:r=500.0
++ }
++ 
++ onHit{
++ damageType:t="generic"
++ fire:r=0.08
++ damage:r=3000.0
++ }
++ 
++ onHit{
++ damageType:t="generic"
++ fire:r=0.1
++ damage:r=4700.0
++ }
++ }
++ 
++ part{
++ name:t="auxiliary_caliber_turret_01_dm"
++ name:t="auxiliary_caliber_turret_02_dm"
++ name:t="auxiliary_caliber_turret_03_dm"
++ name:t="auxiliary_caliber_turret_04_dm"
++ name:t="auxiliary_caliber_turret_05_dm"
++ name:t="auxiliary_caliber_turret_06_dm"
++ name:t="auxiliary_caliber_turret_07_dm"
++ name:t="auxiliary_caliber_turret_08_dm"
++ name:t="auxiliary_caliber_turret_09_dm"
++ name:t="auxiliary_caliber_turret_10_dm"
++ name:t="auxiliary_caliber_turret_11_dm"
++ name:t="auxiliary_caliber_turret_12_dm"
++ name:t="auxiliary_caliber_turret_13_dm"
++ name:t="auxiliary_caliber_turret_14_dm"
++ name:t="auxiliary_caliber_turret_15_dm"
++ name:t="auxiliary_caliber_turret_16_dm"
++ name:t="auxiliary_caliber_turret_17_dm"
++ name:t="auxiliary_caliber_turret_18_dm"
++ name:t="auxiliary_caliber_turret_19_dm"
++ name:t="auxiliary_caliber_turret_20_dm"
++ name:t="auxiliary_caliber_turret_21_dm"
++ name:t="auxiliary_caliber_turret_22_dm"
++ name:t="auxiliary_caliber_turret_23_dm"
++ name:t="auxiliary_caliber_turret_24_dm"
++ name:t="auxiliary_caliber_turret_25_dm"
++ name:t="auxiliary_caliber_turret_26_dm"
++ name:t="auxiliary_caliber_turret_27_dm"
++ name:t="auxiliary_caliber_turret_28_dm"
++ name:t="auxiliary_caliber_turret_29_dm"
++ name:t="auxiliary_caliber_turret_30_dm"
++ 
++ onKill{
++ fire:r=0.1
++ nothing:r=0.9
++ }
++ }
++ 
++ part{
++ name:t="cover_01_dm"
++ name:t="cover_02_dm"
++ name:t="cover_03_dm"
++ name:t="cover_04_dm"
++ name:t="cover_05_dm"
++ name:t="cover_06_dm"
++ name:t="cover_07_dm"
++ name:t="cover_08_dm"
++ name:t="cover_09_dm"
++ name:t="cover_10_dm"
++ 
++ onHit{
++ damageType:t="explosion"
++ damage:r=15.0
++ 
++ action{
++ type:t="fxEvent"
++ probability:r=0.15
++ fxEventName:t="fire_after_hit_med"
++ }
++ }
++ 
++ onHit{
++ damageType:t="generic"
++ damage:r=35.0
++ 
++ action{
++ type:t="fxEvent"
++ probability:r=0.15
++ fxEventName:t="fire_after_hit_med"
++ }
++ }
++ 
++ onHit{
++ damageType:t="explosion"
++ damage:r=250.0
++ 
++ action{
++ type:t="fxEvent"
++ probability:r=0.5
++ fxEventName:t="fire_after_hit_big"
++ }
++ }
++ 
++ onHit{
++ damageType:t="generic"
++ damage:r=90.0
++ 
++ action{
++ type:t="fxEvent"
++ probability:r=0.5
++ fxEventName:t="fire_after_hit_big"
++ }
++ }
++ 
++ onHit{
++ damageType:t="generic"
++ damage:r=800.0
++ 
++ action{
++ type:t="fxEvent"
++ probability:r=0.6
++ fxEventName:t="fire_after_hit_huge"
++ }
++ }
++ }
++ }
++ 
++ MetaParts{
++ 
++ cover{
++ part:t="cover_01_dm"
++ 
++ effect{
++ conditionDamageType:t="explosion"
++ conditionDamage:r=100000.0
++ kill:b=yes
++ killEffect:t="destruction"
++ }
++ }
++ 
++ cover{
++ part:t="cover_02_dm"
++ 
++ effect{
++ conditionDamageType:t="explosion"
++ conditionDamage:r=100000.0
++ kill:b=yes
++ killEffect:t="destruction"
++ }
++ }
++ 
++ cover{
++ part:t="cover_03_dm"
++ 
++ effect{
++ conditionDamageType:t="explosion"
++ conditionDamage:r=100000.0
++ kill:b=yes
++ killEffect:t="destruction"
++ }
++ }
++ 
++ cover{
++ part:t="cover_04_dm"
++ 
++ effect{
++ conditionDamageType:t="explosion"
++ conditionDamage:r=100000.0
++ kill:b=yes
++ killEffect:t="destruction"
++ }
++ }
++ 
++ cover{
++ part:t="cover_05_dm"
++ 
++ effect{
++ conditionDamageType:t="explosion"
++ conditionDamage:r=100000.0
++ kill:b=yes
++ killEffect:t="destruction"
++ }
++ }
++ 
++ cover{
++ part:t="cover_06_dm"
++ 
++ effect{
++ conditionDamageType:t="explosion"
++ conditionDamage:r=100000.0
++ kill:b=yes
++ killEffect:t="destruction"
++ }
++ }
++ 
++ cover{
++ part:t="cover_07_dm"
++ 
++ effect{
++ conditionDamageType:t="explosion"
++ conditionDamage:r=100000.0
++ kill:b=yes
++ killEffect:t="destruction"
++ }
++ }
++ 
++ cover{
++ part:t="cover_08_dm"
++ 
++ effect{
++ conditionDamageType:t="explosion"
++ conditionDamage:r=100000.0
++ kill:b=yes
++ killEffect:t="destruction"
++ }
++ }
++ 
++ cover{
++ part:t="cover_09_dm"
++ 
++ effect{
++ conditionDamageType:t="explosion"
++ conditionDamage:r=100000.0
++ kill:b=yes
++ killEffect:t="destruction"
++ }
++ }
++ 
++ cover{
++ part:t="cover_10_dm"
++ 
++ effect{
++ conditionDamageType:t="explosion"
++ conditionDamage:r=100000.0
++ kill:b=yes
++ killEffect:t="destruction"
++ }
++ }
++ 
++ cover{
++ part:t="cover_11_dm"
++ 
++ effect{
++ conditionDamageType:t="explosion"
++ conditionDamage:r=100000.0
++ kill:b=yes
++ killEffect:t="destruction"
++ }
++ }
++ 
++ cover{
++ part:t="cover_12_dm"
++ 
++ effect{
++ conditionDamageType:t="explosion"
++ conditionDamage:r=100000.0
++ kill:b=yes
++ killEffect:t="destruction"
++ }
++ }
++ 
++ open_mounts{
++ part:t="auxiliary_caliber_turret_01_dm"
++ part:t="auxiliary_caliber_turret_02_dm"
++ part:t="auxiliary_caliber_turret_03_dm"
++ part:t="auxiliary_caliber_turret_04_dm"
++ part:t="auxiliary_caliber_turret_05_dm"
++ part:t="auxiliary_caliber_turret_06_dm"
++ part:t="auxiliary_caliber_turret_07_dm"
++ part:t="auxiliary_caliber_turret_08_dm"
++ part:t="auxiliary_caliber_turret_09_dm"
++ part:t="auxiliary_caliber_turret_10_dm"
++ part:t="auxiliary_caliber_turret_11_dm"
++ part:t="auxiliary_caliber_turret_12_dm"
++ part:t="auxiliary_caliber_turret_13_dm"
++ part:t="auxiliary_caliber_turret_14_dm"
++ part:t="auxiliary_caliber_turret_15_dm"
++ part:t="auxiliary_caliber_turret_16_dm"
++ part:t="auxiliary_caliber_turret_17_dm"
++ part:t="auxiliary_caliber_turret_18_dm"
++ part:t="auxiliary_caliber_turret_19_dm"
++ part:t="auxiliary_caliber_turret_20_dm"
++ part:t="auxiliary_caliber_turret_21_dm"
++ part:t="auxiliary_caliber_turret_22_dm"
++ part:t="auxiliary_caliber_turret_23_dm"
++ part:t="auxiliary_caliber_turret_24_dm"
++ part:t="auxiliary_caliber_turret_25_dm"
++ part:t="auxiliary_caliber_turret_26_dm"
++ part:t="auxiliary_caliber_turret_27_dm"
++ part:t="auxiliary_caliber_turret_28_dm"
++ part:t="auxiliary_caliber_turret_29_dm"
++ part:t="auxiliary_caliber_turret_30_dm"
++ part:t="aa_turret_01_dm"
++ part:t="aa_turret_02_dm"
++ part:t="aa_turret_03_dm"
++ part:t="aa_turret_04_dm"
++ part:t="aa_turret_05_dm"
++ part:t="aa_turret_06_dm"
++ part:t="aa_turret_07_dm"
++ part:t="aa_turret_08_dm"
++ part:t="aa_turret_09_dm"
++ part:t="aa_turret_10_dm"
++ part:t="aa_turret_11_dm"
++ part:t="aa_turret_12_dm"
++ part:t="aa_turret_13_dm"
++ part:t="aa_turret_14_dm"
++ part:t="aa_turret_15_dm"
++ part:t="aa_turret_16_dm"
++ part:t="aa_turret_17_dm"
++ part:t="aa_turret_18_dm"
++ part:t="aa_turret_19_dm"
++ part:t="aa_turret_20_dm"
++ part:t="aa_turret_21_dm"
++ part:t="aa_turret_22_dm"
++ part:t="aa_turret_23_dm"
++ part:t="aa_turret_24_dm"
++ part:t="aa_turret_25_dm"
++ part:t="aa_turret_25_dm"
++ part:t="aa_turret_26_dm"
++ part:t="aa_turret_27_dm"
++ part:t="aa_turret_28_dm"
++ part:t="aa_turret_29_dm"
++ part:t="aa_turret_30_dm"
++ part:t="rangefinder_01_dm"
++ part:t="rangefinder_02_dm"
++ part:t="rangefinder_03_dm"
++ part:t="rangefinder_04_dm"
++ part:t="rangefinder_05_dm"
++ part:t="rangefinder_06_dm"
++ part:t="rangefinder_07_dm"
++ part:t="rangefinder_08_dm"
++ part:t="rangefinder_09_dm"
++ part:t="rangefinder_10_dm"
++ part:t="rangefinder_11_dm"
++ part:t="rangefinder_12_dm"
++ part:t="rangefinder_13_dm"
++ part:t="rangefinder_14_dm"
++ part:t="rangefinder_15_dm"
++ 
++ effect{
++ pressureOpen:b=yes
++ }
++ }
++ }
++ 
++ ShipPhys{
++ 
++ mass{
++ Empty:r=27000000.0
++ momentOfInertia:p3=90.0, 1950.0, 1200.0
++ CenterOfGravity:p3=-2.3, 1.2, 0.0
++ }
++ 
++ engines{
++ maxSpeed:r=15.63
++ maxReverseSpeed:r=5.5
++ 
++ speedToTime{
++ row:p2=4.5, 13.1
++ row:p2=8.0, 21.3
++ row:p2=15.63, 31.7
++ }
++ 
++ reverseSpeedToTime{
++ row:p2=2.0, 6.3
++ row:p2=4.0, 13.6
++ row:p2=5.5, 20.0
++ }
++ 
++ engine{
++ pos:p3=-72.969, -6.531, 7.9
++ outputParam:t="propeller_rotate_01:CRS"
++ engineDmPart:t="engine_room_01_dm"
++ transmissionDmPart:t="transmission_01_dm"
++ shaftDmPart:t="shaft_01_dm"
++ propeller:t="propeller_01"
++ }
++ 
++ engine{
++ pos:p3=-86.938, -6.62, 4.229
++ outputParam:t="propeller_rotate_02:CRS"
++ engineDmPart:t="engine_room_02_dm"
++ transmissionDmPart:t="transmission_02_dm"
++ shaftDmPart:t="shaft_02_dm"
++ propeller:t="propeller_02"
++ }
++ 
++ engine{
++ pos:p3=-86.938, -6.62, -4.229
++ outputParam:t="propeller_rotate_03:CRS"
++ engineDmPart:t="engine_room_03_dm"
++ transmissionDmPart:t="transmission_03_dm"
++ shaftDmPart:t="shaft_03_dm"
++ propeller:t="propeller_03"
++ }
++ 
++ engine{
++ pos:p3=-72.969, -6.531, -7.9
++ outputParam:t="propeller_rotate_04:CRS"
++ engineDmPart:t="engine_room_03_dm"
++ transmissionDmPart:t="transmission_04_dm"
++ shaftDmPart:t="shaft_04_dm"
++ propeller:t="propeller_04"
++ }
++ 
++ engine_rooms{
++ 
++ engine_room1{
++ engineRoomDmPart:t="engine_room_01_dm"
++ funnelDmPart:t="funnel_01_dm"
++ }
++ 
++ engine_room2{
++ engineRoomDmPart:t="engine_room_02_dm"
++ funnelDmPart:t="funnel_01_dm"
++ }
++ 
++ engine_room3{
++ engineRoomDmPart:t="engine_room_03_dm"
++ funnelDmPart:t="funnel_01_dm"
++ }
++ }
++ }
++ 
++ collisionProps{
++ cls_body_01:t="convex_hull"
++ cls_body_02:t="convex_hull"
++ cls_body_03:t="convex_hull"
++ cls_body_04:t="convex_hull"
++ cls_body_05:t="convex_hull"
++ cls_body_06:t="convex_hull"
++ }
++ 
++ hydrodynamics{
++ bodyArea:r=0.0
++ mulReaction:r=1.4
++ 
++ rudder{
++ pos:p3=-93.923, -1.639, 0.0
++ area:r=38.0
++ deflection:r=35.0
++ dmPart:t="steering_gear_01_dm"
++ }
++ }
 + }
 + 
 + cockpit{
-+ headPos:p3=2.9, 0.827, 0.0
-+ headPosOnShooting:p3=3.0, 0.827, 0.0
-+ sightInFov:r=50.5
-+ sightInFov:r=1.5
-+ sightOutFov:r=40.5
-+ sightOutFov:r=6.5
-+ sightFov:r=1.0
-+ sightFov:r=1.0
-+ mirror:b=yes
-+ mirrorPos:p3=3.56, 0.452, 0.0
-+ mirrorNorm:p3=-1.0, 0.12, 0.0
-+ mirrorNode:t="blister3"
-+ mirrorNode:t="blister4"
-+ lightPos:p3=3.442, 0.36, 0.0
-+ lightColor:p3=0.9, 0.11, 0.0
-+ lightRadius:r=0.45
-+ lightPos1:p3=3.436, 0.206, 0.415
-+ lightColor1:p3=0.9, 0.11, 0.0
-+ lightRadius1:r=0.2
-+ lightPos2:p3=3.474, 0.236, -0.47
-+ lightColor2:p3=0.9, 0.11, 0.0
-+ lightRadius2:r=0.2
-+ lightPos3:p3=3.236, 0.197, -0.489
-+ lightColor3:p3=0.9, 0.11, 0.0
-+ lightRadius3:r=0.2
-+ 
-+ devices{
-+ stick_ailerons:p2=-1.0, 1.0
-+ stick_elevator:p2=-1.0, 1.0
-+ pedals1:p2=-1.0, 1.0
-+ pedals2:p2=-1.0, 1.0
-+ pedals3:p2=-1.0, 1.0
-+ pedals4:p2=-1.0, 1.0
-+ pedals5:p2=-1.0, 1.0
-+ pedals6:p2=-1.0, 1.0
-+ throttle:p2=0.0, 1.0
-+ weapon2:p2=0.0, 1.0
-+ weapon4:p2=0.0, 1.0
-+ gears:p2=0.0, 1.0
-+ gear_fixed:b=yes
-+ flaps:p2=0.0, 1.0
-+ flaps_fixed:b=yes
-+ trimmer_indicator:p2=-1.0, 1.0
-+ speed:p2=0.0, 514.444
-+ mach:p2=0.5, 2.4
-+ vario:p2=-30.48, 30.48
-+ altitude_10k:p2=0.0, 100000.0
-+ altitude_hour:p2=0.0, 10000.0
-+ altitude_min:p2=0.0, 1000.0
-+ altitude1_10k:p2=0.0, 100000.0
-+ altitude1_min:p2=0.0, 1000.0
-+ altitude_koef:r=3.28
-+ bank:p2=-8.0, 8.0
-+ turn:p2=-0.23562, 0.23562
-+ aviahorizon_pitch:p2=-90.0, 90.0
-+ aviahorizon_roll:p2=-180.0, 180.0
-+ aviahorizon_pitch1:p2=-80.0, 80.0
-+ aviahorizon_roll1:p2=-180.0, 180.0
-+ aoa:p2=-10.0, 40.0
-+ aoa_indexer1:p2=19.5, 30.0
-+ aoa_indexer2:p2=17.9, 20.1
-+ aoa_indexer3:p2=0.0, 18.5
-+ compass:p2=0.0, 360.0
-+ compass1:p2=0.0, 360.0
-+ clock_hour:p2=0.0, 12.0
-+ clock_min:p2=0.0, 60.0
-+ clock_sec:p2=0.0, 60.0
-+ rpm_hour:p2=0.0, 16550.0
-+ rpm_min:p2=0.0, 1000.0
-+ rpm1_hour:p2=0.0, 16550.0
-+ rpm1_min:p2=0.0, 1000.0
-+ oil_pressure:p2=0.0, 160.0
-+ oil_pressure1:p2=0.0, 160.0
-+ water_temperature:p2=0.0, 1200.0
-+ water_temperature1:p2=0.0, 1200.0
-+ fuel_pressure:p2=0.0, 15.0
-+ fuel_pressure1:p2=0.0, 15.0
-+ fuel:p2=0.0, 1090.0
-+ fuel1:p2=0.0, 1090.0
-+ fuel_consume:p2=0.0, 100.0
-+ fuel_consume1:p2=0.0, 100.0
-+ g_meter:p2=-5.0, 10.0
-+ g_meter_min:p2=-5.0, 10.0
-+ g_meter_max:p2=-5.0, 10.0
-+ gears_lamp:p2=0.0, 0.0
++ headPosOnShootingHeightMult:r=1.75
++ headPos:p3=0.0, 33.0, -135.0
++ headPosOnShooting:p3=26.0, 38.0, 0.0
++ detectionHeight:r=48.4
 + }
 + 
-+ rwr{
-+ 
-+ modeLamps{
-+ launchLamp:i=0
-+ launchLampBlinkingPeriod:r=0.25
-+ }
-+ }
-+ 
-+ multifunctionDisplays{
-+ 
-+ display{
-+ textureArea:p4=0.0, 0.0, 1.0, 1.0
-+ 
-+ page{
-+ type:t="rwr"
-+ scale:r=1.15
-+ hideBackground:b=yes
-+ }
++ sound{
++ EngineName:t="engine_shipmid01"
++ EngineNameAi:t="engine_shiplight_ai"
++ TrackSoundPath:t="ships/engines_ships"
++ TrackSoundPathStudio:t="naval/engines"
++ TrackSoundName:t="tracks_mid"
++ TrackSoundNameCockpit:t="tracks_ctr_interior"
++ TrackSoundNameAi:t="tracks_ai_ctr"
 + }
 + 
-+ display{
-+ textureArea:p4=0.0, 0.0, 1.0, 1.0
-+ 
-+ page{
-+ type:t="plane_ils"
-+ ilsSize:p2=0.25, 0.25
-+ ilsOffsetForce:r=0.0
-+ brightnessMult:r=3.5
-+ ilsColor:c=10, 255, 10, 100
-+ lineWidthScale:r=0.5
-+ }
-+ }
-+ }
-+ 
-+ parts_holes_dmg{
-+ part:t="fuse"
-+ }
-+ 
-+ parts_oil_dmg{
-+ part:t="engine1"
-+ part:t="engine2"
-+ part:t="engine3"
-+ part:t="engine4"
-+ }
-+ }
-+ 
-+ nightVision{
-+ 
-+ sightThermal{
-+ resolution:ip2=500, 300
-+ noiseFactor:r=0.05
-+ index:i=1
-+ }
-+ }
-+ 
-+ gunnerOpticFps{
-+ pos:p3=0.2, -0.05, 0.0
-+ head:t="optic1_turret"
-+ crosshairPreset:t="test_crosshair"
-+ angularLimits:p4=-20.0, 20.0, -20.0, 20.0
-+ opticType:t="tv"
-+ nvIndex:i=1
++ optics{
++ binoculars:t="navy_binoculars"
 + }
 + 
 + sensors{
 + 
 + sensor{
-+ blk:t="gameData/sensors/us_an_alr_46_v3.blk"
++ blk:t="gameData/sensors/naval/fr_me140_mr126.blk"
++ designationFromBody:b=yes
++ dmPart:t="antenna_target_location_01_dm"
++ dmPart:t="antenna_target_location_02_dm"
++ dmPart:t="antenna_target_location_03_dm"
++ dmPart:t="antenna_target_location_04_dm"
++ }
++ 
++ fireDirecting{
++ dmPartMain:t="fire_control_room_01_dm"
++ dmPart:t="fire_director_03_dm"
++ dmPart:t="fire_director_04_dm"
++ dmPart:t="fire_director_05_dm"
++ measureAccuracy:r=1.0
++ targetLockTime:r=15.0
++ calcTime:r=8.0
++ rotationSpeed:r=6.0
++ shipIndicationOn:b=yes
++ 
++ triggerGroupUse{
++ primary:b=no
++ secondary:b=yes
++ machinegun:b=no
++ }
++ }
++ 
++ fireDirecting{
++ dmPartMain:t="fire_control_room_01_dm"
++ dmPart:t="rangefinder_01_dm"
++ dmPart:t="rangefinder_02_dm"
++ measureAccuracy:r=0.85
++ targetLockTime:r=20.0
++ calcTime:r=12.0
++ rotationSpeed:r=20.0
++ shipIndicationOn:b=yes
++ 
++ triggerGroupUse{
++ primary:b=yes
++ secondary:b=no
++ machinegun:b=no
++ }
++ }
++ 
++ fireDirecting{
++ dmPartMain:t="fire_control_room_01_dm"
++ dmPart:t="rangefinder_05_dm"
++ dmPart:t="rangefinder_06_dm"
++ dmPart:t="rangefinder_07_dm"
++ rotationSpeed:r=0.0
++ rotationSpeed:r=20.0
++ measureAccuracy:r=0.85
++ targetLockTime:r=20.0
++ calcTime:r=12.0
++ shipIndicationOn:b=yes
++ 
++ triggerGroupUse{
++ primary:b=no
++ secondary:b=yes
++ machinegun:b=no
++ }
++ }
++ 
++ fireDirecting{
++ dmPartMain:t="fire_control_room_01_dm"
++ dmPart:t="rangefinder_03_dm"
++ dmPart:t="rangefinder_04_dm"
++ measureAccuracy:r=0.85
++ targetLockTime:r=20.0
++ calcTime:r=12.0
++ rotationSpeed:r=20.0
++ shipIndicationOn:b=yes
++ 
++ triggerGroupUse{
++ primary:b=no
++ secondary:b=yes
++ machinegun:b=no
++ }
++ }
++ 
++ fireDirecting{
++ dmPartMain:t="fire_control_room_01_dm"
++ dmPart:t="fire_director_01_dm"
++ dmPart:t="fire_director_02_dm"
++ dmPart:t="fire_director_06_dm"
++ dmPart:t="fire_director_07_dm"
++ measureAccuracy:r=1.0
++ targetLockTime:r=15.0
++ calcTime:r=8.0
++ rotationSpeed:r=6.0
++ shipIndicationOn:b=yes
++ 
++ triggerGroupUse{
++ primary:b=yes
++ secondary:b=yes
++ machinegun:b=no
++ }
++ }
++ }
++ 
++ radarAnimations{
++ 
++ anim{
++ radarAnimVar:t="radar_target_yaw_rotate"
++ animatedRadarIdx:i=0
++ }
++ 
++ anim{
++ radarAnimVar:t="target_tagging_yaw_rotate"
++ radarAntenaSpeed:r=50.0
++ animatedRadarIdx:i=1
++ radarAnimPitchVar:t="target_tagging_pitch_rotate"
++ }
++ }
++ 
++ supportPlane{
++ supportPlaneClass:t="loire_130"
++ planeStartSpeed:r=150.0
++ count:i=2
++ 
++ catapult{
++ visualNode:t="aircraft_01"
++ head:t="catapult_01"
 + }
 + }
 + 
 + commonWeapons{
 + 
++ animatedBones{
++ node:t="fire_director_01"
++ node:t="fire_director_02"
++ node:t="fire_director_03"
++ node:t="fire_director_04"
++ node:t="fire_director_05"
++ node:t="fire_director_06"
++ node:t="fire_director_07"
++ node:t="rangefinder_03"
++ node:t="rangefinder_04"
++ node:t="rangefinder_05"
++ node:t="rangefinder_06"
++ node:t="antenna_target_location_01"
++ node:t="antenna_target_location_02"
++ node:t="antenna_target_location_03"
++ node:t="antenna_target_location_04"
++ }
++ 
 + Weapon{
-+ slot:i=0
-+ preset:t="m39a3_common"
++ trigger:t="gunner0"
++ triggerGroup:t="primary"
++ blk:t="gameData/Weapons/navalModels_weapons/330mm_52_model_1931_naval_user_cannon.blk"
++ emitter:t="emtr_gun_flame_01"
++ flash:t="emtr_gun_flame_01"
++ useEmitter:b=yes
++ barrelDP:t="main_caliber_gun_01_dm"
++ breechDP:t="main_caliber_gun_01_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ speedYaw:r=5.0
++ speedPitch:r=6.0
++ bullets:i=112
++ useGunnerTargetingQuality:b=no
++ fireConeAngle:r=1.0
++ turretLongSalvo:b=yes
++ salvoRndK:r=0.07
++ allowableDelta:r=1.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=7000.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.0
++ accuracyAir:r=0.0
++ accuracyGnd:r=0.75
++ errMeasureVel:r=10.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=10.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=1.5
++ errTargetting:r=5.0
++ errExplTime:r=0.0
++ 
++ turret{
++ head:t="main_caliber_turret_01"
++ gun:t="main_caliber_gun_01"
++ barrel:t="gun_barrel_01"
++ gunnerDm:t="main_caliber_turret_01_dm"
++ }
++ 
++ limits{
++ yaw:p2=-156.0, 156.0
++ pitch:p2=-5.0, 35.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-156.0, -153.0, -2.0, 35.0
++ lim2:p4=-153.0, -80.0, -4.0, 35.0
++ lim3:p4=-80.0, -43.0, -2.0, 35.0
++ lim4:p4=-43.0, 43.0, 0.0, 35.0
++ lim5:p4=43.0, 80.0, -2.0, 35.0
++ lim6:p4=80.0, 153.0, -4.0, 35.0
++ lim7:p4=153.0, 156.0, -2.0, 35.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=80.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=80.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner0"
++ triggerGroup:t="primary"
++ blk:t="gameData/Weapons/navalModels_weapons/330mm_52_model_1931_naval_user_cannon.blk"
++ emitter:t="emtr_gun_flame_02"
++ flash:t="emtr_gun_flame_02"
++ useEmitter:b=yes
++ barrelDP:t="main_caliber_gun_01_dm"
++ breechDP:t="main_caliber_gun_01_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ speedYaw:r=5.0
++ speedPitch:r=6.0
++ bullets:i=112
++ useGunnerTargetingQuality:b=no
++ fireConeAngle:r=1.0
++ turretLongSalvo:b=yes
++ salvoRndK:r=0.07
++ allowableDelta:r=1.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=7000.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.0
++ accuracyAir:r=0.0
++ accuracyGnd:r=0.75
++ errMeasureVel:r=10.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=10.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=1.5
++ errTargetting:r=5.0
++ errExplTime:r=0.0
++ 
++ turret{
++ head:t="main_caliber_turret_01"
++ gun:t="main_caliber_gun_01"
++ barrel:t="gun_barrel_02"
++ gunnerDm:t="main_caliber_turret_01_dm"
++ }
++ 
++ limits{
++ yaw:p2=-156.0, 156.0
++ pitch:p2=-5.0, 35.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-156.0, -153.0, -2.0, 35.0
++ lim2:p4=-153.0, -80.0, -4.0, 35.0
++ lim3:p4=-80.0, -43.0, -2.0, 35.0
++ lim4:p4=-43.0, 43.0, 0.0, 35.0
++ lim5:p4=43.0, 80.0, -2.0, 35.0
++ lim6:p4=80.0, 153.0, -4.0, 35.0
++ lim7:p4=153.0, 156.0, -2.0, 35.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=80.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=80.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner0"
++ triggerGroup:t="primary"
++ blk:t="gameData/Weapons/navalModels_weapons/330mm_52_model_1931_naval_user_cannon.blk"
++ emitter:t="emtr_gun_flame_03"
++ flash:t="emtr_gun_flame_03"
++ useEmitter:b=yes
++ barrelDP:t="main_caliber_gun_02_dm"
++ breechDP:t="main_caliber_gun_02_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ speedYaw:r=5.0
++ speedPitch:r=6.0
++ bullets:i=112
++ useGunnerTargetingQuality:b=no
++ fireConeAngle:r=1.0
++ turretLongSalvo:b=yes
++ salvoRndK:r=0.07
++ allowableDelta:r=1.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=7000.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.0
++ accuracyAir:r=0.0
++ accuracyGnd:r=0.75
++ errMeasureVel:r=10.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=10.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=1.5
++ errTargetting:r=5.0
++ errExplTime:r=0.0
++ 
++ turret{
++ head:t="main_caliber_turret_01"
++ gun:t="main_caliber_gun_02"
++ barrel:t="gun_barrel_03"
++ gunnerDm:t="main_caliber_turret_01_dm"
++ }
++ 
++ limits{
++ yaw:p2=-156.0, 156.0
++ pitch:p2=-5.0, 35.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-156.0, -153.0, -2.0, 35.0
++ lim2:p4=-153.0, -80.0, -4.0, 35.0
++ lim3:p4=-80.0, -43.0, -2.0, 35.0
++ lim4:p4=-43.0, 43.0, 0.0, 35.0
++ lim5:p4=43.0, 80.0, -2.0, 35.0
++ lim6:p4=80.0, 153.0, -4.0, 35.0
++ lim7:p4=153.0, 156.0, -2.0, 35.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=80.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=80.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner0"
++ triggerGroup:t="primary"
++ blk:t="gameData/Weapons/navalModels_weapons/330mm_52_model_1931_naval_user_cannon.blk"
++ emitter:t="emtr_gun_flame_04"
++ flash:t="emtr_gun_flame_04"
++ useEmitter:b=yes
++ barrelDP:t="main_caliber_gun_02_dm"
++ breechDP:t="main_caliber_gun_02_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ speedYaw:r=5.0
++ speedPitch:r=6.0
++ bullets:i=112
++ useGunnerTargetingQuality:b=no
++ fireConeAngle:r=1.0
++ turretLongSalvo:b=yes
++ salvoRndK:r=0.07
++ allowableDelta:r=1.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=7000.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.0
++ accuracyAir:r=0.0
++ accuracyGnd:r=0.75
++ errMeasureVel:r=10.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=10.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=1.5
++ errTargetting:r=5.0
++ errExplTime:r=0.0
++ 
++ turret{
++ head:t="main_caliber_turret_01"
++ gun:t="main_caliber_gun_02"
++ barrel:t="gun_barrel_04"
++ gunnerDm:t="main_caliber_turret_01_dm"
++ }
++ 
++ limits{
++ yaw:p2=-156.0, 156.0
++ pitch:p2=-5.0, 35.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-156.0, -153.0, -2.0, 35.0
++ lim2:p4=-153.0, -80.0, -4.0, 35.0
++ lim3:p4=-80.0, -43.0, -2.0, 35.0
++ lim4:p4=-43.0, 43.0, 0.0, 35.0
++ lim5:p4=43.0, 80.0, -2.0, 35.0
++ lim6:p4=80.0, 153.0, -4.0, 35.0
++ lim7:p4=153.0, 156.0, -2.0, 35.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=80.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=80.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner1"
++ triggerGroup:t="primary"
++ blk:t="gameData/Weapons/navalModels_weapons/330mm_52_model_1931_naval_user_cannon.blk"
++ emitter:t="emtr_gun_flame_05"
++ flash:t="emtr_gun_flame_05"
++ useEmitter:b=yes
++ barrelDP:t="main_caliber_gun_03_dm"
++ breechDP:t="main_caliber_gun_03_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ speedYaw:r=5.0
++ speedPitch:r=6.0
++ bullets:i=112
++ useGunnerTargetingQuality:b=no
++ fireConeAngle:r=1.0
++ turretLongSalvo:b=yes
++ salvoRndK:r=0.07
++ allowableDelta:r=1.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=7000.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.0
++ accuracyAir:r=0.0
++ accuracyGnd:r=0.75
++ errMeasureVel:r=10.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=10.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=1.5
++ errTargetting:r=5.0
++ errExplTime:r=0.0
++ 
++ turret{
++ head:t="main_caliber_turret_02"
++ gun:t="main_caliber_gun_03"
++ barrel:t="gun_barrel_05"
++ gunnerDm:t="main_caliber_turret_02_dm"
++ }
++ 
++ limits{
++ yaw:p2=-148.0, 148.0
++ pitch:p2=-5.0, 35.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-148.0, -135.0, 0.0, 35.0
++ lim2:p4=-135.0, -19.0, -4.0, 35.0
++ lim3:p4=-19.0, 19.0, -2.0, 35.0
++ lim4:p4=19.0, 135.0, -4.0, 35.0
++ lim5:p4=135.0, 148.0, 0.0, 35.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=80.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=80.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner1"
++ triggerGroup:t="primary"
++ blk:t="gameData/Weapons/navalModels_weapons/330mm_52_model_1931_naval_user_cannon.blk"
++ emitter:t="emtr_gun_flame_06"
++ flash:t="emtr_gun_flame_06"
++ useEmitter:b=yes
++ barrelDP:t="main_caliber_gun_03_dm"
++ breechDP:t="main_caliber_gun_03_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ speedYaw:r=5.0
++ speedPitch:r=6.0
++ bullets:i=112
++ useGunnerTargetingQuality:b=no
++ fireConeAngle:r=1.0
++ turretLongSalvo:b=yes
++ salvoRndK:r=0.07
++ allowableDelta:r=1.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=7000.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.0
++ accuracyAir:r=0.0
++ accuracyGnd:r=0.75
++ errMeasureVel:r=10.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=10.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=1.5
++ errTargetting:r=5.0
++ errExplTime:r=0.0
++ 
++ turret{
++ head:t="main_caliber_turret_02"
++ gun:t="main_caliber_gun_03"
++ barrel:t="gun_barrel_06"
++ gunnerDm:t="main_caliber_turret_02_dm"
++ }
++ 
++ limits{
++ yaw:p2=-148.0, 148.0
++ pitch:p2=-5.0, 35.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-148.0, -135.0, 0.0, 35.0
++ lim2:p4=-135.0, -19.0, -4.0, 35.0
++ lim3:p4=-19.0, 19.0, -2.0, 35.0
++ lim4:p4=19.0, 135.0, -4.0, 35.0
++ lim5:p4=135.0, 148.0, 0.0, 35.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=80.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=80.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner1"
++ triggerGroup:t="primary"
++ blk:t="gameData/Weapons/navalModels_weapons/330mm_52_model_1931_naval_user_cannon.blk"
++ emitter:t="emtr_gun_flame_07"
++ flash:t="emtr_gun_flame_07"
++ useEmitter:b=yes
++ barrelDP:t="main_caliber_gun_04_dm"
++ breechDP:t="main_caliber_gun_04_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ speedYaw:r=5.0
++ speedPitch:r=6.0
++ bullets:i=112
++ useGunnerTargetingQuality:b=no
++ fireConeAngle:r=1.0
++ turretLongSalvo:b=yes
++ salvoRndK:r=0.07
++ allowableDelta:r=1.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=7000.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.0
++ accuracyAir:r=0.0
++ accuracyGnd:r=0.75
++ errMeasureVel:r=10.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=10.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=1.5
++ errTargetting:r=5.0
++ errExplTime:r=0.0
++ 
++ turret{
++ head:t="main_caliber_turret_02"
++ gun:t="main_caliber_gun_04"
++ barrel:t="gun_barrel_07"
++ gunnerDm:t="main_caliber_turret_02_dm"
++ }
++ 
++ limits{
++ yaw:p2=-148.0, 148.0
++ pitch:p2=-5.0, 35.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-148.0, -135.0, 0.0, 35.0
++ lim2:p4=-135.0, -19.0, -4.0, 35.0
++ lim3:p4=-19.0, 19.0, -2.0, 35.0
++ lim4:p4=19.0, 135.0, -4.0, 35.0
++ lim5:p4=135.0, 148.0, 0.0, 35.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=80.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=80.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner1"
++ triggerGroup:t="primary"
++ blk:t="gameData/Weapons/navalModels_weapons/330mm_52_model_1931_naval_user_cannon.blk"
++ emitter:t="emtr_gun_flame_08"
++ flash:t="emtr_gun_flame_08"
++ useEmitter:b=yes
++ barrelDP:t="main_caliber_gun_04_dm"
++ breechDP:t="main_caliber_gun_04_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ speedYaw:r=5.0
++ speedPitch:r=6.0
++ bullets:i=112
++ useGunnerTargetingQuality:b=no
++ fireConeAngle:r=1.0
++ turretLongSalvo:b=yes
++ salvoRndK:r=0.07
++ allowableDelta:r=1.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=7000.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.0
++ accuracyAir:r=0.0
++ accuracyGnd:r=0.75
++ errMeasureVel:r=10.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=10.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=1.5
++ errTargetting:r=5.0
++ errExplTime:r=0.0
++ 
++ turret{
++ head:t="main_caliber_turret_02"
++ gun:t="main_caliber_gun_04"
++ barrel:t="gun_barrel_08"
++ gunnerDm:t="main_caliber_turret_02_dm"
++ }
++ 
++ limits{
++ yaw:p2=-148.0, 148.0
++ pitch:p2=-5.0, 35.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-148.0, -135.0, 0.0, 35.0
++ lim2:p4=-135.0, -19.0, -4.0, 35.0
++ lim3:p4=-19.0, 19.0, -2.0, 35.0
++ lim4:p4=19.0, 135.0, -4.0, 35.0
++ lim5:p4=135.0, 148.0, 0.0, 35.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=80.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=80.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner2"
++ triggerGroup:t="secondary"
++ blk:t="gameData/Weapons/navalModels_weapons/130mm_45_model_1932_naval_user_cannon.blk"
++ emitter:t="emtr_gun_flame_09"
++ flash:t="emtr_gun_flame_09"
++ useEmitter:b=yes
++ barrelDP:t="auxiliary_caliber_gun_01_dm"
++ breechDP:t="auxiliary_caliber_gun_01_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ allowableDelta:r=2.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=4500.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.55
++ accuracyAir:r=1.0
++ accuracyGnd:r=0.8
++ errMeasureVel:r=0.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=100.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=3.0
++ errTargetting:r=3.0
++ errExplTime:r=0.0
++ speedYaw:r=12.0
++ speedPitch:r=8.0
++ bullets:i=400
++ useGunnerTargetingQuality:b=no
++ fireConeAngle:r=1.0
++ turretLongSalvo:b=yes
++ salvoRndK:r=0.06
++ 
++ turret{
++ head:t="auxiliary_caliber_turret_01"
++ gun:t="auxiliary_caliber_gun_01"
++ barrel:t="gun_barrel_09"
++ gunnerDm:t="auxiliary_caliber_turret_01_dm"
++ }
++ 
++ limits{
++ yaw:p2=-180.0, 0.0
++ pitch:p2=-10.0, 75.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-180.0, -178.0, 4.0, 75.0
++ lim2:p4=-178.0, -140.0, -2.0, 75.0
++ lim3:p4=-140.0, -12.0, -5.0, 75.0
++ lim4:p4=-12.0, 0.0, 6.0, 75.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=80.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=80.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner2"
++ triggerGroup:t="secondary"
++ blk:t="gameData/Weapons/navalModels_weapons/130mm_45_model_1932_naval_user_cannon.blk"
++ emitter:t="emtr_gun_flame_10"
++ flash:t="emtr_gun_flame_10"
++ useEmitter:b=yes
++ barrelDP:t="auxiliary_caliber_gun_01_dm"
++ breechDP:t="auxiliary_caliber_gun_01_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ allowableDelta:r=2.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=4500.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.55
++ accuracyAir:r=1.0
++ accuracyGnd:r=0.8
++ errMeasureVel:r=0.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=100.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=3.0
++ errTargetting:r=3.0
++ errExplTime:r=0.0
++ speedYaw:r=12.0
++ speedPitch:r=8.0
++ bullets:i=400
++ useGunnerTargetingQuality:b=no
++ fireConeAngle:r=1.0
++ turretLongSalvo:b=yes
++ salvoRndK:r=0.06
++ 
++ turret{
++ head:t="auxiliary_caliber_turret_01"
++ gun:t="auxiliary_caliber_gun_01"
++ barrel:t="gun_barrel_10"
++ gunnerDm:t="auxiliary_caliber_turret_01_dm"
++ }
++ 
++ limits{
++ yaw:p2=-180.0, 0.0
++ pitch:p2=-10.0, 75.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-180.0, -178.0, 4.0, 75.0
++ lim2:p4=-178.0, -140.0, -2.0, 75.0
++ lim3:p4=-140.0, -12.0, -5.0, 75.0
++ lim4:p4=-12.0, 0.0, 6.0, 75.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=80.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=80.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner3"
++ triggerGroup:t="secondary"
++ blk:t="gameData/Weapons/navalModels_weapons/130mm_45_model_1932_naval_user_cannon.blk"
++ emitter:t="emtr_gun_flame_11"
++ flash:t="emtr_gun_flame_11"
++ useEmitter:b=yes
++ barrelDP:t="auxiliary_caliber_gun_02_dm"
++ breechDP:t="auxiliary_caliber_gun_02_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ allowableDelta:r=2.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=4500.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.55
++ accuracyAir:r=1.0
++ accuracyGnd:r=0.8
++ errMeasureVel:r=0.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=100.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=3.0
++ errTargetting:r=3.0
++ errExplTime:r=0.0
++ speedYaw:r=12.0
++ speedPitch:r=8.0
++ bullets:i=400
++ useGunnerTargetingQuality:b=no
++ fireConeAngle:r=1.0
++ turretLongSalvo:b=yes
++ salvoRndK:r=0.06
++ 
++ turret{
++ head:t="auxiliary_caliber_turret_02"
++ gun:t="auxiliary_caliber_gun_02"
++ barrel:t="gun_barrel_11"
++ gunnerDm:t="auxiliary_caliber_turret_02_dm"
++ }
++ 
++ limits{
++ yaw:p2=0.0, 180.0
++ pitch:p2=-10.0, 75.0
++ }
++ 
++ limitsTable{
++ lim1:p4=0.0, 12.0, 6.0, 75.0
++ lim2:p4=12.0, 140.0, -5.0, 75.0
++ lim3:p4=140.0, 178.0, -2.0, 75.0
++ lim4:p4=178.0, 180.0, 4.0, 75.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=80.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=80.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner3"
++ triggerGroup:t="secondary"
++ blk:t="gameData/Weapons/navalModels_weapons/130mm_45_model_1932_naval_user_cannon.blk"
++ emitter:t="emtr_gun_flame_12"
++ flash:t="emtr_gun_flame_12"
++ useEmitter:b=yes
++ barrelDP:t="auxiliary_caliber_gun_02_dm"
++ breechDP:t="auxiliary_caliber_gun_02_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ allowableDelta:r=2.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=4500.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.55
++ accuracyAir:r=1.0
++ accuracyGnd:r=0.8
++ errMeasureVel:r=0.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=100.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=3.0
++ errTargetting:r=3.0
++ errExplTime:r=0.0
++ speedYaw:r=12.0
++ speedPitch:r=8.0
++ bullets:i=400
++ useGunnerTargetingQuality:b=no
++ fireConeAngle:r=1.0
++ turretLongSalvo:b=yes
++ salvoRndK:r=0.06
++ 
++ turret{
++ head:t="auxiliary_caliber_turret_02"
++ gun:t="auxiliary_caliber_gun_02"
++ barrel:t="gun_barrel_12"
++ gunnerDm:t="auxiliary_caliber_turret_02_dm"
++ }
++ 
++ limits{
++ yaw:p2=0.0, 180.0
++ pitch:p2=-10.0, 75.0
++ }
++ 
++ limitsTable{
++ lim1:p4=0.0, 12.0, 6.0, 75.0
++ lim2:p4=12.0, 140.0, -5.0, 75.0
++ lim3:p4=140.0, 178.0, -2.0, 75.0
++ lim4:p4=178.0, 180.0, 4.0, 75.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=80.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=80.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner4"
++ triggerGroup:t="secondary"
++ blk:t="gameData/Weapons/navalModels_weapons/130mm_45_model_1932_naval_user_cannon.blk"
++ emitter:t="emtr_gun_flame_13"
++ flash:t="emtr_gun_flame_13"
++ useEmitter:b=yes
++ barrelDP:t="auxiliary_caliber_gun_03_dm"
++ breechDP:t="auxiliary_caliber_gun_03_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ allowableDelta:r=2.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=4500.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.55
++ accuracyAir:r=1.0
++ accuracyGnd:r=0.8
++ errMeasureVel:r=0.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=100.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=3.0
++ errTargetting:r=3.0
++ errExplTime:r=0.0
++ speedYaw:r=12.0
++ speedPitch:r=8.0
++ bullets:i=400
++ useGunnerTargetingQuality:b=no
++ fireConeAngle:r=1.0
++ turretLongSalvo:b=yes
++ salvoRndK:r=0.06
++ 
++ turret{
++ head:t="auxiliary_caliber_turret_03"
++ gun:t="auxiliary_caliber_gun_03"
++ barrel:t="gun_barrel_13"
++ gunnerDm:t="auxiliary_caliber_turret_03_dm"
++ }
++ 
++ limits{
++ yaw:p2=-30.0, 180.0
++ pitch:p2=-10.0, 75.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-30.0, -10.0, 37.0, 75.0
++ lim2:p4=-10.0, -5.0, 7.0, 75.0
++ lim3:p4=-5.0, 164.0, -2.0, 75.0
++ lim4:p4=164.0, 180.0, 12.0, 75.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=80.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=80.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner4"
++ triggerGroup:t="secondary"
++ blk:t="gameData/Weapons/navalModels_weapons/130mm_45_model_1932_naval_user_cannon.blk"
++ emitter:t="emtr_gun_flame_14"
++ flash:t="emtr_gun_flame_14"
++ useEmitter:b=yes
++ barrelDP:t="auxiliary_caliber_gun_03_dm"
++ breechDP:t="auxiliary_caliber_gun_03_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ allowableDelta:r=2.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=4500.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.55
++ accuracyAir:r=1.0
++ accuracyGnd:r=0.8
++ errMeasureVel:r=0.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=100.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=3.0
++ errTargetting:r=3.0
++ errExplTime:r=0.0
++ speedYaw:r=12.0
++ speedPitch:r=8.0
++ bullets:i=400
++ useGunnerTargetingQuality:b=no
++ fireConeAngle:r=1.0
++ turretLongSalvo:b=yes
++ salvoRndK:r=0.06
++ 
++ turret{
++ head:t="auxiliary_caliber_turret_03"
++ gun:t="auxiliary_caliber_gun_03"
++ barrel:t="gun_barrel_14"
++ gunnerDm:t="auxiliary_caliber_turret_03_dm"
++ }
++ 
++ limits{
++ yaw:p2=-30.0, 180.0
++ pitch:p2=-10.0, 75.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-30.0, -10.0, 37.0, 75.0
++ lim2:p4=-10.0, -5.0, 7.0, 75.0
++ lim3:p4=-5.0, 164.0, -2.0, 75.0
++ lim4:p4=164.0, 180.0, 12.0, 75.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=80.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=80.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner4"
++ triggerGroup:t="secondary"
++ blk:t="gameData/Weapons/navalModels_weapons/130mm_45_model_1932_naval_user_cannon.blk"
++ emitter:t="emtr_gun_flame_15"
++ flash:t="emtr_gun_flame_15"
++ useEmitter:b=yes
++ barrelDP:t="auxiliary_caliber_gun_04_dm"
++ breechDP:t="auxiliary_caliber_gun_04_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ allowableDelta:r=2.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=4500.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.55
++ accuracyAir:r=1.0
++ accuracyGnd:r=0.8
++ errMeasureVel:r=0.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=100.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=3.0
++ errTargetting:r=3.0
++ errExplTime:r=0.0
++ speedYaw:r=12.0
++ speedPitch:r=8.0
++ bullets:i=400
++ useGunnerTargetingQuality:b=no
++ fireConeAngle:r=1.0
++ turretLongSalvo:b=yes
++ salvoRndK:r=0.06
++ 
++ turret{
++ head:t="auxiliary_caliber_turret_03"
++ gun:t="auxiliary_caliber_gun_04"
++ barrel:t="gun_barrel_15"
++ gunnerDm:t="auxiliary_caliber_turret_03_dm"
++ }
++ 
++ limits{
++ yaw:p2=-30.0, 180.0
++ pitch:p2=-10.0, 75.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-30.0, -10.0, 37.0, 75.0
++ lim2:p4=-10.0, -5.0, 7.0, 75.0
++ lim3:p4=-5.0, 164.0, -2.0, 75.0
++ lim4:p4=164.0, 180.0, 12.0, 75.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=80.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=80.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner4"
++ triggerGroup:t="secondary"
++ blk:t="gameData/Weapons/navalModels_weapons/130mm_45_model_1932_naval_user_cannon.blk"
++ emitter:t="emtr_gun_flame_16"
++ flash:t="emtr_gun_flame_16"
++ useEmitter:b=yes
++ barrelDP:t="auxiliary_caliber_gun_04_dm"
++ breechDP:t="auxiliary_caliber_gun_04_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ allowableDelta:r=2.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=4500.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.55
++ accuracyAir:r=1.0
++ accuracyGnd:r=0.8
++ errMeasureVel:r=0.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=100.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=3.0
++ errTargetting:r=3.0
++ errExplTime:r=0.0
++ speedYaw:r=12.0
++ speedPitch:r=8.0
++ bullets:i=400
++ useGunnerTargetingQuality:b=no
++ fireConeAngle:r=1.0
++ turretLongSalvo:b=yes
++ salvoRndK:r=0.06
++ 
++ turret{
++ head:t="auxiliary_caliber_turret_03"
++ gun:t="auxiliary_caliber_gun_04"
++ barrel:t="gun_barrel_16"
++ gunnerDm:t="auxiliary_caliber_turret_03_dm"
++ }
++ 
++ limits{
++ yaw:p2=-30.0, 180.0
++ pitch:p2=-10.0, 75.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-30.0, -10.0, 37.0, 75.0
++ lim2:p4=-10.0, -5.0, 7.0, 75.0
++ lim3:p4=-5.0, 164.0, -2.0, 75.0
++ lim4:p4=164.0, 180.0, 12.0, 75.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=80.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=80.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner5"
++ triggerGroup:t="secondary"
++ blk:t="gameData/Weapons/navalModels_weapons/130mm_45_model_1932_naval_user_cannon.blk"
++ emitter:t="emtr_gun_flame_17"
++ flash:t="emtr_gun_flame_17"
++ useEmitter:b=yes
++ barrelDP:t="auxiliary_caliber_gun_05_dm"
++ breechDP:t="auxiliary_caliber_gun_05_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ allowableDelta:r=2.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=4500.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.55
++ accuracyAir:r=1.0
++ accuracyGnd:r=0.8
++ errMeasureVel:r=0.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=100.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=3.0
++ errTargetting:r=3.0
++ errExplTime:r=0.0
++ speedYaw:r=12.0
++ speedPitch:r=8.0
++ bullets:i=400
++ useGunnerTargetingQuality:b=no
++ fireConeAngle:r=1.0
++ turretLongSalvo:b=yes
++ salvoRndK:r=0.06
++ 
++ turret{
++ head:t="auxiliary_caliber_turret_04"
++ gun:t="auxiliary_caliber_gun_05"
++ barrel:t="gun_barrel_17"
++ gunnerDm:t="auxiliary_caliber_turret_04_dm"
++ }
++ 
++ limits{
++ yaw:p2=-180.0, 30.0
++ pitch:p2=-10.0, 75.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-180.0, -164.0, 12.0, 75.0
++ lim2:p4=-164.0, 5.0, -2.0, 75.0
++ lim3:p4=5.0, 10.0, 7.0, 75.0
++ lim4:p4=10.0, 30.0, 37.0, 75.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=80.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=80.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner5"
++ triggerGroup:t="secondary"
++ blk:t="gameData/Weapons/navalModels_weapons/130mm_45_model_1932_naval_user_cannon.blk"
++ emitter:t="emtr_gun_flame_18"
++ flash:t="emtr_gun_flame_18"
++ useEmitter:b=yes
++ barrelDP:t="auxiliary_caliber_gun_05_dm"
++ breechDP:t="auxiliary_caliber_gun_05_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ allowableDelta:r=2.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=4500.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.55
++ accuracyAir:r=1.0
++ accuracyGnd:r=0.8
++ errMeasureVel:r=0.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=100.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=3.0
++ errTargetting:r=3.0
++ errExplTime:r=0.0
++ speedYaw:r=12.0
++ speedPitch:r=8.0
++ bullets:i=400
++ useGunnerTargetingQuality:b=no
++ fireConeAngle:r=1.0
++ turretLongSalvo:b=yes
++ salvoRndK:r=0.06
++ 
++ turret{
++ head:t="auxiliary_caliber_turret_04"
++ gun:t="auxiliary_caliber_gun_05"
++ barrel:t="gun_barrel_18"
++ gunnerDm:t="auxiliary_caliber_turret_04_dm"
++ }
++ 
++ limits{
++ yaw:p2=-180.0, 30.0
++ pitch:p2=-10.0, 75.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-180.0, -164.0, 12.0, 75.0
++ lim2:p4=-164.0, 5.0, -2.0, 75.0
++ lim3:p4=5.0, 10.0, 7.0, 75.0
++ lim4:p4=10.0, 30.0, 37.0, 75.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=80.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=80.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner5"
++ triggerGroup:t="secondary"
++ blk:t="gameData/Weapons/navalModels_weapons/130mm_45_model_1932_naval_user_cannon.blk"
++ emitter:t="emtr_gun_flame_19"
++ flash:t="emtr_gun_flame_19"
++ useEmitter:b=yes
++ barrelDP:t="auxiliary_caliber_gun_06_dm"
++ breechDP:t="auxiliary_caliber_gun_06_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ allowableDelta:r=2.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=4500.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.55
++ accuracyAir:r=1.0
++ accuracyGnd:r=0.8
++ errMeasureVel:r=0.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=100.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=3.0
++ errTargetting:r=3.0
++ errExplTime:r=0.0
++ speedYaw:r=12.0
++ speedPitch:r=8.0
++ bullets:i=400
++ useGunnerTargetingQuality:b=no
++ fireConeAngle:r=1.0
++ turretLongSalvo:b=yes
++ salvoRndK:r=0.06
++ 
++ turret{
++ head:t="auxiliary_caliber_turret_04"
++ gun:t="auxiliary_caliber_gun_06"
++ barrel:t="gun_barrel_19"
++ gunnerDm:t="auxiliary_caliber_turret_04_dm"
++ }
++ 
++ limits{
++ yaw:p2=-180.0, 30.0
++ pitch:p2=-10.0, 75.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-180.0, -164.0, 12.0, 75.0
++ lim2:p4=-164.0, 5.0, -2.0, 75.0
++ lim3:p4=5.0, 10.0, 7.0, 75.0
++ lim4:p4=10.0, 30.0, 37.0, 75.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=80.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=80.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner5"
++ triggerGroup:t="secondary"
++ blk:t="gameData/Weapons/navalModels_weapons/130mm_45_model_1932_naval_user_cannon.blk"
++ emitter:t="emtr_gun_flame_20"
++ flash:t="emtr_gun_flame_20"
++ useEmitter:b=yes
++ barrelDP:t="auxiliary_caliber_gun_06_dm"
++ breechDP:t="auxiliary_caliber_gun_06_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ allowableDelta:r=2.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=4500.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.55
++ accuracyAir:r=1.0
++ accuracyGnd:r=0.8
++ errMeasureVel:r=0.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=100.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=3.0
++ errTargetting:r=3.0
++ errExplTime:r=0.0
++ speedYaw:r=12.0
++ speedPitch:r=8.0
++ bullets:i=400
++ useGunnerTargetingQuality:b=no
++ fireConeAngle:r=1.0
++ turretLongSalvo:b=yes
++ salvoRndK:r=0.06
++ 
++ turret{
++ head:t="auxiliary_caliber_turret_04"
++ gun:t="auxiliary_caliber_gun_06"
++ barrel:t="gun_barrel_20"
++ gunnerDm:t="auxiliary_caliber_turret_04_dm"
++ }
++ 
++ limits{
++ yaw:p2=-180.0, 30.0
++ pitch:p2=-10.0, 75.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-180.0, -164.0, 12.0, 75.0
++ lim2:p4=-164.0, 5.0, -2.0, 75.0
++ lim3:p4=5.0, 10.0, 7.0, 75.0
++ lim4:p4=10.0, 30.0, 37.0, 75.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=80.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=80.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner6"
++ triggerGroup:t="secondary"
++ blk:t="gameData/Weapons/navalModels_weapons/130mm_45_model_1932_naval_user_cannon.blk"
++ emitter:t="emtr_gun_flame_21"
++ flash:t="emtr_gun_flame_21"
++ useEmitter:b=yes
++ barrelDP:t="auxiliary_caliber_gun_07_dm"
++ breechDP:t="auxiliary_caliber_gun_07_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ allowableDelta:r=2.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=4500.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.55
++ accuracyAir:r=1.0
++ accuracyGnd:r=0.8
++ errMeasureVel:r=0.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=100.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=3.0
++ errTargetting:r=3.0
++ errExplTime:r=0.0
++ speedYaw:r=12.0
++ speedPitch:r=8.0
++ bullets:i=400
++ useGunnerTargetingQuality:b=no
++ fireConeAngle:r=1.0
++ turretLongSalvo:b=yes
++ salvoRndK:r=0.06
++ 
++ turret{
++ head:t="auxiliary_caliber_turret_05"
++ gun:t="auxiliary_caliber_gun_07"
++ barrel:t="gun_barrel_21"
++ gunnerDm:t="auxiliary_caliber_turret_05_dm"
++ }
++ 
++ limits{
++ yaw:p2=-143.0, 143.0
++ pitch:p2=-10.0, 75.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-143.0, -126.0, -3.0, 75.0
++ lim2:p4=-126.0, -79.0, -7.0, 75.0
++ lim3:p4=-79.0, -19.0, -4.0, 75.0
++ lim4:p4=-19.0, 19.0, -1.0, 75.0
++ lim5:p4=19.0, 79.0, -4.0, 75.0
++ lim6:p4=79.0, 126.0, -7.0, 75.0
++ lim7:p4=126.0, 143.0, -3.0, 75.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=80.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=80.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner6"
++ triggerGroup:t="secondary"
++ blk:t="gameData/Weapons/navalModels_weapons/130mm_45_model_1932_naval_user_cannon.blk"
++ emitter:t="emtr_gun_flame_22"
++ flash:t="emtr_gun_flame_22"
++ useEmitter:b=yes
++ barrelDP:t="auxiliary_caliber_gun_07_dm"
++ breechDP:t="auxiliary_caliber_gun_07_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ allowableDelta:r=2.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=4500.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.55
++ accuracyAir:r=1.0
++ accuracyGnd:r=0.8
++ errMeasureVel:r=0.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=100.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=3.0
++ errTargetting:r=3.0
++ errExplTime:r=0.0
++ speedYaw:r=12.0
++ speedPitch:r=8.0
++ bullets:i=400
++ useGunnerTargetingQuality:b=no
++ fireConeAngle:r=1.0
++ turretLongSalvo:b=yes
++ salvoRndK:r=0.06
++ 
++ turret{
++ head:t="auxiliary_caliber_turret_05"
++ gun:t="auxiliary_caliber_gun_07"
++ barrel:t="gun_barrel_22"
++ gunnerDm:t="auxiliary_caliber_turret_05_dm"
++ }
++ 
++ limits{
++ yaw:p2=-143.0, 143.0
++ pitch:p2=-10.0, 75.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-143.0, -126.0, -3.0, 75.0
++ lim2:p4=-126.0, -79.0, -7.0, 75.0
++ lim3:p4=-79.0, -19.0, -4.0, 75.0
++ lim4:p4=-19.0, 19.0, -1.0, 75.0
++ lim5:p4=19.0, 79.0, -4.0, 75.0
++ lim6:p4=79.0, 126.0, -7.0, 75.0
++ lim7:p4=126.0, 143.0, -3.0, 75.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=80.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=80.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner6"
++ triggerGroup:t="secondary"
++ blk:t="gameData/Weapons/navalModels_weapons/130mm_45_model_1932_naval_user_cannon.blk"
++ emitter:t="emtr_gun_flame_23"
++ flash:t="emtr_gun_flame_23"
++ useEmitter:b=yes
++ barrelDP:t="auxiliary_caliber_gun_08_dm"
++ breechDP:t="auxiliary_caliber_gun_08_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ allowableDelta:r=2.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=4500.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.55
++ accuracyAir:r=1.0
++ accuracyGnd:r=0.8
++ errMeasureVel:r=0.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=100.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=3.0
++ errTargetting:r=3.0
++ errExplTime:r=0.0
++ speedYaw:r=12.0
++ speedPitch:r=8.0
++ bullets:i=400
++ useGunnerTargetingQuality:b=no
++ fireConeAngle:r=1.0
++ turretLongSalvo:b=yes
++ salvoRndK:r=0.06
++ 
++ turret{
++ head:t="auxiliary_caliber_turret_05"
++ gun:t="auxiliary_caliber_gun_08"
++ barrel:t="gun_barrel_23"
++ gunnerDm:t="auxiliary_caliber_turret_05_dm"
++ }
++ 
++ limits{
++ yaw:p2=-143.0, 143.0
++ pitch:p2=-10.0, 75.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-143.0, -126.0, -3.0, 75.0
++ lim2:p4=-126.0, -79.0, -7.0, 75.0
++ lim3:p4=-79.0, -19.0, -4.0, 75.0
++ lim4:p4=-19.0, 19.0, -1.0, 75.0
++ lim5:p4=19.0, 79.0, -4.0, 75.0
++ lim6:p4=79.0, 126.0, -7.0, 75.0
++ lim7:p4=126.0, 143.0, -3.0, 75.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=80.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=80.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner6"
++ triggerGroup:t="secondary"
++ blk:t="gameData/Weapons/navalModels_weapons/130mm_45_model_1932_naval_user_cannon.blk"
++ emitter:t="emtr_gun_flame_24"
++ flash:t="emtr_gun_flame_24"
++ useEmitter:b=yes
++ barrelDP:t="auxiliary_caliber_gun_08_dm"
++ breechDP:t="auxiliary_caliber_gun_08_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ allowableDelta:r=2.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=4500.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.55
++ accuracyAir:r=1.0
++ accuracyGnd:r=0.8
++ errMeasureVel:r=0.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=100.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=3.0
++ errTargetting:r=3.0
++ errExplTime:r=0.0
++ speedYaw:r=12.0
++ speedPitch:r=8.0
++ bullets:i=400
++ useGunnerTargetingQuality:b=no
++ fireConeAngle:r=1.0
++ turretLongSalvo:b=yes
++ salvoRndK:r=0.06
++ 
++ turret{
++ head:t="auxiliary_caliber_turret_05"
++ gun:t="auxiliary_caliber_gun_08"
++ barrel:t="gun_barrel_24"
++ gunnerDm:t="auxiliary_caliber_turret_05_dm"
++ }
++ 
++ limits{
++ yaw:p2=-143.0, 143.0
++ pitch:p2=-10.0, 75.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-143.0, -126.0, -3.0, 75.0
++ lim2:p4=-126.0, -79.0, -7.0, 75.0
++ lim3:p4=-79.0, -19.0, -4.0, 75.0
++ lim4:p4=-19.0, 19.0, -1.0, 75.0
++ lim5:p4=19.0, 79.0, -4.0, 75.0
++ lim6:p4=79.0, 126.0, -7.0, 75.0
++ lim7:p4=126.0, 143.0, -3.0, 75.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=80.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=80.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner7"
++ triggerGroup:t="machinegun"
++ blk:t="gameData/Weapons/navalModels_weapons/37mm_50_model1933_naval_user_cannon.blk"
++ emitter:t="emtr_gun_flame_25"
++ flash:t="emtr_gun_flame_25"
++ useEmitter:b=yes
++ barrelDP:t="aa_gun_01_dm"
++ breechDP:t="aa_gun_01_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ isBulletBelt:b=yes
++ speedYaw:r=20.0
++ speedPitch:r=15.0
++ bullets:i=1000
++ useGunnerTargetingQuality:b=no
++ allowableDelta:r=2.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=4500.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.55
++ accuracyAir:r=1.0
++ accuracyGnd:r=0.8
++ errMeasureVel:r=0.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=100.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=3.0
++ errTargetting:r=3.0
++ errExplTime:r=0.0
++ 
++ turret{
++ head:t="aa_turret_01"
++ gun:t="aa_gun_01"
++ barrel:t="gun_barrel_25"
++ gunnerDm:t="aa_turret_01_dm"
++ }
++ 
++ limits{
++ yaw:p2=-180.0, 180.0
++ pitch:p2=-15.0, 80.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-180.0, -170.0, 10.0, 80.0
++ lim2:p4=-170.0, -140.0, 5.0, 80.0
++ lim3:p4=-140.0, -90.0, -5.0, 80.0
++ lim4:p4=-90.0, -25.0, -15.0, 80.0
++ lim5:p4=-25.0, -15.0, -10.0, 80.0
++ lim6:p4=-15.0, -5.0, -5.0, 80.0
++ lim7:p4=-5.0, 15.0, 5.0, 80.0
++ lim8:p4=15.0, 105.0, 60.0, 80.0
++ lim9:p4=105.0, 180.0, 65.0, 80.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=120.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=120.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner7"
++ triggerGroup:t="machinegun"
++ blk:t="gameData/Weapons/navalModels_weapons/37mm_50_model1933_naval_user_cannon.blk"
++ emitter:t="emtr_gun_flame_26"
++ flash:t="emtr_gun_flame_26"
++ useEmitter:b=yes
++ barrelDP:t="aa_gun_01_dm"
++ breechDP:t="aa_gun_01_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ isBulletBelt:b=yes
++ speedYaw:r=20.0
++ speedPitch:r=15.0
++ bullets:i=1000
++ useGunnerTargetingQuality:b=no
++ allowableDelta:r=2.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=4500.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.55
++ accuracyAir:r=1.0
++ accuracyGnd:r=0.8
++ errMeasureVel:r=0.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=100.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=3.0
++ errTargetting:r=3.0
++ errExplTime:r=0.0
++ 
++ turret{
++ head:t="aa_turret_01"
++ gun:t="aa_gun_01"
++ barrel:t="gun_barrel_26"
++ gunnerDm:t="aa_turret_01_dm"
++ }
++ 
++ limits{
++ yaw:p2=-180.0, 180.0
++ pitch:p2=-15.0, 80.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-180.0, -170.0, 10.0, 80.0
++ lim2:p4=-170.0, -140.0, 5.0, 80.0
++ lim3:p4=-140.0, -90.0, -5.0, 80.0
++ lim4:p4=-90.0, -25.0, -15.0, 80.0
++ lim5:p4=-25.0, -15.0, -10.0, 80.0
++ lim6:p4=-15.0, -5.0, -5.0, 80.0
++ lim7:p4=-5.0, 15.0, 5.0, 80.0
++ lim8:p4=15.0, 105.0, 60.0, 80.0
++ lim9:p4=105.0, 180.0, 65.0, 80.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=120.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=120.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner8"
++ triggerGroup:t="machinegun"
++ blk:t="gameData/Weapons/navalModels_weapons/37mm_50_model1933_naval_user_cannon.blk"
++ emitter:t="emtr_gun_flame_27"
++ flash:t="emtr_gun_flame_27"
++ useEmitter:b=yes
++ barrelDP:t="aa_gun_02_dm"
++ breechDP:t="aa_gun_02_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ isBulletBelt:b=yes
++ speedYaw:r=20.0
++ speedPitch:r=15.0
++ bullets:i=1000
++ useGunnerTargetingQuality:b=no
++ allowableDelta:r=2.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=4500.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.55
++ accuracyAir:r=1.0
++ accuracyGnd:r=0.8
++ errMeasureVel:r=0.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=100.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=3.0
++ errTargetting:r=3.0
++ errExplTime:r=0.0
++ 
++ turret{
++ head:t="aa_turret_02"
++ gun:t="aa_gun_02"
++ barrel:t="gun_barrel_27"
++ gunnerDm:t="aa_turret_02_dm"
++ }
++ 
++ limits{
++ yaw:p2=-180.0, 180.0
++ pitch:p2=-15.0, 80.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-180.0, -105.0, 65.0, 80.0
++ lim2:p4=-105.0, -15.0, 60.0, 80.0
++ lim3:p4=-15.0, 5.0, 5.0, 80.0
++ lim4:p4=5.0, 15.0, -5.0, 80.0
++ lim5:p4=15.0, 25.0, -10.0, 80.0
++ lim6:p4=25.0, 90.0, -15.0, 80.0
++ lim7:p4=90.0, 140.0, -5.0, 80.0
++ lim8:p4=140.0, 170.0, 5.0, 80.0
++ lim9:p4=170.0, 180.0, 10.0, 80.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=120.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=120.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner8"
++ triggerGroup:t="machinegun"
++ blk:t="gameData/Weapons/navalModels_weapons/37mm_50_model1933_naval_user_cannon.blk"
++ emitter:t="emtr_gun_flame_28"
++ flash:t="emtr_gun_flame_28"
++ useEmitter:b=yes
++ barrelDP:t="aa_gun_02_dm"
++ breechDP:t="aa_gun_02_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ isBulletBelt:b=yes
++ speedYaw:r=20.0
++ speedPitch:r=15.0
++ bullets:i=1000
++ useGunnerTargetingQuality:b=no
++ allowableDelta:r=2.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=4500.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.55
++ accuracyAir:r=1.0
++ accuracyGnd:r=0.8
++ errMeasureVel:r=0.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=100.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=3.0
++ errTargetting:r=3.0
++ errExplTime:r=0.0
++ 
++ turret{
++ head:t="aa_turret_02"
++ gun:t="aa_gun_02"
++ barrel:t="gun_barrel_28"
++ gunnerDm:t="aa_turret_02_dm"
++ }
++ 
++ limits{
++ yaw:p2=-180.0, 180.0
++ pitch:p2=-15.0, 80.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-180.0, -105.0, 65.0, 80.0
++ lim2:p4=-105.0, -15.0, 60.0, 80.0
++ lim3:p4=-15.0, 5.0, 5.0, 80.0
++ lim4:p4=5.0, 15.0, -5.0, 80.0
++ lim5:p4=15.0, 25.0, -10.0, 80.0
++ lim6:p4=25.0, 90.0, -15.0, 80.0
++ lim7:p4=90.0, 140.0, -5.0, 80.0
++ lim8:p4=140.0, 170.0, 5.0, 80.0
++ lim9:p4=170.0, 180.0, 10.0, 80.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=120.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=120.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner9"
++ triggerGroup:t="machinegun"
++ blk:t="gameData/Weapons/navalModels_weapons/37mm_50_model1933_naval_user_cannon.blk"
++ emitter:t="emtr_gun_flame_29"
++ flash:t="emtr_gun_flame_29"
++ useEmitter:b=yes
++ barrelDP:t="aa_gun_03_dm"
++ breechDP:t="aa_gun_03_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ isBulletBelt:b=yes
++ speedYaw:r=20.0
++ speedPitch:r=15.0
++ bullets:i=1000
++ useGunnerTargetingQuality:b=no
++ allowableDelta:r=2.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=4500.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.55
++ accuracyAir:r=1.0
++ accuracyGnd:r=0.8
++ errMeasureVel:r=0.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=100.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=3.0
++ errTargetting:r=3.0
++ errExplTime:r=0.0
++ 
++ turret{
++ head:t="aa_turret_03"
++ gun:t="aa_gun_03"
++ barrel:t="gun_barrel_29"
++ gunnerDm:t="aa_turret_03_dm"
++ }
++ 
++ limits{
++ yaw:p2=-90.0, 90.0
++ pitch:p2=-15.0, 80.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-90.0, -83.0, 1.0, 80.0
++ lim2:p4=-83.0, -67.0, -6.0, 80.0
++ lim3:p4=-67.0, 61.0, -4.0, 80.0
++ lim4:p4=61.0, 83.0, -1.0, 80.0
++ lim5:p4=83.0, 90.0, 27.0, 80.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=120.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=120.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner9"
++ triggerGroup:t="machinegun"
++ blk:t="gameData/Weapons/navalModels_weapons/37mm_50_model1933_naval_user_cannon.blk"
++ emitter:t="emtr_gun_flame_30"
++ flash:t="emtr_gun_flame_30"
++ useEmitter:b=yes
++ barrelDP:t="aa_gun_03_dm"
++ breechDP:t="aa_gun_03_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ isBulletBelt:b=yes
++ speedYaw:r=20.0
++ speedPitch:r=15.0
++ bullets:i=1000
++ useGunnerTargetingQuality:b=no
++ allowableDelta:r=2.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=4500.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.55
++ accuracyAir:r=1.0
++ accuracyGnd:r=0.8
++ errMeasureVel:r=0.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=100.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=3.0
++ errTargetting:r=3.0
++ errExplTime:r=0.0
++ 
++ turret{
++ head:t="aa_turret_03"
++ gun:t="aa_gun_03"
++ barrel:t="gun_barrel_30"
++ gunnerDm:t="aa_turret_03_dm"
++ }
++ 
++ limits{
++ yaw:p2=-90.0, 90.0
++ pitch:p2=-15.0, 80.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-90.0, -83.0, 1.0, 80.0
++ lim2:p4=-83.0, -67.0, -6.0, 80.0
++ lim3:p4=-67.0, 61.0, -4.0, 80.0
++ lim4:p4=61.0, 83.0, -1.0, 80.0
++ lim5:p4=83.0, 90.0, 27.0, 80.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=120.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=120.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner10"
++ triggerGroup:t="machinegun"
++ blk:t="gameData/Weapons/navalModels_weapons/37mm_50_model1933_naval_user_cannon.blk"
++ emitter:t="emtr_gun_flame_31"
++ flash:t="emtr_gun_flame_31"
++ useEmitter:b=yes
++ barrelDP:t="aa_gun_04_dm"
++ breechDP:t="aa_gun_04_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ isBulletBelt:b=yes
++ speedYaw:r=20.0
++ speedPitch:r=15.0
++ bullets:i=1000
++ useGunnerTargetingQuality:b=no
++ allowableDelta:r=2.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=4500.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.55
++ accuracyAir:r=1.0
++ accuracyGnd:r=0.8
++ errMeasureVel:r=0.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=100.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=3.0
++ errTargetting:r=3.0
++ errExplTime:r=0.0
++ 
++ turret{
++ head:t="aa_turret_04"
++ gun:t="aa_gun_04"
++ barrel:t="gun_barrel_31"
++ gunnerDm:t="aa_turret_04_dm"
++ }
++ 
++ limits{
++ yaw:p2=-90.0, 90.0
++ pitch:p2=-15.0, 80.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-90.0, -83.0, 27.0, 80.0
++ lim2:p4=-83.0, -61.0, -1.0, 80.0
++ lim3:p4=-61.0, 67.0, -4.0, 80.0
++ lim4:p4=67.0, 83.0, -6.0, 80.0
++ lim5:p4=83.0, 90.0, 1.0, 80.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=120.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=120.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner10"
++ triggerGroup:t="machinegun"
++ blk:t="gameData/Weapons/navalModels_weapons/37mm_50_model1933_naval_user_cannon.blk"
++ emitter:t="emtr_gun_flame_32"
++ flash:t="emtr_gun_flame_32"
++ useEmitter:b=yes
++ barrelDP:t="aa_gun_04_dm"
++ breechDP:t="aa_gun_04_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ isBulletBelt:b=yes
++ speedYaw:r=20.0
++ speedPitch:r=15.0
++ bullets:i=1000
++ useGunnerTargetingQuality:b=no
++ allowableDelta:r=2.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=4500.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.55
++ accuracyAir:r=1.0
++ accuracyGnd:r=0.8
++ errMeasureVel:r=0.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=100.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=3.0
++ errTargetting:r=3.0
++ errExplTime:r=0.0
++ 
++ turret{
++ head:t="aa_turret_04"
++ gun:t="aa_gun_04"
++ barrel:t="gun_barrel_32"
++ gunnerDm:t="aa_turret_04_dm"
++ }
++ 
++ limits{
++ yaw:p2=-90.0, 90.0
++ pitch:p2=-15.0, 80.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-90.0, -83.0, 27.0, 80.0
++ lim2:p4=-83.0, -61.0, -1.0, 80.0
++ lim3:p4=-61.0, 67.0, -4.0, 80.0
++ lim4:p4=67.0, 83.0, -6.0, 80.0
++ lim5:p4=83.0, 90.0, 1.0, 80.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=120.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=120.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner11"
++ triggerGroup:t="machinegun"
++ blk:t="gameData/Weapons/navalModels_weapons/13_2mm_hotchkiss_naval_user_machinegun.blk"
++ emitter:t="emtr_gun_flame_33"
++ flash:t="emtr_gun_flame_33"
++ useEmitter:b=yes
++ barrelDP:t="aa_gun_05_dm"
++ breechDP:t="aa_gun_05_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ isBulletBelt:b=yes
++ allowableDelta:r=2.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=4500.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.55
++ accuracyAir:r=1.0
++ accuracyGnd:r=0.8
++ errMeasureVel:r=0.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=100.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=3.0
++ errTargetting:r=3.0
++ errExplTime:r=0.0
++ speedYaw:r=60.0
++ speedPitch:r=55.0
++ bullets:i=1800
++ useGunnerTargetingQuality:b=no
++ 
++ turret{
++ head:t="aa_turret_05"
++ gun:t="aa_gun_05"
++ barrel:t="gun_barrel_33"
++ gunnerDm:t="aa_turret_05_dm"
++ }
++ 
++ limits{
++ yaw:p2=-85.0, 85.0
++ pitch:p2=-15.0, 85.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-85.0, -53.0, -5.0, 85.0
++ lim2:p4=-53.0, 53.0, -10.0, 85.0
++ lim3:p4=53.0, 85.0, -5.0, 85.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=120.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=120.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner11"
++ triggerGroup:t="machinegun"
++ blk:t="gameData/Weapons/navalModels_weapons/13_2mm_hotchkiss_naval_user_machinegun.blk"
++ emitter:t="emtr_gun_flame_34"
++ flash:t="emtr_gun_flame_34"
++ useEmitter:b=yes
++ barrelDP:t="aa_gun_05_dm"
++ breechDP:t="aa_gun_05_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ isBulletBelt:b=yes
++ allowableDelta:r=2.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=4500.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.55
++ accuracyAir:r=1.0
++ accuracyGnd:r=0.8
++ errMeasureVel:r=0.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=100.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=3.0
++ errTargetting:r=3.0
++ errExplTime:r=0.0
++ speedYaw:r=60.0
++ speedPitch:r=55.0
++ bullets:i=1800
++ useGunnerTargetingQuality:b=no
++ 
++ turret{
++ head:t="aa_turret_05"
++ gun:t="aa_gun_05"
++ barrel:t="gun_barrel_34"
++ gunnerDm:t="aa_turret_05_dm"
++ }
++ 
++ limits{
++ yaw:p2=-85.0, 85.0
++ pitch:p2=-15.0, 85.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-85.0, -53.0, -5.0, 85.0
++ lim2:p4=-53.0, 53.0, -10.0, 85.0
++ lim3:p4=53.0, 85.0, -5.0, 85.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=120.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=120.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner11"
++ triggerGroup:t="machinegun"
++ blk:t="gameData/Weapons/navalModels_weapons/13_2mm_hotchkiss_naval_user_machinegun.blk"
++ emitter:t="emtr_gun_flame_35"
++ flash:t="emtr_gun_flame_35"
++ useEmitter:b=yes
++ barrelDP:t="aa_gun_05_dm"
++ breechDP:t="aa_gun_05_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ isBulletBelt:b=yes
++ allowableDelta:r=2.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=4500.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.55
++ accuracyAir:r=1.0
++ accuracyGnd:r=0.8
++ errMeasureVel:r=0.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=100.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=3.0
++ errTargetting:r=3.0
++ errExplTime:r=0.0
++ speedYaw:r=60.0
++ speedPitch:r=55.0
++ bullets:i=1800
++ useGunnerTargetingQuality:b=no
++ 
++ turret{
++ head:t="aa_turret_05"
++ gun:t="aa_gun_05"
++ barrel:t="gun_barrel_35"
++ gunnerDm:t="aa_turret_05_dm"
++ }
++ 
++ limits{
++ yaw:p2=-85.0, 85.0
++ pitch:p2=-15.0, 85.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-85.0, -53.0, -5.0, 85.0
++ lim2:p4=-53.0, 53.0, -10.0, 85.0
++ lim3:p4=53.0, 85.0, -5.0, 85.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=120.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=120.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner11"
++ triggerGroup:t="machinegun"
++ blk:t="gameData/Weapons/navalModels_weapons/13_2mm_hotchkiss_naval_user_machinegun.blk"
++ emitter:t="emtr_gun_flame_36"
++ flash:t="emtr_gun_flame_36"
++ useEmitter:b=yes
++ barrelDP:t="aa_gun_05_dm"
++ breechDP:t="aa_gun_05_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ isBulletBelt:b=yes
++ allowableDelta:r=2.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=4500.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.55
++ accuracyAir:r=1.0
++ accuracyGnd:r=0.8
++ errMeasureVel:r=0.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=100.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=3.0
++ errTargetting:r=3.0
++ errExplTime:r=0.0
++ speedYaw:r=60.0
++ speedPitch:r=55.0
++ bullets:i=1800
++ useGunnerTargetingQuality:b=no
++ 
++ turret{
++ head:t="aa_turret_05"
++ gun:t="aa_gun_05"
++ barrel:t="gun_barrel_36"
++ gunnerDm:t="aa_turret_05_dm"
++ }
++ 
++ limits{
++ yaw:p2=-85.0, 85.0
++ pitch:p2=-15.0, 85.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-85.0, -53.0, -5.0, 85.0
++ lim2:p4=-53.0, 53.0, -10.0, 85.0
++ lim3:p4=53.0, 85.0, -5.0, 85.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=120.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=120.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner12"
++ triggerGroup:t="machinegun"
++ blk:t="gameData/Weapons/navalModels_weapons/13_2mm_hotchkiss_naval_user_machinegun.blk"
++ emitter:t="emtr_gun_flame_37"
++ flash:t="emtr_gun_flame_37"
++ useEmitter:b=yes
++ barrelDP:t="aa_gun_06_dm"
++ breechDP:t="aa_gun_06_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ isBulletBelt:b=yes
++ allowableDelta:r=2.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=4500.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.55
++ accuracyAir:r=1.0
++ accuracyGnd:r=0.8
++ errMeasureVel:r=0.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=100.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=3.0
++ errTargetting:r=3.0
++ errExplTime:r=0.0
++ speedYaw:r=60.0
++ speedPitch:r=55.0
++ bullets:i=1800
++ useGunnerTargetingQuality:b=no
++ 
++ turret{
++ head:t="aa_turret_06"
++ gun:t="aa_gun_06"
++ barrel:t="gun_barrel_37"
++ gunnerDm:t="aa_turret_06_dm"
++ }
++ 
++ limits{
++ yaw:p2=-180.0, 180.0
++ pitch:p2=-15.0, 85.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-180.0, -131.0, 60.0, 85.0
++ lim2:p4=-131.0, -109.0, 47.0, 85.0
++ lim3:p4=-109.0, -104.0, 25.0, 85.0
++ lim4:p4=-104.0, -88.0, 10.0, 85.0
++ lim5:p4=-88.0, 76.0, 0.0, 85.0
++ lim6:p4=76.0, 95.0, 15.0, 85.0
++ lim7:p4=95.0, 142.0, 51.0, 85.0
++ lim8:p4=142.0, 180.0, 58.0, 85.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=120.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=120.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner12"
++ triggerGroup:t="machinegun"
++ blk:t="gameData/Weapons/navalModels_weapons/13_2mm_hotchkiss_naval_user_machinegun.blk"
++ emitter:t="emtr_gun_flame_38"
++ flash:t="emtr_gun_flame_38"
++ useEmitter:b=yes
++ barrelDP:t="aa_gun_06_dm"
++ breechDP:t="aa_gun_06_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ isBulletBelt:b=yes
++ allowableDelta:r=2.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=4500.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.55
++ accuracyAir:r=1.0
++ accuracyGnd:r=0.8
++ errMeasureVel:r=0.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=100.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=3.0
++ errTargetting:r=3.0
++ errExplTime:r=0.0
++ speedYaw:r=60.0
++ speedPitch:r=55.0
++ bullets:i=1800
++ useGunnerTargetingQuality:b=no
++ 
++ turret{
++ head:t="aa_turret_06"
++ gun:t="aa_gun_06"
++ barrel:t="gun_barrel_38"
++ gunnerDm:t="aa_turret_06_dm"
++ }
++ 
++ limits{
++ yaw:p2=-180.0, 180.0
++ pitch:p2=-15.0, 85.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-180.0, -131.0, 60.0, 85.0
++ lim2:p4=-131.0, -109.0, 47.0, 85.0
++ lim3:p4=-109.0, -104.0, 25.0, 85.0
++ lim4:p4=-104.0, -88.0, 10.0, 85.0
++ lim5:p4=-88.0, 76.0, 0.0, 85.0
++ lim6:p4=76.0, 95.0, 15.0, 85.0
++ lim7:p4=95.0, 142.0, 51.0, 85.0
++ lim8:p4=142.0, 180.0, 58.0, 85.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=120.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=120.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner12"
++ triggerGroup:t="machinegun"
++ blk:t="gameData/Weapons/navalModels_weapons/13_2mm_hotchkiss_naval_user_machinegun.blk"
++ emitter:t="emtr_gun_flame_39"
++ flash:t="emtr_gun_flame_39"
++ useEmitter:b=yes
++ barrelDP:t="aa_gun_06_dm"
++ breechDP:t="aa_gun_06_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ isBulletBelt:b=yes
++ allowableDelta:r=2.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=4500.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.55
++ accuracyAir:r=1.0
++ accuracyGnd:r=0.8
++ errMeasureVel:r=0.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=100.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=3.0
++ errTargetting:r=3.0
++ errExplTime:r=0.0
++ speedYaw:r=60.0
++ speedPitch:r=55.0
++ bullets:i=1800
++ useGunnerTargetingQuality:b=no
++ 
++ turret{
++ head:t="aa_turret_06"
++ gun:t="aa_gun_06"
++ barrel:t="gun_barrel_39"
++ gunnerDm:t="aa_turret_06_dm"
++ }
++ 
++ limits{
++ yaw:p2=-180.0, 180.0
++ pitch:p2=-15.0, 85.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-180.0, -131.0, 60.0, 85.0
++ lim2:p4=-131.0, -109.0, 47.0, 85.0
++ lim3:p4=-109.0, -104.0, 25.0, 85.0
++ lim4:p4=-104.0, -88.0, 10.0, 85.0
++ lim5:p4=-88.0, 76.0, 0.0, 85.0
++ lim6:p4=76.0, 95.0, 15.0, 85.0
++ lim7:p4=95.0, 142.0, 51.0, 85.0
++ lim8:p4=142.0, 180.0, 58.0, 85.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=120.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=120.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner12"
++ triggerGroup:t="machinegun"
++ blk:t="gameData/Weapons/navalModels_weapons/13_2mm_hotchkiss_naval_user_machinegun.blk"
++ emitter:t="emtr_gun_flame_40"
++ flash:t="emtr_gun_flame_40"
++ useEmitter:b=yes
++ barrelDP:t="aa_gun_06_dm"
++ breechDP:t="aa_gun_06_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ isBulletBelt:b=yes
++ allowableDelta:r=2.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=4500.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.55
++ accuracyAir:r=1.0
++ accuracyGnd:r=0.8
++ errMeasureVel:r=0.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=100.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=3.0
++ errTargetting:r=3.0
++ errExplTime:r=0.0
++ speedYaw:r=60.0
++ speedPitch:r=55.0
++ bullets:i=1800
++ useGunnerTargetingQuality:b=no
++ 
++ turret{
++ head:t="aa_turret_06"
++ gun:t="aa_gun_06"
++ barrel:t="gun_barrel_40"
++ gunnerDm:t="aa_turret_06_dm"
++ }
++ 
++ limits{
++ yaw:p2=-180.0, 180.0
++ pitch:p2=-15.0, 85.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-180.0, -131.0, 60.0, 85.0
++ lim2:p4=-131.0, -109.0, 47.0, 85.0
++ lim3:p4=-109.0, -104.0, 25.0, 85.0
++ lim4:p4=-104.0, -88.0, 10.0, 85.0
++ lim5:p4=-88.0, 76.0, 0.0, 85.0
++ lim6:p4=76.0, 95.0, 15.0, 85.0
++ lim7:p4=95.0, 142.0, 51.0, 85.0
++ lim8:p4=142.0, 180.0, 58.0, 85.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=120.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=120.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner13"
++ triggerGroup:t="machinegun"
++ blk:t="gameData/Weapons/navalModels_weapons/13_2mm_hotchkiss_naval_user_machinegun.blk"
++ emitter:t="emtr_gun_flame_41"
++ flash:t="emtr_gun_flame_41"
++ useEmitter:b=yes
++ barrelDP:t="aa_gun_07_dm"
++ breechDP:t="aa_gun_07_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ isBulletBelt:b=yes
++ allowableDelta:r=2.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=4500.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.55
++ accuracyAir:r=1.0
++ accuracyGnd:r=0.8
++ errMeasureVel:r=0.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=100.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=3.0
++ errTargetting:r=3.0
++ errExplTime:r=0.0
++ speedYaw:r=60.0
++ speedPitch:r=55.0
++ bullets:i=1800
++ useGunnerTargetingQuality:b=no
++ 
++ turret{
++ head:t="aa_turret_07"
++ gun:t="aa_gun_07"
++ barrel:t="gun_barrel_41"
++ gunnerDm:t="aa_turret_07_dm"
++ }
++ 
++ limits{
++ yaw:p2=-180.0, 180.0
++ pitch:p2=-15.0, 85.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-180.0, -142.0, 58.0, 85.0
++ lim2:p4=-142.0, -95.0, 51.0, 85.0
++ lim3:p4=-95.0, -76.0, 15.0, 85.0
++ lim4:p4=-76.0, 88.0, 0.0, 85.0
++ lim5:p4=88.0, 104.0, 10.0, 85.0
++ lim6:p4=104.0, 109.0, 25.0, 85.0
++ lim7:p4=109.0, 131.0, 47.0, 85.0
++ lim8:p4=131.0, 180.0, 60.0, 85.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=120.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=120.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner13"
++ triggerGroup:t="machinegun"
++ blk:t="gameData/Weapons/navalModels_weapons/13_2mm_hotchkiss_naval_user_machinegun.blk"
++ emitter:t="emtr_gun_flame_42"
++ flash:t="emtr_gun_flame_42"
++ useEmitter:b=yes
++ barrelDP:t="aa_gun_07_dm"
++ breechDP:t="aa_gun_07_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ isBulletBelt:b=yes
++ allowableDelta:r=2.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=4500.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.55
++ accuracyAir:r=1.0
++ accuracyGnd:r=0.8
++ errMeasureVel:r=0.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=100.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=3.0
++ errTargetting:r=3.0
++ errExplTime:r=0.0
++ speedYaw:r=60.0
++ speedPitch:r=55.0
++ bullets:i=1800
++ useGunnerTargetingQuality:b=no
++ 
++ turret{
++ head:t="aa_turret_07"
++ gun:t="aa_gun_07"
++ barrel:t="gun_barrel_42"
++ gunnerDm:t="aa_turret_07_dm"
++ }
++ 
++ limits{
++ yaw:p2=-180.0, 180.0
++ pitch:p2=-15.0, 85.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-180.0, -142.0, 58.0, 85.0
++ lim2:p4=-142.0, -95.0, 51.0, 85.0
++ lim3:p4=-95.0, -76.0, 15.0, 85.0
++ lim4:p4=-76.0, 88.0, 0.0, 85.0
++ lim5:p4=88.0, 104.0, 10.0, 85.0
++ lim6:p4=104.0, 109.0, 25.0, 85.0
++ lim7:p4=109.0, 131.0, 47.0, 85.0
++ lim8:p4=131.0, 180.0, 60.0, 85.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=120.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=120.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner13"
++ triggerGroup:t="machinegun"
++ blk:t="gameData/Weapons/navalModels_weapons/13_2mm_hotchkiss_naval_user_machinegun.blk"
++ emitter:t="emtr_gun_flame_43"
++ flash:t="emtr_gun_flame_43"
++ useEmitter:b=yes
++ barrelDP:t="aa_gun_07_dm"
++ breechDP:t="aa_gun_07_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ isBulletBelt:b=yes
++ allowableDelta:r=2.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=4500.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.55
++ accuracyAir:r=1.0
++ accuracyGnd:r=0.8
++ errMeasureVel:r=0.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=100.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=3.0
++ errTargetting:r=3.0
++ errExplTime:r=0.0
++ speedYaw:r=60.0
++ speedPitch:r=55.0
++ bullets:i=1800
++ useGunnerTargetingQuality:b=no
++ 
++ turret{
++ head:t="aa_turret_07"
++ gun:t="aa_gun_07"
++ barrel:t="gun_barrel_43"
++ gunnerDm:t="aa_turret_07_dm"
++ }
++ 
++ limits{
++ yaw:p2=-180.0, 180.0
++ pitch:p2=-15.0, 85.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-180.0, -142.0, 58.0, 85.0
++ lim2:p4=-142.0, -95.0, 51.0, 85.0
++ lim3:p4=-95.0, -76.0, 15.0, 85.0
++ lim4:p4=-76.0, 88.0, 0.0, 85.0
++ lim5:p4=88.0, 104.0, 10.0, 85.0
++ lim6:p4=104.0, 109.0, 25.0, 85.0
++ lim7:p4=109.0, 131.0, 47.0, 85.0
++ lim8:p4=131.0, 180.0, 60.0, 85.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=120.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=120.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner13"
++ triggerGroup:t="machinegun"
++ blk:t="gameData/Weapons/navalModels_weapons/13_2mm_hotchkiss_naval_user_machinegun.blk"
++ emitter:t="emtr_gun_flame_44"
++ flash:t="emtr_gun_flame_44"
++ useEmitter:b=yes
++ barrelDP:t="aa_gun_07_dm"
++ breechDP:t="aa_gun_07_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ isBulletBelt:b=yes
++ allowableDelta:r=2.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=4500.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.55
++ accuracyAir:r=1.0
++ accuracyGnd:r=0.8
++ errMeasureVel:r=0.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=100.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=3.0
++ errTargetting:r=3.0
++ errExplTime:r=0.0
++ speedYaw:r=60.0
++ speedPitch:r=55.0
++ bullets:i=1800
++ useGunnerTargetingQuality:b=no
++ 
++ turret{
++ head:t="aa_turret_07"
++ gun:t="aa_gun_07"
++ barrel:t="gun_barrel_44"
++ gunnerDm:t="aa_turret_07_dm"
++ }
++ 
++ limits{
++ yaw:p2=-180.0, 180.0
++ pitch:p2=-15.0, 85.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-180.0, -142.0, 58.0, 85.0
++ lim2:p4=-142.0, -95.0, 51.0, 85.0
++ lim3:p4=-95.0, -76.0, 15.0, 85.0
++ lim4:p4=-76.0, 88.0, 0.0, 85.0
++ lim5:p4=88.0, 104.0, 10.0, 85.0
++ lim6:p4=104.0, 109.0, 25.0, 85.0
++ lim7:p4=109.0, 131.0, 47.0, 85.0
++ lim8:p4=131.0, 180.0, 60.0, 85.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=120.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=120.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner14"
++ triggerGroup:t="machinegun"
++ blk:t="gameData/Weapons/navalModels_weapons/13_2mm_hotchkiss_naval_user_machinegun.blk"
++ emitter:t="emtr_gun_flame_45"
++ flash:t="emtr_gun_flame_45"
++ useEmitter:b=yes
++ barrelDP:t="aa_gun_08_dm"
++ breechDP:t="aa_gun_08_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ isBulletBelt:b=yes
++ allowableDelta:r=2.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=4500.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.55
++ accuracyAir:r=1.0
++ accuracyGnd:r=0.8
++ errMeasureVel:r=0.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=100.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=3.0
++ errTargetting:r=3.0
++ errExplTime:r=0.0
++ speedYaw:r=60.0
++ speedPitch:r=55.0
++ bullets:i=1800
++ useGunnerTargetingQuality:b=no
++ 
++ turret{
++ head:t="aa_turret_08"
++ gun:t="aa_gun_08"
++ barrel:t="gun_barrel_45"
++ gunnerDm:t="aa_turret_08_dm"
++ }
++ 
++ limits{
++ yaw:p2=-180.0, 180.0
++ pitch:p2=-15.0, 85.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-180.0, -113.0, 53.0, 85.0
++ lim2:p4=-113.0, -107.0, 26.0, 85.0
++ lim3:p4=-107.0, -82.0, 14.0, 85.0
++ lim4:p4=-82.0, 73.0, -1.0, 85.0
++ lim5:p4=73.0, 91.0, 6.0, 85.0
++ lim6:p4=91.0, 123.0, 45.0, 85.0
++ lim7:p4=123.0, 180.0, 52.0, 85.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=120.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=120.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner14"
++ triggerGroup:t="machinegun"
++ blk:t="gameData/Weapons/navalModels_weapons/13_2mm_hotchkiss_naval_user_machinegun.blk"
++ emitter:t="emtr_gun_flame_46"
++ flash:t="emtr_gun_flame_46"
++ useEmitter:b=yes
++ barrelDP:t="aa_gun_08_dm"
++ breechDP:t="aa_gun_08_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ isBulletBelt:b=yes
++ allowableDelta:r=2.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=4500.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.55
++ accuracyAir:r=1.0
++ accuracyGnd:r=0.8
++ errMeasureVel:r=0.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=100.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=3.0
++ errTargetting:r=3.0
++ errExplTime:r=0.0
++ speedYaw:r=60.0
++ speedPitch:r=55.0
++ bullets:i=1800
++ useGunnerTargetingQuality:b=no
++ 
++ turret{
++ head:t="aa_turret_08"
++ gun:t="aa_gun_08"
++ barrel:t="gun_barrel_46"
++ gunnerDm:t="aa_turret_08_dm"
++ }
++ 
++ limits{
++ yaw:p2=-180.0, 180.0
++ pitch:p2=-15.0, 85.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-180.0, -113.0, 53.0, 85.0
++ lim2:p4=-113.0, -107.0, 26.0, 85.0
++ lim3:p4=-107.0, -82.0, 14.0, 85.0
++ lim4:p4=-82.0, 73.0, -1.0, 85.0
++ lim5:p4=73.0, 91.0, 6.0, 85.0
++ lim6:p4=91.0, 123.0, 45.0, 85.0
++ lim7:p4=123.0, 180.0, 52.0, 85.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=120.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=120.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner14"
++ triggerGroup:t="machinegun"
++ blk:t="gameData/Weapons/navalModels_weapons/13_2mm_hotchkiss_naval_user_machinegun.blk"
++ emitter:t="emtr_gun_flame_47"
++ flash:t="emtr_gun_flame_47"
++ useEmitter:b=yes
++ barrelDP:t="aa_gun_08_dm"
++ breechDP:t="aa_gun_08_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ isBulletBelt:b=yes
++ allowableDelta:r=2.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=4500.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.55
++ accuracyAir:r=1.0
++ accuracyGnd:r=0.8
++ errMeasureVel:r=0.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=100.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=3.0
++ errTargetting:r=3.0
++ errExplTime:r=0.0
++ speedYaw:r=60.0
++ speedPitch:r=55.0
++ bullets:i=1800
++ useGunnerTargetingQuality:b=no
++ 
++ turret{
++ head:t="aa_turret_08"
++ gun:t="aa_gun_08"
++ barrel:t="gun_barrel_47"
++ gunnerDm:t="aa_turret_08_dm"
++ }
++ 
++ limits{
++ yaw:p2=-180.0, 180.0
++ pitch:p2=-15.0, 85.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-180.0, -113.0, 53.0, 85.0
++ lim2:p4=-113.0, -107.0, 26.0, 85.0
++ lim3:p4=-107.0, -82.0, 14.0, 85.0
++ lim4:p4=-82.0, 73.0, -1.0, 85.0
++ lim5:p4=73.0, 91.0, 6.0, 85.0
++ lim6:p4=91.0, 123.0, 45.0, 85.0
++ lim7:p4=123.0, 180.0, 52.0, 85.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=120.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=120.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner14"
++ triggerGroup:t="machinegun"
++ blk:t="gameData/Weapons/navalModels_weapons/13_2mm_hotchkiss_naval_user_machinegun.blk"
++ emitter:t="emtr_gun_flame_48"
++ flash:t="emtr_gun_flame_48"
++ useEmitter:b=yes
++ barrelDP:t="aa_gun_08_dm"
++ breechDP:t="aa_gun_08_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ isBulletBelt:b=yes
++ allowableDelta:r=2.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=4500.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.55
++ accuracyAir:r=1.0
++ accuracyGnd:r=0.8
++ errMeasureVel:r=0.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=100.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=3.0
++ errTargetting:r=3.0
++ errExplTime:r=0.0
++ speedYaw:r=60.0
++ speedPitch:r=55.0
++ bullets:i=1800
++ useGunnerTargetingQuality:b=no
++ 
++ turret{
++ head:t="aa_turret_08"
++ gun:t="aa_gun_08"
++ barrel:t="gun_barrel_48"
++ gunnerDm:t="aa_turret_08_dm"
++ }
++ 
++ limits{
++ yaw:p2=-180.0, 180.0
++ pitch:p2=-15.0, 85.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-180.0, -113.0, 53.0, 85.0
++ lim2:p4=-113.0, -107.0, 26.0, 85.0
++ lim3:p4=-107.0, -82.0, 14.0, 85.0
++ lim4:p4=-82.0, 73.0, -1.0, 85.0
++ lim5:p4=73.0, 91.0, 6.0, 85.0
++ lim6:p4=91.0, 123.0, 45.0, 85.0
++ lim7:p4=123.0, 180.0, 52.0, 85.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=120.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=120.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner15"
++ triggerGroup:t="machinegun"
++ blk:t="gameData/Weapons/navalModels_weapons/13_2mm_hotchkiss_naval_user_machinegun.blk"
++ emitter:t="emtr_gun_flame_49"
++ flash:t="emtr_gun_flame_49"
++ useEmitter:b=yes
++ barrelDP:t="aa_gun_09_dm"
++ breechDP:t="aa_gun_09_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ isBulletBelt:b=yes
++ allowableDelta:r=2.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=4500.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.55
++ accuracyAir:r=1.0
++ accuracyGnd:r=0.8
++ errMeasureVel:r=0.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=100.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=3.0
++ errTargetting:r=3.0
++ errExplTime:r=0.0
++ speedYaw:r=60.0
++ speedPitch:r=55.0
++ bullets:i=1800
++ useGunnerTargetingQuality:b=no
++ 
++ turret{
++ head:t="aa_turret_09"
++ gun:t="aa_gun_09"
++ barrel:t="gun_barrel_49"
++ gunnerDm:t="aa_turret_09_dm"
++ }
++ 
++ limits{
++ yaw:p2=-180.0, 180.0
++ pitch:p2=-15.0, 85.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-180.0, -123.0, 52.0, 85.0
++ lim2:p4=-123.0, -91.0, 45.0, 85.0
++ lim3:p4=-91.0, -73.0, 6.0, 85.0
++ lim4:p4=-73.0, 82.0, -1.0, 85.0
++ lim5:p4=82.0, 107.0, 14.0, 85.0
++ lim6:p4=107.0, 113.0, 26.0, 85.0
++ lim7:p4=113.0, 180.0, 53.0, 85.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=120.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=120.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner15"
++ triggerGroup:t="machinegun"
++ blk:t="gameData/Weapons/navalModels_weapons/13_2mm_hotchkiss_naval_user_machinegun.blk"
++ emitter:t="emtr_gun_flame_50"
++ flash:t="emtr_gun_flame_50"
++ useEmitter:b=yes
++ barrelDP:t="aa_gun_09_dm"
++ breechDP:t="aa_gun_09_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ isBulletBelt:b=yes
++ allowableDelta:r=2.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=4500.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.55
++ accuracyAir:r=1.0
++ accuracyGnd:r=0.8
++ errMeasureVel:r=0.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=100.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=3.0
++ errTargetting:r=3.0
++ errExplTime:r=0.0
++ speedYaw:r=60.0
++ speedPitch:r=55.0
++ bullets:i=1800
++ useGunnerTargetingQuality:b=no
++ 
++ turret{
++ head:t="aa_turret_09"
++ gun:t="aa_gun_09"
++ barrel:t="gun_barrel_50"
++ gunnerDm:t="aa_turret_09_dm"
++ }
++ 
++ limits{
++ yaw:p2=-180.0, 180.0
++ pitch:p2=-15.0, 85.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-180.0, -123.0, 52.0, 85.0
++ lim2:p4=-123.0, -91.0, 45.0, 85.0
++ lim3:p4=-91.0, -73.0, 6.0, 85.0
++ lim4:p4=-73.0, 82.0, -1.0, 85.0
++ lim5:p4=82.0, 107.0, 14.0, 85.0
++ lim6:p4=107.0, 113.0, 26.0, 85.0
++ lim7:p4=113.0, 180.0, 53.0, 85.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=120.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=120.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner15"
++ triggerGroup:t="machinegun"
++ blk:t="gameData/Weapons/navalModels_weapons/13_2mm_hotchkiss_naval_user_machinegun.blk"
++ emitter:t="emtr_gun_flame_51"
++ flash:t="emtr_gun_flame_51"
++ useEmitter:b=yes
++ barrelDP:t="aa_gun_09_dm"
++ breechDP:t="aa_gun_09_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ isBulletBelt:b=yes
++ allowableDelta:r=2.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=4500.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.55
++ accuracyAir:r=1.0
++ accuracyGnd:r=0.8
++ errMeasureVel:r=0.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=100.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=3.0
++ errTargetting:r=3.0
++ errExplTime:r=0.0
++ speedYaw:r=60.0
++ speedPitch:r=55.0
++ bullets:i=1800
++ useGunnerTargetingQuality:b=no
++ 
++ turret{
++ head:t="aa_turret_09"
++ gun:t="aa_gun_09"
++ barrel:t="gun_barrel_51"
++ gunnerDm:t="aa_turret_09_dm"
++ }
++ 
++ limits{
++ yaw:p2=-180.0, 180.0
++ pitch:p2=-15.0, 85.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-180.0, -123.0, 52.0, 85.0
++ lim2:p4=-123.0, -91.0, 45.0, 85.0
++ lim3:p4=-91.0, -73.0, 6.0, 85.0
++ lim4:p4=-73.0, 82.0, -1.0, 85.0
++ lim5:p4=82.0, 107.0, 14.0, 85.0
++ lim6:p4=107.0, 113.0, 26.0, 85.0
++ lim7:p4=113.0, 180.0, 53.0, 85.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=120.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=120.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner15"
++ triggerGroup:t="machinegun"
++ blk:t="gameData/Weapons/navalModels_weapons/13_2mm_hotchkiss_naval_user_machinegun.blk"
++ emitter:t="emtr_gun_flame_52"
++ flash:t="emtr_gun_flame_52"
++ useEmitter:b=yes
++ barrelDP:t="aa_gun_09_dm"
++ breechDP:t="aa_gun_09_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ isBulletBelt:b=yes
++ allowableDelta:r=2.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=4500.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.55
++ accuracyAir:r=1.0
++ accuracyGnd:r=0.8
++ errMeasureVel:r=0.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=100.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=3.0
++ errTargetting:r=3.0
++ errExplTime:r=0.0
++ speedYaw:r=60.0
++ speedPitch:r=55.0
++ bullets:i=1800
++ useGunnerTargetingQuality:b=no
++ 
++ turret{
++ head:t="aa_turret_09"
++ gun:t="aa_gun_09"
++ barrel:t="gun_barrel_52"
++ gunnerDm:t="aa_turret_09_dm"
++ }
++ 
++ limits{
++ yaw:p2=-180.0, 180.0
++ pitch:p2=-15.0, 85.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-180.0, -123.0, 52.0, 85.0
++ lim2:p4=-123.0, -91.0, 45.0, 85.0
++ lim3:p4=-91.0, -73.0, 6.0, 85.0
++ lim4:p4=-73.0, 82.0, -1.0, 85.0
++ lim5:p4=82.0, 107.0, 14.0, 85.0
++ lim6:p4=107.0, 113.0, 26.0, 85.0
++ lim7:p4=113.0, 180.0, 53.0, 85.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=120.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=120.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner16"
++ triggerGroup:t="machinegun"
++ blk:t="gameData/Weapons/navalModels_weapons/13_2mm_hotchkiss_naval_user_machinegun.blk"
++ emitter:t="emtr_gun_flame_53"
++ flash:t="emtr_gun_flame_53"
++ useEmitter:b=yes
++ barrelDP:t="aa_gun_10_dm"
++ breechDP:t="aa_gun_10_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ isBulletBelt:b=yes
++ allowableDelta:r=2.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=4500.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.55
++ accuracyAir:r=1.0
++ accuracyGnd:r=0.8
++ errMeasureVel:r=0.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=100.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=3.0
++ errTargetting:r=3.0
++ errExplTime:r=0.0
++ speedYaw:r=60.0
++ speedPitch:r=55.0
++ bullets:i=1800
++ useGunnerTargetingQuality:b=no
++ 
++ turret{
++ head:t="aa_turret_10"
++ gun:t="aa_gun_10"
++ barrel:t="gun_barrel_53"
++ gunnerDm:t="aa_turret_10_dm"
++ }
++ 
++ limits{
++ yaw:p2=-90.0, 180.0
++ pitch:p2=-15.0, 85.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-90.0, -81.0, 3.0, 85.0
++ lim2:p4=-81.0, 49.0, -1.0, 85.0
++ lim3:p4=49.0, 85.0, 10.0, 85.0
++ lim4:p4=85.0, 180.0, 42.0, 85.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=120.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=120.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner16"
++ triggerGroup:t="machinegun"
++ blk:t="gameData/Weapons/navalModels_weapons/13_2mm_hotchkiss_naval_user_machinegun.blk"
++ emitter:t="emtr_gun_flame_54"
++ flash:t="emtr_gun_flame_54"
++ useEmitter:b=yes
++ barrelDP:t="aa_gun_10_dm"
++ breechDP:t="aa_gun_10_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ isBulletBelt:b=yes
++ allowableDelta:r=2.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=4500.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.55
++ accuracyAir:r=1.0
++ accuracyGnd:r=0.8
++ errMeasureVel:r=0.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=100.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=3.0
++ errTargetting:r=3.0
++ errExplTime:r=0.0
++ speedYaw:r=60.0
++ speedPitch:r=55.0
++ bullets:i=1800
++ useGunnerTargetingQuality:b=no
++ 
++ turret{
++ head:t="aa_turret_10"
++ gun:t="aa_gun_10"
++ barrel:t="gun_barrel_54"
++ gunnerDm:t="aa_turret_10_dm"
++ }
++ 
++ limits{
++ yaw:p2=-90.0, 180.0
++ pitch:p2=-15.0, 85.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-90.0, -81.0, 3.0, 85.0
++ lim2:p4=-81.0, 49.0, -1.0, 85.0
++ lim3:p4=49.0, 85.0, 10.0, 85.0
++ lim4:p4=85.0, 180.0, 42.0, 85.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=120.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=120.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner16"
++ triggerGroup:t="machinegun"
++ blk:t="gameData/Weapons/navalModels_weapons/13_2mm_hotchkiss_naval_user_machinegun.blk"
++ emitter:t="emtr_gun_flame_55"
++ flash:t="emtr_gun_flame_55"
++ useEmitter:b=yes
++ barrelDP:t="aa_gun_10_dm"
++ breechDP:t="aa_gun_10_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ isBulletBelt:b=yes
++ allowableDelta:r=2.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=4500.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.55
++ accuracyAir:r=1.0
++ accuracyGnd:r=0.8
++ errMeasureVel:r=0.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=100.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=3.0
++ errTargetting:r=3.0
++ errExplTime:r=0.0
++ speedYaw:r=60.0
++ speedPitch:r=55.0
++ bullets:i=1800
++ useGunnerTargetingQuality:b=no
++ 
++ turret{
++ head:t="aa_turret_10"
++ gun:t="aa_gun_10"
++ barrel:t="gun_barrel_55"
++ gunnerDm:t="aa_turret_10_dm"
++ }
++ 
++ limits{
++ yaw:p2=-90.0, 180.0
++ pitch:p2=-15.0, 85.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-90.0, -81.0, 3.0, 85.0
++ lim2:p4=-81.0, 49.0, -1.0, 85.0
++ lim3:p4=49.0, 85.0, 10.0, 85.0
++ lim4:p4=85.0, 180.0, 42.0, 85.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=120.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=120.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner16"
++ triggerGroup:t="machinegun"
++ blk:t="gameData/Weapons/navalModels_weapons/13_2mm_hotchkiss_naval_user_machinegun.blk"
++ emitter:t="emtr_gun_flame_56"
++ flash:t="emtr_gun_flame_56"
++ useEmitter:b=yes
++ barrelDP:t="aa_gun_10_dm"
++ breechDP:t="aa_gun_10_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ isBulletBelt:b=yes
++ allowableDelta:r=2.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=4500.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.55
++ accuracyAir:r=1.0
++ accuracyGnd:r=0.8
++ errMeasureVel:r=0.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=100.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=3.0
++ errTargetting:r=3.0
++ errExplTime:r=0.0
++ speedYaw:r=60.0
++ speedPitch:r=55.0
++ bullets:i=1800
++ useGunnerTargetingQuality:b=no
++ 
++ turret{
++ head:t="aa_turret_10"
++ gun:t="aa_gun_10"
++ barrel:t="gun_barrel_56"
++ gunnerDm:t="aa_turret_10_dm"
++ }
++ 
++ limits{
++ yaw:p2=-90.0, 180.0
++ pitch:p2=-15.0, 85.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-90.0, -81.0, 3.0, 85.0
++ lim2:p4=-81.0, 49.0, -1.0, 85.0
++ lim3:p4=49.0, 85.0, 10.0, 85.0
++ lim4:p4=85.0, 180.0, 42.0, 85.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=120.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=120.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner17"
++ triggerGroup:t="machinegun"
++ blk:t="gameData/Weapons/navalModels_weapons/13_2mm_hotchkiss_naval_user_machinegun.blk"
++ emitter:t="emtr_gun_flame_57"
++ flash:t="emtr_gun_flame_57"
++ useEmitter:b=yes
++ barrelDP:t="aa_gun_11_dm"
++ breechDP:t="aa_gun_11_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ isBulletBelt:b=yes
++ allowableDelta:r=2.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=4500.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.55
++ accuracyAir:r=1.0
++ accuracyGnd:r=0.8
++ errMeasureVel:r=0.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=100.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=3.0
++ errTargetting:r=3.0
++ errExplTime:r=0.0
++ speedYaw:r=60.0
++ speedPitch:r=55.0
++ bullets:i=1800
++ useGunnerTargetingQuality:b=no
++ 
++ turret{
++ head:t="aa_turret_11"
++ gun:t="aa_gun_11"
++ barrel:t="gun_barrel_57"
++ gunnerDm:t="aa_turret_11_dm"
++ }
++ 
++ limits{
++ yaw:p2=-180.0, 90.0
++ pitch:p2=-15.0, 85.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-180.0, -85.0, 42.0, 85.0
++ lim2:p4=-85.0, -49.0, 10.0, 85.0
++ lim3:p4=-49.0, 81.0, -1.0, 85.0
++ lim4:p4=81.0, 90.0, 3.0, 85.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=120.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=120.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner17"
++ triggerGroup:t="machinegun"
++ blk:t="gameData/Weapons/navalModels_weapons/13_2mm_hotchkiss_naval_user_machinegun.blk"
++ emitter:t="emtr_gun_flame_58"
++ flash:t="emtr_gun_flame_58"
++ useEmitter:b=yes
++ barrelDP:t="aa_gun_11_dm"
++ breechDP:t="aa_gun_11_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ isBulletBelt:b=yes
++ allowableDelta:r=2.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=4500.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.55
++ accuracyAir:r=1.0
++ accuracyGnd:r=0.8
++ errMeasureVel:r=0.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=100.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=3.0
++ errTargetting:r=3.0
++ errExplTime:r=0.0
++ speedYaw:r=60.0
++ speedPitch:r=55.0
++ bullets:i=1800
++ useGunnerTargetingQuality:b=no
++ 
++ turret{
++ head:t="aa_turret_11"
++ gun:t="aa_gun_11"
++ barrel:t="gun_barrel_58"
++ gunnerDm:t="aa_turret_11_dm"
++ }
++ 
++ limits{
++ yaw:p2=-180.0, 90.0
++ pitch:p2=-15.0, 85.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-180.0, -85.0, 42.0, 85.0
++ lim2:p4=-85.0, -49.0, 10.0, 85.0
++ lim3:p4=-49.0, 81.0, -1.0, 85.0
++ lim4:p4=81.0, 90.0, 3.0, 85.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=120.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=120.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner17"
++ triggerGroup:t="machinegun"
++ blk:t="gameData/Weapons/navalModels_weapons/13_2mm_hotchkiss_naval_user_machinegun.blk"
++ emitter:t="emtr_gun_flame_59"
++ flash:t="emtr_gun_flame_59"
++ useEmitter:b=yes
++ barrelDP:t="aa_gun_11_dm"
++ breechDP:t="aa_gun_11_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ isBulletBelt:b=yes
++ allowableDelta:r=2.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=4500.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.55
++ accuracyAir:r=1.0
++ accuracyGnd:r=0.8
++ errMeasureVel:r=0.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=100.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=3.0
++ errTargetting:r=3.0
++ errExplTime:r=0.0
++ speedYaw:r=60.0
++ speedPitch:r=55.0
++ bullets:i=1800
++ useGunnerTargetingQuality:b=no
++ 
++ turret{
++ head:t="aa_turret_11"
++ gun:t="aa_gun_11"
++ barrel:t="gun_barrel_59"
++ gunnerDm:t="aa_turret_11_dm"
++ }
++ 
++ limits{
++ yaw:p2=-180.0, 90.0
++ pitch:p2=-15.0, 85.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-180.0, -85.0, 42.0, 85.0
++ lim2:p4=-85.0, -49.0, 10.0, 85.0
++ lim3:p4=-49.0, 81.0, -1.0, 85.0
++ lim4:p4=81.0, 90.0, 3.0, 85.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=120.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=120.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner17"
++ triggerGroup:t="machinegun"
++ blk:t="gameData/Weapons/navalModels_weapons/13_2mm_hotchkiss_naval_user_machinegun.blk"
++ emitter:t="emtr_gun_flame_60"
++ flash:t="emtr_gun_flame_60"
++ useEmitter:b=yes
++ barrelDP:t="aa_gun_11_dm"
++ breechDP:t="aa_gun_11_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ isBulletBelt:b=yes
++ allowableDelta:r=2.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=4500.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.55
++ accuracyAir:r=1.0
++ accuracyGnd:r=0.8
++ errMeasureVel:r=0.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=100.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=3.0
++ errTargetting:r=3.0
++ errExplTime:r=0.0
++ speedYaw:r=60.0
++ speedPitch:r=55.0
++ bullets:i=1800
++ useGunnerTargetingQuality:b=no
++ 
++ turret{
++ head:t="aa_turret_11"
++ gun:t="aa_gun_11"
++ barrel:t="gun_barrel_60"
++ gunnerDm:t="aa_turret_11_dm"
++ }
++ 
++ limits{
++ yaw:p2=-180.0, 90.0
++ pitch:p2=-15.0, 85.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-180.0, -85.0, 42.0, 85.0
++ lim2:p4=-85.0, -49.0, 10.0, 85.0
++ lim3:p4=-49.0, 81.0, -1.0, 85.0
++ lim4:p4=81.0, 90.0, 3.0, 85.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=120.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=120.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner18"
++ triggerGroup:t="machinegun"
++ blk:t="gameData/Weapons/navalModels_weapons/13_2mm_hotchkiss_naval_user_machinegun.blk"
++ emitter:t="emtr_gun_flame_61"
++ flash:t="emtr_gun_flame_61"
++ useEmitter:b=yes
++ barrelDP:t="aa_gun_12_dm"
++ breechDP:t="aa_gun_12_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ isBulletBelt:b=yes
++ allowableDelta:r=2.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=4500.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.55
++ accuracyAir:r=1.0
++ accuracyGnd:r=0.8
++ errMeasureVel:r=0.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=100.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=3.0
++ errTargetting:r=3.0
++ errExplTime:r=0.0
++ speedYaw:r=60.0
++ speedPitch:r=55.0
++ bullets:i=1800
++ useGunnerTargetingQuality:b=no
++ 
++ turret{
++ head:t="aa_turret_12"
++ gun:t="aa_gun_12"
++ barrel:t="gun_barrel_61"
++ gunnerDm:t="aa_turret_12_dm"
++ }
++ 
++ limits{
++ yaw:p2=-125.0, 125.0
++ pitch:p2=-15.0, 85.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-125.0, -48.0, -10.0, 85.0
++ lim2:p4=-48.0, 48.0, 5.0, 85.0
++ lim3:p4=48.0, 125.0, -10.0, 85.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=120.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=120.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner18"
++ triggerGroup:t="machinegun"
++ blk:t="gameData/Weapons/navalModels_weapons/13_2mm_hotchkiss_naval_user_machinegun.blk"
++ emitter:t="emtr_gun_flame_62"
++ flash:t="emtr_gun_flame_62"
++ useEmitter:b=yes
++ barrelDP:t="aa_gun_12_dm"
++ breechDP:t="aa_gun_12_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ isBulletBelt:b=yes
++ allowableDelta:r=2.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=4500.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.55
++ accuracyAir:r=1.0
++ accuracyGnd:r=0.8
++ errMeasureVel:r=0.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=100.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=3.0
++ errTargetting:r=3.0
++ errExplTime:r=0.0
++ speedYaw:r=60.0
++ speedPitch:r=55.0
++ bullets:i=1800
++ useGunnerTargetingQuality:b=no
++ 
++ turret{
++ head:t="aa_turret_12"
++ gun:t="aa_gun_12"
++ barrel:t="gun_barrel_62"
++ gunnerDm:t="aa_turret_12_dm"
++ }
++ 
++ limits{
++ yaw:p2=-125.0, 125.0
++ pitch:p2=-15.0, 85.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-125.0, -48.0, -10.0, 85.0
++ lim2:p4=-48.0, 48.0, 5.0, 85.0
++ lim3:p4=48.0, 125.0, -10.0, 85.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=120.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=120.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner18"
++ triggerGroup:t="machinegun"
++ blk:t="gameData/Weapons/navalModels_weapons/13_2mm_hotchkiss_naval_user_machinegun.blk"
++ emitter:t="emtr_gun_flame_63"
++ flash:t="emtr_gun_flame_63"
++ useEmitter:b=yes
++ barrelDP:t="aa_gun_12_dm"
++ breechDP:t="aa_gun_12_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ isBulletBelt:b=yes
++ allowableDelta:r=2.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=4500.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.55
++ accuracyAir:r=1.0
++ accuracyGnd:r=0.8
++ errMeasureVel:r=0.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=100.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=3.0
++ errTargetting:r=3.0
++ errExplTime:r=0.0
++ speedYaw:r=60.0
++ speedPitch:r=55.0
++ bullets:i=1800
++ useGunnerTargetingQuality:b=no
++ 
++ turret{
++ head:t="aa_turret_12"
++ gun:t="aa_gun_12"
++ barrel:t="gun_barrel_63"
++ gunnerDm:t="aa_turret_12_dm"
++ }
++ 
++ limits{
++ yaw:p2=-125.0, 125.0
++ pitch:p2=-15.0, 85.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-125.0, -48.0, -10.0, 85.0
++ lim2:p4=-48.0, 48.0, 5.0, 85.0
++ lim3:p4=48.0, 125.0, -10.0, 85.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=120.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=120.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner18"
++ triggerGroup:t="machinegun"
++ blk:t="gameData/Weapons/navalModels_weapons/13_2mm_hotchkiss_naval_user_machinegun.blk"
++ emitter:t="emtr_gun_flame_64"
++ flash:t="emtr_gun_flame_64"
++ useEmitter:b=yes
++ barrelDP:t="aa_gun_12_dm"
++ breechDP:t="aa_gun_12_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ isBulletBelt:b=yes
++ allowableDelta:r=2.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=4500.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.55
++ accuracyAir:r=1.0
++ accuracyGnd:r=0.8
++ errMeasureVel:r=0.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=100.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=3.0
++ errTargetting:r=3.0
++ errExplTime:r=0.0
++ speedYaw:r=60.0
++ speedPitch:r=55.0
++ bullets:i=1800
++ useGunnerTargetingQuality:b=no
++ 
++ turret{
++ head:t="aa_turret_12"
++ gun:t="aa_gun_12"
++ barrel:t="gun_barrel_64"
++ gunnerDm:t="aa_turret_12_dm"
++ }
++ 
++ limits{
++ yaw:p2=-125.0, 125.0
++ pitch:p2=-15.0, 85.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-125.0, -48.0, -10.0, 85.0
++ lim2:p4=-48.0, 48.0, 5.0, 85.0
++ lim3:p4=48.0, 125.0, -10.0, 85.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=120.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=120.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner19"
++ triggerGroup:t="machinegun"
++ blk:t="gameData/Weapons/navalModels_weapons/13_2mm_browning_naval_user_machinegun.blk"
++ emitter:t="emtr_gun_flame_65"
++ flash:t="emtr_gun_flame_65"
++ useEmitter:b=yes
++ barrelDP:t="aa_gun_13_dm"
++ breechDP:t="aa_gun_13_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ isBulletBelt:b=yes
++ speedYaw:r=75.0
++ speedPitch:r=65.0
++ bullets:i=1800
++ useGunnerTargetingQuality:b=no
++ allowableDelta:r=2.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=4500.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.55
++ accuracyAir:r=1.0
++ accuracyGnd:r=0.8
++ errMeasureVel:r=0.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=100.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=3.0
++ errTargetting:r=3.0
++ errExplTime:r=0.0
++ 
++ turret{
++ head:t="aa_turret_13"
++ gun:t="aa_gun_13"
++ gunnerDm:t="aa_turret_13_dm"
++ 
++ linkedAnimPart{
++ verNode:t="bone_radius_foot_01"
++ verLimits:p2=0.0, 7.0
++ verOriginLimits:p2=-10.0, 60.0
++ }
++ }
++ 
++ limits{
++ yaw:p2=-170.0, 30.0
++ pitch:p2=-10.0, 60.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-170.0, 0.0, -10.0, 60.0
++ lim2:p4=0.0, 30.0, 7.0, 60.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=120.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=120.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner20"
++ triggerGroup:t="machinegun"
++ blk:t="gameData/Weapons/navalModels_weapons/13_2mm_browning_naval_user_machinegun.blk"
++ emitter:t="emtr_gun_flame_66"
++ flash:t="emtr_gun_flame_66"
++ useEmitter:b=yes
++ barrelDP:t="aa_gun_14_dm"
++ breechDP:t="aa_gun_14_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ isBulletBelt:b=yes
++ speedYaw:r=75.0
++ speedPitch:r=65.0
++ bullets:i=1800
++ useGunnerTargetingQuality:b=no
++ allowableDelta:r=2.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=4500.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.55
++ accuracyAir:r=1.0
++ accuracyGnd:r=0.8
++ errMeasureVel:r=0.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=100.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=3.0
++ errTargetting:r=3.0
++ errExplTime:r=0.0
++ 
++ turret{
++ head:t="aa_turret_14"
++ gun:t="aa_gun_14"
++ gunnerDm:t="aa_turret_14_dm"
++ 
++ linkedAnimPart{
++ verNode:t="bone_radius_foot_02"
++ verLimits:p2=0.0, 7.0
++ verOriginLimits:p2=-10.0, 60.0
++ }
++ }
++ 
++ limits{
++ yaw:p2=-30.0, 170.0
++ pitch:p2=-10.0, 60.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-30.0, 0.0, 7.0, 60.0
++ lim2:p4=0.0, 170.0, -10.0, 60.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=120.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=120.0
++ }
++ }
++ 
++ Weapon{
++ trigger:t="gunner21"
++ triggerGroup:t="machinegun"
++ blk:t="gameData/Weapons/navalModels_weapons/13_2mm_browning_naval_user_machinegun.blk"
++ emitter:t="emtr_gun_flame_67"
++ flash:t="emtr_gun_flame_67"
++ useEmitter:b=yes
++ barrelDP:t="aa_gun_15_dm"
++ breechDP:t="aa_gun_15_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ isBulletBelt:b=yes
++ speedYaw:r=75.0
++ speedPitch:r=65.0
++ bullets:i=1800
++ useGunnerTargetingQuality:b=no
++ allowableDelta:r=2.0
++ ChainfireTime:r=60.0
++ DelayAfterShoot:r=0.0
++ aimMinDist:r=20.0
++ aimMaxDist:r=4500.0
++ randomAngle:r=0.0
++ accuracyBotMultAir:r=0.55
++ accuracyAir:r=1.0
++ accuracyGnd:r=0.8
++ errMeasureVel:r=0.0
++ errTargettingOn100kmph:r=0.0
++ errMeasureVelFast:r=100.0
++ errMeasureVelFwdShift:r=0.5
++ errMeasureVelDir:r=3.0
++ errTargetting:r=3.0
++ errExplTime:r=0.0
++ 
++ turret{
++ head:t="aa_turret_15"
++ gun:t="aa_gun_15"
++ gunnerDm:t="aa_turret_15_dm"
++ 
++ linkedAnimPart{
++ verNode:t="bone_radius_foot_03"
++ verLimits:p2=0.0, 7.0
++ verOriginLimits:p2=-10.0, 60.0
++ }
++ }
++ 
++ limits{
++ yaw:p2=-180.0, 180.0
++ pitch:p2=-10.0, 60.0
++ }
++ 
++ limitsTable{
++ lim1:p4=-180.0, -172.0, 22.0, 60.0
++ lim2:p4=-172.0, -169.0, 4.0, 60.0
++ lim3:p4=-169.0, -149.0, -2.0, 60.0
++ lim4:p4=-149.0, 0.0, -10.0, 60.0
++ lim5:p4=0.0, 21.0, 5.0, 60.0
++ lim6:p4=21.0, 145.0, -5.0, 60.0
++ lim7:p4=145.0, 156.0, 2.0, 60.0
++ lim8:p4=156.0, 180.0, 29.0, 60.0
++ }
++ 
++ gunStabilizer{
++ hasVerticalGunFreeMode:b=yes
++ hasHorizontal:b=yes
++ horizontalOmegaMult:r=1.0
++ horizontalSpeedLimitKPH:r=120.0
++ hasVertical:b=yes
++ verticalOmegaMult:r=1.0
++ verticalSpeedLimitKPH:r=120.0
++ }
++ }
++ 
++ Weapon{
++ dummy:b=yes
++ trigger:t="gunner22"
++ triggerGroup:t="special"
++ blk:t="gameData/Weapons/dummy_weapon.blk"
++ emitter:t="aircraft_01"
++ barrelDP:t="catapult_01"
++ allowableDelta:r=90.0
++ parkInDeadzone:b=no
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ speedYaw:r=15.0
++ speedPitch:r=0.0
++ 
++ turret{
++ head:t="catapult_01"
++ gun:t="aircraft_01"
++ gunnerDm:t="catapult_01_dm"
++ }
++ 
++ limits{
++ yaw:p2=-150.0, 150.0
++ pitch:p2=0.0, 0.0
++ }
++ 
++ limitsDeadzone{
++ yaw:p2=-30.0, 30.0
++ pitch:p2=-90.0, 90.0
++ }
 + }
 + }
 + 
 + weapon_presets{
 + 
 + preset{
-+ name:t="f_5ag_default"
-+ blk:t="gameData/FlightModels/weaponPresets/f_5ag_default.blk"
++ name:t="fr_battleship_strasbourg_default"
++ blk:t="gameData/units/ships/weaponPresets/fr_battleship_strasbourg_default.blk"
 + }
-+ 
-+ preset{
-+ name:t="f_5ag_aim_9l"
-+ blk:t="gameData/FlightModels/weaponPresets/f_5ag_aim_9l.blk"
-+ }
-+ 
-+ preset{
-+ name:t="f_5ag_bomb_m117"
-+ blk:t="gameData/FlightModels/weaponPresets/f_5ag_bomb_m117.blk"
-+ }
-+ 
-+ preset{
-+ name:t="f_5ag_bomb_mk82"
-+ blk:t="gameData/FlightModels/weaponPresets/f_5ag_bomb_mk82.blk"
-+ }
-+ 
-+ preset{
-+ name:t="f_5ag_bomb_mk82_snakeye"
-+ blk:t="gameData/FlightModels/weaponPresets/f_5ag_bomb_mk82_snakeye.blk"
-+ }
-+ 
-+ preset{
-+ name:t="f_5ag_bomb_mk83"
-+ blk:t="gameData/FlightModels/weaponPresets/f_5ag_bomb_mk83.blk"
-+ }
-+ 
-+ preset{
-+ name:t="f_5ag_bomb_mk84"
-+ blk:t="gameData/FlightModels/weaponPresets/f_5ag_bomb_mk84.blk"
-+ }
-+ 
-+ preset{
-+ name:t="f_5ag_rockets_lau18"
-+ blk:t="gameData/FlightModels/weaponPresets/f_5ag_rockets_lau18.blk"
-+ }
-+ 
-+ preset{
-+ name:t="f_5ag_rockets_zuni"
-+ blk:t="gameData/FlightModels/weaponPresets/f_5ag_rockets_zuni.blk"
-+ }
-+ 
-+ preset{
-+ name:t="f_5ag_agm_119a"
-+ blk:t="gameData/FlightModels/weaponPresets/f_5ag_agm_119a.blk"
-+ }
-+ 
-+ preset{
-+ name:t="f_5ag_bomb_blu_1"
-+ blk:t="gameData/FlightModels/weaponPresets/f_5ag_bomb_blu_1.blk"
-+ }
-+ 
-+ preset{
-+ name:t="f_5ag_rockets_agm_12b"
-+ blk:t="gameData/FlightModels/weaponPresets/f_5ag_rockets_agm_12b.blk"
-+ }
-+ }
-+ 
-+ WeaponSlots{
-+ maxloadMass:r=7257.0
-+ maxloadMassLeftConsoles:r=3000.0
-+ maxloadMassRightConsoles:r=3000.0
-+ maxDisbalance:r=1500.0
-+ 
-+ HideNodes{
-+ node:t="pylon_001"
-+ node:t="pylon_001_upor"
-+ node:t="slat1_l"
-+ node:t="pylon_002"
-+ node:t="pylon_002_upor"
-+ node:t="pylon_003"
-+ node:t="pylon_003_upor"
-+ node:t="us_agm_119a_penguin_launcher"
-+ node:t="pylon_004"
-+ node:t="pylon_004_upor"
-+ node:t="pylon_005"
-+ node:t="pylon_005_upor"
-+ node:t="slat1_r"
-+ node:t="aero_5a_001"
-+ node:t="aero_5a_002"
-+ node:t="aero_5a_003"
-+ node:t="aero_5a_004"
-+ node:t="us_lau_117a_001"
-+ node:t="us_lau_117a_002"
-+ node:t="us_lau_117a_003"
-+ node:t="us_lau_117a_004"
-+ node:t="us_gpu_5a_pod_001"
-+ node:t="flare3"
-+ node:t="rwr"
-+ node:t="gear_l26"
-+ node:t="an_ale_40_dispenser"
-+ }
-+ 
-+ HideDmParts{
-+ node:t="cannon3_dm"
-+ node:t="cover2_dm"
-+ node:t="tank3_dm"
-+ node:t="tank4_dm"
-+ node:t="tank5_dm"
-+ }
-+ 
-+ WeaponSlot{
-+ index:i=0
-+ notUseforDisbalanceCalculation:b=yes
-+ 
-+ WeaponPreset{
-+ name:t="m39a3_common"
-+ 
-+ ShowNodes{
-+ node:t="rwr"
-+ node:t="gear_l26"
-+ node:t="an_ale_40_dispenser"
-+ }
-+ 
-+ Weapon{
-+ dummy:b=yes
-+ trigger:t="gunner0"
-+ triggerGroup:t="primary"
-+ blk:t="gameData/Weapons/dummy_weapon.blk"
-+ emitter:t="optic1_gun"
-+ defaultYaw:r=0.0
-+ defaultPitch:r=0.0
-+ speedYaw:r=25.0
-+ speedPitch:r=25.0
-+ parkInDeadzone:b=no
-+ aimForOperatedShell:b=yes
-+ 
-+ turret{
-+ head:t="optic1_turret"
-+ gun:t="optic1_gun"
-+ mainTurret:b=yes
-+ }
-+ 
-+ limits{
-+ yaw:p2=-20.0, 20.0
-+ pitch:p2=-20.0, 20.0
-+ }
-+ }
-+ 
-+ Weapon{
-+ trigger:t="cannon"
-+ blk:t="gameData/Weapons/cannonM39A3.blk"
-+ emitter:t="flare1"
-+ flash:t="flare1"
-+ dm:t="cannon1_dm"
-+ bullets:i=280
-+ light:b=no
-+ spread:r=1.2
-+ traceOffset:i=1
-+ }
-+ 
-+ Weapon{
-+ trigger:t="cannon"
-+ blk:t="gameData/Weapons/cannonM39A3.blk"
-+ emitter:t="flare2"
-+ flash:t="flare2"
-+ dm:t="cannon2_dm"
-+ bullets:i=280
-+ light:b=no
-+ spread:r=1.2
-+ traceOffset:i=1
-+ }
-+ 
-+ Weapon{
-+ trigger:t="countermeasures"
-+ blk:t="gameData/Weapons/rocketGuns/countermeasure_split_launcher_jet.blk"
-+ emitter:t="emtr_flare1"
-+ bullets:i=30
-+ bulletsCartridge:i=1
-+ external:b=yes
-+ separate:b=no
-+ }
-+ 
-+ Weapon{
-+ trigger:t="countermeasures"
-+ blk:t="gameData/Weapons/rocketGuns/countermeasure_split_launcher_jet.blk"
-+ emitter:t="emtr_flare2"
-+ bullets:i=30
-+ bulletsCartridge:i=1
-+ external:b=yes
-+ separate:b=no
-+ }
-+ }
-+ }
-+ 
-+ WeaponSlot{
-+ index:i=1
-+ tier:i=9
-+ order:i=1
-+ 
-+ WeaponPreset{
-+ iconType:t="missile_type_f_air_to_air"
-+ name:t="aim_9l"
-+ 
-+ Weapon{
-+ trigger:t="aam"
-+ blk:t="gameData/Weapons/rocketGuns/us_aim9l_sidewinder.blk"
-+ emitter:t="lau_100_aim_9"
-+ bullets:i=1
-+ external:b=yes
-+ separate:b=yes
-+ }
-+ }
-+ }
-+ 
-+ WeaponSlot{
-+ index:i=2
-+ tier:i=8
-+ order:i=3
-+ 
-+ WeaponPreset{
-+ iconType:t="bombs_middle"
-+ name:t="mk82"
-+ reqModification:t="us_500lb_mk82"
-+ 
-+ ShowNodes{
-+ node:t="pylon_001"
-+ node:t="pylon_001_upor"
-+ }
-+ 
-+ Weapon{
-+ trigger:t="bombs"
-+ blk:t="gameData/Weapons/BombGuns/us_500lb_mk_82_ldgp.blk"
-+ emitter:t="750lb_m117_001"
-+ bullets:i=1
-+ external:b=yes
-+ separate:b=yes
-+ machLimit:r=1.01
-+ }
-+ }
-+ 
-+ WeaponPreset{
-+ iconType:t="bombs_middle_high_drag"
-+ name:t="mk82_snakeye"
-+ reqModification:t="us_500lb_mk82"
-+ 
-+ ShowNodes{
-+ node:t="pylon_001"
-+ node:t="pylon_001_upor"
-+ }
-+ 
-+ Weapon{
-+ trigger:t="bombs"
-+ blk:t="gameData/Weapons/BombGuns/us_500lb_mk_82_ldgp_snakeye.blk"
-+ emitter:t="750lb_m117_001"
-+ bullets:i=1
-+ external:b=yes
-+ separate:b=yes
-+ machLimit:r=1.01
-+ }
-+ }
-+ 
-+ WeaponPreset{
-+ iconType:t="bombs_large"
-+ name:t="m117"
-+ reqModification:t="us_750lb_m117"
-+ 
-+ ShowNodes{
-+ node:t="pylon_001"
-+ node:t="pylon_001_upor"
-+ }
-+ 
-+ Weapon{
-+ trigger:t="bombs"
-+ blk:t="gameData/Weapons/BombGuns/us_750lb_m117_cone_45.blk"
-+ emitter:t="750lb_m117_001"
-+ bullets:i=1
-+ external:b=yes
-+ separate:b=yes
-+ machLimit:r=1.01
-+ }
-+ }
-+ 
-+ WeaponPreset{
-+ iconType:t="napalm_large"
-+ name:t="blu27"
-+ reqModification:t="us_blu_1"
-+ 
-+ ShowNodes{
-+ node:t="pylon_001"
-+ node:t="pylon_001_upor"
-+ }
-+ 
-+ Weapon{
-+ trigger:t="bombs"
-+ blk:t="gameData/Weapons/BombGuns/us_blu_1.blk"
-+ emitter:t="750lb_m117_001"
-+ bullets:i=1
-+ external:b=yes
-+ separate:b=yes
-+ machLimit:r=1.01
-+ }
-+ }
-+ 
-+ WeaponPreset{
-+ iconType:t="nar_ap_large"
-+ name:t="aero_7a"
-+ reqModification:t="us_2_75_in_ffar_lau_3a"
-+ 
-+ ShowNodes{
-+ node:t="pylon_001"
-+ node:t="pylon_001_upor"
-+ }
-+ 
-+ Weapon{
-+ trigger:t="rockets"
-+ blk:t="gameData/Weapons/containers/aero_7a_2_75_in_ffar_mighty_mouse.blk"
-+ emitter:t="aero_7_b001"
-+ external:b=yes
-+ }
-+ }
-+ 
-+ WeaponPreset{
-+ iconType:t="nar_ap_special"
-+ name:t="lau_10a"
-+ reqModification:t="f4c_zuni"
-+ 
-+ ShowNodes{
-+ node:t="pylon_001"
-+ node:t="pylon_001_upor"
-+ }
-+ 
-+ Weapon{
-+ trigger:t="rockets"
-+ blk:t="gameData/Weapons/containers/lau_10a_zuni_wafar_mk32.blk"
-+ emitter:t="zuni_lau_10a_b001"
-+ external:b=yes
-+ }
-+ }
-+ 
-+ WeaponPreset{
-+ iconType:t="missile_air_to_uni"
-+ name:t="agm_12b"
-+ reqModification:t="fj_4b_agm_12b"
-+ 
-+ ShowNodes{
-+ node:t="pylon_001"
-+ node:t="aero_5a_001"
-+ }
-+ 
-+ Weapon{
-+ trigger:t="atgm"
-+ blk:t="gameData/Weapons/rocketGuns/us_agm_12b_bullpup.blk"
-+ emitter:t="agm_12b_001"
-+ bullets:i=1
-+ external:b=yes
-+ separate:b=yes
-+ }
-+ }
-+ }
-+ 
-+ WeaponSlot{
-+ index:i=3
-+ tier:i=7
-+ order:i=5
-+ 
-+ WeaponPreset{
-+ iconType:t="bombs_middle"
-+ name:t="mk82"
-+ reqModification:t="us_500lb_mk82"
-+ 
-+ ShowNodes{
-+ node:t="pylon_002"
-+ node:t="pylon_002_upor"
-+ }
-+ 
-+ Weapon{
-+ trigger:t="bombs"
-+ blk:t="gameData/Weapons/BombGuns/us_500lb_mk_82_ldgp.blk"
-+ emitter:t="750lb_m117_002"
-+ bullets:i=1
-+ external:b=yes
-+ separate:b=yes
-+ machLimit:r=1.01
-+ }
-+ }
-+ 
-+ WeaponPreset{
-+ iconType:t="bombs_middle_high_drag"
-+ name:t="mk82_snakeye"
-+ reqModification:t="us_500lb_mk82"
-+ 
-+ ShowNodes{
-+ node:t="pylon_002"
-+ node:t="pylon_002_upor"
-+ }
-+ 
-+ Weapon{
-+ trigger:t="bombs"
-+ blk:t="gameData/Weapons/BombGuns/us_500lb_mk_82_ldgp_snakeye.blk"
-+ emitter:t="750lb_m117_002"
-+ bullets:i=1
-+ external:b=yes
-+ separate:b=yes
-+ machLimit:r=1.01
-+ }
-+ }
-+ 
-+ WeaponPreset{
-+ iconType:t="bombs_large"
-+ name:t="m117"
-+ reqModification:t="us_750lb_m117"
-+ 
-+ ShowNodes{
-+ node:t="pylon_002"
-+ node:t="pylon_002_upor"
-+ }
-+ 
-+ Weapon{
-+ trigger:t="bombs"
-+ blk:t="gameData/Weapons/BombGuns/us_750lb_m117_cone_45.blk"
-+ emitter:t="750lb_m117_002"
-+ bullets:i=1
-+ external:b=yes
-+ separate:b=yes
-+ machLimit:r=1.01
-+ }
-+ }
-+ 
-+ WeaponPreset{
-+ iconType:t="napalm_large"
-+ name:t="blu27"
-+ reqModification:t="us_blu_1"
-+ 
-+ ShowNodes{
-+ node:t="pylon_002"
-+ node:t="pylon_002_upor"
-+ }
-+ 
-+ Weapon{
-+ trigger:t="bombs"
-+ blk:t="gameData/Weapons/BombGuns/us_blu_1.blk"
-+ emitter:t="750lb_m117_002"
-+ bullets:i=1
-+ external:b=yes
-+ separate:b=yes
-+ machLimit:r=1.01
-+ }
-+ }
-+ 
-+ WeaponPreset{
-+ iconType:t="bombs_special"
-+ name:t="mk83"
-+ reqModification:t="us_1000lb_mk83"
-+ 
-+ ShowNodes{
-+ node:t="pylon_002"
-+ node:t="pylon_002_upor"
-+ }
-+ 
-+ Weapon{
-+ trigger:t="bombs"
-+ blk:t="gameData/Weapons/BombGuns/us_1000lb_mk_83_ldgp.blk"
-+ emitter:t="1000lb_mk_83_001"
-+ bullets:i=1
-+ external:b=yes
-+ separate:b=yes
-+ machLimit:r=1.01
-+ }
-+ }
-+ 
-+ WeaponPreset{
-+ iconType:t="nar_ap_large"
-+ name:t="aero_7a"
-+ reqModification:t="us_2_75_in_ffar_lau_3a"
-+ 
-+ ShowNodes{
-+ node:t="pylon_002"
-+ node:t="pylon_002_upor"
-+ }
-+ 
-+ Weapon{
-+ trigger:t="rockets"
-+ blk:t="gameData/Weapons/containers/aero_7a_2_75_in_ffar_mighty_mouse.blk"
-+ emitter:t="aero_7_b002"
-+ external:b=yes
-+ }
-+ }
-+ 
-+ WeaponPreset{
-+ iconType:t="missile_air_to_uni"
-+ name:t="agm_12b"
-+ reqModification:t="fj_4b_agm_12b"
-+ 
-+ ShowNodes{
-+ node:t="pylon_002"
-+ node:t="aero_5a_002"
-+ }
-+ 
-+ Weapon{
-+ trigger:t="atgm"
-+ blk:t="gameData/Weapons/rocketGuns/us_agm_12b_bullpup.blk"
-+ emitter:t="agm_12b_002"
-+ bullets:i=1
-+ external:b=yes
-+ separate:b=yes
-+ }
-+ }
-+ 
-+ WeaponPreset{
-+ iconType:t="ptb"
-+ name:t="ptb_slot3"
-+ showInWeaponMenu:b=yes
-+ 
-+ ShowNodes{
-+ node:t="pylon_002"
-+ node:t="pylon_002_upor"
-+ }
-+ 
-+ ShowDmParts{
-+ node:t="tank3_dm"
-+ }
-+ 
-+ Weapon{
-+ trigger:t="fuel tanks"
-+ blk:t="gameData/Weapons/drop_tank/us_150gal_early_drop_tank_1.blk"
-+ emitter:t="us_150gal_early_drop_tank_001"
-+ bullets:i=1
-+ external:b=yes
-+ }
-+ 
-+ DependentWeaponPreset{
-+ slot:i=5
-+ preset:t="ptb_slot5"
-+ }
-+ }
-+ }
-+ 
-+ WeaponSlot{
-+ index:i=4
-+ tier:i=6
-+ order:i=7
-+ notUseforDisbalanceCalculation:b=yes
-+ 
-+ WeaponPreset{
-+ iconType:t="bombs_middle"
-+ name:t="mk82"
-+ reqModification:t="us_500lb_mk82"
-+ 
-+ ShowNodes{
-+ node:t="pylon_003"
-+ node:t="pylon_003_upor"
-+ }
-+ 
-+ Weapon{
-+ trigger:t="bombs"
-+ blk:t="gameData/Weapons/BombGuns/us_500lb_mk_82_ldgp.blk"
-+ emitter:t="750lb_m117_003"
-+ bullets:i=1
-+ external:b=yes
-+ separate:b=yes
-+ machLimit:r=1.01
-+ }
-+ }
-+ 
-+ WeaponPreset{
-+ iconType:t="bombs_middle_high_drag"
-+ name:t="mk82_snakeye"
-+ reqModification:t="us_500lb_mk82"
-+ 
-+ ShowNodes{
-+ node:t="pylon_003"
-+ node:t="pylon_003_upor"
-+ }
-+ 
-+ Weapon{
-+ trigger:t="bombs"
-+ blk:t="gameData/Weapons/BombGuns/us_500lb_mk_82_ldgp_snakeye.blk"
-+ emitter:t="750lb_m117_003"
-+ bullets:i=1
-+ external:b=yes
-+ separate:b=yes
-+ machLimit:r=1.01
-+ }
-+ }
-+ 
-+ WeaponPreset{
-+ iconType:t="bombs_large"
-+ name:t="m117"
-+ reqModification:t="us_750lb_m117"
-+ 
-+ ShowNodes{
-+ node:t="pylon_003"
-+ node:t="pylon_003_upor"
-+ }
-+ 
-+ Weapon{
-+ trigger:t="bombs"
-+ blk:t="gameData/Weapons/BombGuns/us_750lb_m117_cone_45.blk"
-+ emitter:t="750lb_m117_003"
-+ bullets:i=1
-+ external:b=yes
-+ separate:b=yes
-+ machLimit:r=1.01
-+ }
-+ }
-+ 
-+ WeaponPreset{
-+ iconType:t="napalm_large"
-+ name:t="blu27"
-+ reqModification:t="us_blu_1"
-+ 
-+ ShowNodes{
-+ node:t="pylon_003"
-+ node:t="pylon_003_upor"
-+ }
-+ 
-+ Weapon{
-+ trigger:t="bombs"
-+ blk:t="gameData/Weapons/BombGuns/us_blu_1.blk"
-+ emitter:t="750lb_m117_003"
-+ bullets:i=1
-+ external:b=yes
-+ separate:b=yes
-+ machLimit:r=1.01
-+ }
-+ }
-+ 
-+ WeaponPreset{
-+ iconType:t="bombs_special"
-+ name:t="mk83"
-+ reqModification:t="us_1000lb_mk83"
-+ 
-+ ShowNodes{
-+ node:t="pylon_003"
-+ node:t="pylon_003_upor"
-+ }
-+ 
-+ Weapon{
-+ trigger:t="bombs"
-+ blk:t="gameData/Weapons/BombGuns/us_1000lb_mk_83_ldgp.blk"
-+ emitter:t="1000lb_mk_83_002"
-+ bullets:i=1
-+ external:b=yes
-+ separate:b=yes
-+ machLimit:r=1.01
-+ }
-+ }
-+ 
-+ WeaponPreset{
-+ iconType:t="bombs_heavy_middle"
-+ name:t="mk84"
-+ reqModification:t="us_2000lb_mk84"
-+ 
-+ ShowNodes{
-+ node:t="pylon_003"
-+ node:t="pylon_003_upor"
-+ }
-+ 
-+ Weapon{
-+ trigger:t="bombs"
-+ blk:t="gameData/Weapons/BombGuns/us_2000lb_mk_84_ldgp.blk"
-+ emitter:t="2000lb_mk_84_001"
-+ bullets:i=1
-+ external:b=yes
-+ separate:b=yes
-+ machLimit:r=1.01
-+ }
-+ }
-+ 
-+ WeaponPreset{
-+ iconType:t="missile_air_to_earth"
-+ name:t="agm_119a"
-+ 
-+ ShowNodes{
-+ node:t="pylon_003"
-+ node:t="pylon_003_upor"
-+ node:t="us_agm_119a_penguin_launcher"
-+ }
-+ 
-+ Weapon{
-+ trigger:t="atgm"
-+ blk:t="gameData/Weapons/rocketGuns/us_agm_119a_penguin.blk"
-+ emitter:t="us_agm_119a_penguin_missile"
-+ bullets:i=1
-+ external:b=yes
-+ separate:b=yes
-+ }
-+ }
-+ 
-+ WeaponPreset{
-+ iconType:t="ptb"
-+ name:t="ptb_slot4"
-+ showInWeaponMenu:b=yes
-+ 
-+ ShowNodes{
-+ node:t="pylon_003"
-+ node:t="pylon_003_upor"
-+ }
-+ 
-+ ShowDmParts{
-+ node:t="tank4_dm"
-+ }
-+ 
-+ Weapon{
-+ trigger:t="fuel tanks"
-+ blk:t="gameData/Weapons/drop_tank/us_150gal_early_fuse_drop_tank.blk"
-+ emitter:t="us_150gal_early_fuse_drop_tank"
-+ bullets:i=1
-+ external:b=yes
-+ }
-+ }
-+ }
-+ 
-+ WeaponSlot{
-+ index:i=5
-+ tier:i=5
-+ order:i=6
-+ 
-+ WeaponPreset{
-+ iconType:t="bombs_middle"
-+ name:t="mk82"
-+ reqModification:t="us_500lb_mk82"
-+ 
-+ ShowNodes{
-+ node:t="pylon_004"
-+ node:t="pylon_004_upor"
-+ }
-+ 
-+ Weapon{
-+ trigger:t="bombs"
-+ blk:t="gameData/Weapons/BombGuns/us_500lb_mk_82_ldgp.blk"
-+ emitter:t="750lb_m117_004"
-+ bullets:i=1
-+ external:b=yes
-+ separate:b=yes
-+ machLimit:r=1.01
-+ }
-+ }
-+ 
-+ WeaponPreset{
-+ iconType:t="bombs_middle_high_drag"
-+ name:t="mk82_snakeye"
-+ reqModification:t="us_500lb_mk82"
-+ 
-+ ShowNodes{
-+ node:t="pylon_004"
-+ node:t="pylon_004_upor"
-+ }
-+ 
-+ Weapon{
-+ trigger:t="bombs"
-+ blk:t="gameData/Weapons/BombGuns/us_500lb_mk_82_ldgp_snakeye.blk"
-+ emitter:t="750lb_m117_004"
-+ bullets:i=1
-+ external:b=yes
-+ separate:b=yes
-+ machLimit:r=1.01
-+ }
-+ }
-+ 
-+ WeaponPreset{
-+ iconType:t="bombs_large"
-+ name:t="m117"
-+ reqModification:t="us_750lb_m117"
-+ 
-+ ShowNodes{
-+ node:t="pylon_004"
-+ node:t="pylon_004_upor"
-+ }
-+ 
-+ Weapon{
-+ trigger:t="bombs"
-+ blk:t="gameData/Weapons/BombGuns/us_750lb_m117_cone_45.blk"
-+ emitter:t="750lb_m117_004"
-+ bullets:i=1
-+ external:b=yes
-+ separate:b=yes
-+ machLimit:r=1.01
-+ }
-+ }
-+ 
-+ WeaponPreset{
-+ iconType:t="napalm_large"
-+ name:t="blu27"
-+ reqModification:t="us_blu_1"
-+ 
-+ ShowNodes{
-+ node:t="pylon_004"
-+ node:t="pylon_004_upor"
-+ }
-+ 
-+ Weapon{
-+ trigger:t="bombs"
-+ blk:t="gameData/Weapons/BombGuns/us_blu_1.blk"
-+ emitter:t="750lb_m117_004"
-+ bullets:i=1
-+ external:b=yes
-+ separate:b=yes
-+ machLimit:r=1.01
-+ }
-+ }
-+ 
-+ WeaponPreset{
-+ iconType:t="bombs_special"
-+ name:t="mk83"
-+ reqModification:t="us_1000lb_mk83"
-+ 
-+ ShowNodes{
-+ node:t="pylon_004"
-+ node:t="pylon_004_upor"
-+ }
-+ 
-+ Weapon{
-+ trigger:t="bombs"
-+ blk:t="gameData/Weapons/BombGuns/us_1000lb_mk_83_ldgp.blk"
-+ emitter:t="1000lb_mk_83_003"
-+ bullets:i=1
-+ external:b=yes
-+ separate:b=yes
-+ machLimit:r=1.01
-+ }
-+ }
-+ 
-+ WeaponPreset{
-+ iconType:t="nar_ap_large"
-+ name:t="aero_7a"
-+ reqModification:t="us_2_75_in_ffar_lau_3a"
-+ 
-+ ShowNodes{
-+ node:t="pylon_004"
-+ node:t="pylon_004_upor"
-+ }
-+ 
-+ Weapon{
-+ trigger:t="rockets"
-+ blk:t="gameData/Weapons/containers/aero_7a_2_75_in_ffar_mighty_mouse.blk"
-+ emitter:t="aero_7_b003"
-+ external:b=yes
-+ }
-+ }
-+ 
-+ WeaponPreset{
-+ iconType:t="missile_air_to_uni"
-+ name:t="agm_12b"
-+ reqModification:t="fj_4b_agm_12b"
-+ 
-+ ShowNodes{
-+ node:t="pylon_004"
-+ node:t="aero_5a_003"
-+ }
-+ 
-+ Weapon{
-+ trigger:t="atgm"
-+ blk:t="gameData/Weapons/rocketGuns/us_agm_12b_bullpup.blk"
-+ emitter:t="agm_12b_003"
-+ bullets:i=1
-+ external:b=yes
-+ separate:b=yes
-+ }
-+ }
-+ 
-+ WeaponPreset{
-+ iconType:t="ptb"
-+ name:t="ptb_slot5"
-+ showInWeaponMenu:b=yes
-+ 
-+ ShowNodes{
-+ node:t="pylon_004"
-+ node:t="pylon_004_upor"
-+ }
-+ 
-+ ShowDmParts{
-+ node:t="tank5_dm"
-+ }
-+ 
-+ Weapon{
-+ trigger:t="fuel tanks"
-+ blk:t="gameData/Weapons/drop_tank/us_150gal_early_drop_tank_2.blk"
-+ emitter:t="us_150gal_early_drop_tank_002"
-+ bullets:i=1
-+ external:b=yes
-+ }
-+ 
-+ DependentWeaponPreset{
-+ slot:i=3
-+ preset:t="ptb_slot3"
-+ }
-+ }
-+ }
-+ 
-+ WeaponSlot{
-+ index:i=6
-+ tier:i=4
-+ order:i=4
-+ 
-+ WeaponPreset{
-+ iconType:t="bombs_middle"
-+ name:t="mk82"
-+ reqModification:t="us_500lb_mk82"
-+ 
-+ ShowNodes{
-+ node:t="pylon_005"
-+ node:t="pylon_005_upor"
-+ }
-+ 
-+ Weapon{
-+ trigger:t="bombs"
-+ blk:t="gameData/Weapons/BombGuns/us_500lb_mk_82_ldgp.blk"
-+ emitter:t="750lb_m117_005"
-+ bullets:i=1
-+ external:b=yes
-+ separate:b=yes
-+ machLimit:r=1.01
-+ }
-+ }
-+ 
-+ WeaponPreset{
-+ iconType:t="bombs_middle_high_drag"
-+ name:t="mk82_snakeye"
-+ reqModification:t="us_500lb_mk82"
-+ 
-+ ShowNodes{
-+ node:t="pylon_005"
-+ node:t="pylon_005_upor"
-+ }
-+ 
-+ Weapon{
-+ trigger:t="bombs"
-+ blk:t="gameData/Weapons/BombGuns/us_500lb_mk_82_ldgp_snakeye.blk"
-+ emitter:t="750lb_m117_005"
-+ bullets:i=1
-+ external:b=yes
-+ separate:b=yes
-+ machLimit:r=1.01
-+ }
-+ }
-+ 
-+ WeaponPreset{
-+ iconType:t="bombs_large"
-+ name:t="m117"
-+ reqModification:t="us_750lb_m117"
-+ 
-+ ShowNodes{
-+ node:t="pylon_005"
-+ node:t="pylon_005_upor"
-+ }
-+ 
-+ Weapon{
-+ trigger:t="bombs"
-+ blk:t="gameData/Weapons/BombGuns/us_750lb_m117_cone_45.blk"
-+ emitter:t="750lb_m117_005"
-+ bullets:i=1
-+ external:b=yes
-+ separate:b=yes
-+ machLimit:r=1.01
-+ }
-+ }
-+ 
-+ WeaponPreset{
-+ iconType:t="napalm_large"
-+ name:t="blu27"
-+ reqModification:t="us_blu_1"
-+ 
-+ ShowNodes{
-+ node:t="pylon_005"
-+ node:t="pylon_005_upor"
-+ }
-+ 
-+ Weapon{
-+ trigger:t="bombs"
-+ blk:t="gameData/Weapons/BombGuns/us_blu_1.blk"
-+ emitter:t="750lb_m117_005"
-+ bullets:i=1
-+ external:b=yes
-+ separate:b=yes
-+ machLimit:r=1.01
-+ }
-+ }
-+ 
-+ WeaponPreset{
-+ iconType:t="nar_ap_large"
-+ name:t="aero_7a"
-+ reqModification:t="us_2_75_in_ffar_lau_3a"
-+ 
-+ ShowNodes{
-+ node:t="pylon_005"
-+ node:t="pylon_005_upor"
-+ }
-+ 
-+ Weapon{
-+ trigger:t="rockets"
-+ blk:t="gameData/Weapons/containers/aero_7a_2_75_in_ffar_mighty_mouse.blk"
-+ emitter:t="aero_7_b004"
-+ external:b=yes
-+ }
-+ }
-+ 
-+ WeaponPreset{
-+ iconType:t="nar_ap_special"
-+ name:t="lau_10a"
-+ reqModification:t="f4c_zuni"
-+ 
-+ ShowNodes{
-+ node:t="pylon_005"
-+ node:t="pylon_005_upor"
-+ }
-+ 
-+ Weapon{
-+ trigger:t="rockets"
-+ blk:t="gameData/Weapons/containers/lau_10a_zuni_wafar_mk32.blk"
-+ emitter:t="zuni_lau_10a_b002"
-+ external:b=yes
-+ }
-+ }
-+ 
-+ WeaponPreset{
-+ iconType:t="missile_air_to_uni"
-+ name:t="agm_12b"
-+ reqModification:t="fj_4b_agm_12b"
-+ 
-+ ShowNodes{
-+ node:t="pylon_005"
-+ node:t="aero_5a_004"
-+ }
-+ 
-+ Weapon{
-+ trigger:t="atgm"
-+ blk:t="gameData/Weapons/rocketGuns/us_agm_12b_bullpup.blk"
-+ emitter:t="agm_12b_004"
-+ bullets:i=1
-+ external:b=yes
-+ separate:b=yes
-+ }
-+ }
-+ }
-+ 
-+ WeaponSlot{
-+ index:i=7
-+ tier:i=3
-+ order:i=2
-+ 
-+ WeaponPreset{
-+ iconType:t="missile_type_f_air_to_air"
-+ name:t="aim_9l"
-+ 
-+ Weapon{
-+ trigger:t="aam"
-+ blk:t="gameData/Weapons/rocketGuns/us_aim9l_sidewinder.blk"
-+ emitter:t="lau_101_aim_9"
-+ bullets:i=1
-+ external:b=yes
-+ separate:b=yes
-+ }
-+ }
-+ }
-+ }
-+ 
-+ turbulence{
-+ segmentlength:r=100.0
-+ startSpeed:r=28.0
-+ maxSpeed:r=140.0
-+ maxPower:r=6.0
-+ initialRadius:r=12.0
-+ radiusSpeed:r=2.0
-+ }
-+ 
-+ fireParams{
-+ engineExtinguishFireSpeed:p2=467.0, 511.0
-+ engineExtinguishFireSpeedChance:p2=0.01, 0.1
-+ fireDamagePowerRel:r=0.05
-+ nonExtinguishFireTime:r=5.0
-+ }
-+ 
-+ arcadeOverride{
-+ maxSpeedMultiplier:r=1.3
-+ wepOverspeed:r=1.3
-+ }
-+ 
-+ wiki{
-+ 
-+ general{
-+ length:r=19.96
-+ wingspan:r=19.51
-+ wingArea:r=88.8
-+ emptyWeight:r=10300.0
-+ normalWeight:r=15340.0
-+ maxTakeoffWeight:r=20865.0
-+ powerPlantType:i=2
-+ thrustMaxMil:r=52000.0
-+ }
-+ 
-+ performance{
-+ 
-+ table{
-+ rpmMil:r=7800.0
-+ airSpeedMil0:p2=0.0, 854.0
-+ airSpeedMil1:p2=3000.0, 880.0
-+ climbRateMil0:p2=0.0, 20.0
-+ climbTimeMil0:p2=2000.0, 71.717
-+ climbTimeMil1:p2=4000.0, 147.402
-+ climbTimeMil2:p2=6000.0, 231.172
-+ climbTimeMil3:p2=8000.0, 339.877
-+ turnTimeMil:p2=1000.0, 26.0
-+ takeoffDistance:r=648.446
-+ ceiling:r=12400.0
-+ rollRate:r=69.0
-+ wingLoading:r=173.0
-+ thrustToWeightRatio:r=0.37
-+ }
-+ 
-+ plot{
-+ airSpeedMil0:p2=0.0, 854.0
-+ airSpeedMil1:p2=1400.0, 878.0
-+ airSpeedMil2:p2=5700.0, 866.0
-+ airSpeedMil3:p2=12400.0, 791.0
-+ climbRateMil0:p2=0.0, 20.0
-+ climbRateMil1:p2=3000.0, 18.0
-+ climbRateMil2:p2=6100.0, 13.8
-+ climbRateMil3:p2=9100.0, 1.5
-+ climbRateMil4:p2=12400.0, -2.1
-+ }
-+ }
-+ }
-+ 
-+ balanceData{
-+ accSpd:r=4.0345
-+ climbSpeed:r=20.0
-+ maxSpeed:r=240.27
-+ turnTime:r=28.1492
 + }
 + 
 + modifications{
 + 
-+ new_compressor_jet{
-+ tier:i=1
++ new_ship_hull{
 + }
 + 
-+ hydravlic_power{
-+ prevModification:t="new_compressor_jet"
-+ tier:i=2
++ new_ship_rudder{
++ prevModification:t="new_ship_hull"
++ }
++ 
++ new_ship_screw{
++ }
++ 
++ new_ship_engine{
++ prevModification:t="new_ship_screw"
++ }
++ 
++ ship_tool_kit{
++ }
++ 
++ manual_ship_extinguisher{
++ prevModification:t="ship_tool_kit"
++ }
++ 
++ ship_anti_fragmentation_protection{
 + 
 + effects{
-+ aileronBooster:r=0.9
-+ elevatorBooster:r=0.9
++ 
++ damagePartsOverride{
++ 
++ crew_sections{
++ shatterDamageMult:r=0.7
++ secondaryShatterDamageMult:r=0.8
++ 
++ compartment_01_dm{
++ }
++ 
++ compartment_02_dm{
++ }
++ 
++ compartment_03_dm{
++ }
++ 
++ compartment_04_dm{
++ }
++ 
++ compartment_05_dm{
++ }
++ 
++ compartment_06_dm{
++ }
++ }
++ }
 + }
 + }
 + 
-+ cd_98{
-+ prevModification:t="hydravlic_power"
-+ tier:i=3
++ ship_venting{
++ 
++ effects{
++ 
++ damagePartsOverride{
++ 
++ crew_sections{
++ fireDamageMult:r=0.75
++ 
++ compartment_01_dm{
 + }
 + 
-+ hp_105_jet{
-+ prevModification:t="cd_98"
++ compartment_02_dm{
++ }
++ 
++ compartment_03_dm{
++ }
++ 
++ compartment_04_dm{
++ }
++ 
++ compartment_05_dm{
++ }
++ 
++ compartment_06_dm{
++ }
++ }
++ }
++ }
++ }
++ 
++ new_ship_pumps{
++ }
++ 
++ ship_ammo_wetting{
++ 
++ effects{
++ 
++ damagePartsOverride{
++ 
++ ammo{
++ fireDamageMult:r=0.75
++ 
++ ammunition_storage_shells_01_dm{
++ }
++ 
++ ammunition_storage_shells_02_dm{
++ }
++ 
++ ammunition_storage_charges_01_dm{
++ }
++ 
++ ammunition_storage_charges_02_dm{
++ }
++ }
++ }
++ }
++ }
++ 
++ 330mm_fr_mle_1935_navy_he{
++ }
++ 
++ 330mm_fr_mle_1935_navy_sapcbc{
++ }
++ 
++ 330mm_fr_mle_1935_navy_sapcbc_ammo_pack{
++ }
++ 
++ 130mm_fr_45_1934_navy_he{
++ }
++ 
++ 130mm_fr_45_1933_navy_sap{
++ }
++ 
++ 130mm_fr_45_1933_navy_sap_ammo_pack{
++ }
++ 
++ 130mm_fr_45_1934_navy_he_df{
++ }
++ 
++ 130mm_fr_45_1934_navy_he_df_ammo_pack{
++ prevModification:t="130mm_fr_45_1933_navy_sap_ammo_pack"
++ }
++ 
++ ship_rangefinder{
++ prevModification:t="130mm_fr_45_1934_navy_he_df_ammo_pack"
++ }
++ 
++ new_aa_caliber_turrets{
++ }
++ 
++ new_aux_caliber_turrets{
++ prevModification:t="new_aa_caliber_turrets"
++ }
++ 
++ new_main_caliber_turrets{
++ prevModification:t="new_aux_caliber_turrets"
++ }
++ 
++ ship_supportPlane{
++ }
++ }
++ 
++ shipFuelLeakFxParams{
++ fuelLeakFxName:t="fire_burning_fuel_oil_large"
++ fuelLeakStayFxName:t="fire_burning_fuel_oil_large"
++ fuelLeakFxTimeout:p2=1.0, 5.0
++ fuelLeakLifetime:p3=30.0, 10.0, 8.0
++ fuelLeakSpeed:p3=8.0, 5.0, 3.5
++ fuelLeakTimeAfterExtinguish:r=30.0
++ }
++ 
++ unitFx{
++ 
++ event{
++ name:t="engine_fire"
++ lifetime:r=120.0
++ 
++ fx{
++ name:t="ship_smoke_massive"
++ emitter:t="emtr_mainsmoke_engine_01"
++ }
++ 
++ fx{
++ name:t="ship_fire_big"
++ emitter:t="emtr_fire_engine_01"
++ isFireBurnMark:b=no
++ }
++ 
++ fx{
++ name:t="ship_fire_big"
++ emitter:t="emtr_fire_engine_02"
++ isFireBurnMark:b=no
++ }
++ 
++ fx{
++ name:t="ship_fire_big"
++ emitter:t="emtr_fire_engine_03"
++ isFireBurnMark:b=no
++ }
++ 
++ fx{
++ name:t="ship_fire_big"
++ emitter:t="emtr_fire_engine_04"
++ isFireBurnMark:b=no
++ }
++ 
++ fx{
++ name:t="ship_fire_big"
++ emitter:t="emtr_fire_engine_05"
++ isFireBurnMark:b=no
++ }
++ 
++ fx{
++ name:t="ship_fire_big"
++ emitter:t="emtr_fire_engine_06"
++ isFireBurnMark:b=no
++ }
++ 
++ fx{
++ name:t="ship_fire_big"
++ emitter:t="emtr_fire_engine_07"
++ isFireBurnMark:b=no
++ }
++ 
++ fx{
++ name:t="ship_smoke_medium"
++ emitter:t="emtr_smoke_engine_01"
++ }
++ 
++ fx{
++ name:t="ship_smoke_medium"
++ emitter:t="emtr_smoke_engine_02"
++ }
++ 
++ fx{
++ name:t="ship_smoke_medium"
++ emitter:t="emtr_smoke_engine_03"
++ }
++ 
++ fx{
++ name:t="ship_smoke_medium"
++ emitter:t="emtr_smoke_engine_04"
++ }
++ 
++ fx{
++ name:t="ship_smoke_medium"
++ emitter:t="emtr_smoke_engine_05"
++ }
++ 
++ fx{
++ name:t="ship_smoke_medium"
++ emitter:t="emtr_smoke_engine_06"
++ }
++ 
++ fx{
++ name:t="ship_smoke_medium"
++ emitter:t="emtr_smoke_engine_07"
++ }
++ 
++ fx{
++ name:t="ship_fire_exhaust"
++ emitter:t="emtr_exhaust_01"
++ }
++ 
++ fx{
++ name:t="ship_fire_exhaust"
++ emitter:t="emtr_exhaust_02"
++ }
++ 
++ fx{
++ name:t="ship_fire_exhaust"
++ emitter:t="emtr_exhaust_03"
++ }
++ 
++ fx{
++ name:t="ship_fire_exhaust"
++ emitter:t="emtr_exhaust_04"
++ }
++ 
++ fx{
++ name:t="ship_fire_exhaust"
++ emitter:t="emtr_exhaust_05"
++ }
++ 
++ fx{
++ name:t="ship_fire_exhaust"
++ emitter:t="emtr_exhaust_06"
++ }
++ }
++ 
++ event{
++ name:t="compartment_fire"
++ lifetime:r=60.0
++ 
++ fx{
++ name:t="ship_fire_big"
++ centerDmgPart:b=yes
++ isFireBurnMark:b=no
++ }
++ }
++ 
++ event{
++ name:t="superstructure_fire"
++ lifetime:r=60.0
++ 
++ fx{
++ name:t="ship_fire_huge"
++ centerDmgPart:b=yes
++ isFireBurnMark:b=no
++ }
++ }
++ 
++ event{
++ name:t="turret_fire"
++ lifetime:r=60.0
++ 
++ fx{
++ name:t="ship_fire_big"
++ centerDmgPart:b=yes
++ isFireBurnMark:b=no
++ }
++ }
++ 
++ event{
++ name:t="turret_aux_fire"
++ lifetime:r=60.0
++ 
++ fx{
++ name:t="ship_fire_medium"
++ centerDmgPart:b=yes
++ }
++ }
++ 
++ event{
++ name:t="fuel_tank_fire"
++ lifetime:r=60.0
++ 
++ fx{
++ name:t="ship_fire_big"
++ centerDmgPart:b=yes
++ }
++ }
++ 
++ event{
++ name:t="torpedo_fire"
++ lifetime:r=60.0
++ 
++ fx{
++ name:t="ship_fire_big"
++ centerDmgPart:b=yes
++ }
++ }
++ 
++ event{
++ name:t="torpedo_explosion"
++ lifetime:r=20.0
++ 
++ fx{
++ name:t="explosion_ship_small_ammo"
++ centerDmgPart:b=no
++ isFireBurnMark:b=no
++ }
++ }
++ 
++ event{
++ name:t="ready_use_ammo_fire"
++ lifetime:r=20.0
++ 
++ fx{
++ name:t="ship_fire_huge"
++ centerDmgPart:b=yes
++ isFireBurnMark:b=no
++ }
++ }
++ 
++ event{
++ name:t="ready_use_ammo_explosion"
++ lifetime:r=20.0
++ 
++ fx{
++ name:t="explosion_ship_small_ammo"
++ centerDmgPart:b=no
++ isFireBurnMark:b=no
++ }
++ }
++ 
++ event{
++ name:t="ammo_fire"
++ lifetime:r=20.0
++ 
++ fx{
++ name:t="explosion_ship_large_ammo"
++ emitter:t="emtr_fire_ammo_01"
++ isFireBurnMark:b=no
++ }
++ 
++ fx{
++ name:t="explosion_ship_large_ammo_second"
++ emitter:t="emtr_fire_ammo_02"
++ isFireBurnMark:b=no
++ }
++ 
++ fx{
++ name:t="explosion_ship_large_ammo"
++ emitter:t="emtr_fire_ammo_03"
++ isFireBurnMark:b=no
++ }
++ 
++ fx{
++ name:t="explosion_ship_large_ammo_second"
++ emitter:t="emtr_fire_ammo_04"
++ isFireBurnMark:b=no
++ }
++ 
++ fx{
++ name:t="water_explosion_medium"
++ emitter:t="emtr_fire_ammo_01"
++ }
++ 
++ fx{
++ name:t="water_explosion_medium"
++ emitter:t="emtr_fire_ammo_02"
++ }
++ 
++ fx{
++ name:t="water_explosion_medium"
++ emitter:t="emtr_fire_ammo_03"
++ }
++ 
++ fx{
++ name:t="water_explosion_medium"
++ emitter:t="emtr_fire_ammo_04"
++ }
++ }
++ 
++ event{
++ name:t="light_smoke"
++ lifetime:r=60.0
++ 
++ fx{
++ name:t="ship_smoke_big"
++ emitter:t="emtr_fire_ammo_01"
++ }
++ 
++ fx{
++ name:t="ship_smoke_big"
++ emitter:t="emtr_fire_ammo_02"
++ }
++ 
++ fx{
++ name:t="ship_smoke_big"
++ emitter:t="emtr_fire_ammo_03"
++ }
++ 
++ fx{
++ name:t="ship_smoke_big"
++ emitter:t="emtr_fire_ammo_04"
++ }
++ }
++ 
++ event{
++ name:t="total_fire"
++ lifetime:r=60.0
++ 
++ fx{
++ name:t="ship_smoke_massive"
++ emitter:t="emtr_smoke_dmg_01"
++ }
++ 
++ fx{
++ name:t="ship_smoke_massive"
++ emitter:t="emtr_smoke_dmg_02"
++ }
++ 
++ fx{
++ name:t="ship_fire_massive"
++ emitter:t="emtr_fire_dmg_01"
++ isFireBurnMark:b=no
++ }
++ 
++ fx{
++ name:t="ship_fire_massive"
++ emitter:t="emtr_fire_dmg_02"
++ isFireBurnMark:b=no
++ }
++ 
++ fx{
++ name:t="ship_fire_big"
++ emitter:t="emtr_fire_small_dmg_01"
++ isFireBurnMark:b=no
++ }
++ 
++ fx{
++ name:t="ship_fire_medium"
++ emitter:t="emtr_fire_small_dmg_02"
++ isFireBurnMark:b=no
++ }
++ 
++ fx{
++ name:t="ship_fire_big"
++ emitter:t="emtr_fire_small_dmg_03"
++ isFireBurnMark:b=no
++ }
++ 
++ fx{
++ name:t="ship_fire_medium"
++ emitter:t="emtr_fire_small_dmg_04"
++ isFireBurnMark:b=no
++ }
++ 
++ fx{
++ name:t="ship_fire_big"
++ emitter:t="emtr_fire_small_dmg_05"
++ isFireBurnMark:b=no
++ }
++ 
++ fx{
++ name:t="ship_fire_medium"
++ emitter:t="emtr_fire_small_dmg_06"
++ isFireBurnMark:b=no
++ }
++ 
++ fx{
++ name:t="ship_fire_big"
++ emitter:t="emtr_fire_small_dmg_07"
++ isFireBurnMark:b=no
++ }
++ 
++ fx{
++ name:t="ship_fire_medium"
++ emitter:t="emtr_fire_small_dmg_08"
++ isFireBurnMark:b=no
++ }
++ 
++ fx{
++ name:t="ship_fire_big"
++ emitter:t="emtr_fire_small_dmg_09"
++ isFireBurnMark:b=no
++ }
++ 
++ fx{
++ name:t="ship_fire_medium"
++ emitter:t="emtr_fire_small_dmg_10"
++ isFireBurnMark:b=no
++ }
++ 
++ fx{
++ name:t="ship_fire_big"
++ emitter:t="emtr_fire_small_dmg_11"
++ isFireBurnMark:b=no
++ }
++ 
++ fx{
++ name:t="ship_fire_medium"
++ emitter:t="emtr_fire_small_dmg_12"
++ isFireBurnMark:b=no
++ }
++ 
++ fx{
++ name:t="ship_fire_big"
++ emitter:t="emtr_fire_small_dmg_13"
++ isFireBurnMark:b=no
++ }
++ 
++ fx{
++ name:t="ship_fire_medium"
++ emitter:t="emtr_fire_small_dmg_14"
++ isFireBurnMark:b=no
++ }
++ 
++ fx{
++ name:t="ship_fire_big"
++ emitter:t="emtr_fire_small_dmg_15"
++ isFireBurnMark:b=no
++ }
++ 
++ fx{
++ name:t="ship_fire_medium"
++ emitter:t="emtr_fire_small_dmg_16"
++ isFireBurnMark:b=no
++ }
++ 
++ fx{
++ name:t="underwater_ship_engine_fire"
++ emitter:t="emtr_smoke_dmg_01"
++ }
++ 
++ fx{
++ name:t="underwater_ship_engine_fire"
++ emitter:t="emtr_smoke_dmg_02"
++ }
++ 
++ fx{
++ name:t="underwater_bubbles"
++ emitter:t="emtr_smoke_small_dmg_01"
++ }
++ 
++ fx{
++ name:t="underwater_bubbles"
++ emitter:t="emtr_smoke_small_dmg_02"
++ }
++ 
++ fx{
++ name:t="underwater_bubbles"
++ emitter:t="emtr_smoke_small_dmg_03"
++ }
++ 
++ fx{
++ name:t="underwater_bubbles"
++ emitter:t="emtr_smoke_small_dmg_04"
++ }
++ 
++ fx{
++ name:t="underwater_bubbles"
++ emitter:t="emtr_smoke_small_dmg_05"
++ }
++ 
++ fx{
++ name:t="underwater_bubbles"
++ emitter:t="emtr_smoke_small_dmg_06"
++ }
++ 
++ fx{
++ name:t="underwater_bubbles"
++ emitter:t="emtr_smoke_small_dmg_07"
++ }
++ 
++ fx{
++ name:t="underwater_bubbles"
++ emitter:t="emtr_smoke_small_dmg_08"
++ }
++ 
++ fx{
++ name:t="underwater_bubbles"
++ emitter:t="emtr_smoke_small_dmg_09"
++ }
++ 
++ fx{
++ name:t="underwater_bubbles"
++ emitter:t="emtr_smoke_small_dmg_10"
++ }
++ 
++ fx{
++ name:t="underwater_bubbles"
++ emitter:t="emtr_smoke_small_dmg_11"
++ }
++ 
++ fx{
++ name:t="underwater_bubbles"
++ emitter:t="emtr_smoke_small_dmg_12"
++ }
++ 
++ fx{
++ name:t="underwater_bubbles"
++ emitter:t="emtr_smoke_small_dmg_13"
++ }
++ 
++ fx{
++ name:t="underwater_bubbles"
++ emitter:t="emtr_smoke_small_dmg_14"
++ }
++ 
++ fx{
++ name:t="underwater_bubbles"
++ emitter:t="emtr_smoke_small_dmg_15"
++ }
++ 
++ fx{
++ name:t="underwater_bubbles"
++ emitter:t="emtr_smoke_small_dmg_16"
++ }
++ }
++ 
++ event{
++ name:t="attached_fire"
++ lifetime:r=15.0
++ 
++ fx{
++ name:t="fire_base_napalm_big"
++ emitter:t="emtr_smoke_dmg_01"
++ }
++ 
++ fx{
++ name:t="fire_base_napalm_big"
++ emitter:t="emtr_smoke_dmg_02"
++ }
++ 
++ fx{
++ name:t="fire_base_napalm_big"
++ emitter:t="emtr_smoke_small_dmg_01"
++ }
++ 
++ fx{
++ name:t="fire_base_napalm_big"
++ emitter:t="emtr_smoke_small_dmg_02"
++ }
++ 
++ fx{
++ name:t="fire_base_napalm_big"
++ emitter:t="emtr_smoke_small_dmg_03"
++ }
++ 
++ fx{
++ name:t="fire_base_napalm_big"
++ emitter:t="emtr_smoke_small_dmg_04"
++ }
++ 
++ fx{
++ name:t="fire_base_napalm_big"
++ emitter:t="emtr_smoke_small_dmg_05"
++ }
++ 
++ fx{
++ name:t="fire_base_napalm_big"
++ emitter:t="emtr_smoke_small_dmg_06"
++ }
++ 
++ fx{
++ name:t="fire_base_napalm_big"
++ emitter:t="emtr_smoke_small_dmg_07"
++ }
++ 
++ fx{
++ name:t="fire_base_napalm_big"
++ emitter:t="emtr_smoke_small_dmg_08"
++ }
++ 
++ fx{
++ name:t="fire_base_napalm_big"
++ emitter:t="emtr_smoke_small_dmg_09"
++ }
++ 
++ fx{
++ name:t="fire_base_napalm_big"
++ emitter:t="emtr_smoke_small_dmg_10"
++ }
++ 
++ fx{
++ name:t="fire_base_napalm_big"
++ emitter:t="emtr_smoke_small_dmg_11"
++ }
++ 
++ fx{
++ name:t="fire_base_napalm_big"
++ emitter:t="emtr_smoke_small_dmg_12"
++ }
++ 
++ fx{
++ name:t="fire_base_napalm_big"
++ emitter:t="emtr_smoke_small_dmg_13"
++ }
++ 
++ fx{
++ name:t="fire_base_napalm_big"
++ emitter:t="emtr_smoke_small_dmg_14"
++ }
++ 
++ fx{
++ name:t="fire_base_napalm_big"
++ emitter:t="emtr_smoke_small_dmg_15"
++ }
++ 
++ fx{
++ name:t="fire_base_napalm_big"
++ emitter:t="emtr_smoke_small_dmg_16"
++ }
++ 
++ fx{
++ name:t="fire_base_napalm_big"
++ emitter:t="emtr_fire_dmg_01"
++ }
++ 
++ fx{
++ name:t="fire_base_napalm_big"
++ emitter:t="emtr_fire_dmg_02"
++ }
++ 
++ fx{
++ name:t="fire_base_napalm_big"
++ emitter:t="emtr_fire_small_dmg_01"
++ }
++ 
++ fx{
++ name:t="fire_base_napalm_big"
++ emitter:t="emtr_fire_small_dmg_02"
++ }
++ 
++ fx{
++ name:t="fire_base_napalm_big"
++ emitter:t="emtr_fire_small_dmg_03"
++ }
++ 
++ fx{
++ name:t="fire_base_napalm_big"
++ emitter:t="emtr_fire_small_dmg_04"
++ }
++ 
++ fx{
++ name:t="fire_base_napalm_big"
++ emitter:t="emtr_fire_small_dmg_05"
++ }
++ 
++ fx{
++ name:t="fire_base_napalm_big"
++ emitter:t="emtr_fire_small_dmg_06"
++ }
++ 
++ fx{
++ name:t="fire_base_napalm_big"
++ emitter:t="emtr_fire_small_dmg_07"
++ }
++ 
++ fx{
++ name:t="fire_base_napalm_big"
++ emitter:t="emtr_fire_small_dmg_08"
++ }
++ 
++ fx{
++ name:t="fire_base_napalm_big"
++ emitter:t="emtr_fire_small_dmg_09"
++ }
++ 
++ fx{
++ name:t="fire_base_napalm_big"
++ emitter:t="emtr_fire_small_dmg_10"
++ }
++ 
++ fx{
++ name:t="fire_base_napalm_big"
++ emitter:t="emtr_fire_small_dmg_11"
++ }
++ 
++ fx{
++ name:t="fire_base_napalm_big"
++ emitter:t="emtr_fire_small_dmg_12"
++ }
++ 
++ fx{
++ name:t="fire_base_napalm_big"
++ emitter:t="emtr_fire_small_dmg_13"
++ }
++ 
++ fx{
++ name:t="fire_base_napalm_big"
++ emitter:t="emtr_fire_small_dmg_14"
++ }
++ 
++ fx{
++ name:t="fire_base_napalm_big"
++ emitter:t="emtr_fire_small_dmg_15"
++ }
++ 
++ fx{
++ name:t="fire_base_napalm_big"
++ emitter:t="emtr_fire_small_dmg_16"
++ }
++ }
++ 
++ event{
++ name:t="big_bang"
++ lifetime:r=20.0
++ 
++ fx{
++ name:t="explosion_ship_large"
++ emitter:t="emtr_explosion_center_01"
++ isFireBurnMark:b=no
++ }
++ 
++ fx{
++ name:t="explosion_ship_large_second"
++ emitter:t="emtr_explosion_center_02"
++ isFireBurnMark:b=no
++ }
++ 
++ fx{
++ name:t="explosion_ship_large_second"
++ emitter:t="emtr_explosion_center_03"
++ isFireBurnMark:b=no
++ }
++ 
++ fx{
++ name:t="water_explosion_medium"
++ emitter:t="emtr_explosion_center_01"
++ }
++ 
++ fx{
++ name:t="water_explosion_medium"
++ emitter:t="emtr_explosion_center_02"
++ }
++ 
++ fx{
++ name:t="water_explosion_medium"
++ emitter:t="emtr_explosion_center_03"
++ }
++ 
++ wreckages{
++ count:i=8
++ speed:r=60.0
++ angle:r=70.0
++ fxName:t="fire_trails_explosion_big"
++ }
++ }
++ 
++ event{
++ name:t="big_bang"
++ lifetime:r=20.0
++ 
++ fx{
++ name:t="explosion_ship_large_ammo"
++ emitter:t="emtr_explosion_center_01"
++ isFireBurnMark:b=no
++ }
++ 
++ fx{
++ name:t="explosion_ship_large_ammo_second"
++ emitter:t="emtr_explosion_center_02"
++ isFireBurnMark:b=no
++ }
++ 
++ fx{
++ name:t="explosion_ship_large_ammo_second"
++ emitter:t="emtr_explosion_center_03"
++ isFireBurnMark:b=no
++ }
++ 
++ fx{
++ name:t="water_explosion_medium"
++ emitter:t="emtr_explosion_center_01"
++ }
++ 
++ fx{
++ name:t="water_explosion_medium"
++ emitter:t="emtr_explosion_center_02"
++ }
++ 
++ fx{
++ name:t="water_explosion_medium"
++ emitter:t="emtr_explosion_center_03"
++ }
++ 
++ wreckages{
++ count:i=12
++ speed:r=60.0
++ angle:r=70.0
++ fxName:t="fire_trails_explosion_big"
++ }
++ }
++ 
++ event{
++ name:t="big_bang"
++ lifetime:r=20.0
++ 
++ fx{
++ name:t="explosion_ship_large"
++ emitter:t="emtr_explosion_center_01"
++ isFireBurnMark:b=no
++ }
++ 
++ fx{
++ name:t="explosion_ship_big_second"
++ emitter:t="emtr_explosion_center_02"
++ isFireBurnMark:b=no
++ }
++ 
++ fx{
++ name:t="explosion_ship_big_second"
++ emitter:t="emtr_explosion_center_03"
++ isFireBurnMark:b=no
++ }
++ 
++ fx{
++ name:t="water_explosion_big"
++ emitter:t="emtr_explosion_center_01"
++ }
++ 
++ fx{
++ name:t="water_explosion_big"
++ emitter:t="emtr_explosion_center_02"
++ }
++ 
++ fx{
++ name:t="water_explosion_big"
++ emitter:t="emtr_explosion_center_03"
++ }
++ 
++ wreckages{
++ count:i=15
++ speed:r=60.0
++ angle:r=70.0
++ fxName:t="fire_trails_explosion_big"
++ }
++ }
++ 
++ event{
++ name:t="ammo_fire_1"
++ lifetime:r=20.0
++ 
++ fx{
++ name:t="explosion_ship_big_ammo_second"
++ emitter:t="emtr_fire_ammo_01"
++ isFireBurnMark:b=no
++ }
++ }
++ 
++ event{
++ name:t="ammo_fire_2"
++ lifetime:r=20.0
++ 
++ fx{
++ name:t="explosion_ship_big_ammo_second"
++ emitter:t="emtr_fire_ammo_02"
++ isFireBurnMark:b=no
++ }
++ }
++ 
++ event{
++ name:t="ammo_fire_3"
++ lifetime:r=20.0
++ 
++ fx{
++ name:t="explosion_ship_big_ammo_second"
++ emitter:t="emtr_fire_ammo_03"
++ isFireBurnMark:b=no
++ }
++ }
++ 
++ event{
++ name:t="ammo_fire_4"
++ lifetime:r=20.0
++ 
++ fx{
++ name:t="explosion_ship_big_ammo_second"
++ emitter:t="emtr_fire_ammo_04"
++ isFireBurnMark:b=no
++ }
++ }
++ 
++ event{
++ name:t="ammo_fire_5"
++ lifetime:r=20.0
++ 
++ fx{
++ name:t="explosion_ship_big_ammo_second"
++ emitter:t="emtr_fire_ammo_05"
++ isFireBurnMark:b=no
++ }
++ }
++ 
++ event{
++ name:t="ammo_fire_6"
++ lifetime:r=20.0
++ 
++ fx{
++ name:t="explosion_ship_big_ammo_second"
++ emitter:t="emtr_fire_ammo_06"
++ isFireBurnMark:b=no
++ }
++ }
++ 
++ event{
++ name:t="ammo_explosion_1"
++ lifetime:r=20.0
++ 
++ fx{
++ name:t="explosion_ship_large_ammo_second"
++ emitter:t="emtr_fire_ammo_01"
++ isFireBurnMark:b=no
++ }
++ 
++ fx{
++ name:t="water_explosion_medium"
++ emitter:t="emtr_fire_ammo_01"
++ }
++ }
++ 
++ event{
++ name:t="ammo_explosion_2"
++ lifetime:r=20.0
++ 
++ fx{
++ name:t="explosion_ship_large_ammo_second"
++ emitter:t="emtr_fire_ammo_02"
++ isFireBurnMark:b=no
++ }
++ 
++ fx{
++ name:t="water_explosion_medium"
++ emitter:t="emtr_fire_ammo_02"
++ }
++ }
++ 
++ event{
++ name:t="ammo_explosion_3"
++ lifetime:r=20.0
++ 
++ fx{
++ name:t="explosion_ship_large_ammo_second"
++ emitter:t="emtr_fire_ammo_03"
++ isFireBurnMark:b=no
++ }
++ 
++ fx{
++ name:t="water_explosion_medium"
++ emitter:t="emtr_fire_ammo_03"
++ }
++ }
++ 
++ event{
++ name:t="ammo_explosion_4"
++ lifetime:r=20.0
++ 
++ fx{
++ name:t="explosion_ship_large_ammo_second"
++ emitter:t="emtr_fire_ammo_04"
++ isFireBurnMark:b=no
++ }
++ 
++ fx{
++ name:t="water_explosion_medium"
++ emitter:t="emtr_fire_ammo_04"
++ }
++ }
++ 
++ event{
++ name:t="ammo_explosion_5"
++ lifetime:r=20.0
++ 
++ fx{
++ name:t="explosion_ship_large_ammo_second"
++ emitter:t="emtr_fire_ammo_05"
++ isFireBurnMark:b=no
++ }
++ 
++ fx{
++ name:t="water_explosion_medium"
++ emitter:t="emtr_fire_ammo_05"
++ }
++ }
++ 
++ event{
++ name:t="ammo_explosion_6"
++ lifetime:r=20.0
++ 
++ fx{
++ name:t="explosion_ship_large_ammo_second"
++ emitter:t="emtr_fire_ammo_06"
++ isFireBurnMark:b=no
++ }
++ 
++ fx{
++ name:t="water_explosion_medium"
++ emitter:t="emtr_fire_ammo_06"
++ }
++ }
++ 
++ event{
++ name:t="ammo_aux_fire_1"
++ lifetime:r=20.0
++ 
++ fx{
++ name:t="explosion_ship_small_ammo_second"
++ emitter:t="emtr_fire_ammo_01"
++ }
++ }
++ 
++ event{
++ name:t="ammo_aux_fire_2"
++ lifetime:r=20.0
++ 
++ fx{
++ name:t="explosion_ship_small_ammo_second"
++ emitter:t="emtr_fire_ammo_02"
++ }
++ }
++ 
++ event{
++ name:t="ammo_aux_fire_3"
++ lifetime:r=20.0
++ 
++ fx{
++ name:t="explosion_ship_small_ammo_second"
++ emitter:t="emtr_fire_ammo_03"
++ }
++ }
++ 
++ event{
++ name:t="ammo_aux_fire_4"
++ lifetime:r=20.0
++ 
++ fx{
++ name:t="explosion_ship_small_ammo_second"
++ emitter:t="emtr_fire_ammo_04"
++ }
++ }
++ 
++ event{
++ name:t="ammo_aux_fire_5"
++ lifetime:r=20.0
++ 
++ fx{
++ name:t="explosion_ship_small_ammo_second"
++ emitter:t="emtr_fire_ammo_05"
++ }
++ }
++ 
++ event{
++ name:t="ammo_aux_explosion_1"
++ lifetime:r=20.0
++ 
++ fx{
++ name:t="explosion_ship_big_ammo_second"
++ emitter:t="emtr_fire_ammo_01"
++ }
++ }
++ 
++ event{
++ name:t="ammo_aux_explosion_2"
++ lifetime:r=20.0
++ 
++ fx{
++ name:t="explosion_ship_big_ammo_second"
++ emitter:t="emtr_fire_ammo_02"
++ }
++ }
++ 
++ event{
++ name:t="ammo_aux_explosion_3"
++ lifetime:r=20.0
++ 
++ fx{
++ name:t="explosion_ship_big_ammo_second"
++ emitter:t="emtr_fire_ammo_03"
++ }
++ }
++ 
++ event{
++ name:t="ammo_aux_explosion_4"
++ lifetime:r=20.0
++ 
++ fx{
++ name:t="explosion_ship_big_ammo_second"
++ emitter:t="emtr_fire_ammo_04"
++ }
++ }
++ 
++ event{
++ name:t="ammo_aux_explosion_5"
++ lifetime:r=20.0
++ 
++ fx{
++ name:t="explosion_ship_big_ammo_second"
++ emitter:t="emtr_fire_ammo_05"
++ }
++ }
++ 
++ event{
++ name:t="fire_after_hit_huge"
++ lifetime:r=8.0
++ 
++ fx{
++ name:t="fire_after_hit_huge"
++ setOrientation:b=yes
++ }
++ }
++ 
++ event{
++ name:t="fire_after_hit_huge"
++ lifetime:r=8.0
++ 
++ fx{
++ name:t="smoke_after_hit_huge"
++ setOrientation:b=yes
++ }
++ }
++ 
++ event{
++ name:t="fire_after_hit_big"
++ lifetime:r=8.0
++ 
++ fx{
++ name:t="fire_after_hit_big"
++ setOrientation:b=yes
++ }
++ }
++ 
++ event{
++ name:t="fire_after_hit_big"
++ lifetime:r=8.0
++ 
++ fx{
++ name:t="smoke_after_hit_big"
++ setOrientation:b=yes
++ }
++ }
++ 
++ event{
++ name:t="fire_after_hit_med"
++ lifetime:r=8.0
++ 
++ fx{
++ name:t="fire_after_hit_med"
++ setOrientation:b=yes
++ }
++ }
++ 
++ event{
++ name:t="fire_after_hit_med"
++ lifetime:r=8.0
++ 
++ fx{
++ name:t="smoke_after_hit_med"
++ setOrientation:b=yes
++ }
++ }
++ 
++ event{
++ name:t="fire_after_hit_small"
++ lifetime:r=5.0
++ 
++ fx{
++ name:t="fire_after_hit_small"
++ setOrientation:b=yes
++ }
++ }
++ 
++ event{
++ name:t="fire_after_hit_small"
++ lifetime:r=5.0
++ 
++ fx{
++ name:t="smoke_after_hit_small"
++ setOrientation:b=yes
++ }
++ }
++ 
++ event{
++ name:t="cosmetic_fire"
++ lifetime:r=25.0
++ fxActMinSplashRad:r=1.25
++ fxActHitRad:r=3.0
++ 
++ fx{
++ name:t="ship_fire_nosmoke_big"
++ emitter:t="emtr_fire_small_dmg_01"
++ }
++ 
++ fx{
++ name:t="ship_fire_nosmoke_big"
++ emitter:t="emtr_fire_small_dmg_02"
++ }
++ 
++ fx{
++ name:t="ship_fire_nosmoke_big"
++ emitter:t="emtr_fire_small_dmg_03"
++ }
++ 
++ fx{
++ name:t="ship_fire_nosmoke_big"
++ emitter:t="emtr_fire_small_dmg_04"
++ }
++ 
++ fx{
++ name:t="ship_fire_nosmoke_big"
++ emitter:t="emtr_fire_small_dmg_05"
++ }
++ 
++ fx{
++ name:t="ship_fire_nosmoke_big"
++ emitter:t="emtr_fire_small_dmg_06"
++ }
++ 
++ fx{
++ name:t="ship_fire_nosmoke_big"
++ emitter:t="emtr_fire_small_dmg_07"
++ }
++ 
++ fx{
++ name:t="ship_fire_nosmoke_big"
++ emitter:t="emtr_fire_small_dmg_08"
++ }
++ 
++ fx{
++ name:t="ship_fire_nosmoke_big"
++ emitter:t="emtr_fire_small_dmg_09"
++ }
++ 
++ fx{
++ name:t="ship_fire_nosmoke_big"
++ emitter:t="emtr_fire_small_dmg_10"
++ }
++ 
++ fx{
++ name:t="ship_fire_nosmoke_big"
++ emitter:t="emtr_fire_small_dmg_11"
++ }
++ 
++ fx{
++ name:t="ship_fire_nosmoke_big"
++ emitter:t="emtr_fire_small_dmg_12"
++ }
++ 
++ fx{
++ name:t="ship_fire_nosmoke_big"
++ emitter:t="emtr_fire_small_dmg_13"
++ }
++ 
++ fx{
++ name:t="ship_fire_nosmoke_big"
++ emitter:t="emtr_fire_small_dmg_14"
++ }
++ 
++ fx{
++ name:t="ship_fire_nosmoke_big"
++ emitter:t="emtr_fire_small_dmg_15"
++ }
++ 
++ fx{
++ name:t="ship_fire_nosmoke_big"
++ emitter:t="emtr_fire_small_dmg_16"
++ }
++ 
++ fx{
++ name:t="ship_fire_nosmoke_big"
++ emitter:t="emtr_smoke_small_dmg_01"
++ }
++ 
++ fx{
++ name:t="ship_fire_nosmoke_big"
++ emitter:t="emtr_smoke_small_dmg_02"
++ }
++ 
++ fx{
++ name:t="ship_fire_nosmoke_big"
++ emitter:t="emtr_smoke_small_dmg_03"
++ }
++ 
++ fx{
++ name:t="ship_fire_nosmoke_big"
++ emitter:t="emtr_smoke_small_dmg_04"
++ }
++ 
++ fx{
++ name:t="ship_fire_nosmoke_big"
++ emitter:t="emtr_smoke_small_dmg_05"
++ }
++ 
++ fx{
++ name:t="ship_fire_nosmoke_big"
++ emitter:t="emtr_smoke_small_dmg_06"
++ }
++ 
++ fx{
++ name:t="ship_fire_nosmoke_big"
++ emitter:t="emtr_smoke_small_dmg_07"
++ }
++ 
++ fx{
++ name:t="ship_fire_nosmoke_big"
++ emitter:t="emtr_smoke_small_dmg_08"
++ }
++ 
++ fx{
++ name:t="ship_fire_nosmoke_big"
++ emitter:t="emtr_smoke_small_dmg_09"
++ }
++ 
++ fx{
++ name:t="ship_fire_nosmoke_big"
++ emitter:t="emtr_smoke_small_dmg_10"
++ }
++ 
++ fx{
++ name:t="ship_fire_nosmoke_big"
++ emitter:t="emtr_smoke_small_dmg_11"
++ }
++ 
++ fx{
++ name:t="ship_fire_nosmoke_big"
++ emitter:t="emtr_smoke_small_dmg_12"
++ }
++ 
++ fx{
++ name:t="ship_fire_nosmoke_big"
++ emitter:t="emtr_smoke_small_dmg_13"
++ }
++ 
++ fx{
++ name:t="ship_fire_nosmoke_big"
++ emitter:t="emtr_smoke_small_dmg_14"
++ }
++ 
++ fx{
++ name:t="ship_fire_nosmoke_big"
++ emitter:t="emtr_smoke_small_dmg_15"
++ }
++ 
++ fx{
++ name:t="ship_fire_nosmoke_big"
++ emitter:t="emtr_smoke_small_dmg_16"
++ }
++ 
++ fx{
++ name:t="ship_fire_nosmoke_big"
++ emitter:t="emtr_fire_dmg_01"
++ }
++ 
++ fx{
++ name:t="ship_fire_nosmoke_big"
++ emitter:t="emtr_fire_dmg_02"
++ }
++ 
++ fx{
++ name:t="ship_fire_nosmoke_big"
++ emitter:t="emtr_fire_dmg_03"
++ }
++ 
++ fx{
++ name:t="ship_fire_nosmoke_big"
++ emitter:t="emtr_fire_dmg_04"
++ }
++ 
++ fx{
++ name:t="ship_fire_nosmoke_big"
++ emitter:t="emtr_fire_dmg_05"
++ }
++ 
++ fx{
++ name:t="ship_fire_nosmoke_big"
++ emitter:t="emtr_fire_dmg_06"
++ }
++ 
++ fx{
++ name:t="ship_fire_nosmoke_big"
++ emitter:t="emtr_fire_engine_01"
++ }
++ 
++ fx{
++ name:t="ship_fire_nosmoke_big"
++ emitter:t="emtr_fire_engine_02"
++ }
++ 
++ fx{
++ name:t="ship_fire_nosmoke_big"
++ emitter:t="emtr_fire_engine_03"
++ }
++ 
++ fx{
++ name:t="ship_fire_nosmoke_big"
++ emitter:t="emtr_fire_engine_04"
++ }
++ 
++ fx{
++ name:t="ship_fire_nosmoke_big"
++ emitter:t="emtr_fire_engine_05"
++ }
++ 
++ fx{
++ name:t="ship_fire_nosmoke_big"
++ emitter:t="emtr_fire_engine_06"
++ }
++ 
++ fx{
++ name:t="ship_fire_nosmoke_big"
++ emitter:t="emtr_smoke_engine_01"
++ }
++ 
++ fx{
++ name:t="ship_fire_nosmoke_big"
++ emitter:t="emtr_smoke_engine_02"
++ }
++ 
++ fx{
++ name:t="ship_fire_nosmoke_big"
++ emitter:t="emtr_smoke_engine_03"
++ }
++ 
++ fx{
++ name:t="ship_fire_nosmoke_big"
++ emitter:t="emtr_smoke_engine_04"
++ }
++ 
++ fx{
++ name:t="ship_fire_nosmoke_big"
++ emitter:t="emtr_smoke_engine_05"
++ }
++ 
++ fx{
++ name:t="ship_fire_nosmoke_big"
++ emitter:t="emtr_smoke_engine_06"
++ }
++ 
++ fx{
++ name:t="ship_fire_nosmoke_big"
++ emitter:t="emtr_smoke_dmg_01"
++ }
++ 
++ fx{
++ name:t="ship_fire_nosmoke_big"
++ emitter:t="emtr_smoke_dmg_02"
++ }
++ 
++ fx{
++ name:t="ship_fire_nosmoke_big"
++ emitter:t="emtr_smoke_dmg_03"
++ }
++ 
++ fx{
++ name:t="ship_fire_nosmoke_big"
++ emitter:t="emtr_smoke_dmg_04"
++ }
++ 
++ fx{
++ name:t="ship_fire_nosmoke_big"
++ emitter:t="emtr_smoke_dmg_05"
++ }
++ 
++ fx{
++ name:t="ship_fire_nosmoke_big"
++ emitter:t="emtr_smoke_dmg_06"
++ }
++ }
++ 
++ procedural{
++ name:t="default"
++ 
++ fx{
++ name:t="ship_fire_big"
++ isFireBurnMark:b=no
++ }
++ }
++ }
++ 
++ Effects{
++ waterSplashFx:t="water_splash_massive"
++ sideSplashSpeedMult:r=1.0
++ sideSplashUpDirMult:r=1.5
++ sideSplashSpawnRate:r=2.0
++ sideSplashNormalMult:r=1.5
++ sideSplashEmissionCurve:p3=1.5, 1.0, -1.4
++ waterSplashFxBow:t="water_splash_medium_bow"
++ bowSplashSpeedMult:r=1.0
++ bowSplashUpDirMult:r=4.0
++ bowSplashSpawnRate:r=1.0
++ bowSplashNormalMult:r=2.0
++ }
++ 
++ splashFireFx{
++ damage:r=10.0
++ probability:r=1.0
++ fxEvent:t="cosmetic_fire"
++ }
++ 
++ ammoStowages{
++ 
++ ammo1{
++ weaponTrigger:t="gunner0"
++ explosionEvent:t="ammo_explosion_1"
++ fireEvent:t="ammo_fire_1"
++ fireParamsPreset:t="ship_ammo_fire_total"
++ elevator:t="elevator_01_dm"
++ dstrElevatorDisablesShooting:b=no
++ splashRadiusConstraint:r=12.0
++ splashDamageConstraint:r=7500.0
++ shatterRadiusConstraint:r=0.01
++ splashPenetrationConstraint:r=30.0
++ 
++ gunpowderMassToSplashParams{
++ 
++ gunpowderMassToInnerRadius{
++ p1:p2=50.0, 1.0
++ p2:p2=500.0, 5.0
++ p3:p2=3000.0, 6.0
++ p4:p2=5000.0, 6.5
++ }
++ 
++ gunpowderMassToOuterRadius{
++ p1:p2=50.0, 3.0
++ p2:p2=500.0, 8.0
++ p3:p2=3000.0, 10.0
++ p4:p2=5000.0, 10.5
++ }
++ 
++ gunpowderMassToPenetration{
++ p1:p2=50.0, 5.0
++ p2:p2=500.0, 35.0
++ p3:p2=3000.0, 50.0
++ p4:p2=5000.0, 55.0
++ }
++ 
++ gunpowderMassToDamage{
++ p1:p2=50.0, 1.0
++ p2:p2=500.0, 4500.0
++ p3:p2=3000.0, 5000.0
++ p4:p2=5000.0, 7500.0
++ }
++ }
++ 
++ shells{
++ entityMunition:t="shells"
++ fatalFire:b=no
++ fatalExplosion:b=no
++ damageEffect:t="ammunition_storage_shells"
++ 
++ ammunition_storage_shells_01_dm{
++ count:i=448
++ }
++ }
++ 
++ charges{
++ entityMunition:t="charges"
++ fatalFire:b=yes
++ damageEffect:t="ammunition_storage_charges"
++ 
++ ammunition_storage_charges_01_dm{
++ count:i=448
++ }
++ }
++ }
++ 
++ ammo2{
++ weaponTrigger:t="gunner1"
++ explosionEvent:t="ammo_explosion_1"
++ fireEvent:t="ammo_fire_1"
++ fireParamsPreset:t="ship_ammo_fire_total"
++ elevator:t="elevator_02_dm"
++ dstrElevatorDisablesShooting:b=no
++ splashRadiusConstraint:r=12.0
++ splashDamageConstraint:r=7500.0
++ shatterRadiusConstraint:r=0.01
++ splashPenetrationConstraint:r=30.0
++ 
++ gunpowderMassToSplashParams{
++ 
++ gunpowderMassToInnerRadius{
++ p1:p2=50.0, 1.0
++ p2:p2=500.0, 5.0
++ p3:p2=3000.0, 6.0
++ p4:p2=5000.0, 6.5
++ }
++ 
++ gunpowderMassToOuterRadius{
++ p1:p2=50.0, 3.0
++ p2:p2=500.0, 8.0
++ p3:p2=3000.0, 10.0
++ p4:p2=5000.0, 10.5
++ }
++ 
++ gunpowderMassToPenetration{
++ p1:p2=50.0, 5.0
++ p2:p2=500.0, 35.0
++ p3:p2=3000.0, 50.0
++ p4:p2=5000.0, 55.0
++ }
++ 
++ gunpowderMassToDamage{
++ p1:p2=50.0, 1.0
++ p2:p2=500.0, 4500.0
++ p3:p2=3000.0, 5000.0
++ p4:p2=5000.0, 7500.0
++ }
++ }
++ 
++ shells{
++ entityMunition:t="shells"
++ fatalFire:b=no
++ fatalExplosion:b=no
++ damageEffect:t="ammunition_storage_shells"
++ 
++ ammunition_storage_shells_02_dm{
++ count:i=448
++ }
++ }
++ 
++ charges{
++ entityMunition:t="charges"
++ fatalFire:b=yes
++ damageEffect:t="ammunition_storage_charges"
++ 
++ ammunition_storage_charges_02_dm{
++ count:i=448
++ }
++ }
++ }
++ 
++ ammo3{
++ weaponTrigger:t="gunner2"
++ entityMunition:t="aux"
++ fatalExplosion:b=no
++ fatalFire:b=no
++ fireParamsPreset:t="ship_ammo_fire_aux"
++ explosionEvent:t="ammo_aux_explosion_1"
++ fireEvent:t="ammo_aux_fire_1"
++ elevator:t="elevator_06_dm"
++ dstrElevatorDisablesShooting:b=no
++ splashRadiusConstraint:r=10.0
++ splashDamageConstraint:r=3000.0
++ shatterRadiusConstraint:r=1.0
++ 
++ gunpowderMassToSplashParams{
++ 
++ gunpowderMassToInnerRadius{
++ p1:p2=100.0, 1.0
++ p2:p2=10000.0, 2.0
++ }
++ 
++ gunpowderMassToOuterRadius{
++ p1:p2=100.0, 2.0
++ p2:p2=10000.0, 10.0
++ }
++ 
++ gunpowderMassToPenetration{
++ p1:p2=100.0, 13.5
++ p2:p2=500.0, 15.0
++ p3:p2=2000.0, 20.0
++ p4:p2=5000.0, 30.0
++ }
++ 
++ gunpowderMassToDamage{
++ p1:p2=100.0, 1000.0
++ p3:p2=10000.0, 5000.0
++ }
++ }
++ 
++ shells{
++ entityMunition:t="first_stage"
++ firstStage:b=yes
++ damageEffect:t="ammunition_storage_aux"
++ 
++ ammo_turret_01_dm{
++ count:i=40
++ }
++ }
++ 
++ shells{
++ reloadTimeMult:r=1.2
++ damageEffect:t="ammunition_storage_aux"
++ 
++ ammunition_storage_aux_02_dm{
++ count:i=760
++ }
++ }
++ }
++ 
++ ammo4{
++ weaponTrigger:t="gunner3"
++ entityMunition:t="aux"
++ fatalExplosion:b=no
++ fatalFire:b=no
++ fireParamsPreset:t="ship_ammo_fire_aux"
++ explosionEvent:t="ammo_aux_explosion_1"
++ fireEvent:t="ammo_aux_fire_1"
++ elevator:t="elevator_07_dm"
++ dstrElevatorDisablesShooting:b=no
++ splashRadiusConstraint:r=10.0
++ splashDamageConstraint:r=3000.0
++ shatterRadiusConstraint:r=1.0
++ 
++ gunpowderMassToSplashParams{
++ 
++ gunpowderMassToInnerRadius{
++ p1:p2=100.0, 1.0
++ p2:p2=10000.0, 2.0
++ }
++ 
++ gunpowderMassToOuterRadius{
++ p1:p2=100.0, 2.0
++ p2:p2=10000.0, 10.0
++ }
++ 
++ gunpowderMassToPenetration{
++ p1:p2=100.0, 13.5
++ p2:p2=500.0, 15.0
++ p3:p2=2000.0, 20.0
++ p4:p2=5000.0, 30.0
++ }
++ 
++ gunpowderMassToDamage{
++ p1:p2=100.0, 1000.0
++ p3:p2=10000.0, 5000.0
++ }
++ }
++ 
++ shells{
++ entityMunition:t="first_stage"
++ firstStage:b=yes
++ damageEffect:t="ammunition_storage_aux"
++ 
++ ammo_turret_02_dm{
++ count:i=40
++ }
++ }
++ 
++ shells{
++ reloadTimeMult:r=1.2
++ damageEffect:t="ammunition_storage_aux"
++ 
++ ammunition_storage_aux_03_dm{
++ count:i=760
++ }
++ }
++ }
++ 
++ ammo5{
++ weaponTrigger:t="gunner4"
++ entityMunition:t="aux"
++ fatalExplosion:b=no
++ fatalFire:b=no
++ fireParamsPreset:t="ship_ammo_fire_aux"
++ explosionEvent:t="ammo_aux_explosion_2"
++ fireEvent:t="ammo_aux_fire_2"
++ elevator:t="elevator_07_dm"
++ dstrElevatorDisablesShooting:b=no
++ splashRadiusConstraint:r=10.0
++ splashDamageConstraint:r=3000.0
++ shatterRadiusConstraint:r=1.0
++ 
++ gunpowderMassToSplashParams{
++ 
++ gunpowderMassToInnerRadius{
++ p1:p2=100.0, 1.0
++ p2:p2=10000.0, 2.0
++ }
++ 
++ gunpowderMassToOuterRadius{
++ p1:p2=100.0, 2.0
++ p2:p2=10000.0, 10.0
++ }
++ 
++ gunpowderMassToPenetration{
++ p1:p2=100.0, 13.5
++ p2:p2=500.0, 15.0
++ p3:p2=2000.0, 20.0
++ p4:p2=5000.0, 30.0
++ }
++ 
++ gunpowderMassToDamage{
++ p1:p2=100.0, 1000.0
++ p3:p2=10000.0, 5000.0
++ }
++ }
++ 
++ shells{
++ entityMunition:t="first_stage"
++ firstStage:b=yes
++ damageEffect:t="ammunition_storage_aux"
++ 
++ ammo_turret_03_dm{
++ count:i=80
++ }
++ }
++ 
++ shells{
++ reloadTimeMult:r=1.2
++ damageEffect:t="ammunition_storage_aux"
++ 
++ ammunition_storage_aux_04_dm{
++ count:i=1520
++ }
++ }
++ }
++ 
++ ammo6{
++ weaponTrigger:t="gunner5"
++ entityMunition:t="aux"
++ fatalExplosion:b=no
++ fatalFire:b=no
++ fireParamsPreset:t="ship_ammo_fire_aux"
++ explosionEvent:t="ammo_aux_explosion_2"
++ fireEvent:t="ammo_aux_fire_2"
++ elevator:t="elevator_07_dm"
++ dstrElevatorDisablesShooting:b=no
++ splashRadiusConstraint:r=10.0
++ splashDamageConstraint:r=3000.0
++ shatterRadiusConstraint:r=1.0
++ 
++ gunpowderMassToSplashParams{
++ 
++ gunpowderMassToInnerRadius{
++ p1:p2=100.0, 1.0
++ p2:p2=10000.0, 2.0
++ }
++ 
++ gunpowderMassToOuterRadius{
++ p1:p2=100.0, 2.0
++ p2:p2=10000.0, 10.0
++ }
++ 
++ gunpowderMassToPenetration{
++ p1:p2=100.0, 13.5
++ p2:p2=500.0, 15.0
++ p3:p2=2000.0, 20.0
++ p4:p2=5000.0, 30.0
++ }
++ 
++ gunpowderMassToDamage{
++ p1:p2=100.0, 1000.0
++ p3:p2=10000.0, 5000.0
++ }
++ }
++ 
++ shells{
++ entityMunition:t="first_stage"
++ firstStage:b=yes
++ damageEffect:t="ammunition_storage_aux"
++ 
++ ammo_turret_04_dm{
++ count:i=80
++ }
++ }
++ 
++ shells{
++ reloadTimeMult:r=1.2
++ damageEffect:t="ammunition_storage_aux"
++ 
++ ammunition_storage_aux_05_dm{
++ count:i=1520
++ }
++ }
++ }
++ 
++ ammo7{
++ weaponTrigger:t="gunner6"
++ entityMunition:t="aux"
++ fatalExplosion:b=no
++ fatalFire:b=no
++ fireParamsPreset:t="ship_ammo_fire_aux"
++ explosionEvent:t="ammo_aux_explosion_2"
++ fireEvent:t="ammo_aux_fire_2"
++ elevator:t="elevator_07_dm"
++ dstrElevatorDisablesShooting:b=no
++ splashRadiusConstraint:r=10.0
++ splashDamageConstraint:r=3000.0
++ shatterRadiusConstraint:r=1.0
++ 
++ gunpowderMassToSplashParams{
++ 
++ gunpowderMassToInnerRadius{
++ p1:p2=100.0, 1.0
++ p2:p2=10000.0, 2.0
++ }
++ 
++ gunpowderMassToOuterRadius{
++ p1:p2=100.0, 2.0
++ p2:p2=10000.0, 10.0
++ }
++ 
++ gunpowderMassToPenetration{
++ p1:p2=100.0, 13.5
++ p2:p2=500.0, 15.0
++ p3:p2=2000.0, 20.0
++ p4:p2=5000.0, 30.0
++ }
++ 
++ gunpowderMassToDamage{
++ p1:p2=100.0, 1000.0
++ p3:p2=10000.0, 5000.0
++ }
++ }
++ 
++ shells{
++ entityMunition:t="first_stage"
++ firstStage:b=yes
++ damageEffect:t="ammunition_storage_aux"
++ 
++ ammo_turret_05_dm{
++ count:i=80
++ }
++ }
++ 
++ shells{
++ reloadTimeMult:r=1.2
++ damageEffect:t="ammunition_storage_aux"
++ 
++ ammunition_storage_aux_06_dm{
++ count:i=1520
++ }
++ }
++ }
++ 
++ ammo8{
++ weaponTrigger:t="gunner7"
++ weaponTrigger:t="gunner8"
++ weaponTrigger:t="gunner9"
++ weaponTrigger:t="gunner10"
++ weaponTrigger:t="gunner11"
++ weaponTrigger:t="gunner12"
++ weaponTrigger:t="gunner13"
++ weaponTrigger:t="gunner14"
++ weaponTrigger:t="gunner15"
++ weaponTrigger:t="gunner16"
++ weaponTrigger:t="gunner17"
++ weaponTrigger:t="gunner18"
++ weaponTrigger:t="gunner19"
++ entityMunition:t="aux"
++ fatalExplosion:b=no
++ fatalFire:b=no
++ fireParamsPreset:t="ship_ammo_fire_aux"
++ explosionEvent:t="ammo_aux_explosion_2"
++ fireEvent:t="ammo_aux_fire_2"
++ dstrElevatorDisablesShooting:b=no
++ splashRadiusConstraint:r=10.0
++ splashDamageConstraint:r=3000.0
++ shatterRadiusConstraint:r=1.0
++ 
++ gunpowderMassToSplashParams{
++ 
++ gunpowderMassToInnerRadius{
++ p1:p2=100.0, 1.0
++ p2:p2=10000.0, 2.0
++ }
++ 
++ gunpowderMassToOuterRadius{
++ p1:p2=100.0, 2.0
++ p2:p2=10000.0, 10.0
++ }
++ 
++ gunpowderMassToPenetration{
++ p1:p2=100.0, 13.5
++ p2:p2=500.0, 15.0
++ p3:p2=2000.0, 20.0
++ p4:p2=5000.0, 30.0
++ }
++ 
++ gunpowderMassToDamage{
++ p1:p2=100.0, 1000.0
++ p3:p2=10000.0, 5000.0
++ }
++ }
++ 
++ shells{
++ damageEffect:t="ammunition_storage_aux"
++ 
++ ammunition_storage_aux_01_dm{
++ count:i=40000
++ }
++ }
++ 
++ shells{
++ damageEffect:t="ammunition_storage_aux"
++ 
++ ammunition_storage_aux_07_dm{
++ count:i=31000
++ }
++ }
++ }
++ }
++ 
++ breaches{
++ repairSpeed:r=30.0
++ waterMassVel:r=-250000.0
++ waterMassMult:r=600.0
++ sizeToRepair:p4=0.01, 5.0, 25.0, 600.0
++ additionalWaterDeathThreshold:r=79000000.0
++ additionalWaterShouldDiePercent:r=0.32
++ fatalBreachDrownTime:r=45.0
++ maxHeelingAngle:r=12.0
++ maxHeelingTime:r=40.0
++ criticalHeelingAnglePercent:r=0.5
++ maxCriticalHeelingTime:r=1.0
++ heelingDeathHeightOffsetMult:r=1.0
++ sideCenterOfMassOffsetPercent:r=0.15
++ minCaliberToBreach:r=0.18
++ minExplRadiusToBreach:r=0.3
++ deadCoverCounterfloodingRel:r=0.5
++ counterFloodingWaterMassVel:r=35000.0
++ }
++ 
++ shipCover{
++ 
++ cover{
++ part:t="cover_01_dm"
++ weight:r=0.1
++ maxWaterAlive:r=1.0
++ }
++ 
++ cover{
++ part:t="cover_02_dm"
++ weight:r=0.25
++ maxWaterAlive:r=1.0
++ }
++ 
++ cover{
++ part:t="cover_03_dm"
++ weight:r=0.7
++ maxWaterAlive:r=1.0
++ 
++ innerParts{
++ 
++ part{
++ partNo:t="ammunition_storage_charges_01_dm"
++ critWaterLevel:r=0.7
++ }
++ 
++ part{
++ partNo:t="ammunition_storage_shells_01_dm"
++ critWaterLevel:r=0.7
++ }
++ }
++ }
++ 
++ cover{
++ part:t="cover_04_dm"
++ weight:r=1.0
++ maxWaterAlive:r=1.0
++ 
++ innerParts{
++ 
++ part{
++ partNo:t="ammunition_storage_charges_02_dm"
++ critWaterLevel:r=0.7
++ }
++ 
++ part{
++ partNo:t="ammunition_storage_shells_02_dm"
++ critWaterLevel:r=0.7
++ }
++ }
++ }
++ 
++ cover{
++ part:t="cover_05_dm"
++ weight:r=0.8
++ maxWaterAlive:r=1.0
++ 
++ innerParts{
++ 
++ part{
++ partNo:t="fire_control_room_01_dm"
++ critWaterLevel:r=0.75
++ }
++ 
++ part{
++ partNo:t="engine_room_01_dm"
++ critWaterLevel:r=0.7
++ }
++ }
++ }
++ 
++ cover{
++ part:t="cover_06_dm"
++ weight:r=0.95
++ maxWaterAlive:r=1.0
++ 
++ innerParts{
++ 
++ part{
++ partNo:t="transmission_01_dm"
++ critWaterLevel:r=0.6
++ }
++ 
++ part{
++ partNo:t="transmission_04_dm"
++ critWaterLevel:r=0.9
++ }
++ 
++ part{
++ partNo:t="engine_room_02_dm"
++ critWaterLevel:r=0.9
++ }
++ }
++ }
++ 
++ cover{
++ part:t="cover_07_dm"
++ weight:r=0.9
++ maxWaterAlive:r=1.0
++ 
++ innerParts{
++ 
++ part{
++ partNo:t="engine_room_03_dm"
++ critWaterLevel:r=0.6
++ }
++ 
++ part{
++ partNo:t="transmission_02_dm"
++ critWaterLevel:r=0.7
++ }
++ 
++ part{
++ partNo:t="transmission_03_dm"
++ critWaterLevel:r=0.8
++ }
++ }
++ }
++ 
++ cover{
++ part:t="cover_08_dm"
++ weight:r=0.5
++ maxWaterAlive:r=1.0
++ }
++ 
++ cover{
++ part:t="cover_09_dm"
++ weight:r=0.25
++ maxWaterAlive:r=1.0
++ }
++ 
++ cover{
++ part:t="cover_10_dm"
++ weight:r=0.1
++ maxWaterAlive:r=1.0
++ }
++ }
++ 
++ winch{
++ length:r=500.0
++ }
++ 
++ difficulty{
++ 
++ arcade{
++ shipRudderAreaMult:r=1.0
++ tankRearmOnCaptureZone:b=yes
++ }
++ }
++ 
++ wreckedParts{
++ 
++ part{
++ node:t="main_caliber_turret_01"
++ idx:i=1
++ mass:r=2200.0
++ cutDamage:r=350.0
++ deviation:r=0.6
++ rotation:r=2.1
++ collisionNode:t="main_caliber_turret_01_dm"
++ }
++ 
++ part{
++ node:t="main_caliber_turret_02"
++ idx:i=2
++ mass:r=2200.0
++ cutDamage:r=350.0
++ deviation:r=0.6
++ rotation:r=2.1
++ collisionNode:t="main_caliber_turret_02_dm"
++ }
++ 
++ part{
++ node:t="auxiliary_caliber_turret_01"
++ idx:i=3
++ mass:r=2200.0
++ cutDamage:r=350.0
++ deviation:r=0.6
++ rotation:r=2.1
++ collisionNode:t="auxiliary_caliber_turret_01_dm"
++ }
++ 
++ part{
++ node:t="auxiliary_caliber_turret_02"
++ idx:i=4
++ mass:r=2200.0
++ cutDamage:r=350.0
++ deviation:r=0.6
++ rotation:r=2.1
++ collisionNode:t="auxiliary_caliber_turret_02_dm"
++ }
++ 
++ part{
++ node:t="auxiliary_caliber_turret_05"
++ idx:i=5
++ mass:r=1500.0
++ cutDamage:r=350.0
++ deviation:r=0.6
++ rotation:r=2.1
++ collisionNode:t="auxiliary_caliber_turret_05_dm"
++ }
++ 
++ part{
++ node:t="auxiliary_caliber_turret_04"
++ idx:i=6
++ mass:r=1500.0
++ cutDamage:r=350.0
++ deviation:r=0.6
++ rotation:r=2.1
++ collisionNode:t="auxiliary_caliber_turret_04_dm"
++ }
++ }
++ 
++ skin{
++ name:t="fr_camo_navy_ground"
++ nameLocId:t="skin/fr_camo_navy_ground"
++ descLocId:t="skin/fr_camo_navy_ground/desc"
++ 
++ replace_tex{
++ from:t="camo_flatgullgrey*"
++ to:t="fr_camo_navy_ground*"
++ }
++ }
++ 
++ skin{
++ name:t="fr_camo_graygreen_pixelated"
++ nameLocId:t="skin/fr_camo_graygreen_pixelated"
++ descLocId:t="skin/fr_camo_graygreen_pixelated/desc"
++ 
++ replace_tex{
++ from:t="camo_flatgullgrey*"
++ to:t="fr_camo_graygreen_pixelated*"
++ }
++ }
++ 
++ skin{
++ name:t="fr_camo_multicolor_waves"
++ nameLocId:t="skin/fr_camo_multicolor_waves"
++ descLocId:t="skin/fr_camo_multicolor_waves/desc"
++ 
++ replace_tex{
++ from:t="camo_flatgullgrey*"
++ to:t="fr_camo_multicolor_waves*"
++ }
++ }
++ 
++ skin{
++ name:t="fr_camo_blackyellow_geometry"
++ nameLocId:t="skin/fr_camo_blackyellow_geometry"
++ descLocId:t="skin/fr_camo_blackyellow_geometry/desc"
++ 
++ replace_tex{
++ from:t="camo_flatgullgrey*"
++ to:t="fr_camo_blackyellow_geometry*"
++ }
++ }
++ 
++ defaultShipFlag{
++ name:t="default"
++ modelFlagTexture:t="flag_c*"
++ defaultShipFlag:t="ship_flag_france_01"
++ hangarFlagCam:p3=197.68, -3.32, 0.5
++ }
++ 
++ availableShipFlags{
++ 
++ ship_flag_germany_01{
++ category:t="naval"
++ unlockId:t="ship_flag_germany_01"
++ nameLocId:t="ship_flag_germany_01/name"
++ texture:t="flag_germany_01_c*"
++ }
++ 
++ ship_flag_germany_02{
++ category:t="naval"
++ unlockId:t="ship_flag_germany_02"
++ nameLocId:t="ship_flag_germany_02/name"
++ texture:t="flag_germany_02_c*"
++ }
++ 
++ ship_flag_germany_03{
++ category:t="national"
++ unlockId:t="ship_flag_germany_03"
++ nameLocId:t="ship_flag_germany_03/name"
++ texture:t="flag_germany_03_c*"
++ }
++ 
++ ship_flag_germany_04{
++ category:t="naval"
++ unlockId:t="ship_flag_germany_04"
++ nameLocId:t="ship_flag_germany_04/name"
++ texture:t="flag_germany_04_c*"
++ }
++ 
++ ship_flag_germany_05{
++ category:t="naval"
++ unlockId:t="ship_flag_germany_05"
++ nameLocId:t="ship_flag_germany_05/name"
++ texture:t="flag_germany_05_c*"
++ }
++ 
++ ship_flag_germany_06{
++ category:t="naval"
++ unlockId:t="ship_flag_germany_06"
++ nameLocId:t="ship_flag_germany_06/name"
++ texture:t="flag_germany_06_c*"
++ }
++ 
++ ship_flag_germany_08{
++ category:t="naval"
++ unlockId:t="ship_flag_germany_08"
++ nameLocId:t="ship_flag_germany_08/name"
++ texture:t="flag_germany_08_c*"
++ }
++ 
++ ship_flag_ireland_01{
++ category:t="national"
++ unlockId:t="ship_flag_ireland_01"
++ nameLocId:t="ship_flag_ireland_01/name"
++ texture:t="flag_ireland_01_c*"
++ }
++ 
++ ship_flag_uk_01{
++ category:t="naval"
++ unlockId:t="ship_flag_uk_01"
++ nameLocId:t="ship_flag_uk_01/name"
++ texture:t="flag_uk_01_c*"
++ }
++ 
++ ship_flag_uk_02{
++ category:t="naval"
++ unlockId:t="ship_flag_uk_02"
++ nameLocId:t="ship_flag_uk_02/name"
++ texture:t="flag_uk_02_c*"
++ }
++ 
++ ship_flag_uk_ran_03{
++ category:t="naval"
++ unlockId:t="ship_flag_uk_ran_03"
++ nameLocId:t="ship_flag_uk_ran_03/name"
++ texture:t="flag_uk_modern_ran_ensign_c*"
++ }
++ 
++ ship_flag_egypt_01{
++ category:t="naval"
++ unlockId:t="ship_flag_egypt_01"
++ nameLocId:t="ship_flag_egypt_01/name"
++ texture:t="flag_egypt_01_c*"
++ }
++ 
++ ship_flag_japan_01{
++ category:t="naval"
++ unlockId:t="ship_flag_japan_01"
++ nameLocId:t="ship_flag_japan_01/name"
++ texture:t="flag_japan_01_c*"
++ }
++ 
++ ship_flag_ussr_01{
++ category:t="naval"
++ unlockId:t="ship_flag_ussr_01"
++ nameLocId:t="ship_flag_ussr_01/name"
++ texture:t="flag_ussr_01_c*"
++ }
++ 
++ ship_flag_ussr_03{
++ category:t="naval"
++ unlockId:t="ship_flag_ussr_03"
++ nameLocId:t="ship_flag_ussr_03/name"
++ texture:t="flag_ussr_03_c*"
++ }
++ 
++ ship_flag_poland_01{
++ category:t="naval"
++ unlockId:t="ship_flag_poland_01"
++ nameLocId:t="ship_flag_poland_01/name"
++ texture:t="flag_poland_01_c*"
++ }
++ 
++ ship_flag_south_vietnam_01{
++ category:t="naval"
++ unlockId:t="ship_flag_south_vietnam_01"
++ nameLocId:t="ship_flag_south_vietnam_01/name"
++ texture:t="flag_south_vietnam_01_c*"
++ }
++ 
++ ship_flag_china_01{
++ category:t="national"
++ unlockId:t="ship_flag_china_01"
++ nameLocId:t="ship_flag_china_01/name"
++ texture:t="flag_china_01_c*"
++ }
++ 
++ ship_flag_france_01{
++ category:t="national"
++ unlockId:t="ship_flag_france_01"
++ nameLocId:t="ship_flag_france_01/name"
++ texture:t="flag_france_01_c*"
++ }
++ 
++ ship_flag_japan_02{
++ category:t="national"
++ unlockId:t="ship_flag_japan_02"
++ nameLocId:t="ship_flag_japan_02/name"
++ texture:t="flag_japan_02_c*"
++ }
++ 
++ ship_flag_usa_01{
++ category:t="national"
++ unlockId:t="ship_flag_usa_01"
++ nameLocId:t="ship_flag_usa_01/name"
++ texture:t="flag_usa_01_c*"
++ }
++ 
++ ship_flag_usa_02{
++ category:t="national"
++ unlockId:t="ship_flag_usa_02"
++ nameLocId:t="ship_flag_usa_02/name"
++ texture:t="flag_usa_02_c*"
++ }
++ 
++ ship_flag_italy_01{
++ category:t="naval"
++ unlockId:t="ship_flag_italy_01"
++ nameLocId:t="ship_flag_italy_01/name"
++ texture:t="flag_italy_01_c*"
++ }
++ 
++ ship_flag_italy_02{
++ category:t="naval"
++ unlockId:t="ship_flag_italy_02"
++ nameLocId:t="ship_flag_italy_02/name"
++ texture:t="flag_italy_02_c*"
++ }
++ 
++ ship_flag_italy_03{
++ category:t="naval"
++ unlockId:t="ship_flag_italy_03"
++ nameLocId:t="ship_flag_italy_03/name"
++ texture:t="flag_italy_03_c*"
++ }
++ 
++ ship_flag_ussr_02{
++ category:t="national"
++ unlockId:t="ship_flag_ussr_02"
++ nameLocId:t="ship_flag_ussr_02/name"
++ texture:t="flag_ussr_02_c*"
++ }
++ 
++ ship_flag_germany_07{
++ category:t="national"
++ unlockId:t="ship_flag_germany_07"
++ nameLocId:t="ship_flag_germany_07/name"
++ texture:t="flag_germany_07_c*"
++ }
++ 
++ ship_flag_great_britain_01{
++ category:t="national"
++ unlockId:t="ship_flag_great_britain_01"
++ nameLocId:t="ship_flag_great_britain_01/name"
++ texture:t="flag_great_britain_01_c*"
++ }
++ 
++ ship_flag_italy_04{
++ category:t="national"
++ unlockId:t="ship_flag_italy_04"
++ nameLocId:t="ship_flag_italy_04/name"
++ texture:t="flag_italy_04_c*"
++ }
++ 
++ ship_flag_france_02{
++ category:t="naval"
++ unlockId:t="ship_flag_france_02"
++ nameLocId:t="ship_flag_france_02/name"
++ descLocId:t="ship_flag_france_02/desc"
++ texture:t="flag_france_02_c*"
++ }
++ 
++ ship_flag_afganistan_01{
++ category:t="national"
++ unlockId:t="ship_flag_afganistan_01"
++ nameLocId:t="ship_flag_afganistan_01/name"
++ texture:t="flag_afganistan_01_c*"
++ }
++ 
++ ship_flag_albania_01{
++ category:t="national"
++ unlockId:t="ship_flag_albania_01"
++ nameLocId:t="ship_flag_albania_01/name"
++ texture:t="flag_albania_01_c*"
++ }
++ 
++ ship_flag_algeria_01{
++ category:t="national"
++ unlockId:t="ship_flag_algeria_01"
++ nameLocId:t="ship_flag_algeria_01/name"
++ texture:t="flag_algeria_01_c*"
++ }
++ 
++ ship_flag_andorra_01{
++ category:t="national"
++ unlockId:t="ship_flag_andorra_01"
++ nameLocId:t="ship_flag_andorra_01/name"
++ texture:t="flag_andorra_01_c*"
++ }
++ 
++ ship_flag_angola_01{
++ category:t="national"
++ unlockId:t="ship_flag_angola_01"
++ nameLocId:t="ship_flag_angola_01/name"
++ texture:t="flag_angola_01_c*"
++ }
++ 
++ ship_flag_antigua_and_barbuda_01{
++ category:t="national"
++ unlockId:t="ship_flag_antigua_and_barbuda_01"
++ nameLocId:t="ship_flag_antigua_and_barbuda_01/name"
++ texture:t="flag_antigua_and_barbuda_01_c*"
++ }
++ 
++ ship_flag_argentina_01{
++ category:t="national"
++ unlockId:t="ship_flag_argentina_01"
++ nameLocId:t="ship_flag_argentina_01/name"
++ texture:t="flag_argentina_01_c*"
++ }
++ 
++ ship_flag_armenia_01{
++ category:t="national"
++ unlockId:t="ship_flag_armenia_01"
++ nameLocId:t="ship_flag_armenia_01/name"
++ texture:t="flag_armenia_01_c*"
++ }
++ 
++ ship_flag_australia_01{
++ category:t="national"
++ unlockId:t="ship_flag_australia_01"
++ nameLocId:t="ship_flag_australia_01/name"
++ texture:t="flag_australia_01_c*"
++ }
++ 
++ ship_flag_austria_01{
++ category:t="national"
++ unlockId:t="ship_flag_austria_01"
++ nameLocId:t="ship_flag_austria_01/name"
++ texture:t="flag_austria_01_c*"
++ }
++ 
++ ship_flag_azerbadjan_01{
++ category:t="national"
++ unlockId:t="ship_flag_azerbadjan_01"
++ nameLocId:t="ship_flag_azerbadjan_01/name"
++ texture:t="flag_azerbadjan_01_c*"
++ }
++ 
++ ship_flag_bahamas_01{
++ category:t="national"
++ unlockId:t="ship_flag_bahamas_01"
++ nameLocId:t="ship_flag_bahamas_01/name"
++ texture:t="flag_bahamas_01_c*"
++ }
++ 
++ ship_flag_bahrain_01{
++ category:t="national"
++ unlockId:t="ship_flag_bahrain_01"
++ nameLocId:t="ship_flag_bahrain_01/name"
++ texture:t="flag_bahrain_01_c*"
++ }
++ 
++ ship_flag_bangladesh_01{
++ category:t="national"
++ unlockId:t="ship_flag_bangladesh_01"
++ nameLocId:t="ship_flag_bangladesh_01/name"
++ texture:t="flag_bangladesh_01_c*"
++ }
++ 
++ ship_flag_barbados_01{
++ category:t="national"
++ unlockId:t="ship_flag_barbados_01"
++ nameLocId:t="ship_flag_barbados_01/name"
++ texture:t="flag_barbados_01_c*"
++ }
++ 
++ ship_flag_belarus_01{
++ category:t="national"
++ unlockId:t="ship_flag_belarus_01"
++ nameLocId:t="ship_flag_belarus_01/name"
++ texture:t="flag_belarus_01_c*"
++ }
++ 
++ ship_flag_belgium_01{
++ category:t="national"
++ unlockId:t="ship_flag_belgium_01"
++ nameLocId:t="ship_flag_belgium_01/name"
++ texture:t="flag_belgium_01_c*"
++ }
++ 
++ ship_flag_belize_01{
++ category:t="national"
++ unlockId:t="ship_flag_belize_01"
++ nameLocId:t="ship_flag_belize_01/name"
++ texture:t="flag_belize_01_c*"
++ }
++ 
++ ship_flag_benin_01{
++ category:t="national"
++ unlockId:t="ship_flag_benin_01"
++ nameLocId:t="ship_flag_benin_01/name"
++ texture:t="flag_benin_01_c*"
++ }
++ 
++ ship_flag_bhutan_01{
++ category:t="national"
++ unlockId:t="ship_flag_bhutan_01"
++ nameLocId:t="ship_flag_bhutan_01/name"
++ texture:t="flag_bhutan_01_c*"
++ }
++ 
++ ship_flag_bolivia_01{
++ category:t="national"
++ unlockId:t="ship_flag_bolivia_01"
++ nameLocId:t="ship_flag_bolivia_01/name"
++ texture:t="flag_bolivia_01_c*"
++ }
++ 
++ ship_flag_bosnia_and_herzegovina_01{
++ category:t="national"
++ unlockId:t="ship_flag_bosnia_and_herzegovina_01"
++ nameLocId:t="ship_flag_bosnia_and_herzegovina_01/name"
++ texture:t="flag_bosnia_and_herzegovina_01_c*"
++ }
++ 
++ ship_flag_botsvana_01{
++ category:t="national"
++ unlockId:t="ship_flag_botsvana_01"
++ nameLocId:t="ship_flag_botsvana_01/name"
++ texture:t="flag_botsvana_01_c*"
++ }
++ 
++ ship_flag_brazil_01{
++ category:t="national"
++ unlockId:t="ship_flag_brazil_01"
++ nameLocId:t="ship_flag_brazil_01/name"
++ texture:t="flag_brazil_01_c*"
++ }
++ 
++ ship_flag_brunei_darussalam_01{
++ category:t="national"
++ unlockId:t="ship_flag_brunei_darussalam_01"
++ nameLocId:t="ship_flag_brunei_darussalam_01/name"
++ texture:t="flag_brunei_darussalam_01_c*"
++ }
++ 
++ ship_flag_bulgaria_01{
++ category:t="national"
++ unlockId:t="ship_flag_bulgaria_01"
++ nameLocId:t="ship_flag_bulgaria_01/name"
++ texture:t="flag_bulgaria_01_c*"
++ }
++ 
++ ship_flag_burkina_faso_01{
++ category:t="national"
++ unlockId:t="ship_flag_burkina_faso_01"
++ nameLocId:t="ship_flag_burkina_faso_01/name"
++ texture:t="flag_burkina_faso_01_c*"
++ }
++ 
++ ship_flag_burundi_01{
++ category:t="national"
++ unlockId:t="ship_flag_burundi_01"
++ nameLocId:t="ship_flag_burundi_01/name"
++ texture:t="flag_burundi_01_c*"
++ }
++ 
++ ship_flag_cabo_verde_01{
++ category:t="national"
++ unlockId:t="ship_flag_cabo_verde_01"
++ nameLocId:t="ship_flag_cabo_verde_01/name"
++ texture:t="flag_cabo_verde_01_c*"
++ }
++ 
++ ship_flag_cambodia_01{
++ category:t="national"
++ unlockId:t="ship_flag_cambodia_01"
++ nameLocId:t="ship_flag_cambodia_01/name"
++ texture:t="flag_cambodia_01_c*"
++ }
++ 
++ ship_flag_cameroon_01{
++ category:t="national"
++ unlockId:t="ship_flag_cameroon_01"
++ nameLocId:t="ship_flag_cameroon_01/name"
++ texture:t="flag_cameroon_01_c*"
++ }
++ 
++ ship_flag_canada_01{
++ category:t="national"
++ unlockId:t="ship_flag_canada_01"
++ nameLocId:t="ship_flag_canada_01/name"
++ texture:t="flag_canada_01_c*"
++ }
++ 
++ ship_flag_central_african_republic_01{
++ category:t="national"
++ unlockId:t="ship_flag_central_african_republic_01"
++ nameLocId:t="ship_flag_central_african_republic_01/name"
++ texture:t="flag_central_african_republic_01_c*"
++ }
++ 
++ ship_flag_chad_01{
++ category:t="national"
++ unlockId:t="ship_flag_chad_01"
++ nameLocId:t="ship_flag_chad_01/name"
++ texture:t="flag_chad_01_c*"
++ }
++ 
++ ship_flag_chile_01{
++ category:t="national"
++ unlockId:t="ship_flag_chile_01"
++ nameLocId:t="ship_flag_chile_01/name"
++ texture:t="flag_chile_01_c*"
++ }
++ 
++ ship_flag_colombia_01{
++ category:t="national"
++ unlockId:t="ship_flag_colombia_01"
++ nameLocId:t="ship_flag_colombia_01/name"
++ texture:t="flag_colombia_01_c*"
++ }
++ 
++ ship_flag_comoros_01{
++ category:t="national"
++ unlockId:t="ship_flag_comoros_01"
++ nameLocId:t="ship_flag_comoros_01/name"
++ texture:t="flag_comoros_01_c*"
++ }
++ 
++ ship_flag_congo_01{
++ category:t="national"
++ unlockId:t="ship_flag_congo_01"
++ nameLocId:t="ship_flag_congo_01/name"
++ texture:t="flag_congo_01_c*"
++ }
++ 
++ ship_flag_costa_rica_01{
++ category:t="national"
++ unlockId:t="ship_flag_costa_rica_01"
++ nameLocId:t="ship_flag_costa_rica_01/name"
++ texture:t="flag_costa_rica_01_c*"
++ }
++ 
++ ship_flag_cote_divoire_01{
++ category:t="national"
++ unlockId:t="ship_flag_cote_divoire_01"
++ nameLocId:t="ship_flag_cote_divoire_01/name"
++ texture:t="flag_cote_divoire_01_c*"
++ }
++ 
++ ship_flag_croatia_01{
++ category:t="national"
++ unlockId:t="ship_flag_croatia_01"
++ nameLocId:t="ship_flag_croatia_01/name"
++ texture:t="flag_croatia_01_c*"
++ }
++ 
++ ship_flag_cuba_01{
++ category:t="national"
++ unlockId:t="ship_flag_cuba_01"
++ nameLocId:t="ship_flag_cuba_01/name"
++ texture:t="flag_cuba_01_c*"
++ }
++ 
++ ship_flag_cyprus_01{
++ category:t="national"
++ unlockId:t="ship_flag_cyprus_01"
++ nameLocId:t="ship_flag_cyprus_01/name"
++ texture:t="flag_cyprus_01_c*"
++ }
++ 
++ ship_flag_czech_republic_01{
++ category:t="national"
++ unlockId:t="ship_flag_czech_republic_01"
++ nameLocId:t="ship_flag_czech_republic_01/name"
++ texture:t="flag_czech_republic_01_c*"
++ }
++ 
++ ship_flag_democratic_peoples_republic_of_korea_01{
++ category:t="national"
++ unlockId:t="ship_flag_democratic_peoples_republic_of_korea_01"
++ nameLocId:t="ship_flag_democratic_peoples_republic_of_korea_01/name"
++ texture:t="flag_democratic_peoples_republic_of_korea_01_c*"
++ }
++ 
++ ship_flag_democratic_republic_of_the_congo_01{
++ category:t="national"
++ unlockId:t="ship_flag_democratic_republic_of_the_congo_01"
++ nameLocId:t="ship_flag_democratic_republic_of_the_congo_01/name"
++ texture:t="flag_democratic_republic_of_the_congo_01_c*"
++ }
++ 
++ ship_flag_denmark_01{
++ category:t="national"
++ unlockId:t="ship_flag_denmark_01"
++ nameLocId:t="ship_flag_denmark_01/name"
++ texture:t="flag_denmark_01_c*"
++ }
++ 
++ ship_flag_djibouti_01{
++ category:t="national"
++ unlockId:t="ship_flag_djibouti_01"
++ nameLocId:t="ship_flag_djibouti_01/name"
++ texture:t="flag_djibouti_01_c*"
++ }
++ 
++ ship_flag_dominica_01{
++ category:t="national"
++ unlockId:t="ship_flag_dominica_01"
++ nameLocId:t="ship_flag_dominica_01/name"
++ texture:t="flag_dominica_01_c*"
++ }
++ 
++ ship_flag_dominican_republic_01{
++ category:t="national"
++ unlockId:t="ship_flag_dominican_republic_01"
++ nameLocId:t="ship_flag_dominican_republic_01/name"
++ texture:t="flag_dominican_republic_01_c*"
++ }
++ 
++ ship_flag_ecuador_01{
++ category:t="national"
++ unlockId:t="ship_flag_ecuador_01"
++ nameLocId:t="ship_flag_ecuador_01/name"
++ texture:t="flag_ecuador_01_c*"
++ }
++ 
++ ship_flag_egypt_02{
++ category:t="national"
++ unlockId:t="ship_flag_egypt_02"
++ nameLocId:t="ship_flag_egypt_02/name"
++ texture:t="flag_egypt_02_c*"
++ }
++ 
++ ship_flag_el_salvador_01{
++ category:t="national"
++ unlockId:t="ship_flag_el_salvador_01"
++ nameLocId:t="ship_flag_el_salvador_01/name"
++ texture:t="flag_el_salvador_01_c*"
++ }
++ 
++ ship_flag_england_01{
++ category:t="national"
++ unlockId:t="ship_flag_england_01"
++ nameLocId:t="ship_flag_england_01/name"
++ texture:t="flag_england_01_c*"
++ }
++ 
++ ship_flag_equatorial_guinea_01{
++ category:t="national"
++ unlockId:t="ship_flag_equatorial_guinea_01"
++ nameLocId:t="ship_flag_equatorial_guinea_01/name"
++ texture:t="flag_equatorial_guinea_01_c*"
++ }
++ 
++ ship_flag_eritrea_01{
++ category:t="national"
++ unlockId:t="ship_flag_eritrea_01"
++ nameLocId:t="ship_flag_eritrea_01/name"
++ texture:t="flag_eritrea_01_c*"
++ }
++ 
++ ship_flag_estonia_01{
++ category:t="national"
++ unlockId:t="ship_flag_estonia_01"
++ nameLocId:t="ship_flag_estonia_01/name"
++ texture:t="flag_estonia_01_c*"
++ }
++ 
++ ship_flag_ethiopia_01{
++ category:t="national"
++ unlockId:t="ship_flag_ethiopia_01"
++ nameLocId:t="ship_flag_ethiopia_01/name"
++ texture:t="flag_ethiopia_01_c*"
++ }
++ 
++ ship_flag_federated_states_of_micronesia_01{
++ category:t="national"
++ unlockId:t="ship_flag_federated_states_of_micronesia_01"
++ nameLocId:t="ship_flag_federated_states_of_micronesia_01/name"
++ texture:t="flag_federated_states_of_micronesia_01_c*"
++ }
++ 
++ ship_flag_fiji_01{
++ category:t="national"
++ unlockId:t="ship_flag_fiji_01"
++ nameLocId:t="ship_flag_fiji_01/name"
++ texture:t="flag_fiji_01_c*"
++ }
++ 
++ ship_flag_finland_01{
++ category:t="national"
++ unlockId:t="ship_flag_finland_01"
++ nameLocId:t="ship_flag_finland_01/name"
++ texture:t="flag_finland_01_c*"
++ }
++ 
++ ship_flag_gabon_01{
++ category:t="national"
++ unlockId:t="ship_flag_gabon_01"
++ nameLocId:t="ship_flag_gabon_01/name"
++ texture:t="flag_gabon_01_c*"
++ }
++ 
++ ship_flag_gambia_01{
++ category:t="national"
++ unlockId:t="ship_flag_gambia_01"
++ nameLocId:t="ship_flag_gambia_01/name"
++ texture:t="flag_gambia_01_c*"
++ }
++ 
++ ship_flag_georgia_01{
++ category:t="national"
++ unlockId:t="ship_flag_georgia_01"
++ nameLocId:t="ship_flag_georgia_01/name"
++ texture:t="flag_georgia_01_c*"
++ }
++ 
++ ship_flag_ghana_01{
++ category:t="national"
++ unlockId:t="ship_flag_ghana_01"
++ nameLocId:t="ship_flag_ghana_01/name"
++ texture:t="flag_ghana_01_c*"
++ }
++ 
++ ship_flag_greece_01{
++ category:t="national"
++ unlockId:t="ship_flag_greece_01"
++ nameLocId:t="ship_flag_greece_01/name"
++ texture:t="flag_greece_01_c*"
++ }
++ 
++ ship_flag_grenada_01{
++ category:t="national"
++ unlockId:t="ship_flag_grenada_01"
++ nameLocId:t="ship_flag_grenada_01/name"
++ texture:t="flag_grenada_01_c*"
++ }
++ 
++ ship_flag_guatemala_01{
++ category:t="national"
++ unlockId:t="ship_flag_guatemala_01"
++ nameLocId:t="ship_flag_guatemala_01/name"
++ texture:t="flag_guatemala_01_c*"
++ }
++ 
++ ship_flag_guinea_01{
++ category:t="national"
++ unlockId:t="ship_flag_guinea_01"
++ nameLocId:t="ship_flag_guinea_01/name"
++ texture:t="flag_guinea_01_c*"
++ }
++ 
++ ship_flag_guinea_bissau_01{
++ category:t="national"
++ unlockId:t="ship_flag_guinea_bissau_01"
++ nameLocId:t="ship_flag_guinea_bissau_01/name"
++ texture:t="flag_guinea_bissau_01_c*"
++ }
++ 
++ ship_flag_guyana_01{
++ category:t="national"
++ unlockId:t="ship_flag_guyana_01"
++ nameLocId:t="ship_flag_guyana_01/name"
++ texture:t="flag_guyana_01_c*"
++ }
++ 
++ ship_flag_haiti_01{
++ category:t="national"
++ unlockId:t="ship_flag_haiti_01"
++ nameLocId:t="ship_flag_haiti_01/name"
++ texture:t="flag_haiti_01_c*"
++ }
++ 
++ ship_flag_honduras_01{
++ category:t="national"
++ unlockId:t="ship_flag_honduras_01"
++ nameLocId:t="ship_flag_honduras_01/name"
++ texture:t="flag_honduras_01_c*"
++ }
++ 
++ ship_flag_hungary_01{
++ category:t="national"
++ unlockId:t="ship_flag_hungary_01"
++ nameLocId:t="ship_flag_hungary_01/name"
++ texture:t="flag_hungary_01_c*"
++ }
++ 
++ ship_flag_iceland_01{
++ category:t="national"
++ unlockId:t="ship_flag_iceland_01"
++ nameLocId:t="ship_flag_iceland_01/name"
++ texture:t="flag_iceland_01_c*"
++ }
++ 
++ ship_flag_india_01{
++ category:t="national"
++ unlockId:t="ship_flag_india_01"
++ nameLocId:t="ship_flag_india_01/name"
++ texture:t="flag_india_01_c*"
++ }
++ 
++ ship_flag_indonesia_01{
++ category:t="national"
++ unlockId:t="ship_flag_indonesia_01"
++ nameLocId:t="ship_flag_indonesia_01/name"
++ texture:t="flag_indonesia_01_c*"
++ }
++ 
++ ship_flag_iran_01{
++ category:t="national"
++ unlockId:t="ship_flag_iran_01"
++ nameLocId:t="ship_flag_iran_01/name"
++ texture:t="flag_iran_01_c*"
++ }
++ 
++ ship_flag_iraq_01{
++ category:t="national"
++ unlockId:t="ship_flag_iraq_01"
++ nameLocId:t="ship_flag_iraq_01/name"
++ texture:t="flag_iraq_01_c*"
++ }
++ 
++ ship_flag_israel_01{
++ category:t="national"
++ unlockId:t="ship_flag_israel_01"
++ nameLocId:t="ship_flag_israel_01/name"
++ texture:t="flag_israel_01_c*"
++ }
++ 
++ ship_flag_jamaica_01{
++ category:t="national"
++ unlockId:t="ship_flag_jamaica_01"
++ nameLocId:t="ship_flag_jamaica_01/name"
++ texture:t="flag_jamaica_01_c*"
++ }
++ 
++ ship_flag_jordan_01{
++ category:t="national"
++ unlockId:t="ship_flag_jordan_01"
++ nameLocId:t="ship_flag_jordan_01/name"
++ texture:t="flag_jordan_01_c*"
++ }
++ 
++ ship_flag_kazahkstan_01{
++ category:t="national"
++ unlockId:t="ship_flag_kazahkstan_01"
++ nameLocId:t="ship_flag_kazahkstan_01/name"
++ texture:t="flag_kazahkstan_01_c*"
++ }
++ 
++ ship_flag_kenya_01{
++ category:t="national"
++ unlockId:t="ship_flag_kenya_01"
++ nameLocId:t="ship_flag_kenya_01/name"
++ texture:t="flag_kenya_01_c*"
++ }
++ 
++ ship_flag_kiribati_01{
++ category:t="national"
++ unlockId:t="ship_flag_kiribati_01"
++ nameLocId:t="ship_flag_kiribati_01/name"
++ texture:t="flag_kiribati_01_c*"
++ }
++ 
++ ship_flag_kuwait_01{
++ category:t="national"
++ unlockId:t="ship_flag_kuwait_01"
++ nameLocId:t="ship_flag_kuwait_01/name"
++ texture:t="flag_kuwait_01_c*"
++ }
++ 
++ ship_flag_kyrgyzstan_01{
++ category:t="national"
++ unlockId:t="ship_flag_kyrgyzstan_01"
++ nameLocId:t="ship_flag_kyrgyzstan_01/name"
++ texture:t="flag_kyrgyzstan_01_c*"
++ }
++ 
++ ship_flag_lao_peoples_democratic_republic_01{
++ category:t="national"
++ unlockId:t="ship_flag_lao_peoples_democratic_republic_01"
++ nameLocId:t="ship_flag_lao_peoples_democratic_republic_01/name"
++ texture:t="flag_lao_peoples_democratic_republic_01_c*"
++ }
++ 
++ ship_flag_latvia_01{
++ category:t="national"
++ unlockId:t="ship_flag_latvia_01"
++ nameLocId:t="ship_flag_latvia_01/name"
++ texture:t="flag_latvia_01_c*"
++ }
++ 
++ ship_flag_lebanon_01{
++ category:t="national"
++ unlockId:t="ship_flag_lebanon_01"
++ nameLocId:t="ship_flag_lebanon_01/name"
++ texture:t="flag_lebanon_01_c*"
++ }
++ 
++ ship_flag_lesotho_01{
++ category:t="national"
++ unlockId:t="ship_flag_lesotho_01"
++ nameLocId:t="ship_flag_lesotho_01/name"
++ texture:t="flag_lesotho_01_c*"
++ }
++ 
++ ship_flag_liberia_01{
++ category:t="national"
++ unlockId:t="ship_flag_liberia_01"
++ nameLocId:t="ship_flag_liberia_01/name"
++ texture:t="flag_liberia_01_c*"
++ }
++ 
++ ship_flag_libya_01{
++ category:t="national"
++ unlockId:t="ship_flag_libya_01"
++ nameLocId:t="ship_flag_libya_01/name"
++ texture:t="flag_libya_01_c*"
++ }
++ 
++ ship_flag_liechtenstein_01{
++ category:t="national"
++ unlockId:t="ship_flag_liechtenstein_01"
++ nameLocId:t="ship_flag_liechtenstein_01/name"
++ texture:t="flag_liechtenstein_01_c*"
++ }
++ 
++ ship_flag_lithuania_01{
++ category:t="national"
++ unlockId:t="ship_flag_lithuania_01"
++ nameLocId:t="ship_flag_lithuania_01/name"
++ texture:t="flag_lithuania_01_c*"
++ }
++ 
++ ship_flag_luxembourg_01{
++ category:t="national"
++ unlockId:t="ship_flag_luxembourg_01"
++ nameLocId:t="ship_flag_luxembourg_01/name"
++ texture:t="flag_luxembourg_01_c*"
++ }
++ 
++ ship_flag_macedonia_01{
++ category:t="national"
++ unlockId:t="ship_flag_macedonia_01"
++ nameLocId:t="ship_flag_macedonia_01/name"
++ texture:t="flag_macedonia_01_c*"
++ }
++ 
++ ship_flag_madagaskar_01{
++ category:t="national"
++ unlockId:t="ship_flag_madagaskar_01"
++ nameLocId:t="ship_flag_madagaskar_01/name"
++ texture:t="flag_madagaskar_01_c*"
++ }
++ 
++ ship_flag_malawi_01{
++ category:t="national"
++ unlockId:t="ship_flag_malawi_01"
++ nameLocId:t="ship_flag_malawi_01/name"
++ texture:t="flag_malawi_01_c*"
++ }
++ 
++ ship_flag_malaysia_01{
++ category:t="national"
++ unlockId:t="ship_flag_malaysia_01"
++ nameLocId:t="ship_flag_malaysia_01/name"
++ texture:t="flag_malaysia_01_c*"
++ }
++ 
++ ship_flag_maldives_01{
++ category:t="national"
++ unlockId:t="ship_flag_maldives_01"
++ nameLocId:t="ship_flag_maldives_01/name"
++ texture:t="flag_maldives_01_c*"
++ }
++ 
++ ship_flag_mali_01{
++ category:t="national"
++ unlockId:t="ship_flag_mali_01"
++ nameLocId:t="ship_flag_mali_01/name"
++ texture:t="flag_mali_01_c*"
++ }
++ 
++ ship_flag_malta_01{
++ category:t="national"
++ unlockId:t="ship_flag_malta_01"
++ nameLocId:t="ship_flag_malta_01/name"
++ texture:t="flag_malta_01_c*"
++ }
++ 
++ ship_flag_marshall_islands_01{
++ category:t="national"
++ unlockId:t="ship_flag_marshall_islands_01"
++ nameLocId:t="ship_flag_marshall_islands_01/name"
++ texture:t="flag_marshall_islands_01_c*"
++ }
++ 
++ ship_flag_mauritania_01{
++ category:t="national"
++ unlockId:t="ship_flag_mauritania_01"
++ nameLocId:t="ship_flag_mauritania_01/name"
++ texture:t="flag_mauritania_01_c*"
++ }
++ 
++ ship_flag_mauritius_01{
++ category:t="national"
++ unlockId:t="ship_flag_mauritius_01"
++ nameLocId:t="ship_flag_mauritius_01/name"
++ texture:t="flag_mauritius_01_c*"
++ }
++ 
++ ship_flag_mexico_01{
++ category:t="national"
++ unlockId:t="ship_flag_mexico_01"
++ nameLocId:t="ship_flag_mexico_01/name"
++ texture:t="flag_mexico_01_c*"
++ }
++ 
++ ship_flag_monaco_01{
++ category:t="national"
++ unlockId:t="ship_flag_monaco_01"
++ nameLocId:t="ship_flag_monaco_01/name"
++ texture:t="flag_monaco_01_c*"
++ }
++ 
++ ship_flag_mongolia_01{
++ category:t="national"
++ unlockId:t="ship_flag_mongolia_01"
++ nameLocId:t="ship_flag_mongolia_01/name"
++ texture:t="flag_mongolia_01_c*"
++ }
++ 
++ ship_flag_montenegro_01{
++ category:t="national"
++ unlockId:t="ship_flag_montenegro_01"
++ nameLocId:t="ship_flag_montenegro_01/name"
++ texture:t="flag_montenegro_01_c*"
++ }
++ 
++ ship_flag_morocco_01{
++ category:t="national"
++ unlockId:t="ship_flag_morocco_01"
++ nameLocId:t="ship_flag_morocco_01/name"
++ texture:t="flag_morocco_01_c*"
++ }
++ 
++ ship_flag_mozambique_01{
++ category:t="national"
++ unlockId:t="ship_flag_mozambique_01"
++ nameLocId:t="ship_flag_mozambique_01/name"
++ texture:t="flag_mozambique_01_c*"
++ }
++ 
++ ship_flag_myanmar_01{
++ category:t="national"
++ unlockId:t="ship_flag_myanmar_01"
++ nameLocId:t="ship_flag_myanmar_01/name"
++ texture:t="flag_myanmar_01_c*"
++ }
++ 
++ ship_flag_namibia_01{
++ category:t="national"
++ unlockId:t="ship_flag_namibia_01"
++ nameLocId:t="ship_flag_namibia_01/name"
++ texture:t="flag_namibia_01_c*"
++ }
++ 
++ ship_flag_nauru_01{
++ category:t="national"
++ unlockId:t="ship_flag_nauru_01"
++ nameLocId:t="ship_flag_nauru_01/name"
++ texture:t="flag_nauru_01_c*"
++ }
++ 
++ ship_flag_nepal_01{
++ category:t="national"
++ unlockId:t="ship_flag_nepal_01"
++ nameLocId:t="ship_flag_nepal_01/name"
++ texture:t="flag_nepal_01_c*"
++ }
++ 
++ ship_flag_netherlands_01{
++ category:t="national"
++ unlockId:t="ship_flag_netherlands_01"
++ nameLocId:t="ship_flag_netherlands_01/name"
++ texture:t="flag_netherlands_01_c*"
++ }
++ 
++ ship_flag_new_zealand_01{
++ category:t="national"
++ unlockId:t="ship_flag_new_zealand_01"
++ nameLocId:t="ship_flag_new_zealand_01/name"
++ texture:t="flag_new_zealand_01_c*"
++ }
++ 
++ ship_flag_nicaragua_01{
++ category:t="national"
++ unlockId:t="ship_flag_nicaragua_01"
++ nameLocId:t="ship_flag_nicaragua_01/name"
++ texture:t="flag_nicaragua_01_c*"
++ }
++ 
++ ship_flag_niger_01{
++ category:t="national"
++ unlockId:t="ship_flag_niger_01"
++ nameLocId:t="ship_flag_niger_01/name"
++ texture:t="flag_niger_01_c*"
++ }
++ 
++ ship_flag_nigeria_01{
++ category:t="national"
++ unlockId:t="ship_flag_nigeria_01"
++ nameLocId:t="ship_flag_nigeria_01/name"
++ texture:t="flag_nigeria_01_c*"
++ }
++ 
++ ship_flag_norway_01{
++ category:t="national"
++ unlockId:t="ship_flag_norway_01"
++ nameLocId:t="ship_flag_norway_01/name"
++ texture:t="flag_norway_01_c*"
++ }
++ 
++ ship_flag_oman_01{
++ category:t="national"
++ unlockId:t="ship_flag_oman_01"
++ nameLocId:t="ship_flag_oman_01/name"
++ texture:t="flag_oman_01_c*"
++ }
++ 
++ ship_flag_pakistan_01{
++ category:t="national"
++ unlockId:t="ship_flag_pakistan_01"
++ nameLocId:t="ship_flag_pakistan_01/name"
++ texture:t="flag_pakistan_01_c*"
++ }
++ 
++ ship_flag_palau_01{
++ category:t="national"
++ unlockId:t="ship_flag_palau_01"
++ nameLocId:t="ship_flag_palau_01/name"
++ texture:t="flag_palau_01_c*"
++ }
++ 
++ ship_flag_panama_01{
++ category:t="national"
++ unlockId:t="ship_flag_panama_01"
++ nameLocId:t="ship_flag_panama_01/name"
++ texture:t="flag_panama_01_c*"
++ }
++ 
++ ship_flag_papua_new_guinea_01{
++ category:t="national"
++ unlockId:t="ship_flag_papua_new_guinea_01"
++ nameLocId:t="ship_flag_papua_new_guinea_01/name"
++ texture:t="flag_papua_new_guinea_01_c*"
++ }
++ 
++ ship_flag_paraguay_01{
++ category:t="national"
++ unlockId:t="ship_flag_paraguay_01"
++ nameLocId:t="ship_flag_paraguay_01/name"
++ texture:t="flag_paraguay_01_c*"
++ }
++ 
++ ship_flag_peru_01{
++ category:t="national"
++ unlockId:t="ship_flag_peru_01"
++ nameLocId:t="ship_flag_peru_01/name"
++ texture:t="flag_peru_01_c*"
++ }
++ 
++ ship_flag_philippines_01{
++ category:t="national"
++ unlockId:t="ship_flag_philippines_01"
++ nameLocId:t="ship_flag_philippines_01/name"
++ texture:t="flag_philippines_01_c*"
++ }
++ 
++ ship_flag_poland_02{
++ category:t="national"
++ unlockId:t="ship_flag_poland_02"
++ nameLocId:t="ship_flag_poland_02/name"
++ texture:t="flag_poland_02_c*"
++ }
++ 
++ ship_flag_portugal_01{
++ category:t="national"
++ unlockId:t="ship_flag_portugal_01"
++ nameLocId:t="ship_flag_portugal_01/name"
++ texture:t="flag_portugal_01_c*"
++ }
++ 
++ ship_flag_qatar_01{
++ category:t="national"
++ unlockId:t="ship_flag_qatar_01"
++ nameLocId:t="ship_flag_qatar_01/name"
++ texture:t="flag_qatar_01_c*"
++ }
++ 
++ ship_flag_republic_of_korea_01{
++ category:t="national"
++ unlockId:t="ship_flag_republic_of_korea_01"
++ nameLocId:t="ship_flag_republic_of_korea_01/name"
++ texture:t="flag_republic_of_korea_01_c*"
++ }
++ 
++ ship_flag_republic_of_moldova_01{
++ category:t="national"
++ unlockId:t="ship_flag_republic_of_moldova_01"
++ nameLocId:t="ship_flag_republic_of_moldova_01/name"
++ texture:t="flag_republic_of_moldova_01_c*"
++ }
++ 
++ ship_flag_romania_01{
++ category:t="national"
++ unlockId:t="ship_flag_romania_01"
++ nameLocId:t="ship_flag_romania_01/name"
++ texture:t="flag_romania_01_c*"
++ }
++ 
++ ship_flag_russian_federation_01{
++ category:t="national"
++ unlockId:t="ship_flag_russian_federation_01"
++ nameLocId:t="ship_flag_russian_federation_01/name"
++ texture:t="flag_russian_federation_01_c*"
++ }
++ 
++ ship_flag_rwanda_01{
++ category:t="national"
++ unlockId:t="ship_flag_rwanda_01"
++ nameLocId:t="ship_flag_rwanda_01/name"
++ texture:t="flag_rwanda_01_c*"
++ }
++ 
++ ship_flag_saint_kitts_and_nevis_01{
++ category:t="national"
++ unlockId:t="ship_flag_saint_kitts_and_nevis_01"
++ nameLocId:t="ship_flag_saint_kitts_and_nevis_01/name"
++ texture:t="flag_saint_kitts_and_nevis_01_c*"
++ }
++ 
++ ship_flag_saint_lucia_01{
++ category:t="national"
++ unlockId:t="ship_flag_saint_lucia_01"
++ nameLocId:t="ship_flag_saint_lucia_01/name"
++ texture:t="flag_saint_lucia_01_c*"
++ }
++ 
++ ship_flag_saint_vincent_and_the_grenadines_01{
++ category:t="national"
++ unlockId:t="ship_flag_saint_vincent_and_the_grenadines_01"
++ nameLocId:t="ship_flag_saint_vincent_and_the_grenadines_01/name"
++ texture:t="flag_saint_vincent_and_the_grenadines_01_c*"
++ }
++ 
++ ship_flag_samoa_01{
++ category:t="national"
++ unlockId:t="ship_flag_samoa_01"
++ nameLocId:t="ship_flag_samoa_01/name"
++ texture:t="flag_samoa_01_c*"
++ }
++ 
++ ship_flag_san_marino_01{
++ category:t="national"
++ unlockId:t="ship_flag_san_marino_01"
++ nameLocId:t="ship_flag_san_marino_01/name"
++ texture:t="flag_san_marino_01_c*"
++ }
++ 
++ ship_flag_sao_tome_and_principe_01{
++ category:t="national"
++ unlockId:t="ship_flag_sao_tome_and_principe_01"
++ nameLocId:t="ship_flag_sao_tome_and_principe_01/name"
++ texture:t="flag_sao_tome_and_principe_01_c*"
++ }
++ 
++ ship_flag_saudi_arabia_01{
++ category:t="national"
++ unlockId:t="ship_flag_saudi_arabia_01"
++ nameLocId:t="ship_flag_saudi_arabia_01/name"
++ texture:t="flag_saudi_arabia_01_c*"
++ }
++ 
++ ship_flag_scotland_01{
++ category:t="national"
++ unlockId:t="ship_flag_scotland_01"
++ nameLocId:t="ship_flag_scotland_01/name"
++ texture:t="flag_scotland_01_c*"
++ }
++ 
++ ship_flag_senegal_01{
++ category:t="national"
++ unlockId:t="ship_flag_senegal_01"
++ nameLocId:t="ship_flag_senegal_01/name"
++ texture:t="flag_senegal_01_c*"
++ }
++ 
++ ship_flag_serbia_01{
++ category:t="national"
++ unlockId:t="ship_flag_serbia_01"
++ nameLocId:t="ship_flag_serbia_01/name"
++ texture:t="flag_serbia_01_c*"
++ }
++ 
++ ship_flag_seychelles_01{
++ category:t="national"
++ unlockId:t="ship_flag_seychelles_01"
++ nameLocId:t="ship_flag_seychelles_01/name"
++ texture:t="flag_seychelles_01_c*"
++ }
++ 
++ ship_flag_sierra_leone_01{
++ category:t="national"
++ unlockId:t="ship_flag_sierra_leone_01"
++ nameLocId:t="ship_flag_sierra_leone_01/name"
++ texture:t="flag_sierra_leone_01_c*"
++ }
++ 
++ ship_flag_singapore_01{
++ category:t="national"
++ unlockId:t="ship_flag_singapore_01"
++ nameLocId:t="ship_flag_singapore_01/name"
++ texture:t="flag_singapore_01_c*"
++ }
++ 
++ ship_flag_slovakia_01{
++ category:t="national"
++ unlockId:t="ship_flag_slovakia_01"
++ nameLocId:t="ship_flag_slovakia_01/name"
++ texture:t="flag_slovakia_01_c*"
++ }
++ 
++ ship_flag_slovenia_01{
++ category:t="national"
++ unlockId:t="ship_flag_slovenia_01"
++ nameLocId:t="ship_flag_slovenia_01/name"
++ texture:t="flag_slovenia_01_c*"
++ }
++ 
++ ship_flag_solomon_islands_01{
++ category:t="national"
++ unlockId:t="ship_flag_solomon_islands_01"
++ nameLocId:t="ship_flag_solomon_islands_01/name"
++ texture:t="flag_solomon_islands_01_c*"
++ }
++ 
++ ship_flag_somalia_01{
++ category:t="national"
++ unlockId:t="ship_flag_somalia_01"
++ nameLocId:t="ship_flag_somalia_01/name"
++ texture:t="flag_somalia_01_c*"
++ }
++ 
++ ship_flag_south_africa_01{
++ category:t="national"
++ unlockId:t="ship_flag_south_africa_01"
++ nameLocId:t="ship_flag_south_africa_01/name"
++ texture:t="flag_south_africa_01_c*"
++ }
++ 
++ ship_flag_south_sudan_01{
++ category:t="national"
++ unlockId:t="ship_flag_south_sudan_01"
++ nameLocId:t="ship_flag_south_sudan_01/name"
++ texture:t="flag_south_sudan_01_c*"
++ }
++ 
++ ship_flag_spain_01{
++ category:t="national"
++ unlockId:t="ship_flag_spain_01"
++ nameLocId:t="ship_flag_spain_01/name"
++ texture:t="flag_spain_01_c*"
++ }
++ 
++ ship_flag_sri_lanka_01{
++ category:t="national"
++ unlockId:t="ship_flag_sri_lanka_01"
++ nameLocId:t="ship_flag_sri_lanka_01/name"
++ texture:t="flag_sri_lanka_01_c*"
++ }
++ 
++ ship_flag_sudan_01{
++ category:t="national"
++ unlockId:t="ship_flag_sudan_01"
++ nameLocId:t="ship_flag_sudan_01/name"
++ texture:t="flag_sudan_01_c*"
++ }
++ 
++ ship_flag_suriname_01{
++ category:t="national"
++ unlockId:t="ship_flag_suriname_01"
++ nameLocId:t="ship_flag_suriname_01/name"
++ texture:t="flag_suriname_01_c*"
++ }
++ 
++ ship_flag_swaziland_01{
++ category:t="national"
++ unlockId:t="ship_flag_swaziland_01"
++ nameLocId:t="ship_flag_swaziland_01/name"
++ texture:t="flag_swaziland_01_c*"
++ }
++ 
++ ship_flag_sweden_01{
++ category:t="national"
++ unlockId:t="ship_flag_sweden_01"
++ nameLocId:t="ship_flag_sweden_01/name"
++ texture:t="flag_sweden_01_c*"
++ }
++ 
++ ship_flag_switzerland_01{
++ category:t="national"
++ unlockId:t="ship_flag_switzerland_01"
++ nameLocId:t="ship_flag_switzerland_01/name"
++ texture:t="flag_switzerland_01_c*"
++ }
++ 
++ ship_flag_syrian_arab_republic_01{
++ category:t="national"
++ unlockId:t="ship_flag_syrian_arab_republic_01"
++ nameLocId:t="ship_flag_syrian_arab_republic_01/name"
++ texture:t="flag_syrian_arab_republic_01_c*"
++ }
++ 
++ ship_flag_taiwan_01{
++ category:t="national"
++ unlockId:t="ship_flag_taiwan_01"
++ nameLocId:t="ship_flag_taiwan_01/name"
++ texture:t="flag_taiwan_01_c*"
++ }
++ 
++ ship_flag_tajikistan_01{
++ category:t="national"
++ unlockId:t="ship_flag_tajikistan_01"
++ nameLocId:t="ship_flag_tajikistan_01/name"
++ texture:t="flag_tajikistan_01_c*"
++ }
++ 
++ ship_flag_thailand_01{
++ category:t="national"
++ unlockId:t="ship_flag_thailand_01"
++ nameLocId:t="ship_flag_thailand_01/name"
++ texture:t="flag_thailand_01_c*"
++ }
++ 
++ ship_flag_timor_leste_01{
++ category:t="national"
++ unlockId:t="ship_flag_timor_leste_01"
++ nameLocId:t="ship_flag_timor_leste_01/name"
++ texture:t="flag_timor_leste_01_c*"
++ }
++ 
++ ship_flag_togo_01{
++ category:t="national"
++ unlockId:t="ship_flag_togo_01"
++ nameLocId:t="ship_flag_togo_01/name"
++ texture:t="flag_togo_01_c*"
++ }
++ 
++ ship_flag_tonga_01{
++ category:t="national"
++ unlockId:t="ship_flag_tonga_01"
++ nameLocId:t="ship_flag_tonga_01/name"
++ texture:t="flag_tonga_01_c*"
++ }
++ 
++ ship_flag_trinidad_and_tobago_01{
++ category:t="national"
++ unlockId:t="ship_flag_trinidad_and_tobago_01"
++ nameLocId:t="ship_flag_trinidad_and_tobago_01/name"
++ texture:t="flag_trinidad_and_tobago_01_c*"
++ }
++ 
++ ship_flag_tunisia_01{
++ category:t="national"
++ unlockId:t="ship_flag_tunisia_01"
++ nameLocId:t="ship_flag_tunisia_01/name"
++ texture:t="flag_tunisia_01_c*"
++ }
++ 
++ ship_flag_turkey_01{
++ category:t="national"
++ unlockId:t="ship_flag_turkey_01"
++ nameLocId:t="ship_flag_turkey_01/name"
++ texture:t="flag_turkey_01_c*"
++ }
++ 
++ ship_flag_turkmenistan_01{
++ category:t="national"
++ unlockId:t="ship_flag_turkmenistan_01"
++ nameLocId:t="ship_flag_turkmenistan_01/name"
++ texture:t="flag_turkmenistan_01_c*"
++ }
++ 
++ ship_flag_tuvalu_01{
++ category:t="national"
++ unlockId:t="ship_flag_tuvalu_01"
++ nameLocId:t="ship_flag_tuvalu_01/name"
++ texture:t="flag_tuvalu_01_c*"
++ }
++ 
++ ship_flag_uae_01{
++ category:t="national"
++ unlockId:t="ship_flag_uae_01"
++ nameLocId:t="ship_flag_uae_01/name"
++ texture:t="flag_uae_01_c*"
++ }
++ 
++ ship_flag_uganda_01{
++ category:t="national"
++ unlockId:t="ship_flag_uganda_01"
++ nameLocId:t="ship_flag_uganda_01/name"
++ texture:t="flag_uganda_01_c*"
++ }
++ 
++ ship_flag_ukraine_01{
++ category:t="national"
++ unlockId:t="ship_flag_ukraine_01"
++ nameLocId:t="ship_flag_ukraine_01/name"
++ texture:t="flag_ukraine_01_c*"
++ }
++ 
++ ship_flag_united_republic_of_tanzania_01{
++ category:t="national"
++ unlockId:t="ship_flag_united_republic_of_tanzania_01"
++ nameLocId:t="ship_flag_united_republic_of_tanzania_01/name"
++ texture:t="flag_united_republic_of_tanzania_01_c*"
++ }
++ 
++ ship_flag_uruguay_01{
++ category:t="national"
++ unlockId:t="ship_flag_uruguay_01"
++ nameLocId:t="ship_flag_uruguay_01/name"
++ texture:t="flag_uruguay_01_c*"
++ }
++ 
++ ship_flag_uzbekistan_01{
++ category:t="national"
++ unlockId:t="ship_flag_uzbekistan_01"
++ nameLocId:t="ship_flag_uzbekistan_01/name"
++ texture:t="flag_uzbekistan_01_c*"
++ }
++ 
++ ship_flag_vanuatu_01{
++ category:t="national"
++ unlockId:t="ship_flag_vanuatu_01"
++ nameLocId:t="ship_flag_vanuatu_01/name"
++ texture:t="flag_vanuatu_01_c*"
++ }
++ 
++ ship_flag_venezuela_01{
++ category:t="national"
++ unlockId:t="ship_flag_venezuela_01"
++ nameLocId:t="ship_flag_venezuela_01/name"
++ texture:t="flag_venezuela_01_c*"
++ }
++ 
++ ship_flag_vietnam_01{
++ category:t="national"
++ unlockId:t="ship_flag_vietnam_01"
++ nameLocId:t="ship_flag_vietnam_01/name"
++ texture:t="flag_vietnam_01_c*"
++ }
++ 
++ ship_flag_wales_01{
++ category:t="national"
++ unlockId:t="ship_flag_wales_01"
++ nameLocId:t="ship_flag_wales_01/name"
++ texture:t="flag_wales_01_c*"
++ }
++ 
++ ship_flag_yemen_01{
++ category:t="national"
++ unlockId:t="ship_flag_yemen_01"
++ nameLocId:t="ship_flag_yemen_01/name"
++ texture:t="flag_yemen_01_c*"
++ }
++ 
++ ship_flag_zambia_01{
++ category:t="national"
++ unlockId:t="ship_flag_zambia_01"
++ nameLocId:t="ship_flag_zambia_01/name"
++ texture:t="flag_zambia_01_c*"
++ }
++ 
++ ship_flag_zimbabwe_01{
++ category:t="national"
++ unlockId:t="ship_flag_zimbabwe_01"
++ nameLocId:t="ship_flag_zimbabwe_01/name"
++ texture:t="flag_zimbabwe_01_c*"
++ }
++ 
++ ship_flag_northern_ireland_01{
++ category:t="national"
++ unlockId:t="ship_flag_northern_ireland_01"
++ nameLocId:t="ship_flag_northern_ireland_01/name"
++ texture:t="flag_northern_ireland_01_c*"
++ }
++ 
++ flag_italy_05{
++ category:t="national"
++ unlockId:t="flag_italy_05"
++ nameLocId:t="flag_italy_05/name"
++ texture:t="flag_italy_05_c*"
++ }
++ 
++ ship_flag_pirate_01{
++ category:t="pirate"
++ unlockId:t="ship_flag_pirate_01"
++ nameLocId:t="ship_flag_pirate_01/name"
++ texture:t="flag_pirate_01_c*"
++ }
++ 
++ ship_flag_pirate_02{
++ category:t="pirate"
++ unlockId:t="ship_flag_pirate_02"
++ nameLocId:t="ship_flag_pirate_02/name"
++ texture:t="flag_pirate_02_c*"
++ }
++ 
++ ship_flag_pirate_03{
++ category:t="pirate"
++ unlockId:t="ship_flag_pirate_03"
++ nameLocId:t="ship_flag_pirate_03/name"
++ texture:t="flag_pirate_03_c*"
++ }
++ 
++ ship_flag_pirate_04{
++ category:t="pirate"
++ unlockId:t="ship_flag_pirate_04"
++ nameLocId:t="ship_flag_pirate_04/name"
++ texture:t="flag_pirate_04_c*"
++ }
++ 
++ ship_flag_pirate_05{
++ category:t="pirate"
++ unlockId:t="ship_flag_pirate_05"
++ nameLocId:t="ship_flag_pirate_05/name"
++ texture:t="flag_pirate_05_c*"
++ }
++ 
++ ship_flag_pirate_06{
++ category:t="pirate"
++ unlockId:t="ship_flag_pirate_06"
++ nameLocId:t="ship_flag_pirate_06/name"
++ texture:t="flag_pirate_06_c*"
++ }
++ 
++ ship_flag_pirate_07{
++ category:t="pirate"
++ unlockId:t="ship_flag_pirate_07"
++ nameLocId:t="ship_flag_pirate_07/name"
++ texture:t="flag_pirate_07_c*"
++ }
++ 
++ ship_flag_pirate_08{
++ category:t="pirate"
++ unlockId:t="ship_flag_pirate_08"
++ nameLocId:t="ship_flag_pirate_08/name"
++ texture:t="flag_pirate_08_c*"
++ }
++ 
++ ship_flag_pirate_09{
++ category:t="pirate"
++ unlockId:t="ship_flag_pirate_09"
++ nameLocId:t="ship_flag_pirate_09/name"
++ texture:t="flag_pirate_09_c*"
++ }
++ 
++ ship_flag_pirate_10{
++ category:t="pirate"
++ unlockId:t="ship_flag_pirate_10"
++ nameLocId:t="ship_flag_pirate_10/name"
++ texture:t="flag_pirate_10_c*"
++ }
++ 
++ ship_flag_pirate_11{
++ category:t="pirate"
++ unlockId:t="ship_flag_pirate_11"
++ nameLocId:t="ship_flag_pirate_11/name"
++ texture:t="flag_pirate_11_c*"
++ }
++ 
++ ship_flag_pirate_12{
++ category:t="pirate"
++ unlockId:t="ship_flag_pirate_12"
++ nameLocId:t="ship_flag_pirate_12/name"
++ texture:t="flag_pirate_12_c*"
++ }
++ 
++ ship_flag_pirate_13{
++ category:t="pirate"
++ unlockId:t="ship_flag_pirate_13"
++ nameLocId:t="ship_flag_pirate_13/name"
++ texture:t="flag_pirate_13_c*"
++ }
++ 
++ ship_flag_cardsuit_01{
++ category:t="other"
++ unlockId:t="ship_flag_cardsuit_01"
++ nameLocId:t="ship_flag_cardsuit_01/name"
++ texture:t="flag_cardsuit_01_c*"
++ }
++ 
++ ship_flag_cardsuit_02{
++ category:t="other"
++ unlockId:t="ship_flag_cardsuit_02"
++ nameLocId:t="ship_flag_cardsuit_02/name"
++ texture:t="flag_cardsuit_02_c*"
++ }
++ 
++ ship_flag_cardsuit_03{
++ category:t="other"
++ unlockId:t="ship_flag_cardsuit_03"
++ nameLocId:t="ship_flag_cardsuit_03/name"
++ texture:t="flag_cardsuit_03_c*"
++ }
++ 
++ ship_flag_cardsuit_04{
++ category:t="other"
++ unlockId:t="ship_flag_cardsuit_04"
++ nameLocId:t="ship_flag_cardsuit_04/name"
++ texture:t="flag_cardsuit_04_c*"
++ }
++ 
++ ship_flag_racing_01{
++ category:t="other"
++ unlockId:t="ship_flag_racing_01"
++ nameLocId:t="ship_flag_racing_01/name"
++ texture:t="flag_racing_01_c*"
++ }
++ 
++ ship_flag_arkansas_01{
++ category:t="other"
++ unlockId:t="ship_flag_arkansas_01"
++ nameLocId:t="ship_flag_arkansas_01/name"
++ descLocId:t="ship_flag_arkansas_01/desc"
++ texture:t="flag_arkansas_01_c*"
++ }
++ 
++ ship_flag_petropavlovsk_01{
++ category:t="other"
++ unlockId:t="ship_flag_petropavlovsk_01"
++ nameLocId:t="ship_flag_petropavlovsk_01/name"
++ descLocId:t="ship_flag_petropavlovsk_01/desc"
++ texture:t="flag_petropavlovsk_01_c*"
++ }
++ 
++ ship_flag_kyoto_01{
++ category:t="other"
++ unlockId:t="ship_flag_kyoto_01"
++ nameLocId:t="ship_flag_kyoto_01/name"
++ descLocId:t="ship_flag_kyoto_01/desc"
++ texture:t="flag_kyoto_01_c*"
++ }
++ 
++ ship_flag_duke_01{
++ category:t="other"
++ unlockId:t="ship_flag_duke_01"
++ nameLocId:t="ship_flag_duke_01/name"
++ descLocId:t="ship_flag_duke_01/desc"
++ texture:t="flag_duke_01_c*"
++ }
++ 
++ ship_flag_christmas_01{
++ category:t="other"
++ unlockId:t="ship_flag_christmas_01"
++ nameLocId:t="ship_flag_christmas_01/name"
++ descLocId:t="ship_flag_christmas_01/desc"
++ texture:t="flag_christmas_01_c*"
++ }
++ 
++ ship_flag_christmas_02{
++ category:t="other"
++ unlockId:t="ship_flag_christmas_02"
++ nameLocId:t="ship_flag_christmas_02/name"
++ descLocId:t="ship_flag_christmas_02/desc"
++ texture:t="flag_christmas_02_c*"
++ }
++ 
++ flag_ussr_victory_01{
++ category:t="other"
++ unlockId:t="flag_ussr_victory_01"
++ nameLocId:t="flag_ussr_victory_01/name"
++ descLocId:t="flag_ussr_victory_01/desc"
++ texture:t="flag_ussr_victory_01_c*"
++ }
++ 
++ flag_d_day_anniversary_01{
++ category:t="other"
++ unlockId:t="flag_d_day_anniversary_01"
++ nameLocId:t="flag_d_day_anniversary_01/name"
++ descLocId:t="flag_d_day_anniversary_01/desc"
++ texture:t="flag_d_day_anniversary_01_c*"
++ }
++ 
++ ship_tairyo_bata_01{
++ category:t="other"
++ unlockId:t="ship_tairyo_bata_01"
++ nameLocId:t="ship_tairyo_bata_01/name"
++ descLocId:t="ship_tairyo_bata_01/desc"
++ texture:t="flag_tairyo_bata_c*"
++ }
++ 
++ ship_flag_christmas_03{
++ category:t="other"
++ unlockId:t="ship_flag_christmas_03"
++ nameLocId:t="ship_flag_christmas_03/name"
++ descLocId:t="ship_flag_christmas_03/desc"
++ texture:t="flag_christmas_03_c*"
++ }
++ }
+```
+
+  **Removed**:
+```diff
+```
+
+
+- **aces.vromfs.bin_u/gamedata/units/ships/weaponpresets/fr_battleship_strasbourg_default.blkx**:
+
+
+- **aces.vromfs.bin_u/gamedata/units/tankmodels/it_fiat_6614_firos.blkx**:
+
+  **Added**:
+```diff
++ model:t="fiat_6614_firos"
++ hasExpl:b=no
++ hasDmg2:b=no
++ hasQualityModels:b=yes
++ collisionSphere0:p4=0.0, -1.5, 0.0, 5.0
++ collisionSphere1:p4=5.0, 2.0, 0.0, 1.0
++ exhaustFx:t="tank_exhaust_med"
++ damagedExhaustFx:t="tank_broken_exhaust"
++ thermalExhaustFx:t="tank_exhaust_nightvision"
++ dustFx:t=""
++ support_unit_class:t="structures/ussr_152mm_d1"
++ support_unit_tag:t="artillery"
++ useSimpleDeathConditionsAndEffects:b=no
++ subclass:t="heavyVehicle"
++ onRadarAs:t="tracked"
++ moveType:t="vehicle"
++ maxFwdSpeed:r=60.0
++ maxRevSpeed:r=10.0
++ maxAngSpeed:r=30.0
++ maxAccel:r=4.0
++ maxDecel:r=8.0
++ maxAngAccel0:r=20.0
++ maxAngAccelV:r=0.0
++ maxAngAccel:r=40.0
++ groundNormSmoothViscosity:r=0.1
++ minDistBetween:r=10.0
++ expClass:t="exp_tank"
++ mass:r=5500.0
++ bulletHitFx:t="ground_model_hit"
++ partDamageFx:t="part_damage"
++ explosionFx:t="tank_explosion"
++ fireFx:t="ground_model_fire"
++ destroysRendInstances:b=yes
++ destroysTrees:b=yes
++ type:t="typeLightTank"
++ rearmSmokeTimeOnField:r=60.0
++ canReloadNonGuns:b=yes
++ crosshairPreset:t="it_fiat_6614_firos"
++ 
++ controlDevices{
++ 
++ device{
++ type:t="turretTurnH"
++ turnSpeed:r=0.6
++ node:t="bone_roll_turret_h"
++ node_handle:t="bone_roll_turret_h_handle"
++ }
++ 
++ device{
++ type:t="turretTurnV"
++ turnSpeed:r=-1.0
++ node:t="bone_roll_turret_v"
++ node_handle:t="bone_roll_turret_v_handle"
++ }
++ 
++ device{
++ type:t="steeringWheel"
++ turnSpeed:r=-3.0
++ node:t="bone_roll_driver"
++ absoluteValue:b=yes
++ }
++ 
++ device{
++ type:t="engineFan"
++ turnSpeed:r=1.0
++ node:t="bone_roll_engine_01"
++ }
++ 
++ device{
++ type:t="engineFan"
++ turnSpeed:r=1.0
++ node:t="bone_roll_engine_02"
++ }
++ 
++ device{
++ type:t="engineFan"
++ turnSpeed:r=1.0
++ node:t="bone_roll_engine_03"
++ }
++ 
++ device{
++ type:t="engineFan"
++ turnSpeed:r=1.0
++ node:t="bone_roll_engine_04"
++ }
++ 
++ device{
++ type:t="engineFan"
++ turnSpeed:r=1.0
++ node:t="bone_roll_engine_05"
++ }
++ 
++ device{
++ type:t="engineFan"
++ turnSpeed:r=1.0
++ node:t="bone_roll_engine_06"
++ }
++ 
++ device{
++ type:t="waterJetShutter"
++ turnSpeed:r=1.5
++ maxValue:r=-1.7
++ node:t="body_shutter_l"
++ absoluteValue:b=yes
++ progressive:b=yes
++ }
++ 
++ device{
++ type:t="waterJetShutter"
++ turnSpeed:r=1.5
++ maxValue:r=1.7
++ node:t="body_shutter_r"
++ absoluteValue:b=yes
++ progressive:b=yes
++ }
++ 
++ device{
++ type:t="steeringWheel"
++ turnSpeed:r=-0.5
++ node:t="bone_roll_driver_l_01"
++ absoluteValue:b=yes
++ }
++ 
++ device{
++ type:t="steeringWheel"
++ turnSpeed:r=-0.2
++ node:t="bone_roll_driver_l_02"
++ absoluteValue:b=yes
++ }
++ 
++ device{
++ type:t="steeringWheel"
++ turnSpeed:r=0.2
++ node:t="bone_roll_driver_l_03"
++ absoluteValue:b=yes
++ }
++ 
++ device{
++ type:t="steeringWheel"
++ turnSpeed:r=0.2
++ node:t="bone_roll_driver_l_04"
++ absoluteValue:b=yes
++ }
++ 
++ device{
++ type:t="steeringWheel"
++ turnSpeed:r=-0.5
++ node:t="bone_roll_driver_r_01"
++ absoluteValue:b=yes
++ }
++ 
++ device{
++ type:t="steeringWheel"
++ turnSpeed:r=-0.2
++ node:t="bone_roll_driver_r_02"
++ absoluteValue:b=yes
++ }
++ 
++ device{
++ type:t="steeringWheel"
++ turnSpeed:r=0.2
++ node:t="bone_roll_driver_r_03"
++ absoluteValue:b=yes
++ }
++ 
++ device{
++ type:t="steeringWheel"
++ turnSpeed:r=0.2
++ node:t="bone_roll_driver_r_04"
++ absoluteValue:b=yes
++ }
++ 
++ device{
++ type:t="steeringWheel"
++ turnSpeed:r=0.2
++ node:t="bone_roll_driver_l_05"
++ absoluteValue:b=yes
++ }
++ 
++ device{
++ type:t="steeringWheel"
++ turnSpeed:r=0.2
++ node:t="bone_roll_driver_l_06"
++ absoluteValue:b=yes
++ }
++ 
++ device{
++ type:t="steeringWheel"
++ turnSpeed:r=0.2
++ node:t="bone_roll_driver_l_07"
++ absoluteValue:b=yes
++ }
++ 
++ device{
++ type:t="steeringWheel"
++ turnSpeed:r=0.2
++ node:t="bone_roll_driver_l_08"
++ absoluteValue:b=yes
++ }
++ }
++ 
++ DamageParts{
++ formatVersion:i=2
++ armorThickness:r=8.0
++ armorClass:t="RHA_tank"
++ hp:r=1000.0
++ 
++ body_armor{
++ 
++ superstructure_front_dm{
++ }
++ 
++ superstructure_top_dm{
++ }
++ 
++ superstructure_side_dm{
++ }
++ 
++ body_front_dm{
++ }
++ 
++ body_side_dm{
++ }
++ 
++ body_bottom_dm{
++ }
++ 
++ body_back_dm{
++ }
++ 
++ superstructure_back_dm{
++ }
++ 
++ turret_02_back_dm{
++ }
++ 
++ turret_01_back_dm{
++ }
++ 
++ turret_01_side_dm{
++ }
++ 
++ turret_02_front_dm{
++ }
++ 
++ turret_01_bottom_dm{
++ }
++ 
++ turret_01_top_dm{
++ }
++ 
++ superstructure_bottom_dm{
++ }
++ 
++ turret_01_front_dm{
++ }
++ 
++ turret_02_side_dm{
++ }
++ 
++ turret_02_bottom_dm{
++ armorThickness:r=5.0
++ }
++ 
++ ex_decor_01_dm{
++ }
++ }
++ 
++ optics{
++ armorClass:t="optics_tank"
++ 
++ optic_turret_01_dm{
++ armorThickness:r=3.0
++ hp:r=20.0
++ }
++ 
++ optic_turret_02_dm{
++ armorThickness:r=3.0
++ hp:r=20.0
++ }
++ 
++ optic_body_01_dm{
++ armorThickness:r=3.0
++ hp:r=20.0
++ }
++ 
++ optic_body_02_dm{
++ armorThickness:r=3.0
++ hp:r=20.0
++ }
++ 
++ optic_body_03_dm{
++ armorThickness:r=3.0
++ hp:r=20.0
++ }
++ 
++ optic_body_04_dm{
++ armorThickness:r=3.0
++ hp:r=20.0
++ }
++ 
++ optic_gun_dm{
++ armorThickness:r=3.0
++ hp:r=20.0
++ }
++ }
++ 
++ chassis{
++ hp:r=250.0
++ armorThickness:r=10.0
++ armorClass:t="car_wheels"
++ 
++ wheel_r_01_dm{
++ }
++ 
++ wheel_l_01_dm{
++ }
++ 
++ wheel_l_02_dm{
++ }
++ 
++ wheel_r_02_dm{
++ }
++ 
++ wheel_support_dm{
++ armorClass:t="tank_steel_wheels"
++ }
++ }
++ 
++ gun{
++ armorClass:t="tank_barrel"
++ hp:r=100.0
++ armorThickness:r=10.0
++ 
++ gun_barrel_dm{
++ }
++ 
++ gun_barrel_01_dm{
++ armorThrough:r=10.0
++ armorThickness:r=5.0
++ hp:r=50.0
++ }
++ 
++ gun_barrel_02_dm{
++ armorThrough:r=10.0
++ armorThickness:r=5.0
++ hp:r=50.0
++ }
++ 
++ gun_barrel_03_dm{
++ armorThrough:r=10.0
++ armorThickness:r=5.0
++ hp:r=50.0
++ }
++ 
++ gun_barrel_04_dm{
++ armorThrough:r=10.0
++ armorThickness:r=5.0
++ hp:r=50.0
++ }
++ 
++ gun_barrel_05_dm{
++ armorThrough:r=10.0
++ armorThickness:r=5.0
++ hp:r=50.0
++ }
++ }
++ 
++ crew{
++ armorClass:t="steel_tankman"
++ hp:r=40.0
++ genericDamageMult:r=3.0
++ pressureDamageMult:r=1.0
++ napalmDamageMult:r=0.0
++ ignoreSolidDimension:b=yes
++ 
++ driver_dm{
++ }
++ 
++ loader_dm{
++ }
++ 
++ loader_01_dm{
++ }
++ 
++ loader_02_dm{
++ }
++ 
++ loader_03_dm{
++ }
++ 
++ gunner_dm{
++ }
++ 
++ gunner_01_dm{
++ }
++ 
++ gunner_02_dm{
++ }
++ 
++ gunner_03_dm{
++ }
++ 
++ commander_dm{
++ }
++ 
++ machine_gunner_dm{
++ }
++ 
++ machine_gunner_01_dm{
++ }
++ 
++ machine_gunner_02_dm{
++ }
++ 
++ machine_gunner_03_dm{
++ }
++ 
++ machine_gunner_04_dm{
++ }
++ }
++ 
++ equipment_body_turret{
++ armorClass:t="tank_structural_steel"
++ hp:r=250.0
++ armorThickness:r=2.0
++ armorThrough:r=15.0
++ fireProtectionHp:r=5.0
++ hidableInViewer:b=no
++ 
++ drive_turret_v_dm{
++ armorThrough:r=15.0
++ }
++ 
++ drive_turret_h_dm{
++ armorThrough:r=15.0
++ }
++ 
++ driver_controls_dm{
++ armorThrough:r=15.0
++ }
++ 
++ drive_turret_v_01_dm{
++ hp:r=40.0
++ armorThrough:r=15.0
++ }
++ 
++ drive_turret_h_01_dm{
++ hp:r=40.0
++ armorThrough:r=15.0
++ }
++ 
++ drive_turret_v_02_dm{
++ hp:r=40.0
++ armorThrough:r=15.0
++ }
++ 
++ drive_turret_h_02_dm{
++ hp:r=40.0
++ armorThrough:r=15.0
++ }
++ 
++ drive_turret_v_03_dm{
++ hp:r=40.0
++ armorThrough:r=15.0
++ }
++ 
++ drive_turret_h_03_dm{
++ hp:r=40.0
++ armorThrough:r=15.0
++ }
++ 
++ drive_turret_v_04_dm{
++ hp:r=40.0
++ armorThrough:r=15.0
++ }
++ 
++ drive_turret_h_04_dm{
++ hp:r=40.0
++ armorThrough:r=15.0
++ }
++ 
++ drive_turret_v_05_dm{
++ hp:r=40.0
++ armorThrough:r=15.0
++ }
++ 
++ drive_turret_h_05_dm{
++ hp:r=40.0
++ armorThrough:r=15.0
++ }
++ 
++ radiator_dm{
++ hp:r=50.0
++ armorThrough:r=5.0
++ }
++ 
++ radiator_l_dm{
++ hp:r=50.0
++ armorThrough:r=5.0
++ }
++ 
++ radiator_r_dm{
++ hp:r=50.0
++ armorThrough:r=5.0
++ }
++ 
++ radio_station_dm{
++ hp:r=50.0
++ armorThrough:r=3.0
++ }
++ 
++ electronic_equipment_dm{
++ hp:r=60.0
++ armorThrough:r=3.0
++ }
++ 
++ electronic_equipment_01_dm{
++ hp:r=60.0
++ armorThrough:r=3.0
++ }
++ 
++ fire_control_system_dm{
++ hp:r=60.0
++ armorThrough:r=3.0
++ }
++ 
++ fire_control_system_01_dm{
++ hp:r=60.0
++ armorThrough:r=3.0
++ }
++ 
++ power_system_dm{
++ hp:r=60.0
++ armorThrough:r=15.0
++ }
++ }
++ 
++ cannon_breech{
++ armorClass:t="tank_structural_steel"
++ hp:r=150.0
++ armorThickness:r=150.0
++ fireProtectionHp:r=5.0
++ hidableInViewer:b=no
++ 
++ cannon_breech_dm{
++ restrainDamage:r=0.5
++ }
++ 
++ cannon_breech_01_dm{
++ armorThickness:r=10.0
++ }
++ 
++ cannon_breech_02_dm{
++ armorThickness:r=10.0
++ }
++ 
++ cannon_breech_03_dm{
++ armorThickness:r=10.0
++ }
++ 
++ cannon_breech_04_dm{
++ armorThickness:r=10.0
++ }
++ 
++ cannon_breech_05_dm{
++ armorThickness:r=10.0
++ }
++ 
++ autoloader_dm{
++ armorThickness:r=2.0
++ armorThrough:r=1.0
++ ignoreSolidDimension:b=yes
++ }
++ }
++ 
++ power_block{
++ armorClass:t="armor_tank_engine"
++ hp:r=100.0
++ armorThickness:r=150.0
++ fireProtectionHp:r=5.0
++ restrainDamage:r=0.5
++ 
++ engine_dm{
++ }
++ 
++ transmission_dm{
++ }
++ }
++ 
++ ammo{
++ armorClass:t="tank_structural_steel"
++ genericDamageMult:r=2.0
++ cumulativeDamageMult:r=1.25
++ hp:r=300.0
++ armorThickness:r=2.0
++ armorThrough:r=10.0
++ fireProtectionHp:r=20.0
++ createSecondaryShatters:b=no
++ 
++ ammo_turret_dm{
++ }
++ 
++ ammo_turret_01_dm{
++ }
++ 
++ ammo_turret_02_dm{
++ }
++ 
++ ammo_turret_03_dm{
++ }
++ 
++ ammo_turret_04_dm{
++ }
++ 
++ ammo_turret_05_dm{
++ }
++ 
++ ammo_turret_06_dm{
++ }
++ 
++ ammo_turret_07_dm{
++ }
++ 
++ ammo_turret_08_dm{
++ }
++ 
++ ammo_turret_09_dm{
++ }
++ 
++ ammo_turret_10_dm{
++ }
++ 
++ ammo_turret_11_dm{
++ }
++ 
++ ammo_turret_12_dm{
++ }
++ 
++ ammo_turret_13_dm{
++ }
++ 
++ ammo_turret_14_dm{
++ }
++ 
++ ammo_turret_15_dm{
++ }
++ 
++ ammo_turret_16_dm{
++ }
++ 
++ ammo_turret_17_dm{
++ }
++ 
++ ammo_turret_18_dm{
++ }
++ 
++ ammo_turret_19_dm{
++ }
++ 
++ ammo_turret_20_dm{
++ }
++ 
++ ammo_turret_21_dm{
++ }
++ 
++ ammo_turret_22_dm{
++ }
++ 
++ ammo_turret_23_dm{
++ }
++ 
++ ammo_turret_24_dm{
++ }
++ 
++ ammo_turret_25_dm{
++ }
++ 
++ ammo_turret_26_dm{
++ }
++ 
++ ammo_turret_27_dm{
++ }
++ 
++ ammo_turret_28_dm{
++ }
++ 
++ ammo_turret_29_dm{
++ }
++ 
++ ammo_turret_30_dm{
++ }
++ 
++ ammo_turret_31_dm{
++ }
++ 
++ ammo_turret_32_dm{
++ }
++ 
++ ammo_turret_33_dm{
++ }
++ 
++ ammo_turret_34_dm{
++ }
++ 
++ ammo_turret_35_dm{
++ }
++ 
++ ammo_turret_36_dm{
++ }
++ 
++ ammo_turret_37_dm{
++ }
++ 
++ ammo_turret_38_dm{
++ }
++ 
++ ammo_turret_39_dm{
++ }
++ 
++ ammo_turret_40_dm{
++ }
++ 
++ ammo_turret_41_dm{
++ }
++ 
++ ammo_turret_42_dm{
++ }
++ 
++ ammo_turret_43_dm{
++ }
++ 
++ ammo_turret_44_dm{
++ }
++ 
++ ammo_turret_45_dm{
++ }
++ 
++ ammo_turret_46_dm{
++ }
++ 
++ ammo_turret_47_dm{
++ }
++ 
++ ammo_turret_48_dm{
++ }
++ 
++ ammo_turret_49_dm{
++ }
++ 
++ ammo_turret_50_dm{
++ }
++ 
++ ammo_turret_51_dm{
++ }
++ 
++ ammo_turret_52_dm{
++ }
++ 
++ ammo_turret_53_dm{
++ }
++ 
++ ammo_turret_54_dm{
++ }
++ 
++ ammo_turret_55_dm{
++ }
++ 
++ ammo_turret_56_dm{
++ }
++ 
++ ammo_turret_57_dm{
++ }
++ 
++ ammo_turret_58_dm{
++ }
++ 
++ ammo_turret_59_dm{
++ }
++ 
++ ammo_turret_60_dm{
++ }
++ 
++ ammo_turret_61_dm{
++ }
++ 
++ ammo_turret_62_dm{
++ }
++ 
++ ammo_turret_63_dm{
++ }
++ 
++ ammo_turret_64_dm{
++ }
++ 
++ ammo_turret_65_dm{
++ }
++ 
++ ammo_turret_66_dm{
++ }
++ 
++ ammo_turret_67_dm{
++ }
++ 
++ ammo_turret_68_dm{
++ }
++ 
++ ammo_turret_69_dm{
++ }
++ 
++ ammo_turret_70_dm{
++ }
++ 
++ ammo_turret_71_dm{
++ }
++ 
++ ammo_turret_72_dm{
++ }
++ 
++ ammo_turret_73_dm{
++ }
++ 
++ ammo_turret_74_dm{
++ }
++ 
++ ammo_turret_75_dm{
++ }
++ 
++ ammo_body_dm{
++ }
++ 
++ ammo_body_01_dm{
++ }
++ 
++ ammo_body_02_dm{
++ }
++ 
++ ammo_body_03_dm{
++ }
++ 
++ ammo_body_04_dm{
++ }
++ 
++ ammo_body_05_dm{
++ }
++ 
++ ammo_body_06_dm{
++ }
++ 
++ ammo_body_07_dm{
++ }
++ 
++ ammo_body_08_dm{
++ }
++ 
++ ammo_body_09_dm{
++ }
++ 
++ ammo_body_10_dm{
++ }
++ 
++ ammo_body_11_dm{
++ }
++ 
++ ammo_body_12_dm{
++ }
++ 
++ ammo_body_13_dm{
++ }
++ 
++ ammo_body_14_dm{
++ }
++ 
++ ammo_body_15_dm{
++ }
++ 
++ ammo_body_16_dm{
++ }
++ 
++ ammo_body_17_dm{
++ }
++ 
++ ammo_body_18_dm{
++ }
++ 
++ ammo_body_19_dm{
++ }
++ 
++ ammo_body_20_dm{
++ }
++ 
++ ammo_body_21_dm{
++ }
++ 
++ ammo_body_22_dm{
++ }
++ 
++ ammo_body_23_dm{
++ }
++ 
++ ammo_body_24_dm{
++ }
++ 
++ ammo_body_25_dm{
++ }
++ 
++ ammo_body_26_dm{
++ }
++ 
++ ammo_body_27_dm{
++ }
++ 
++ ammo_body_28_dm{
++ }
++ 
++ ammo_body_29_dm{
++ }
++ 
++ ammo_body_30_dm{
++ }
++ 
++ ammo_body_31_dm{
++ }
++ 
++ ammo_body_32_dm{
++ }
++ 
++ ammo_body_33_dm{
++ }
++ 
++ ammo_body_34_dm{
++ }
++ 
++ ammo_body_35_dm{
++ }
++ 
++ ammo_body_36_dm{
++ }
++ 
++ ammo_body_37_dm{
++ }
++ 
++ ammo_body_38_dm{
++ }
++ 
++ ammo_body_39_dm{
++ }
++ 
++ ammo_body_40_dm{
++ }
++ 
++ ammo_body_41_dm{
++ }
++ 
++ ammo_body_42_dm{
++ }
++ 
++ ammo_body_43_dm{
++ }
++ 
++ ammo_body_44_dm{
++ }
++ 
++ ammo_body_45_dm{
++ }
++ 
++ ammo_body_46_dm{
++ }
++ 
++ ammo_body_47_dm{
++ }
++ 
++ ammo_body_48_dm{
++ }
++ 
++ ammo_body_49_dm{
++ }
++ 
++ ammo_body_50_dm{
++ }
++ 
++ ammo_body_51_dm{
++ }
++ 
++ ammo_body_52_dm{
++ }
++ 
++ ammo_body_53_dm{
++ }
++ 
++ ammo_body_54_dm{
++ }
++ 
++ ammo_body_55_dm{
++ }
++ 
++ ammo_body_56_dm{
++ }
++ 
++ ammo_body_57_dm{
++ }
++ 
++ ammo_body_58_dm{
++ }
++ 
++ ammo_body_59_dm{
++ }
++ 
++ ammo_body_60_dm{
++ }
++ 
++ ammo_body_61_dm{
++ }
++ 
++ ammo_body_62_dm{
++ }
++ 
++ ammo_body_63_dm{
++ }
++ 
++ ammo_body_64_dm{
++ }
++ 
++ ammo_body_65_dm{
++ }
++ 
++ ammo_body_66_dm{
++ }
++ 
++ ammo_body_67_dm{
++ }
++ 
++ ammo_body_68_dm{
++ }
++ 
++ ammo_body_69_dm{
++ }
++ 
++ ammo_body_70_dm{
++ }
++ 
++ ammo_body_l_01_dm{
++ }
++ 
++ ammo_body_l_02_dm{
++ }
++ 
++ ammo_body_l_03_dm{
++ }
++ 
++ ammo_body_l_04_dm{
++ }
++ 
++ ammo_body_l_05_dm{
++ }
++ 
++ ammo_body_l_06_dm{
++ }
++ 
++ ammo_body_l_07_dm{
++ }
++ 
++ ammo_body_l_08_dm{
++ }
++ 
++ ammo_body_l_09_dm{
++ }
++ 
++ ammo_body_l_10_dm{
++ }
++ 
++ ammo_body_l_11_dm{
++ }
++ 
++ ammo_body_l_12_dm{
++ }
++ 
++ ammo_body_l_13_dm{
++ }
++ 
++ ammo_body_l_14_dm{
++ }
++ 
++ ammo_body_l_15_dm{
++ }
++ 
++ ammo_body_l_16_dm{
++ }
++ 
++ ammo_body_l_17_dm{
++ }
++ 
++ ammo_body_l_18_dm{
++ }
++ 
++ ammo_body_l_19_dm{
++ }
++ 
++ ammo_body_l_20_dm{
++ }
++ 
++ ammo_body_r_01_dm{
++ }
++ 
++ ammo_body_r_02_dm{
++ }
++ 
++ ammo_body_r_03_dm{
++ }
++ 
++ ammo_body_r_04_dm{
++ }
++ 
++ ammo_body_r_05_dm{
++ }
++ 
++ ammo_body_r_06_dm{
++ }
++ 
++ ammo_body_r_07_dm{
++ }
++ 
++ ammo_body_r_08_dm{
++ }
++ 
++ ammo_body_r_09_dm{
++ }
++ 
++ ammo_body_r_10_dm{
++ }
++ 
++ ammo_body_r_11_dm{
++ }
++ 
++ ammo_body_r_12_dm{
++ }
++ 
++ ammo_body_r_13_dm{
++ }
++ 
++ ammo_body_r_14_dm{
++ }
++ 
++ ammo_body_r_15_dm{
++ }
++ 
++ ammo_body_r_16_dm{
++ }
++ 
++ ammo_body_r_17_dm{
++ }
++ 
++ ammo_body_r_18_dm{
++ }
++ 
++ ammo_body_r_19_dm{
++ }
++ 
++ ammo_body_r_20_dm{
++ }
++ }
++ 
++ fuel_tanks{
++ armorClass:t="tank_structural_steel"
++ hp:r=400.0
++ armorThickness:r=2.0
++ armorThrough:r=12.0
++ fireProtectionHp:r=15.0
++ createSecondaryShatters:b=no
++ stopChanceOnDeadPart:r=0.0
++ fireParamsPreset:t="fuel_internal"
++ 
++ fuel_tank_dm{
++ }
++ 
++ fuel_tank_01_dm{
++ }
++ 
++ fuel_tank_02_dm{
++ }
++ 
++ fuel_tank_03_dm{
++ }
++ 
++ fuel_tank_04_dm{
++ }
++ 
++ fuel_tank_05_dm{
++ }
++ 
++ fuel_tank_r_01_dm{
++ }
++ 
++ fuel_tank_r_02_dm{
++ }
++ 
++ fuel_tank_r_03_dm{
++ }
++ 
++ fuel_tank_r_04_dm{
++ }
++ 
++ fuel_tank_r_05_dm{
++ }
++ 
++ fuel_tank_l_01_dm{
++ }
++ 
++ fuel_tank_l_02_dm{
++ }
++ 
++ fuel_tank_l_03_dm{
++ }
++ 
++ fuel_tank_l_04_dm{
++ }
++ 
++ fuel_tank_l_05_dm{
++ }
++ }
++ 
++ fuel_tanks_exterior{
++ armorClass:t="tank_structural_steel"
++ hp:r=250.0
++ armorThickness:r=2.0
++ armorThrough:r=12.0
++ fireProtectionHp:r=15.0
++ createSecondaryShatters:b=no
++ fireParamsPreset:t="fuel_exterior"
++ stopChanceOnDeadPart:r=0.0
++ 
++ fuel_tank_exterior_r_01_dm{
++ }
++ 
++ fuel_tank_exterior_r_02_dm{
++ }
++ 
++ fuel_tank_exterior_r_03_dm{
++ }
++ 
++ fuel_tank_exterior_r_04_dm{
++ }
++ 
++ fuel_tank_exterior_r_05_dm{
++ }
++ 
++ fuel_tank_exterior_l_01_dm{
++ }
++ 
++ fuel_tank_exterior_l_02_dm{
++ }
++ 
++ fuel_tank_exterior_l_03_dm{
++ }
++ 
++ fuel_tank_exterior_l_04_dm{
++ }
++ 
++ fuel_tank_exterior_l_05_dm{
++ }
++ 
++ fuel_tank_exterior_01_dm{
++ }
++ 
++ fuel_tank_exterior_02_dm{
++ }
++ 
++ fuel_tank_exterior_03_dm{
++ }
++ }
++ 
++ commander_panoramic_sight{
++ 
++ commander_panoramic_sight_dm{
++ armorClass:t="optics_tank"
++ armorThrough:r=20.0
++ armorThickness:r=10.0
++ hp:r=20.0
++ }
++ }
++ }
++ 
++ DamageEffects{
++ 
++ part{
++ name:t="ammo_body_dm"
++ name:t="ammo_body_01_dm"
++ name:t="ammo_body_02_dm"
++ name:t="ammo_body_03_dm"
++ name:t="ammo_body_04_dm"
++ name:t="ammo_body_05_dm"
++ name:t="ammo_body_06_dm"
++ name:t="ammo_body_07_dm"
++ name:t="ammo_body_08_dm"
++ name:t="ammo_body_09_dm"
++ name:t="ammo_body_10_dm"
++ name:t="ammo_body_11_dm"
++ name:t="ammo_body_12_dm"
++ name:t="ammo_body_13_dm"
++ name:t="ammo_body_14_dm"
++ name:t="ammo_body_15_dm"
++ name:t="ammo_body_16_dm"
++ name:t="ammo_body_17_dm"
++ name:t="ammo_body_18_dm"
++ name:t="ammo_body_19_dm"
++ name:t="ammo_body_20_dm"
++ name:t="ammo_body_21_dm"
++ name:t="ammo_body_22_dm"
++ name:t="ammo_body_23_dm"
++ name:t="ammo_body_24_dm"
++ name:t="ammo_body_25_dm"
++ name:t="ammo_body_26_dm"
++ name:t="ammo_body_27_dm"
++ name:t="ammo_body_28_dm"
++ name:t="ammo_body_29_dm"
++ name:t="ammo_body_30_dm"
++ name:t="ammo_body_31_dm"
++ name:t="ammo_body_32_dm"
++ name:t="ammo_body_33_dm"
++ name:t="ammo_body_34_dm"
++ name:t="ammo_body_35_dm"
++ name:t="ammo_body_36_dm"
++ name:t="ammo_body_37_dm"
++ name:t="ammo_body_38_dm"
++ name:t="ammo_body_39_dm"
++ name:t="ammo_body_40_dm"
++ name:t="ammo_body_41_dm"
++ name:t="ammo_body_42_dm"
++ name:t="ammo_body_43_dm"
++ name:t="ammo_body_44_dm"
++ name:t="ammo_body_45_dm"
++ name:t="ammo_body_46_dm"
++ name:t="ammo_body_47_dm"
++ name:t="ammo_body_48_dm"
++ name:t="ammo_body_49_dm"
++ name:t="ammo_body_50_dm"
++ name:t="ammo_body_51_dm"
++ name:t="ammo_body_52_dm"
++ name:t="ammo_body_53_dm"
++ name:t="ammo_body_54_dm"
++ name:t="ammo_body_55_dm"
++ name:t="ammo_body_56_dm"
++ name:t="ammo_body_57_dm"
++ name:t="ammo_body_58_dm"
++ name:t="ammo_body_59_dm"
++ name:t="ammo_body_60_dm"
++ name:t="ammo_body_61_dm"
++ name:t="ammo_body_62_dm"
++ name:t="ammo_body_63_dm"
++ name:t="ammo_body_64_dm"
++ name:t="ammo_body_65_dm"
++ name:t="ammo_body_66_dm"
++ name:t="ammo_body_67_dm"
++ name:t="ammo_body_68_dm"
++ name:t="ammo_body_69_dm"
++ name:t="ammo_body_70_dm"
++ name:t="ammo_body_l_01_dm"
++ name:t="ammo_body_l_02_dm"
++ name:t="ammo_body_l_03_dm"
++ name:t="ammo_body_l_04_dm"
++ name:t="ammo_body_l_05_dm"
++ name:t="ammo_body_l_06_dm"
++ name:t="ammo_body_l_07_dm"
++ name:t="ammo_body_l_08_dm"
++ name:t="ammo_body_l_09_dm"
++ name:t="ammo_body_l_10_dm"
++ name:t="ammo_body_l_11_dm"
++ name:t="ammo_body_l_12_dm"
++ name:t="ammo_body_l_13_dm"
++ name:t="ammo_body_l_14_dm"
++ name:t="ammo_body_l_15_dm"
++ name:t="ammo_body_l_16_dm"
++ name:t="ammo_body_l_17_dm"
++ name:t="ammo_body_l_18_dm"
++ name:t="ammo_body_l_19_dm"
++ name:t="ammo_body_l_20_dm"
++ name:t="ammo_body_l_21_dm"
++ name:t="ammo_body_l_22_dm"
++ name:t="ammo_body_l_23_dm"
++ name:t="ammo_body_l_24_dm"
++ name:t="ammo_body_r_01_dm"
++ name:t="ammo_body_r_02_dm"
++ name:t="ammo_body_r_03_dm"
++ name:t="ammo_body_r_04_dm"
++ name:t="ammo_body_r_05_dm"
++ name:t="ammo_body_r_06_dm"
++ name:t="ammo_body_r_07_dm"
++ name:t="ammo_body_r_08_dm"
++ name:t="ammo_body_r_09_dm"
++ name:t="ammo_body_r_10_dm"
++ name:t="ammo_body_r_11_dm"
++ name:t="ammo_body_r_12_dm"
++ name:t="ammo_body_r_13_dm"
++ name:t="ammo_body_r_14_dm"
++ name:t="ammo_body_r_15_dm"
++ name:t="ammo_body_r_16_dm"
++ name:t="ammo_body_r_17_dm"
++ name:t="ammo_body_r_18_dm"
++ name:t="ammo_body_r_19_dm"
++ name:t="ammo_body_r_20_dm"
++ name:t="ammo_body_r_21_dm"
++ name:t="ammo_body_r_22_dm"
++ name:t="ammo_body_r_23_dm"
++ name:t="ammo_body_r_24_dm"
++ name:t="ammo_turret_dm"
++ name:t="ammo_turret_01_dm"
++ name:t="ammo_turret_02_dm"
++ name:t="ammo_turret_03_dm"
++ name:t="ammo_turret_04_dm"
++ name:t="ammo_turret_05_dm"
++ name:t="ammo_turret_06_dm"
++ name:t="ammo_turret_07_dm"
++ name:t="ammo_turret_08_dm"
++ name:t="ammo_turret_09_dm"
++ name:t="ammo_turret_10_dm"
++ name:t="ammo_turret_11_dm"
++ name:t="ammo_turret_12_dm"
++ name:t="ammo_turret_13_dm"
++ name:t="ammo_turret_14_dm"
++ name:t="ammo_turret_15_dm"
++ name:t="ammo_turret_16_dm"
++ name:t="ammo_turret_17_dm"
++ name:t="ammo_turret_18_dm"
++ name:t="ammo_turret_19_dm"
++ name:t="ammo_turret_20_dm"
++ name:t="ammo_turret_21_dm"
++ name:t="ammo_turret_22_dm"
++ name:t="ammo_turret_23_dm"
++ name:t="ammo_turret_24_dm"
++ name:t="ammo_turret_25_dm"
++ name:t="ammo_turret_26_dm"
++ name:t="ammo_turret_27_dm"
++ name:t="ammo_turret_28_dm"
++ name:t="ammo_turret_29_dm"
++ name:t="ammo_turret_30_dm"
++ name:t="ammo_turret_31_dm"
++ name:t="ammo_turret_32_dm"
++ name:t="ammo_turret_33_dm"
++ name:t="ammo_turret_34_dm"
++ name:t="ammo_turret_35_dm"
++ name:t="ammo_turret_36_dm"
++ name:t="ammo_turret_37_dm"
++ name:t="ammo_turret_38_dm"
++ name:t="ammo_turret_39_dm"
++ name:t="ammo_turret_40_dm"
++ name:t="ammo_turret_41_dm"
++ name:t="ammo_turret_42_dm"
++ name:t="ammo_turret_43_dm"
++ name:t="ammo_turret_44_dm"
++ name:t="ammo_turret_45_dm"
++ name:t="ammo_turret_46_dm"
++ name:t="ammo_turret_47_dm"
++ name:t="ammo_turret_48_dm"
++ name:t="ammo_turret_49_dm"
++ name:t="ammo_turret_50_dm"
++ name:t="ammo_turret_51_dm"
++ name:t="ammo_turret_52_dm"
++ name:t="ammo_turret_53_dm"
++ name:t="ammo_turret_54_dm"
++ name:t="ammo_turret_55_dm"
++ name:t="ammo_turret_56_dm"
++ name:t="ammo_turret_57_dm"
++ name:t="ammo_turret_58_dm"
++ name:t="ammo_turret_59_dm"
++ name:t="ammo_turret_60_dm"
++ name:t="ammo_turret_61_dm"
++ name:t="ammo_turret_62_dm"
++ name:t="ammo_turret_63_dm"
++ name:t="ammo_turret_64_dm"
++ name:t="ammo_turret_65_dm"
++ name:t="ammo_turret_66_dm"
++ name:t="ammo_turret_67_dm"
++ name:t="ammo_turret_68_dm"
++ name:t="ammo_turret_69_dm"
++ name:t="ammo_turret_70_dm"
++ name:t="ammo_turret_71_dm"
++ name:t="ammo_turret_72_dm"
++ name:t="ammo_turret_73_dm"
++ name:t="ammo_turret_74_dm"
++ name:t="ammo_turret_75_dm"
++ 
++ onHit{
++ damageType:t="cumulative"
++ expl:r=0.4
++ fire:r=0.5
++ damage:r=75.0
++ fHitCritical:b=yes
++ }
++ 
++ onHit{
++ damageType:t="cumulative"
++ expl:r=0.6
++ fire:r=0.4
++ damage:r=200.0
++ fHitCritical:b=yes
++ }
++ 
++ onHit{
++ damageType:t="explosion"
++ expl:r=0.1
++ fire:r=0.1
++ damage:r=20.0
++ fHitCritical:b=yes
++ }
++ 
++ onHit{
++ damageType:t="explosion"
++ expl:r=0.15
++ fire:r=0.15
++ damage:r=50.0
++ fHitCritical:b=yes
++ }
++ 
++ onHit{
++ damageType:t="explosion"
++ expl:r=0.2
++ fire:r=0.15
++ damage:r=200.0
++ fHitCritical:b=yes
++ }
++ 
++ onHit{
++ damageType:t="explosion"
++ expl:r=0.4
++ fire:r=0.2
++ damage:r=400.0
++ fHitCritical:b=yes
++ }
++ 
++ onHit{
++ damageType:t="generic"
++ expl:r=0.075
++ fire:r=0.075
++ damage:r=70.0
++ fHitCritical:b=yes
++ }
++ 
++ onHit{
++ damageType:t="generic"
++ expl:r=0.15
++ fire:r=0.15
++ damage:r=200.0
++ fHitCritical:b=yes
++ }
++ 
++ onHit{
++ damageType:t="generic"
++ expl:r=0.25
++ fire:r=0.25
++ damage:r=300.0
++ fHitCritical:b=yes
++ }
++ 
++ onHit{
++ damageType:t="secondaryShatter"
++ fire:r=0.05
++ damage:r=50.0
++ fHitCritical:b=yes
++ }
++ 
++ onHit{
++ damageType:t="secondaryShatter"
++ fire:r=0.15
++ damage:r=150.0
++ fHitCritical:b=yes
++ }
++ 
++ onHit{
++ damageType:t="secondaryShatter"
++ fire:r=0.4
++ damage:r=200.0
++ fHitCritical:b=yes
++ }
++ 
++ onHit{
++ damageType:t="fire"
++ fire:r=0.01
++ full_expl:r=0.01
++ expl:r=0.01
++ }
++ 
++ onKill{
++ damageType:t="cumulative"
++ expl:r=0.4
++ full_expl:r=0.1
++ fire:r=0.5
++ }
++ 
++ onKill{
++ damageType:t="explosion"
++ expl:r=0.4
++ full_expl:r=0.1
++ fire:r=0.5
++ }
++ 
++ onKill{
++ damageType:t="secondaryShatter"
++ expl:r=0.4
++ full_expl:r=0.1
++ fire:r=0.5
++ }
++ 
++ onKill{
++ damageType:t="generic"
++ expl:r=0.5
++ full_expl:r=0.1
++ fire:r=0.4
++ }
++ }
++ 
++ part{
++ name:t="fuel_tank_dm"
++ name:t="fuel_tank_01_dm"
++ name:t="fuel_tank_02_dm"
++ name:t="fuel_tank_03_dm"
++ name:t="fuel_tank_04_dm"
++ name:t="fuel_tank_05_dm"
++ name:t="fuel_tank_r_01_dm"
++ name:t="fuel_tank_r_02_dm"
++ name:t="fuel_tank_r_03_dm"
++ name:t="fuel_tank_r_04_dm"
++ name:t="fuel_tank_r_05_dm"
++ name:t="fuel_tank_l_01_dm"
++ name:t="fuel_tank_l_02_dm"
++ name:t="fuel_tank_l_03_dm"
++ name:t="fuel_tank_l_04_dm"
++ name:t="fuel_tank_l_05_dm"
++ name:t="fuel_tank_exterior_r_01_dm"
++ name:t="fuel_tank_exterior_r_02_dm"
++ name:t="fuel_tank_exterior_l_01_dm"
++ name:t="fuel_tank_exterior_l_02_dm"
++ 
++ onHit{
++ damageType:t="cumulative"
++ expl:r=0.1
++ fire:r=0.2
++ damage:r=100.0
++ fHitCritical:b=yes
++ }
++ 
++ onHit{
++ damageType:t="cumulative"
++ expl:r=0.2
++ fire:r=0.3
++ damage:r=250.0
++ fHitCritical:b=yes
++ }
++ 
++ onHit{
++ damageType:t="cumulative"
++ expl:r=0.5
++ fire:r=0.5
++ damage:r=400.0
++ fHitCritical:b=yes
++ }
++ 
++ onHit{
++ damageType:t="cumulative"
++ expl:r=1.0
++ damage:r=800.0
++ fHitCritical:b=yes
++ }
++ 
++ onHit{
++ damageType:t="explosion"
++ expl:r=0.125
++ fire:r=0.225
++ damage:r=25.0
++ fHitCritical:b=yes
++ }
++ 
++ onHit{
++ damageType:t="explosion"
++ expl:r=0.25
++ fire:r=0.35
++ damage:r=50.0
++ fHitCritical:b=yes
++ }
++ 
++ onHit{
++ damageType:t="generic"
++ fire:r=0.1
++ damage:r=20.0
++ fHitCritical:b=yes
++ }
++ 
++ onHit{
++ damageType:t="generic"
++ fire:r=0.25
++ damage:r=70.0
++ fHitCritical:b=yes
++ }
++ 
++ onHit{
++ damageType:t="generic"
++ fire:r=0.4
++ damage:r=200.0
++ fHitCritical:b=yes
++ }
++ 
++ onHit{
++ damageType:t="generic"
++ fire:r=0.5
++ expl:r=0.5
++ damage:r=250.0
++ fHitCritical:b=yes
++ }
++ 
++ onHit{
++ damageType:t="generic"
++ fire:r=0.3
++ expl:r=0.7
++ damage:r=300.0
++ fHitCritical:b=yes
++ }
++ 
++ onHit{
++ damageType:t="generic"
++ expl:r=1.0
++ damage:r=600.0
++ fHitCritical:b=yes
++ }
++ 
++ onHit{
++ damageType:t="fire"
++ fire:r=0.2
++ }
++ 
++ onKill{
++ fire:r=1.0
++ fHitCritical:b=yes
++ }
++ }
++ 
++ part{
++ name:t="engine_dm"
++ 
++ onHit{
++ damageType:t="cumulative"
++ fire:r=0.2
++ damage:r=75.0
++ fHitCritical:b=yes
++ }
++ 
++ onHit{
++ damageType:t="explosion"
++ fire:r=0.3
++ damage:r=30.0
++ fHitCritical:b=yes
++ }
++ 
++ onHit{
++ damageType:t="generic"
++ fire:r=0.2
++ damage:r=70.0
++ fHitCritical:b=yes
++ }
++ 
++ onHit{
++ damageType:t="generic"
++ fire:r=0.55
++ damage:r=300.0
++ fHitCritical:b=yes
++ }
++ 
++ onHit{
++ damageType:t="generic"
++ fire:r=0.35
++ damage:r=200.0
++ fHitCritical:b=yes
++ }
++ 
++ onHit{
++ damageType:t="generic"
++ fire:r=0.1
++ damage:r=20.0
++ fHitCritical:b=yes
++ }
++ 
++ onHit{
++ damageType:t="fire"
++ fire:r=0.1
++ }
++ 
++ onKill{
++ notDamageType:t="overheat"
++ fire:r=0.5
++ nothing:r=0.5
++ fHitCritical:b=yes
++ }
++ }
++ 
++ part{
++ name:t="transmission_dm"
++ 
++ onHit{
++ damageType:t="cumulative"
++ fire:r=0.15
++ damage:r=75.0
++ fHitCritical:b=yes
++ }
++ 
++ onHit{
++ damageType:t="explosion"
++ fire:r=0.1
++ damage:r=30.0
++ fHitCritical:b=yes
++ }
++ 
++ onHit{
++ damageType:t="generic"
++ fire:r=0.05
++ damage:r=70.0
++ fHitCritical:b=yes
++ }
++ 
++ onHit{
++ damageType:t="generic"
++ fire:r=0.1
++ damage:r=200.0
++ fHitCritical:b=yes
++ }
++ 
++ onHit{
++ damageType:t="fire"
++ fire:r=0.02
++ }
++ }
++ 
++ part{
++ name:t="wheel_r_drive_dm"
++ 
++ onKill{
++ track_r_dm:r=1.0
++ }
++ }
++ 
++ part{
++ name:t="wheel_r_back_dm"
++ 
++ onKill{
++ track_r_dm:r=1.0
++ }
++ }
++ 
++ part{
++ name:t="wheel_r_front_dm"
++ 
++ onKill{
++ track_r_dm:r=1.0
++ }
++ }
++ 
++ part{
++ name:t="wheel_l_drive_dm"
++ 
++ onKill{
++ track_l_dm:r=1.0
++ }
++ }
++ 
++ part{
++ name:t="wheel_l_back_dm"
++ 
++ onKill{
++ track_l_dm:r=1.0
++ }
++ }
++ 
++ part{
++ name:t="wheel_l_front_dm"
++ 
++ onKill{
++ track_l_dm:r=1.0
++ }
++ }
++ 
++ part{
++ name:t="body_top_dm"
++ name:t="body_front_dm"
++ name:t="body_side_dm"
++ name:t="body_back_dm"
++ name:t="body_bottom_dm"
++ name:t="superstructure_bottom_dm"
++ name:t="superstructure_back_dm"
++ name:t="superstructure_top_dm"
++ name:t="superstructure_front_dm"
++ name:t="superstructure_side_dm"
++ name:t="ex_armor_body_l_01_dm"
++ name:t="ex_armor_body_l_02_dm"
++ name:t="ex_armor_body_l_03_dm"
++ name:t="ex_armor_body_l_04_dm"
++ name:t="ex_armor_body_l_05_dm"
++ name:t="ex_armor_body_l_06_dm"
++ name:t="ex_armor_body_l_07_dm"
++ name:t="ex_armor_body_l_08_dm"
++ name:t="ex_armor_body_l_09_dm"
++ name:t="ex_armor_body_l_10_dm"
++ name:t="ex_armor_body_r_01_dm"
++ name:t="ex_armor_body_r_02_dm"
++ name:t="ex_armor_body_r_03_dm"
++ name:t="ex_armor_body_r_04_dm"
++ name:t="ex_armor_body_r_05_dm"
++ name:t="ex_armor_body_r_06_dm"
++ name:t="ex_armor_body_r_07_dm"
++ name:t="ex_armor_body_r_08_dm"
++ name:t="ex_armor_body_r_09_dm"
++ name:t="ex_armor_body_r_10_dm"
++ name:t="ex_armor_01_dm"
++ name:t="ex_armor_02_dm"
++ name:t="ex_armor_03_dm"
++ name:t="ex_armor_04_dm"
++ name:t="ex_armor_05_dm"
++ name:t="ex_armor_06_dm"
++ name:t="ex_armor_07_dm"
++ name:t="ex_armor_08_dm"
++ name:t="ex_armor_09_dm"
++ name:t="ex_armor_10_dm"
++ name:t="ex_armor_r_01_dm"
++ name:t="ex_armor_r_02_dm"
++ name:t="ex_armor_r_03_dm"
++ name:t="ex_armor_r_04_dm"
++ name:t="ex_armor_r_05_dm"
++ name:t="ex_armor_r_06_dm"
++ name:t="ex_armor_r_07_dm"
++ name:t="ex_armor_r_08_dm"
++ name:t="ex_armor_r_09_dm"
++ name:t="ex_armor_r_10_dm"
++ name:t="ex_armor_l_01_dm"
++ name:t="ex_armor_l_02_dm"
++ name:t="ex_armor_l_03_dm"
++ name:t="ex_armor_l_04_dm"
++ name:t="ex_armor_l_05_dm"
++ name:t="ex_armor_l_06_dm"
++ name:t="ex_armor_l_07_dm"
++ name:t="ex_armor_l_08_dm"
++ name:t="ex_armor_l_09_dm"
++ name:t="ex_armor_l_10_dm"
++ name:t="turret_front_dm"
++ name:t="turret_side_dm"
++ name:t="turret_back_dm"
++ name:t="turret_top_dm"
++ name:t="turret_01_bottom_dm"
++ name:t="turret_01_front_dm"
++ name:t="turret_01_side_dm"
++ name:t="turret_01_back_dm"
++ name:t="turret_01_top_dm"
++ name:t="turret_02_bottom_dm"
++ name:t="turret_02_front_dm"
++ name:t="turret_02_side_dm"
++ name:t="turret_02_back_dm"
++ name:t="turret_02_top_dm"
++ name:t="turret_03_bottom_dm"
++ name:t="turret_03_front_dm"
++ name:t="turret_03_side_dm"
++ name:t="turret_03_back_dm"
++ name:t="turret_03_top_dm"
++ name:t="turret_04_bottom_dm"
++ name:t="turret_04_front_dm"
++ name:t="turret_04_side_dm"
++ name:t="turret_04_back_dm"
++ name:t="turret_04_top_dm"
++ name:t="turret_05_bottom_dm"
++ name:t="turret_05_front_dm"
++ name:t="turret_05_side_dm"
++ name:t="turret_05_back_dm"
++ name:t="turret_05_top_dm"
++ name:t="turret_06_bottom_dm"
++ name:t="turret_06_front_dm"
++ name:t="turret_06_side_dm"
++ name:t="turret_06_back_dm"
++ name:t="turret_06_top_dm"
++ name:t="turret_07_bottom_dm"
++ name:t="turret_07_front_dm"
++ name:t="turret_07_side_dm"
++ name:t="turret_07_back_dm"
++ name:t="turret_07_top_dm"
++ name:t="turret_08_bottom_dm"
++ name:t="turret_08_front_dm"
++ name:t="turret_08_side_dm"
++ name:t="turret_08_back_dm"
++ name:t="turret_08_top_dm"
++ name:t="turret_09_bottom_dm"
++ name:t="turret_09_front_dm"
++ name:t="turret_09_side_dm"
++ name:t="turret_09_back_dm"
++ name:t="turret_09_top_dm"
++ name:t="gun_mask_01_dm"
++ name:t="gun_mask_02_dm"
++ name:t="gun_mask_03_dm"
++ name:t="gun_mask_04_dm"
++ 
++ onHit{
++ damageType:t="explosion"
++ damage:r=0.0
++ 
++ action{
++ type:t="fxEvent"
++ probability:r=0.05
++ fxEventName:t="fire_after_hit_tiny"
++ }
++ }
++ 
++ onHit{
++ damageType:t="generic"
++ damage:r=0.0
++ 
++ action{
++ type:t="fxEvent"
++ probability:r=0.05
++ fxEventName:t="fire_after_hit_tiny"
++ }
++ }
++ 
++ onHit{
++ damageType:t="explosion"
++ damage:r=18.0
++ 
++ action{
++ type:t="fxEvent"
++ probability:r=0.2
++ fxEventName:t="fire_after_hit_small"
++ }
++ }
++ 
++ onHit{
++ damageType:t="generic"
++ damage:r=30.0
++ 
++ action{
++ type:t="fxEvent"
++ probability:r=0.2
++ fxEventName:t="fire_after_hit_small"
++ }
++ }
++ 
++ onHit{
++ damageType:t="explosion"
++ damage:r=30.0
++ 
++ action{
++ type:t="fxEvent"
++ probability:r=0.4
++ fxEventName:t="fire_after_hit_med"
++ }
++ }
++ 
++ onHit{
++ damageType:t="generic"
++ damage:r=50.0
++ 
++ action{
++ type:t="fxEvent"
++ probability:r=0.4
++ fxEventName:t="fire_after_hit_med"
++ }
++ }
++ 
++ onHit{
++ damageType:t="cumulative"
++ damage:r=80.0
++ 
++ action{
++ type:t="fxEvent"
++ probability:r=0.4
++ fxEventName:t="fire_after_hit_med"
++ }
++ }
++ 
++ onHit{
++ damageType:t="explosion"
++ damage:r=200.0
++ 
++ action{
++ type:t="fxEvent"
++ probability:r=0.7
++ fxEventName:t="fire_after_hit_big"
++ }
++ }
++ 
++ onHit{
++ damageType:t="generic"
++ damage:r=120.0
++ 
++ action{
++ type:t="fxEvent"
++ probability:r=0.7
++ fxEventName:t="fire_after_hit_big"
++ }
++ }
++ 
++ onHit{
++ damageType:t="cumulative"
++ damage:r=200.0
++ 
++ action{
++ type:t="fxEvent"
++ probability:r=0.7
++ fxEventName:t="fire_after_hit_big"
++ }
++ }
++ }
++ 
++ part{
++ name:t="wheel_l_drive_dm"
++ name:t="wheel_r_drive_dm"
++ name:t="wheel_r_back_dm"
++ name:t="wheel_r_front_dm"
++ name:t="wheel_l_back_dm"
++ name:t="wheel_l_front_dm"
++ name:t="wheel_l_01_dm"
++ name:t="wheel_r_01_dm"
++ name:t="wheel_l_02_dm"
++ name:t="wheel_r_02_dm"
++ name:t="wheel_l_03_dm"
++ name:t="wheel_r_03_dm"
++ name:t="wheel_l_04_dm"
++ name:t="wheel_r_04_dm"
++ name:t="wheel_l_05_dm"
++ name:t="wheel_r_05_dm"
++ name:t="wheel_l_06_dm"
++ name:t="wheel_r_06_dm"
++ 
++ onKill{
++ cut:r=1.0
++ }
++ }
++ }
++ 
++ tank_crew{
++ changeTimeMult:r=1.0
++ 
++ gunner{
++ dmPart:t="gunner_dm"
++ role:t="tank_gunner"
++ role:t="loader"
++ substitute:t="commander"
++ }
++ 
++ driver{
++ dmPart:t="driver_dm"
++ role:t="driver"
++ substitute:t="commander"
++ }
++ 
++ commander{
++ dmPart:t="commander_dm"
++ role:t="commander"
++ }
++ }
++ 
++ MetaParts{
++ 
++ closed_fightning_compartment{
++ part:t="driver_dm"
++ part:t="loader_dm"
++ part:t="gunner_dm"
++ part:t="commander_dm"
++ part:t="machine_gunner_dm"
++ part:t="machine_gunner_01_dm"
++ part:t="machine_gunner_02_dm"
++ part:t="gunner_01_dm"
++ part:t="gunner_02_dm"
++ part:t="loader_01_dm"
++ part:t="loader_02_dm"
++ part:t="cannon_breech_dm"
++ part:t="radio_station_dm"
++ part:t="transmission_dm"
++ part:t="ammo_turret_dm"
++ part:t="ammo_turret_01_dm"
++ part:t="ammo_turret_02_dm"
++ part:t="ammo_turret_03_dm"
++ part:t="ammo_turret_04_dm"
++ part:t="ammo_turret_05_dm"
++ part:t="ammo_turret_06_dm"
++ part:t="ammo_turret_07_dm"
++ part:t="ammo_turret_08_dm"
++ part:t="ammo_turret_09_dm"
++ part:t="ammo_turret_10_dm"
++ part:t="ammo_turret_11_dm"
++ part:t="ammo_turret_12_dm"
++ part:t="ammo_turret_13_dm"
++ part:t="ammo_turret_14_dm"
++ part:t="ammo_turret_15_dm"
++ part:t="ammo_turret_16_dm"
++ part:t="ammo_turret_17_dm"
++ part:t="ammo_turret_18_dm"
++ part:t="ammo_turret_19_dm"
++ part:t="ammo_turret_20_dm"
++ part:t="ammo_turret_21_dm"
++ part:t="ammo_turret_22_dm"
++ part:t="ammo_turret_23_dm"
++ part:t="ammo_turret_24_dm"
++ part:t="ammo_turret_25_dm"
++ part:t="ammo_turret_26_dm"
++ part:t="ammo_turret_27_dm"
++ part:t="ammo_turret_28_dm"
++ part:t="ammo_turret_29_dm"
++ part:t="ammo_turret_30_dm"
++ part:t="ammo_turret_31_dm"
++ part:t="ammo_turret_32_dm"
++ part:t="ammo_turret_33_dm"
++ part:t="ammo_turret_34_dm"
++ part:t="ammo_turret_35_dm"
++ part:t="ammo_turret_36_dm"
++ part:t="ammo_turret_37_dm"
++ part:t="ammo_turret_38_dm"
++ part:t="ammo_turret_39_dm"
++ part:t="ammo_turret_40_dm"
++ part:t="ammo_turret_41_dm"
++ part:t="ammo_turret_42_dm"
++ part:t="ammo_turret_43_dm"
++ part:t="ammo_turret_44_dm"
++ part:t="ammo_turret_45_dm"
++ part:t="ammo_turret_46_dm"
++ part:t="ammo_turret_47_dm"
++ part:t="ammo_turret_48_dm"
++ part:t="ammo_turret_49_dm"
++ part:t="ammo_turret_50_dm"
++ part:t="ammo_turret_51_dm"
++ part:t="ammo_turret_52_dm"
++ part:t="ammo_turret_53_dm"
++ part:t="ammo_turret_54_dm"
++ part:t="ammo_turret_55_dm"
++ part:t="ammo_body_01_dm"
++ part:t="ammo_body_02_dm"
++ part:t="ammo_body_03_dm"
++ part:t="ammo_body_04_dm"
++ part:t="ammo_body_05_dm"
++ part:t="ammo_body_06_dm"
++ part:t="ammo_body_07_dm"
++ part:t="ammo_body_08_dm"
++ part:t="ammo_body_09_dm"
++ part:t="ammo_body_10_dm"
++ part:t="ammo_body_11_dm"
++ part:t="ammo_body_12_dm"
++ part:t="ammo_body_13_dm"
++ part:t="ammo_body_14_dm"
++ part:t="ammo_body_15_dm"
++ part:t="ammo_body_16_dm"
++ part:t="ammo_body_17_dm"
++ part:t="ammo_body_18_dm"
++ part:t="ammo_body_19_dm"
++ part:t="ammo_body_20_dm"
++ part:t="ammo_body_21_dm"
++ part:t="ammo_body_22_dm"
++ part:t="ammo_body_23_dm"
++ part:t="ammo_body_24_dm"
++ part:t="ammo_body_25_dm"
++ part:t="ammo_body_26_dm"
++ part:t="ammo_body_27_dm"
++ part:t="ammo_body_28_dm"
++ part:t="ammo_body_29_dm"
++ part:t="ammo_body_30_dm"
++ part:t="ammo_body_31_dm"
++ part:t="ammo_body_32_dm"
++ part:t="ammo_body_33_dm"
++ part:t="ammo_body_34_dm"
++ part:t="ammo_body_35_dm"
++ part:t="ammo_body_36_dm"
++ part:t="ammo_body_37_dm"
++ part:t="ammo_body_38_dm"
++ part:t="ammo_body_39_dm"
++ part:t="ammo_body_40_dm"
++ part:t="ammo_body_41_dm"
++ part:t="ammo_body_42_dm"
++ part:t="ammo_body_43_dm"
++ part:t="ammo_body_44_dm"
++ part:t="ammo_body_45_dm"
++ part:t="ammo_body_46_dm"
++ part:t="ammo_body_47_dm"
++ part:t="ammo_body_48_dm"
++ part:t="ammo_body_49_dm"
++ part:t="ammo_body_50_dm"
++ part:t="ammo_body_51_dm"
++ part:t="ammo_body_52_dm"
++ part:t="ammo_body_53_dm"
++ part:t="ammo_body_54_dm"
++ part:t="ammo_body_55_dm"
++ part:t="ammo_body_l_01_dm"
++ part:t="ammo_body_l_02_dm"
++ part:t="ammo_body_l_03_dm"
++ part:t="ammo_body_l_04_dm"
++ part:t="ammo_body_l_05_dm"
++ part:t="ammo_body_l_06_dm"
++ part:t="ammo_body_l_07_dm"
++ part:t="ammo_body_l_08_dm"
++ part:t="ammo_body_l_09_dm"
++ part:t="ammo_body_l_10_dm"
++ part:t="ammo_body_l_11_dm"
++ part:t="ammo_body_l_12_dm"
++ part:t="ammo_body_l_13_dm"
++ part:t="ammo_body_l_14_dm"
++ part:t="ammo_body_l_15_dm"
++ part:t="ammo_body_l_16_dm"
++ part:t="ammo_body_l_17_dm"
++ part:t="ammo_body_l_18_dm"
++ part:t="ammo_body_l_19_dm"
++ part:t="ammo_body_l_20_dm"
++ part:t="ammo_body_r_01_dm"
++ part:t="ammo_body_r_02_dm"
++ part:t="ammo_body_r_03_dm"
++ part:t="ammo_body_r_04_dm"
++ part:t="ammo_body_r_05_dm"
++ part:t="ammo_body_r_06_dm"
++ part:t="ammo_body_r_07_dm"
++ part:t="ammo_body_r_08_dm"
++ part:t="ammo_body_r_09_dm"
++ part:t="ammo_body_r_10_dm"
++ part:t="ammo_body_r_11_dm"
++ part:t="ammo_body_r_12_dm"
++ part:t="ammo_body_r_13_dm"
++ part:t="ammo_body_r_14_dm"
++ part:t="ammo_body_r_15_dm"
++ part:t="ammo_body_r_16_dm"
++ part:t="ammo_body_r_17_dm"
++ part:t="ammo_body_r_18_dm"
++ part:t="ammo_body_r_19_dm"
++ part:t="ammo_body_r_20_dm"
++ 
++ effect{
++ conditionDamageType:t="explosion"
++ conditionDamage:r=1.0
++ pressure:b=yes
++ }
++ 
++ effect{
++ conditionDamageType:t="shatter"
++ conditionDamage:r=1.0
++ pressure:b=yes
++ }
++ }
++ }
++ 
++ gunConvergence{
++ defaultDistance:r=800.0
++ vertical:b=yes
++ horizontal:b=yes
++ }
++ 
++ sound{
++ EngineName:t="engine_fiat8144"
++ TrackSoundPath:t="tanks/engines_tanks"
++ TrackSoundPathStudio:t="ground/engines"
++ TrackSoundName:t="tracks_wheels"
++ TrackSoundNameCockpit:t="tracks_wheels_interior"
++ turret_turn:t="turret_turn_manual"
++ EngineNameAi:t="engine_truck_ai"
++ TrackSoundNameAi:t="tracks_ai_wheels"
++ }
++ 
++ class_tags{
++ }
++ 
++ commonWeapons{
++ 
++ Weapon{
++ trigger:t="gunner0"
++ triggerGroup:t="primary"
++ blk:t="gameData/Weapons/groundModels_weapons/50mm_firos_6_user_cannon.blk"
++ flash:t="emtr_gun_flame_01"
++ useEmitter:b=yes
++ emitter:t="bone_rocket_01"
++ emitterGenRange:ip2=1, 48
++ emitterGenFmt:t="bone_rocket_%02d"
++ ammoDpGenFmt:t="ammo_turret_%02d_dm"
++ recoilMultiplier:r=0.01
++ maxAdditionalPitch:r=0.0
++ barrelDP:t="gun_barrel_dm"
++ breechDP:t="cannon_breech_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ speedYaw:r=10.0
++ speedPitch:r=6.0
++ yawSpdLowBattery:r=10.0
++ pitchSpdLowBattery:r=6.0
++ bullets:i=144
++ salvoAmount:r=100.0
++ ChainfireTime:r=0.0
++ DelayAfterShoot:r=5.0
++ AttackMaxDistance:r=1000.0
++ AttackMaxRadius:r=1000.0
++ AttackMaxHeight:r=1000.0
++ accuracyAir:r=0.0
++ accuracyGnd:r=1.5
++ errMeasureVel:r=0.0
++ errMeasureVelFast:r=0.0
++ errMeasureVelFwdShift:r=0.0
++ errMeasureVelDir:r=0.0
++ errTargettingOn100kmph:r=0.0
++ errTargetting:r=3.0
++ errExplTime:r=0.0
++ 
++ turret{
++ head:t="bone_turret"
++ gun:t="bone_gun"
++ gunnerDm:t="gunner_dm"
++ loaderDm:t="loader_dm"
++ verDriveDm:t="drive_turret_v_dm"
++ horDriveDm:t="drive_turret_h_dm"
++ rotatedTurret:t="bone_turret"
++ 
++ linkedAnimPart{
++ verNode:t="bone_camera_gunner"
++ verLimits:p2=-180.0, 180.0
++ verOriginLimits:p2=-180.0, 180.0
++ }
++ }
++ 
++ limits{
++ yaw:p2=-180.0, 180.0
++ pitch:p2=-5.0, 15.0
++ }
++ }
++ }
++ 
++ weapon_presets{
++ 
++ preset{
++ name:t="it_fiat_6614_firos_default"
++ blk:t="gameData/units/tankModels/weaponPresets/it_fiat_6614_firos_default.blk"
++ }
++ }
++ 
++ VehiclePhys{
++ 
++ Mass{
++ Empty:r=8500.0
++ Fuel:r=200.0
++ TakeOff:r=8700.0
++ momentOfInertia:p3=2.0, 2.0, 4.0
++ CenterOfGravity:p3=-0.1, 0.4, 0.0
++ CenterOfGravityClampY:p2=0.0, 0.5
++ AdvancedMass:b=yes
++ trackMass:r=40.0
++ engineInertialMass:r=400.0
++ }
++ 
++ tracks{
++ animationMultiplier:r=0.5
++ height:r=0.0
++ width:r=0.2
++ trackPhysMat:t="wheel"
++ }
++ 
++ collisionProps{
++ cls_turret:t="convex_hull"
++ cls_body:t="convex_hull"
++ }
++ 
++ engine{
++ horsePowers:r=160.0
++ maxRPM:r=3200.0
++ minRPM:r=800.0
++ rpmTau:r=1.9
++ }
++ 
++ mechanics{
++ maxBrakeForce:r=48100.0
++ driveGearRadius:r=0.48
++ mainGearRatio:r=5.7906
++ sideGearRatio:r=1.0
++ tracked:b=no
++ 
++ gearRatios{
++ ratio:r=-5.143
++ ratio:r=-7.24
++ ratio:r=0.0
++ ratio:r=7.838
++ ratio:r=5.571
++ ratio:r=4.457
++ ratio:r=3.168
++ ratio:r=2.841
++ ratio:r=2.019
++ ratio:r=1.773
++ ratio:r=1.407
++ ratio:r=1.26
++ ratio:r=1.0
++ }
++ }
++ 
++ suspension{
++ suspensionOffsets:p3=-0.2, -0.12, 0.1
++ defaultGearRadius:r=0.53
++ defaultDampeningForce:p2=36138.0, 36138.0
++ hasSuspensionOnDriveGear:b=yes
++ dampeningRelaxationRatio:r=0.2
++ dampeningCompressionRatio:r=0.2
++ brokenWheelSteeringDeflection:r=-15.0
++ 
++ steeringNodes{
++ wheel_r_01:t="bone_wheel_r_01"
++ wheel_l_01:t="bone_wheel_l_01"
++ }
++ 
++ steeringDeflection{
++ wheel_l_01:r=25.0
++ wheel_l_02:r=0.0
++ wheel_r_01:r=25.0
++ wheel_r_02:r=0.0
++ steeringTau:r=1000000.0
++ steeringSpd:r=1.0
++ steeringNeutralSpd:r=3.0
++ }
++ 
++ wheelsDamageWeight{
++ wheel_l_01:r=0.05
++ wheel_r_01:r=0.05
++ wheel_l_02:r=0.05
++ wheel_r_02:r=0.05
++ wheel_l_03:r=0.05
++ wheel_r_03:r=0.05
++ wheel_l_04:r=0.05
++ wheel_r_04:r=0.05
++ wheel_r_drive:r=0.25
++ wheel_l_drive:r=0.25
++ }
++ 
++ driven{
++ wheel_l_01:b=yes
++ wheel_r_01:b=yes
++ wheel_l_02:b=yes
++ wheel_r_02:b=yes
++ }
++ 
++ wheels{
++ wheel_r_01:b=yes
++ wheel_l_01:b=yes
++ wheel_r_02:b=yes
++ wheel_l_02:b=yes
++ }
++ }
++ 
++ floats{
++ volume:p4=2.5, 1.2, 0.8, 0.75
++ volume:p4=2.5, 1.2, -0.8, 0.75
++ volume:p4=1.9, 1.2, 0.0, 0.75
++ volume:p4=1.0, 1.2, 0.8, 0.7
++ volume:p4=1.0, 1.2, -0.8, 0.7
++ volume:p4=0.0, 1.2, 0.8, 0.7
++ volume:p4=0.0, 1.2, -0.8, 0.7
++ volume:p4=-1.2, 1.2, 0.8, 0.7
++ volume:p4=-1.2, 1.2, -0.8, 0.7
++ volume:p4=-1.9, 1.5, 0.0, 0.75
++ volume:p4=-2.5, 1.2, 0.8, 0.75
++ volume:p4=-2.5, 1.2, -0.8, 0.75
++ 
++ waterJet{
++ exhaustNode:t="emtr_track_l_02_back_top"
++ intake:p3=-1.25, 0.4, 0.85
++ thrust:r=11000.0
++ reverseMult:r=0.9
++ }
++ 
++ waterJet{
++ exhaustNode:t="emtr_track_r_02_back_top"
++ intake:p3=-1.25, 0.4, -0.85
++ thrust:r=11000.0
++ reverseMult:r=0.9
++ }
++ }
++ }
++ 
++ PhysSys{
++ find:t="^bone_suspension_(._dd)$"
++ 
++ points{
++ 
++ suspension{
++ name:t="bone_suspension_$1"
++ }
++ 
++ wheel{
++ name:t="bone_wheel_$1"
++ limitMin:p3=-1.0, -1.0, 0.0
++ limitMax:p3=1.0, 1.0, 0.0
++ }
++ }
++ 
++ constraints{
++ 
++ edge{
++ from:t="suspension"
++ to:t="wheel"
++ }
++ }
++ }
++ 
++ chainIK{
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_01_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_01_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_02_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_02_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_03_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_03_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_04_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_04_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_05_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_05_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_06_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_06_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_07_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_07_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_08_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_08_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_09_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_09_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_10_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_10_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_11_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_11_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_12_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_12_02"
++ }
++ }
++ 
++ points{
++ 
++ point{
++ nameTemplate:t="bone_roll_11_01"
++ }
++ 
++ point{
++ nameTemplate:t="bone_roll_12_01"
++ }
++ }
++ }
++ 
++ constraintChainIK{
++ 
++ piston{
++ chainTemplate:t="bone_roll_12_01"
++ offsetLimits:p2=0.0, 0.1
++ }
++ }
++ 
++ repairParts{
++ 
++ wheel_l_01_dm{
++ speed:r=1.7
++ completely:b=yes
++ modRequired:b=no
++ }
++ 
++ wheel_r_01_dm{
++ speed:r=1.7
++ completely:b=yes
++ modRequired:b=no
++ }
++ 
++ wheel_l_02_dm{
++ speed:r=1.7
++ completely:b=yes
++ modRequired:b=no
++ }
++ 
++ wheel_r_02_dm{
++ speed:r=1.7
++ completely:b=yes
++ modRequired:b=no
++ }
++ 
++ wheel_l_03_dm{
++ speed:r=1.7
++ completely:b=yes
++ modRequired:b=no
++ }
++ 
++ wheel_r_03_dm{
++ speed:r=1.7
++ completely:b=yes
++ modRequired:b=no
++ }
++ 
++ wheel_l_04_dm{
++ speed:r=1.7
++ completely:b=yes
++ modRequired:b=no
++ }
++ 
++ wheel_r_04_dm{
++ speed:r=1.7
++ completely:b=yes
++ modRequired:b=no
++ }
++ 
++ wheel_l_drive_dm{
++ speed:r=1.7
++ completely:b=yes
++ modRequired:b=no
++ }
++ 
++ wheel_r_drive_dm{
++ speed:r=1.7
++ completely:b=yes
++ modRequired:b=no
++ }
++ }
++ 
++ ammo{
++ combustionTime:r=10.0
++ detonateProb:r=0.15
++ detonatePortion:p2=0.6, 0.9
++ explodeHitPower:r=1500.0
++ hitPowerMult:r=1.0
++ nearHitPower:p2=1.0, 50.0
++ midHitPower:p2=0.9, 400.0
++ farHitPower:p2=0.1, 1000.0
++ endHitPower:p2=0.01, 1500.0
++ relativeVelHitShift:p2=300.0, 1000.0
++ nearArmorPower:p2=10.0, 50.0
++ midArmorPower:p2=7.0, 400.0
++ farArmorPower:p2=0.2, 700.0
++ relativeVelArmorShift:p2=200.0, 1000.0
++ explodeTreshold:r=0.0001
++ explodeArmorPower:r=30.0
++ explodeRadius:p2=1.5, 10.0
++ }
++ 
++ wreckedParts{
++ 
++ part{
++ node:t="bone_turret"
++ mass:r=3000.0
++ cutDamage:r=350.0
++ deviation:r=0.5
++ rotation:r=0.5
++ collisionNode:t="cls_gun"
++ }
++ }
++ 
++ unitFx{
++ 
++ event{
++ lifetime:r=120.0
++ name:t="engine_fire"
++ 
++ fx{
++ name:t="tank_engine_fire"
++ emitter:t="emtr_fire_engine"
++ }
++ 
++ fx{
++ name:t="tank_engine_fire"
++ emitter:t="emtr_fire_engine_01"
++ }
++ 
++ fx{
++ name:t="tank_engine_fire"
++ emitter:t="emtr_fire_engine_02"
++ }
++ }
++ 
++ event{
++ name:t="ammo_fire"
++ lifetime:r=9.0
++ 
++ fx{
++ name:t="tank_ammo_fire"
++ emitter:t="emtr_fire_ammo"
++ useVelocity:b=no
++ }
++ 
++ fx{
++ name:t="tank_ammo_fire"
++ emitter:t="emtr_fire_ammo_01"
++ useVelocity:b=no
++ }
++ 
++ fx{
++ name:t="tank_ammo_fire"
++ emitter:t="emtr_fire_ammo_02"
++ useVelocity:b=no
++ }
++ 
++ fx{
++ name:t="tank_ammo_fire"
++ emitter:t="emtr_fire_ammo_03"
++ useVelocity:b=no
++ }
++ 
++ fx{
++ name:t="tank_ammo_fire"
++ emitter:t="emtr_fire_ammo_04"
++ useVelocity:b=no
++ }
++ 
++ fx{
++ name:t="tank_ammo_fire"
++ emitter:t="emtr_fire_ammo_05"
++ useVelocity:b=no
++ }
++ 
++ fx{
++ name:t="tank_ammo_fire"
++ emitter:t="emtr_fire_ammo_06"
++ useVelocity:b=no
++ }
++ 
++ fx{
++ name:t="tank_ammo_fire"
++ emitter:t="emtr_fire_ammo_07"
++ useVelocity:b=no
++ }
++ 
++ fx{
++ name:t="tank_ammo_fire"
++ emitter:t="emtr_fire_ammo_08"
++ useVelocity:b=no
++ }
++ 
++ fx{
++ name:t="tank_ammo_fire"
++ emitter:t="emtr_fire_ammo_09"
++ useVelocity:b=no
++ }
++ 
++ fx{
++ name:t="tank_ammo_fire"
++ emitter:t="emtr_fire_ammo_10"
++ useVelocity:b=no
++ }
++ 
++ fx{
++ name:t="fire_tank_ammo_gun_fire"
++ emitter:t="emtr_gun_flame"
++ setOrientation:b=yes
++ }
++ }
++ 
++ event{
++ name:t="light_smoke"
++ lifetime:r=60.0
++ 
++ fx{
++ name:t="tank_smoke_small"
++ emitter:t="emtr_fire_ammo"
++ }
++ 
++ fx{
++ name:t="tank_smoke_small"
++ emitter:t="emtr_fire_ammo_01"
++ }
++ 
++ fx{
++ name:t="tank_smoke_small"
++ emitter:t="emtr_fire_ammo_02"
++ }
++ }
++ 
++ event{
++ name:t="total_smoke"
++ lifetime:r=60.0
++ 
++ fx{
++ name:t="tank_smoke_big"
++ emitter:t="emtr_smoke_dmg"
++ }
++ 
++ fx{
++ name:t="tank_smoke_small"
++ emitter:t="emtr_smoke_small_dmg_01"
++ }
++ 
++ fx{
++ name:t="tank_smoke_small"
++ emitter:t="emtr_smoke_small_dmg_02"
++ }
++ 
++ fx{
++ name:t="tank_smoke_small"
++ emitter:t="emtr_smoke_small_dmg_03"
++ }
++ 
++ fx{
++ name:t="tank_smoke_small"
++ emitter:t="emtr_smoke_small_dmg_04"
++ }
++ 
++ fx{
++ name:t="tank_smoke_small"
++ emitter:t="emtr_smoke_small_dmg_05"
++ }
++ 
++ fx{
++ name:t="tank_smoke_small"
++ emitter:t="emtr_smoke_small_dmg_06"
++ }
++ 
++ fx{
++ name:t="tank_smoke_small"
++ emitter:t="emtr_smoke_small_dmg_07"
++ }
++ 
++ fx{
++ name:t="tank_smoke_small"
++ emitter:t="emtr_smoke_small_dmg_08"
++ }
++ 
++ fx{
++ name:t="tank_smoke_small"
++ emitter:t="emtr_smoke_small_dmg_09"
++ }
++ 
++ fx{
++ name:t="tank_smoke_small"
++ emitter:t="emtr_smoke_small_dmg_10"
++ }
++ 
++ fx{
++ name:t="tank_smoke_small"
++ emitter:t="emtr_smoke_small_dmg_11"
++ }
++ 
++ fx{
++ name:t="tank_smoke_small"
++ emitter:t="emtr_smoke_small_dmg_12"
++ }
++ 
++ fx{
++ name:t="tank_smoke_small"
++ emitter:t="emtr_smoke_small_dmg_13"
++ }
++ 
++ fx{
++ name:t="tank_smoke_small"
++ emitter:t="emtr_smoke_small_dmg_14"
++ }
++ 
++ fx{
++ name:t="tank_smoke_small"
++ emitter:t="emtr_smoke_small_dmg_15"
++ }
++ 
++ fx{
++ name:t="tank_smoke_small"
++ emitter:t="emtr_smoke_small_dmg_16"
++ }
++ }
++ 
++ event{
++ name:t="total_fire"
++ lifetime:r=40.0
++ 
++ fx{
++ name:t="tank_fire_big"
++ emitter:t="emtr_fire_dmg"
++ }
++ 
++ fx{
++ name:t="tank_fire_small"
++ emitter:t="emtr_fire_small_dmg_01"
++ }
++ 
++ fx{
++ name:t="tank_fire_small"
++ emitter:t="emtr_fire_small_dmg_02"
++ }
++ 
++ fx{
++ name:t="tank_fire_small"
++ emitter:t="emtr_fire_small_dmg_03"
++ }
++ 
++ fx{
++ name:t="tank_fire_small"
++ emitter:t="emtr_fire_small_dmg_04"
++ }
++ 
++ fx{
++ name:t="tank_fire_small"
++ emitter:t="emtr_fire_small_dmg_05"
++ }
++ 
++ fx{
++ name:t="tank_fire_small"
++ emitter:t="emtr_fire_small_dmg_06"
++ }
++ 
++ fx{
++ name:t="tank_fire_small"
++ emitter:t="emtr_fire_small_dmg_07"
++ }
++ 
++ fx{
++ name:t="tank_fire_small"
++ emitter:t="emtr_fire_small_dmg_08"
++ }
++ 
++ fx{
++ name:t="tank_fire_small"
++ emitter:t="emtr_fire_small_dmg_09"
++ }
++ 
++ fx{
++ name:t="tank_fire_small"
++ emitter:t="emtr_fire_small_dmg_10"
++ }
++ 
++ fx{
++ name:t="tank_fire_small"
++ emitter:t="emtr_fire_small_dmg_11"
++ }
++ 
++ fx{
++ name:t="tank_fire_small"
++ emitter:t="emtr_fire_small_dmg_12"
++ }
++ 
++ fx{
++ name:t="tank_fire_small"
++ emitter:t="emtr_fire_small_dmg_13"
++ }
++ 
++ fx{
++ name:t="tank_fire_small"
++ emitter:t="emtr_fire_small_dmg_14"
++ }
++ 
++ fx{
++ name:t="tank_fire_small"
++ emitter:t="emtr_fire_small_dmg_15"
++ }
++ 
++ fx{
++ name:t="tank_fire_small"
++ emitter:t="emtr_fire_small_dmg_16"
++ }
++ }
++ 
++ event{
++ name:t="attached_fire"
++ lifetime:r=15.0
++ 
++ fx{
++ name:t="fire_tank_napalm_smal"
++ emitter:t="emtr_fire_dmg"
++ }
++ 
++ fx{
++ name:t="fire_tank_napalm_smal"
++ emitter:t="emtr_fire_small_dmg_01"
++ }
++ 
++ fx{
++ name:t="fire_tank_napalm_smal"
++ emitter:t="emtr_fire_small_dmg_02"
++ }
++ 
++ fx{
++ name:t="fire_tank_napalm_smal"
++ emitter:t="emtr_fire_small_dmg_03"
++ }
++ 
++ fx{
++ name:t="fire_tank_napalm_smal"
++ emitter:t="emtr_fire_small_dmg_04"
++ }
++ 
++ fx{
++ name:t="fire_tank_napalm_smal"
++ emitter:t="emtr_fire_small_dmg_05"
++ }
++ 
++ fx{
++ name:t="fire_tank_napalm_smal"
++ emitter:t="emtr_fire_small_dmg_06"
++ }
++ 
++ fx{
++ name:t="fire_tank_napalm_smal"
++ emitter:t="emtr_fire_small_dmg_07"
++ }
++ 
++ fx{
++ name:t="fire_tank_napalm_smal"
++ emitter:t="emtr_fire_small_dmg_08"
++ }
++ 
++ fx{
++ name:t="fire_tank_napalm_smal"
++ emitter:t="emtr_fire_small_dmg_09"
++ }
++ 
++ fx{
++ name:t="fire_tank_napalm_smal"
++ emitter:t="emtr_fire_small_dmg_10"
++ }
++ 
++ fx{
++ name:t="fire_tank_napalm_smal"
++ emitter:t="emtr_fire_small_dmg_11"
++ }
++ 
++ fx{
++ name:t="fire_tank_napalm_smal"
++ emitter:t="emtr_fire_small_dmg_12"
++ }
++ 
++ fx{
++ name:t="fire_tank_napalm_smal"
++ emitter:t="emtr_fire_small_dmg_13"
++ }
++ 
++ fx{
++ name:t="fire_tank_napalm_smal"
++ emitter:t="emtr_fire_small_dmg_14"
++ }
++ 
++ fx{
++ name:t="fire_tank_napalm_smal"
++ emitter:t="emtr_fire_small_dmg_15"
++ }
++ 
++ fx{
++ name:t="fire_tank_napalm_smal"
++ emitter:t="emtr_fire_small_dmg_16"
++ }
++ }
++ 
++ event{
++ name:t="fuel_exterior"
++ lifetime:r=50.0
++ 
++ fx{
++ name:t="tank_ex_fuel_explosion"
++ centerDmgPart:b=yes
++ }
++ }
++ 
++ event{
++ name:t="fuel_internal"
++ lifetime:r=50.0
++ 
++ fx{
++ name:t="tank_ex_fuel_explosion"
++ centerDmgPart:b=yes
++ }
++ }
++ 
++ event{
++ name:t="hydraulic_internal"
++ lifetime:r=30.0
++ 
++ fx{
++ name:t="tank_ex_fuel_explosion"
++ centerDmgPart:b=yes
++ }
++ }
++ 
++ event{
++ name:t="powersystem_internal"
++ lifetime:r=30.0
++ 
++ fx{
++ name:t="tank_ex_fuel_explosion"
++ centerDmgPart:b=yes
++ }
++ }
++ 
++ event{
++ name:t="powersystem_exterior"
++ lifetime:r=30.0
++ 
++ fx{
++ name:t="tank_ex_fuel_explosion"
++ centerDmgPart:b=yes
++ }
++ }
++ 
++ event{
++ name:t="big_bang"
++ lifetime:r=20.0
++ 
++ fx{
++ name:t="tank_explosion"
++ emitter:t="emtr_explosion_center"
++ }
++ 
++ fx{
++ extraFx:t="fuelLeakFx"
++ emitter:t="emtr_explosion_center"
++ }
++ 
++ wreckages{
++ count:i=8
++ speed:r=20.0
++ angle:r=35.0
++ fxName:t="fire_trails_explosion_smal"
++ }
++ }
++ 
++ event{
++ name:t="big_bang"
++ lifetime:r=20.0
++ 
++ fx{
++ name:t="tank_explosion"
++ emitter:t="emtr_explosion_center"
++ }
++ 
++ fx{
++ extraFx:t="fuelLeakFx"
++ emitter:t="emtr_explosion_center"
++ }
++ 
++ wreckages{
++ count:i=10
++ speed:r=20.0
++ angle:r=35.0
++ fxName:t="fire_trails_explosion_smal"
++ }
++ }
++ 
++ event{
++ name:t="big_bang"
++ lifetime:r=20.0
++ 
++ fx{
++ name:t="tank_explosion_small"
++ emitter:t="emtr_explosion_center"
++ }
++ 
++ wreckages{
++ count:i=10
++ speed:r=13.0
++ angle:r=35.0
++ fxName:t="fire_trails_explosion_smal"
++ }
++ }
++ 
++ event{
++ name:t="big_bang"
++ lifetime:r=20.0
++ 
++ fx{
++ name:t="tank_explosion_ammo"
++ emitter:t="emtr_explosion_center"
++ }
++ 
++ fx{
++ extraFx:t="fuelLeakFx"
++ emitter:t="emtr_explosion_center"
++ }
++ 
++ wreckages{
++ count:i=12
++ speed:r=25.0
++ angle:r=35.0
++ fxName:t="fire_trails_explosion_med"
++ }
++ }
++ 
++ event{
++ name:t="big_bang"
++ lifetime:r=20.0
++ 
++ fx{
++ name:t="tank_explosion_ammo_small"
++ emitter:t="emtr_explosion_center"
++ }
++ 
++ fx{
++ extraFx:t="fuelLeakFx"
++ emitter:t="emtr_explosion_center"
++ }
++ 
++ wreckages{
++ count:i=14
++ speed:r=20.0
++ angle:r=35.0
++ fxName:t="fire_trails_explosion_smal"
++ }
++ }
++ 
++ event{
++ name:t="full_expl"
++ lifetime:r=20.0
++ 
++ fx{
++ name:t="explosion_ship_big"
++ emitter:t="emtr_explosion_center"
++ }
++ 
++ wreckages{
++ count:i=15
++ speed:r=30.0
++ angle:r=40.0
++ fxName:t="fire_trails_explosion_med"
++ }
++ }
++ 
++ event{
++ name:t="fire_after_hit_big"
++ lifetime:r=8.0
++ 
++ fx{
++ name:t="fire_after_hit_big"
++ setOrientation:b=yes
++ }
++ }
++ 
++ event{
++ name:t="fire_after_hit_big"
++ lifetime:r=8.0
++ 
++ fx{
++ name:t="smoke_after_hit_big"
++ setOrientation:b=yes
++ }
++ }
++ 
++ event{
++ name:t="fire_after_hit_med"
++ lifetime:r=8.0
++ 
++ fx{
++ name:t="fire_after_hit_med"
++ setOrientation:b=yes
++ }
++ }
++ 
++ event{
++ name:t="fire_after_hit_med"
++ lifetime:r=8.0
++ 
++ fx{
++ name:t="smoke_after_hit_med"
++ setOrientation:b=yes
++ }
++ }
++ 
++ event{
++ name:t="fire_after_hit_small"
++ lifetime:r=5.0
++ 
++ fx{
++ name:t="fire_after_hit_small"
++ setOrientation:b=yes
++ }
++ }
++ 
++ event{
++ name:t="fire_after_hit_small"
++ lifetime:r=5.0
++ 
++ fx{
++ name:t="smoke_after_hit_small"
++ setOrientation:b=yes
++ }
++ }
++ 
++ event{
++ name:t="fire_after_hit_tiny"
++ lifetime:r=5.0
++ 
++ fx{
++ name:t="fire_after_hit_tiny"
++ setOrientation:b=yes
++ }
++ }
++ 
++ event{
++ name:t="fire_after_hit_tiny"
++ lifetime:r=5.0
++ 
++ fx{
++ name:t="smoke_after_hit_tiny"
++ setOrientation:b=yes
++ }
++ }
++ 
++ event{
++ name:t="engine_overheat"
++ lifetime:r=5.0
++ 
++ fx{
++ name:t="tank_radiator_steam"
++ centerDmgPart:b=no
++ }
++ }
++ 
++ procedural{
++ name:t="default"
++ 
++ fx{
++ name:t="tank_engine_fire"
++ }
++ }
++ }
++ 
++ cockpit{
++ headPos:p3=0.0, 3.2, -6.5
++ headPosOnShooting:p3=-1.6, 2.9, -0.35
++ zoomOutFov:r=40.0
++ zoomInFov:r=21.0
++ sightFov:r=20.0
++ sightName:t="default_tank_spg"
++ detectionHeight:r=1.78
++ }
++ 
++ modifications{
++ 
++ new_wheels{
++ }
++ 
++ new_car_suspension{
++ }
++ 
++ new_tank_filter{
++ }
++ 
++ new_tank_brakes{
++ }
++ 
++ new_tank_transmission{
++ }
++ 
++ new_tank_engine{
++ }
++ 
++ tank_tool_kit{
++ }
++ 
++ manual_extinguisher{
++ }
++ 
++ new_tank_horizontal_aiming{
++ }
++ 
++ new_tank_vertical_aiming{
++ }
++ 
++ art_support{
++ }
++ 
++ tank_new_gun{
++ }
++ 
++ tank_medical_kit{
++ image:t="#ui/gameuiskin#tank_reinforcement_it"
++ }
++ 
++ tank_medical_kit_expendable{
++ image:t="#ui/gameuiskin#tank_reinforcement_it"
++ }
++ 
++ airstrike{
++ }
++ 
++ improved_optics{
++ }
++ 
++ tank_smoke_screen_system_mod{
 + tier:i=4
++ 
++ effects{
++ 
++ commonWeapons{
++ 
++ Weapon{
++ trigger:t="gunner0"
++ triggerGroup:t="primary"
++ blk:t="gameData/Weapons/groundModels_weapons/50mm_firos_6_user_cannon.blk"
++ flash:t="emtr_gun_flame_01"
++ useEmitter:b=yes
++ emitter:t="bone_rocket_01"
++ emitterGenRange:ip2=1, 48
++ emitterGenFmt:t="bone_rocket_%02d"
++ ammoDpGenFmt:t="ammo_turret_%02d_dm"
++ recoilMultiplier:r=0.01
++ maxAdditionalPitch:r=0.0
++ barrelDP:t="gun_barrel_dm"
++ breechDP:t="cannon_breech_dm"
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ speedYaw:r=10.0
++ speedPitch:r=6.0
++ yawSpdLowBattery:r=10.0
++ pitchSpdLowBattery:r=6.0
++ bullets:i=144
++ salvoAmount:r=100.0
++ ChainfireTime:r=0.0
++ DelayAfterShoot:r=5.0
++ AttackMaxDistance:r=1000.0
++ AttackMaxRadius:r=1000.0
++ AttackMaxHeight:r=1000.0
++ accuracyAir:r=0.0
++ accuracyGnd:r=1.5
++ errMeasureVel:r=0.0
++ errMeasureVelFast:r=0.0
++ errMeasureVelFwdShift:r=0.0
++ errMeasureVelDir:r=0.0
++ errTargettingOn100kmph:r=0.0
++ errTargetting:r=3.0
++ errExplTime:r=0.0
++ 
++ turret{
++ head:t="bone_turret"
++ gun:t="bone_gun"
++ gunnerDm:t="gunner_dm"
++ loaderDm:t="loader_dm"
++ verDriveDm:t="drive_turret_v_dm"
++ horDriveDm:t="drive_turret_h_dm"
++ rotatedTurret:t="bone_turret"
++ 
++ linkedAnimPart{
++ verNode:t="bone_camera_gunner"
++ verLimits:p2=-180.0, 180.0
++ verOriginLimits:p2=-180.0, 180.0
++ }
 + }
 + 
-+ f_4c_CdMin_Fuse{
-+ tier:i=1
-+ modClass:t="lth"
++ limits{
++ yaw:p2=-180.0, 180.0
++ pitch:p2=-5.0, 15.0
++ }
 + }
 + 
-+ structure_str{
-+ tier:i=2
-+ modClass:t="lth"
++ Weapon{
++ trigger:t="gunner2"
++ triggerGroup:t="smoke"
++ blk:t="gameData/Weapons/groundModels_weapons/76mm_modern_germ_smoke_grenade_launcher.blk"
++ weaponType:t="rockets"
++ useEmitter:b=yes
++ emitter:t="emtr_mortar_flame_01"
++ emitterGenRange:ip2=1, 6
++ emitterGenFmt:t="emtr_mortar_flame_%02d"
++ ignoreLoaderPenalty:b=yes
++ createGunEffects:b=yes
++ defaultYaw:r=0.0
++ defaultPitch:r=0.0
++ allowableDelta:r=360.0
++ salvo:i=2
++ salvoDelay:r=0.5
++ speedYaw:r=24.0
++ speedPitch:r=15.0
++ fireConeAngle:r=1.0
++ fireConeAngle:r=5.0
++ bullets:i=6
++ ChainfireTime:r=0.5
++ DelayAfterShoot:r=2.0
++ accuracyAir:r=1.5
++ accuracyGnd:r=0.0
++ errMeasureVel:r=0.0
++ errMeasureVelFast:r=0.0
++ errMeasureVelFwdShift:r=1.5
++ errMeasureVelDir:r=0.0
++ errTargettingOn100kmph:r=0.0
++ errTargetting:r=3.0
++ errExplTime:r=0.0
++ forestallTime:r=0.1
++ 
++ turret{
++ head:t="bone_grenade"
++ gun:t="bone_grenade"
 + }
 + 
-+ new_cover{
-+ modClass:t="lth"
-+ tier:i=4
++ limits{
++ yaw:p2=0.0, 0.0
++ pitch:p2=0.0, 0.0
++ }
++ }
++ }
++ }
 + }
 + 
-+ countermeasures_launcher_chaff{
++ 50mm_usa_arf_8m3_HEAT{
++ }
 + }
 + 
-+ countermeasures_belt_pack{
-+ tier:i=1
-+ modClass:t="armor"
-+ turn_it_off:b=no
-+ invertEnableLogic:b=no
-+ group:t="mi-24_EVU"
++ ammoStowages{
++ 
++ ammo1{
++ weaponTrigger:t="gunner0"
++ fatalFire:b=yes
++ fatalExplosion:b=yes
++ 
++ shells{
++ ammoLoadedInGun:b=yes
++ fatalFire:b=no
++ fatalExplosion:b=no
++ 
++ ammo_turret_01_dm{
++ count:i=1
 + }
 + 
-+ f_4c_g_suit{
-+ tier:i=2
-+ modClass:t="armor"
++ ammo_turret_02_dm{
++ count:i=1
 + }
 + 
-+ t_160_universal{
++ ammo_turret_03_dm{
++ count:i=1
 + }
 + 
-+ t_160_air_targets{
++ ammo_turret_04_dm{
++ count:i=1
 + }
 + 
-+ t_160_armor_targets{
++ ammo_turret_05_dm{
++ count:i=1
 + }
 + 
-+ t_160_stealth{
++ ammo_turret_06_dm{
++ count:i=1
 + }
 + 
-+ t_160_belt_pack{
-+ tier:i=1
++ ammo_turret_07_dm{
++ count:i=1
 + }
 + 
-+ t_160_new_gun{
-+ reqModification:t="t_160_belt_pack"
-+ tier:i=3
++ ammo_turret_08_dm{
++ count:i=1
 + }
 + 
-+ us_2_75_in_ffar_lau_3a{
-+ prevModification:t="us_blu_1"
-+ tier:i=2
-+ modClass:t="weapon"
++ ammo_turret_09_dm{
++ count:i=1
 + }
 + 
-+ f4c_zuni{
-+ reqModification:t="us_2_75_in_ffar_lau_3a"
-+ tier:i=3
-+ modClass:t="weapon"
++ ammo_turret_10_dm{
++ count:i=1
 + }
 + 
-+ fj_4b_agm_12b{
-+ reqModification:t="f4c_zuni"
-+ tier:i=4
-+ modClass:t="weapon"
++ ammo_turret_11_dm{
++ count:i=1
 + }
 + 
-+ us_500lb_mk82{
-+ modClass:t="weapon"
-+ tier:i=1
++ ammo_turret_12_dm{
++ count:i=1
 + }
 + 
-+ us_750lb_m117{
-+ modClass:t="weapon"
-+ tier:i=2
-+ reqModification:t="us_500lb_mk82"
++ ammo_turret_13_dm{
++ count:i=1
 + }
 + 
-+ us_1000lb_mk83{
-+ modClass:t="weapon"
-+ tier:i=3
-+ reqModification:t="us_750lb_m117"
++ ammo_turret_14_dm{
++ count:i=1
 + }
 + 
-+ us_2000lb_mk84{
-+ modClass:t="weapon"
-+ tier:i=4
-+ reqModification:t="us_1000lb_mk83"
++ ammo_turret_15_dm{
++ count:i=1
 + }
 + 
-+ us_blu_1{
-+ tier:i=1
-+ modClass:t="weapon"
++ ammo_turret_16_dm{
++ count:i=1
++ }
++ 
++ ammo_turret_17_dm{
++ count:i=1
++ }
++ 
++ ammo_turret_18_dm{
++ count:i=1
++ }
++ 
++ ammo_turret_19_dm{
++ count:i=1
++ }
++ 
++ ammo_turret_20_dm{
++ count:i=1
++ }
++ 
++ ammo_turret_21_dm{
++ count:i=1
++ }
++ 
++ ammo_turret_22_dm{
++ count:i=1
++ }
++ 
++ ammo_turret_23_dm{
++ count:i=1
++ }
++ 
++ ammo_turret_24_dm{
++ count:i=1
++ }
++ 
++ ammo_turret_25_dm{
++ count:i=1
++ }
++ 
++ ammo_turret_26_dm{
++ count:i=1
++ }
++ 
++ ammo_turret_27_dm{
++ count:i=1
++ }
++ 
++ ammo_turret_28_dm{
++ count:i=1
++ }
++ 
++ ammo_turret_29_dm{
++ count:i=1
++ }
++ 
++ ammo_turret_30_dm{
++ count:i=1
++ }
++ 
++ ammo_turret_31_dm{
++ count:i=1
++ }
++ 
++ ammo_turret_32_dm{
++ count:i=1
++ }
++ 
++ ammo_turret_33_dm{
++ count:i=1
++ }
++ 
++ ammo_turret_34_dm{
++ count:i=1
++ }
++ 
++ ammo_turret_35_dm{
++ count:i=1
++ }
++ 
++ ammo_turret_36_dm{
++ count:i=1
++ }
++ 
++ ammo_turret_37_dm{
++ count:i=1
++ }
++ 
++ ammo_turret_38_dm{
++ count:i=1
++ }
++ 
++ ammo_turret_39_dm{
++ count:i=1
++ }
++ 
++ ammo_turret_40_dm{
++ count:i=1
++ }
++ 
++ ammo_turret_41_dm{
++ count:i=1
++ }
++ 
++ ammo_turret_42_dm{
++ count:i=1
++ }
++ 
++ ammo_turret_43_dm{
++ count:i=1
++ }
++ 
++ ammo_turret_44_dm{
++ count:i=1
++ }
++ 
++ ammo_turret_45_dm{
++ count:i=1
++ }
++ 
++ ammo_turret_46_dm{
++ count:i=1
++ }
++ 
++ ammo_turret_47_dm{
++ count:i=1
++ }
++ 
++ ammo_turret_48_dm{
++ count:i=1
++ }
++ }
++ 
++ shells{
++ fireEvent:t="ammo_fire"
++ explosionEvent:t="ammo_explosion"
++ wreckedPartId:i=0
++ 
++ ammo_body_49_dm{
++ count:i=1
++ }
++ 
++ ammo_body_50_dm{
++ count:i=1
++ }
++ 
++ ammo_body_51_dm{
++ count:i=1
++ }
++ 
++ ammo_body_52_dm{
++ count:i=1
++ }
++ 
++ ammo_body_53_dm{
++ count:i=1
++ }
++ 
++ ammo_body_54_dm{
++ count:i=1
++ }
++ 
++ ammo_body_55_dm{
++ count:i=1
++ }
++ 
++ ammo_body_r_01_dm{
++ count:i=1
++ }
++ 
++ ammo_body_r_02_dm{
++ count:i=1
++ }
++ 
++ ammo_body_r_03_dm{
++ count:i=1
++ }
++ 
++ ammo_body_r_04_dm{
++ count:i=1
++ }
++ 
++ ammo_body_r_05_dm{
++ count:i=1
++ }
++ 
++ ammo_body_r_06_dm{
++ count:i=1
++ }
++ 
++ ammo_body_r_07_dm{
++ count:i=1
++ }
++ 
++ ammo_body_r_08_dm{
++ count:i=1
++ }
++ 
++ ammo_body_r_09_dm{
++ count:i=1
++ }
++ 
++ ammo_body_r_10_dm{
++ count:i=1
++ }
++ 
++ ammo_body_r_11_dm{
++ count:i=1
++ }
++ 
++ ammo_body_r_12_dm{
++ count:i=1
++ }
++ 
++ ammo_body_r_13_dm{
++ count:i=1
++ }
++ 
++ ammo_body_r_14_dm{
++ count:i=1
++ }
++ 
++ ammo_turret_49_dm{
++ count:i=1
++ }
++ 
++ ammo_turret_50_dm{
++ count:i=1
++ }
++ 
++ ammo_turret_51_dm{
++ count:i=1
++ }
++ 
++ ammo_turret_52_dm{
++ count:i=1
++ }
++ 
++ ammo_turret_53_dm{
++ count:i=1
++ }
++ 
++ ammo_turret_54_dm{
++ count:i=1
++ }
++ 
++ ammo_turret_55_dm{
++ count:i=1
++ }
++ 
++ ammo_turret_56_dm{
++ count:i=1
++ }
++ 
++ ammo_turret_57_dm{
++ count:i=1
++ }
++ 
++ ammo_turret_58_dm{
++ count:i=1
++ }
++ 
++ ammo_turret_59_dm{
++ count:i=1
++ }
++ 
++ ammo_turret_60_dm{
++ count:i=1
++ }
++ 
++ ammo_turret_61_dm{
++ count:i=1
++ }
++ 
++ ammo_turret_62_dm{
++ count:i=1
++ }
++ 
++ ammo_turret_63_dm{
++ count:i=1
++ }
++ 
++ ammo_turret_64_dm{
++ count:i=1
++ }
++ 
++ ammo_turret_65_dm{
++ count:i=1
++ }
++ 
++ ammo_turret_66_dm{
++ count:i=1
++ }
++ 
++ ammo_turret_67_dm{
++ count:i=1
++ }
++ 
++ ammo_turret_68_dm{
++ count:i=1
++ }
++ 
++ ammo_turret_69_dm{
++ count:i=1
++ }
++ 
++ ammo_turret_70_dm{
++ count:i=1
++ }
++ 
++ ammo_turret_71_dm{
++ count:i=1
++ }
++ 
++ ammo_turret_72_dm{
++ count:i=1
++ }
++ 
++ ammo_turret_73_dm{
++ count:i=1
++ }
++ 
++ ammo_turret_74_dm{
++ count:i=1
++ }
++ 
++ ammo_turret_75_dm{
++ count:i=1
++ }
++ 
++ ammo_body_01_dm{
++ count:i=1
++ }
++ 
++ ammo_body_02_dm{
++ count:i=1
++ }
++ 
++ ammo_body_03_dm{
++ count:i=1
++ }
++ 
++ ammo_body_04_dm{
++ count:i=1
++ }
++ 
++ ammo_body_05_dm{
++ count:i=1
++ }
++ 
++ ammo_body_06_dm{
++ count:i=1
++ }
++ 
++ ammo_body_07_dm{
++ count:i=1
++ }
++ 
++ ammo_body_08_dm{
++ count:i=1
++ }
++ 
++ ammo_body_09_dm{
++ count:i=1
++ }
++ 
++ ammo_body_10_dm{
++ count:i=1
++ }
++ 
++ ammo_body_11_dm{
++ count:i=1
++ }
++ 
++ ammo_body_12_dm{
++ count:i=1
++ }
++ 
++ ammo_body_13_dm{
++ count:i=1
++ }
++ 
++ ammo_body_14_dm{
++ count:i=1
++ }
++ 
++ ammo_body_15_dm{
++ count:i=1
++ }
++ 
++ ammo_body_16_dm{
++ count:i=1
++ }
++ 
++ ammo_body_17_dm{
++ count:i=1
++ }
++ 
++ ammo_body_18_dm{
++ count:i=1
++ }
++ 
++ ammo_body_19_dm{
++ count:i=1
++ }
++ 
++ ammo_body_20_dm{
++ count:i=1
++ }
++ 
++ ammo_body_21_dm{
++ count:i=1
++ }
++ 
++ ammo_body_22_dm{
++ count:i=1
++ }
++ 
++ ammo_body_23_dm{
++ count:i=1
++ }
++ 
++ ammo_body_24_dm{
++ count:i=1
++ }
++ 
++ ammo_body_25_dm{
++ count:i=1
++ }
++ 
++ ammo_body_26_dm{
++ count:i=1
++ }
++ 
++ ammo_body_27_dm{
++ count:i=1
++ }
++ 
++ ammo_body_28_dm{
++ count:i=1
++ }
++ 
++ ammo_body_29_dm{
++ count:i=1
++ }
++ 
++ ammo_body_30_dm{
++ count:i=1
++ }
++ 
++ ammo_body_31_dm{
++ count:i=1
++ }
++ 
++ ammo_body_32_dm{
++ count:i=1
++ }
++ 
++ ammo_body_33_dm{
++ count:i=1
++ }
++ 
++ ammo_body_34_dm{
++ count:i=1
++ }
++ 
++ ammo_body_35_dm{
++ count:i=1
++ }
++ 
++ ammo_body_36_dm{
++ count:i=1
++ }
++ 
++ ammo_body_37_dm{
++ count:i=1
++ }
++ 
++ ammo_body_38_dm{
++ count:i=1
++ }
++ 
++ ammo_body_39_dm{
++ count:i=1
++ }
++ 
++ ammo_body_40_dm{
++ count:i=1
++ }
++ 
++ ammo_body_41_dm{
++ count:i=1
++ }
++ 
++ ammo_body_42_dm{
++ count:i=1
++ }
++ 
++ ammo_body_43_dm{
++ count:i=1
++ }
++ 
++ ammo_body_44_dm{
++ count:i=1
++ }
++ 
++ ammo_body_45_dm{
++ count:i=1
++ }
++ 
++ ammo_body_46_dm{
++ count:i=1
++ }
++ 
++ ammo_body_47_dm{
++ count:i=1
++ }
++ 
++ ammo_body_48_dm{
++ count:i=1
++ }
++ }
 + }
 + }
 + 
 + user_skin{
-+ name:t="f-5ag_norway"
++ name:t="fiat_6614_106sr"
 + 
 + replace_tex{
-+ from:t="f_5ag_norway_c*"
-+ }
-+ 
-+ replace_tex{
-+ from:t="f_5ag_norway_n*"
++ from:t="it_camo_olive_green*"
 + }
 + }
 + 
 + default_skin{
++ name:t="default"
 + 
 + replace_tex{
-+ from:t="us_150gal_early_drop_tank_c*"
-+ to:t="no_150gal_early_drop_tank_c*"
++ from:t="it_camo_olive_green*"
++ to:t="it_camo_green_postwar*"
 + }
++ }
++ 
++ skin{
++ name:t="it_camo_desert_light_yellow"
++ nameLocId:t="skin/it_camo_desert_light_yellow"
++ descLocId:t="skin/it_camo_desert_light_yellow/desc"
 + 
 + replace_tex{
-+ from:t="us_agm_119a_penguin_missile_c*"
-+ to:t="no_agm_119a_penguin_missile_c*"
++ from:t="it_camo_olive_green*"
++ to:t="it_camo_desert_modern*"
 + }
 + }
 + 
-+ default_skin_tomoe{
-+ 
-+ replace_tex{
-+ from:t="f_5ag_norway_c*"
-+ to:t="f_5ag_norway_c*"
-+ }
++ skin{
++ name:t="it_camo_modern_three_color"
++ nameLocId:t="skin/it_camo_modern_three_color"
++ descLocId:t="skin/it_camo_modern_three_color/desc"
 + 
 + replace_tex{
-+ from:t="f_5ag_norway_n*"
-+ to:t="f_5ag_norway_n*"
++ from:t="it_camo_olive_green*"
++ to:t="it_camo_modern_three_color*"
 + }
 + }
 + 
-+ parachutes{
-+ emitterRange:ip2=1, 1
-+ emitterName:t="emtr_chute"
-+ chuteModel:t="chute_f_100_char"
-+ chuteAnimVarName:t="chute_state_switch"
-+ chuteFlapVarName:t="fire_chute"
-+ chuteTimeScaleParam:t="chute_time_scale"
-+ chuteFallSpeed:r=1.0
-+ }
-+ 
-+ bailout{
-+ buttonHoldTime:r=1.0
-+ wreckSpeed:r=10.0
-+ wreckDir:p3=-1.0, 1.0, 0.0
-+ seatEjectDelay:r=0.5
-+ seatVel:p3=-10.0, 20.0, 0.0
-+ minHeight:r=0.0
-+ minSpeed:r=0.0
-+ hasSafeExit:b=yes
-+ wreck:t="blister1"
-+ hide:t="seat_01"
-+ seat:t="seat_01"
-+ fxEmitter:t="blister1"
-+ fxType:t="catapult_expl_ejection"
-+ }
-+ 
-+ cutting{
-+ _emtr_break_wing0_l_from:p3=0.0904795, -0.196779, 1.30583
-+ _emtr_break_wing0_l_to:p3=0.0904795, -0.196779, 1.76905
-+ emtr_break_wing1_l_from:p3=0.0904795, -0.196779, 2.46389
-+ emtr_break_wing1_l_to:p3=0.0904795, -0.196779, 2.66544
-+ emtr_break_wing2_l_from:p3=0.0904795, -0.196779, 2.96776
-+ emtr_break_wing2_l_to:p3=0.0904795, -0.196779, 3.34694
-+ _emtr_break_wing0_r_from:p3=0.0904788, -0.196779, -1.30583
-+ _emtr_break_wing0_r_to:p3=0.0904788, -0.196779, -1.76905
-+ emtr_break_wing1_r_from:p3=0.0904788, -0.196779, -2.46389
-+ emtr_break_wing1_r_to:p3=0.0904788, -0.196779, -2.66544
-+ emtr_break_wing2_r_from:p3=0.0904788, -0.196779, -2.96776
-+ emtr_break_wing2_r_to:p3=0.0904788, -0.196779, -3.34694
-+ emtr_break_wing_tail:p3=-2.82787, 0.0, 0.0
-+ finCut:b=yes
-+ emtr_break_tail_from:p3=-3.2629, 0.122295, 8.34465e-09
-+ emtr_break_tail_to:p3=-5.11483, 0.122295, 8.34465e-09
-+ }
-+ 
-+ AfterBurner0{
-+ 
-+ volumetricAfterBurner{
-+ name:t="jet_blue_f_5"
-+ maxHeight:r=8.0
-+ minHeight:r=6.5
-+ heightNoiseStrength:r=0.02
-+ heightNoiseSpeed:r=30.0
-+ maxRadius:r=0.18
-+ minRadius:r=0.17
-+ maxBaseRadius:r=0.19
-+ minBaseRadius:r=0.15
-+ relativeCylinderHeightMax:r=0.35
-+ relativeCylinderHeightMin:r=0.35
-+ outerCylinderAbsorptionMax:r=0.6
-+ outerCylinderAbsorptionMin:r=0.7
-+ outerCylinderHeightFadeMax:r=5.0
-+ outerCylinderHeightFadeMin:r=3.0
-+ tailHeightFadeMax:r=2.5
-+ tailHeightFadeMin:r=0.5
-+ outerCylinderHeightFadeNoiseStrength:r=2.0
-+ outerCylinderHeightFadeNoiseSpeed:r=10.0
-+ minOuterCylinderRadius:r=0.22
-+ maxOuterCylinderRadius:r=0.22
-+ absorption:r=1.0
-+ colorIntensityMax:r=10.0
-+ colorIntensityMin:r=1.0
-+ colorOverHeightMult:r=0.7
-+ colorOverDepthMult:r=4.0
-+ colorOverRadiusMult:r=3.5
-+ colorOverRadiusFadeOverHeight:r=2.0
-+ maxRingOffset:r=0.0
-+ minRingOffset:r=0.0
-+ ringAbsorption:r=1.2
-+ maxRingCount:i=17
-+ minRingCount:i=17
-+ ringIntensityMin:r=0.0
-+ ringIntensityMax:r=1.0
-+ ringIntensityNoiseStrength:r=0.0
-+ ringIntensityNoiseSpeed:r=0.0
-+ ringOffsetNoiseStrength:r=1.0
-+ ringOffsetNoiseSpeed:r=30.0
-+ rampTextureOffset:i=0
-+ radiusNoiseStrength:r=0.03
-+ radiusNoiseSpeed:r=30.0
-+ shakeNoiseStrength:r=0.02
-+ shakeNoiseSpeed:r=40.0
-+ ringAngleFadeMult:r=0.5
-+ colorOverHeightNoiseStrength:r=0.1
-+ colorOverHeightNoiseSpeed:r=10.0
-+ colorOverRadiusNoiseStrength:r=0.25
-+ colorOverRadiusNoiseSpeed:r=10.0
-+ colorOverDepthNoiseStrength:r=0.1
-+ colorOverDepthNoiseSpeed:r=1.0
-+ colorIntensityNoiseStrength:r=2.0
-+ colorIntensityNoiseSpeed:r=20.0
-+ minStartingRingHeight:r=0.7
-+ maxStartingRingHeight:r=0.8
-+ ringIntensity:r=2.0
-+ ringFrequency:r=11.3097
-+ 
-+ preNominalEasingParams{
-+ animationTime:r=2.5
-+ ascendingSmoothIntensityParams:r=0.8
-+ }
-+ 
-+ postNominalEasingParams{
-+ animationTime:r=1.5
-+ ascendingSmoothIntensityParams:r=1.0
-+ }
-+ 
-+ lightProperties{
-+ color:p3=1.0, 0.641762, 0.387255
-+ angle:r=1.0
-+ brightness:r=25.0
-+ radius:r=20.0
-+ attenuation:r=0.75
-+ brightnessNoiseStrength:r=3.0
-+ brightnessNoiseSpeed:r=6.0
-+ ignitionTextureIntensity:r=1.0
-+ ignitionBrightnessNoiseStrength:r=0.1
-+ ignitionBrightnessNoiseSpeed:r=16.0
-+ }
-+ }
-+ }
-+ 
-+ lerxVapors{
-+ 
-+ lerxVapor{
-+ entryPoint:p3=1.6, -0.2, 1.237
-+ exitPoint:p3=-3.918, 0.0, 2.268
-+ entryTangent:p3=0.0, 0.206, 1.413
-+ exitTangent:p3=-1.443, 0.206, 1.618
-+ exitTangentHeight:p2=0.0, 0.0
-+ exitTangentWidth:p2=0.0, 0.0
-+ exitPointHeight:p2=0.0, 1.0
-+ exitPointWidth:p2=-1.0, 1.0
-+ maxRadius:p2=0.05, 0.4
-+ minRadius:p2=0.05, 0.25
-+ noiseParms:p2=0.218, 0.674
-+ smoothIntensityParams:p3=0.518, 1.505, 0.246
-+ density:r=1.0
-+ intensityMult:r=7.0
-+ criticalAOA:p4=6.0, 22.0, 35.0, 40.0
-+ absoluteCriticalAOS:p2=2.0, 15.0
-+ absoluteCriticalAOA:p2=5.0, 40.0
-+ }
-+ 
-+ lerxVapor{
-+ entryPoint:p3=1.6, -0.2, -1.237
-+ exitPoint:p3=-3.918, 0.0, -2.268
-+ entryTangent:p3=0.0, 0.206, -1.413
-+ exitTangent:p3=-1.443, 0.206, -1.618
-+ exitTangentHeight:p2=0.0, 0.0
-+ exitTangentWidth:p2=-0.0, -0.0
-+ exitPointHeight:p2=0.0, 1.0
-+ exitPointWidth:p2=1.0, -1.0
-+ maxRadius:p2=0.05, 0.4
-+ minRadius:p2=0.05, 0.25
-+ noiseParms:p2=0.218, 0.674
-+ smoothIntensityParams:p3=0.518, 1.505, 0.246
-+ density:r=1.0
-+ intensityMult:r=7.0
-+ criticalAOA:p4=6.0, 22.0, 35.0, 40.0
-+ absoluteCriticalAOS:p2=2.0, 15.0
-+ absoluteCriticalAOA:p2=5.0, 40.0
-+ }
-+ 
-+ lerxVapor{
-+ entryPoint:p3=1.226, -0.3, 1.413
-+ exitPoint:p3=-3.299, -0.6, 1.825
-+ entryTangent:p3=0.206, -0.35, 1.206
-+ exitTangent:p3=-2.062, -0.5, 1.825
-+ exitTangentHeight:p2=0.0, 0.0
-+ exitTangentWidth:p2=0.0, 0.0
-+ exitPointHeight:p2=0.0, 0.0
-+ exitPointWidth:p2=-0.5, 0.5
-+ maxRadius:p2=0.05, 0.4
-+ minRadius:p2=0.05, 0.2
-+ noiseParms:p2=0.2, 0.5
-+ smoothIntensityParams:p3=0.486, 1.646, 0.209
-+ density:r=1.0
-+ intensityMult:r=5.0
-+ criticalAOA:p4=-5.0, -15.0, -25.0, -30.0
-+ absoluteCriticalAOS:p2=2.0, 20.0
-+ absoluteCriticalAOA:p2=-2.0, -20.0
-+ }
-+ 
-+ lerxVapor{
-+ entryPoint:p3=1.226, -0.3, -1.413
-+ exitPoint:p3=-3.299, -0.6, -1.825
-+ entryTangent:p3=0.206, -0.35, -1.206
-+ exitTangent:p3=-2.062, -0.5, -1.825
-+ exitTangentHeight:p2=0.0, 0.0
-+ exitTangentWidth:p2=-0.0, -0.0
-+ exitPointHeight:p2=0.0, 0.0
-+ exitPointWidth:p2=0.5, -0.5
-+ maxRadius:p2=0.05, 0.4
-+ minRadius:p2=0.05, 0.2
-+ noiseParms:p2=0.2, 0.5
-+ smoothIntensityParams:p3=0.486, 1.646, 0.209
-+ density:r=1.0
-+ intensityMult:r=5.0
-+ criticalAOA:p4=-5.0, -15.0, -25.0, -30.0
-+ absoluteCriticalAOS:p2=2.0, 20.0
-+ absoluteCriticalAOA:p2=-2.0, -20.0
-+ }
-+ }
-```
-
-  **Removed**:
-```diff
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/f-8e.blkx**:
-
-  **Added**:
-```diff
-+ haveCCRPForGun:b=yes
-```
-
-  **Removed**:
-```diff
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/f-8e_fn.blkx**:
-
-  **Added**:
-```diff
-+ haveCCRPForGun:b=yes
-```
-
-  **Removed**:
-```diff
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/f_111c_raaf.blkx**:
-
-  **Added**:
-```diff
-+ isBwOpticSight:b=yes
-+ opticsInBombBay:b=yes
-+ laserDesignator:b=yes
-+ sightThermal{
-+ resolution:ip2=500, 300
-+ noiseFactor:r=0.05
-+ index:i=1
-+ }
-+ 
-+ index:i=2
-+ TV{
-+ pos:p3=12.0, 0.7, 0.0
-+ head:t="optic1_turret"
-+ crosshairPreset:t="test_crosshair"
-+ angularLimits:p4=-38.0, 38.0, -55.0, 38.0
-+ opticType:t="tv"
-+ turretNo:i=0
-+ nvIndex:i=1
-+ }
-+ 
-+ TV1{
-+ pos:p3=12.0, 0.7, 0.0
-+ head:t="optic1_turret"
-+ crosshairPreset:t="test_crosshair"
-+ angularLimits:p4=-38.0, 38.0, -55.0, 38.0
-+ opticType:t="tv"
-+ turretNo:i=0
-+ nvIndex:i=1
-+ name:t="GBU15V2"
-+ }
-+ 
-+ nvIndex:i=2
-+ 
-+ sensor{
-+ blk:t="gameData/sensors/ir_tracker_tgp.blk"
-+ node:t="optic1_gun"
-+ }
-+ 
-+ preset{
-+ name:t="f_111c_gbu_15_ir"
-+ blk:t="gameData/FlightModels/weaponPresets/f_111c_gbu_15_ir.blk"
-+ }
-+ tier:i=9
-+ node:t="aero_3b_1"
-+ emitter:t="aim_9_1"
-+ bullets:i=1
-+ external:b=yes
-+ separate:b=yes
-+ jettisonable:b=no
-+ }
-+ 
-+ BannedWeaponPreset{
-+ slot:i=2
-+ preset:t="gbu15v2_out"
-+ }
-+ }
-+ }
-+ 
-+ WeaponSlot{
-+ index:i=2
-+ tier:i=8
-+ order:i=3
-+ 
-+ WeaponPreset{
-+ iconType:t="missile_type_b_air_to_air"
-+ name:t="aim_9l"
-+ reqModification:t="us_aim_9l"
-+ 
-+ ShowNodes{
-+ node:t="aero_3b_2"
-+ node:t="pylon_pivot1"
-+ }
-+ 
-+ Weapon{
-+ trigger:t="aam"
-+ blk:t="gameData/Weapons/rocketGuns/us_aim9l_sidewinder.blk"
-+ WeaponPreset{
-+ iconType:t="guided_bomb_green"
-+ name:t="gbu15v2_out"
-+ reqModification:t="us_gbu_15v1"
-+ 
-+ ShowNodes{
-+ node:t="pylon_pivot1_lapa"
-+ node:t="pylon_pivot1"
-+ }
-+ 
-+ Weapon{
-+ trigger:t="guided bombs"
-+ blk:t="gameData/Weapons/BombGuns/us_2000lb_gbu_15v2.blk"
-+ emitter:t="bomb3_gbu"
-+ bullets:i=1
-+ external:b=yes
-+ separate:b=yes
-+ machLimit:r=1.01
-+ flapsRange:p2=0.0, 0.1
-+ }
-+ }
-+ 
-+ index:i=3
-+ order:i=5
-+ WeaponPreset{
-+ iconType:t="guided_bomb_green"
-+ name:t="gbu15v2"
-+ reqModification:t="us_gbu_15v1"
-+ 
-+ ShowNodes{
-+ node:t="pylon_pivot2_lapa"
-+ node:t="pylon_pivot2"
-+ }
-+ 
-+ Weapon{
-+ trigger:t="guided bombs"
-+ blk:t="gameData/Weapons/BombGuns/us_2000lb_gbu_15v2.blk"
-+ emitter:t="bomb4_gbu"
-+ bullets:i=1
-+ external:b=yes
-+ separate:b=yes
-+ machLimit:r=1.01
-+ flapsRange:p2=0.0, 0.1
-+ sweepRange:p2=0.0, 0.75
-+ }
-+ }
-+ 
-+ index:i=4
-+ order:i=7
-+ index:i=5
-+ order:i=6
-+ WeaponPreset{
-+ iconType:t="guided_bomb_green"
-+ name:t="gbu15v2"
-+ reqModification:t="us_gbu_15v1"
-+ 
-+ ShowNodes{
-+ node:t="pylon_pivot3_lapa"
-+ node:t="pylon_pivot3"
-+ }
-+ 
-+ Weapon{
-+ trigger:t="guided bombs"
-+ blk:t="gameData/Weapons/BombGuns/us_2000lb_gbu_15v2.blk"
-+ emitter:t="bomb5_gbu"
-+ bullets:i=1
-+ external:b=yes
-+ separate:b=yes
-+ machLimit:r=1.01
-+ flapsRange:p2=0.0, 0.1
-+ sweepRange:p2=0.0, 0.75
-+ }
-+ }
-+ 
-+ index:i=6
-+ order:i=4
-+ name:t="aim_9l"
-+ reqModification:t="us_aim_9l"
-+ blk:t="gameData/Weapons/rocketGuns/us_aim9l_sidewinder.blk"
-+ WeaponPreset{
-+ iconType:t="guided_bomb_green"
-+ name:t="gbu15v2_out"
-+ reqModification:t="us_gbu_15v1"
-+ 
-+ ShowNodes{
-+ node:t="pylon_pivot4_lapa"
-+ node:t="pylon_pivot4"
-+ }
-+ 
-+ Weapon{
-+ trigger:t="guided bombs"
-+ blk:t="gameData/Weapons/BombGuns/us_2000lb_gbu_15v2.blk"
-+ emitter:t="bomb6_gbu"
-+ bullets:i=1
-+ external:b=yes
-+ separate:b=yes
-+ machLimit:r=1.01
-+ flapsRange:p2=0.0, 0.1
-+ }
-+ }
-+ 
-+ 
-+ WeaponSlot{
-+ index:i=7
-+ tier:i=3
-+ order:i=2
-+ 
-+ WeaponPreset{
-+ iconType:t="missile_type_b_air_to_air"
-+ name:t="aim_9l_default"
-+ 
-+ ShowNodes{
-+ node:t="aero_3b_8"
-+ node:t="pylon_pivot4"
-+ }
-+ 
-+ Weapon{
-+ trigger:t="aam"
-+ blk:t="gameData/Weapons/rocketGuns/us_aim9l_sidewinder_default.blk"
-+ emitter:t="aim_9_8"
-+ bullets:i=1
-+ external:b=yes
-+ separate:b=yes
-+ jettisonable:b=no
-+ }
-+ 
-+ BannedWeaponPreset{
-+ slot:i=6
-+ preset:t="gbu15v2_out"
-+ }
-+ }
-+ }
-+ tier:i=3
-+ us_gbu_15v1{
-+ modClass:t="weapon"
-+ tier:i=4
-+ reqModification:t="us_gbu_10_gbu_24"
-+ }
-+ 
-```
-
-  **Removed**:
-```diff
-- laserDesignator:b=yes
-- tier:i=8
-- node:t="aero_3b_2"
-- index:i=2
-- order:i=3
-- index:i=3
-- order:i=5
-- index:i=4
-- order:i=4
-- index:i=5
-- order:i=2
-- name:t="aim_9l_default"
-- blk:t="gameData/Weapons/rocketGuns/us_aim9l_sidewinder_default.blk"
-- tier:i=4
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/f_14a_early.blkx**:
-
-  **Added**:
-```diff
-+ tier:i=1
-+ tier:i=2
-```
-
-  **Removed**:
-```diff
-- reqModification:t="us_aim_9d"
-- reqModification:t="us_aim_9d"
-- us_aim_9d{
-- tier:i=1
-- modClass:t="weapon"
-- }
-- 
-- reqModification:t="us_aim_9d"
-- tier:i=2
-- tier:i=3
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/f_16a_block_15_ocu_thailand.blkx**:
-
-  **Added**:
-```diff
-+ hmdF16c:b=yes
-+ hasHelmetDesignator:b=yes
-+ helmetDesignatorZone0:p3=-40.0, -50.0, 50.0
-+ helmetDesignatorZone1:p3=-20.0, -30.0, 50.0
-+ helmetDesignatorZone2:p3=0.0, -15.0, 50.0
-+ helmetDesignatorZone3:p3=20.0, -30.0, 50.0
-+ helmetDesignatorZone4:p3=40.0, -50.0, 50.0
-+ hmdBlockIlsArea:p4=0.5, -0.4, 0.55, 0.6
-+ hmdEnabledByDefault:b=yes
-```
-
-  **Removed**:
-```diff
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/la_200_toriy.blkx**:
-
-  **Added**:
-```diff
-+ emtr_break_wing_tail:p3=-7.49959, 0.0, 0.0
-+ emtr_break_stab_l_from:p3=-7.81212, 1.64319, 0.541073
-+ emtr_break_stab_r_from:p3=-7.81212, 1.64319, -0.541073
-+ emtr_break_fin_from:p3=-6.6801, 1.776487, -1.49012e-08
-```
-
-  **Removed**:
-```diff
-- emtr_break_wing_tail:p3=-6.09959, 0.0, 0.0
-- emtr_break_stab_l_from:p3=-7.81212, 1.94319, 0.541073
-- emtr_break_stab_r_from:p3=-7.81212, 1.94319, -0.541073
-- emtr_break_fin_from:p3=-6.6801, 0.776487, -1.49012e-08
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/mirage_2000_5f.blkx**:
-
-  **Added**:
-```diff
-+ hmdBlockIlsArea:p4=0.5, -0.4, 0.55, 0.6
-```
-
-  **Removed**:
-```diff
-- hmdBlockIlsArea:p4=0.25, -0.4, 0.65, 0.75
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/mirage_2000_5f_missile_test.blkx**:
-
-  **Added**:
-```diff
-+ hmdBlockIlsArea:p4=0.5, -0.4, 0.55, 0.6
-```
-
-  **Removed**:
-```diff
-- hmdBlockIlsArea:p4=0.25, -0.4, 0.65, 0.75
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/rafale_c_f3.blkx**:
-
-  **Added**:
-```diff
-+ scale:r=0.83
-+ scale:r=0.85
-```
-
-  **Removed**:
-```diff
-- scale:r=1.0
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/saab_jas39a.blkx**:
-
-  **Added**:
-```diff
-+ emtr_break_wing_tail:p3=-3.91985, 0.0, 0.0
-+ emtr_break_tail_from:p3=-3.91985, -0.0792358, 0.0
-```
-
-  **Removed**:
-```diff
-- emtr_break_wing_tail:p3=-1.95921, 0.0, 0.0
-- emtr_break_tail_from:p3=-3.21985, -0.0792358, 0.0
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/saab_jas39c.blkx**:
-
-  **Added**:
-```diff
-+ emtr_break_wing_tail:p3=-3.91985, 0.0, 0.0
-+ emtr_break_tail_from:p3=-3.91985, -0.0792358, 0.0
-```
-
-  **Removed**:
-```diff
-- emtr_break_wing_tail:p3=-1.95921, 0.0, 0.0
-- emtr_break_tail_from:p3=-3.21985, -0.0792358, 0.0
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/saab_jas39c_hungary.blkx**:
-
-  **Added**:
-```diff
-+ emtr_break_wing_tail:p3=-3.91985, 0.0, 0.0
-+ emtr_break_tail_from:p3=-3.91985, -0.0792358, 0.0
-```
-
-  **Removed**:
-```diff
-- emtr_break_wing_tail:p3=-1.95921, 0.0, 0.0
-- emtr_break_tail_from:p3=-3.21985, -0.0792358, 0.0
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/saab_jas39c_south_africa.blkx**:
-
-  **Added**:
-```diff
-+ emtr_break_wing_tail:p3=-3.91985, 0.0, 0.0
-+ emtr_break_tail_from:p3=-3.91985, -0.0792358, 0.0
-```
-
-  **Removed**:
-```diff
-- emtr_break_wing_tail:p3=-1.95921, 0.0, 0.0
-- emtr_break_tail_from:p3=-3.21985, -0.0792358, 0.0
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/saab_jas39c_south_africa_missile_test.blkx**:
-
-  **Added**:
-```diff
-+ emtr_break_wing_tail:p3=-3.91985, 0.0, 0.0
-+ emtr_break_tail_from:p3=-3.91985, -0.0792358, 0.0
-```
-
-  **Removed**:
-```diff
-- emtr_break_wing_tail:p3=-1.95921, 0.0, 0.0
-- emtr_break_tail_from:p3=-3.21985, -0.0792358, 0.0
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/saab_jas39c_thailand.blkx**:
-
-  **Added**:
-```diff
-+ emtr_break_wing_tail:p3=-3.91985, 0.0, 0.0
-+ emtr_break_tail_from:p3=-3.91985, -0.0792358, 0.0
-```
-
-  **Removed**:
-```diff
-- emtr_break_wing_tail:p3=-1.95921, 0.0, 0.0
-- emtr_break_tail_from:p3=-3.21985, -0.0792358, 0.0
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/su-11.blkx**:
-
-  **Added**:
-```diff
-+ _emtr_break_wing0_l_from:p3=-0.683855, 0.00882936, 0.810993
-+ _emtr_break_wing0_l_to:p3=-0.683855, 0.00882936, 1.46305
-+ emtr_break_wing1_l_from:p3=-0.683855, 0.00882936, 2.81688
-+ emtr_break_wing1_l_to:p3=-0.683855, 0.00882936, 2.82885
-+ emtr_break_wing2_l_from:p3=-0.683855, 0.00882936, 3.85781
-+ emtr_break_wing2_l_to:p3=-0.683855, 0.00882936, 4.5599
-+ _emtr_break_wing0_r_from:p3=-0.683855, 0.00882882, -0.810993
-+ _emtr_break_wing0_r_to:p3=-0.683855, 0.00882882, -1.46305
-+ emtr_break_wing1_r_from:p3=-0.683855, 0.00882882, -2.81688
-+ emtr_break_wing1_r_to:p3=-0.683855, 0.00882882, -2.82885
-+ emtr_break_wing2_r_from:p3=-0.683855, 0.00882882, -3.85781
-+ emtr_break_wing2_r_to:p3=-0.683855, 0.00882882, -4.5599
-+ emtr_break_wing_tail:p3=-5.05777, 0.0, 0.0
-+ emtr_break_stab_l_from:p3=-5.05777, 0.95966, 0.402864
-+ emtr_break_stab_l_to:p3=-5.05777, 0.95966, 1.61145
-+ emtr_break_stab_r_from:p3=-5.05777, 0.95966, -0.402864
-+ emtr_break_stab_r_to:p3=-5.05777, 0.95966, -1.61145
-+ emtr_break_fin_from:p3=-4.62791, 1.876152, 0.0
-```
-
-  **Removed**:
-```diff
-- emtr_break_wing2_l_from:p3=-0.683855, 0.0261557, 4.15628
-- emtr_break_wing2_l_to:p3=-0.683855, 0.0261557, 4.88087
-- emtr_break_wing2_r_from:p3=-0.683855, 0.0261558, -4.15628
-- emtr_break_wing2_r_to:p3=-0.683855, 0.0261558, -4.88087
-- emtr_break_wing_tail:p3=-3.32647, 0.0, 0.0
-- emtr_break_stab_l_from:p3=-5.05777, 1.01032, 0.402864
-- emtr_break_stab_l_to:p3=-5.05777, 1.01032, 1.61145
-- emtr_break_stab_r_from:p3=-5.05777, 1.01032, -0.402864
-- emtr_break_stab_r_to:p3=-5.05777, 1.01032, -1.61145
-- emtr_break_fin_from:p3=-4.62791, 0.876152, 0.0
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/su-9.blkx**:
-
-  **Added**:
-```diff
-+ emtr_break_wing_tail:p3=-5.05777, 0.0, 0.0
-+ emtr_break_fin_from:p3=-4.62791, 1.876152, 0.0
-```
-
-  **Removed**:
-```diff
-- emtr_break_wing_tail:p3=-3.32647, 0.0, 0.0
-- emtr_break_fin_from:p3=-4.62791, 0.876152, 0.0
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/tu-2_postwar.blkx**:
-
-  **Added**:
-```diff
-+ blk:t="gameData/Weapons/BombGuns/su_fab_250m_43.blk"
-+ blk:t="gameData/Weapons/BombGuns/su_fab_500m_43.blk"
-+ blk:t="gameData/Weapons/BombGuns/su_fab_1000m_43.blk"
-+ blk:t="gameData/Weapons/BombGuns/su_fab_250m_43.blk"
-+ blk:t="gameData/Weapons/BombGuns/su_fab_250m_43.blk"
-+ blk:t="gameData/Weapons/BombGuns/su_fab_250m_43.blk"
-+ blk:t="gameData/Weapons/BombGuns/su_fab_250m_43.blk"
-+ blk:t="gameData/Weapons/BombGuns/su_fab_250m_43.blk"
-+ blk:t="gameData/Weapons/BombGuns/su_fab_250m_43.blk"
-+ blk:t="gameData/Weapons/BombGuns/su_fab_500m_43.blk"
-+ blk:t="gameData/Weapons/BombGuns/su_fab_1000m_43.blk"
-+ blk:t="gameData/Weapons/BombGuns/su_fab_250m_43.blk"
-+ blk:t="gameData/Weapons/BombGuns/su_fab_500m_43.blk"
-+ blk:t="gameData/Weapons/BombGuns/su_fab_1000m_43.blk"
-```
-
-  **Removed**:
-```diff
-- blk:t="gameData/Weapons/BombGuns/su_fab_250m_44.blk"
-- blk:t="gameData/Weapons/BombGuns/su_fab_500m_44.blk"
-- blk:t="gameData/Weapons/BombGuns/su_fab_1000m_44.blk"
-- blk:t="gameData/Weapons/BombGuns/su_fab_250m_44.blk"
-- blk:t="gameData/Weapons/BombGuns/su_fab_250m_44.blk"
-- blk:t="gameData/Weapons/BombGuns/su_fab_250m_44.blk"
-- blk:t="gameData/Weapons/BombGuns/su_fab_250m_44.blk"
-- blk:t="gameData/Weapons/BombGuns/su_fab_250m_44.blk"
-- blk:t="gameData/Weapons/BombGuns/su_fab_250m_44.blk"
-- blk:t="gameData/Weapons/BombGuns/su_fab_500m_44.blk"
-- blk:t="gameData/Weapons/BombGuns/su_fab_1000m_44.blk"
-- blk:t="gameData/Weapons/BombGuns/su_fab_250m_44.blk"
-- blk:t="gameData/Weapons/BombGuns/su_fab_500m_44.blk"
-- blk:t="gameData/Weapons/BombGuns/su_fab_1000m_44.blk"
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/tu-2_postwar_china.blkx**:
-
-  **Added**:
-```diff
-+ blk:t="gameData/Weapons/BombGuns/su_fab_500m_43.blk"
-+ blk:t="gameData/Weapons/BombGuns/su_fab_1000m_43.blk"
-+ blk:t="gameData/Weapons/BombGuns/su_fab_500m_43.blk"
-+ blk:t="gameData/Weapons/BombGuns/su_fab_1000m_43.blk"
-+ blk:t="gameData/Weapons/BombGuns/su_fab_500m_43.blk"
-+ blk:t="gameData/Weapons/BombGuns/su_fab_1000m_43.blk"
-```
-
-  **Removed**:
-```diff
-- blk:t="gameData/Weapons/BombGuns/su_fab_500m_44.blk"
-- blk:t="gameData/Weapons/BombGuns/su_fab_1000m_44.blk"
-- blk:t="gameData/Weapons/BombGuns/su_fab_500m_44.blk"
-- blk:t="gameData/Weapons/BombGuns/su_fab_1000m_44.blk"
-- blk:t="gameData/Weapons/BombGuns/su_fab_500m_44.blk"
-- blk:t="gameData/Weapons/BombGuns/su_fab_1000m_44.blk"
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/tu-2_postwar_late.blkx**:
-
-  **Added**:
-```diff
-+ blk:t="gameData/Weapons/BombGuns/su_fab_250m_43.blk"
-+ blk:t="gameData/Weapons/BombGuns/su_fab_500m_43.blk"
-+ blk:t="gameData/Weapons/BombGuns/su_fab_1000m_43.blk"
-+ blk:t="gameData/Weapons/BombGuns/su_fab_250m_43.blk"
-+ blk:t="gameData/Weapons/BombGuns/su_fab_250m_43.blk"
-+ blk:t="gameData/Weapons/BombGuns/su_fab_250m_43.blk"
-+ blk:t="gameData/Weapons/BombGuns/su_fab_250m_43.blk"
-+ blk:t="gameData/Weapons/BombGuns/su_fab_250m_43.blk"
-+ blk:t="gameData/Weapons/BombGuns/su_fab_250m_43.blk"
-+ blk:t="gameData/Weapons/BombGuns/su_fab_500m_43.blk"
-+ blk:t="gameData/Weapons/BombGuns/su_fab_1000m_43.blk"
-+ blk:t="gameData/Weapons/BombGuns/su_fab_250m_43.blk"
-+ blk:t="gameData/Weapons/BombGuns/su_fab_500m_43.blk"
-+ blk:t="gameData/Weapons/BombGuns/su_fab_1000m_43.blk"
-```
-
-  **Removed**:
-```diff
-- blk:t="gameData/Weapons/BombGuns/su_fab_250m_44.blk"
-- blk:t="gameData/Weapons/BombGuns/su_fab_500m_44.blk"
-- blk:t="gameData/Weapons/BombGuns/su_fab_1000m_44.blk"
-- blk:t="gameData/Weapons/BombGuns/su_fab_250m_44.blk"
-- blk:t="gameData/Weapons/BombGuns/su_fab_250m_44.blk"
-- blk:t="gameData/Weapons/BombGuns/su_fab_250m_44.blk"
-- blk:t="gameData/Weapons/BombGuns/su_fab_250m_44.blk"
-- blk:t="gameData/Weapons/BombGuns/su_fab_250m_44.blk"
-- blk:t="gameData/Weapons/BombGuns/su_fab_250m_44.blk"
-- blk:t="gameData/Weapons/BombGuns/su_fab_500m_44.blk"
-- blk:t="gameData/Weapons/BombGuns/su_fab_1000m_44.blk"
-- blk:t="gameData/Weapons/BombGuns/su_fab_250m_44.blk"
-- blk:t="gameData/Weapons/BombGuns/su_fab_500m_44.blk"
-- blk:t="gameData/Weapons/BombGuns/su_fab_1000m_44.blk"
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/tu-2_postwar_late_hungary.blkx**:
-
-  **Added**:
-```diff
-+ blk:t="gameData/Weapons/BombGuns/su_fab_250m_43.blk"
-+ blk:t="gameData/Weapons/BombGuns/su_fab_500m_43.blk"
-+ blk:t="gameData/Weapons/BombGuns/su_fab_1000m_43.blk"
-+ blk:t="gameData/Weapons/BombGuns/su_fab_250m_43.blk"
-+ blk:t="gameData/Weapons/BombGuns/su_fab_250m_43.blk"
-+ blk:t="gameData/Weapons/BombGuns/su_fab_250m_43.blk"
-+ blk:t="gameData/Weapons/BombGuns/su_fab_250m_43.blk"
-+ blk:t="gameData/Weapons/BombGuns/su_fab_250m_43.blk"
-+ blk:t="gameData/Weapons/BombGuns/su_fab_250m_43.blk"
-+ blk:t="gameData/Weapons/BombGuns/su_fab_500m_43.blk"
-+ blk:t="gameData/Weapons/BombGuns/su_fab_1000m_43.blk"
-+ blk:t="gameData/Weapons/BombGuns/su_fab_250m_43.blk"
-+ blk:t="gameData/Weapons/BombGuns/su_fab_500m_43.blk"
-+ blk:t="gameData/Weapons/BombGuns/su_fab_1000m_43.blk"
-```
-
-  **Removed**:
-```diff
-- blk:t="gameData/Weapons/BombGuns/su_fab_250m_44.blk"
-- blk:t="gameData/Weapons/BombGuns/su_fab_500m_44.blk"
-- blk:t="gameData/Weapons/BombGuns/su_fab_1000m_44.blk"
-- blk:t="gameData/Weapons/BombGuns/su_fab_250m_44.blk"
-- blk:t="gameData/Weapons/BombGuns/su_fab_250m_44.blk"
-- blk:t="gameData/Weapons/BombGuns/su_fab_250m_44.blk"
-- blk:t="gameData/Weapons/BombGuns/su_fab_250m_44.blk"
-- blk:t="gameData/Weapons/BombGuns/su_fab_250m_44.blk"
-- blk:t="gameData/Weapons/BombGuns/su_fab_250m_44.blk"
-- blk:t="gameData/Weapons/BombGuns/su_fab_500m_44.blk"
-- blk:t="gameData/Weapons/BombGuns/su_fab_1000m_44.blk"
-- blk:t="gameData/Weapons/BombGuns/su_fab_250m_44.blk"
-- blk:t="gameData/Weapons/BombGuns/su_fab_500m_44.blk"
-- blk:t="gameData/Weapons/BombGuns/su_fab_1000m_44.blk"
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/weaponpresets/f_111c_aim9l.blkx**:
-
-  **Added**:
-```diff
-+ slot:i=3
-+ preset:t="aim_9l"
-+ }
-+ 
-+ Weapon{
-+ slot:i=6
-+ preset:t="aim_9l"
-+ }
-+ 
-+ Weapon{
-+ slot:i=7
-```
-
-  **Removed**:
-```diff
-- slot:i=4
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/weaponpresets/f_111c_default.blkx**:
-
-  **Added**:
-```diff
-+ slot:i=4
-+ slot:i=7
-```
-
-  **Removed**:
-```diff
-- slot:i=3
-- slot:i=5
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/weaponpresets/f_111c_default_ptb.blkx**:
-
-  **Added**:
-```diff
-+ slot:i=2
-+ slot:i=3
-+ slot:i=5
-+ slot:i=6
-```
-
-  **Removed**:
-```diff
-- slot:i=1
-- slot:i=2
-- slot:i=4
-- slot:i=5
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/weaponpresets/f_111c_gbu_10.blkx**:
-
-  **Added**:
-```diff
-+ slot:i=2
-+ slot:i=3
-+ slot:i=4
-+ slot:i=5
-+ slot:i=6
-```
-
-  **Removed**:
-```diff
-- slot:i=1
-- slot:i=2
-- slot:i=3
-- slot:i=4
-- slot:i=5
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/weaponpresets/f_111c_gbu_12.blkx**:
-
-  **Added**:
-```diff
-+ slot:i=2
-+ slot:i=3
-+ slot:i=4
-+ slot:i=5
-+ slot:i=6
-```
-
-  **Removed**:
-```diff
-- slot:i=1
-- slot:i=2
-- slot:i=3
-- slot:i=4
-- slot:i=5
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/weaponpresets/f_111c_gbu_15_ir.blkx**:
-
-  **Added**:
-```diff
-+ Weapon{
-+ slot:i=2
-+ preset:t="gbu15v2_out"
-+ }
-+ 
-+ Weapon{
-+ slot:i=3
-+ preset:t="gbu15v2"
-+ }
-+ 
-+ Weapon{
-+ slot:i=5
-+ preset:t="gbu15v2"
-+ }
-+ 
-+ Weapon{
-+ slot:i=6
-+ preset:t="gbu15v2_out"
-+ }
-```
-
-  **Removed**:
-```diff
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/weaponpresets/f_111c_gbu_24.blkx**:
-
-  **Added**:
-```diff
-+ slot:i=2
-+ slot:i=3
-+ slot:i=4
-+ slot:i=5
-+ slot:i=6
-```
-
-  **Removed**:
-```diff
-- slot:i=1
-- slot:i=2
-- slot:i=3
-- slot:i=4
-- slot:i=5
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/weaponpresets/f_111c_mk82_bru_supersonic.blkx**:
-
-  **Added**:
-```diff
-+ slot:i=2
-+ slot:i=3
-+ slot:i=5
-+ slot:i=6
-```
-
-  **Removed**:
-```diff
-- slot:i=1
-- slot:i=2
-- slot:i=4
-- slot:i=5
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/weaponpresets/f_111c_mk82_snakeye_bru_supersonic.blkx**:
-
-  **Added**:
-```diff
-+ slot:i=2
-+ slot:i=3
-+ slot:i=5
-+ slot:i=6
-```
-
-  **Removed**:
-```diff
-- slot:i=1
-- slot:i=2
-- slot:i=4
-- slot:i=5
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/weaponpresets/f_111c_mk84.blkx**:
-
-  **Added**:
-```diff
-+ slot:i=2
-+ slot:i=3
-+ slot:i=5
-+ slot:i=6
-```
-
-  **Removed**:
-```diff
-- slot:i=1
-- slot:i=2
-- slot:i=4
-- slot:i=5
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/weaponpresets/f_5ag_agm_119a.blkx**:
-
-  **Added**:
-```diff
-+ Weapon{
-+ slot:i=4
-+ preset:t="agm_119a"
-+ }
-```
-
-  **Removed**:
-```diff
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/weaponpresets/f_5ag_aim_9l.blkx**:
-
-  **Added**:
-```diff
-+ Weapon{
-+ slot:i=1
-+ preset:t="aim_9l"
-+ }
-+ 
-+ Weapon{
-+ slot:i=7
-+ preset:t="aim_9l"
-+ }
-```
-
-  **Removed**:
-```diff
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/weaponpresets/f_5ag_bomb_blu27.blkx**:
-
-  **Added**:
-```diff
-+ Weapon{
-+ slot:i=2
-+ preset:t="blu27"
-+ }
-+ 
-+ Weapon{
-+ slot:i=3
-+ preset:t="blu27"
-+ }
-+ 
-+ Weapon{
-+ slot:i=4
-+ preset:t="blu27"
-+ }
-+ 
-+ Weapon{
-+ slot:i=5
-+ preset:t="blu27"
-+ }
-+ 
-+ Weapon{
-+ slot:i=6
-+ preset:t="blu27"
-+ }
-```
-
-  **Removed**:
-```diff
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/weaponpresets/f_5ag_bomb_blu_1.blkx**:
-
-  **Added**:
-```diff
-+ Weapon{
-+ slot:i=2
-+ preset:t="blu27"
-+ }
-+ 
-+ Weapon{
-+ slot:i=3
-+ preset:t="blu27"
-+ }
-+ 
-+ Weapon{
-+ slot:i=4
-+ preset:t="blu27"
-+ }
-+ 
-+ Weapon{
-+ slot:i=5
-+ preset:t="blu27"
-+ }
-+ 
-+ Weapon{
-+ slot:i=6
-+ preset:t="blu27"
-+ }
-```
-
-  **Removed**:
-```diff
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/weaponpresets/f_5ag_bomb_m117.blkx**:
-
-  **Added**:
-```diff
-+ Weapon{
-+ slot:i=2
-+ preset:t="m117"
-+ }
-+ 
-+ Weapon{
-+ slot:i=3
-+ preset:t="m117"
-+ }
-+ 
-+ Weapon{
-+ slot:i=4
-+ preset:t="m117"
-+ }
-+ 
-+ Weapon{
-+ slot:i=5
-+ preset:t="m117"
-+ }
-+ 
-+ Weapon{
-+ slot:i=6
-+ preset:t="m117"
-+ }
-```
-
-  **Removed**:
-```diff
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/weaponpresets/f_5ag_bomb_mk82.blkx**:
-
-  **Added**:
-```diff
-+ Weapon{
-+ slot:i=2
-+ preset:t="mk82"
-+ }
-+ 
-+ Weapon{
-+ slot:i=3
-+ preset:t="mk82"
-+ }
-+ 
-+ Weapon{
-+ slot:i=4
-+ preset:t="mk82"
-+ }
-+ 
-+ Weapon{
-+ slot:i=5
-+ preset:t="mk82"
-+ }
-+ 
-+ Weapon{
-+ slot:i=6
-+ preset:t="mk82"
-+ }
-```
-
-  **Removed**:
-```diff
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/weaponpresets/f_5ag_bomb_mk82_snakeye.blkx**:
-
-  **Added**:
-```diff
-+ Weapon{
-+ slot:i=2
-+ preset:t="mk82_snakeye"
-+ }
-+ 
-+ Weapon{
-+ slot:i=3
-+ preset:t="mk82_snakeye"
-+ }
-+ 
-+ Weapon{
-+ slot:i=4
-+ preset:t="mk82_snakeye"
-+ }
-+ 
-+ Weapon{
-+ slot:i=5
-+ preset:t="mk82_snakeye"
-+ }
-+ 
-+ Weapon{
-+ slot:i=6
-+ preset:t="mk82_snakeye"
-+ }
-```
-
-  **Removed**:
-```diff
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/weaponpresets/f_5ag_bomb_mk83.blkx**:
-
-  **Added**:
-```diff
-+ Weapon{
-+ slot:i=3
-+ preset:t="mk83"
-+ }
-+ 
-+ Weapon{
-+ slot:i=4
-+ preset:t="mk83"
-+ }
-+ 
-+ Weapon{
-+ slot:i=5
-+ preset:t="mk83"
-+ }
-```
-
-  **Removed**:
-```diff
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/weaponpresets/f_5ag_bomb_mk84.blkx**:
-
-  **Added**:
-```diff
-+ Weapon{
-+ slot:i=4
-+ preset:t="mk84"
-+ }
-```
-
-  **Removed**:
-```diff
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/weaponpresets/f_5ag_default.blkx**:
-
-  **Added**:
-```diff
-+ Weapon{
-+ slot:i=1
-+ preset:t="aim_9l"
-+ }
-+ 
-+ Weapon{
-+ slot:i=3
-+ preset:t="ptb_slot3"
-+ }
-+ 
-+ Weapon{
-+ slot:i=4
-+ preset:t="ptb_slot4"
-+ }
-+ 
-+ Weapon{
-+ slot:i=5
-+ preset:t="ptb_slot5"
-+ }
-+ 
-+ Weapon{
-+ slot:i=7
-+ preset:t="aim_9l"
-+ }
-```
-
-  **Removed**:
-```diff
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/weaponpresets/f_5ag_gau_5a.blkx**:
-
-  **Added**:
-```diff
-+ Weapon{
-+ slot:i=4
-+ preset:t="gau_5a_gunpod"
-+ }
-```
-
-  **Removed**:
-```diff
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/weaponpresets/f_5ag_rockets_agm_12b.blkx**:
-
-  **Added**:
-```diff
-+ Weapon{
-+ slot:i=2
-+ preset:t="agm_12b"
-+ }
-+ 
-+ Weapon{
-+ slot:i=3
-+ preset:t="agm_12b"
-+ }
-+ 
-+ Weapon{
-+ slot:i=5
-+ preset:t="agm_12b"
-+ }
-+ 
-+ Weapon{
-+ slot:i=6
-+ preset:t="agm_12b"
-+ }
-```
-
-  **Removed**:
-```diff
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/weaponpresets/f_5ag_rockets_lau18.blkx**:
-
-  **Added**:
-```diff
-+ Weapon{
-+ slot:i=2
-+ preset:t="aero_7a"
-+ }
-+ 
-+ Weapon{
-+ slot:i=3
-+ preset:t="aero_7a"
-+ }
-+ 
-+ Weapon{
-+ slot:i=5
-+ preset:t="aero_7a"
-+ }
-+ 
-+ Weapon{
-+ slot:i=6
-+ preset:t="aero_7a"
-+ }
-```
-
-  **Removed**:
-```diff
-```
-
-
-- **aces.vromfs.bin_u/gamedata/flightmodels/weaponpresets/f_5ag_rockets_zuni.blkx**:
-
-  **Added**:
-```diff
-+ Weapon{
-+ slot:i=2
-+ preset:t="lau_10a"
-+ }
++ skin{
++ name:t="it_camo_winter_white"
++ nameLocId:t="skin/winter"
++ descLocId:t="skin/winter/desc"
 + 
-+ Weapon{
-+ slot:i=6
-+ preset:t="lau_10a"
++ replace_tex{
++ from:t="it_camo_olive_green*"
++ to:t="it_camo_winter_white*"
 + }
-```
-
-  **Removed**:
-```diff
-```
-
-
-- **aces.vromfs.bin_u/gamedata/units/ships/germ_cruiser_nurnberg.blkx**:
-
-  **Added**:
-```diff
-+ count:i=360
-+ count:i=360
-+ count:i=360
-+ count:i=180
-+ count:i=180
-+ count:i=360
-+ count:i=180
-+ count:i=180
-```
-
-  **Removed**:
-```diff
-- count:i=450
-- count:i=450
-- count:i=450
-- count:i=225
-- count:i=225
-- count:i=450
-- count:i=225
-- count:i=225
-```
-
-
-- **aces.vromfs.bin_u/gamedata/units/ships/germ_cruiser_nurnberg_ec.blkx**:
-
-  **Added**:
-```diff
-+ count:i=360
-+ count:i=360
-+ count:i=360
-+ count:i=180
-+ count:i=180
-+ count:i=360
-+ count:i=180
-+ count:i=180
-```
-
-  **Removed**:
-```diff
-- count:i=450
-- count:i=450
-- count:i=450
-- count:i=225
-- count:i=225
-- count:i=450
-- count:i=225
-- count:i=225
-```
-
-
-- **aces.vromfs.bin_u/gamedata/units/ships/it_battleship_caio_duilio.blkx**:
-
-  **Added**:
-```diff
-+ armorThickness:r=70.0
-+ armorThickness:r=70.0
-+ armorThickness:r=70.0
-+ armorThickness:r=70.0
-```
-
-  **Removed**:
-```diff
-- armorThickness:r=20.0
-- armorThickness:r=20.0
-- armorThickness:r=20.0
-- armorThickness:r=20.0
-```
-
-
-- **aces.vromfs.bin_u/gamedata/units/ships/jp_sehatei_mod1.blkx**:
-
-  **Added**:
-```diff
-+ 
-+ gunStabilizer{
-+ hasVerticalGunFreeMode:b=yes
-+ hasHorizontal:b=yes
-+ horizontalOmegaMult:r=1.0
-+ horizontalSpeedLimitKPH:r=80.0
-+ hasVertical:b=yes
-+ verticalOmegaMult:r=1.0
-+ verticalSpeedLimitKPH:r=80.0
-+ }
-```
-
-  **Removed**:
-```diff
-```
-
-
-- **aces.vromfs.bin_u/gamedata/units/ships/jp_type5_escortboat.blkx**:
-
-  **Added**:
-```diff
-+ 
-+ gunStabilizer{
-+ hasVerticalGunFreeMode:b=yes
-+ hasHorizontal:b=yes
-+ horizontalOmegaMult:r=1.0
-+ horizontalSpeedLimitKPH:r=80.0
-+ hasVertical:b=yes
-+ verticalOmegaMult:r=1.0
-+ verticalSpeedLimitKPH:r=80.0
-+ }
-```
-
-  **Removed**:
-```diff
-```
-
-
-- **aces.vromfs.bin_u/gamedata/units/ships/uk_frigate_river.blkx**:
-
-  **Added**:
-```diff
-+ pitch:p2=-10.0, 85.0
-+ lim1:p4=-180.0, -175.0, -5.0, 85.0
-+ lim2:p4=-175.0, -15.0, -10.0, 85.0
-+ lim3:p4=-15.0, 25.0, 18.0, 85.0
-+ lim4:p4=25.0, 80.0, 0.0, 85.0
-+ lim5:p4=80.0, 180.0, 20.0, 85.0
-+ pitch:p2=-10.0, 85.0
-+ lim1:p4=-180.0, -80.0, 20.0, 85.0
-+ lim2:p4=-80.0, -25.0, 0.0, 85.0
-+ lim3:p4=-25.0, 15.0, 18.0, 85.0
-+ lim4:p4=15.0, 175.0, -10.0, 85.0
-+ lim5:p4=175.0, 180.0, -5.0, 85.0
-```
-
-  **Removed**:
-```diff
-- pitch:p2=-10.0, 90.0
-- lim1:p4=-180.0, -175.0, -5.0, 90.0
-- lim2:p4=-175.0, -15.0, -10.0, 90.0
-- lim3:p4=-15.0, 25.0, 18.0, 90.0
-- lim4:p4=25.0, 80.0, 0.0, 90.0
-- lim5:p4=80.0, 180.0, 20.0, 90.0
-- pitch:p2=-10.0, 90.0
-- lim1:p4=-180.0, -80.0, 20.0, 90.0
-- lim2:p4=-80.0, -25.0, 0.0, 90.0
-- lim3:p4=-25.0, 15.0, 18.0, 90.0
-- lim4:p4=15.0, 175.0, -10.0, 90.0
-- lim5:p4=175.0, 180.0, -5.0, 90.0
-```
-
-
-- **aces.vromfs.bin_u/gamedata/units/ships/ussr_1124_ack.blkx**:
-
-  **Added**:
-```diff
-+ 
-+ gunStabilizer{
-+ hasVerticalGunFreeMode:b=yes
-+ hasHorizontal:b=yes
-+ horizontalOmegaMult:r=1.0
-+ horizontalSpeedLimitKPH:r=80.0
-+ hasVertical:b=yes
-+ verticalOmegaMult:r=1.0
-+ verticalSpeedLimitKPH:r=80.0
-+ }
-+ 
-+ gunStabilizer{
-+ hasVerticalGunFreeMode:b=yes
-+ hasHorizontal:b=yes
-+ horizontalOmegaMult:r=1.0
-+ horizontalSpeedLimitKPH:r=80.0
-+ hasVertical:b=yes
-+ verticalOmegaMult:r=1.0
-+ verticalSpeedLimitKPH:r=80.0
-+ }
-```
-
-  **Removed**:
-```diff
-```
-
-
-- **aces.vromfs.bin_u/gamedata/units/ships/ussr_1124_art.blkx**:
-
-  **Added**:
-```diff
-+ 
-+ gunStabilizer{
-+ hasVerticalGunFreeMode:b=yes
-+ hasHorizontal:b=yes
-+ horizontalOmegaMult:r=1.0
-+ horizontalSpeedLimitKPH:r=80.0
-+ hasVertical:b=yes
-+ verticalOmegaMult:r=1.0
-+ verticalSpeedLimitKPH:r=80.0
-+ }
-+ 
-+ gunStabilizer{
-+ hasVerticalGunFreeMode:b=yes
-+ hasHorizontal:b=yes
-+ horizontalOmegaMult:r=1.0
-+ horizontalSpeedLimitKPH:r=80.0
-+ hasVertical:b=yes
-+ verticalOmegaMult:r=1.0
-+ verticalSpeedLimitKPH:r=80.0
-+ }
-```
-
-  **Removed**:
-```diff
-```
-
-
-- **aces.vromfs.bin_u/gamedata/units/ships/ussr_1124_rct.blkx**:
-
-  **Added**:
-```diff
-+ 
-+ gunStabilizer{
-+ hasVerticalGunFreeMode:b=yes
-+ hasHorizontal:b=yes
-+ horizontalOmegaMult:r=1.0
-+ horizontalSpeedLimitKPH:r=80.0
-+ hasVertical:b=yes
-+ verticalOmegaMult:r=1.0
-+ verticalSpeedLimitKPH:r=80.0
-+ }
-```
-
-  **Removed**:
-```diff
-```
-
-
-- **aces.vromfs.bin_u/gamedata/units/ships/ussr_battleship_arhangelsk.blkx**:
-
-  **Added**:
-```diff
-+ isBulletBelt:b=yes
-+ isBulletBelt:b=yes
-+ isBulletBelt:b=yes
-+ isBulletBelt:b=yes
-+ isBulletBelt:b=yes
-+ isBulletBelt:b=yes
-+ isBulletBelt:b=yes
-+ isBulletBelt:b=yes
-```
-
-  **Removed**:
-```diff
-```
-
-
-- **aces.vromfs.bin_u/gamedata/units/ships/ussr_mbk_161_1943.blkx**:
-
-  **Added**:
-```diff
-+ 
-+ gunStabilizer{
-+ hasVerticalGunFreeMode:b=yes
-+ hasHorizontal:b=yes
-+ horizontalOmegaMult:r=1.0
-+ horizontalSpeedLimitKPH:r=80.0
-+ hasVertical:b=yes
-+ verticalOmegaMult:r=1.0
-+ verticalSpeedLimitKPH:r=80.0
-+ }
-+ 
-+ gunStabilizer{
-+ hasVerticalGunFreeMode:b=yes
-+ hasHorizontal:b=yes
-+ horizontalOmegaMult:r=1.0
-+ horizontalSpeedLimitKPH:r=80.0
-+ hasVertical:b=yes
-+ verticalOmegaMult:r=1.0
-+ verticalSpeedLimitKPH:r=80.0
-+ }
-```
-
-  **Removed**:
-```diff
-```
-
-
-- **aces.vromfs.bin_u/gamedata/units/ships/ussr_mbk_161_1944.blkx**:
-
-  **Added**:
-```diff
-+ 
-+ gunStabilizer{
-+ hasVerticalGunFreeMode:b=yes
-+ hasHorizontal:b=yes
-+ horizontalOmegaMult:r=1.0
-+ horizontalSpeedLimitKPH:r=80.0
-+ hasVertical:b=yes
-+ verticalOmegaMult:r=1.0
-+ verticalSpeedLimitKPH:r=80.0
-+ }
-+ 
-+ gunStabilizer{
-+ hasVerticalGunFreeMode:b=yes
-+ hasHorizontal:b=yes
-+ horizontalOmegaMult:r=1.0
-+ horizontalSpeedLimitKPH:r=80.0
-+ hasVertical:b=yes
-+ verticalOmegaMult:r=1.0
-+ verticalSpeedLimitKPH:r=80.0
-+ }
-```
-
-  **Removed**:
-```diff
-```
-
-
-- **aces.vromfs.bin_u/gamedata/units/ships/ussr_mkl_186.blkx**:
-
-  **Added**:
-```diff
-+ 
-+ gunStabilizer{
-+ hasVerticalGunFreeMode:b=yes
-+ hasHorizontal:b=yes
-+ horizontalOmegaMult:r=1.0
-+ horizontalSpeedLimitKPH:r=80.0
-+ hasVertical:b=yes
-+ verticalOmegaMult:r=1.0
-+ verticalSpeedLimitKPH:r=80.0
-+ }
-+ 
-+ gunStabilizer{
-+ hasVerticalGunFreeMode:b=yes
-+ hasHorizontal:b=yes
-+ horizontalOmegaMult:r=1.0
-+ horizontalSpeedLimitKPH:r=80.0
-+ hasVertical:b=yes
-+ verticalOmegaMult:r=1.0
-+ verticalSpeedLimitKPH:r=80.0
-+ }
-```
-
-  **Removed**:
-```diff
-```
-
-
-- **aces.vromfs.bin_u/gamedata/units/ships/ussr_mkl_186_mk85.blkx**:
-
-  **Added**:
-```diff
-+ 
-+ gunStabilizer{
-+ hasVerticalGunFreeMode:b=yes
-+ hasHorizontal:b=yes
-+ horizontalOmegaMult:r=1.0
-+ horizontalSpeedLimitKPH:r=80.0
-+ hasVertical:b=yes
-+ verticalOmegaMult:r=1.0
-+ verticalSpeedLimitKPH:r=80.0
-+ }
-+ 
-+ gunStabilizer{
-+ hasVerticalGunFreeMode:b=yes
-+ hasHorizontal:b=yes
-+ horizontalOmegaMult:r=1.0
-+ horizontalSpeedLimitKPH:r=80.0
-+ hasVertical:b=yes
-+ verticalOmegaMult:r=1.0
-+ verticalSpeedLimitKPH:r=80.0
-+ }
-```
-
-  **Removed**:
-```diff
-```
-
-
-- **aces.vromfs.bin_u/gamedata/units/ships/ussr_pr_1204_late.blkx**:
-
-  **Added**:
-```diff
-+ 
-+ gunStabilizer{
-+ hasVerticalGunFreeMode:b=yes
-+ hasHorizontal:b=yes
-+ horizontalOmegaMult:r=1.0
-+ horizontalSpeedLimitKPH:r=120.0
-+ hasVertical:b=yes
-+ verticalOmegaMult:r=1.0
-+ verticalSpeedLimitKPH:r=120.0
-+ }
-+ 
-+ gunStabilizer{
-+ hasVerticalGunFreeMode:b=yes
-+ hasHorizontal:b=yes
-+ horizontalOmegaMult:r=1.0
-+ horizontalSpeedLimitKPH:r=120.0
-+ hasVertical:b=yes
-+ verticalOmegaMult:r=1.0
-+ verticalSpeedLimitKPH:r=120.0
-+ }
-+ 
-+ gunStabilizer{
-+ hasVerticalGunFreeMode:b=yes
-+ hasHorizontal:b=yes
-+ horizontalOmegaMult:r=1.0
-+ horizontalSpeedLimitKPH:r=120.0
-+ hasVertical:b=yes
-+ verticalOmegaMult:r=1.0
-+ verticalSpeedLimitKPH:r=120.0
-+ }
-+ 
-+ gunStabilizer{
-+ hasVerticalGunFreeMode:b=yes
-+ hasHorizontal:b=yes
-+ horizontalOmegaMult:r=1.0
-+ horizontalSpeedLimitKPH:r=120.0
-+ hasVertical:b=yes
-+ verticalOmegaMult:r=1.0
-+ verticalSpeedLimitKPH:r=120.0
-+ }
-```
-
-  **Removed**:
-```diff
-```
-
-
-- **aces.vromfs.bin_u/gamedata/units/ships/ussr_pr_191.blkx**:
-
-  **Added**:
-```diff
-+ 
-+ gunStabilizer{
-+ hasVerticalGunFreeMode:b=yes
-+ hasHorizontal:b=yes
-+ horizontalOmegaMult:r=1.0
-+ horizontalSpeedLimitKPH:r=80.0
-+ hasVertical:b=yes
-+ verticalOmegaMult:r=1.0
-+ verticalSpeedLimitKPH:r=80.0
 + }
-```
-
-  **Removed**:
-```diff
-```
-
-
-- **aces.vromfs.bin_u/gamedata/units/ships/ussr_pr_191m.blkx**:
-
-  **Added**:
-```diff
 + 
-+ gunStabilizer{
-+ hasVerticalGunFreeMode:b=yes
-+ hasHorizontal:b=yes
-+ horizontalOmegaMult:r=1.0
-+ horizontalSpeedLimitKPH:r=80.0
-+ hasVertical:b=yes
-+ verticalOmegaMult:r=1.0
-+ verticalSpeedLimitKPH:r=80.0
++ dmgAngles{
++ hatch_10:p2=45.0, 90.0
 + }
-```
-
-  **Removed**:
-```diff
-```
-
-
-- **aces.vromfs.bin_u/gamedata/units/tankmodels/cn_antelope_tc_1l_ads.blkx**:
-
-  **Added**:
-```diff
-+ tier:i=2
-```
-
-  **Removed**:
-```diff
-```
-
-
-- **aces.vromfs.bin_u/gamedata/units/tankmodels/il_mim_72_chaparral.blkx**:
-
-  **Added**:
-```diff
-+ tier:i=3
-+ tier:i=2
-```
-
-  **Removed**:
-```diff
-```
-
-
-- **aces.vromfs.bin_u/gamedata/units/tankmodels/jp_type_81_tansam.blkx**:
-
-  **Added**:
-```diff
-+ tier:i=2
-```
-
-  **Removed**:
-```diff
-```
-
-
-- **aces.vromfs.bin_u/gamedata/units/tankmodels/us_mim_72_chaparral.blkx**:
-
-  **Added**:
-```diff
-+ tier:i=2
 ```
 
   **Removed**:
 ```diff
 ```
-
 
-- **aces.vromfs.bin_u/gamedata/weapons/cannonho203.blkx**:
-
-  **Added**:
-```diff
-+ explosiveType:t="rdx"
-```
 
-  **Removed**:
-```diff
-- explosiveType:t="tnt"
-```
+- **aces.vromfs.bin_u/gamedata/units/tankmodels/weaponpresets/it_fiat_6614_firos_default.blkx**:
 
 
-- **aces.vromfs.bin_u/gamedata/weapons/cannonmk214a.blkx**:
+- **aces.vromfs.bin_u/gamedata/weapons/groundmodels_weapons/50mm_firos_6_user_cannon.blkx**:
 
   **Added**:
 ```diff
++ cannon:b=yes
++ weaponType:i=-1
++ bUseHookAsRel:b=yes
++ emitColor:p3=1.0, 1.0, 0.0
++ emitI:r=10.0
++ emitR:r=3.0
++ emitTime:r=0.03
++ aimMinDist:r=0.1
++ aimMaxDist:r=4000.0
 + maxDeltaAngle:r=0.12
-+ maxDeltaAngle:r=0.14
-```
-
-  **Removed**:
-```diff
-- maxDeltaAngle:r=0.42
-- maxDeltaAngle:r=0.75
-```
-
-
-- **aces.vromfs.bin_u/gamedata/weapons/groundmodels_weapons/152mm_mim146.blkx**:
-
-  **Added**:
-```diff
-+ CxK:r=0.83
-+ timeFire:r=3.17
-+ force:r=14655.0
-+ startSpeed:r=35.0
-+ endSpeed:r=1065.0
-+ crossDistToReqCrossVelMult:r=2.75
-+ reqCrossVelRationMax:r=0.75
-+ velDiffToReqAccelMult:r=17.5
-+ velFrameReference:b=yes
-+ baseIndSpeed:r=1800.0
-+ accelControlProp:r=0.0131
-+ accelControlDiff:r=0.0003
-+ distance:r=8.5
-+ damage:r=900.0
-```
-
-  **Removed**:
-```diff
-- CxK:r=0.975
-- timeFire:r=2.0
-- force:r=22540.0
-- startSpeed:r=0.0
-- endSpeed:r=1027.0
-- spawnExplosionWreckage:b=no
-- timeToGain3:p2=5.0, 0.9
-- timeToGain4:p2=11.0, 0.6
-- timeToGain5:p2=18.0, 0.4
-- crossDistToReqCrossVelMult:r=9.0
-- reqCrossVelRationMax:r=0.45
-- velDiffToReqAccelMult:r=5.5
-- accelControlProp:r=0.0146
-- accelControlDiff:r=0.0002
-- distance:r=5.5
-- damage:r=600.0
-```
-
-
-- **aces.vromfs.bin_u/gamedata/weapons/groundmodels_weapons/152mm_mim146_launcher_user_cannon.blkx**:
-
-  **Added**:
-```diff
-+ CxK:r=0.83
-+ timeFire:r=3.17
-+ force:r=14655.0
-+ startSpeed:r=35.0
-+ endSpeed:r=1065.0
-+ crossDistToReqCrossVelMult:r=2.75
-+ reqCrossVelRationMax:r=0.75
-+ velDiffToReqAccelMult:r=17.5
-+ velFrameReference:b=yes
-+ baseIndSpeed:r=1800.0
-+ accelControlProp:r=0.0131
-+ accelControlDiff:r=0.0003
-+ distance:r=8.5
-+ damage:r=900.0
-+ CxK:r=0.83
-+ timeFire:r=3.17
-+ force:r=14655.0
-+ startSpeed:r=35.0
-+ endSpeed:r=1065.0
-+ crossDistToReqCrossVelMult:r=2.75
-+ reqCrossVelRationMax:r=0.75
-+ velDiffToReqAccelMult:r=17.5
-+ velFrameReference:b=yes
-+ baseIndSpeed:r=1800.0
-+ accelControlProp:r=0.0131
-+ accelControlDiff:r=0.0003
-+ distance:r=8.5
-+ damage:r=900.0
-```
-
-  **Removed**:
-```diff
-- CxK:r=0.975
-- timeFire:r=2.0
-- force:r=22540.0
-- startSpeed:r=0.0
-- endSpeed:r=1027.0
-- spawnExplosionWreckage:b=no
-- timeToGain3:p2=5.0, 0.9
-- timeToGain4:p2=11.0, 0.6
-- timeToGain5:p2=18.0, 0.4
-- crossDistToReqCrossVelMult:r=9.0
-- reqCrossVelRationMax:r=0.45
-- velDiffToReqAccelMult:r=5.5
-- accelControlProp:r=0.0146
-- accelControlDiff:r=0.0002
-- distance:r=5.5
-- damage:r=600.0
-- CxK:r=0.975
-- timeFire:r=2.0
-- force:r=22540.0
-- startSpeed:r=0.0
-- endSpeed:r=1027.0
-- spawnExplosionWreckage:b=no
-- timeToGain3:p2=5.0, 0.9
-- timeToGain4:p2=11.0, 0.6
-- timeToGain5:p2=18.0, 0.4
-- crossDistToReqCrossVelMult:r=9.0
-- reqCrossVelRationMax:r=0.45
-- velDiffToReqAccelMult:r=5.5
-- accelControlProp:r=0.0146
-- accelControlDiff:r=0.0002
-- distance:r=5.5
-- damage:r=600.0
-```
-
-
-- **aces.vromfs.bin_u/gamedata/weapons/rocketguns/fr_r_550_magic_2.blkx**:
-
-  **Added**:
-```diff
-+ timeFire:r=2.0
-+ force:r=27950.0
-```
-
-  **Removed**:
-```diff
-- timeFire:r=2.2
-- force:r=25000.0
-```
-
-
-- **aces.vromfs.bin_u/gamedata/weapons/rocketguns/fr_r_550_magic_2_default.blkx**:
-
-  **Added**:
-```diff
-+ timeFire:r=2.0
-+ force:r=27950.0
-```
-
-  **Removed**:
-```diff
-- timeFire:r=2.2
-- force:r=25000.0
-```
-
-
-- **aces.vromfs.bin_u/gamedata/weapons/rocketguns/us_agm_119a_penguin.blkx**:
-
-  **Added**:
-```diff
-+ rocketGun:b=yes
-+ preset_cost:i=20
-+ bullets:i=1
-+ shotFreq:r=1000.25
-+ sound:t="weapon.rocketgun_132"
-+ helicopterGroup:i=2
-+ mesh:t="us_agm_119a_penguin_missile"
++ maxDeltaAngleVertical:r=0.12
++ shotFreq:r=2.5
++ shotFreqRndK:r=0.05
++ traceFreq:i=4
++ bEnablePause:b=no
++ bullets:i=-1
++ bulletsCluster:i=1
++ reloadTime:r=30.0
++ bulletsCartridge:i=48
++ fxType:t="muzzle_ground_40mm"
++ useSingleIconForBullet:b=yes
++ fxGroundDust:t="dust_ground_wave_dirt_med"
++ fxGrassDust:t="dust_ground_wave_grass_med"
++ fxSandDust:t="dust_ground_wave_sand_med"
++ fxSnowDust:t="dust_ground_wave_snow_med"
++ fxConcreteDust:t="dust_ground_wave_asphalt_med"
++ fxWaterShockWave:t="dust_waterwave_small"
++ shouldCollideWithRendinsts:b=yes
++ sound_path:t="tanks/weapon_tanks/cannons"
++ sound_pathStudio:t="ground/weapon/cannons"
++ sound:t="106mm_M40A1C"
++ sound_inside:t="106mm_M40A1C_interior"
++ soundLoop:b=no
++ sfxReloadBullet:t="grd_cannon_belt_reload"
++ fxMultipleSpawn:b=yes
++ isBulletBelt:b=no
++ notUseDefaultBulletInGui:b=yes
++ drawRocketInBullet:b=yes
++ mesh:t="hydra_70_rocket_deployed"
++ animChar:t="hydra_70_rocket_char"
++ reloadAnimParam:t="rocket_hide"
 + 
-+ tags{
-+ }
-+ 
-+ rocket{
-+ bulletName:t="us_agm_119a_penguin_missile"
-+ statType:t="hydra"
-+ caliber:r=0.28
-+ length:r=3.2
-+ CxK:r=1.95
-+ wingAreaMult:r=3.25
-+ finsAoaHor:r=0.2
-+ finsAoaVer:r=0.2
-+ distFromCmToStab:r=0.15
-+ mass:r=370.0
-+ massEnd:r=290.0
-+ timeFire:r=120.0
-+ force:r=1400.0
-+ fireDelay:r=1.0
-+ timeLife:r=200.0
-+ useStartSpeed:b=yes
-+ startSpeed:r=0.0
-+ machMax:r=0.9
-+ endSpeed:r=0.0
-+ maxDistance:r=55000.0
-+ minDistance:r=5000.0
-+ rangeMax:r=55000.0
-+ launchZoneDistance:r=200.0
-+ guidanceType:t="ir"
-+ rollStabilization:b=yes
-+ rollStabilizationDelay:r=1.0
-+ dragCx:r=0.025
++ bullet{
 + normalizationPreset:t="heat"
-+ ricochetPreset:t="he"
-+ groundRicochetPreset:t="he_ground"
-+ secondaryShattersPreset:t="ap_rocket"
-+ stabilityThreshold:r=0.05
++ ricochetPreset:t="heat_fs"
++ groundRicochetPreset:t="heat_fs"
++ secondaryShattersPreset:t="ap"
++ stabilityThreshold:r=0.5
 + stabilityCaliberToArmorThreshold:r=5.0
-+ stabilityReductionAfterRicochet:r=0.5
++ stabilityReductionAfterRicochet:r=0.3
 + stabilityReductionAfterPenetration:r=0.15
-+ bulletType:t="rocket_tank"
-+ slopeEffectPreset:t="ap"
-+ fresnel:p3=0.23, 0.1, 2.0
++ bulletType:t="heat_grenade_tank"
++ cumulativeSecondaryShattersPreset:t="heat_fs"
 + explodeOnRendinst:b=yes
-+ useEffectiveArmorThicknessForShatter:b=yes
-+ explosiveType:t="comp_h6"
-+ explosiveMass:r=43.0
-+ fuseDelayDist:r=4.0
-+ fuseDelayDist:r=0.1
-+ maxDeltaAngle:r=0.02
-+ spawnExplosionFx:b=no
-+ explosionEffect:t="explosion_midair_rocket_big"
-+ groundCollisionEffect:t="bomb_expl_200kg"
-+ ricochetEffect:t="hit_59_80mm_metal_ap"
-+ waterCollisionEffect:t="hit_59_80mm_water"
-+ explosionPatchRadius:r=8.0
-+ waterRicochetEffect:t="hit_81_105mm_water_ap"
-+ groundRicochetEffect:t="hit_81_105mm_dirt_ap"
-+ visualShattersWaterOffset:r=1.2
-+ visualShattersGroundOffset:r=1.2
-+ distanceFuse:b=no
-+ effectOffset:p3=-1.9, 0.0, 0.0
-+ rendinstDamageRadius:r=9.0
-+ hitPowerMult:r=400.0
-+ explodeTreshold:r=0.1
-+ fireEffect:t="fires_exhaust_jet_early_med"
-+ smokeEffect:t="smoke_rocket_tail_light_big"
-+ smokeEffect2:t=""
-+ hazeEffect:t="haze_missile"
-+ endSmokeViscosity:r=0.05
-+ price:r=3000.0
-+ amountPerTier:r=1.0
-+ iconType:t="missile_air_to_uni"
++ fresnel:p3=0.23, 0.1, 2.0
++ shellAnimation:t="video/shells_animations/heat_fs.ivf"
++ bulletName:t="50mm_arf_8m3"
++ mass:r=4.8
++ caliber:r=0.05
++ sound_path:t="tanks/weapon_tanks/rockets"
++ sound_pathStudio:t="ground/weapon/rockets"
++ sound:t="75mm_m3"
++ sound_inside:t="75mm_m3_interior"
++ recoilMultiplier:r=0.05
 + 
-+ arcadeProp{
-+ finsAoaHor:r=0.25
-+ finsAoaVer:r=0.25
++ stabilityRicochetModifier{
++ mod1:p2=0.0, 0.5
++ mod2:p2=15.0, 0.7
++ mod3:p2=30.0, 0.99
 + }
 + 
-+ guidance{
-+ warmUpTime:r=1.0
-+ acquisitionTime:r=0.1
-+ workTime:r=3600.0
-+ useTrippleClickLockInTpv:b=yes
-+ applyExtraDifficultyParameters:b=yes
-+ uncageBeforeLaunch:b=yes
-+ inertialNavigation:b=yes
-+ breakLockMaxTime:r=200.0
++ DamageParts{
 + 
-+ irSeeker{
-+ visibilityType:t="infraRed"
-+ rangeBand0:r=2500.0
-+ rangeBand1:r=2500.0
-+ rangeMax:r=50000.0
-+ rangeSurface:r=50000.0
-+ fov:r=1.0
-+ gateWidth:r=0.1
-+ minAngleToSun:r=0.0
-+ lockAngleMax:r=40.0
-+ angleMax:r=45.0
-+ rateMax:r=15.0
-+ prolongationTimeMax:r=1.0
-+ designationSourceTypeMask:i=1
-+ constantDesignationSourceTypeMask:i=0
-+ groundVehiclesAsTarget:b=yes
-+ aircraftAsTarget:b=no
-+ surfaceAsTarget:b=yes
-+ boundaryTrack:b=yes
-+ filterAlpha:r=0.85
-+ filterBetta:r=0.2
++ body{
++ hp:r=5.0
++ armorClass:t="tank_structural_steel"
++ armorThickness:r=1.0
++ }
 + }
 + 
-+ guidanceAutopilot{
-+ timeOut:r=0.1
-+ loftEnabled:b=yes
-+ loftElevation:r=2.0
-+ loftTargetElevation:r=-10.0
-+ loftAngleToAccelMult:r=8.0
-+ loftTargetOmegaMax:r=0.425
-+ baseIndSpeed:r=1800.0
-+ propNavMult:r=4.0
-+ reqAccelMax:r=2.5
-+ accelControlProp:r=0.0836
-+ accelControlIntg:r=0.0665
-+ accelControlIntgLim:r=1.0
-+ accelControlDiff:r=0.0003
++ DamageEffects{
++ 
++ part{
++ name:t="body"
++ 
++ onHit{
++ break_fuse:r=1.0
++ }
++ 
++ onKill{
++ destruction:r=1.0
++ }
 + }
 + }
 + 
@@ -8733,32 +17922,374 @@
 + damageType:t="pressure"
 + }
 + 
++ rocket{
++ bulletName:t="50mm_arf_8m3"
++ statType:t=""
++ caliber:r=0.05
++ length:r=1.002
++ WdK:p3=0.1, 0.1, 0.1
++ CxK:r=1.35
++ distFromCmToStab:r=0.05
++ mass:r=3.8
++ massEnd:r=2.74
++ timeFire:r=1.15
++ force:r=1850.0
++ thrustDeviation:r=0.01
++ advancedSpread:r=0.75
++ velSpread:r=0.0
++ useStartSpeed:b=yes
++ startSpeed:r=0.0
++ maxSpeed:r=615.0
++ endSpeed:r=615.0
++ maxDistance:r=8000.0
++ minDistance:r=30.0
++ maxDeltaAngle:r=0.03
++ explosiveType:t="rdx_tnt"
++ explosiveMass:r=0.37
++ normalizationPreset:t="heat"
++ ricochetPreset:t="heat_fs"
++ groundRicochetPreset:t="heat_fs"
++ secondaryShattersPreset:t="ap"
++ stabilityThreshold:r=0.5
++ stabilityCaliberToArmorThreshold:r=5.0
++ stabilityReductionAfterRicochet:r=0.3
++ stabilityReductionAfterPenetration:r=0.15
++ bulletType:t="heat_grenade_tank"
++ cumulativeSecondaryShattersPreset:t="heat_fs"
++ explodeOnRendinst:b=yes
++ fresnel:p3=0.23, 0.1, 2.0
++ shellAnimation:t="video/shells_animations/heat_fs.ivf"
++ dragCx:r=0.027
++ selfDestructionFx:t="hit_81_132mm_heat"
++ explosionEffect:t="hit_81_132mm_heat"
++ groundCollisionEffect:t="hit_81_105mm_dirt_he"
++ ricochetEffect:t="hit_81_105mm_metal_ap"
++ waterCollisionEffect:t="hit_81_105mm_water_he"
++ explosionPatchRadius:r=3.0
++ waterRicochetEffect:t="hit_81_105mm_water_ap"
++ groundRicochetEffect:t="hit_81_105mm_dirt_ap"
++ visualShattersWaterOffset:r=1.2
++ visualShattersGroundOffset:r=1.2
++ fireEffect:t="fires_exhaust_jet_early_tiny"
++ smokeEffect:t="smoke_rocket_tail_dark_multiple"
++ smokeEffect2:t=""
++ hazeEffect:t="haze_missile"
++ endSmokeViscosity:r=0.05
++ effectOffset:p3=-1.2, 0.0, 0.0
++ spawnExplosionFx:b=no
++ explosionOffset:r=0.05
++ hitPowerMult:r=100.0
++ relativeVelHitShift:p2=300.0, 1000.0
++ relativeVelArmorShift:p2=200.0, 1000.0
++ hitPower:r=260.0
++ fuseDelayDist:r=0.0
++ explodeTreshold:r=0.01
++ distanceFuse:b=no
++ rendinstDamageRadius:r=6.0
++ price:r=3000.0
++ mesh:t="hydra_70_rocket_deployed"
++ 
 + stabilityRicochetModifier{
 + mod1:p2=0.0, 0.5
-+ mod2:p2=20.0, 0.6
-+ mod3:p2=30.0, 1.0
++ mod2:p2=15.0, 0.7
++ mod3:p2=30.0, 0.99
 + }
 + 
-+ damage{
++ pressureDamage{
++ damageType:t="pressure"
++ }
 + 
-+ explosive{
-+ offset:r=1.0
++ collisions{
++ 
++ default{
++ fx:t="hit_81_105mm_dirt_he"
++ ricochetFx:t="hit_81_105mm_dirt_ap"
++ }
++ 
++ horLandMesh{
++ fx:t="hit_81_105mm_dirt_he"
++ ricochetFx:t="hit_81_105mm_dirt_ap"
++ }
++ 
++ soil{
++ fx:t="hit_81_105mm_dirt_he"
++ ricochetFx:t="hit_81_105mm_dirt_ap"
++ }
++ 
++ dirt{
++ fx:t="hit_81_105mm_dirt_he"
++ ricochetFx:t="hit_81_105mm_dirt_ap"
++ }
++ 
++ road{
++ fx:t="hit_81_105mm_dirt_he"
++ ricochetFx:t="hit_81_105mm_dirt_ap"
++ }
++ 
++ roadSoil{
++ fx:t="hit_81_105mm_dirt_he"
++ ricochetFx:t="hit_81_105mm_dirt_ap"
++ }
++ 
++ bricks_red{
++ fx:t="hit_81_105mm_stone_he"
++ ricochetFx:t="hit_81_105mm_stone_ap"
++ }
++ 
++ sand{
++ fx:t="hit_81_105mm_sand_he"
++ ricochetFx:t="hit_81_105mm_sand_ap"
++ }
++ 
++ duneSand{
++ fx:t="hit_81_105mm_sand_he"
++ ricochetFx:t="hit_81_105mm_sand_ap"
++ }
++ 
++ roadSand{
++ fx:t="hit_81_105mm_sand_he"
++ ricochetFx:t="hit_81_105mm_sand_ap"
++ }
++ 
++ quickSand{
++ fx:t="hit_81_105mm_sand_he"
++ ricochetFx:t="hit_81_105mm_sand_ap"
++ }
++ 
++ snow{
++ fx:t="hit_81_105mm_snow_he"
++ ricochetFx:t="hit_81_105mm_snow_ap"
++ }
++ 
++ ice{
++ fx:t="hit_81_105mm_snow_he"
++ ricochetFx:t="hit_81_105mm_snow_ap"
++ }
++ 
++ roadSnow{
++ fx:t="hit_81_105mm_snow_he"
++ ricochetFx:t="hit_81_105mm_snow_ap"
++ }
++ 
++ snowLower{
++ fx:t="hit_81_105mm_snow_he"
++ ricochetFx:t="hit_81_105mm_snow_ap"
++ }
++ 
++ glass{
++ fx:t="hit_81_105mm_metal_he"
++ ricochetFx:t="hit_81_105mm_metal_ap"
++ }
++ 
++ steel{
++ fx:t="hit_81_105mm_metal_he"
++ ricochetFx:t="hit_81_105mm_metal_ap"
++ }
++ 
++ metal{
++ fx:t="hit_81_105mm_metal_he"
++ ricochetFx:t="hit_81_105mm_metal_ap"
++ }
++ 
++ tank_structural_steel{
++ fx:t="hit_81_105mm_metal_he"
++ ricochetFx:t="hit_81_105mm_metal_ap"
++ }
++ 
++ aluminum_armor{
++ fx:t="hit_81_105mm_metal_he"
++ ricochetFx:t="hit_81_105mm_metal_ap"
++ }
++ 
++ tank_rubber_screens{
++ fx:t="hit_81_105mm_stone_he"
++ ricochetFx:t="hit_81_105mm_stone_ap"
++ }
++ 
++ buildings{
++ fx:t="hit_81_105mm_stone_he"
++ ricochetFx:t="hit_81_105mm_stone_ap"
++ }
++ 
++ verLandMesh{
++ fx:t="hit_81_105mm_stone_he"
++ ricochetFx:t="hit_81_105mm_stone_ap"
++ }
++ 
++ concrete{
++ fx:t="hit_81_105mm_stone_he"
++ ricochetFx:t="hit_81_105mm_stone_ap"
++ }
++ 
++ rocks{
++ fx:t="hit_81_105mm_stone_he"
++ ricochetFx:t="hit_81_105mm_stone_ap"
++ }
++ 
++ rocksSlippery{
++ fx:t="hit_81_105mm_stone_he"
++ ricochetFx:t="hit_81_105mm_stone_ap"
++ }
++ 
++ fabric{
++ fx:t="hit_81_105mm_stone_he"
++ ricochetFx:t="hit_81_105mm_stone_ap"
++ }
++ 
++ stone_snow{
++ fx:t="hit_81_105mm_snow_he"
++ ricochetFx:t="hit_81_105mm_snow_ap"
++ }
++ 
++ wood{
++ fx:t="hit_81_132mm_heat"
++ copyBulletTm:b=yes
 + }
 + }
 + 
-+ shatterDamage{
-+ breachConeAngle:r=45.0
++ shatterCollisions{
++ groundCollisionEffect:t="hit_8_11mm_dirt_dust_ap"
++ waterCollisionEffect:t="hit_8_11mm_water"
++ 
++ default{
++ fx:t="hit_8_11mm_dirt_dust_ap"
 + }
 + 
-+ armorpower{
-+ ArmorPower0m:p2=90.0, 10.0
-+ ArmorPower50000m:p2=90.0, 50000.0
-+ ArmorPower60000m:p2=70.0, 60000.0
++ horLandMesh{
++ fx:t="hit_8_11mm_dirt_dust_ap"
 + }
 + 
-+ hitpower{
-+ HitPower0m:p2=400.0, 500.0
-+ HitPower20000m:p2=400.0, 20000.0
++ soil{
++ fx:t="hit_8_11mm_dirt_dust_ap"
++ }
++ 
++ dirt{
++ fx:t="hit_8_11mm_dirt_dust_ap"
++ }
++ 
++ road{
++ fx:t="hit_8_11mm_dirt_dust_ap"
++ }
++ 
++ bricks_red{
++ fx:t="hit_8_11mm_red_brick_dust_ap"
++ }
++ 
++ roadSoil{
++ fx:t="hit_8_11mm_dirt_dust_ap"
++ }
++ 
++ sand{
++ fx:t="hit_8_11mm_sand_dust_ap"
++ }
++ 
++ duneSand{
++ fx:t="hit_8_11mm_sand_dust_ap"
++ }
++ 
++ roadSand{
++ fx:t="hit_8_11mm_sand_dust_ap"
++ }
++ 
++ quickSand{
++ fx:t="hit_8_11mm_sand_dust_ap"
++ }
++ 
++ snow{
++ fx:t="hit_8_11mm_snow_dust_ap"
++ }
++ 
++ ice{
++ fx:t="hit_8_11mm_snow_dust_ap"
++ }
++ 
++ roadSnow{
++ fx:t="hit_8_11mm_snow_dust_ap"
++ }
++ 
++ snowLower{
++ fx:t="hit_8_11mm_snow_dust_ap"
++ }
++ 
++ glass{
++ fx:t="armoured_glass"
++ }
++ 
++ wood{
++ fx:t="hit_8_11mm_wood_ap"
++ }
++ 
++ steel{
++ fx:t="hit_8_11mm_metal_ap"
++ }
++ 
++ metal{
++ fx:t="hit_8_11mm_metal_ap"
++ }
++ 
++ tank_structural_steel{
++ fx:t="hit_8_11mm_metal_ap"
++ }
++ 
++ aluminum_armor{
++ fx:t="hit_8_11mm_metal_ap"
++ }
++ 
++ tank_rubber_screens{
++ fx:t="hit_8_11mm_stone_dust_ap"
++ }
++ 
++ buildings{
++ fx:t="hit_8_11mm_stone_dust_ap"
++ }
++ 
++ verLandMesh{
++ fx:t="hit_8_11mm_stone_dust_ap"
++ }
++ 
++ concrete{
++ fx:t="hit_8_11mm_stone_dust_ap"
++ }
++ 
++ rocks{
++ fx:t="hit_8_11mm_stone_dust_ap"
++ }
++ 
++ rocksSlippery{
++ fx:t="hit_8_11mm_stone_dust_ap"
++ }
++ 
++ fabric{
++ fx:t="hit_8_11mm_stone_dust_ap"
++ }
++ 
++ stone_snow{
++ fx:t="hit_8_11mm_snow_dust_ap"
++ }
++ 
++ armorPierceLowCal{
++ fx:t="hit_8_11mm_metal_ap"
++ }
++ 
++ armorPierceMedCal{
++ fx:t="hit_8_11mm_metal_ap"
++ }
++ 
++ armorPierceHiCal{
++ fx:t="hit_8_11mm_metal_ap"
++ }
++ 
++ armorNPLowCal{
++ fx:t="hit_8_11mm_metal_ap"
++ }
++ 
++ armorNPMedCal{
++ fx:t="hit_8_11mm_metal_ap"
++ }
++ 
++ armorNPHiCal{
++ fx:t="hit_8_11mm_metal_ap"
++ }
 + }
 + 
 + DamageParts{
@@ -8835,863 +18366,727 @@
 + }
 + }
 + 
-+ shatterCollisions{
-+ groundCollisionEffect:t="hit_12_18mm_dirt_ap"
-+ waterCollisionEffect:t="hit_8_11mm_water"
-+ 
-+ default{
-+ fx:t="hit_12_18mm_dirt_ap"
++ hitpower{
++ HitPower0m:p2=1.0, 500.0
++ HitPower1000m:p2=0.9, 1000.0
++ HitPower1500m:p2=0.65, 1500.0
++ HitPower2500m:p2=0.5, 2500.0
++ HitPower7000m:p2=0.0, 7000.0
 + }
 + 
-+ horLandMesh{
-+ fx:t="hit_12_18mm_dirt_ap"
++ armorpower{
++ ArmorPower0m:p2=1.0, 10.0
++ ArmorPower10000m:p2=1.0, 10000.0
 + }
 + 
-+ soil{
-+ fx:t="hit_12_18mm_dirt_ap"
++ damage{
++ 
++ explosive{
++ radius:r=0.15
++ offset:r=0.04
 + }
 + 
-+ dirt{
-+ fx:t="hit_12_18mm_dirt_ap"
++ shatter{
++ useRealShatters:b=yes
++ countPortion:r=0.22
++ 
++ segment{
++ radiusScale:r=0.15
++ penetrationScale:r=2.0
++ damageScale:r=1.0
++ angles:p2=0.0, 29.0
++ countPortion:r=0.04
++ onHitChanceMultFire:r=10.0
 + }
 + 
-+ road{
-+ fx:t="hit_12_18mm_dirt_ap"
++ segment{
++ radiusScale:r=1.0
++ penetrationScale:r=1.0
++ damageScale:r=1.0
++ angles:p2=30.0, 69.0
++ countPortion:r=0.235
 + }
 + 
-+ bricks_red{
-+ fx:t="hit_12_18mm_red_brick_ap"
++ segment{
++ radiusScale:r=0.25
++ penetrationScale:r=1.7
++ damageScale:r=1.5
++ angles:p2=70.0, 110.0
++ countPortion:r=0.075
++ onHitChanceMultFire:r=50.0
 + }
 + 
-+ roadSoil{
-+ fx:t="hit_12_18mm_dirt_ap"
++ segment{
++ radiusScale:r=1.0
++ penetrationScale:r=1.0
++ damageScale:r=1.0
++ angles:p2=111.0, 180.0
++ countPortion:r=0.15
 + }
 + 
-+ sand{
-+ fx:t="hit_12_18mm_sand_ap"
++ segment{
++ radiusScale:r=1.0
++ penetrationScale:r=1.0
++ damageScale:r=1.0
++ angles:p2=181.0, 249.0
++ countPortion:r=0.15
 + }
 + 
-+ duneSand{
-+ fx:t="hit_12_18mm_sand_ap"
++ segment{
++ radiusScale:r=0.25
++ penetrationScale:r=1.7
++ damageScale:r=1.5
++ angles:p2=250.0, 290.0
++ countPortion:r=0.075
++ onHitChanceMultFire:r=50.0
 + }
 + 
-+ roadSand{
-+ fx:t="hit_12_18mm_sand_ap"
++ segment{
++ radiusScale:r=1.0
++ penetrationScale:r=1.0
++ damageScale:r=1.0
++ angles:p2=291.0, 329.0
++ countPortion:r=0.235
 + }
 + 
-+ quickSand{
-+ fx:t="hit_12_18mm_sand_ap"
++ segment{
++ radiusScale:r=0.15
++ penetrationScale:r=2.0
++ damageScale:r=1.0
++ angles:p2=330.0, 359.0
++ countPortion:r=0.04
++ onHitChanceMultFire:r=10.0
++ }
++ }
 + }
 + 
-+ snow{
-+ fx:t="hit_12_18mm_snow_ap"
++ shatterDamage{
++ breachConeAngle:r=45.0
 + }
 + 
-+ ice{
-+ fx:t="hit_12_18mm_snow_ap"
++ cumulativeDamage{
++ armorPower:r=150.0
++ distance:r=6.0
++ damage:r=300.0
++ onHitChanceMultFire:r=16.0
++ }
++ }
 + }
 + 
-+ roadSnow{
-+ fx:t="hit_12_18mm_snow_ap"
++ 50mm_usa_arf_8m3_HEAT{
++ 
++ bullet{
++ normalizationPreset:t="heat"
++ ricochetPreset:t="heat_fs"
++ groundRicochetPreset:t="heat_fs"
++ secondaryShattersPreset:t="ap"
++ stabilityThreshold:r=0.5
++ stabilityCaliberToArmorThreshold:r=5.0
++ stabilityReductionAfterRicochet:r=0.3
++ stabilityReductionAfterPenetration:r=0.15
++ bulletType:t="heat_grenade_tank"
++ cumulativeSecondaryShattersPreset:t="heat_fs"
++ explodeOnRendinst:b=yes
++ fresnel:p3=0.23, 0.1, 2.0
++ shellAnimation:t="video/shells_animations/heat_fs.ivf"
++ bulletName:t="50mm_arf_8m3"
++ mass:r=4.8
++ caliber:r=0.05
++ sound_path:t="tanks/weapon_tanks/rockets"
++ sound_pathStudio:t="ground/weapon/rockets"
++ sound:t="75mm_m3"
++ sound_inside:t="75mm_m3_interior"
++ recoilMultiplier:r=0.05
++ 
++ stabilityRicochetModifier{
++ mod1:p2=0.0, 0.5
++ mod2:p2=15.0, 0.7
++ mod3:p2=30.0, 0.99
 + }
 + 
-+ snowLower{
-+ fx:t="hit_12_18mm_snow_ap"
++ DamageParts{
++ 
++ body{
++ hp:r=5.0
++ armorClass:t="tank_structural_steel"
++ armorThickness:r=1.0
++ }
 + }
 + 
-+ glass{
-+ fx:t="hit_12_18mm_metal_ap"
++ DamageEffects{
++ 
++ part{
++ name:t="body"
++ 
++ onHit{
++ break_fuse:r=1.0
 + }
 + 
-+ wood{
-+ fx:t="hit_12_18mm_wood_ap"
++ onKill{
++ destruction:r=1.0
++ }
++ }
 + }
 + 
-+ steel{
-+ fx:t="hit_12_18mm_metal_ap"
++ pressureDamage{
++ damageType:t="pressure"
 + }
 + 
-+ metal{
-+ fx:t="hit_12_18mm_metal_ap"
++ rocket{
++ bulletName:t="50mm_arf_8m3"
++ statType:t=""
++ caliber:r=0.05
++ length:r=1.002
++ WdK:p3=0.1, 0.1, 0.1
++ CxK:r=1.35
++ distFromCmToStab:r=0.05
++ mass:r=3.8
++ massEnd:r=2.74
++ timeFire:r=1.15
++ force:r=1850.0
++ thrustDeviation:r=0.01
++ advancedSpread:r=0.75
++ velSpread:r=0.0
++ useStartSpeed:b=yes
++ startSpeed:r=0.0
++ maxSpeed:r=615.0
++ endSpeed:r=615.0
++ maxDistance:r=8000.0
++ minDistance:r=30.0
++ maxDeltaAngle:r=0.03
++ explosiveType:t="rdx_tnt"
++ explosiveMass:r=0.37
++ normalizationPreset:t="heat"
++ ricochetPreset:t="heat_fs"
++ groundRicochetPreset:t="heat_fs"
++ secondaryShattersPreset:t="ap"
++ stabilityThreshold:r=0.5
++ stabilityCaliberToArmorThreshold:r=5.0
++ stabilityReductionAfterRicochet:r=0.3
++ stabilityReductionAfterPenetration:r=0.15
++ bulletType:t="heat_grenade_tank"
++ cumulativeSecondaryShattersPreset:t="heat_fs"
++ explodeOnRendinst:b=yes
++ fresnel:p3=0.23, 0.1, 2.0
++ shellAnimation:t="video/shells_animations/heat_fs.ivf"
++ dragCx:r=0.027
++ selfDestructionFx:t="hit_81_132mm_heat"
++ explosionEffect:t="hit_81_132mm_heat"
++ groundCollisionEffect:t="hit_81_105mm_dirt_he"
++ ricochetEffect:t="hit_81_105mm_metal_ap"
++ waterCollisionEffect:t="hit_81_105mm_water_he"
++ explosionPatchRadius:r=3.0
++ waterRicochetEffect:t="hit_81_105mm_water_ap"
++ groundRicochetEffect:t="hit_81_105mm_dirt_ap"
++ visualShattersWaterOffset:r=1.2
++ visualShattersGroundOffset:r=1.2
++ fireEffect:t="fires_exhaust_jet_early_tiny"
++ smokeEffect:t="smoke_rocket_tail_dark_multiple"
++ smokeEffect2:t=""
++ hazeEffect:t="haze_missile"
++ endSmokeViscosity:r=0.05
++ effectOffset:p3=-1.2, 0.0, 0.0
++ spawnExplosionFx:b=no
++ explosionOffset:r=0.05
++ hitPowerMult:r=100.0
++ relativeVelHitShift:p2=300.0, 1000.0
++ relativeVelArmorShift:p2=200.0, 1000.0
++ hitPower:r=260.0
++ fuseDelayDist:r=0.0
++ explodeTreshold:r=0.01
++ distanceFuse:b=no
++ rendinstDamageRadius:r=6.0
++ price:r=3000.0
++ mesh:t="hydra_70_rocket_deployed"
++ 
++ stabilityRicochetModifier{
++ mod1:p2=0.0, 0.5
++ mod2:p2=15.0, 0.7
++ mod3:p2=30.0, 0.99
 + }
 + 
-+ tank_structural_steel{
-+ fx:t="hit_12_18mm_metal_ap"
-+ }
-+ 
-+ aluminum_armor{
-+ fx:t="hit_12_18mm_metal_ap"
-+ }
-+ 
-+ tank_rubber_screens{
-+ fx:t="hit_12_18mm_stone_ap"
-+ }
-+ 
-+ buildings{
-+ fx:t="hit_12_18mm_stone_ap"
-+ }
-+ 
-+ verLandMesh{
-+ fx:t="hit_12_18mm_stone_ap"
-+ }
-+ 
-+ concrete{
-+ fx:t="hit_12_18mm_stone_ap"
-+ }
-+ 
-+ rocks{
-+ fx:t="hit_12_18mm_stone_ap"
-+ }
-+ 
-+ rocksSlippery{
-+ fx:t="hit_12_18mm_stone_ap"
-+ }
-+ 
-+ fabric{
-+ fx:t="hit_12_18mm_stone_ap"
-+ }
-+ 
-+ stone_snow{
-+ fx:t="hit_12_18mm_snow_ap"
-+ }
-+ 
-+ armorPierceLowCal{
-+ fx:t="hit_12_18mm_metal_ap"
-+ }
-+ 
-+ armorPierceMedCal{
-+ fx:t="hit_12_18mm_metal_ap"
-+ }
-+ 
-+ armorPierceHiCal{
-+ fx:t="hit_12_18mm_metal_ap"
-+ }
-+ 
-+ armorNPLowCal{
-+ fx:t="hit_12_18mm_metal_ap"
-+ }
-+ 
-+ armorNPMedCal{
-+ fx:t="hit_12_18mm_metal_ap"
-+ }
-+ 
-+ armorNPHiCal{
-+ fx:t="hit_12_18mm_metal_ap"
-+ }
++ pressureDamage{
++ damageType:t="pressure"
 + }
 + 
 + collisions{
 + 
-+ steel{
-+ fx:t="explosion_midair_big"
++ default{
++ fx:t="hit_81_105mm_dirt_he"
++ ricochetFx:t="hit_81_105mm_dirt_ap"
++ }
++ 
++ horLandMesh{
++ fx:t="hit_81_105mm_dirt_he"
++ ricochetFx:t="hit_81_105mm_dirt_ap"
++ }
++ 
++ soil{
++ fx:t="hit_81_105mm_dirt_he"
++ ricochetFx:t="hit_81_105mm_dirt_ap"
++ }
++ 
++ dirt{
++ fx:t="hit_81_105mm_dirt_he"
++ ricochetFx:t="hit_81_105mm_dirt_ap"
++ }
++ 
++ road{
++ fx:t="hit_81_105mm_dirt_he"
++ ricochetFx:t="hit_81_105mm_dirt_ap"
++ }
++ 
++ roadSoil{
++ fx:t="hit_81_105mm_dirt_he"
++ ricochetFx:t="hit_81_105mm_dirt_ap"
++ }
++ 
++ bricks_red{
++ fx:t="hit_81_105mm_stone_he"
++ ricochetFx:t="hit_81_105mm_stone_ap"
++ }
++ 
++ sand{
++ fx:t="hit_81_105mm_sand_he"
++ ricochetFx:t="hit_81_105mm_sand_ap"
++ }
++ 
++ duneSand{
++ fx:t="hit_81_105mm_sand_he"
++ ricochetFx:t="hit_81_105mm_sand_ap"
++ }
++ 
++ roadSand{
++ fx:t="hit_81_105mm_sand_he"
++ ricochetFx:t="hit_81_105mm_sand_ap"
++ }
++ 
++ quickSand{
++ fx:t="hit_81_105mm_sand_he"
++ ricochetFx:t="hit_81_105mm_sand_ap"
++ }
++ 
++ snow{
++ fx:t="hit_81_105mm_snow_he"
++ ricochetFx:t="hit_81_105mm_snow_ap"
++ }
++ 
++ ice{
++ fx:t="hit_81_105mm_snow_he"
++ ricochetFx:t="hit_81_105mm_snow_ap"
++ }
++ 
++ roadSnow{
++ fx:t="hit_81_105mm_snow_he"
++ ricochetFx:t="hit_81_105mm_snow_ap"
++ }
++ 
++ snowLower{
++ fx:t="hit_81_105mm_snow_he"
++ ricochetFx:t="hit_81_105mm_snow_ap"
++ }
++ 
++ glass{
++ fx:t="hit_81_105mm_metal_he"
 + ricochetFx:t="hit_81_105mm_metal_ap"
 + }
 + 
-+ aluminum_armor{
-+ fx:t="explosion_midair_big"
++ steel{
++ fx:t="hit_81_105mm_metal_he"
++ ricochetFx:t="hit_81_105mm_metal_ap"
++ }
++ 
++ metal{
++ fx:t="hit_81_105mm_metal_he"
 + ricochetFx:t="hit_81_105mm_metal_ap"
 + }
 + 
 + tank_structural_steel{
-+ fx:t="explosion_midair_big"
++ fx:t="hit_81_105mm_metal_he"
 + ricochetFx:t="hit_81_105mm_metal_ap"
 + }
 + 
-+ armor{
-+ fx:t="explosion_midair_big"
++ aluminum_armor{
++ fx:t="hit_81_105mm_metal_he"
 + ricochetFx:t="hit_81_105mm_metal_ap"
++ }
++ 
++ tank_rubber_screens{
++ fx:t="hit_81_105mm_stone_he"
++ ricochetFx:t="hit_81_105mm_stone_ap"
 + }
 + 
 + buildings{
-+ fx:t="explosion_midair_big"
-+ ricochetFx:t="hit_106_132mm_stone_ap"
++ fx:t="hit_81_105mm_stone_he"
++ ricochetFx:t="hit_81_105mm_stone_ap"
++ }
++ 
++ verLandMesh{
++ fx:t="hit_81_105mm_stone_he"
++ ricochetFx:t="hit_81_105mm_stone_ap"
++ }
++ 
++ concrete{
++ fx:t="hit_81_105mm_stone_he"
++ ricochetFx:t="hit_81_105mm_stone_ap"
++ }
++ 
++ rocks{
++ fx:t="hit_81_105mm_stone_he"
++ ricochetFx:t="hit_81_105mm_stone_ap"
++ }
++ 
++ rocksSlippery{
++ fx:t="hit_81_105mm_stone_he"
++ ricochetFx:t="hit_81_105mm_stone_ap"
++ }
++ 
++ fabric{
++ fx:t="hit_81_105mm_stone_he"
++ ricochetFx:t="hit_81_105mm_stone_ap"
++ }
++ 
++ stone_snow{
++ fx:t="hit_81_105mm_snow_he"
++ ricochetFx:t="hit_81_105mm_snow_ap"
 + }
 + 
 + wood{
-+ fx:t="explosion_midair_big"
-+ ricochetFx:t="hit_106_132mm_wood_ap"
++ fx:t="hit_81_132mm_heat"
++ copyBulletTm:b=yes
++ }
++ }
++ 
++ shatterCollisions{
++ groundCollisionEffect:t="hit_8_11mm_dirt_dust_ap"
++ waterCollisionEffect:t="hit_8_11mm_water"
++ 
++ default{
++ fx:t="hit_8_11mm_dirt_dust_ap"
++ }
++ 
++ horLandMesh{
++ fx:t="hit_8_11mm_dirt_dust_ap"
++ }
++ 
++ soil{
++ fx:t="hit_8_11mm_dirt_dust_ap"
++ }
++ 
++ dirt{
++ fx:t="hit_8_11mm_dirt_dust_ap"
++ }
++ 
++ road{
++ fx:t="hit_8_11mm_dirt_dust_ap"
++ }
++ 
++ bricks_red{
++ fx:t="hit_8_11mm_red_brick_dust_ap"
++ }
++ 
++ roadSoil{
++ fx:t="hit_8_11mm_dirt_dust_ap"
++ }
++ 
++ sand{
++ fx:t="hit_8_11mm_sand_dust_ap"
++ }
++ 
++ duneSand{
++ fx:t="hit_8_11mm_sand_dust_ap"
++ }
++ 
++ roadSand{
++ fx:t="hit_8_11mm_sand_dust_ap"
++ }
++ 
++ quickSand{
++ fx:t="hit_8_11mm_sand_dust_ap"
++ }
++ 
++ snow{
++ fx:t="hit_8_11mm_snow_dust_ap"
++ }
++ 
++ ice{
++ fx:t="hit_8_11mm_snow_dust_ap"
++ }
++ 
++ roadSnow{
++ fx:t="hit_8_11mm_snow_dust_ap"
++ }
++ 
++ snowLower{
++ fx:t="hit_8_11mm_snow_dust_ap"
++ }
++ 
++ glass{
++ fx:t="armoured_glass"
++ }
++ 
++ wood{
++ fx:t="hit_8_11mm_wood_ap"
++ }
++ 
++ steel{
++ fx:t="hit_8_11mm_metal_ap"
++ }
++ 
++ metal{
++ fx:t="hit_8_11mm_metal_ap"
++ }
++ 
++ tank_structural_steel{
++ fx:t="hit_8_11mm_metal_ap"
++ }
++ 
++ aluminum_armor{
++ fx:t="hit_8_11mm_metal_ap"
++ }
++ 
++ tank_rubber_screens{
++ fx:t="hit_8_11mm_stone_dust_ap"
++ }
++ 
++ buildings{
++ fx:t="hit_8_11mm_stone_dust_ap"
++ }
++ 
++ verLandMesh{
++ fx:t="hit_8_11mm_stone_dust_ap"
++ }
++ 
++ concrete{
++ fx:t="hit_8_11mm_stone_dust_ap"
++ }
++ 
++ rocks{
++ fx:t="hit_8_11mm_stone_dust_ap"
++ }
++ 
++ rocksSlippery{
++ fx:t="hit_8_11mm_stone_dust_ap"
++ }
++ 
++ fabric{
++ fx:t="hit_8_11mm_stone_dust_ap"
++ }
++ 
++ stone_snow{
++ fx:t="hit_8_11mm_snow_dust_ap"
++ }
++ 
++ armorPierceLowCal{
++ fx:t="hit_8_11mm_metal_ap"
++ }
++ 
++ armorPierceMedCal{
++ fx:t="hit_8_11mm_metal_ap"
++ }
++ 
++ armorPierceHiCal{
++ fx:t="hit_8_11mm_metal_ap"
++ }
++ 
++ armorNPLowCal{
++ fx:t="hit_8_11mm_metal_ap"
++ }
++ 
++ armorNPMedCal{
++ fx:t="hit_8_11mm_metal_ap"
++ }
++ 
++ armorNPHiCal{
++ fx:t="hit_8_11mm_metal_ap"
++ }
++ }
++ 
++ DamageParts{
++ 
++ body{
++ hp:r=50.0
++ armorClass:t="tank_structural_steel"
++ armorThickness:r=1.0
++ }
++ }
++ 
++ DamageEffects{
++ 
++ part{
++ name:t="body"
++ 
++ onHit{
++ shellState:t="inFlight"
++ expl:r=1.0
++ }
++ 
++ onHit{
++ shellState:t="onUnit"
++ damageType:t="generic"
++ expl:r=0.05
++ fire:r=0.45
++ break:r=0.5
++ damage:r=3.0
++ fHitCritical:b=yes
++ }
++ 
++ onHit{
++ shellState:t="onUnit"
++ damageType:t="generic"
++ expl:r=0.5
++ fire:r=0.3
++ break:r=0.2
++ damage:r=30.0
++ fHitCritical:b=yes
++ }
++ 
++ onHit{
++ shellState:t="onUnit"
++ damageType:t="explosion"
++ expl:r=0.45
++ fire:r=0.45
++ break:r=0.1
++ damage:r=50.0
++ fHitCritical:b=yes
++ }
++ 
++ onHit{
++ shellState:t="onUnit"
++ damageType:t="cumulative"
++ expl:r=0.4
++ fire:r=0.4
++ break:r=0.1
++ damage:r=100.0
++ fHitCritical:b=yes
++ }
++ 
++ onKill{
++ shellState:t="inFlight"
++ destruction:r=1.0
++ }
++ 
++ onKill{
++ shellState:t="onUnit"
++ expl:r=0.05
++ fire:r=0.05
++ break:r=0.9
++ fHitCritical:b=yes
 + }
 + }
 + }
++ 
++ hitpower{
++ HitPower0m:p2=1.0, 500.0
++ HitPower1000m:p2=0.9, 1000.0
++ HitPower1500m:p2=0.65, 1500.0
++ HitPower2500m:p2=0.5, 2500.0
++ HitPower7000m:p2=0.0, 7000.0
++ }
++ 
++ armorpower{
++ ArmorPower0m:p2=1.0, 10.0
++ ArmorPower10000m:p2=1.0, 10000.0
++ }
++ 
++ damage{
++ 
++ explosive{
++ radius:r=0.15
++ offset:r=0.04
++ }
++ 
++ shatter{
++ useRealShatters:b=yes
++ countPortion:r=0.22
++ 
++ segment{
++ radiusScale:r=0.15
++ penetrationScale:r=2.0
++ damageScale:r=1.0
++ angles:p2=0.0, 29.0
++ countPortion:r=0.04
++ onHitChanceMultFire:r=10.0
++ }
++ 
++ segment{
++ radiusScale:r=1.0
++ penetrationScale:r=1.0
++ damageScale:r=1.0
++ angles:p2=30.0, 69.0
++ countPortion:r=0.235
++ }
++ 
++ segment{
++ radiusScale:r=0.25
++ penetrationScale:r=1.7
++ damageScale:r=1.5
++ angles:p2=70.0, 110.0
++ countPortion:r=0.075
++ onHitChanceMultFire:r=50.0
++ }
++ 
++ segment{
++ radiusScale:r=1.0
++ penetrationScale:r=1.0
++ damageScale:r=1.0
++ angles:p2=111.0, 180.0
++ countPortion:r=0.15
++ }
++ 
++ segment{
++ radiusScale:r=1.0
++ penetrationScale:r=1.0
++ damageScale:r=1.0
++ angles:p2=181.0, 249.0
++ countPortion:r=0.15
++ }
++ 
++ segment{
++ radiusScale:r=0.25
++ penetrationScale:r=1.7
++ damageScale:r=1.5
++ angles:p2=250.0, 290.0
++ countPortion:r=0.075
++ onHitChanceMultFire:r=50.0
++ }
++ 
++ segment{
++ radiusScale:r=1.0
++ penetrationScale:r=1.0
++ damageScale:r=1.0
++ angles:p2=291.0, 329.0
++ countPortion:r=0.235
++ }
++ 
++ segment{
++ radiusScale:r=0.15
++ penetrationScale:r=2.0
++ damageScale:r=1.0
++ angles:p2=330.0, 359.0
++ countPortion:r=0.04
++ onHitChanceMultFire:r=10.0
++ }
++ }
++ }
++ 
++ shatterDamage{
++ breachConeAngle:r=45.0
++ }
++ 
++ cumulativeDamage{
++ armorPower:r=150.0
++ distance:r=6.0
++ damage:r=300.0
++ onHitChanceMultFire:r=16.0
++ }
++ }
++ }
++ }
 ```
 
   **Removed**:
 ```diff
-```
-
-
-- **aces.vromfs.bin_u/levels/air_africa_desert.blkx**:
-
-  **Added**:
-```diff
-+ weatherTypes:t="gameData/environments/weather_types_air.blk"
-```
-
-  **Removed**:
-```diff
-- weatherTypes:t="gameData/environments/weather_types.blk"
-```
-
-
-- **aces.vromfs.bin_u/levels/air_denmark.blkx**:
-
-  **Added**:
-```diff
-+ weatherTypes:t="gameData/environments/weather_types_air.blk"
-```
-
-  **Removed**:
-```diff
-- weatherTypes:t="gameData/environments/weather_types.blk"
-```
-
-
-- **aces.vromfs.bin_u/levels/air_equatorial_island.blkx**:
-
-  **Added**:
-```diff
-+ weatherTypes:t="gameData/environments/weather_types_air.blk"
-```
-
-  **Removed**:
-```diff
-- weatherTypes:t="gameData/environments/weather_types.blk"
-```
-
-
-- **aces.vromfs.bin_u/levels/air_israel.blkx**:
-
-  **Added**:
-```diff
-+ weatherTypes:t="gameData/environments/weather_types_air.blk"
-```
-
-  **Removed**:
-```diff
-- weatherTypes:t="gameData/environments/weather_types.blk"
-```
-
-
-- **aces.vromfs.bin_u/levels/air_kamchatka.blkx**:
-
-  **Added**:
-```diff
-+ weatherTypes:t="gameData/environments/weather_types_air.blk"
-```
-
-  **Removed**:
-```diff
-- weatherTypes:t="gameData/environments/weather_types.blk"
-```
-
-
-- **aces.vromfs.bin_u/levels/air_mysterious_valley.blkx**:
-
-  **Added**:
-```diff
-+ weatherTypes:t="gameData/environments/weather_types_air.blk"
-```
-
-  **Removed**:
-```diff
-- weatherTypes:t="gameData/environments/weather_types.blk"
-```
-
-
-- **aces.vromfs.bin_u/levels/air_normandy.blkx**:
-
-  **Added**:
-```diff
-+ weatherTypes:t="gameData/environments/weather_types_air.blk"
-```
-
-  **Removed**:
-```diff
-- weatherTypes:t="gameData/environments/weather_types.blk"
-```
-
-
-- **aces.vromfs.bin_u/levels/air_race_africa_canyon.blkx**:
-
-  **Added**:
-```diff
-+ weatherTypes:t="gameData/environments/weather_types_air.blk"
-```
-
-  **Removed**:
-```diff
-- weatherTypes:t="gameData/environments/weather_types.blk"
-```
-
-
-- **aces.vromfs.bin_u/levels/air_race_phiphi_islands.blkx**:
-
-  **Added**:
-```diff
-+ weatherTypes:t="gameData/environments/weather_types_air.blk"
-```
-
-  **Removed**:
-```diff
-- weatherTypes:t="gameData/environments/weather_types.blk"
-```
-
-
-- **aces.vromfs.bin_u/levels/air_skyscraper_city.blkx**:
-
-  **Added**:
-```diff
-+ weatherTypes:t="gameData/environments/weather_types_air.blk"
-```
-
-  **Removed**:
-```diff
-- weatherTypes:t="gameData/environments/weather_types.blk"
-```
-
-
-- **aces.vromfs.bin_u/levels/air_smolensk.blkx**:
-
-  **Added**:
-```diff
-+ weatherTypes:t="gameData/environments/weather_types_air.blk"
-```
-
-  **Removed**:
-```diff
-- weatherTypes:t="gameData/environments/weather_types.blk"
-```
-
-
-- **aces.vromfs.bin_u/levels/air_south_eastern_city.blkx**:
-
-  **Added**:
-```diff
-+ weatherTypes:t="gameData/environments/weather_types_air.blk"
-```
-
-  **Removed**:
-```diff
-- weatherTypes:t="gameData/environments/weather_types.blk"
-```
-
-
-- **aces.vromfs.bin_u/levels/air_vietnam.blkx**:
-
-  **Added**:
-```diff
-+ weatherTypes:t="gameData/environments/weather_types_air.blk"
-```
-
-  **Removed**:
-```diff
-- weatherTypes:t="gameData/environments/weather_types.blk"
-```
-
-
-- **aces.vromfs.bin_u/levels/arcade_africa_canyon.blkx**:
-
-  **Added**:
-```diff
-+ weatherTypes:t="gameData/environments/weather_types_air.blk"
-```
-
-  **Removed**:
-```diff
-- weatherTypes:t="gameData/environments/weather_types.blk"
-```
-
-
-- **aces.vromfs.bin_u/levels/arcade_africa_seashore.blkx**:
-
-  **Added**:
-```diff
-+ weatherTypes:t="gameData/environments/weather_types_air.blk"
-```
-
-  **Removed**:
-```diff
-- weatherTypes:t="gameData/environments/weather_types.blk"
-```
-
-
-- **aces.vromfs.bin_u/levels/arcade_alps.blkx**:
-
-  **Added**:
-```diff
-+ weatherTypes:t="gameData/environments/weather_types_air.blk"
-```
-
-  **Removed**:
-```diff
-- weatherTypes:t="gameData/environments/weather_types.blk"
-```
-
-
-- **aces.vromfs.bin_u/levels/arcade_canyon_snow.blkx**:
-
-  **Added**:
-```diff
-+ weatherTypes:t="gameData/environments/weather_types_air.blk"
-```
-
-  **Removed**:
-```diff
-- weatherTypes:t="gameData/environments/weather_types.blk"
-```
-
-
-- **aces.vromfs.bin_u/levels/arcade_ireland.blkx**:
-
-  **Added**:
-```diff
-+ weatherTypes:t="gameData/environments/weather_types_air.blk"
-```
-
-  **Removed**:
-```diff
-- weatherTypes:t="gameData/environments/weather_types.blk"
-```
-
-
-- **aces.vromfs.bin_u/levels/arcade_mediterranean.blkx**:
-
-  **Added**:
-```diff
-+ weatherTypes:t="gameData/environments/weather_types_air.blk"
-```
-
-  **Removed**:
-```diff
-- weatherTypes:t="gameData/environments/weather_types.blk"
-```
-
-
-- **aces.vromfs.bin_u/levels/arcade_norway_fjords.blkx**:
-
-  **Added**:
-```diff
-+ weatherTypes:t="gameData/environments/weather_types_air.blk"
-```
-
-  **Removed**:
-```diff
-- weatherTypes:t="gameData/environments/weather_types.blk"
-```
-
-
-- **aces.vromfs.bin_u/levels/arcade_norway_green.blkx**:
-
-  **Added**:
-```diff
-+ weatherTypes:t="gameData/environments/weather_types_air.blk"
-```
-
-  **Removed**:
-```diff
-- weatherTypes:t="gameData/environments/weather_types.blk"
-```
-
-
-- **aces.vromfs.bin_u/levels/arcade_norway_plain.blkx**:
-
-  **Added**:
-```diff
-+ weatherTypes:t="gameData/environments/weather_types_air.blk"
-```
-
-  **Removed**:
-```diff
-- weatherTypes:t="gameData/environments/weather_types.blk"
-```
-
-
-- **aces.vromfs.bin_u/levels/arcade_phiphi_crater.blkx**:
-
-  **Added**:
-```diff
-+ weatherTypes:t="gameData/environments/weather_types_air.blk"
-```
-
-  **Removed**:
-```diff
-- weatherTypes:t="gameData/environments/weather_types.blk"
-```
-
-
-- **aces.vromfs.bin_u/levels/arcade_phiphi_crater_rocks.blkx**:
-
-  **Added**:
-```diff
-+ weatherTypes:t="gameData/environments/weather_types_air.blk"
-```
-
-  **Removed**:
-```diff
-- weatherTypes:t="gameData/environments/weather_types.blk"
-```
-
-
-- **aces.vromfs.bin_u/levels/arcade_rice_terraces.blkx**:
-
-  **Added**:
-```diff
-+ weatherTypes:t="gameData/environments/weather_types_air.blk"
-```
-
-  **Removed**:
-```diff
-- weatherTypes:t="gameData/environments/weather_types.blk"
-```
-
-
-- **aces.vromfs.bin_u/levels/arcade_snow_rocks.blkx**:
-
-  **Added**:
-```diff
-+ weatherTypes:t="gameData/environments/weather_types_air.blk"
-```
-
-  **Removed**:
-```diff
-- weatherTypes:t="gameData/environments/weather_types.blk"
-```
-
-
-- **aces.vromfs.bin_u/levels/arcade_zhang_park.blkx**:
-
-  **Added**:
-```diff
-+ weatherTypes:t="gameData/environments/weather_types_air.blk"
-```
-
-  **Removed**:
-```diff
-- weatherTypes:t="gameData/environments/weather_types.blk"
-```
-
-
-- **aces.vromfs.bin_u/levels/avg_sector_montmedy_snow.blkx**:
-
-  **Added**:
-```diff
-+ max_wind_strength:r=2.0
-```
-
-  **Removed**:
-```diff
-```
-
-
-- **aces.vromfs.bin_u/levels/berlin.blkx**:
-
-  **Added**:
-```diff
-+ weatherTypes:t="gameData/environments/weather_types_air.blk"
-```
-
-  **Removed**:
-```diff
-- weatherTypes:t="gameData/environments/weather_types.blk"
-```
-
-
-- **aces.vromfs.bin_u/levels/britain.blkx**:
-
-  **Added**:
-```diff
-+ weatherTypes:t="gameData/environments/weather_types_air.blk"
-```
-
-  **Removed**:
-```diff
-- weatherTypes:t="gameData/environments/weather_types.blk"
-```
-
-
-- **aces.vromfs.bin_u/levels/caribbean_islands.blkx**:
-
-  **Added**:
-```diff
-+ weatherTypes:t="gameData/environments/weather_types_air.blk"
-```
-
-  **Removed**:
-```diff
-- weatherTypes:t="gameData/environments/weather_types.blk"
-```
-
-
-- **aces.vromfs.bin_u/levels/guam.blkx**:
-
-  **Added**:
-```diff
-+ weatherTypes:t="gameData/environments/weather_types_air.blk"
-```
-
-  **Removed**:
-```diff
-- weatherTypes:t="gameData/environments/weather_types.blk"
-```
-
-
-- **aces.vromfs.bin_u/levels/honolulu.blkx**:
-
-  **Added**:
-```diff
-+ weatherTypes:t="gameData/environments/weather_types_air.blk"
-```
-
-  **Removed**:
-```diff
-- weatherTypes:t="gameData/environments/weather_types.blk"
-```
-
-
-- **aces.vromfs.bin_u/levels/hurtgen.blkx**:
-
-  **Added**:
-```diff
-+ weatherTypes:t="gameData/environments/weather_types_air.blk"
-```
-
-  **Removed**:
-```diff
-- weatherTypes:t="gameData/environments/weather_types.blk"
-```
-
-
-- **aces.vromfs.bin_u/levels/iwo_jima.blkx**:
-
-  **Added**:
-```diff
-+ weatherTypes:t="gameData/environments/weather_types_air.blk"
-```
-
-  **Removed**:
-```diff
-- weatherTypes:t="gameData/environments/weather_types.blk"
-```
-
-
-- **aces.vromfs.bin_u/levels/khalkhin_gol.blkx**:
-
-  **Added**:
-```diff
-+ weatherTypes:t="gameData/environments/weather_types_air.blk"
-```
-
-  **Removed**:
-```diff
-- weatherTypes:t="gameData/environments/weather_types.blk"
-```
-
-
-- **aces.vromfs.bin_u/levels/korea.blkx**:
-
-  **Added**:
-```diff
-+ weatherTypes:t="gameData/environments/weather_types_air.blk"
-```
-
-  **Removed**:
-```diff
-- weatherTypes:t="gameData/environments/weather_types.blk"
-```
-
-
-- **aces.vromfs.bin_u/levels/krymsk.blkx**:
-
-  **Added**:
-```diff
-+ weatherTypes:t="gameData/environments/weather_types_air.blk"
-```
-
-  **Removed**:
-```diff
-- weatherTypes:t="gameData/environments/weather_types.blk"
-```
-
-
-- **aces.vromfs.bin_u/levels/kursk.blkx**:
-
-  **Added**:
-```diff
-+ weatherTypes:t="gameData/environments/weather_types_air.blk"
-```
-
-  **Removed**:
-```diff
-- weatherTypes:t="gameData/environments/weather_types.blk"
-```
-
-
-- **aces.vromfs.bin_u/levels/moscow.blkx**:
-
-  **Added**:
-```diff
-+ weatherTypes:t="gameData/environments/weather_types_air.blk"
-```
-
-  **Removed**:
-```diff
-- weatherTypes:t="gameData/environments/weather_types.blk"
-```
-
-
-- **aces.vromfs.bin_u/levels/mozdok.blkx**:
-
-  **Added**:
-```diff
-+ weatherTypes:t="gameData/environments/weather_types_air.blk"
-```
-
-  **Removed**:
-```diff
-- weatherTypes:t="gameData/environments/weather_types.blk"
-```
-
-
-- **aces.vromfs.bin_u/levels/norway.blkx**:
-
-  **Added**:
-```diff
-+ weatherTypes:t="gameData/environments/weather_types_air.blk"
-```
-
-  **Removed**:
-```diff
-- weatherTypes:t="gameData/environments/weather_types.blk"
-```
-
-
-- **aces.vromfs.bin_u/levels/peleliu.blkx**:
-
-  **Added**:
-```diff
-+ weatherTypes:t="gameData/environments/weather_types_air.blk"
-```
-
-  **Removed**:
-```diff
-- weatherTypes:t="gameData/environments/weather_types.blk"
-```
-
-
-- **aces.vromfs.bin_u/levels/ruhr.blkx**:
-
-  **Added**:
-```diff
-+ weatherTypes:t="gameData/environments/weather_types_air.blk"
-```
-
-  **Removed**:
-```diff
-- weatherTypes:t="gameData/environments/weather_types.blk"
-```
-
-
-- **aces.vromfs.bin_u/levels/sector_montmedy.blkx**:
-
-  **Added**:
-```diff
-+ weatherTypes:t="gameData/environments/weather_types_air.blk"
-```
-
-  **Removed**:
-```diff
-- weatherTypes:t="gameData/environments/weather_types.blk"
-```
-
-
-- **aces.vromfs.bin_u/levels/sicily.blkx**:
-
-  **Added**:
-```diff
-+ weatherTypes:t="gameData/environments/weather_types_air.blk"
-```
-
-  **Removed**:
-```diff
-- weatherTypes:t="gameData/environments/weather_types.blk"
-```
-
-
-- **aces.vromfs.bin_u/levels/spain.blkx**:
-
-  **Added**:
-```diff
-+ weatherTypes:t="gameData/environments/weather_types_air.blk"
-```
-
-  **Removed**:
-```diff
-- weatherTypes:t="gameData/environments/weather_types.blk"
-```
-
-
-- **aces.vromfs.bin_u/levels/stalingrad.blkx**:
-
-  **Added**:
-```diff
-+ weatherTypes:t="gameData/environments/weather_types_air.blk"
-```
-
-  **Removed**:
-```diff
-- weatherTypes:t="gameData/environments/weather_types.blk"
-```
-
-
-- **aces.vromfs.bin_u/levels/tunisia.blkx**:
-
-  **Added**:
-```diff
-+ weatherTypes:t="gameData/environments/weather_types_air.blk"
-```
-
-  **Removed**:
-```diff
-- weatherTypes:t="gameData/environments/weather_types.blk"
-```
-
-
-- **aces.vromfs.bin_u/levels/wake_island.blkx**:
-
-  **Added**:
-```diff
-+ weatherTypes:t="gameData/environments/weather_types_air.blk"
-```
-
-  **Removed**:
-```diff
-- weatherTypes:t="gameData/environments/weather_types.blk"
-```
-
-
-- **aces.vromfs.bin_u/levels/water.blkx**:
-
-  **Added**:
-```diff
-+ weatherTypes:t="gameData/environments/weather_types_air.blk"
-```
-
-  **Removed**:
-```diff
-- weatherTypes:t="gameData/environments/weather_types.blk"
-```
-
-
-- **aces.vromfs.bin_u/levels/zhengzhou.blkx**:
-
-  **Added**:
-```diff
-+ weatherTypes:t="gameData/environments/weather_types_air.blk"
-```
-
-  **Removed**:
-```diff
-- weatherTypes:t="gameData/environments/weather_types.blk"
 ```
 
 
