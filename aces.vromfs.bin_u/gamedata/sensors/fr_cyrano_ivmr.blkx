@@ -420,11 +420,6 @@ fsms{
           width:r=0.0
         }
 
-        setRelSpeedGatePos{
-          source:t="activeTargetOfInterest"
-          width:r=0.0
-        }
-
         setFsmActive{
           fsm:t="trackModes"
           active:b=yes
@@ -1684,17 +1679,6 @@ fsms{
 
     actionsTemplates{
 
-      setPulseTrack{
-
-        setTransiver{
-          transiver:t="pulse"
-        }
-
-        setSignal{
-          signal:t="pulseTrack"
-        }
-      }
-
       setMtiTrack{
 
         setTransiver{
@@ -1706,17 +1690,31 @@ fsms{
         }
       }
 
+      setPulseTrack{
+
+        setTransiver{
+          transiver:t="pulse"
+        }
+
+        setSignal{
+          signal:t="pulseTrack"
+        }
+      }
+
       track{
 
         updateActiveTargetOfInterest{
 
           dirFilter{
+            rateLim:p2=0.78, 0.78
+            limTimeOut:r=1.0
+            inertialTimeMax:r=1.0
           }
 
           distFilter{
-          }
-
-          dopplerSpeedFilter{
+            accelLim:p2=150.0, 150.0
+            limTimeOut:r=1.0
+            inertialTimeMax:r=1.0
           }
         }
 
@@ -1729,11 +1727,6 @@ fsms{
         }
 
         setDistGatePos{
-          source:t="activeTargetOfInterest"
-          width:r=0.0
-        }
-
-        setRelSpeedGatePos{
           source:t="activeTargetOfInterest"
           width:r=0.0
         }
@@ -1761,11 +1754,6 @@ fsms{
           source:t="activeTargetOfInterest"
           width:r=0.0
         }
-
-        setRelSpeedGatePos{
-          source:t="activeTargetOfInterest"
-          width:r=0.0
-        }
       }
     }
 
@@ -1773,50 +1761,15 @@ fsms{
 
       start{
         event:t="fsmActivate"
-        stateTo:t="pulse"
+        stateTo:t="mti"
 
         actions{
 
-          setPulseTrack{
+          setMtiTrack{
           }
 
           setModeName{
-            name:t="track"
-          }
-        }
-      }
-
-      tryDetectPulse{
-        stateFrom:t="pulseTry"
-        event:t="update"
-
-        actions{
-
-          setPulseTrack{
-          }
-
-          detectTarget{
-            ignoreOwnWeapon:b=yes
-            rangeMult:r=1.0
-          }
-        }
-      }
-
-      mtiOkTryDetectPulse{
-        stateFrom:t="mtiOkPulseTry"
-        event:t="update"
-
-        actions{
-
-          setPulseTrack{
-          }
-
-          detectTarget{
-            ignoreOwnWeapon:b=yes
-            rangeMult:r=1.0
-          }
-
-          setMtiTrack{
+            name:t="MTI track"
           }
         }
       }
@@ -1834,15 +1787,50 @@ fsms{
             ignoreOwnWeapon:b=yes
             rangeMult:r=1.0
           }
+        }
+      }
+
+      pulseOkTryDetectMti{
+        stateFrom:t="pulseOkMtiTry"
+        event:t="update"
+
+        actions{
+
+          setMtiTrack{
+          }
+
+          detectTarget{
+            ignoreOwnWeapon:b=yes
+            rangeMult:r=1.0
+          }
 
           setPulseTrack{
           }
         }
       }
 
+      tryDetectPulse{
+        stateFrom:t="pulseTry"
+        event:t="update"
+
+        actions{
+
+          setPulseTrack{
+          }
+
+          detectTarget{
+            ignoreOwnWeapon:b=yes
+            rangeMult:r=1.0
+          }
+
+          setMtiTrack{
+          }
+        }
+      }
+
       detect{
-        stateFrom:t="pulse"
         stateFrom:t="mti"
+        stateFrom:t="pulse"
         event:t="update"
 
         actions{
@@ -1854,41 +1842,9 @@ fsms{
         }
       }
 
-      trackPulse{
-        stateFrom:t="pulse"
-        event:t="targetDetected"
-
-        actions{
-
-          track{
-          }
-        }
-      }
-
-      startTrackPulse{
-        stateFrom:t="pulseTry"
-        stateFrom:t="mtiOkPulseTry"
-        event:t="targetDetected"
-        stateTo:t="pulse"
-
-        actions{
-
-          setPulseTrack{
-          }
-
-          track{
-          }
-
-          setModeName{
-            name:t="track"
-          }
-        }
-      }
-
       trackMti{
         stateFrom:t="mti"
         event:t="targetDetected"
-        stateTo:t="mtiOkPulseTry"
 
         actions{
 
@@ -1899,6 +1855,7 @@ fsms{
 
       startTrackMti{
         stateFrom:t="mtiTry"
+        stateFrom:t="pulseOkMtiTry"
         event:t="targetDetected"
         stateTo:t="mti"
 
@@ -1916,33 +1873,40 @@ fsms{
         }
       }
 
-      pulseToMti{
+      trackPulse{
         stateFrom:t="pulse"
-        stateFrom:t="pulseTry"
-        event:t="targetNotDetected"
-        stateTo:t="mtiTry"
+        event:t="targetDetected"
+        stateTo:t="pulseOkMtiTry"
 
         actions{
 
-          extrapolate{
+          track{
           }
         }
       }
 
-      backToMti{
-        stateFrom:t="mtiOkPulseTry"
-        event:t="targetNotDetected"
-        stateTo:t="mtiTry"
+      startTrackPulse{
+        stateFrom:t="pulseTry"
+        event:t="targetDetected"
+        stateTo:t="pulse"
 
         actions{
 
-          extrapolate{
+          setPulseTrack{
+          }
+
+          track{
+          }
+
+          setModeName{
+            name:t="track"
           }
         }
       }
 
       mtiToPulse{
         stateFrom:t="mti"
+        stateFrom:t="mtiTry"
         event:t="targetNotDetected"
         stateTo:t="pulseTry"
 
@@ -1953,10 +1917,34 @@ fsms{
         }
       }
 
-      mtiTryToPulse{
-        stateFrom:t="mtiTry"
+      backToPulse{
+        stateFrom:t="pulseOkMtiTry"
         event:t="targetNotDetected"
         stateTo:t="pulseTry"
+
+        actions{
+
+          extrapolate{
+          }
+        }
+      }
+
+      pulseToMti{
+        stateFrom:t="pulse"
+        event:t="targetNotDetected"
+        stateTo:t="mtiTry"
+
+        actions{
+
+          extrapolate{
+          }
+        }
+      }
+
+      pulseTryToMti{
+        stateFrom:t="pulseTry"
+        event:t="targetNotDetected"
+        stateTo:t="mtiTry"
 
         actions{
 
@@ -2015,12 +2003,15 @@ fsms{
           updateActiveTargetOfInterest{
 
             dirFilter{
+              rateLim:p2=0.78, 0.78
+              limTimeOut:r=1.0
+              inertialTimeMax:r=1.0
             }
 
             distFilter{
-            }
-
-            dopplerSpeedFilter{
+              accelLim:p2=150.0, 150.0
+              limTimeOut:r=1.0
+              inertialTimeMax:r=1.0
             }
           }
 
@@ -2033,11 +2024,6 @@ fsms{
           }
 
           setDistGatePos{
-            source:t="activeTargetOfInterest"
-            width:r=0.0
-          }
-
-          setRelSpeedGatePos{
             source:t="activeTargetOfInterest"
             width:r=0.0
           }
@@ -2066,11 +2052,6 @@ fsms{
           }
 
           setDistGatePos{
-            source:t="activeTargetOfInterest"
-            width:r=0.0
-          }
-
-          setRelSpeedGatePos{
             source:t="activeTargetOfInterest"
             width:r=0.0
           }

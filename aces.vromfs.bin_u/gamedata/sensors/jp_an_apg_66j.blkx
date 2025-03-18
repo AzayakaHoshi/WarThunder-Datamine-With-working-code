@@ -297,7 +297,7 @@ fsms{
         setTargetDesignationRange{
           azimuthRange:p2=-60.0, 60.0
           azmithWidth:r=5.0
-          elevationRange:p2=-30.0, 30.0
+          elevationRange:p2=-60.0, 60.0
           distanceRange:p2=0.0, 74000.0
           distanceWidth:r=2000.0
           distanceRelWidthMin:r=0.05
@@ -494,11 +494,6 @@ fsms{
         }
 
         setDistGatePos{
-          source:t="activeTargetOfInterest"
-          width:r=0.0
-        }
-
-        setRelSpeedGatePos{
           source:t="activeTargetOfInterest"
           width:r=0.0
         }
@@ -1479,17 +1474,57 @@ fsms{
         }
       }
 
-      track{
+      trackPulse{
 
         updateActiveTargetOfInterest{
 
           dirFilter{
+            rateLim:p2=0.78, 0.78
+            limTimeOut:r=1.0
+            inertialTimeMax:r=1.0
           }
 
           distFilter{
+            accelLim:p2=150.0, 150.0
+            limTimeOut:r=1.0
+            inertialTimeMax:r=1.0
+          }
+        }
+
+        setCenterAzimuth{
+          source:t="activeTargetOfInterest"
+        }
+
+        setCenterElevation{
+          source:t="activeTargetOfInterest"
+        }
+
+        setDistGatePos{
+          source:t="activeTargetOfInterest"
+          width:r=0.0
+        }
+      }
+
+      trackDoppler{
+
+        updateActiveTargetOfInterest{
+
+          dirFilter{
+            rateLim:p2=0.78, 0.78
+            limTimeOut:r=1.0
+            inertialTimeMax:r=1.0
+          }
+
+          distFilter{
+            accelLim:p2=150.0, 150.0
+            limTimeOut:r=1.0
+            inertialTimeMax:r=1.0
           }
 
           dopplerSpeedFilter{
+            rateLim:p2=200.0, 200.0
+            limTimeOut:r=1.0
+            inertialTimeMax:r=1.0
           }
         }
 
@@ -1633,7 +1668,7 @@ fsms{
 
         actions{
 
-          track{
+          trackDoppler{
           }
         }
       }
@@ -1649,7 +1684,7 @@ fsms{
           setMprfTrack{
           }
 
-          track{
+          trackDoppler{
           }
 
           setModeName{
@@ -1665,7 +1700,7 @@ fsms{
 
         actions{
 
-          track{
+          trackPulse{
           }
         }
       }
@@ -1680,7 +1715,7 @@ fsms{
           setLprfTrack{
           }
 
-          track{
+          trackPulse{
           }
 
           setModeName{

@@ -4,6 +4,7 @@ showMissileLaunchZone:b=yes
 showMissileDgftLaunchZone:b=yes
 weaponTargetsMax:i=4
 launchedMissilesPredictedPositionsMax:i=6
+showMissileAimLead:b=yes
 
 transivers{
 
@@ -83,7 +84,7 @@ scanPatterns{
     elevationLimits:p2=-60.0, 60.0
     rollStabLimit:r=70.0
     pitchStabLimit:r=70.0
-    period:r=3.7
+    period:r=3.4
     width:r=30.0
     barHeight:r=2.85
     barsCount:i=4
@@ -96,7 +97,7 @@ scanPatterns{
     elevationLimits:p2=-60.0, 60.0
     rollStabLimit:r=70.0
     pitchStabLimit:r=70.0
-    period:r=4.3
+    period:r=4.0
     width:r=70.0
     barHeight:r=2.85
     barsCount:i=2
@@ -124,7 +125,7 @@ scanPatterns{
     elevationLimits:p2=-60.0, 60.0
     rollStabLimit:r=70.0
     pitchStabLimit:r=70.0
-    period:r=3.7
+    period:r=3.4
     width:r=30.0
     barHeight:r=2.85
     barsCount:i=4
@@ -139,7 +140,7 @@ scanPatterns{
     elevationLimits:p2=-60.0, 60.0
     rollStabLimit:r=70.0
     pitchStabLimit:r=70.0
-    period:r=4.3
+    period:r=4.0
     width:r=70.0
     barHeight:r=2.85
     barsCount:i=2
@@ -565,11 +566,6 @@ fsms{
         }
 
         setDistGatePos{
-          source:t="activeTargetOfInterest"
-          width:r=0.0
-        }
-
-        setRelSpeedGatePos{
           source:t="activeTargetOfInterest"
           width:r=0.0
         }
@@ -1842,6 +1838,9 @@ fsms{
             timeOut:r=8.0
           }
 
+          updateActiveDetectedTarget{
+          }
+
           setCueToActiveTargetOfInterest{
           }
 
@@ -1898,10 +1897,24 @@ fsms{
 
         actions{
 
-          updateTargetOfInterest{
+          addTargetOfInterestCandidate{
+          }
+        }
+      }
+
+      matchTargets{
+        event:t="scanFinished"
+
+        actions{
+
+          matchTargetsOfInterest{
             limit:i=10
-            radius:r=1000.0
-            dopplerSpeedGateMaxTime:r=8.0
+            posGateTimeInitial:p2=4.0, 6.0
+            posGateRangeInitial:r=3000.0
+            posGateMaxTime:r=4.0
+            posGateRange:p2=0.0, 1200.0
+            dopplerSpeedGateRange2:p2=0.0, 400.0
+            dopplerSpeedGateMaxTime:r=4.0
           }
 
           updateActiveDetectedTarget{
@@ -2113,17 +2126,57 @@ fsms{
         }
       }
 
-      track{
+      trackPulse{
 
         updateActiveTargetOfInterest{
 
           dirFilter{
+            rateLim:p2=0.78, 0.78
+            limTimeOut:r=1.0
+            inertialTimeMax:r=1.0
           }
 
           distFilter{
+            accelLim:p2=150.0, 150.0
+            limTimeOut:r=1.0
+            inertialTimeMax:r=1.0
+          }
+        }
+
+        setCenterAzimuth{
+          source:t="activeTargetOfInterest"
+        }
+
+        setCenterElevation{
+          source:t="activeTargetOfInterest"
+        }
+
+        setDistGatePos{
+          source:t="activeTargetOfInterest"
+          width:r=0.0
+        }
+      }
+
+      trackDoppler{
+
+        updateActiveTargetOfInterest{
+
+          dirFilter{
+            rateLim:p2=0.78, 0.78
+            limTimeOut:r=1.0
+            inertialTimeMax:r=1.0
+          }
+
+          distFilter{
+            accelLim:p2=150.0, 150.0
+            limTimeOut:r=1.0
+            inertialTimeMax:r=1.0
           }
 
           dopplerSpeedFilter{
+            rateLim:p2=200.0, 200.0
+            limTimeOut:r=1.0
+            inertialTimeMax:r=1.0
           }
         }
 
@@ -2267,7 +2320,7 @@ fsms{
 
         actions{
 
-          track{
+          trackDoppler{
           }
         }
       }
@@ -2283,7 +2336,7 @@ fsms{
           setMprfTrack{
           }
 
-          track{
+          trackDoppler{
           }
 
           setModeName{
@@ -2299,7 +2352,7 @@ fsms{
 
         actions{
 
-          track{
+          trackPulse{
           }
         }
       }
@@ -2314,7 +2367,7 @@ fsms{
           setLprfTrack{
           }
 
-          track{
+          trackPulse{
           }
 
           setModeName{

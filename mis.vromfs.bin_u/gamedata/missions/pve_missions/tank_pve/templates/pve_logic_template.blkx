@@ -54,11 +54,13 @@ imports{
     importTriggers:b=yes
     importMissionObjectives:b=yes
     importWayPoints:b=yes
+    importDialogs:b=yes
     showAreas:b=yes
     showUnits:b=yes
     showTriggers:b=yes
     showMissionObjectives:b=yes
     showWayPoints:b=yes
+    showDialogs:b=yes
 
     excludes{
     }
@@ -93,19 +95,7 @@ triggers{
       missionMarkAsRespawnPoint{
         loc_name:t=""
         spawnEffect:b=no
-        isStrictSpawn:b=no
-        isAirfield:b=no
-        isUnit:b=no
-        useExisting:b=no
-        isIndividual:b=yes
-        removeAreas:b=no
-        canSpawnOnNeutral:b=no
-        showOnMap:b=no
         radius:r=-1.0
-        onlyOnePlayerPerSpawnPoint:b=no
-        resetStrictSpawnIndex:b=no
-        replaceAreas:b=no
-        forceCreate:b=no
         target:t="spawnpoint01"
         target:t="spawnpoint02"
         target:t="spawnpoint03"
@@ -115,9 +105,18 @@ triggers{
         target:t="spawnpoint07"
         target:t="spawnpoint08"
         team:t="A"
-        separate_fuel_time:b=no
-        modular_airfield:b=no
-        offset:p3=0.0, 0.0, 0.0
+        isStrictSpawn:b=no
+        resetStrictSpawnIndex:b=no
+        isAirfield:b=no
+        isUnit:b=no
+        forceCreate:b=no
+        useExisting:b=no
+        isIndividual:b=yes
+        onlyOnePlayerPerSpawnPoint:b=no
+        removeAreas:b=no
+        replaceAreas:b=no
+        canSpawnOnNeutral:b=no
+        showOnMap:b=no
 
         tags{
           tank:b=yes
@@ -136,11 +135,11 @@ triggers{
 
       __unitSetIndication{
         set:b=yes
+        target:t="all_enemy_units"
         target_marking:i=0
         object_var_name:t=""
         object_var_comp_op:t="equal"
         object_var_value:i=0
-        target:t="all_enemy_units"
       }
 
       unitPutToSleep{
@@ -344,6 +343,42 @@ triggers{
     }
   }
 
+  apply_noobject_areas{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      initMission{
+      }
+    }
+
+    conditions{
+
+      objectExists{
+        target:t="@noobject_box_squad_name"
+        type:t="squad"
+      }
+    }
+
+    actions{
+
+      missionDestroyArea{
+        target_type:t="permanent_rendinst"
+        area:t="@noobject_box_squad_name"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
   init_battlearea{
     is_enabled:b=yes
     comments:t=""
@@ -375,11 +410,11 @@ triggers{
         ground:b=yes
         mapArea:b=yes
         killOutOfBattleArea:b=yes
-        newGridHorizontalCellCount:i=0
         killArea:b=no
         detectionArea:b=no
         airMapArea:b=no
         area:t="battlearea"
+        newGridHorizontalCellCount:i=0
       }
     }
 
@@ -457,6 +492,9 @@ triggers{
       missionMarkAsRespawnPoint{
         loc_name:t="missions/helipad_spawn"
         spawnEffect:b=no
+        radius:r=-1.0
+        target:t="helipad"
+        team:t="A"
         isStrictSpawn:b=no
         resetStrictSpawnIndex:b=no
         isAirfield:b=yes
@@ -469,9 +507,6 @@ triggers{
         replaceAreas:b=no
         canSpawnOnNeutral:b=no
         showOnMap:b=yes
-        radius:r=-1.0
-        target:t="helipad"
-        team:t="A"
 
         tags{
           helicopter:b=yes
@@ -1048,6 +1083,7 @@ triggers{
       unitRestore{
         ressurectIfDead:b=no
         fullRestore:b=no
+        target_marking:i=0
         target:t="all_enemy_units"
         partRestore:b=yes
         tankPart:t="track_l_dm"
@@ -1225,20 +1261,20 @@ triggers{
 
       unitSetIndication{
         set:b=no
+        target:t="all_enemy_units"
         target_marking:i=0
         object_var_name:t=""
         object_var_comp_op:t="equal"
         object_var_value:i=0
-        target:t="all_enemy_units"
         useForTriggerFiltered:b=yes
       }
 
       unitSetProperties{
+        object:t="all_enemy_units"
         object_marking:i=0
         object_var_name:t=""
         object_var_comp_op:t="equal"
         object_var_value:i=0
-        object:t="all_enemy_units"
         useForTriggerFiltered:b=yes
         accuracy:r=1.0
         airAccuracy:r=0.6
@@ -1250,6 +1286,7 @@ triggers{
       unitRestore{
         ressurectIfDead:b=yes
         fullRestore:b=yes
+        target_marking:i=0
         target:t="all_enemy_units"
         target:t="enemy_spaa"
         useForTriggerFiltered:b=yes
@@ -1756,20 +1793,20 @@ triggers{
 
         unitSetIndication{
           set:b=yes
+          target:t="all_enemy_units"
           target_marking:i=0
           object_var_name:t=""
           object_var_comp_op:t="equal"
           object_var_value:i=0
-          target:t="all_enemy_units"
           useForTriggerFiltered:b=yes
         }
 
         unitSetProperties{
+          object:t="all_enemy_units"
           object_marking:i=0
           object_var_name:t=""
           object_var_comp_op:t="equal"
           object_var_value:i=0
-          object:t="all_enemy_units"
           useForTriggerFiltered:b=yes
           attack_type:t="fire_at_will"
           accuracy:r=0.5
@@ -2936,15 +2973,15 @@ triggers{
 
         unitSetProperties{
           target_marking:i=0
-          object_marking:i=0
           target_marking_var:t="random_int"
-          object_var_name:t=""
-          object_var_comp_op:t="equal"
-          object_var_value:i=0
           object:t="@wave_name_var"
           object_type:t="isMarked"
           unit_type_ex:t="isActive"
+          object_marking:i=0
           object_marking_var:t="random_int"
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
           forceVisibleOnMap:b=yes
           airAccuracy:r=0.6
           effShootingRate:r=1.0
@@ -2956,15 +2993,15 @@ triggers{
 
         unitSetIndication{
           set:b=yes
-          target_marking:i=0
           object_marking:i=0
-          object_var_name:t=""
-          object_var_comp_op:t="equal"
-          object_var_value:i=0
           target:t="@wave_name_var"
           target_type:t="isMarked"
           unit_type_ex:t="isActive"
+          target_marking:i=0
           target_marking_var:t="random_int"
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
         }
 
         triggerEnable{
@@ -3008,15 +3045,15 @@ triggers{
 
         unitSetProperties{
           target_marking:i=0
-          object_marking:i=0
           target_marking_var:t="random_int"
-          object_var_name:t=""
-          object_var_comp_op:t="equal"
-          object_var_value:i=0
           object:t="@wave_name_var"
           object_type:t="isMarked"
           unit_type_ex:t="isActive"
+          object_marking:i=0
           object_marking_var:t="random_int"
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
           forceVisibleOnMap:b=yes
           airAccuracy:r=0.6
           effShootingRate:r=1.0
@@ -3027,16 +3064,16 @@ triggers{
         }
 
         unitSetIndication{
-          target_marking:i=0
           set:b=yes
           object_marking:i=0
-          object_var_name:t=""
-          object_var_comp_op:t="equal"
-          object_var_value:i=0
           target:t="@wave_name_var"
           target_type:t="isMarked"
           unit_type_ex:t="isActive"
+          target_marking:i=0
           target_marking_var:t="random_int"
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
         }
 
         varSetInt{
@@ -3264,11 +3301,11 @@ triggers{
         }
 
         unitSetProperties{
+          object:t="all_enemy_units"
           object_marking:i=0
           object_var_name:t=""
           object_var_comp_op:t="equal"
           object_var_value:i=0
-          object:t="all_enemy_units"
           calmDetection:b=yes
           forceVisibleOnMap:b=yes
           attack_type:t="fire_at_will"
@@ -3423,21 +3460,21 @@ triggers{
       actions{
 
         unitSetIndication{
-          target_marking:i=0
           set:b=no
+          target:t="all_enemy_units"
+          target_marking:i=0
           object_var_name:t=""
           object_var_comp_op:t="equal"
           object_var_value:i=0
-          target:t="all_enemy_units"
           useForTriggerFiltered:b=yes
         }
 
         unitSetProperties{
+          object:t="all_enemy_units"
           object_marking:i=0
           object_var_name:t=""
           object_var_comp_op:t="equal"
           object_var_value:i=0
-          object:t="all_enemy_units"
           useForTriggerFiltered:b=yes
           airAccuracy:r=0.6
           effShootingRate:r=1.0
@@ -3573,11 +3610,11 @@ triggers{
         }
 
         unitSetProperties{
+          object:t="enemy_air_assaults"
           object_marking:i=0
           object_var_name:t=""
           object_var_comp_op:t="equal"
           object_var_value:i=0
-          object:t="enemy_air_assaults"
           calmDetection:b=yes
           forceVisibleOnMap:b=yes
           attack_type:t="fire_at_will"
@@ -3588,12 +3625,12 @@ triggers{
         }
 
         unitSetIndication{
-          target_marking:i=0
           set:b=yes
+          target:t="enemy_air_assaults"
+          target_marking:i=0
           object_var_name:t=""
           object_var_comp_op:t="equal"
           object_var_value:i=0
-          target:t="enemy_air_assaults"
         }
 
         triggerEnable{
@@ -3657,6 +3694,7 @@ triggers{
         unitRestore{
           ressurectIfDead:b=no
           fullRestore:b=no
+          target_marking:i=0
           target:t="enemy_air_assaults"
           target_type:t="isActive"
           ammoRestore:b=yes
@@ -4172,11 +4210,11 @@ triggers{
       actions{
 
         unitSetProperties{
+          object:t="player_tank02"
           object_marking:i=0
           object_var_name:t=""
           object_var_comp_op:t="equal"
           object_var_value:i=0
-          object:t="player_tank02"
           isImmortal:b=yes
         }
       }
@@ -4330,11 +4368,11 @@ triggers{
         }
 
         unitSetProperties{
+          object:t="enemy_spaa"
           object_marking:i=0
           object_var_name:t=""
           object_var_comp_op:t="equal"
           object_var_value:i=0
-          object:t="enemy_spaa"
           forceVisibleOnMap:b=yes
           targetAir:b=yes
           targetGnd:b=no
@@ -4487,6 +4525,7 @@ variables{
   spaa_need_to_spawn:i=0
   players_on_ground_current:i=0
   players_effective_count:i=0
+  noobject_box_squad_name:t="noobject_box_squad"
 }
 
 dialogs{
@@ -4517,6 +4556,8 @@ units{
     bulletsCount1:i=0
     bulletsCount2:i=0
     bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
 
     props{
       army:i=2
@@ -4540,7 +4581,6 @@ units{
     tm:m=[[0.935187, 0.0, 0.354153] [0.0, 1.0, 0.0] [-0.354153, 0.0, 0.935187] [1861.69, 631.198, 2493.37]]
 
     props{
-      object_marking:i=0
       squad_members:t="player_tank01"
       squad_members:t="player_tank02"
       squad_members:t="player_tank03"
@@ -4573,6 +4613,7 @@ units{
       squad_members:t="player_tank30"
       squad_members:t="player_tank31"
       squad_members:t="player_tank32"
+      object_marking:i=0
     }
   }
 
@@ -4593,6 +4634,8 @@ units{
     bulletsCount1:i=0
     bulletsCount2:i=0
     bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
 
     props{
       army:i=2
@@ -4627,6 +4670,8 @@ units{
     bulletsCount1:i=0
     bulletsCount2:i=0
     bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
 
     props{
       army:i=2
@@ -4661,6 +4706,8 @@ units{
     bulletsCount1:i=0
     bulletsCount2:i=0
     bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
 
     props{
       army:i=2
@@ -4695,6 +4742,8 @@ units{
     bulletsCount1:i=0
     bulletsCount2:i=0
     bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
 
     props{
       army:i=2
@@ -4729,6 +4778,8 @@ units{
     bulletsCount1:i=0
     bulletsCount2:i=0
     bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
 
     props{
       army:i=2
@@ -4763,6 +4814,8 @@ units{
     bulletsCount1:i=0
     bulletsCount2:i=0
     bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
 
     props{
       army:i=2
@@ -4797,6 +4850,8 @@ units{
     bulletsCount1:i=0
     bulletsCount2:i=0
     bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
 
     props{
       army:i=2
@@ -4831,6 +4886,8 @@ units{
     bulletsCount1:i=0
     bulletsCount2:i=0
     bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
 
     props{
       army:i=2
@@ -4865,6 +4922,8 @@ units{
     bulletsCount1:i=0
     bulletsCount2:i=0
     bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
 
     props{
       army:i=2
@@ -4899,6 +4958,8 @@ units{
     bulletsCount1:i=0
     bulletsCount2:i=0
     bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
 
     props{
       army:i=2
@@ -4933,6 +4994,8 @@ units{
     bulletsCount1:i=0
     bulletsCount2:i=0
     bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
 
     props{
       army:i=2
@@ -4967,6 +5030,8 @@ units{
     bulletsCount1:i=0
     bulletsCount2:i=0
     bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
 
     props{
       army:i=2
@@ -5001,6 +5066,8 @@ units{
     bulletsCount1:i=0
     bulletsCount2:i=0
     bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
 
     props{
       army:i=2
@@ -5035,6 +5102,8 @@ units{
     bulletsCount1:i=0
     bulletsCount2:i=0
     bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
 
     props{
       army:i=2
@@ -5069,6 +5138,8 @@ units{
     bulletsCount1:i=0
     bulletsCount2:i=0
     bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
 
     props{
       army:i=2
@@ -5103,6 +5174,8 @@ units{
     bulletsCount1:i=0
     bulletsCount2:i=0
     bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
 
     props{
       army:i=2
@@ -5137,6 +5210,8 @@ units{
     bulletsCount1:i=0
     bulletsCount2:i=0
     bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
 
     props{
       army:i=2
@@ -5171,6 +5246,8 @@ units{
     bulletsCount1:i=0
     bulletsCount2:i=0
     bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
 
     props{
       army:i=2
@@ -5205,6 +5282,8 @@ units{
     bulletsCount1:i=0
     bulletsCount2:i=0
     bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
 
     props{
       army:i=2
@@ -5239,6 +5318,8 @@ units{
     bulletsCount1:i=0
     bulletsCount2:i=0
     bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
 
     props{
       army:i=2
@@ -5273,6 +5354,8 @@ units{
     bulletsCount1:i=0
     bulletsCount2:i=0
     bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
 
     props{
       army:i=2
@@ -5307,6 +5390,8 @@ units{
     bulletsCount1:i=0
     bulletsCount2:i=0
     bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
 
     props{
       army:i=2
@@ -5341,6 +5426,8 @@ units{
     bulletsCount1:i=0
     bulletsCount2:i=0
     bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
 
     props{
       army:i=2
@@ -5375,6 +5462,8 @@ units{
     bulletsCount1:i=0
     bulletsCount2:i=0
     bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
 
     props{
       army:i=2
@@ -5409,6 +5498,8 @@ units{
     bulletsCount1:i=0
     bulletsCount2:i=0
     bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
 
     props{
       army:i=2
@@ -5443,6 +5534,8 @@ units{
     bulletsCount1:i=0
     bulletsCount2:i=0
     bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
 
     props{
       army:i=2
@@ -5477,6 +5570,8 @@ units{
     bulletsCount1:i=0
     bulletsCount2:i=0
     bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
 
     props{
       army:i=2
@@ -5511,6 +5606,8 @@ units{
     bulletsCount1:i=0
     bulletsCount2:i=0
     bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
 
     props{
       army:i=2
@@ -5545,6 +5642,8 @@ units{
     bulletsCount1:i=0
     bulletsCount2:i=0
     bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
 
     props{
       army:i=2
@@ -5579,6 +5678,8 @@ units{
     bulletsCount1:i=0
     bulletsCount2:i=0
     bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
 
     props{
       army:i=2
@@ -5613,6 +5714,8 @@ units{
     bulletsCount1:i=0
     bulletsCount2:i=0
     bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
 
     props{
       army:i=2
@@ -5647,6 +5750,8 @@ units{
     bulletsCount1:i=0
     bulletsCount2:i=0
     bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
 
     props{
       army:i=2

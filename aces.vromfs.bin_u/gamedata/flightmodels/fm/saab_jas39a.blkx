@@ -75,6 +75,7 @@ AvailableControls{
   hasChutes:b=no
   hasParkingBrakeControl:b=no
   hasLightsControl:b=no
+  hasManeuverabilityMode:b=yes
 
   HasSweepControlMode{
     Manual:b=no
@@ -185,8 +186,8 @@ Aerodynamics{
     Angle:r=0.0
     VAngle:r=0.0
     UseSpinLoss:b=yes
-    SpinCdloss:r=0.01
-    SpinClloss:r=0.01
+    SpinCdloss:r=0.07
+    SpinClloss:r=0.06
     DownwashType:i=2
     DownwashCoeff:r=0.0
 
@@ -210,11 +211,11 @@ Aerodynamics{
       ElevonShift:p2=0.0, 0.0
       AoaShift:r=0.0
       AoaShiftAdd0:p2=-15.0, 0.0
-      AoaShiftAdd1:p2=-10.0, 0.01
-      AoaShiftAdd2:p2=0.0, 0.01
-      AoaShiftAdd3:p2=5.0, 0.01
-      AoaShiftAdd4:p2=10.0, 0.01
-      AoaShiftAdd5:p2=25.0, -0.01
+      AoaShiftAdd1:p2=-10.0, 0.0
+      AoaShiftAdd2:p2=0.0, -0.01
+      AoaShiftAdd3:p2=5.0, -0.02
+      AoaShiftAdd4:p2=20.0, -0.015
+      AoaShiftAdd5:p2=45.0, 0.02
     }
 
     FlapsPolar0{
@@ -264,8 +265,8 @@ Aerodynamics{
       MultLineCoeff7:r=0.0
       MultLimit7:r=1.0
       CombinedCl:b=no
-      ClToCmByMach0:p3=0.3, 0.0, 0.04
-      ClToCmByMach1:p3=0.6, 0.0, 0.05
+      ClToCmByMach0:p3=0.3, -0.01, 0.01
+      ClToCmByMach1:p3=0.6, -0.01, 0.03
       ClToCmByMach2:p3=0.8, 0.0, 0.1
       Cl0:r=0.02
       alphaCritHigh:r=37.0
@@ -322,8 +323,8 @@ Aerodynamics{
       MultLineCoeff7:r=0.0
       MultLimit7:r=1.0
       CombinedCl:b=no
-      ClToCmByMach0:p3=0.3, 0.0, 0.04
-      ClToCmByMach1:p3=0.6, 0.0, 0.05
+      ClToCmByMach0:p3=0.3, 0.01, 0.01
+      ClToCmByMach1:p3=0.6, 0.01, 0.03
       ClToCmByMach2:p3=0.8, 0.0, 0.1
       Cl0:r=0.35
       alphaCritHigh:r=36.0
@@ -1521,6 +1522,8 @@ Autopilot{
     UseAoAGLimits:b=yes
     LoadFactorFilterSmoothCoeff:r=0.7
     LoadFactorLimiterStrengthMax:r=0.99
+    AoaLimitsManeuverabilityMult0:p3=0.5, 1.0, 1.0
+    AoaLimitsManeuverabilityMult1:p3=0.51, 11.4, 11.4
 
     RatePID{
       Kp:r=3.0
@@ -1633,7 +1636,7 @@ Autopilot{
   }
 
   Throttle{
-    Limits:p2=0.0, 0.9
+    Limits:p2=0.0, 1.5
     ClimbMax:p2=-12.0, 18.0
     ClimbMinLimByHorSpeed:p4=40.0, -3.0, 70.0, -15.0
     ClimbMinLimByRAltitude:p4=10.0, -3.0, 40.0, -15.0
@@ -1644,7 +1647,7 @@ Autopilot{
       Imax:r=1.5
       Kd:r=0.0005
       RateMult:r=0.8333
-      Lim:p2=0.05, 0.9
+      Lim:p2=0.0, 1.5
     }
 
     AltPID{
@@ -1658,19 +1661,19 @@ Autopilot{
   }
 
   Aim{
-    Horizontal:b=yes
-    HeadingToRoll:p4=3.0, 0.0, 60.0, 46.0
+    Horizontal:b=no
+    HeadingToRoll:p4=3.0, 0.0, 30.0, 120.0
     RollRateMax:r=100.0
     HeadingToRollMultByIas:p4=10.0, 0.0, 120.0, 1.0
-    RollLim:r=50.0
+    RollLim:r=180.0
     DriftControlByRoll:p2=0.0, 0.0
     OverridenRollLim:r=30.0
-    PitchMax:r=40.0
-    PitchRateMax:r=40.0
+    PitchMax:r=15.0
+    PitchRateMax:r=60.0
     PitchLim:r=30.0
     YawHeadingToYawRateMultByIas:p4=0.0, 1.0, 120.0, 1.0
     YawHeadingToYawRateMultByReqRoll:p4=0.0, 1.0, 55.0, 0.1
-    ThrottleToYawRateMult:p4=0.9, 1.0, 1.0, 0.85
+    ThrottleToYawRateMult:p4=0.9, 1.0, 1.0, 1.0
     YawHeadingToYawRate:p4=0.0, 0.0, 14.0, 50.0
 
     RollPID{
@@ -1687,7 +1690,7 @@ Autopilot{
       Ki:r=1.0
       Imax:r=1.0
       Kd:r=0.01
-      RateMult:r=0.8333
+      RateMult:r=1.0
       Lim:p2=-1.0, 1.0
     }
 
@@ -1705,7 +1708,7 @@ Autopilot{
       Ki:r=0.05
       Imax:r=0.5
       Kd:r=0.0
-      RateMult:r=0.8333
+      RateMult:r=1.0
       Lim:p2=-0.7, 0.7
     }
 
@@ -1714,7 +1717,7 @@ Autopilot{
       Ki:r=1.0
       Imax:r=2.0
       Kd:r=0.05
-      RateMult:r=0.8333
+      RateMult:r=1.0
       Lim:p2=-1.0, 1.0
     }
 
@@ -1723,7 +1726,7 @@ Autopilot{
       Ki:r=0.2
       Imax:r=1.0
       Kd:r=0.05
-      RateMult:r=0.8333
+      RateMult:r=1.0
       Lim:p2=-1.0, 1.0
     }
   }

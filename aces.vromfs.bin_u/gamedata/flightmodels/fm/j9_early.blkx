@@ -1,13 +1,13 @@
 IgnoreErrors:b=yes
-AileronEffectiveSpeed:r=290.0
-RudderEffectiveSpeed:r=300.0
-ElevatorsEffectiveSpeed:p2=300.0, 300.0
-AileronPowerLoss:r=4.0
-RudderPowerLoss:r=5.0
-ElevatorPowerLoss:p2=3.0, 3.0
-AlphaAileronMin:r=0.17
-AlphaRudderMin:r=0.05
-AlphaElevatorMin:r=0.2
+AileronEffectiveSpeed:r=400.0
+RudderEffectiveSpeed:r=350.0
+ElevatorsEffectiveSpeed:p2=250.0, 250.0
+AileronPowerLoss:r=3.0
+RudderPowerLoss:r=3.0
+ElevatorPowerLoss:p2=2.2, 2.2
+AlphaAileronMin:r=0.1
+AlphaRudderMin:r=0.1
+AlphaElevatorMin:r=0.1
 AllowStrongControlsRestrictions:b=yes
 InvertElevator:b=no
 FlapsRadiator:r=0.0
@@ -21,6 +21,8 @@ BombLauncherSpeed:r=2.0
 SweepWingActuatorSpeed:r=0.2
 dvFlapsIn:p4=150.0, 380.0, 0.15, 0.16
 dvFlapsOut:p4=150.0, 380.0, 0.15, 0.14
+flapsLimByMach:p4=0.5, 0.7, 1.0, 1.0
+flapsLimByIas:p4=0.0, 3000.0, 1.0, 1.0
 maxChuteSpeed:r=0.0
 minChuteSpeed:r=0.0
 chuteRipSpeed:r=0.0
@@ -32,20 +34,22 @@ SlatsRelAoa:p2=0.7, 0.8
 FlapsToSlats:p4=0.0, 0.0, 0.0, 0.0
 WingWaveMassRel:r=0.25
 WingSpringDampJointMult:p2=0.5, 0.005
-MaxSpeedNearGround:r=535.0
+MaxSpeedNearGround:r=470.0
 MaxSpeedAtAltitude:r=549.0
 CriticalSpeed:r=39.0
 ArcadeHelpersSensitivity:r=1.0
 AllowModsToChangeLongidutialBalance:b=yes
+ConvertAoa:b=no
+ConvertAoaAI:b=no
 ArcadeRollCorrectionMultiplier:r=1.0
 RollLeveling:b=yes
 ArcadeMaxRollCoeff:r=1.0
-ArcadeYawModificators:p2=1.0, 1.0
+ArcadeYawModificators:p2=2.0, 4.0
 ArcadePitchModificators:p2=0.0, 1.0
-AileronMaxDv:r=11.6959
-ElevatorMaxDv:r=3.6517
-RudderMaxDv:r=4.7244
-VneControl:r=770.0
+AileronMaxDv:r=9.5238
+ElevatorMaxDv:r=3.1553
+RudderMaxDv:r=5.4545
+VneControl:r=740.0
 CockpitOpenedDoorBreakSpeed:r=-1.0
 MomentOfInertia:p3=6698.0, 14494.0, 7794.0
 SpawnSpeed:r=337.863
@@ -80,6 +84,28 @@ AvailableControls{
     Manual:b=no
     SemiAuto:b=no
     Auto:b=no
+  }
+
+  flapsLimits{
+    mechRangeOnGround:p2=0.0, 1.0
+    mechLockMachNumber:r=100.0
+    mechLockIas:r=2147440000.0
+    secondaryMech:t="airbrake"
+    secondaryMechRange:p2=0.0, 0.0
+    secondaryMechDependentRange:p2=0.0, 0.0
+    forcedSecondaryMechValue:r=-1.0
+    applySecondaryMechRequiredValue:b=yes
+  }
+
+  airbrakeLimits{
+    mechRangeOnGround:p2=0.0, 1.0
+    mechLockMachNumber:r=100.0
+    mechLockIas:r=2147440000.0
+    secondaryMech:t="flaps"
+    secondaryMechRange:p2=0.0, 0.0
+    secondaryMechDependentRange:p2=0.0, 0.0
+    forcedSecondaryMechValue:r=-1.0
+    applySecondaryMechRequiredValue:b=yes
   }
 }
 
@@ -498,7 +524,7 @@ Aerodynamics{
     AnglesMultiplierPitch:p3=1.0, 0.0, 1.0
     AnglesYaw:p2=0.0, 0.0
     AnglesMultiplierYaw:p3=1.0, 0.0, 1.0
-    Sensitivity:r=0.19
+    Sensitivity:r=0.18
     SensitivityMultiplier:r=1.0
     ArcadeSensitivityMultiplier:r=1.0
     SensitivityCl:p2=0.0, 0.0
@@ -513,7 +539,7 @@ Aerodynamics{
     AnglesMultiplierPitch:p3=1.0, 0.0, 1.0
     AnglesYaw:p2=0.0, 0.0
     AnglesMultiplierYaw:p3=1.0, 0.0, 1.0
-    Sensitivity:r=0.3
+    Sensitivity:r=0.4
     SensitivityMultiplier:r=1.0
     ArcadeSensitivityMultiplier:r=1.0
     SensitivityCl:p2=0.0, 0.0
@@ -751,7 +777,8 @@ EngineType0{
     PowerConstRPM0:r=900.0
     PowerConstRPMCurvature0:r=1.0
     Ceiling0:r=2847.0
-    PowerAtCeiling0:r=899.0
+    PowerAtCeiling0:r=899.996
+    AfterburnerPressureBoost0:r=1.0
     AfterburnerManifoldPressure:r=1.34
     SpeedManifoldMultiplier:r=1.0
     AllowAutoTurboCharger:b=no
@@ -983,7 +1010,7 @@ PropellerType0{
 Propeller0{
   Type:i=0
   AxisDirection:p2=-0.0, 0.0
-  CyclicPitchAxisDirectionPitch:p2=0.0, 90.0
+  CyclicPitchAxisDirectionPitch:p2=-180.0, 90.0
   Pos:p3=2.13, 0.0, 0.0
 
   Geometry{
@@ -1011,6 +1038,8 @@ Mass{
   MinimalLoadFactor0:r=0.1
   FuelAccumulatorFlowRate0:r=0.32
   FuelEngineFlowRate0:r=1000000.0
+  hasFuelDumping:b=no
+  fuelDumpingRate:r=-1.0
   MaxNitro:r=0.0
   OilMass:r=34.0
   AdvancedMass:b=no
@@ -1061,9 +1090,9 @@ Mass{
     engine1_dm:r=730.0
     cover2_dm:r=10.0
     pilot_dm:r=90.7
-    oil1_dm:r=3.0
     mgun3_dm:r=25.0
     mgun4_dm:r=25.0
+    oil1_dm:r=3.0
     flap_l_dm:r=25.0
     flap_r_dm:r=25.0
     cover3_dm:r=89.0
@@ -1072,18 +1101,18 @@ Mass{
   }
 
   PartsWithSurface{
-    stab1_dm:r=0.0
-    stab2_dm:r=0.0
-    elevator0_dm:r=0.0
-    elevator1_dm:r=0.0
-    wingcontrol_dm:r=0.0
-    flap2_l_dm:r=0.0
-    flap2_r_dm:r=0.0
-    cover5_dm:r=0.0
-    cover6_dm:r=0.0
-    cover4_dm:r=0.0
-    flap1_l_dm:r=0.0
-    flap1_r_dm:r=0.0
+    stab1_dm:r=14.0173
+    stab2_dm:r=14.0173
+    elevator0_dm:r=10.7078
+    elevator1_dm:r=10.7078
+    wingcontrol_dm:r=1.9855
+    flap2_l_dm:r=6.9585
+    flap2_r_dm:r=6.9585
+    cover5_dm:r=3.3034
+    cover6_dm:r=3.3034
+    cover4_dm:r=1.9574
+    flap1_l_dm:r=2.7998
+    flap1_r_dm:r=2.7998
   }
 }
 
@@ -1108,7 +1137,7 @@ SelfSealingTanks{
 
 Gear{
   SinkFactor:r=500.0
-  SinkRateMult:r=1.0101
+  SinkRateMult:r=1.0201
   WaterFriction:r=1.0
   WaterFrictionDefault:r=2.5
   GearOffset:r=0.0
@@ -1126,6 +1155,7 @@ Gear{
     SpringCoeff:r=150000.0
     SpringDampCoeff:r=1.0
     SpringDampForceMaxMult:r=1.0
+    WheelRestitutionCoeff:r=0.0
     WheelRadus:r=0.38
     Retractable:b=yes
     LeftBrake:b=yes
@@ -1141,6 +1171,7 @@ Gear{
     SpringCoeff:r=150000.0
     SpringDampCoeff:r=1.0
     SpringDampForceMaxMult:r=1.0
+    WheelRestitutionCoeff:r=0.0
     WheelRadus:r=0.38
     Retractable:b=yes
     LeftBrake:b=no
@@ -1156,6 +1187,7 @@ Gear{
     SpringCoeff:r=170000.0
     SpringDampCoeff:r=1.0
     SpringDampForceMaxMult:r=1.0
+    WheelRestitutionCoeff:r=0.0
     WheelRadus:r=0.146
     Retractable:b=no
     LeftBrake:b=no
@@ -1174,9 +1206,46 @@ Passport{
   turnTimeFlaps:i=0
 
   Alt{
+    stallSpeed:p2=1000.0, 176.4
+    stallSpeedLanding:p2=1000.0, 158.76
+    maxSpeedNom:p2=0.0, 1051.94
+    maxSpeedNom:p2=975.61, 1176.02
+    maxSpeedNom:p2=2042.68, 1276.03
+    maxSpeedNom:p2=2439.02, 1248.25
+    maxSpeedWep:p2=0.0, 1150.09
+    maxSpeedWep:p2=670.732, 1222.32
+    maxSpeedWep:p2=1676.83, 1314.92
+    maxSpeedWep:p2=2439.02, 1259.36
+    optClimbSpeedNom:p2=0.0, 842.66
+    optClimbSpeedNom:p2=1524.39, 796.36
+    optClimbSpeedNom:p2=3048.78, 740.8
+    optClimbSpeedNom:p2=4573.17, 694.5
+    optClimbSpeedNom:p2=6097.56, 648.2
+    optClimbSpeedNom:p2=7621.95, 601.9
+    optClimbSpeedNom:p2=9146.34, 555.6
+    optClimbSpeedNom:p2=10670.7, 527.82
+    optClimbSpeedNom:p2=12195.1, 472.26
+    maxClimbRateNom:p2=0.0, 17.3
+    minClimbTimeNom:p2=0.0, 1.0
+    minClimbTimeNom:p2=3048.78, 80.0
+    minClimbTimeNom:p2=6097.56, 168.0
+    minClimbTimeNom:p2=9146.34, 312.0
+    minClimbTimeNom:p2=10670.7, 405.0
+    minClimbTimeNom:p2=12195.1, 540.0
+    minClimbTimeWep:p2=0.0, 0.0
+    minClimbTimeWep:p2=1000.0, 137.4
+    minClimbTimeWep:p2=2000.0, 271.4
+    minTurnTimeNom:p2=1000.0, 35.0
+    minTurnTimeWep:p2=1000.0, 31.2
   }
 
   IAS{
+    maxRollRateLeft:p2=321.841, 34.3775
+    maxRollRateLeft:p2=450.719, 45.8366
+    maxRollRateLeft:p2=579.241, 51.5662
+    maxRollRateRight:p2=321.841, 34.3775
+    maxRollRateRight:p2=450.719, 45.8366
+    maxRollRateRight:p2=579.241, 51.5662
   }
 }
 
@@ -1399,6 +1468,7 @@ Autopilot{
   Throttle{
     Limits:p2=0.0, 1.0
     ClimbMax:p2=0.0, 0.0
+    SpeedMult:p2=0.0, 0.0
     ClimbMinLimByHorSpeed:p4=40.0, -3.0, 80.0, -15.0
     ClimbMinLimByRAltitude:p4=15.0, -3.0, 50.0, -15.0
 

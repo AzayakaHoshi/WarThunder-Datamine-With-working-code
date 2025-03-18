@@ -382,7 +382,7 @@ fsms{
         setTargetDesignationRange{
           azimuthRange:p2=-65.0, 65.0
           azmithWidth:r=1.5
-          elevationRange:p2=-25.0, 65.0
+          elevationRange:p2=-25.0, 55.0
           distanceRange:p2=0.0, 185000.0
           distanceWidth:r=2000.0
           distanceRelWidthMin:r=0.05
@@ -559,11 +559,6 @@ fsms{
         }
 
         setDistGatePos{
-          source:t="activeTargetOfInterest"
-          width:r=0.0
-        }
-
-        setRelSpeedGatePos{
           source:t="activeTargetOfInterest"
           width:r=0.0
         }
@@ -1922,6 +1917,9 @@ fsms{
             timeOut:r=8.0
           }
 
+          updateActiveDetectedTarget{
+          }
+
           setCueToActiveTargetOfInterest{
           }
 
@@ -1978,10 +1976,24 @@ fsms{
 
         actions{
 
-          updateTargetOfInterest{
+          addTargetOfInterestCandidate{
+          }
+        }
+      }
+
+      matchTargets{
+        event:t="scanFinished"
+
+        actions{
+
+          matchTargetsOfInterest{
             limit:i=24
-            radius:r=1000.0
-            dopplerSpeedGateMaxTime:r=8.0
+            posGateTimeInitial:p2=2.0, 4.0
+            posGateRangeInitial:r=1500.0
+            posGateMaxTime:r=2.0
+            posGateRange:p2=0.0, 300.0
+            dopplerSpeedGateRange2:p2=0.0, 200.0
+            dopplerSpeedGateMaxTime:r=2.0
           }
 
           updateActiveDetectedTarget{
@@ -2281,17 +2293,57 @@ fsms{
         }
       }
 
-      track{
+      trackPulse{
 
         updateActiveTargetOfInterest{
 
           dirFilter{
+            rateLim:p2=0.78, 0.78
+            limTimeOut:r=1.0
+            inertialTimeMax:r=1.0
           }
 
           distFilter{
+            accelLim:p2=150.0, 150.0
+            limTimeOut:r=1.0
+            inertialTimeMax:r=1.0
+          }
+        }
+
+        setCenterAzimuth{
+          source:t="activeTargetOfInterest"
+        }
+
+        setCenterElevation{
+          source:t="activeTargetOfInterest"
+        }
+
+        setDistGatePos{
+          source:t="activeTargetOfInterest"
+          width:r=0.0
+        }
+      }
+
+      trackDoppler{
+
+        updateActiveTargetOfInterest{
+
+          dirFilter{
+            rateLim:p2=0.78, 0.78
+            limTimeOut:r=1.0
+            inertialTimeMax:r=1.0
+          }
+
+          distFilter{
+            accelLim:p2=150.0, 150.0
+            limTimeOut:r=1.0
+            inertialTimeMax:r=1.0
           }
 
           dopplerSpeedFilter{
+            rateLim:p2=200.0, 200.0
+            limTimeOut:r=1.0
+            inertialTimeMax:r=1.0
           }
         }
 
@@ -2436,7 +2488,7 @@ fsms{
 
         actions{
 
-          track{
+          trackDoppler{
           }
         }
       }
@@ -2452,7 +2504,7 @@ fsms{
           setHprfTrack{
           }
 
-          track{
+          trackDoppler{
           }
 
           setModeName{
@@ -2468,7 +2520,7 @@ fsms{
 
         actions{
 
-          track{
+          trackPulse{
           }
         }
       }
@@ -2483,7 +2535,7 @@ fsms{
           setLprfTrack{
           }
 
-          track{
+          trackPulse{
           }
 
           setModeName{

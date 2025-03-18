@@ -29,7 +29,9 @@ exhaustFx:t="ship_exhaust_big"
 explosionFx:t="explosion_ship_large"
 decorCutProps:t="battleship"
 propSplashEffects:t="propSplashEffects_underwater"
-shipsDisableDeadCoverParts:b=yes
+deadCoverCountToDelayedSinking:i=3
+delayedSinkingBreachesFreq:r=4.0
+delayedSinkingBreachesSize:p2=0.85, 2.8
 canReloadNonGuns:b=yes
 isStackRearm:b=yes
 supportsCombinedPriSecTriggers:b=yes
@@ -1623,6 +1625,7 @@ DamageParts{
     armorClass:t="ship_structural_steel"
     armorThickness:r=2.2
     pressureDamageMult:r=6.0
+    hydroShockDamageMult:r=0.0
 
     main_caliber_turret_01_dm{
       hp:r=1345.0
@@ -1650,6 +1653,7 @@ DamageParts{
     armorClass:t="ship_structural_steel"
     armorThickness:r=2.2
     pressureDamageMult:r=5.0
+    hydroShockDamageMult:r=0.0
     napalmDamageMult:r=1.0
 
     auxiliary_caliber_turret_01_dm{
@@ -1762,6 +1766,7 @@ DamageParts{
     armorThickness:r=2.2
     fireDamageMult:r=2.0
     pressureDamageMult:r=2.0
+    hydroShockDamageMult:r=0.0
     napalmDamageMult:r=1.0
   }
 
@@ -2133,6 +2138,7 @@ DamageParts{
     armorThickness:r=3.0
     dmgState:r=0.0
     pressureDamageMult:r=1.0
+    hydroShockDamageMult:r=0.0
     napalmDamageMult:r=1.0
 
     rangefinder_01_dm{
@@ -2153,44 +2159,50 @@ DamageParts{
   cover{
     armorClass:t="ship_structural_steel"
     armorThickness:r=25.4
+    hydroShockArmorQuality:r=0.2
     hidableInViewer:b=yes
-    genericDamageMult:r=0.1
-    shatterDamageMult:r=0.1
+    genericDamageMult:r=0.025
+    explosionDamageMult:r=0.45
+    shatterDamageMult:r=0.0
+    hydroShockDamageMult:r=10.0
+    pressureDamageMult:r=0.0
+    splashPenetrationToArmorThreshold:r=0.1
+    kineticPenetrationToArmorThreshold:r=0.05
 
     cover_01_dm{
-      hp:r=15300.0
+      hp:r=9100.0
     }
 
     cover_02_dm{
-      hp:r=11800.0
+      hp:r=7000.0
     }
 
     cover_03_dm{
-      hp:r=11800.0
+      hp:r=7000.0
     }
 
     cover_04_dm{
-      hp:r=11800.0
+      hp:r=7000.0
     }
 
     cover_05_dm{
-      hp:r=11800.0
+      hp:r=7000.0
     }
 
     cover_06_dm{
-      hp:r=11800.0
+      hp:r=7000.0
     }
 
     cover_07_dm{
-      hp:r=11800.0
+      hp:r=7000.0
     }
 
     cover_08_dm{
-      hp:r=11879.0
+      hp:r=7127.0
     }
 
     cover_09_dm{
-      hp:r=15300.0
+      hp:r=9100.0
     }
   }
 
@@ -3585,6 +3597,7 @@ DamageParts{
     fireDamageMult:r=0.001
     hidableInViewer:b=yes
     pressureDamageMult:r=150.0
+    hydroShockDamageMult:r=0.0
   }
 
   masts{
@@ -4498,7 +4511,7 @@ MetaParts{
 
     effect{
       conditionDamageType:t="explosion"
-      conditionDamage:r=100000.0
+      conditionDamage:r=60000.0
       kill:b=yes
       killEffect:t="destruction"
     }
@@ -4509,7 +4522,7 @@ MetaParts{
 
     effect{
       conditionDamageType:t="explosion"
-      conditionDamage:r=100000.0
+      conditionDamage:r=60000.0
       kill:b=yes
       killEffect:t="destruction"
     }
@@ -4520,7 +4533,7 @@ MetaParts{
 
     effect{
       conditionDamageType:t="explosion"
-      conditionDamage:r=100000.0
+      conditionDamage:r=60000.0
       kill:b=yes
       killEffect:t="destruction"
     }
@@ -4531,7 +4544,7 @@ MetaParts{
 
     effect{
       conditionDamageType:t="explosion"
-      conditionDamage:r=100000.0
+      conditionDamage:r=60000.0
       kill:b=yes
       killEffect:t="destruction"
     }
@@ -4542,7 +4555,7 @@ MetaParts{
 
     effect{
       conditionDamageType:t="explosion"
-      conditionDamage:r=100000.0
+      conditionDamage:r=60000.0
       kill:b=yes
       killEffect:t="destruction"
     }
@@ -4553,7 +4566,7 @@ MetaParts{
 
     effect{
       conditionDamageType:t="explosion"
-      conditionDamage:r=100000.0
+      conditionDamage:r=60000.0
       kill:b=yes
       killEffect:t="destruction"
     }
@@ -4564,7 +4577,7 @@ MetaParts{
 
     effect{
       conditionDamageType:t="explosion"
-      conditionDamage:r=100000.0
+      conditionDamage:r=60000.0
       kill:b=yes
       killEffect:t="destruction"
     }
@@ -4575,7 +4588,7 @@ MetaParts{
 
     effect{
       conditionDamageType:t="explosion"
-      conditionDamage:r=100000.0
+      conditionDamage:r=60000.0
       kill:b=yes
       killEffect:t="destruction"
     }
@@ -4586,76 +4599,30 @@ MetaParts{
 
     effect{
       conditionDamageType:t="explosion"
-      conditionDamage:r=100000.0
+      conditionDamage:r=60000.0
       kill:b=yes
       killEffect:t="destruction"
     }
   }
 
-  cover{
+  hull{
+    part:t="cover_01_dm"
+    part:t="cover_02_dm"
+    part:t="cover_03_dm"
+    part:t="cover_04_dm"
+    part:t="cover_05_dm"
+    part:t="cover_06_dm"
+    part:t="cover_07_dm"
+    part:t="cover_08_dm"
+    part:t="cover_09_dm"
     part:t="cover_10_dm"
 
     effect{
-      conditionDamageType:t="explosion"
-      conditionDamage:r=100000.0
-      kill:b=yes
-      killEffect:t="destruction"
-    }
-  }
-
-  cover{
-    part:t="cover_11_dm"
-
-    effect{
-      conditionDamageType:t="explosion"
-      conditionDamage:r=100000.0
-      kill:b=yes
-      killEffect:t="destruction"
-    }
-  }
-
-  cover{
-    part:t="cover_12_dm"
-
-    effect{
-      conditionDamageType:t="explosion"
-      conditionDamage:r=100000.0
-      kill:b=yes
-      killEffect:t="destruction"
+      pressure:b=yes
     }
   }
 
   open_mounts{
-    part:t="auxiliary_caliber_turret_01_dm"
-    part:t="auxiliary_caliber_turret_02_dm"
-    part:t="auxiliary_caliber_turret_03_dm"
-    part:t="auxiliary_caliber_turret_04_dm"
-    part:t="auxiliary_caliber_turret_05_dm"
-    part:t="auxiliary_caliber_turret_06_dm"
-    part:t="auxiliary_caliber_turret_07_dm"
-    part:t="auxiliary_caliber_turret_08_dm"
-    part:t="auxiliary_caliber_turret_09_dm"
-    part:t="auxiliary_caliber_turret_10_dm"
-    part:t="auxiliary_caliber_turret_11_dm"
-    part:t="auxiliary_caliber_turret_12_dm"
-    part:t="auxiliary_caliber_turret_13_dm"
-    part:t="auxiliary_caliber_turret_14_dm"
-    part:t="auxiliary_caliber_turret_15_dm"
-    part:t="auxiliary_caliber_turret_16_dm"
-    part:t="auxiliary_caliber_turret_17_dm"
-    part:t="auxiliary_caliber_turret_18_dm"
-    part:t="auxiliary_caliber_turret_19_dm"
-    part:t="auxiliary_caliber_turret_20_dm"
-    part:t="auxiliary_caliber_turret_21_dm"
-    part:t="auxiliary_caliber_turret_22_dm"
-    part:t="auxiliary_caliber_turret_23_dm"
-    part:t="auxiliary_caliber_turret_24_dm"
-    part:t="auxiliary_caliber_turret_25_dm"
-    part:t="auxiliary_caliber_turret_26_dm"
-    part:t="auxiliary_caliber_turret_27_dm"
-    part:t="auxiliary_caliber_turret_28_dm"
-    part:t="auxiliary_caliber_turret_29_dm"
-    part:t="auxiliary_caliber_turret_30_dm"
     part:t="aa_turret_01_dm"
     part:t="aa_turret_02_dm"
     part:t="aa_turret_03_dm"
@@ -4681,7 +4648,6 @@ MetaParts{
     part:t="aa_turret_23_dm"
     part:t="aa_turret_24_dm"
     part:t="aa_turret_25_dm"
-    part:t="aa_turret_25_dm"
     part:t="aa_turret_26_dm"
     part:t="aa_turret_27_dm"
     part:t="aa_turret_28_dm"
@@ -4702,6 +4668,18 @@ MetaParts{
     part:t="rangefinder_13_dm"
     part:t="rangefinder_14_dm"
     part:t="rangefinder_15_dm"
+    part:t="auxiliary_caliber_turret_01_dm"
+    part:t="auxiliary_caliber_turret_02_dm"
+    part:t="auxiliary_caliber_turret_03_dm"
+    part:t="auxiliary_caliber_turret_04_dm"
+    part:t="auxiliary_caliber_turret_09_dm"
+    part:t="auxiliary_caliber_turret_10_dm"
+    part:t="auxiliary_caliber_turret_17_dm"
+    part:t="auxiliary_caliber_turret_18_dm"
+    part:t="auxiliary_caliber_turret_19_dm"
+    part:t="auxiliary_caliber_turret_20_dm"
+    part:t="auxiliary_caliber_turret_25_dm"
+    part:t="auxiliary_caliber_turret_26_dm"
 
     effect{
       pressureOpen:b=yes
@@ -4917,7 +4895,7 @@ commonWeapons{
     }
 
     limits{
-      yaw:p2=-180.0, 180.0
+      yaw:p2=-150.0, 150.0
       pitch:p2=-8.0, 14.0
     }
 

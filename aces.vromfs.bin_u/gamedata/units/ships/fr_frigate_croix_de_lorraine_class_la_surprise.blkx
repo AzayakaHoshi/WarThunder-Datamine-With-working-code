@@ -28,7 +28,9 @@ exhaustFx:t="ship_exhaust_med"
 explosionFx:t="explosion_ship_big"
 decorCutProps:t="destroyer"
 propSplashEffects:t="propSplashEffects_underwater"
-shipsDisableDeadCoverParts:b=yes
+deadCoverCountToDelayedSinking:i=2
+delayedSinkingBreachesFreq:r=3.0
+delayedSinkingBreachesSize:p2=0.3, 1.2
 smokeScreenActivateTime:r=5.0
 smokeScreenEffectTime:r=30.0
 smokeScreenRad:r=55.0
@@ -1088,32 +1090,38 @@ DamageParts{
   cover{
     armorClass:t="ship_structural_steel"
     armorThickness:r=16.0
+    hydroShockArmorQuality:r=0.1
     hidableInViewer:b=yes
-    genericDamageMult:r=0.1
-    shatterDamageMult:r=0.1
+    genericDamageMult:r=0.025
+    explosionDamageMult:r=0.1
+    shatterDamageMult:r=0.0
+    hydroShockDamageMult:r=8.0
+    pressureDamageMult:r=0.0
+    splashPenetrationToArmorThreshold:r=0.05
+    kineticPenetrationToArmorThreshold:r=0.05
 
     cover_01_dm{
-      hp:r=5100.0
+      hp:r=3000.0
     }
 
     cover_02_dm{
-      hp:r=5100.0
+      hp:r=3000.0
     }
 
     cover_03_dm{
-      hp:r=5100.0
+      hp:r=3000.0
     }
 
     cover_04_dm{
-      hp:r=3900.0
+      hp:r=2300.0
     }
 
     cover_05_dm{
-      hp:r=4369.0
+      hp:r=2520.0
     }
 
     cover_06_dm{
-      hp:r=4174.0
+      hp:r=2408.0
     }
   }
 
@@ -2747,6 +2755,23 @@ MetaParts{
     }
   }
 
+  hull{
+    part:t="cover_01_dm"
+    part:t="cover_02_dm"
+    part:t="cover_03_dm"
+    part:t="cover_04_dm"
+    part:t="cover_05_dm"
+    part:t="cover_06_dm"
+    part:t="cover_07_dm"
+    part:t="cover_08_dm"
+    part:t="cover_09_dm"
+    part:t="cover_10_dm"
+
+    effect{
+      pressure:b=yes
+    }
+  }
+
   open_mounts{
     part:t="main_caliber_turret_01_dm"
     part:t="main_caliber_turret_02_dm"
@@ -3091,17 +3116,17 @@ commonWeapons{
 
     limits{
       yaw:p2=-180.0, 180.0
-      pitch:p2=-10.0, 90.0
+      pitch:p2=-10.0, 85.0
     }
 
     limitsTable{
-      lim1:p4=-180.0, -175.0, 0.0, 90.0
-      lim2:p4=-175.0, -20.0, -10.0, 90.0
-      lim3:p4=-20.0, -10.0, 0.0, 90.0
-      lim3:p4=-10.0, 25.0, 60.0, 90.0
-      lim3:p4=25.0, 110.0, 15.0, 90.0
-      lim4:p4=110.0, 165.0, 10.0, 90.0
-      lim5:p4=165.0, 180.0, 0.0, 90.0
+      lim1:p4=-180.0, -175.0, 0.0, 85.0
+      lim2:p4=-175.0, -20.0, -10.0, 85.0
+      lim3:p4=-20.0, -10.0, 0.0, 85.0
+      lim3:p4=-10.0, 25.0, 60.0, 85.0
+      lim3:p4=25.0, 110.0, 15.0, 85.0
+      lim4:p4=110.0, 165.0, 10.0, 85.0
+      lim5:p4=165.0, 180.0, 0.0, 85.0
     }
 
     gunStabilizer{
@@ -3156,17 +3181,17 @@ commonWeapons{
 
     limits{
       yaw:p2=-180.0, 180.0
-      pitch:p2=-10.0, 90.0
+      pitch:p2=-10.0, 85.0
     }
 
     limitsTable{
-      lim1:p4=-180.0, -175.0, 0.0, 90.0
-      lim2:p4=-175.0, -20.0, -10.0, 90.0
-      lim3:p4=-20.0, -10.0, 0.0, 90.0
-      lim3:p4=-10.0, 25.0, 60.0, 90.0
-      lim3:p4=25.0, 110.0, 15.0, 90.0
-      lim4:p4=110.0, 165.0, 10.0, 90.0
-      lim5:p4=165.0, 180.0, 0.0, 90.0
+      lim1:p4=-180.0, -175.0, 0.0, 85.0
+      lim2:p4=-175.0, -20.0, -10.0, 85.0
+      lim3:p4=-20.0, -10.0, 0.0, 85.0
+      lim3:p4=-10.0, 25.0, 60.0, 85.0
+      lim3:p4=25.0, 110.0, 15.0, 85.0
+      lim4:p4=110.0, 165.0, 10.0, 85.0
+      lim5:p4=165.0, 180.0, 0.0, 85.0
     }
 
     gunStabilizer{
@@ -3221,17 +3246,17 @@ commonWeapons{
 
     limits{
       yaw:p2=-180.0, 180.0
-      pitch:p2=-10.0, 90.0
+      pitch:p2=-10.0, 85.0
     }
 
     limitsTable{
-      lim1:p4=-180.0, -165.0, 0.0, 90.0
-      lim2:p4=-165.0, -110.0, 10.0, 90.0
-      lim3:p4=-110.0, -25.0, 15.0, 90.0
-      lim4:p4=-25.0, 10.0, 60.0, 90.0
-      lim5:p4=10.0, 20.0, 0.0, 90.0
-      lim6:p4=20.0, 175.0, -10.0, 90.0
-      lim7:p4=175.0, 180.0, 0.0, 90.0
+      lim1:p4=-180.0, -165.0, 0.0, 85.0
+      lim2:p4=-165.0, -110.0, 10.0, 85.0
+      lim3:p4=-110.0, -25.0, 15.0, 85.0
+      lim4:p4=-25.0, 10.0, 60.0, 85.0
+      lim5:p4=10.0, 20.0, 0.0, 85.0
+      lim6:p4=20.0, 175.0, -10.0, 85.0
+      lim7:p4=175.0, 180.0, 0.0, 85.0
     }
 
     gunStabilizer{
@@ -3286,17 +3311,17 @@ commonWeapons{
 
     limits{
       yaw:p2=-180.0, 180.0
-      pitch:p2=-10.0, 90.0
+      pitch:p2=-10.0, 85.0
     }
 
     limitsTable{
-      lim1:p4=-180.0, -165.0, 0.0, 90.0
-      lim2:p4=-165.0, -110.0, 10.0, 90.0
-      lim3:p4=-110.0, -25.0, 15.0, 90.0
-      lim4:p4=-25.0, 10.0, 60.0, 90.0
-      lim5:p4=10.0, 20.0, 0.0, 90.0
-      lim6:p4=20.0, 175.0, -10.0, 90.0
-      lim7:p4=175.0, 180.0, 0.0, 90.0
+      lim1:p4=-180.0, -165.0, 0.0, 85.0
+      lim2:p4=-165.0, -110.0, 10.0, 85.0
+      lim3:p4=-110.0, -25.0, 15.0, 85.0
+      lim4:p4=-25.0, 10.0, 60.0, 85.0
+      lim5:p4=10.0, 20.0, 0.0, 85.0
+      lim6:p4=20.0, 175.0, -10.0, 85.0
+      lim7:p4=175.0, 180.0, 0.0, 85.0
     }
 
     gunStabilizer{

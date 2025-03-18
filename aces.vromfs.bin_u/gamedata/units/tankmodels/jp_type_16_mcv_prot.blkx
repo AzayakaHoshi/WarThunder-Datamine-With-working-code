@@ -156,7 +156,7 @@ controlDevices{
 
   device{
     type:t="steeringWheel"
-    turnSpeed:r=0.2
+    turnSpeed:r=-0.3
     node:t="bone_roll_driver_r_03"
     absoluteValue:b=yes
   }
@@ -796,6 +796,11 @@ DamageParts{
 
     drive_turret_h_05_dm{
       hp:r=40.0
+      armorThrough:r=15.0
+    }
+
+    turret_hydraulics_dm{
+      hp:r=250.0
       armorThrough:r=15.0
     }
 
@@ -2984,6 +2989,13 @@ VehiclePhys{
     dampeningCompressionRatio:r=0.05
     brokenWheelSteeringDeflection:r=-15.0
 
+    steeringNodes{
+      wheel_r_01:t="bone_wheel_r_01"
+      wheel_r_01:t="bone_wheel_r_02"
+      wheel_l_01:t="bone_wheel_l_01"
+      wheel_l_01:t="bone_wheel_l_02"
+    }
+
     steeringDeflection{
       wheel_l_01:r=25.0
       wheel_l_02:r=15.0
@@ -3034,6 +3046,51 @@ VehiclePhys{
       wheel_l_03:b=yes
       wheel_r_04:b=yes
       wheel_l_04:b=yes
+    }
+  }
+}
+
+PhysSys{
+  find:t="bone_suspension_(\w)_(\d+)$"
+
+  points{
+
+    lever{
+      limitMin:p3=0.0, 0.0, 0.0
+      limitMax:p3=0.0, 0.0, 0.0
+      name:t="bone_suspension_$1_$2"
+    }
+
+    suspension_01_01{
+      limitMin:p3=-1.0, -1.0, 0.0
+      limitMax:p3=1.0, 1.0, 0.0
+      name:t="bone_suspension_$1_$2_01"
+    }
+
+    wheel{
+
+      searchChildren{
+        occurence:i=1
+        limitMin:p3=-1.0, -1.0, 0.0
+        limitMax:p3=1.0, 1.0, 0.0
+        find:t="bone_wheel_"
+        parent:t="lever"
+      }
+    }
+  }
+
+  constraints{
+
+    edge{
+      to:t="wheel"
+      from:t="lever"
+      moveNodes:b=no
+    }
+
+    edge{
+      to:t="wheel"
+      from:t="suspension_01_01"
+      moveNodes:b=no
     }
   }
 }

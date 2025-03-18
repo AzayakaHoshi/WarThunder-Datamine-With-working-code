@@ -31,7 +31,9 @@ decorCutProps:t="battleship"
 propSplashEffects:t="propSplashEffects_underwater"
 isStackRearm:b=yes
 supportsCombinedPriSecTriggers:b=yes
-shipsDisableDeadCoverParts:b=yes
+deadCoverCountToDelayedSinking:i=3
+delayedSinkingBreachesFreq:r=4.0
+delayedSinkingBreachesSize:p2=0.85, 2.8
 depthTraceWarningDepth:r=14.0
 depthTraceCriticalDepth:r=11.0
 debrisPreset:t="debris_preset_battleship"
@@ -3219,6 +3221,7 @@ DamageParts{
     armorClass:t="ship_structural_steel"
     armorThickness:r=2.2
     pressureDamageMult:r=6.0
+    hydroShockDamageMult:r=0.0
 
     main_caliber_turret_01_dm{
       hp:r=1190.0
@@ -3242,6 +3245,7 @@ DamageParts{
     armorClass:t="ship_structural_steel"
     armorThickness:r=2.2
     pressureDamageMult:r=5.0
+    hydroShockDamageMult:r=0.0
     napalmDamageMult:r=1.0
 
     auxiliary_caliber_turret_01_dm{
@@ -3314,6 +3318,7 @@ DamageParts{
     armorThickness:r=2.2
     fireDamageMult:r=2.0
     pressureDamageMult:r=2.0
+    hydroShockDamageMult:r=0.0
     napalmDamageMult:r=1.0
 
     aa_turret_01_dm{
@@ -3813,6 +3818,7 @@ DamageParts{
     armorThickness:r=3.0
     dmgState:r=0.0
     pressureDamageMult:r=1.0
+    hydroShockDamageMult:r=0.0
     napalmDamageMult:r=1.0
 
     fire_director_01_dm{
@@ -3865,44 +3871,50 @@ DamageParts{
   cover{
     armorClass:t="ship_structural_steel"
     armorThickness:r=25.4
+    hydroShockArmorQuality:r=0.2
     hidableInViewer:b=yes
-    genericDamageMult:r=0.1
-    shatterDamageMult:r=0.1
+    genericDamageMult:r=0.025
+    explosionDamageMult:r=0.45
+    shatterDamageMult:r=0.0
+    hydroShockDamageMult:r=10.0
+    pressureDamageMult:r=0.0
+    splashPenetrationToArmorThreshold:r=0.1
+    kineticPenetrationToArmorThreshold:r=0.05
 
     cover_01_dm{
-      hp:r=14082.0
+      hp:r=8449.0
     }
 
     cover_02_dm{
-      hp:r=13734.0
+      hp:r=8240.0
     }
 
     cover_03_dm{
-      hp:r=15300.0
+      hp:r=9100.0
     }
 
     cover_04_dm{
-      hp:r=15300.0
+      hp:r=9100.0
     }
 
     cover_05_dm{
-      hp:r=15300.0
+      hp:r=9100.0
     }
 
     cover_06_dm{
-      hp:r=15300.0
+      hp:r=9100.0
     }
 
     cover_07_dm{
-      hp:r=14795.0
+      hp:r=8877.0
     }
 
     cover_08_dm{
-      hp:r=11800.0
+      hp:r=7000.0
     }
 
     cover_09_dm{
-      hp:r=12640.0
+      hp:r=7584.0
     }
   }
 
@@ -4777,6 +4789,7 @@ DamageParts{
     fireDamageMult:r=0.001
     hidableInViewer:b=yes
     pressureDamageMult:r=150.0
+    hydroShockDamageMult:r=0.0
 
     at_bulge_01_dm{
       hp:r=2849.0
@@ -5760,6 +5773,23 @@ MetaParts{
       conditionDamage:r=100000.0
       kill:b=yes
       killEffect:t="destruction"
+    }
+  }
+
+  hull{
+    part:t="cover_01_dm"
+    part:t="cover_02_dm"
+    part:t="cover_03_dm"
+    part:t="cover_04_dm"
+    part:t="cover_05_dm"
+    part:t="cover_06_dm"
+    part:t="cover_07_dm"
+    part:t="cover_08_dm"
+    part:t="cover_09_dm"
+    part:t="cover_10_dm"
+
+    effect{
+      pressure:b=yes
     }
   }
 
@@ -15469,12 +15499,12 @@ ammoStowages{
 breaches{
   repairSpeed:r=30.0
   waterMassVel:r=-100000.0
-  waterMassMult:r=250.0
+  waterMassMult:r=450.0
   sizeToRepair:p4=0.01, 5.0, 25.0, 600.0
-  additionalWaterDeathThreshold:r=50000000.0
-  additionalWaterShouldDiePercent:r=0.35
+  additionalWaterDeathThreshold:r=40000000.0
+  additionalWaterShouldDiePercent:r=0.3
   fatalBreachDrownTime:r=45.0
-  maxHeelingAngle:r=17.0
+  maxHeelingAngle:r=15.0
   maxHeelingTime:r=40.0
   criticalHeelingAnglePercent:r=0.5
   maxCriticalHeelingTime:r=1.0
@@ -15496,7 +15526,7 @@ shipCover{
 
   cover{
     part:t="cover_02_dm"
-    weight:r=0.2
+    weight:r=0.25
     maxWaterAlive:r=1.0
   }
 
@@ -15550,7 +15580,7 @@ shipCover{
 
   cover{
     part:t="cover_05_dm"
-    weight:r=0.3
+    weight:r=0.8
     maxWaterAlive:r=1.0
 
     innerParts{
@@ -15574,7 +15604,7 @@ shipCover{
 
   cover{
     part:t="cover_06_dm"
-    weight:r=0.3
+    weight:r=0.8
     maxWaterAlive:r=1.0
 
     innerParts{
@@ -15603,7 +15633,7 @@ shipCover{
 
   cover{
     part:t="cover_07_dm"
-    weight:r=0.3
+    weight:r=0.8
     maxWaterAlive:r=1.0
 
     innerParts{
@@ -15632,7 +15662,7 @@ shipCover{
 
   cover{
     part:t="cover_08_dm"
-    weight:r=0.2
+    weight:r=0.6
     maxWaterAlive:r=1.0
   }
 

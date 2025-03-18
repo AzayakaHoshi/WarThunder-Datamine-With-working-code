@@ -732,6 +732,11 @@ DamageParts{
       armorThrough:r=15.0
     }
 
+    turret_hydraulics_dm{
+      hp:r=250.0
+      armorThrough:r=15.0
+    }
+
     radiator_dm{
       hp:r=50.0
       armorThrough:r=5.0
@@ -2669,11 +2674,8 @@ commonWeapons{
 
     limitsTable{
       lim1:p4=-180.0, -160.0, -3.0, 15.0
-      lim2:p4=-160.0, -15.0, -8.0, 15.0
-      lim3:p4=-15.0, -2.0, -4.0, 15.0
-      lim4:p4=-2.0, 5.0, -4.0, 15.0
-      lim5:p4=5.0, 160.0, -8.0, 15.0
-      lim6:p4=160.0, 180.0, -3.0, 15.0
+      lim2:p4=-160.0, 160.0, -8.0, 15.0
+      lim3:p4=160.0, 180.0, -3.0, 15.0
     }
   }
 
@@ -2713,6 +2715,51 @@ commonWeapons{
     limits{
       yaw:p2=-0.0, 0.0
       pitch:p2=-0.0, 0.0
+    }
+  }
+
+  Weapon{
+    trigger:t="gunner2"
+    triggerGroup:t="smoke"
+    blk:t="gameData/Weapons/groundModels_weapons/91mm_germ_smoke_mortar_launcher.blk"
+    weaponType:t="rockets"
+    useEmitter:b=yes
+    emitter:t="emtr_mortar_flame_01"
+    emitterGenRange:ip2=1, 1
+    emitterGenFmt:t="emtr_mortar_flame_%02d"
+    createGunEffects:b=yes
+    defaultYaw:r=0.0
+    defaultPitch:r=0.0
+    allowableDelta:r=360.0
+    salvo:i=1
+    speedYaw:r=24.0
+    speedPitch:r=15.0
+    fireConeAngle:r=1.0
+    bullets:i=12
+    salvoAmount:r=100.0
+    ChainfireTime:r=0.0
+    DelayAfterShoot:r=5.0
+    AttackMaxDistance:r=1000.0
+    AttackMaxRadius:r=1000.0
+    AttackMaxHeight:r=1000.0
+    accuracyAir:r=0.0
+    accuracyGnd:r=1.5
+    errMeasureVel:r=0.0
+    errMeasureVelFast:r=0.0
+    errMeasureVelFwdShift:r=0.0
+    errMeasureVelDir:r=0.0
+    errTargettingOn100kmph:r=0.0
+    errTargetting:r=3.0
+    errExplTime:r=0.0
+
+    turret{
+      head:t="bone_grenade"
+      gun:t="bone_grenade"
+    }
+
+    limits{
+      yaw:p2=-0.0, 0.0
+      pitch:p2=0.0, 0.0
     }
   }
 }
@@ -3821,10 +3868,11 @@ modifications{
   tank_rangefinder{
   }
 
-  tank_smoke_screen_system_mod{
-    tier:i=3
+  night_vision_system_panther_2{
+    tier:i=1
 
     effects{
+      rcostAddParam:r=0.92
 
       commonWeapons{
 
@@ -3969,24 +4017,34 @@ modifications{
           }
         }
       }
+
+      nightVision{
+
+        commanderViewIr{
+          resolution:ip2=800, 600
+          lightMult:r=8.0
+          ghosting:r=0.75
+          noiseFactor:r=0.2
+        }
+
+        driverIr{
+          resolution:ip2=800, 600
+          lightMult:r=5.0
+          ghosting:r=0.7
+          noiseFactor:r=0.2
+        }
+      }
     }
-  }
-}
 
-nightVision{
+    disableModEffects{
 
-  commanderViewIr{
-    resolution:ip2=800, 600
-    lightMult:r=8.0
-    ghosting:r=0.75
-    noiseFactor:r=0.2
-  }
-
-  driverIr{
-    resolution:ip2=800, 600
-    lightMult:r=5.0
-    ghosting:r=0.7
-    noiseFactor:r=0.2
+      hideNodes{
+        node:t="ex_decor_05"
+        node:t="ex_lantern_01"
+        node:t="ex_mount_lantern_01"
+        node:t="ex_cabel_lantern_01"
+      }
+    }
   }
 }
 

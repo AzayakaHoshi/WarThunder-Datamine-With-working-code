@@ -154,11 +154,6 @@ fsms{
           fsm:t="search"
           active:b=yes
         }
-
-        setScanDirectionPhase{
-          azimuth:r=0.0
-          elevation:r=0.0
-        }
       }
 
       resetSearchMode{
@@ -203,6 +198,22 @@ fsms{
         }
       }
 
+      switchOff{
+        stateFrom:t="search"
+        command:t="switch"
+        event:t="disable"
+        stateTo:t="standby"
+
+        actions{
+
+          resetSearchMode{
+          }
+
+          setStandbyMode{
+          }
+        }
+      }
+
       switchScanPattern{
         stateFrom:t="standby"
         stateFrom:t="search"
@@ -221,43 +232,6 @@ fsms{
         actions{
 
           setNextScopeRange{
-          }
-        }
-      }
-
-      switchingOff{
-        stateFrom:t="search"
-        command:t="switch"
-        event:t="disable"
-        stateTo:t="antennaParking"
-
-        actions{
-
-          setFsmActive{
-            fsm:t="parkAntenna"
-            active:b=yes
-          }
-        }
-      }
-
-      switchOff{
-        stateFrom:t="antennaParking"
-        event:t="inScanDirectionPhase"
-        stateTo:t="standby"
-
-        actions{
-
-          setFsmActive{
-            fsm:t="parkAntenna"
-            active:b=no
-          }
-
-          setScanDirectionPhase{
-            azimuth:r=0.0
-            elevation:r=0.0
-          }
-
-          setStandbyMode{
           }
         }
       }
@@ -305,25 +279,6 @@ fsms{
         actions{
 
           addTarget{
-          }
-        }
-      }
-    }
-  }
-
-  parkAntenna{
-    stateInit:t="init"
-
-    transitions{
-
-      checkAntennaParked{
-        event:t="update"
-
-        actions{
-
-          checkInScanDirectionPhase{
-            azimuth:r=0.0
-            elevation:r=0.0
           }
         }
       }

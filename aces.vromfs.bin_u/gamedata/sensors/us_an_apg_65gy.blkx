@@ -2,8 +2,9 @@ type:t="radar"
 name:t="AN/APG-65"
 showMissileLaunchZone:b=yes
 showMissileDgftLaunchZone:b=yes
-weaponTargetsMax:i=6
-launchedMissilesPredictedPositionsMax:i=6
+weaponTargetsMax:i=4
+launchedMissilesPredictedPositionsMax:i=4
+showMissileAimLead:b=yes
 
 transivers{
 
@@ -324,6 +325,7 @@ signals{
     aircraftAsTarget:b=yes
     angularAccuracy:r=0.05
     distanceAccuracy:r=15.0
+    targetId:b=yes
     mainBeamNotchWidth:r=40.0
     mainBeamNotchMaxElevation:r=3.3
     track:b=yes
@@ -376,6 +378,7 @@ signals{
     aircraftAsTarget:b=yes
     angularAccuracy:r=0.05
     distanceAccuracy:r=15.0
+    targetId:b=yes
     absDopplerSpeed:b=no
     mainBeamDopplerSpeed:b=no
     track:b=yes
@@ -642,11 +645,6 @@ fsms{
         }
 
         setDistGatePos{
-          source:t="activeTargetOfInterest"
-          width:r=0.0
-        }
-
-        setRelSpeedGatePos{
           source:t="activeTargetOfInterest"
           width:r=0.0
         }
@@ -974,7 +972,25 @@ fsms{
         }
       }
 
-      setTwsStandbyMode{
+      setMprfTwsStandbyMode{
+
+        setTwsStandbyModeCommon{
+        }
+
+        setTransiver{
+          transiver:t="mprf"
+        }
+
+        setSignal{
+          signal:t="mprfSearch"
+        }
+
+        setModeName{
+          name:t="TWS standby"
+        }
+      }
+
+      setHprfTwsStandbyMode{
 
         setTwsStandbyModeCommon{
         }
@@ -1046,7 +1062,7 @@ fsms{
         }
       }
 
-      setTwsSearchMode{
+      setMprfTwsSearchMode{
 
         setTwsSearchModeCommon{
         }
@@ -1061,6 +1077,24 @@ fsms{
 
         setModeName{
           name:t="TWS search"
+        }
+      }
+
+      setHprfTwsSearchMode{
+
+        setTwsSearchModeCommon{
+        }
+
+        setTransiver{
+          transiver:t="hprf"
+        }
+
+        setSignal{
+          signal:t="hprfSearch"
+        }
+
+        setModeName{
+          name:t="TWS HDN search"
         }
       }
 
@@ -1578,23 +1612,23 @@ fsms{
         }
       }
 
-      mprfToTws{
+      mprfToMprfTws{
         stateFrom:t="mprf"
         command:t="modeSwitch"
-        stateTo:t="tws"
+        stateTo:t="mprfTws"
 
         actions{
 
           setCustomActionTemplate{
             fsm:t="main"
             name:t="setStandbyMode"
-            actionTemplateName:t="setTwsStandbyMode"
+            actionTemplateName:t="setMprfTwsStandbyMode"
           }
 
           setCustomActionTemplate{
             fsm:t="main"
             name:t="setSearchMode"
-            actionTemplateName:t="setTwsSearchMode"
+            actionTemplateName:t="setMprfTwsSearchMode"
           }
 
           setCustomActionTemplate{
@@ -1632,8 +1666,8 @@ fsms{
         }
       }
 
-      twsToHprf{
-        stateFrom:t="tws"
+      mprfTwsToHprf{
+        stateFrom:t="mprfTws"
         command:t="modeSwitch"
         stateTo:t="hprf"
 
@@ -1686,8 +1720,62 @@ fsms{
         }
       }
 
-      hprfToHprfVelocity{
+      hprfToHprfTws{
         stateFrom:t="hprf"
+        command:t="modeSwitch"
+        stateTo:t="hprfTws"
+
+        actions{
+
+          setCustomActionTemplate{
+            fsm:t="main"
+            name:t="setStandbyMode"
+            actionTemplateName:t="setHprfTwsStandbyMode"
+          }
+
+          setCustomActionTemplate{
+            fsm:t="main"
+            name:t="setSearchMode"
+            actionTemplateName:t="setHprfTwsSearchMode"
+          }
+
+          setCustomActionTemplate{
+            fsm:t="main"
+            name:t="setBvrLockMode"
+            actionTemplateName:t="setTwsBvrLockMode"
+          }
+
+          setCustomActionTemplate{
+            fsm:t="main"
+            name:t="designateTarget"
+            actionTemplateName:t="designatedTargetTws"
+          }
+
+          setCustomActionTemplate{
+            fsm:t="main"
+            name:t="resetSearchMode"
+            actionTemplateName:t="resetTwsMode"
+          }
+
+          doCustomActionTemplate{
+            fsm:t="main"
+            name:t="resetSearchMode"
+          }
+
+          setFsmActive{
+            fsm:t="main"
+            active:b=no
+          }
+
+          setFsmActive{
+            fsm:t="main"
+            active:b=yes
+          }
+        }
+      }
+
+      hprfTwsToHprfVelocity{
+        stateFrom:t="hprfTws"
         command:t="modeSwitch"
         stateTo:t="hprfVelocity"
 
@@ -1927,6 +2015,9 @@ fsms{
             timeOut:r=12.0
           }
 
+          updateActiveDetectedTarget{
+          }
+
           setCueToActiveTargetOfInterest{
           }
 
@@ -1983,10 +2074,24 @@ fsms{
 
         actions{
 
-          updateTargetOfInterest{
+          addTargetOfInterestCandidate{
+          }
+        }
+      }
+
+      matchTargets{
+        event:t="scanFinished"
+
+        actions{
+
+          matchTargetsOfInterest{
             limit:i=10
-            radius:r=1000.0
-            dopplerSpeedGateMaxTime:r=8.0
+            posGateTimeInitial:p2=2.4, 4.4
+            posGateRangeInitial:r=1800.0
+            posGateMaxTime:r=2.0
+            posGateRange:p2=0.0, 300.0
+            dopplerSpeedGateRange2:p2=0.0, 240.0
+            dopplerSpeedGateMaxTime:r=2.4
           }
 
           updateActiveDetectedTarget{
@@ -2209,17 +2314,57 @@ fsms{
         }
       }
 
-      track{
+      trackPulse{
 
         updateActiveTargetOfInterest{
 
           dirFilter{
+            rateLim:p2=0.78, 0.78
+            limTimeOut:r=1.0
+            inertialTimeMax:r=1.0
           }
 
           distFilter{
+            accelLim:p2=150.0, 150.0
+            limTimeOut:r=1.0
+            inertialTimeMax:r=1.0
+          }
+        }
+
+        setCenterAzimuth{
+          source:t="activeTargetOfInterest"
+        }
+
+        setCenterElevation{
+          source:t="activeTargetOfInterest"
+        }
+
+        setDistGatePos{
+          source:t="activeTargetOfInterest"
+          width:r=0.0
+        }
+      }
+
+      trackDoppler{
+
+        updateActiveTargetOfInterest{
+
+          dirFilter{
+            rateLim:p2=0.78, 0.78
+            limTimeOut:r=1.0
+            inertialTimeMax:r=1.0
+          }
+
+          distFilter{
+            accelLim:p2=150.0, 150.0
+            limTimeOut:r=1.0
+            inertialTimeMax:r=1.0
           }
 
           dopplerSpeedFilter{
+            rateLim:p2=200.0, 200.0
+            limTimeOut:r=1.0
+            inertialTimeMax:r=1.0
           }
         }
 
@@ -2418,7 +2563,7 @@ fsms{
 
         actions{
 
-          track{
+          trackDoppler{
           }
         }
       }
@@ -2435,7 +2580,7 @@ fsms{
           setMprfTrack{
           }
 
-          track{
+          trackDoppler{
           }
 
           setModeName{
@@ -2451,7 +2596,7 @@ fsms{
 
         actions{
 
-          track{
+          trackDoppler{
           }
         }
       }
@@ -2467,7 +2612,7 @@ fsms{
           setHprfTrack{
           }
 
-          track{
+          trackDoppler{
           }
 
           setModeName{
@@ -2483,7 +2628,7 @@ fsms{
 
         actions{
 
-          track{
+          trackPulse{
           }
         }
       }
@@ -2498,7 +2643,7 @@ fsms{
           setLprfTrack{
           }
 
-          track{
+          trackPulse{
           }
 
           setModeName{

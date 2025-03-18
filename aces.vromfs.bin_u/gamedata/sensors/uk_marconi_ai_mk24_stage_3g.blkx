@@ -4,6 +4,7 @@ showMissileLaunchZone:b=yes
 showMissileDgftLaunchZone:b=yes
 weaponTargetsMax:i=4
 launchedMissilesPredictedPositionsMax:i=6
+showMissileAimLead:b=yes
 
 transivers{
 
@@ -384,7 +385,7 @@ fsms{
         setTargetDesignationRange{
           azimuthRange:p2=-56.0, 56.0
           azmithWidth:r=1.5
-          elevationRange:p2=-25.0, 60.0
+          elevationRange:p2=-60.0, 60.0
           distanceRange:p2=0.0, 185000.0
           distanceWidth:r=2000.0
           distanceRelWidthMin:r=0.05
@@ -561,11 +562,6 @@ fsms{
         }
 
         setDistGatePos{
-          source:t="activeTargetOfInterest"
-          width:r=0.0
-        }
-
-        setRelSpeedGatePos{
           source:t="activeTargetOfInterest"
           width:r=0.0
         }
@@ -1904,168 +1900,6 @@ fsms{
     }
   }
 
-  tws{
-    stateInit:t="search"
-
-    transitions{
-
-      scan{
-        event:t="update"
-
-        actions{
-
-          scan{
-          }
-
-          extrapolateTargetsOfInterest{
-          }
-
-          clearTargetsOfInterest{
-            timeOut:r=8.0
-          }
-
-          setCueToActiveTargetOfInterest{
-          }
-
-          setCenterAzimuth{
-            source:t="constant"
-            value:r=0.0
-          }
-
-          setCenterAzimuth{
-            source:t="designationCue"
-          }
-
-          setCenterAzimuth{
-            source:t="activeTargetOfInterest"
-          }
-
-          setCenterElevation{
-            source:t="constant"
-            value:r=0.0
-          }
-
-          setCenterElevation{
-            source:t="designationCue"
-          }
-
-          setCenterElevation{
-            source:t="activeTargetOfInterest"
-          }
-        }
-      }
-
-      detect{
-        event:t="targetInSight"
-
-        actions{
-
-          setDistGatePos{
-            source:t="continuousScale"
-            width:r=0.0
-          }
-
-          setRelSpeedGatePos{
-            source:t="continuousScale"
-            width:r=0.0
-          }
-
-          detectTarget{
-          }
-        }
-      }
-
-      addTarget{
-        event:t="targetDetected"
-
-        actions{
-
-          updateTargetOfInterest{
-            limit:i=20
-            radius:r=1000.0
-            dopplerSpeedGateMaxTime:r=8.0
-          }
-
-          updateActiveDetectedTarget{
-          }
-
-          setCueToActiveTargetOfInterest{
-          }
-        }
-      }
-
-      switchSelectedTarget{
-        command:t="switchTarget"
-
-        actions{
-
-          setNextDetectedTargetActive{
-          }
-        }
-      }
-
-      setCueAzimuth{
-        command:t="cueAxisX"
-
-        actions{
-
-          setCueAzimuth{
-          }
-        }
-      }
-
-      setCueDist{
-        command:t="cueAxisY"
-
-        actions{
-
-          setCueDist{
-          }
-
-          setCueDopplerSpeed{
-          }
-        }
-      }
-
-      setCueElevation{
-        command:t="cueAxisZ"
-
-        actions{
-
-          setCueElevation{
-          }
-        }
-      }
-
-      setSelectedTarget{
-        command:t="switchToTarget"
-
-        actions{
-
-          setDetectedTargetActive{
-          }
-        }
-      }
-
-      designateTarget{
-        command:t="selectTarget"
-
-        actions{
-
-          designateActiveDetectedTarget{
-            type:i=0
-            sensorIndex:i=1
-          }
-
-          designateTargetUnderCue{
-            type:i=0
-            sensorIndex:i=1
-          }
-        }
-      }
-    }
-  }
-
   bvrLock{
     stateInit:t="lock"
 
@@ -2283,17 +2117,57 @@ fsms{
         }
       }
 
-      track{
+      trackPulse{
 
         updateActiveTargetOfInterest{
 
           dirFilter{
+            rateLim:p2=0.78, 0.78
+            limTimeOut:r=1.0
+            inertialTimeMax:r=1.0
           }
 
           distFilter{
+            accelLim:p2=150.0, 150.0
+            limTimeOut:r=1.0
+            inertialTimeMax:r=1.0
+          }
+        }
+
+        setCenterAzimuth{
+          source:t="activeTargetOfInterest"
+        }
+
+        setCenterElevation{
+          source:t="activeTargetOfInterest"
+        }
+
+        setDistGatePos{
+          source:t="activeTargetOfInterest"
+          width:r=0.0
+        }
+      }
+
+      trackDoppler{
+
+        updateActiveTargetOfInterest{
+
+          dirFilter{
+            rateLim:p2=0.78, 0.78
+            limTimeOut:r=1.0
+            inertialTimeMax:r=1.0
+          }
+
+          distFilter{
+            accelLim:p2=150.0, 150.0
+            limTimeOut:r=1.0
+            inertialTimeMax:r=1.0
           }
 
           dopplerSpeedFilter{
+            rateLim:p2=200.0, 200.0
+            limTimeOut:r=1.0
+            inertialTimeMax:r=1.0
           }
         }
 
@@ -2438,7 +2312,7 @@ fsms{
 
         actions{
 
-          track{
+          trackDoppler{
           }
         }
       }
@@ -2454,7 +2328,7 @@ fsms{
           setHprfTrack{
           }
 
-          track{
+          trackDoppler{
           }
 
           setModeName{
@@ -2470,7 +2344,7 @@ fsms{
 
         actions{
 
-          track{
+          trackPulse{
           }
         }
       }
@@ -2485,7 +2359,7 @@ fsms{
           setLprfTrack{
           }
 
-          track{
+          trackPulse{
           }
 
           setModeName{
@@ -2598,6 +2472,185 @@ fsms{
           checkIlluminationTimeOut{
             transiver:b=yes
             pauseMax:r=20.0
+          }
+        }
+      }
+    }
+  }
+
+  tws{
+    stateInit:t="search"
+
+    transitions{
+
+      scan{
+        event:t="update"
+
+        actions{
+
+          scan{
+          }
+
+          extrapolateTargetsOfInterest{
+          }
+
+          clearTargetsOfInterest{
+            timeOut:r=8.0
+          }
+
+          updateActiveDetectedTarget{
+          }
+
+          setCueToActiveTargetOfInterest{
+          }
+
+          setCenterAzimuth{
+            source:t="constant"
+            value:r=0.0
+          }
+
+          setCenterAzimuth{
+            source:t="designationCue"
+          }
+
+          setCenterAzimuth{
+            source:t="activeTargetOfInterest"
+          }
+
+          setCenterElevation{
+            source:t="constant"
+            value:r=0.0
+          }
+
+          setCenterElevation{
+            source:t="designationCue"
+          }
+
+          setCenterElevation{
+            source:t="activeTargetOfInterest"
+          }
+        }
+      }
+
+      detect{
+        event:t="targetInSight"
+
+        actions{
+
+          setDistGatePos{
+            source:t="continuousScale"
+            width:r=0.0
+          }
+
+          setRelSpeedGatePos{
+            source:t="continuousScale"
+            width:r=0.0
+          }
+
+          detectTarget{
+          }
+        }
+      }
+
+      addTarget{
+        event:t="targetDetected"
+
+        actions{
+
+          addTargetOfInterestCandidate{
+          }
+        }
+      }
+
+      matchTargets{
+        event:t="scanFinished"
+
+        actions{
+
+          matchTargetsOfInterest{
+            limit:i=20
+            posGateTimeInitial:p2=2.0, 4.0
+            posGateRangeInitial:r=1500.0
+            posGateMaxTime:r=2.0
+            posGateRange:p2=0.0, 300.0
+            dopplerSpeedGateRange2:p2=0.0, 200.0
+            dopplerSpeedGateMaxTime:r=2.0
+          }
+
+          updateActiveDetectedTarget{
+          }
+
+          setCueToActiveTargetOfInterest{
+          }
+        }
+      }
+
+      switchSelectedTarget{
+        command:t="switchTarget"
+
+        actions{
+
+          setNextDetectedTargetActive{
+          }
+        }
+      }
+
+      setCueAzimuth{
+        command:t="cueAxisX"
+
+        actions{
+
+          setCueAzimuth{
+          }
+        }
+      }
+
+      setCueDist{
+        command:t="cueAxisY"
+
+        actions{
+
+          setCueDist{
+          }
+
+          setCueDopplerSpeed{
+          }
+        }
+      }
+
+      setCueElevation{
+        command:t="cueAxisZ"
+
+        actions{
+
+          setCueElevation{
+          }
+        }
+      }
+
+      setSelectedTarget{
+        command:t="switchToTarget"
+
+        actions{
+
+          setDetectedTargetActive{
+          }
+        }
+      }
+
+      designateTarget{
+        command:t="selectTarget"
+
+        actions{
+
+          designateActiveDetectedTarget{
+            type:i=0
+            sensorIndex:i=1
+          }
+
+          designateTargetUnderCue{
+            type:i=0
+            sensorIndex:i=1
           }
         }
       }

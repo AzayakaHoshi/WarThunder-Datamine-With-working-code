@@ -3,6 +3,8 @@ mandatoryLandquality:i=1
 z_far:r=70000.0
 hmapLodCount:i=6
 hmapDistanceMul:r=6.0
+customLevelMap:t="avg_egypt_sinai_map*"
+customLevelTankMap:t="avg_egypt_sinai_tankmap*"
 mapCoord0:p2=-65536.0, -65536.0
 mapCoord0:p2=-65536.0, -65536.0
 mapCoord1:p2=65536.0, 65536.0
@@ -76,6 +78,8 @@ shader_vars{
   mud_color:p4=0.1, 0.05, 0.01, 0.7
   water_color_noise_size:r=1300.0
   min_land_height:r=0.3
+  foliage_translucent_color_mul:p4=2.0, 1.5, 1.0, 1.0
+  paint_details_tex:t="avg_egypt_sinai_color_tex_palette"
 }
 
 waterStub{
@@ -84,12 +88,12 @@ waterStub{
 }
 
 randomGrass{
-  density:r=4.0
-  maxRadius:r=300.0
+  density:r=3.1
+  maxRadius:r=400.0
   sowPerlinFreq:r=0.1
   fadeDelta:r=100.0
-  lodFadeDelta:r=30.0
-  minLodDensity:r=0.2
+  lodFadeDelta:r=20.0
+  minLodDensity:r=0.35
   blendToLandDelta:r=100.0
   texSize:i=1024
   noise_first_rnd:r=23.1407
@@ -109,112 +113,44 @@ randomGrass{
   helicopterVerMul:r=1.0
   helicopterToDirectWindMul:r=2.0
   helicopterFalloff:r=0.001
-  egypt_sand_dunes_colormap_tex_d:t="tunisia_detailed_sand_b_tex_m"
-  avg_egypt_sinai_fields_a:t="tunisia_detailed_sand_b_tex_m"
+  useGrassMaskBiomes:b=yes
 
   layer{
-    maskChannel:p4=1.0, 0.0, 0.0, 0.0
-    res:t="grass_wheat_a"
-    density:r=1.2
-    horScale:r=1.8
-    horMinScale:r=0.9
-    verScale:r=1.2
-    verMinScale:r=0.8
-    windMul:r=0.05
-    radiusMul:r=0.3
-    color_mask_r_from:c=247, 243, 200, 127
-    color_mask_r_to:c=233, 233, 171, 127
-    color_mask_b_from:c=231, 219, 173, 127
-    color_mask_b_to:c=237, 224, 175, 127
-    color_mask_g_from:c=76, 69, 66, 255
-    color_mask_g_to:c=154, 154, 154, 255
-  }
-
-  layer{
-    maskChannel:p4=0.0, 1.0, 0.0, 0.0
-    res:t="grass_tavolga_a"
-    density:r=1.0
-    horScale:r=1.2
-    horMinScale:r=0.5
-    verScale:r=1.2
-    verMinScale:r=0.9
-    windMul:r=0.05
-    radiusMul:r=0.3
-    color_mask_r_from:c=247, 243, 200, 127
-    color_mask_r_to:c=233, 233, 171, 127
-    color_mask_b_from:c=231, 219, 173, 127
-    color_mask_b_to:c=237, 224, 175, 127
-    color_mask_g_from:c=76, 69, 66, 255
-    color_mask_g_to:c=154, 154, 154, 255
-  }
-
-  layer{
-    maskChannel:p4=1.0, 1.0, 0.0, 0.0
-    res:t="grass_heather_a"
-    density:r=1.0
-    horScale:r=1.5
-    horMinScale:r=1.0
-    verScale:r=2.5
-    verMinScale:r=1.5
-    windMul:r=0.05
-    color_mask_r_from:c=247, 243, 200, 127
-    color_mask_r_to:c=233, 233, 171, 127
-    color_mask_b_from:c=231, 219, 173, 127
-    color_mask_b_to:c=237, 224, 175, 127
-    color_mask_g_from:c=76, 69, 66, 255
-    color_mask_g_to:c=201, 201, 206, 255
-  }
-
-  layer{
-    maskChannel:p4=0.0, 1.0, 0.0, 0.0
+    id:i=23
+    id:i=22
+    id:i=25
     res:t="grass_simple_a"
-    density:r=3.5
-    horScale:r=1.2
-    horMinScale:r=0.9
-    verScale:r=1.0
-    verMinScale:r=0.9
+    density:r=1.0
+    horScale:r=0.75
+    horMinScale:r=0.65
+    verScale:r=0.55
+    verMinScale:r=0.45
     windMul:r=0.05
-    radiusMul:r=0.5
-    color_mask_r_from:c=247, 243, 200, 127
-    color_mask_r_to:c=233, 233, 171, 127
-    color_mask_b_from:c=231, 219, 173, 127
-    color_mask_b_to:c=237, 224, 175, 127
-    color_mask_g_from:c=76, 69, 66, 255
-    color_mask_g_to:c=201, 201, 206, 255
+    radiusMul:r=2.0
+    color_mask_r_from:c=161, 162, 114, 127
+    color_mask_r_to:c=46, 75, 31, 127
+    color_mask_g_from:c=2, 24, 54, 255
+    color_mask_g_to:c=232, 230, 203, 255
+    color_mask_b_from:c=16, 97, 14, 127
+    color_mask_b_to:c=3, 20, 3, 127
   }
 
   layer{
-    maskChannel:p4=1.0, 1.0, 0.0, 0.0
-    res:t="grass_fill_a"
-    density:r=3.0
-    horScale:r=1.2
+    id:i=6
+    id:i=23
+    res:t="grass_sedge_a"
+    density:r=0.5
+    horScale:r=0.6
     horMinScale:r=0.5
-    verScale:r=1.2
-    verMinScale:r=0.9
-    windMul:r=0.05
-    color_mask_r_from:c=247, 243, 200, 127
-    color_mask_r_to:c=233, 233, 171, 127
-    color_mask_b_from:c=231, 219, 173, 127
-    color_mask_b_to:c=237, 224, 175, 127
-    color_mask_g_from:c=76, 69, 66, 255
-    color_mask_g_to:c=201, 201, 206, 255
-  }
-
-  layer{
-    maskChannel:p4=1.0, 1.0, 0.0, 0.0
-    res:t="grass_fill_a"
-    density:r=3.0
-    horScale:r=1.2
-    horMinScale:r=0.5
-    verScale:r=1.7
-    verMinScale:r=0.9
-    windMul:r=0.05
-    color_mask_r_from:c=247, 243, 200, 127
-    color_mask_r_to:c=233, 233, 171, 127
-    color_mask_b_from:c=231, 219, 173, 127
-    color_mask_b_to:c=237, 224, 175, 127
-    color_mask_g_from:c=76, 69, 66, 255
-    color_mask_g_to:c=201, 201, 206, 255
+    verScale:r=0.7
+    verMinScale:r=0.5
+    windMul:r=0.03
+    color_mask_r_from:c=167, 192, 156, 225
+    color_mask_r_to:c=153, 151, 122, 225
+    color_mask_g_from:c=52, 45, 38, 225
+    color_mask_g_to:c=210, 199, 143, 225
+    color_mask_b_from:c=0, 0, 0, 225
+    color_mask_b_to:c=255, 249, 245, 225
   }
 }
 
@@ -231,14 +167,10 @@ micro_details{
   micro_detail:t="microdetail_metal_a_tex_n*"
   micro_detail:t="microdetail_snow_a_tex_n*"
   micro_detail:t="microdetail_generic_granules_a_tex_n*"
-  land_micro_details_uv_scale:r=0.62
-
-  "microdetail_generic_granules_a_tex_n*"{
-    coloring:r=0.1
-  }
+  land_micro_details_uv_scale:r=1.0
 
   "microdetail_stone_a_tex_n*"{
-    coloring:r=0.2
+    coloring:r=0.7
   }
 }
 
@@ -503,5 +435,4 @@ forceTexMQ{
 }
 
 forceTexLQ{
-  tex:t="flak_36_set_tex_d*"
 }

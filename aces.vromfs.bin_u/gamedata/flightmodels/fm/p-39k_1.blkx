@@ -21,6 +21,8 @@ BombLauncherSpeed:r=2.0
 SweepWingActuatorSpeed:r=0.2
 dvFlapsIn:p4=150.0, 280.0, 0.15, 0.19
 dvFlapsOut:p4=150.0, 280.0, 0.15, 0.12
+flapsLimByMach:p4=0.5, 0.7, 1.0, 1.0
+flapsLimByIas:p4=0.0, 3000.0, 1.0, 1.0
 maxChuteSpeed:r=0.0
 minChuteSpeed:r=0.0
 chuteRipSpeed:r=0.0
@@ -37,6 +39,8 @@ MaxSpeedAtAltitude:r=610.0
 CriticalSpeed:r=50.0
 ArcadeHelpersSensitivity:r=1.0
 AllowModsToChangeLongidutialBalance:b=yes
+ConvertAoa:b=no
+ConvertAoaAI:b=no
 ArcadeRollCorrectionMultiplier:r=1.0
 RollLeveling:b=yes
 ArcadeMaxRollCoeff:r=1.0
@@ -48,6 +52,7 @@ RudderMaxDv:r=6.5402
 VneControl:r=886.0
 CockpitOpenedDoorBreakSpeed:r=-1.0
 MomentOfInertia:p3=10592.0, 22029.0, 12493.0
+SpawnSpeed:r=383.814
 
 AvailableControls{
   hasAileronControl:b=yes
@@ -733,6 +738,7 @@ EngineType0{
     PowerConstRPMCurvature0:r=1.0
     Ceiling0:r=4001.0
     PowerAtCeiling0:r=1149.85
+    AfterburnerPressureBoost0:r=1.0
     AfterburnerManifoldPressure:r=1.704
     SpeedManifoldMultiplier:r=0.7
     AllowAutoTurboCharger:b=no
@@ -964,7 +970,7 @@ PropellerType0{
 Propeller0{
   Type:i=0
   AxisDirection:p2=-0.0, 0.0
-  CyclicPitchAxisDirectionPitch:p2=-90.0, 90.0
+  CyclicPitchAxisDirectionPitch:p2=90.0, 90.0
   Pos:p3=3.06, 0.0, 0.0
 
   Geometry{
@@ -992,6 +998,8 @@ Mass{
   MinimalLoadFactor0:r=0.0
   FuelAccumulatorFlowRate0:r=0.38
   FuelEngineFlowRate0:r=1000000.0
+  hasFuelDumping:b=no
+  fuelDumpingRate:r=-1.0
   MaxNitro:r=0.0
   OilMass:r=32.0
   AdvancedMass:b=yes
@@ -1029,31 +1037,31 @@ Mass{
     wing2_r_dm:r=42.86
     flap_l_dm:r=7.5
     flap_r_dm:r=7.5
-    spar_r_dm:r=8.62
     spar_l_dm:r=8.62
+    spar_r_dm:r=8.62
     cannon1_dm:r=108.0
     spar1_l_dm:r=7.94
     spar1_r_dm:r=7.94
     tail_dm:r=35.0
-    stab2_dm:r=7.25
     stab1_dm:r=7.25
-    aileron_r_dm:r=6.23
+    stab2_dm:r=7.25
     aileron_l_dm:r=6.23
+    aileron_r_dm:r=6.23
     rudder_dm:r=11.54
-    mgun2_dm:r=34.5
     mgun1_dm:r=34.5
-    elevator1_dm:r=8.05
+    mgun2_dm:r=34.5
     elevator0_dm:r=8.05
+    elevator1_dm:r=8.05
     spar2_l_dm:r=5.04
     spar2_r_dm:r=5.04
     gear_c_dm:r=29.82
-    mgun5_dm:r=12.0
     mgun4_dm:r=12.0
+    mgun5_dm:r=12.0
     fin_dm:r=7.28
-    gear_r_dm:r=38.26
     gear_l_dm:r=38.26
-    mgun6_dm:r=12.0
+    gear_r_dm:r=38.26
     mgun3_dm:r=12.0
+    mgun6_dm:r=12.0
     pilot_dm:r=90.0
     oil3_dm:r=4.0
     armor1_dm:r=32.09
@@ -1113,6 +1121,7 @@ Gear{
     SpringCoeff:r=1025700.0
     SpringDampCoeff:r=1.0
     SpringDampForceMaxMult:r=1.0
+    WheelRestitutionCoeff:r=0.0
     WheelRadus:r=0.4
     Retractable:b=yes
     LeftBrake:b=yes
@@ -1128,6 +1137,7 @@ Gear{
     SpringCoeff:r=1025700.0
     SpringDampCoeff:r=1.0
     SpringDampForceMaxMult:r=1.0
+    WheelRestitutionCoeff:r=0.0
     WheelRadus:r=0.4
     Retractable:b=yes
     LeftBrake:b=no
@@ -1143,6 +1153,7 @@ Gear{
     SpringCoeff:r=582622.0
     SpringDampCoeff:r=1.0
     SpringDampForceMaxMult:r=1.0
+    WheelRestitutionCoeff:r=0.0
     WheelRadus:r=0.4
     Retractable:b=yes
     LeftBrake:b=no
@@ -1366,6 +1377,14 @@ Autopilot{
     ClimbAngleMax:p2=0.0, 0.0
     ClimbAngleToLoadFactor:r=0.7
     RateMaxLoadFactorMax:p2=-2147440000.0, 2147440000.0
+    AoaLimits:p2=-2147440000.0, 2147440000.0
+    AoaLimitsMult:p2=1.0, 1.0
+    AoaLimitsMargin:r=5.0
+    AoaLimiterPushBackRateMult:p2=0.0, 0.0
+    AoAAntiHangRateDecline:r=-10.0
+    UseAoAGLimits:b=no
+    LoadFactorFilterSmoothCoeff:r=0.0
+    LoadFactorLimiterStrengthMax:r=1.0
 
     RatePID{
       Kp:r=0.0
@@ -1479,6 +1498,7 @@ Autopilot{
   Throttle{
     Limits:p2=0.0, 1.0
     ClimbMax:p2=0.0, 0.0
+    SpeedMult:p2=0.0, 0.0
     ClimbMinLimByHorSpeed:p4=40.0, -3.0, 80.0, -15.0
     ClimbMinLimByRAltitude:p4=15.0, -3.0, 50.0, -15.0
 

@@ -148,59 +148,6 @@ triggers{
     }
   }
 
-  make_airfield_rank{
-    is_enabled:b=no
-    comments:t=""
-
-    props{
-      actionsType:t="PERFORM_ONE_BY_ONE"
-      conditionsType:t="ALL"
-      enableAfterComplete:b=no
-    }
-
-    events{
-
-      periodicEvent{
-        time:r=0.01
-      }
-    }
-
-    conditions{
-
-      varCompareInt{
-        var_value:t="target_rank_index"
-        value:i=1
-        comparasion_func:t="equal"
-      }
-    }
-
-    actions{
-
-      varSetString{
-        value:t="airfield_low"
-        var:t="airfield_spawn"
-      }
-
-      varSetString{
-        value:t="airfield_spawnpoint_low"
-        var:t="airfield_spawn_reload"
-      }
-    }
-
-    else_actions{
-
-      varSetString{
-        value:t="airfield_high"
-        var:t="airfield_spawn"
-      }
-
-      varSetString{
-        value:t="airfield_spawnpoint_high"
-        var:t="airfield_spawn_reload"
-      }
-    }
-  }
-
   init{
     is_enabled:b=no
     comments:t=""
@@ -271,6 +218,12 @@ triggers{
         value:b=yes
         var:t="is_ship_spawn"
         fromDescriptor:t="is_ship_spawn"
+      }
+
+      varSetBool{
+        value:b=yes
+        var:t="is_water_spawn"
+        fromDescriptor:t="is_water_spawn"
       }
 
       wait{
@@ -554,7 +507,7 @@ triggers{
 
       triggerEnable{
         target:t="change_air_spawn"
-        target:t="check_helicopter"
+        target:t="check_hydroplane"
       }
 
       triggerEnable{
@@ -624,6 +577,76 @@ triggers{
     }
   }
 
+  check_hydroplane{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      unitCheckTag{
+        target:t="@player"
+
+        tags{
+          air:b=yes
+          type_hydroplane:b=yes
+        }
+      }
+
+      varCompareBool{
+        var_value:t="is_water_spawn"
+        value:b=yes
+        comparasion_func:t="equal"
+      }
+
+      objectExists{
+        target:t="water_spawn_point"
+        type:t="area"
+      }
+    }
+
+    actions{
+
+      addAirfield{
+        runwayStart:t="water_spawn_point"
+        runwayEnd:t="water_spawn_point01"
+        runwayWidth:r=50.0
+        army:i=1
+        spawnPoint:t="water_spawn_point02"
+        visibleOnHud:b=yes
+      }
+
+      varSetString{
+        value:t="water_spawn_point"
+        var:t="airfield_spawn"
+      }
+
+      triggerEnable{
+        target:t="check_helicopter"
+      }
+    }
+
+    else_actions{
+
+      triggerEnable{
+        target:t="check_helicopter"
+        target:t="make_airfield_rank"
+      }
+    }
+  }
+
   check_helicopter{
     is_enabled:b=no
     comments:t=""
@@ -689,7 +712,6 @@ triggers{
 
       triggerEnable{
         target:t="make_aircraft_ship"
-        target:t="make_airfield_rank"
       }
     }
   }
@@ -768,6 +790,59 @@ triggers{
     }
   }
 
+  make_airfield_rank{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      varCompareInt{
+        var_value:t="target_rank_index"
+        value:i=1
+        comparasion_func:t="equal"
+      }
+    }
+
+    actions{
+
+      varSetString{
+        value:t="airfield_low"
+        var:t="airfield_spawn"
+      }
+
+      varSetString{
+        value:t="airfield_spawnpoint_low"
+        var:t="airfield_spawn_reload"
+      }
+    }
+
+    else_actions{
+
+      varSetString{
+        value:t="airfield_high"
+        var:t="airfield_spawn"
+      }
+
+      varSetString{
+        value:t="airfield_spawnpoint_high"
+        var:t="airfield_spawn_reload"
+      }
+    }
+  }
+
   init_carrier{
     is_enabled:b=no
     comments:t=""
@@ -794,6 +869,12 @@ triggers{
 
       varCompareBool{
         var_value:t="is_ship_spawn"
+        value:b=yes
+        comparasion_func:t="equal"
+      }
+
+      varCompareBool{
+        var_value:t="is_water_spawn"
         value:b=yes
         comparasion_func:t="equal"
       }
@@ -957,6 +1038,12 @@ triggers{
 
     conditions{
 
+      varCompareBool{
+        var_value:t="is_water_spawn"
+        value:b=no
+        comparasion_func:t="equal"
+      }
+
       playersWhenStatus{
         players:t="isAlive"
         check_players:t="any"
@@ -1003,6 +1090,7 @@ triggers{
         shouldKeepFormation:b=no
         teleportHeightValue:r=0.0
         horizontalDirectionForTeleport:b=yes
+        shouldKeepAirFormation:b=yes
         object:t="@player"
         move_type:t="teleport"
       }
@@ -2613,6 +2701,7 @@ variables{
   target_respawn_time:i=30
   airfield_spawn_reload:t=""
   is_ship_spawn:b=yes
+  is_water_spawn:b=yes
   ship_destroyer:t=""
   target_rank_index:i=0
   target_rank:t=""

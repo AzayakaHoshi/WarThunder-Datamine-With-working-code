@@ -4,6 +4,7 @@ weaponTargetsMax:i=2
 showMissileLaunchZone:b=yes
 showMissileDgftLaunchZone:b=yes
 launchedMissilesPredictedPositionsMax:i=6
+showMissileAimLead:b=yes
 
 transivers{
 
@@ -585,11 +586,6 @@ fsms{
         }
 
         setDistGatePos{
-          source:t="activeTargetOfInterest"
-          width:r=0.0
-        }
-
-        setRelSpeedGatePos{
           source:t="activeTargetOfInterest"
           width:r=0.0
         }
@@ -2118,6 +2114,7 @@ fsms{
       hmdStandbyToSearch{
         stateFrom:t="hmdStandby"
         command:t="acmSwitch"
+        command:t="switch"
         stateTo:t="search"
 
         actions{
@@ -2130,6 +2127,25 @@ fsms{
           doCustomActionTemplate{
             fsm:t="main"
             name:t="setSearchMode"
+          }
+        }
+      }
+
+      hmdStandbyToStandby{
+        stateFrom:t="hmdStandby"
+        event:t="disable"
+        stateTo:t="standby"
+
+        actions{
+
+          doCustomActionTemplate{
+            fsm:t="main"
+            name:t="resetHmdStandbyMode"
+          }
+
+          doCustomActionTemplate{
+            fsm:t="main"
+            name:t="setStandbyMode"
           }
         }
       }
@@ -2195,7 +2211,6 @@ fsms{
         stateFrom:t="hmdTrack"
         event:t="targetsOfInterestCleanup"
         command:t="selectTarget"
-        command:t="switch"
         stateTo:t="hmdStandby"
 
         actions{
@@ -2400,6 +2415,10 @@ fsms{
 
         initRadarLockTrack{
         }
+
+        setDesignationSourceType{
+          sourceType:t="radar"
+        }
       }
 
       setRadar{
@@ -2413,6 +2432,10 @@ fsms{
         }
 
         initRadarStandby{
+        }
+
+        setDesignationSourceType{
+          sourceType:t="radar"
         }
       }
 
@@ -2511,6 +2534,10 @@ fsms{
         doCustomActionTemplate{
           fsm:t="irstSearchModes"
           name:t="restore"
+        }
+
+        setDesignationSourceType{
+          sourceType:t="sensor"
         }
       }
     }
@@ -3274,8 +3301,9 @@ fsms{
 
           updateTargetOfInterest{
             limit:i=10
-            radius:r=1000.0
+            radius:r=2000.0
             dopplerSpeedGateMaxTime:r=8.0
+            posGateMaxTime:r=4.0
           }
 
           updateActiveDetectedTarget{
@@ -3464,17 +3492,26 @@ fsms{
         }
       }
 
-      track{
+      trackRadar{
 
         updateActiveTargetOfInterest{
 
           dirFilter{
+            rateLim:p2=0.78, 0.78
+            limTimeOut:r=1.0
+            inertialTimeMax:r=1.0
           }
 
           distFilter{
+            accelLim:p2=150.0, 150.0
+            limTimeOut:r=1.0
+            inertialTimeMax:r=1.0
           }
 
           dopplerSpeedFilter{
+            rateLim:p2=200.0, 200.0
+            limTimeOut:r=1.0
+            inertialTimeMax:r=1.0
           }
         }
 
@@ -3492,6 +3529,37 @@ fsms{
         }
 
         setRelSpeedGatePos{
+          source:t="activeTargetOfInterest"
+          width:r=0.0
+        }
+      }
+
+      trackIrst{
+
+        updateActiveTargetOfInterest{
+
+          dirFilter{
+            rateLim:p2=0.78, 0.78
+            limTimeOut:r=1.0
+            inertialTimeMax:r=1.0
+          }
+
+          distFilter{
+            accelLim:p2=150.0, 150.0
+            limTimeOut:r=1.0
+            inertialTimeMax:r=1.0
+          }
+        }
+
+        setCenterAzimuth{
+          source:t="activeTargetOfInterest"
+        }
+
+        setCenterElevation{
+          source:t="activeTargetOfInterest"
+        }
+
+        setDistGatePos{
           source:t="activeTargetOfInterest"
           width:r=0.0
         }
@@ -3673,7 +3741,7 @@ fsms{
 
         actions{
 
-          track{
+          trackRadar{
           }
         }
       }
@@ -3690,7 +3758,7 @@ fsms{
           setMprfTrack{
           }
 
-          track{
+          trackRadar{
           }
 
           setModeName{
@@ -3706,7 +3774,7 @@ fsms{
 
         actions{
 
-          track{
+          trackRadar{
           }
         }
       }
@@ -3722,7 +3790,7 @@ fsms{
           setHprfTrack{
           }
 
-          track{
+          trackRadar{
           }
 
           setModeName{
@@ -3738,7 +3806,7 @@ fsms{
 
         actions{
 
-          track{
+          trackIrst{
           }
         }
       }
@@ -3753,7 +3821,7 @@ fsms{
           setIrstTrack{
           }
 
-          track{
+          trackIrst{
           }
 
           setModeName{
@@ -3881,17 +3949,26 @@ fsms{
         }
       }
 
-      track{
+      trackRadar{
 
         updateActiveTargetOfInterest{
 
           dirFilter{
+            rateLim:p2=0.78, 0.78
+            limTimeOut:r=1.0
+            inertialTimeMax:r=1.0
           }
 
           distFilter{
+            accelLim:p2=150.0, 150.0
+            limTimeOut:r=1.0
+            inertialTimeMax:r=1.0
           }
 
           dopplerSpeedFilter{
+            rateLim:p2=200.0, 200.0
+            limTimeOut:r=1.0
+            inertialTimeMax:r=1.0
           }
         }
 
@@ -3909,6 +3986,37 @@ fsms{
         }
 
         setRelSpeedGatePos{
+          source:t="activeTargetOfInterest"
+          width:r=0.0
+        }
+      }
+
+      trackIrst{
+
+        updateActiveTargetOfInterest{
+
+          dirFilter{
+            rateLim:p2=0.78, 0.78
+            limTimeOut:r=1.0
+            inertialTimeMax:r=1.0
+          }
+
+          distFilter{
+            accelLim:p2=150.0, 150.0
+            limTimeOut:r=1.0
+            inertialTimeMax:r=1.0
+          }
+        }
+
+        setCenterAzimuth{
+          source:t="activeTargetOfInterest"
+        }
+
+        setCenterElevation{
+          source:t="activeTargetOfInterest"
+        }
+
+        setDistGatePos{
           source:t="activeTargetOfInterest"
           width:r=0.0
         }
@@ -4035,7 +4143,7 @@ fsms{
 
         actions{
 
-          track{
+          trackRadar{
           }
         }
       }
@@ -4051,7 +4159,7 @@ fsms{
           setMprfTrack{
           }
 
-          track{
+          trackRadar{
           }
 
           setModeName{
@@ -4067,7 +4175,7 @@ fsms{
 
         actions{
 
-          track{
+          trackIrst{
           }
         }
       }
@@ -4082,7 +4190,7 @@ fsms{
           setIrstTrack{
           }
 
-          track{
+          trackIrst{
           }
 
           setModeName{
@@ -4171,12 +4279,15 @@ fsms{
           updateActiveTargetOfInterest{
 
             dirFilter{
+              rateLim:p2=0.78, 0.78
+              limTimeOut:r=1.0
+              inertialTimeMax:r=1.0
             }
 
             distFilter{
-            }
-
-            dopplerSpeedFilter{
+              accelLim:p2=150.0, 150.0
+              limTimeOut:r=1.0
+              inertialTimeMax:r=1.0
             }
           }
 
@@ -4189,11 +4300,6 @@ fsms{
           }
 
           setDistGatePos{
-            source:t="activeTargetOfInterest"
-            width:r=0.0
-          }
-
-          setRelSpeedGatePos{
             source:t="activeTargetOfInterest"
             width:r=0.0
           }
@@ -4222,11 +4328,6 @@ fsms{
           }
 
           setDistGatePos{
-            source:t="activeTargetOfInterest"
-            width:r=0.0
-          }
-
-          setRelSpeedGatePos{
             source:t="activeTargetOfInterest"
             width:r=0.0
           }

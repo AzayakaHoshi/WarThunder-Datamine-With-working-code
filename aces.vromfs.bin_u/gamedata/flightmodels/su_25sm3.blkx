@@ -12,6 +12,7 @@ haveCCIPForGun:b=yes
 haveCCRPForBombs:b=yes
 haveCCRPForGun:b=no
 haveOpticTurret:b=yes
+isBwOpticSight:b=yes
 havePointOfInterestDesignator:b=yes
 ilsKai24p:b=yes
 mfdCamShkval:b=yes
@@ -31,7 +32,7 @@ damagePartsToFmPartsMapBlk:t="gameData/FlightModels/DM/dm_parts_to_fm_parts_map.
 damagePartsToHudPartsMapBlk:t="gameData/FlightModels/DM/dm_parts_to_hud_parts_map.blk"
 damagePartsDependencyMapBlk:t="gameData/FlightModels/DM/dm_parts_additional_dependency_map.blk"
 damagePartsToCollisionPointsMapBlk:t="gameData/FlightModels/DM/dm_parts_to_collision_points_map.blk"
-damagePartsToWeaponsMapBlk:t="gameData/FlightModels/DM/dm_parts_to_weapons_map.blk"
+damagePartsToWeaponsMapBlk:t="gameData/FlightModels/DM/dm_parts_to_weapons_map_su_25.blk"
 damagePartsToAvionicsPartsMapBlk:t="gameData/FlightModels/DM/dm_parts_to_avionics_parts_map.blk"
 damagePartsToVisualEffectsMapBlk:t="gameData/FlightModels/DM/dm_parts_to_visual_effects_map.blk"
 damagePartsExcludeFromHoleBlk:t="gameData/FlightModels/DM/dm_parts_exclude_from_hole.blk"
@@ -2857,7 +2858,7 @@ cockpit{
       }
 
       page{
-        type:t="target_tracking"
+        type:t="target_tracking_bw"
         turretIdx:i=0
       }
 
@@ -2972,7 +2973,7 @@ cockpit{
       }
 
       page{
-        type:t="target_tracking"
+        type:t="target_tracking_bw"
         turretIdx:i=0
       }
 
@@ -6548,6 +6549,129 @@ WeaponSlots{
         separate:b=yes
         machLimit:r=1.01
       }
+    }
+  }
+}
+
+countermeasure{
+  sensorsFusion:b=yes
+  matchAngleByTimeDiff:p4=0.0, 2.0, 3.0, 10.0
+  threatsTimeDiffMax:r=3.0
+
+  threatId{
+    name:t="SACLOS MISSILE"
+    threatFlag:t="MLWS MISSILE"
+    threatFlag:t="RWR SACLOS LAUNCH"
+  }
+
+  threatId{
+    name:t="SACLOS MISSILE + RADAR TRACK"
+    threatFlag:t="MLWS MISSILE"
+    threatFlag:t="RWR SACLOS LAUNCH"
+    threatFlag:t="RWR TRACK"
+  }
+
+  threatId{
+    name:t="SARH MISSILE"
+    threatFlag:t="MLWS MISSILE"
+    threatFlag:t="RWR SARH LAUNCH"
+  }
+
+  threatId{
+    name:t="SARH MISSILE + RADAR TRACK"
+    threatFlag:t="MLWS MISSILE"
+    threatFlag:t="RWR SARH LAUNCH"
+    threatFlag:t="RWR TRACK"
+  }
+
+  threatId{
+    name:t="ARH MISSILE"
+    threatFlag:t="MLWS MISSILE"
+    threatFlag:t="RWR ARH LAUNCH"
+    threatFlag:t="RWR TRACK"
+  }
+
+  threatId{
+    name:t="IR MISSILE + RADAR TRACK"
+    threatFlag:t="MLWS MISSILE"
+    threatFlag:t="RWR TRACK"
+  }
+
+  threatId{
+    name:t="IR MISSILE"
+    threatFlag:t="MLWS MISSILE"
+  }
+
+  threatId{
+    name:t="SARH OR IR MISSILE"
+    threatFlag:t="MLWS MISSILE"
+    threatFlag:t="RWR SARH/IR LAUNCH"
+  }
+
+  program{
+
+    threatIdCnf{
+      threatId:t="SACLOS MISSILE"
+    }
+  }
+
+  program{
+    flare:b=yes
+    chaff:b=yes
+    seriesSize:i=2
+    seriesInterval:r=1.0
+    interval:r=0.1
+
+    threatIdCnf{
+      threatId:t="SACLOS MISSILE + RADAR TRACK"
+      threatId:t="SARH MISSILE"
+      threatId:t="SARH MISSILE + RADAR TRACK"
+      threatId:t="ARH MISSILE"
+    }
+
+    threatIdCnf{
+      threatId:t="IR MISSILE + RADAR TRACK"
+      threatId:t="IR MISSILE"
+    }
+  }
+
+  program{
+    flare:b=no
+    chaff:b=yes
+    seriesSize:i=1
+    seriesInterval:r=1.0
+    interval:r=0.1
+
+    threatIdCnf{
+      threatId:t="SACLOS MISSILE + RADAR TRACK"
+      threatId:t="SARH MISSILE"
+      threatId:t="SARH MISSILE + RADAR TRACK"
+      threatId:t="ARH MISSILE"
+    }
+  }
+
+  program{
+    flare:b=yes
+    chaff:b=no
+    seriesSize:i=4
+    seriesInterval:r=1.0
+    interval:r=0.1
+
+    threatIdCnf{
+      threatId:t="IR MISSILE + RADAR TRACK"
+      threatId:t="IR MISSILE"
+    }
+  }
+
+  program{
+    flare:b=yes
+    chaff:b=yes
+    seriesSize:i=4
+    seriesInterval:r=1.0
+    interval:r=0.1
+
+    threatIdCnf{
+      threatId:t="SARH OR IR MISSILE"
     }
   }
 }

@@ -389,6 +389,7 @@ triggers{
         target_var_name:t=""
         target_var_comp_op:t="equal"
         target_var_value:i=0
+        shouldKeepAirFormation:b=yes
         object:t="@player"
         move_type:t="teleport"
         lookat:t="capture_zone"
@@ -622,7 +623,7 @@ triggers{
         doNuclearExplosion:b=no
       }
 
-      missionMarkAsWaypoint{
+      __missionMarkAsWaypoint{
         visible:b=yes
         primary:b=yes
         oriented:b=no
@@ -767,7 +768,7 @@ triggers{
         doNuclearExplosion:b=no
       }
 
-      missionMarkAsWaypoint{
+      __missionMarkAsWaypoint{
         visible:b=no
         primary:b=yes
         oriented:b=no
@@ -776,7 +777,7 @@ triggers{
         target:t="waypoint_underground01"
       }
 
-      missionMarkAsWaypoint{
+      __missionMarkAsWaypoint{
         visible:b=yes
         primary:b=yes
         oriented:b=no
@@ -828,7 +829,7 @@ triggers{
 
     actions{
 
-      missionMarkAsWaypoint{
+      __missionMarkAsWaypoint{
         visible:b=no
         primary:b=yes
         oriented:b=no
@@ -837,7 +838,7 @@ triggers{
         target:t="waypoint_underground02"
       }
 
-      missionMarkAsWaypoint{
+      __missionMarkAsWaypoint{
         visible:b=yes
         primary:b=yes
         oriented:b=no
@@ -917,13 +918,12 @@ triggers{
         check_objects:t="any"
         object:t="@player"
         target:t="waypoint03"
-        object_var_value:i=0
       }
     }
 
     actions{
 
-      missionMarkAsWaypoint{
+      __missionMarkAsWaypoint{
         visible:b=no
         primary:b=yes
         oriented:b=no
@@ -1709,6 +1709,21 @@ triggers{
         object_var_value:i=0
       }
 
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/aircraft_modifications/activation_lock"
+        action:t="show"
+        shouldFadeOut:b=no
+        isOverFade:b=no
+        time:r=-1.0
+        priority:i=0
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        item:t="ID_LOCK_TARGET"
+      }
+
       hudElementSelectionShade{
         element:t=""
       }
@@ -1737,68 +1752,11 @@ triggers{
       }
 
       triggerEnable{
-        target:t="closeCombat_check_target"
+        target:t="closeCombat_shoot_at_first_msg"
       }
     }
 
     else_actions{
-    }
-  }
-
-  closeCombat_check_target{
-    is_enabled:b=no
-    comments:t=""
-
-    props{
-      actionsType:t="PERFORM_ONE_BY_ONE"
-      conditionsType:t="ALL"
-      enableAfterComplete:b=no
-    }
-
-    events{
-
-      periodicEvent{
-        time:r=0.01
-      }
-    }
-
-    conditions{
-
-      playerWhenOptions{
-        guiOptionBool:t="USEROPT_AUTO_TARGET_CHANGE_SHIP"
-      }
-    }
-
-    actions{
-
-      triggerActivate{
-        target:t="closeCombat_shoot_at_first_msg"
-        activate_type:t="ignoreConditions"
-        check_trigger_status:b=no
-        after_activation:t="disable"
-      }
-    }
-
-    else_actions{
-
-      playHint{
-        hintType:t="tutorialHint"
-        name:t="hints/aircraft_modifications/activation_lock"
-        action:t="show"
-        shouldFadeOut:b=no
-        isOverFade:b=no
-        time:r=-1.0
-        priority:i=0
-        target_marking:i=0
-        object_var_name:t=""
-        object_var_comp_op:t="equal"
-        object_var_value:i=0
-        item:t="ID_LOCK_TARGET"
-      }
-
-      triggerEnable{
-        target:t="closeCombat_shoot_at_first_msg"
-      }
     }
   }
 
@@ -2684,17 +2642,17 @@ triggers{
         time:r=0.5
       }
 
-      unitWakeUp{
+      __unitWakeUp{
         target:t="player_b"
       }
 
-      playerSwapWithUnit{
+      __playerSwapWithUnit{
         from:t="@player"
         to:t="player_b"
         animViscosity:r=0.1
       }
 
-      varSetString{
+      __varSetString{
         value:t="player_b"
         var:t="player"
       }
@@ -2719,12 +2677,13 @@ triggers{
         target_var_name:t=""
         target_var_comp_op:t="equal"
         target_var_value:i=0
+        shouldKeepAirFormation:b=yes
         object:t="@player"
         move_type:t="teleport"
         lookat:t="target_ship03"
       }
 
-      unitPutToSleep{
+      __unitPutToSleep{
         target:t="player_a"
       }
 
@@ -3053,6 +3012,21 @@ triggers{
         object_var_value:i=0
       }
 
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/aircraft_modifications/activation_lock"
+        action:t="show"
+        shouldFadeOut:b=no
+        isOverFade:b=no
+        time:r=-1.0
+        priority:i=0
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        item:t="ID_LOCK_TARGET"
+      }
+
       wait{
         time:r=0.5
       }
@@ -3081,68 +3055,11 @@ triggers{
       }
 
       triggerEnable{
-        target:t="torpedoingt_check_target"
+        target:t="torpedoing_use_torpedo_msg"
       }
     }
 
     else_actions{
-    }
-  }
-
-  torpedoingt_check_target{
-    is_enabled:b=no
-    comments:t=""
-
-    props{
-      actionsType:t="PERFORM_ONE_BY_ONE"
-      conditionsType:t="ALL"
-      enableAfterComplete:b=no
-    }
-
-    events{
-
-      periodicEvent{
-        time:r=0.01
-      }
-    }
-
-    conditions{
-
-      playerWhenOptions{
-        guiOptionBool:t="USEROPT_AUTO_TARGET_CHANGE_SHIP"
-      }
-    }
-
-    actions{
-
-      triggerActivate{
-        target:t="torpedoing_use_torpedo_msg"
-        activate_type:t="ignoreConditions"
-        check_trigger_status:b=no
-        after_activation:t="disable"
-      }
-    }
-
-    else_actions{
-
-      playHint{
-        hintType:t="tutorialHint"
-        name:t="hints/aircraft_modifications/activation_lock"
-        action:t="show"
-        shouldFadeOut:b=no
-        isOverFade:b=no
-        time:r=-1.0
-        priority:i=0
-        target_marking:i=0
-        object_var_name:t=""
-        object_var_comp_op:t="equal"
-        object_var_value:i=0
-        item:t="ID_LOCK_TARGET"
-      }
-
-      triggerEnable{
-        target:t="torpedoing_use_torpedo_msg"
-      }
     }
   }
 
@@ -3474,7 +3391,7 @@ triggers{
         var:t="lookat_point_name"
       }
 
-      missionMarkAsWaypoint{
+      __missionMarkAsWaypoint{
         visible:b=yes
         primary:b=yes
         oriented:b=no
@@ -4241,6 +4158,10 @@ triggers{
         time:r=5.0
       }
 
+      playerSetMouseAim{
+        lookat:t="waypoint04"
+      }
+
       triggerEnable{
         target:t="artModes_waypoint04"
       }
@@ -4311,13 +4232,12 @@ triggers{
         check_objects:t="any"
         object:t="@player"
         target:t="waypoint04"
-        object_var_value:i=0
       }
     }
 
     actions{
 
-      missionMarkAsWaypoint{
+      __missionMarkAsWaypoint{
         visible:b=no
         primary:b=yes
         oriented:b=no
@@ -4326,7 +4246,7 @@ triggers{
         target:t="waypoint_underground04"
       }
 
-      missionMarkAsWaypoint{
+      __missionMarkAsWaypoint{
         visible:b=yes
         primary:b=yes
         oriented:b=no
@@ -4400,7 +4320,6 @@ triggers{
         check_objects:t="any"
         object:t="@player"
         target:t="waypoint05"
-        object_var_value:i=0
       }
     }
 
@@ -4435,7 +4354,7 @@ triggers{
         item:t="ID_SHIP_FULL_STOP"
       }
 
-      missionMarkAsWaypoint{
+      __missionMarkAsWaypoint{
         visible:b=no
         primary:b=yes
         oriented:b=no
@@ -4652,6 +4571,7 @@ triggers{
         target_var_name:t=""
         target_var_comp_op:t="equal"
         target_var_value:i=0
+        shouldKeepAirFormation:b=yes
         object:t="@player"
         move_type:t="teleport"
         lookat:t="waypoint06"
@@ -4659,6 +4579,10 @@ triggers{
 
       playerOptions{
         stateAIGun:i=0
+      }
+
+      playerSetMouseAim{
+        lookat:t="target_ship04"
       }
 
       triggerEnable{
@@ -4761,7 +4685,7 @@ triggers{
         object_var_value:i=0
       }
 
-      playerEmulateShortcut{
+      __playerEmulateShortcut{
         control:t="ID_LOCK_TARGET"
       }
 
@@ -4888,79 +4812,6 @@ triggers{
         object_var_value:i=0
       }
 
-      unitSetProperties{
-        object:t="target_ship04"
-        object_marking:i=0
-        object_var_name:t=""
-        object_var_comp_op:t="equal"
-        object_var_value:i=0
-        isImmortal:b=no
-      }
-
-      wait{
-        time:r=0.5
-      }
-
-      hudElementShow{
-        element:t="hud_tutorial_boat_auto_gunners_modes"
-        show:b=yes
-        time:i=-1
-      }
-
-      hudElementSelectionShade{
-        element:t=""
-      }
-
-      playerControls{
-        setStatus:t="disable"
-        control:t="ID_SHIP_WEAPON_ALL"
-      }
-
-      triggerEnable{
-        target:t="artModes_check_target"
-      }
-    }
-
-    else_actions{
-    }
-  }
-
-  artModes_check_target{
-    is_enabled:b=no
-    comments:t=""
-
-    props{
-      actionsType:t="PERFORM_ONE_BY_ONE"
-      conditionsType:t="ALL"
-      enableAfterComplete:b=no
-    }
-
-    events{
-
-      periodicEvent{
-        time:r=0.01
-      }
-    }
-
-    conditions{
-
-      playerWhenOptions{
-        guiOptionBool:t="USEROPT_AUTO_TARGET_CHANGE_SHIP"
-      }
-    }
-
-    actions{
-
-      triggerActivate{
-        target:t="artModes_target_spotted+shoot_msg"
-        activate_type:t="ignoreConditions"
-        check_trigger_status:b=no
-        after_activation:t="disable"
-      }
-    }
-
-    else_actions{
-
       playHint{
         hintType:t="tutorialHint"
         name:t="hints/aircraft_modifications/activation_lock"
@@ -4976,9 +4827,34 @@ triggers{
         item:t="ID_LOCK_TARGET"
       }
 
+      unitSetProperties{
+        object:t="target_ship04"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        isImmortal:b=no
+      }
+
+      wait{
+        time:r=0.5
+      }
+
+      hudElementSelectionShade{
+        element:t=""
+      }
+
+      playerControls{
+        setStatus:t="disable"
+        control:t="ID_SHIP_WEAPON_ALL"
+      }
+
       triggerEnable{
         target:t="artModes_target_spotted+shoot_msg"
       }
+    }
+
+    else_actions{
     }
   }
 
@@ -5026,6 +4902,12 @@ triggers{
         object_var_comp_op:t="equal"
         object_var_value:i=0
         item:t="ID_SHIP_TOGGLE_GUNNERS"
+      }
+
+      hudElementShow{
+        element:t="hud_tutorial_boat_auto_gunners_modes"
+        show:b=yes
+        time:i=-1
       }
 
       triggerEnable{
@@ -5889,6 +5771,21 @@ triggers{
         object_var_value:i=0
       }
 
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/aircraft_modifications/activation_lock"
+        action:t="show"
+        shouldFadeOut:b=no
+        isOverFade:b=no
+        time:r=-1.0
+        priority:i=0
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        item:t="ID_LOCK_TARGET"
+      }
+
       hudElementSelectionShade{
         element:t=""
       }
@@ -5913,68 +5810,11 @@ triggers{
       }
 
       triggerEnable{
-        target:t="rangedCombat_check_target"
+        target:t="rangedCombat_ranged_hint05+start_shooting_msg"
       }
     }
 
     else_actions{
-    }
-  }
-
-  rangedCombat_check_target{
-    is_enabled:b=no
-    comments:t=""
-
-    props{
-      actionsType:t="PERFORM_ONE_BY_ONE"
-      conditionsType:t="ALL"
-      enableAfterComplete:b=no
-    }
-
-    events{
-
-      periodicEvent{
-        time:r=0.01
-      }
-    }
-
-    conditions{
-
-      playerWhenOptions{
-        guiOptionBool:t="USEROPT_AUTO_TARGET_CHANGE_SHIP"
-      }
-    }
-
-    actions{
-
-      triggerActivate{
-        target:t="rangedCombat_ranged_hint05+start_shooting_msg"
-        activate_type:t="ignoreConditions"
-        check_trigger_status:b=no
-        after_activation:t="disable"
-      }
-    }
-
-    else_actions{
-
-      playHint{
-        hintType:t="tutorialHint"
-        name:t="hints/aircraft_modifications/activation_lock"
-        action:t="show"
-        shouldFadeOut:b=no
-        isOverFade:b=no
-        time:r=-1.0
-        priority:i=0
-        target_marking:i=0
-        object_var_name:t=""
-        object_var_comp_op:t="equal"
-        object_var_value:i=0
-        item:t="ID_LOCK_TARGET"
-      }
-
-      triggerEnable{
-        target:t="rangedCombat_ranged_hint05+start_shooting_msg"
-      }
     }
   }
 
@@ -6204,7 +6044,7 @@ triggers{
         control:t="ID_BAILOUT"
       }
 
-      missionMarkAsWaypoint{
+      __missionMarkAsWaypoint{
         visible:b=yes
         primary:b=yes
         oriented:b=no
@@ -6271,7 +6111,7 @@ triggers{
 
     actions{
 
-      missionMarkAsWaypoint{
+      __missionMarkAsWaypoint{
         visible:b=no
         primary:b=yes
         oriented:b=no
@@ -6280,7 +6120,7 @@ triggers{
         target:t="waypoint_underground05"
       }
 
-      missionMarkAsWaypoint{
+      __missionMarkAsWaypoint{
         visible:b=yes
         primary:b=yes
         oriented:b=no
@@ -6360,7 +6200,7 @@ triggers{
 
     actions{
 
-      missionMarkAsWaypoint{
+      __missionMarkAsWaypoint{
         visible:b=no
         primary:b=yes
         oriented:b=no
@@ -6369,7 +6209,7 @@ triggers{
         target:t="waypoint_underground06"
       }
 
-      missionMarkAsWaypoint{
+      __missionMarkAsWaypoint{
         visible:b=yes
         primary:b=yes
         oriented:b=no
@@ -6490,7 +6330,7 @@ triggers{
         mustExist:b=no
       }
 
-      missionMarkAsWaypoint{
+      __missionMarkAsWaypoint{
         visible:b=no
         primary:b=yes
         oriented:b=no
@@ -6574,7 +6414,7 @@ triggers{
       missionStopSpeech{
       }
 
-      missionMarkAsWaypoint{
+      __missionMarkAsWaypoint{
         visible:b=no
         primary:b=yes
         oriented:b=no
@@ -7757,6 +7597,7 @@ triggers{
         target_var_name:t=""
         target_var_comp_op:t="equal"
         target_var_value:i=0
+        shouldKeepAirFormation:b=yes
         object:t="@player"
         move_type:t="teleport"
         lookat:t="target_ship03"
@@ -7880,6 +7721,7 @@ triggers{
         target_var_name:t=""
         target_var_comp_op:t="equal"
         target_var_value:i=0
+        shouldKeepAirFormation:b=yes
         object:t="@player"
         move_type:t="teleport"
         lookat:t="target_ship03"
@@ -8074,6 +7916,7 @@ triggers{
         target_var_name:t=""
         target_var_comp_op:t="equal"
         target_var_value:i=0
+        shouldKeepAirFormation:b=yes
         object:t="@player"
         move_type:t="teleport"
         lookat:t="@waypoint_name"
@@ -8130,6 +7973,7 @@ triggers{
         target_var_name:t=""
         target_var_comp_op:t="equal"
         target_var_value:i=0
+        shouldKeepAirFormation:b=yes
         object:t="target_ship01"
         move_type:t="teleport"
       }
@@ -8154,6 +7998,7 @@ triggers{
         target_var_name:t=""
         target_var_comp_op:t="equal"
         target_var_value:i=0
+        shouldKeepAirFormation:b=yes
         object:t="target_ship02"
         move_type:t="teleport"
       }
@@ -8178,6 +8023,7 @@ triggers{
         target_var_name:t=""
         target_var_comp_op:t="equal"
         target_var_value:i=0
+        shouldKeepAirFormation:b=yes
         object:t="target_ship03"
         move_type:t="teleport"
       }
@@ -8202,6 +8048,7 @@ triggers{
         target_var_name:t=""
         target_var_comp_op:t="equal"
         target_var_value:i=0
+        shouldKeepAirFormation:b=yes
         object:t="target_ship04"
         move_type:t="teleport"
       }
@@ -8226,6 +8073,7 @@ triggers{
         target_var_name:t=""
         target_var_comp_op:t="equal"
         target_var_value:i=0
+        shouldKeepAirFormation:b=yes
         object:t="target_ship05"
         move_type:t="teleport"
       }
@@ -8353,7 +8201,7 @@ units{
     closed_waypoints:b=no
     isShipSpline:b=no
     shipTurnRadius:r=100.0
-    weapons:t=""
+    weapons:t="torpedoes"
     bullets0:t="40mm_bofors_l60_navy_universal"
     bullets1:t=""
     bullets2:t=""
@@ -8383,7 +8231,7 @@ units{
 
   ships{
     name:t="target_ship01"
-    tm:m=[[0.984359, 0.0, -0.176173] [0.0, 1.0, 0.0] [0.176173, 0.0, 0.984359] [2494.38, 0.000732422, 1706.61]]
+    tm:m=[[0.984359, 0.0, -0.176173] [0.0, 1.0, 0.0] [0.176173, 0.0, 0.984359] [2553.71, 0.000793457, 1767.24]]
     unit_class:t="germ_ls4_class"
     objLayer:i=1
     closed_waypoints:b=no
@@ -8418,7 +8266,7 @@ units{
 
   ships{
     name:t="target_ship02"
-    tm:m=[[0.791333, 0.0, -0.611386] [0.0, 1.0, 0.0] [0.611386, 0.0, 0.791333] [2635.31, 0.000701904, 1655.0]]
+    tm:m=[[0.791333, 0.0, -0.611386] [0.0, 1.0, 0.0] [0.611386, 0.0, 0.791333] [2758.1, 0.000671386, 1800.84]]
     unit_class:t="germ_ls4_class"
     objLayer:i=1
     closed_waypoints:b=no
@@ -8453,7 +8301,7 @@ units{
 
   ships{
     name:t="target_ship03"
-    tm:m=[[0.90533, 0.0, -0.424709] [0.0, 1.0, 0.0] [0.424709, 0.0, 0.90533] [2595.35, 0.000732422, 1649.87]]
+    tm:m=[[0.90533, 0.0, -0.424709] [0.0, 1.0, 0.0] [0.424709, 0.0, 0.90533] [2712.63, 0.000717163, 1796.93]]
     unit_class:t="germ_destroyer_class1936_z20_tutorial"
     objLayer:i=1
     closed_waypoints:b=no
@@ -9265,7 +9113,7 @@ areas{
 
   waypoint03{
     type:t="Box"
-    tm:m=[[2820.44, 0.0, -387.448] [0.0, 79.555, 0.0] [10.8269, 0.0, 78.8148] [2534.78, 0.0, 1357.97]]
+    tm:m=[[2820.44, 0.0, -387.448] [0.0, 79.555, 0.0] [10.8269, 0.0, 78.8148] [2534.78, 0.0, 1288.68]]
     objLayer:i=0
 
     props{
@@ -9337,7 +9185,7 @@ areas{
 
   waypoint05{
     type:t="Box"
-    tm:m=[[72.615, 0.0, -32.4971] [0.0, 79.555, 0.0] [1297.55, 0.0, 2899.39] [2027.83, 0.0, 1902.46]]
+    tm:m=[[72.615, 0.0, -32.4971] [0.0, 79.555, 0.0] [1297.55, 0.0, 2899.39] [2215.0, 0.0, 1747.1]]
     objLayer:i=0
 
     props{
@@ -9382,7 +9230,7 @@ areas{
 
   waypoint_underground04.5{
     type:t="Box"
-    tm:m=[[72.615, 0.0, -32.4971] [0.0, 79.555, 0.0] [1297.55, 0.0, 2899.39] [2027.83, -113.703, 1902.46]]
+    tm:m=[[72.615, 0.0, -32.4971] [0.0, 79.555, 0.0] [1297.55, 0.0, 2899.39] [1872.1, -113.703, 1875.05]]
     objLayer:i=0
 
     props{
@@ -9391,7 +9239,7 @@ areas{
 
   waypoint_underground05{
     type:t="Box"
-    tm:m=[[73.5785, 0.0, -30.2522] [0.0, 79.555, 0.0] [1229.56, 0.0, 2990.51] [1726.72, -105.23, 1910.94]]
+    tm:m=[[73.5785, 0.0, -30.2522] [0.0, 79.555, 0.0] [1229.56, 0.0, 2990.51] [1647.2, -105.23, 1943.6]]
     objLayer:i=0
 
     props{
@@ -9445,7 +9293,7 @@ areas{
 
   pos_target_01{
     type:t="Sphere"
-    tm:m=[[9.84808, 0.0, -1.73648] [0.0, 10.0, 0.0] [1.73648, 0.0, 9.84808] [2494.4, 0.0, 1706.6]]
+    tm:m=[[9.84808, 0.0, -1.73648] [0.0, 10.0, 0.0] [1.73648, 0.0, 9.84808] [2553.73, 6.10352e-05, 1767.23]]
     objLayer:i=0
 
     props{
@@ -9454,7 +9302,7 @@ areas{
 
   pos_target_03{
     type:t="Sphere"
-    tm:m=[[9.06308, 0.0, -4.22618] [0.0, 10.0, 0.0] [4.22618, 0.0, 9.06308] [2595.4, -3.05176e-05, 1649.9]]
+    tm:m=[[9.06308, 0.0, -4.22618] [0.0, 10.0, 0.0] [4.22618, 0.0, 9.06308] [2714.25, -0.00012207, 1801.86]]
     objLayer:i=0
 
     props{
@@ -9463,7 +9311,7 @@ areas{
 
   pos_target_02{
     type:t="Sphere"
-    tm:m=[[7.93353, 0.0, -6.08761] [0.0, 10.0, 0.0] [6.08761, 0.0, 7.93353] [2635.3, -3.05176e-05, 1655.42]]
+    tm:m=[[7.93353, 0.0, -6.08761] [0.0, 10.0, 0.0] [6.08761, 0.0, 7.93353] [2758.09, -6.10352e-05, 1801.26]]
     objLayer:i=0
 
     props{

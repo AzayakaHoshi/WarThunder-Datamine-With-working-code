@@ -534,7 +534,7 @@ DamageParts{
       armorThickness:r=20.0
     }
 
-    gun_mask_03_dm{
+    gun_trunnion_dm{
       armorThickness:r=240.0
       armorClass:t="tank_structural_steel"
       hidableInViewer:b=no
@@ -885,10 +885,6 @@ DamageParts{
       fireParamsPreset:t="hydraulic_internal"
     }
 
-    driver_controls_dm{
-      armorThrough:r=15.0
-    }
-
     drive_turret_v_01_dm{
       hp:r=40.0
       armorThrough:r=15.0
@@ -897,7 +893,6 @@ DamageParts{
     drive_turret_h_01_dm{
       hp:r=40.0
       armorThrough:r=15.0
-      fireParamsPreset:t="hydraulic_internal"
     }
 
     drive_turret_v_02_dm{
@@ -940,6 +935,12 @@ DamageParts{
       armorThrough:r=15.0
     }
 
+    turret_hydraulics_dm{
+      hp:r=250.0
+      armorThrough:r=15.0
+      fireParamsPreset:t="hydraulic_internal"
+    }
+
     radiator_dm{
       hp:r=50.0
       armorThrough:r=5.0
@@ -960,11 +961,6 @@ DamageParts{
       armorThrough:r=3.0
     }
 
-    electronic_equipment_dm{
-      hp:r=60.0
-      armorThrough:r=3.0
-    }
-
     electronic_equipment_01_dm{
       hp:r=60.0
       armorThrough:r=3.0
@@ -978,11 +974,6 @@ DamageParts{
     fire_control_system_01_dm{
       hp:r=60.0
       armorThrough:r=3.0
-    }
-
-    power_system_dm{
-      hp:r=60.0
-      armorThrough:r=15.0
     }
   }
 
@@ -2665,7 +2656,63 @@ DamageEffects{
   }
 
   part{
-    name:t="drive_turret_h_01_dm"
+    name:t="turret_hydraulics_dm"
+
+    onHit{
+      damageType:t="cumulative"
+      fire:r=0.2
+      damage:r=75.0
+      fHitCritical:b=yes
+    }
+
+    onHit{
+      damageType:t="explosion"
+      fire:r=0.3
+      damage:r=30.0
+      fHitCritical:b=yes
+    }
+
+    onHit{
+      damageType:t="generic"
+      fire:r=0.05
+      damage:r=20.0
+      fHitCritical:b=yes
+    }
+
+    onHit{
+      damageType:t="generic"
+      fire:r=0.1
+      damage:r=70.0
+      fHitCritical:b=yes
+    }
+
+    onHit{
+      damageType:t="generic"
+      fire:r=0.3
+      damage:r=200.0
+      fHitCritical:b=yes
+    }
+
+    onHit{
+      damageType:t="generic"
+      fire:r=0.4
+      damage:r=300.0
+      fHitCritical:b=yes
+    }
+
+    onHit{
+      damageType:t="fire"
+      fire:r=0.1
+    }
+
+    onKill{
+      fire:r=1.0
+      fHitCritical:b=yes
+    }
+  }
+
+  part{
+    name:t="power_system_dm"
 
     onHit{
       damageType:t="cumulative"
@@ -2721,8 +2768,9 @@ DamageEffects{
       action{
         kill:b=yes
         type:t="secondaryDamage"
-        part:t="drive_turret_h_dm"
-        part:t="drive_turret_v_dm"
+        part:t="electronic_equipment_dm"
+        part:t="fire_control_system_dm"
+        part:t="fire_control_system_01_dm"
       }
     }
   }
@@ -2730,8 +2778,13 @@ DamageEffects{
 
 xrayOverride{
 
-  drive_turret_h_01_dm{
-    overrideTitle:t="hydraulic_pump"
+  fire_control_system_dm{
+    overrideTitle:t="fire_control_system"
+    hideDescription:b=yes
+  }
+
+  gun_trunnion_dm{
+    overrideTitle:t="gun_trunnion"
     hideDescription:b=yes
   }
 }
@@ -3295,6 +3348,10 @@ commonWeapons{
       barrel:t="bone_gun_barrel"
       gunnerDm:t="gunner_dm"
       secondGunnerDm:t="commander_dm"
+      verDriveDm:t="drive_turret_v_dm"
+      verDriveDm:t="turret_hydraulics_dm"
+      horDriveDm:t="drive_turret_h_dm"
+      horDriveDm:t="turret_hydraulics_dm"
     }
 
     limits{
@@ -4396,6 +4453,10 @@ modifications{
             barrel:t="bone_gun_barrel"
             gunnerDm:t="gunner_dm"
             secondGunnerDm:t="commander_dm"
+            verDriveDm:t="drive_turret_v_dm"
+            verDriveDm:t="turret_hydraulics_dm"
+            horDriveDm:t="drive_turret_h_dm"
+            horDriveDm:t="turret_hydraulics_dm"
           }
 
           limits{
@@ -4624,7 +4685,6 @@ modifications{
     effects{
 
       nightVision{
-        nightVisionDmPart:t="fire_control_system_dm"
 
         gunnerThermal{
           resolution:ip2=500, 300

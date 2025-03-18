@@ -27,7 +27,9 @@ hasExpl:b=no
 exhaustFx:t="ship_exhaust_med"
 explosionFx:t="explosion_ship_small"
 decorCutProps:t="boat"
-shipsDisableDeadCoverParts:b=yes
+deadCoverCountToDelayedSinking:i=2
+delayedSinkingBreachesFreq:r=3.0
+delayedSinkingBreachesSize:p2=0.3, 1.2
 smokeScreenActivateTime:r=5.0
 smokeScreenEffectTime:r=30.0
 smokeScreenRad:r=55.0
@@ -995,32 +997,38 @@ DamageParts{
   cover{
     armorClass:t="ship_structural_steel"
     armorThickness:r=16.0
+    hydroShockArmorQuality:r=0.1
     hidableInViewer:b=yes
-    genericDamageMult:r=0.1
-    shatterDamageMult:r=0.1
+    genericDamageMult:r=0.025
+    explosionDamageMult:r=0.1
+    shatterDamageMult:r=0.0
+    hydroShockDamageMult:r=8.0
+    pressureDamageMult:r=0.0
+    splashPenetrationToArmorThreshold:r=0.05
+    kineticPenetrationToArmorThreshold:r=0.05
 
     cover_01_dm{
-      hp:r=5100.0
+      hp:r=3000.0
     }
 
     cover_02_dm{
-      hp:r=5011.0
+      hp:r=2891.0
     }
 
     cover_03_dm{
-      hp:r=4810.0
+      hp:r=2775.0
     }
 
     cover_04_dm{
-      hp:r=3900.0
+      hp:r=2300.0
     }
 
     cover_05_dm{
-      hp:r=4020.0
+      hp:r=2319.0
     }
 
     cover_06_dm{
-      hp:r=3900.0
+      hp:r=2300.0
     }
   }
 
@@ -1177,6 +1185,10 @@ DamageParts{
     }
 
     fuel_tank_03_dm{
+      hp:r=1500.0
+    }
+
+    fuel_tank_04_dm{
       hp:r=1500.0
     }
   }
@@ -1404,18 +1416,6 @@ DamageParts{
     ammunition_storage_aux_01_dm{
       hp:r=530.0
     }
-
-    ammunition_storage_aux_02_dm{
-      hp:r=530.0
-    }
-
-    ammunition_storage_aux_03_dm{
-      hp:r=530.0
-    }
-
-    ammunition_storage_aux_04_dm{
-      hp:r=530.0
-    }
   }
 
   ammo_first_stage{
@@ -1623,6 +1623,10 @@ DamageParts{
     }
 
     elevator_02_dm{
+      hp:r=360.0
+    }
+
+    elevator_03_dm{
       hp:r=360.0
     }
   }
@@ -2315,6 +2319,23 @@ MetaParts{
       conditionDamage:r=20000.0
       kill:b=yes
       killEffect:t="destruction"
+    }
+  }
+
+  hull{
+    part:t="cover_01_dm"
+    part:t="cover_02_dm"
+    part:t="cover_03_dm"
+    part:t="cover_04_dm"
+    part:t="cover_05_dm"
+    part:t="cover_06_dm"
+    part:t="cover_07_dm"
+    part:t="cover_08_dm"
+    part:t="cover_09_dm"
+    part:t="cover_10_dm"
+
+    effect{
+      pressure:b=yes
     }
   }
 
@@ -4693,31 +4714,7 @@ ammoStowages{
       damageEffect:t="ammunition_storage_aux"
 
       ammunition_storage_aux_01_dm{
-        count:i=9600
-      }
-    }
-
-    shells{
-      damageEffect:t="ammunition_storage_aux"
-
-      ammunition_storage_aux_02_dm{
-        count:i=4800
-      }
-    }
-
-    shells{
-      damageEffect:t="ammunition_storage_aux"
-
-      ammunition_storage_aux_03_dm{
-        count:i=4800
-      }
-    }
-
-    shells{
-      damageEffect:t="ammunition_storage_aux"
-
-      ammunition_storage_aux_04_dm{
-        count:i=3000
+        count:i=22000
       }
     }
   }
@@ -4736,7 +4733,7 @@ ammoStowages{
     shells{
       damageEffect:t="ammunition_torpedoes"
 
-      torpedo_01_dm{
+      torpedo_02_dm{
         count:i=1
       }
     }
@@ -4744,7 +4741,7 @@ ammoStowages{
     shells{
       damageEffect:t="ammunition_torpedoes"
 
-      torpedo_02_dm{
+      torpedo_01_dm{
         count:i=1
       }
     }
@@ -4764,7 +4761,7 @@ ammoStowages{
     shells{
       damageEffect:t="ammunition_torpedoes"
 
-      torpedo_03_dm{
+      torpedo_04_dm{
         count:i=1
       }
     }
@@ -4772,7 +4769,7 @@ ammoStowages{
     shells{
       damageEffect:t="ammunition_torpedoes"
 
-      torpedo_04_dm{
+      torpedo_03_dm{
         count:i=1
       }
     }

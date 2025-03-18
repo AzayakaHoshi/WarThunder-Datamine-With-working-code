@@ -535,7 +535,7 @@ triggers{
       }
 
       wait{
-        time:r=28.0
+        time:r=20.0
       }
 
       wait{
@@ -2524,7 +2524,7 @@ triggers{
       }
 
       triggerEnable{
-        target:t="aerialTest_elevator02"
+        target:t="aerialTest_elevator01_invertY"
       }
 
       moAddMissionObjective{
@@ -2568,10 +2568,92 @@ triggers{
       wait{
         time:r=5.0
       }
+    }
+
+    else_actions{
+    }
+  }
+
+  aerialTest_elevator01_invertY{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      playerWhenOptions{
+        guiOptionBool:t="USEROPT_INVERTY"
+      }
+    }
+
+    actions{
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorial_elevator02"
+        action:t="show"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        item:t="elevator=min"
+        shouldBlink:b=no
+        showKeyBoardShortcutsForMouseAim:b=yes
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorial_elevator02"
+        action:t="hideCur"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        item:t="elevator=max"
+        shouldBlink:b=no
+      }
+
+      triggerEnable{
+        target:t="aerialTest_elevator02"
+      }
 
       wait{
         time:r=4.0
       }
+
+      missionPlayDialogue{
+        dialog:t="tutorial_m1_d09_1"
+        subtitles:b=no
+      }
+
+      hudElementBlink{
+        element:t="alt"
+        time:r=2.0
+        blink:b=yes
+      }
+    }
+
+    else_actions{
 
       playHint{
         hintType:t="tutorialHint"
@@ -2606,6 +2688,14 @@ triggers{
         shouldBlink:b=no
       }
 
+      triggerEnable{
+        target:t="aerialTest_elevator02"
+      }
+
+      wait{
+        time:r=4.0
+      }
+
       missionPlayDialogue{
         dialog:t="tutorial_m1_d09_1"
         subtitles:b=no
@@ -2616,9 +2706,6 @@ triggers{
         time:r=2.0
         blink:b=yes
       }
-    }
-
-    else_actions{
     }
   }
 
@@ -3739,6 +3826,68 @@ triggers{
         shouldBlink:b=no
       }
 
+      missionPlayDialogue{
+        dialog:t="tutorial_m1_d13_2"
+        subtitles:b=yes
+      }
+
+      triggerEnable{
+        target:t="aerialTest_turn02_invertY"
+        target:t="aerialTest_turn03"
+        target:t="aerialTest_turnFail"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  aerialTest_turn02_invertY{
+    is_enabled:b=no
+    comments:t="here must be the condition which detects turn"
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ANY"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playerWhenOptions{
+        guiOptionBool:t="USEROPT_INVERTY"
+      }
+    }
+
+    actions{
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorial_turn02"
+        action:t="show"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        item:t="elevator=max"
+        shouldBlink:b=no
+        showKeyBoardShortcutsForMouseAim:b=yes
+      }
+    }
+
+    else_actions{
+
       playHint{
         hintType:t="tutorialHint"
         name:t="hints/tutorial_turn02"
@@ -3755,19 +3904,6 @@ triggers{
         shouldBlink:b=no
         showKeyBoardShortcutsForMouseAim:b=yes
       }
-
-      missionPlayDialogue{
-        dialog:t="tutorial_m1_d13_2"
-        subtitles:b=yes
-      }
-
-      triggerEnable{
-        target:t="aerialTest_turn03"
-        target:t="aerialTest_turnFail"
-      }
-    }
-
-    else_actions{
     }
   }
 

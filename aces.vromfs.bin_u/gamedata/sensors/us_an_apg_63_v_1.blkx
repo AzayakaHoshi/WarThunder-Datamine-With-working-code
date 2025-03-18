@@ -4,6 +4,7 @@ showMissileLaunchZone:b=yes
 showMissileDgftLaunchZone:b=yes
 weaponTargetsMax:i=8
 launchedMissilesPredictedPositionsMax:i=8
+showMissileAimLead:b=yes
 
 transivers{
 
@@ -329,6 +330,7 @@ signals{
     aircraftAsTarget:b=yes
     angularAccuracy:r=0.05
     distanceAccuracy:r=15.0
+    targetId:b=yes
     mainBeamNotchWidth:r=40.0
     mainBeamNotchMaxElevation:r=3.0
     track:b=yes
@@ -357,6 +359,7 @@ signals{
     aircraftAsTarget:b=yes
     angularAccuracy:r=0.05
     distanceAccuracy:r=15.0
+    targetId:b=yes
     absDopplerSpeed:b=no
     mainBeamDopplerSpeed:b=no
     track:b=yes
@@ -427,9 +430,9 @@ fsms{
         }
 
         setTargetDesignationRange{
-          azimuthRange:p2=-70.0, 70.0
+          azimuthRange:p2=-60.0, 60.0
           azmithWidth:r=1.5
-          elevationRange:p2=-70.0, 70.0
+          elevationRange:p2=-60.0, 60.0
           distanceRange:p2=0.0, 92500.0
           distanceWidth:r=2000.0
           distanceRelWidthMin:r=0.05
@@ -606,11 +609,6 @@ fsms{
         }
 
         setDistGatePos{
-          source:t="activeTargetOfInterest"
-          width:r=0.0
-        }
-
-        setRelSpeedGatePos{
           source:t="activeTargetOfInterest"
           width:r=0.0
         }
@@ -930,7 +928,7 @@ fsms{
         }
       }
 
-      setTwsStandbyMode{
+      setMprfTwsStandbyMode{
 
         setTwsStandbyModeCommon{
         }
@@ -945,6 +943,24 @@ fsms{
 
         setModeName{
           name:t="TWS standby"
+        }
+      }
+
+      setHprfTwsStandbyMode{
+
+        setTwsStandbyModeCommon{
+        }
+
+        setTransiver{
+          transiver:t="hprf"
+        }
+
+        setSignal{
+          signal:t="hprfSearch"
+        }
+
+        setModeName{
+          name:t="TWS HDN standby"
         }
       }
 
@@ -1002,7 +1018,7 @@ fsms{
         }
       }
 
-      setTwsSearchMode{
+      setMprfTwsSearchMode{
 
         setTwsSearchModeCommon{
         }
@@ -1017,6 +1033,24 @@ fsms{
 
         setModeName{
           name:t="TWS search"
+        }
+      }
+
+      setHprfTwsSearchMode{
+
+        setTwsSearchModeCommon{
+        }
+
+        setTransiver{
+          transiver:t="hprf"
+        }
+
+        setSignal{
+          signal:t="hprfSearch"
+        }
+
+        setModeName{
+          name:t="TWS HDN search"
         }
       }
 
@@ -1609,6 +1643,7 @@ fsms{
       hmdStandbyToSearch{
         stateFrom:t="hmdStandby"
         command:t="acmSwitch"
+        command:t="switch"
         stateTo:t="search"
 
         actions{
@@ -1621,6 +1656,25 @@ fsms{
           doCustomActionTemplate{
             fsm:t="main"
             name:t="setSearchMode"
+          }
+        }
+      }
+
+      hmdStandbyToStandby{
+        stateFrom:t="hmdStandby"
+        event:t="disable"
+        stateTo:t="standby"
+
+        actions{
+
+          doCustomActionTemplate{
+            fsm:t="main"
+            name:t="resetHmdStandbyMode"
+          }
+
+          doCustomActionTemplate{
+            fsm:t="main"
+            name:t="setStandbyMode"
           }
         }
       }
@@ -1686,7 +1740,6 @@ fsms{
         stateFrom:t="hmdTrack"
         event:t="targetsOfInterestCleanup"
         command:t="selectTarget"
-        command:t="switch"
         stateTo:t="hmdStandby"
 
         actions{
@@ -1852,23 +1905,23 @@ fsms{
         }
       }
 
-      mprfToTws{
+      mprfToMprfTws{
         stateFrom:t="mprf"
         command:t="modeSwitch"
-        stateTo:t="tws"
+        stateTo:t="mprfTws"
 
         actions{
 
           setCustomActionTemplate{
             fsm:t="main"
             name:t="setStandbyMode"
-            actionTemplateName:t="setTwsStandbyMode"
+            actionTemplateName:t="setMprfTwsStandbyMode"
           }
 
           setCustomActionTemplate{
             fsm:t="main"
             name:t="setSearchMode"
-            actionTemplateName:t="setTwsSearchMode"
+            actionTemplateName:t="setMprfTwsSearchMode"
           }
 
           setCustomActionTemplate{
@@ -1906,8 +1959,8 @@ fsms{
         }
       }
 
-      twsToHprf{
-        stateFrom:t="tws"
+      mprfTwsToHprf{
+        stateFrom:t="mprfTws"
         command:t="modeSwitch"
         stateTo:t="hprf"
 
@@ -1960,8 +2013,62 @@ fsms{
         }
       }
 
-      hprfToHprfVelocity{
+      hprfToHprfTws{
         stateFrom:t="hprf"
+        command:t="modeSwitch"
+        stateTo:t="hprfTws"
+
+        actions{
+
+          setCustomActionTemplate{
+            fsm:t="main"
+            name:t="setStandbyMode"
+            actionTemplateName:t="setHprfTwsStandbyMode"
+          }
+
+          setCustomActionTemplate{
+            fsm:t="main"
+            name:t="setSearchMode"
+            actionTemplateName:t="setHprfTwsSearchMode"
+          }
+
+          setCustomActionTemplate{
+            fsm:t="main"
+            name:t="setBvrLockMode"
+            actionTemplateName:t="setTwsBvrLockMode"
+          }
+
+          setCustomActionTemplate{
+            fsm:t="main"
+            name:t="designateTarget"
+            actionTemplateName:t="designatedTargetTws"
+          }
+
+          setCustomActionTemplate{
+            fsm:t="main"
+            name:t="resetSearchMode"
+            actionTemplateName:t="resetTwsMode"
+          }
+
+          doCustomActionTemplate{
+            fsm:t="main"
+            name:t="resetSearchMode"
+          }
+
+          setFsmActive{
+            fsm:t="main"
+            active:b=no
+          }
+
+          setFsmActive{
+            fsm:t="main"
+            active:b=yes
+          }
+        }
+      }
+
+      hprfTwsToHprfVelocity{
+        stateFrom:t="hprfTws"
         command:t="modeSwitch"
         stateTo:t="hprfVelocity"
 
@@ -2201,6 +2308,9 @@ fsms{
             timeOut:r=8.0
           }
 
+          updateActiveDetectedTarget{
+          }
+
           setCueToActiveTargetOfInterest{
           }
 
@@ -2257,10 +2367,24 @@ fsms{
 
         actions{
 
-          updateTargetOfInterest{
+          addTargetOfInterestCandidate{
+          }
+        }
+      }
+
+      matchTargets{
+        event:t="scanFinished"
+
+        actions{
+
+          matchTargetsOfInterest{
             limit:i=10
-            radius:r=1000.0
-            dopplerSpeedGateMaxTime:r=8.0
+            posGateTimeInitial:p2=2.0, 4.0
+            posGateRangeInitial:r=1500.0
+            posGateMaxTime:r=2.0
+            posGateRange:p2=0.0, 300.0
+            dopplerSpeedGateRange2:p2=0.0, 200.0
+            dopplerSpeedGateMaxTime:r=2.0
           }
 
           updateActiveDetectedTarget{
@@ -2477,12 +2601,21 @@ fsms{
         updateActiveTargetOfInterest{
 
           dirFilter{
+            rateLim:p2=0.78, 0.78
+            limTimeOut:r=1.0
+            inertialTimeMax:r=1.0
           }
 
           distFilter{
+            accelLim:p2=150.0, 150.0
+            limTimeOut:r=1.0
+            inertialTimeMax:r=1.0
           }
 
           dopplerSpeedFilter{
+            rateLim:p2=200.0, 200.0
+            limTimeOut:r=1.0
+            inertialTimeMax:r=1.0
           }
         }
 
@@ -2849,4 +2982,91 @@ fsms{
       }
     }
   }
+}
+
+targetTypeId{
+  name:t="hud/single prop"
+
+  targetPropulsion{
+    type:t="propellers"
+    num:i=1
+  }
+}
+
+targetTypeId{
+  name:t="hud/multi prop"
+
+  targetPropulsion{
+    type:t="propellers"
+    num:i=2
+  }
+
+  targetPropulsion{
+    type:t="propellers"
+    num:i=3
+  }
+
+  targetPropulsion{
+    type:t="propellers"
+    num:i=4
+  }
+}
+
+targetTypeId{
+  name:t="hud/single jet"
+
+  targetPropulsion{
+    type:t="jet"
+    num:i=1
+  }
+}
+
+targetTypeId{
+  name:t="hud/multi jet"
+
+  targetPropulsion{
+    type:t="jet"
+    num:i=2
+  }
+
+  targetPropulsion{
+    type:t="jet"
+    num:i=3
+  }
+
+  targetPropulsion{
+    type:t="jet"
+    num:i=4
+  }
+}
+
+targetTypeId{
+  name:t="hud/helicopter"
+
+  targetPropulsion{
+    type:t="rotors"
+  }
+}
+
+targetTypeId{
+  name:t="hud/rocket"
+
+  targetPropulsion{
+    type:t="rocket"
+  }
+}
+
+targetTypeId{
+  name:t="hud/small"
+  sizeRange:p2=0.0, 5.0
+}
+
+targetTypeId{
+  name:t="hud/medium"
+  sizeRange:p2=5.0, 25.0
+}
+
+targetTypeId{
+  name:t="hud/large"
+  sizeRange:p2=25.0, 500.0
 }

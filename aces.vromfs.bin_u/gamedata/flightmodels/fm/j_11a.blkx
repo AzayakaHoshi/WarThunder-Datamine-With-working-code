@@ -47,6 +47,8 @@ RudderMaxDv:r=9.0
 VneControl:r=1400.0
 CockpitOpenedDoorBreakSpeed:r=450.0
 MomentOfInertia:p3=55000.0, 250000.0, 210000.0
+ConvertAoa:b=yes
+ConvertAoaAI:b=yes
 IgnoreErrors:b=yes
 
 AvailableControls{
@@ -73,6 +75,7 @@ AvailableControls{
   bHasBoosterSwitcher:b=no
   hasChutes:b=yes
   hasParkingBrakeControl:b=no
+  hasManeuverabilityMode:b=yes
   hasLightsControl:b=no
 
   HasSweepControlMode{
@@ -196,7 +199,7 @@ Aerodynamics{
     VAngle:r=0.0
     UseSpinLoss:b=yes
     SpinCdloss:r=0.06
-    SpinClloss:r=0.03
+    SpinClloss:r=0.1
     DownwashType:i=2
     DownwashCoeff:r=0.4
 
@@ -223,8 +226,8 @@ Aerodynamics{
       AoaShiftAdd1:p2=-5.0, 0.0
       AoaShiftAdd2:p2=0.0, 0.0
       AoaShiftAdd3:p2=10.0, -0.02
-      AoaShiftAdd4:p2=50.0, -0.02
-      AoaShiftAdd5:p2=80.0, 0.06
+      AoaShiftAdd4:p2=50.0, -0.04
+      AoaShiftAdd5:p2=80.0, -0.04
     }
 
     FlapsPolar0{
@@ -622,7 +625,8 @@ Aerodynamics{
     AnglesPitch:p2=0.0, 0.0
     AnglesMultiplierPitch:p3=1.0, 0.0, 1.0
     AnglesYaw:p2=25.0, 25.0
-    AnglesMultiplierYaw:p3=1.0, 0.0, 1.0
+    AnglesMultiplierYaw0:p4=-5.5, -1.0, 0.0, -1.0
+    AnglesMultiplierYaw1:p4=5.5, 1.0, 0.0, 1.0
     Sensitivity:r=0.3
     SensitivityMultiplier0:p2=0.0, 2.0
     SensitivityMultiplier1:p2=0.4, 0.99
@@ -1606,8 +1610,8 @@ Autopilot{
   }
 
   Pitch{
-    RateMax0:p3=300.0, -40.0, 40.0
-    RateMax1:p3=600.0, -50.0, 50.0
+    RateMax0:p3=300.0, -60.0, 60.0
+    RateMax1:p3=600.0, -60.0, 60.0
     RateMax2:p3=900.0, -50.0, 50.0
     RateMax3:p3=1100.0, -40.0, 40.0
     RateMax4:p3=1300.0, -30.0, 30.0
@@ -1625,7 +1629,10 @@ Autopilot{
     RateMaxLoadFactorMax:p2=-2.0, 12.0
     AoaLimits:p2=-15.0, 22.0
     AoaLimitsMult0:p3=0.5, 1.0, 1.0
-    AoaLimitsMult1:p3=0.9, 0.5, 0.5
+    AoaLimitsMult1:p3=0.7, 1.0, 1.0
+    AoaLimitsMult2:p3=0.9, 0.5, 0.5
+    AoaLimitsManeuverabilityMult0:p3=0.5, 1.0, 1.0
+    AoaLimitsManeuverabilityMult1:p3=0.51, 11.4, 11.4
     AoaLimitsMargin:r=7.0
     AoaLimiterPushBackRateMult:p2=-0.9, -0.9
     AoAAntiHangRateDecline:r=-1000.0
@@ -1744,7 +1751,7 @@ Autopilot{
   }
 
   Throttle{
-    Limits:p2=0.0, 0.9
+    Limits:p2=0.0, 1.5
     ClimbMax:p2=-12.0, 18.0
     ClimbMinLimByHorSpeed:p4=40.0, -3.0, 70.0, -15.0
     ClimbMinLimByRAltitude:p4=10.0, -3.0, 40.0, -15.0
@@ -1755,7 +1762,7 @@ Autopilot{
       Imax:r=1.5
       Kd:r=0.0005
       dTau:r=0.025
-      Lim:p2=0.05, 0.9
+      Lim:p2=0.05, 1.5
     }
 
     AltPID{
@@ -1769,19 +1776,19 @@ Autopilot{
   }
 
   Aim{
-    Horizontal:b=yes
-    HeadingToRoll:p4=3.0, 0.0, 60.0, 46.0
+    Horizontal:b=no
+    HeadingToRoll:p4=3.0, 0.0, 30.0, 120.0
     RollRateMax:r=100.0
-    HeadingToRollMultByIas:p4=10.0, 0.0, 120.0, 1.0
-    RollLim:r=50.0
+    HeadingToRollMultByIas:p4=10.0, 1.0, 120.0, 1.0
+    RollLim:r=180.0
     DriftControlByRoll:p2=0.0, 0.0
     OverridenRollLim:r=30.0
-    PitchMax:r=40.0
-    PitchRateMax:r=40.0
-    PitchLim:r=30.0
+    PitchMax:r=15.0
+    PitchRateMax:r=60.0
+    PitchLim:r=0.0
     YawHeadingToYawRateMultByIas:p4=0.0, 1.0, 120.0, 1.0
-    YawHeadingToYawRateMultByReqRoll:p4=0.0, 1.0, 55.0, 0.1
-    ThrottleToYawRateMult:p4=0.9, 1.0, 1.0, 0.85
+    YawHeadingToYawRateMultByReqRoll:p4=0.0, 1.0, 55.0, 1.0
+    ThrottleToYawRateMult:p4=0.9, 1.0, 1.0, 1.0
     YawHeadingToYawRate:p4=0.0, 0.0, 14.0, 50.0
 
     RollPID{
@@ -1830,10 +1837,10 @@ Autopilot{
     }
 
     YawRatePID{
-      Kp:r=3.0
-      Ki:r=0.2
+      Kp:r=5.0
+      Ki:r=0.0
       Imax:r=1.0
-      Kd:r=0.05
+      Kd:r=0.1
       dTau:r=0.025
       Lim:p2=-1.0, 1.0
     }
