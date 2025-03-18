@@ -1,7 +1,7 @@
 # War Thunder Datamine
 Updated for "Hornet's Sting"
 
-(the versions cannot be automatically updated atm due to the ["Version file"](aces.vromfs.bin_u/version) missing
+(the versions cannot be automatically updated atm due to the ["Version file"](aces.vromfs.bin_u/version) missing (this is purely for looks and has nothing to do with the actual datamine))
 ##  Versions (Autoupdated)
 ### Current Version
 Version: [2.43.0.78](aces.vromfs.bin_u/version)
