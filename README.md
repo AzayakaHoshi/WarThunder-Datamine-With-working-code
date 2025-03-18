@@ -1,5 +1,5 @@
 # War Thunder Datamine
-updated on 24.02.25
+Updated for "Hornet's Sting"
 
 
 ##  Versions (Autoupdated)
