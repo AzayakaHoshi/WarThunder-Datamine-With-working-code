@@ -1,9 +1,6 @@
 # War Thunder Datamine
 Updated for "Hornet's Sting"
 
-(the versions cannot be automatically updated atm due to the ["Version file"](aces.vromfs.bin_u/version) missing)<br>
-(this is purely for looks and has nothing to do with the actual datamine)
-
 ## Description
 Using [kotiq's wt-tools](https://github.com/kotiq/wt-tools) and automation to update this Repository
 If you have any questions you can join the [WTPU](https://discord.gg/qYZjehfMjB)<br>
