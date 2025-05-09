@@ -1,0 +1,6325 @@
+selected_tag:t=""
+bin_dump_file:t=""
+
+mission_settings{
+
+  player{
+    army:i=1
+    wing:t="player_01"
+    wing:t="player_02"
+    wing:t="player_03"
+    wing:t="player_04"
+    wing:t="player_05"
+    wing:t="player_06"
+    wing:t="player_07"
+    wing:t="player_08"
+    wing:t="player_09"
+    wing:t="player_10"
+    wing:t="player_11"
+    wing:t="player_12"
+    wing:t="player_13"
+    wing:t="player_14"
+    wing:t="player_15"
+    wing:t="player_16"
+  }
+
+  player_teamB{
+    army:i=2
+    wing:t="player_17"
+    wing:t="player_18"
+    wing:t="player_19"
+    wing:t="player_20"
+    wing:t="player_21"
+    wing:t="player_22"
+    wing:t="player_23"
+    wing:t="player_24"
+    wing:t="player_25"
+    wing:t="player_26"
+    wing:t="player_27"
+    wing:t="player_28"
+    wing:t="player_29"
+    wing:t="player_30"
+    wing:t="player_31"
+    wing:t="player_32"
+  }
+
+  mission{
+    level:t="levels/avn_ice_port.bin"
+    type:t="domination"
+    restoreType:t="attempts"
+    optionalTakeOff:b=no
+    environment:t="Day"
+    weather:t="hazy"
+    locName:t="missions/_naval_ny_gift_ctf"
+    locDesc:t="missions/_naval_ny_gift_ctf/desc"
+    scoreLimit:i=3000
+    timeLimit:i=15
+    deathPenaltyMul:r=0.1
+
+    allowedUnitTypes{
+      isAirplanesAllowed:b=yes
+      isTanksAllowed:b=no
+      isShipsAllowed:b=yes
+      isHelicoptersAllowed:b=no
+    }
+  }
+
+  spectator_points{
+  }
+
+  briefing{
+    place_loc:t=""
+    date_loc:t=""
+    objective_loc:t=""
+    music:t="action_01"
+
+    part{
+      event:t=""
+      minTime:i=0
+
+      slide{
+        map:b=yes
+        minTime:i=4
+        picture:t=""
+        showAirMap:b=no
+
+        icon{
+          icontype:t="ship"
+          side:t="ally"
+          target:t="t1_shipspawn01"
+        }
+
+        icon{
+          icontype:t="ship"
+          side:t="enemy"
+          target:t="t2_shipspawn01"
+        }
+
+        icon{
+          icontype:t="basezone"
+          side:t="ally"
+          target:t="t1_flag_area"
+        }
+
+        icon{
+          icontype:t="basezone"
+          side:t="enemy"
+          target:t="t2_flag_area"
+        }
+
+        icon{
+          icontype:t="mark"
+          side:t="neutral"
+          target:t="flag01_pos07"
+        }
+
+        battleArea{
+          target:t="battlearea"
+        }
+      }
+    }
+  }
+}
+
+imports{
+}
+
+triggers{
+  isCategory:b=yes
+  is_enabled:b=yes
+
+  init_mission{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      initMission{
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionBattleArea{
+        air:b=no
+        ground:b=yes
+        mapArea:b=yes
+        killOutOfBattleArea:b=yes
+        newGridHorizontalCellCount:i=0
+        killArea:b=no
+        detectionArea:b=no
+        airMapArea:b=no
+        area:t="battlearea"
+      }
+
+      missionMarkAsRespawnPoint{
+        loc_name:t=""
+        spawnEffect:b=no
+        isStrictSpawn:b=no
+        isAirfield:b=no
+        isUnit:b=no
+        useExisting:b=no
+        isIndividual:b=yes
+        removeAreas:b=no
+        canSpawnOnNeutral:b=no
+        showOnMap:b=yes
+        radius:r=-1.0
+        onlyOnePlayerPerSpawnPoint:b=no
+        resetStrictSpawnIndex:b=no
+        replaceAreas:b=no
+        forceCreate:b=no
+        target:t="t1_boat_spawn"
+        team:t="A"
+
+        tags{
+          air:b=no
+          tank:b=no
+          ship:b=yes
+          boat:b=yes
+        }
+      }
+
+      missionMarkAsRespawnPoint{
+        loc_name:t=""
+        spawnEffect:b=no
+        isStrictSpawn:b=no
+        isAirfield:b=no
+        isUnit:b=no
+        useExisting:b=no
+        isIndividual:b=yes
+        removeAreas:b=no
+        canSpawnOnNeutral:b=no
+        showOnMap:b=yes
+        radius:r=-1.0
+        onlyOnePlayerPerSpawnPoint:b=no
+        resetStrictSpawnIndex:b=no
+        replaceAreas:b=no
+        forceCreate:b=no
+        target:t="t2_boat_spawn"
+        team:t="B"
+
+        tags{
+          air:b=no
+          tank:b=no
+          ship:b=yes
+          boat:b=yes
+        }
+      }
+
+      unitSetProperties{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="flag_01"
+        object:t="flag_02"
+        object:t="flag_03"
+        object:t="flag_04"
+        object:t="flag_05"
+        army:i=0
+        isImmortal:b=yes
+        movable:b=yes
+      }
+
+      unitSetProperties{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="t1_fir"
+        object:t="t2_fir"
+        object:t="t1_icefloe"
+        object:t="t2_icefloe"
+        isImmortal:b=yes
+        stealthRadius:r=-1.0
+      }
+
+      varSetRandomInt{
+        var:t="flag01_pos_int"
+        from:i=1
+        to_not_including:i=10
+      }
+
+      varSetRandomInt{
+        var:t="flag02_pos_int"
+        from:i=1
+        to_not_including:i=10
+      }
+
+      varSetRandomInt{
+        var:t="flag03_pos_int"
+        from:i=1
+        to_not_including:i=10
+      }
+
+      varAddString{
+        value:t="@flag01_pos_int"
+        digits:i=1
+        var:t="flag01_pos_str"
+      }
+
+      varAddString{
+        value:t="@flag02_pos_int"
+        digits:i=1
+        var:t="flag02_pos_str"
+      }
+
+      varAddString{
+        value:t="@flag03_pos_int"
+        digits:i=1
+        var:t="flag03_pos_str"
+      }
+
+      unitMoveTo{
+        target:t="@flag01_pos_str"
+        waypointReachedDist:r=1.0
+        recalculatePathDist:r=-1.0
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=no
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object_marking:i=0
+        target_marking:i=1
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        fastClimb:b=no
+        destTimeMode:b=no
+        object:t="flag_01"
+        object_type:t="any"
+        move_type:t="teleport"
+      }
+
+      unitMoveTo{
+        target:t="@flag02_pos_str"
+        waypointReachedDist:r=1.0
+        recalculatePathDist:r=-1.0
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=no
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object_marking:i=0
+        target_marking:i=1
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        fastClimb:b=no
+        destTimeMode:b=no
+        object:t="flag_02"
+        object_type:t="any"
+        move_type:t="teleport"
+      }
+
+      unitMoveTo{
+        target:t="@flag03_pos_str"
+        waypointReachedDist:r=1.0
+        recalculatePathDist:r=-1.0
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=no
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object_marking:i=0
+        target_marking:i=1
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        fastClimb:b=no
+        destTimeMode:b=no
+        object:t="flag_03"
+        object_type:t="any"
+        move_type:t="teleport"
+      }
+
+      unitWakeUp{
+        target:t="flag_01"
+        target:t="flag_02"
+        target:t="flag_03"
+      }
+
+      unitSetIndication{
+        set:b=yes
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="flag_01"
+        target:t="flag_02"
+        target:t="flag_03"
+        team:t="Both"
+      }
+
+      missionShowMapIcon{
+        show:b=yes
+        team:t="Both"
+        iconName:t="ui/gameuiskin#objective_captureZone_next_default.svg"
+        areaName:t="t1_flag_area"
+        colorCode:t="Team A"
+        opacity:i=190
+      }
+
+      missionShowMapIcon{
+        show:b=yes
+        team:t="Both"
+        iconName:t="ui/gameuiskin#objective_captureZone_next_default.svg"
+        areaName:t="t2_flag_area"
+        colorCode:t="Team B"
+        opacity:i=190
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  flag01_pickup{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ANY"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.3
+      }
+    }
+
+    conditions{
+
+      unitDistanceBetween{
+        value:r=15.0
+        math:t="2D"
+        object_type:t="isAlive"
+        object_marking:i=0
+        target_type:t="isNotMarked"
+        target_marking:i=0
+        check_objects:t="any"
+        check_targets:t="any"
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="flag_01"
+        target:t="players_squad"
+        object_var_value:i=0
+      }
+
+      unitDistanceBetween{
+        value:r=15.0
+        math:t="2D"
+        object_type:t="isAlive"
+        object_marking:i=0
+        target_type:t="isMarked"
+        target_marking:i=0
+        check_objects:t="any"
+        check_targets:t="any"
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="flag_01"
+        target:t="players_squad"
+        object_var_value:i=0
+      }
+    }
+
+    actions{
+
+      unitMark{
+        target_marking:i=1
+        target:t="players_squad"
+        useForTriggerFiltered:b=yes
+      }
+
+      unitSetIndication{
+        set:b=yes
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="players_squad"
+        useForTriggerFiltered:b=yes
+        team:t="Both"
+      }
+
+      addTextToUnit{
+        langID:t="icon/xmas_tree"
+        fontSize:t="big"
+        set:b=yes
+        target_marking:i=0
+        target:t="players_squad"
+        useForTriggerFiltered:b=yes
+      }
+
+      unitPutToSleep{
+        target:t="flag_01"
+      }
+
+      triggerEnable{
+        target:t="flag01_holder_dead"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  flag01_holder_dead{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ANY"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.5
+      }
+    }
+
+    conditions{
+
+      unitWhenStatus{
+        object_type:t="isMarked"
+        check_objects:t="any"
+        object_marking:i=1
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="players_squad"
+        unit_type_ex:t="isKilled"
+      }
+
+      unitWhenStatus{
+        object_type:t="isMarked"
+        check_objects:t="any"
+        object_marking:i=1
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="players_squad"
+        unit_type_ex:t="isOffline"
+      }
+    }
+
+    actions{
+
+      unitMoveTo{
+        target:t="players_squad"
+        waypointReachedDist:r=1.0
+        recalculatePathDist:r=-1.0
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=no
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object_marking:i=0
+        target_marking:i=1
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        fastClimb:b=no
+        destTimeMode:b=no
+        object:t="flag_01"
+        object_type:t="any"
+        target_type:t="isMarked"
+        move_type:t="teleport"
+      }
+
+      unitSetIndication{
+        set:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="players_squad"
+        useForTriggerFiltered:b=yes
+        team:t="Both"
+      }
+
+      addTextToUnit{
+        langID:t="icon/xmas_tree"
+        fontSize:t="big"
+        set:b=no
+        target_marking:i=0
+        target:t="players_squad"
+        useForTriggerFiltered:b=yes
+      }
+
+      unitMark{
+        target_marking:i=6
+        target:t="players_squad"
+        useForTriggerFiltered:b=yes
+      }
+
+      wait{
+        time:r=0.5
+      }
+
+      unitWakeUp{
+        target:t="flag_01"
+      }
+
+      triggerEnable{
+        target:t="flag01_pickup"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  flag02_pickup{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ANY"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.3
+      }
+    }
+
+    conditions{
+
+      unitDistanceBetween{
+        value:r=15.0
+        math:t="2D"
+        object_type:t="isAlive"
+        object_marking:i=0
+        target_type:t="isNotMarked"
+        target_marking:i=0
+        check_objects:t="any"
+        check_targets:t="any"
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="flag_02"
+        target:t="players_squad"
+        object_var_value:i=0
+      }
+
+      unitDistanceBetween{
+        value:r=15.0
+        math:t="2D"
+        object_type:t="isAlive"
+        object_marking:i=0
+        target_type:t="isMarked"
+        target_marking:i=0
+        check_objects:t="any"
+        check_targets:t="any"
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="flag_02"
+        target:t="players_squad"
+        object_var_value:i=0
+      }
+    }
+
+    actions{
+
+      unitMark{
+        target_marking:i=2
+        target:t="players_squad"
+        useForTriggerFiltered:b=yes
+      }
+
+      unitSetIndication{
+        set:b=yes
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="players_squad"
+        useForTriggerFiltered:b=yes
+        team:t="Both"
+      }
+
+      addTextToUnit{
+        langID:t="icon/xmas_tree"
+        fontSize:t="small_accented"
+        set:b=yes
+        target_marking:i=0
+        target:t="players_squad"
+        useForTriggerFiltered:b=yes
+      }
+
+      unitPutToSleep{
+        target:t="flag_02"
+      }
+
+      triggerEnable{
+        target:t="flag02_holder_dead"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  flag02_holder_dead{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ANY"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.5
+      }
+    }
+
+    conditions{
+
+      unitWhenStatus{
+        object_type:t="isMarked"
+        check_objects:t="any"
+        object_marking:i=2
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="players_squad"
+        unit_type_ex:t="isKilled"
+      }
+
+      unitWhenStatus{
+        object_type:t="isMarked"
+        check_objects:t="any"
+        object_marking:i=2
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="players_squad"
+        unit_type_ex:t="isOffline"
+      }
+    }
+
+    actions{
+
+      unitMoveTo{
+        target:t="players_squad"
+        waypointReachedDist:r=1.0
+        recalculatePathDist:r=-1.0
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=no
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object_marking:i=0
+        target_marking:i=2
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        fastClimb:b=no
+        destTimeMode:b=no
+        object:t="flag_02"
+        object_type:t="any"
+        target_type:t="isMarked"
+        move_type:t="teleport"
+      }
+
+      unitSetIndication{
+        set:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="players_squad"
+        useForTriggerFiltered:b=yes
+        team:t="Both"
+      }
+
+      addTextToUnit{
+        langID:t="icon/xmas_tree"
+        fontSize:t="big"
+        set:b=no
+        target_marking:i=0
+        target:t="players_squad"
+        useForTriggerFiltered:b=yes
+      }
+
+      unitMark{
+        target_marking:i=6
+        target:t="players_squad"
+        useForTriggerFiltered:b=yes
+      }
+
+      wait{
+        time:r=0.5
+      }
+
+      unitWakeUp{
+        target:t="flag_02"
+      }
+
+      triggerEnable{
+        target:t="flag02_pickup"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  flag03_pickup{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ANY"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.3
+      }
+    }
+
+    conditions{
+
+      unitDistanceBetween{
+        value:r=15.0
+        math:t="2D"
+        object_type:t="isAlive"
+        object_marking:i=0
+        target_type:t="isNotMarked"
+        target_marking:i=0
+        check_objects:t="any"
+        check_targets:t="any"
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="flag_03"
+        target:t="players_squad"
+        object_var_value:i=0
+      }
+
+      unitDistanceBetween{
+        value:r=15.0
+        math:t="2D"
+        object_type:t="isAlive"
+        object_marking:i=0
+        target_type:t="isMarked"
+        target_marking:i=0
+        check_objects:t="any"
+        check_targets:t="any"
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="flag_03"
+        target:t="players_squad"
+        object_var_value:i=0
+      }
+    }
+
+    actions{
+
+      unitMark{
+        target_marking:i=3
+        target:t="players_squad"
+        useForTriggerFiltered:b=yes
+      }
+
+      unitSetIndication{
+        set:b=yes
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="players_squad"
+        useForTriggerFiltered:b=yes
+        team:t="Both"
+      }
+
+      addTextToUnit{
+        langID:t="icon/xmas_tree"
+        fontSize:t="small_accented"
+        set:b=yes
+        target_marking:i=0
+        target:t="players_squad"
+        useForTriggerFiltered:b=yes
+      }
+
+      unitPutToSleep{
+        target:t="flag_03"
+      }
+
+      triggerEnable{
+        target:t="flag03_holder_dead"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  flag03_holder_dead{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ANY"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.5
+      }
+    }
+
+    conditions{
+
+      unitWhenStatus{
+        object_type:t="isMarked"
+        check_objects:t="any"
+        object_marking:i=3
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="players_squad"
+        unit_type_ex:t="isKilled"
+      }
+
+      unitWhenStatus{
+        object_type:t="isMarked"
+        check_objects:t="any"
+        object_marking:i=3
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="players_squad"
+        unit_type_ex:t="isOffline"
+      }
+    }
+
+    actions{
+
+      unitMoveTo{
+        target:t="players_squad"
+        waypointReachedDist:r=1.0
+        recalculatePathDist:r=-1.0
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=no
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object_marking:i=0
+        target_marking:i=3
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        fastClimb:b=no
+        destTimeMode:b=no
+        object:t="flag_03"
+        object_type:t="any"
+        target_type:t="isMarked"
+        move_type:t="teleport"
+      }
+
+      unitSetIndication{
+        set:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="players_squad"
+        useForTriggerFiltered:b=yes
+        team:t="Both"
+      }
+
+      addTextToUnit{
+        langID:t="icon/xmas_tree"
+        fontSize:t="big"
+        set:b=no
+        target_marking:i=0
+        target:t="players_squad"
+        useForTriggerFiltered:b=yes
+      }
+
+      unitMark{
+        target_marking:i=6
+        target:t="players_squad"
+        useForTriggerFiltered:b=yes
+      }
+
+      wait{
+        time:r=0.5
+      }
+
+      unitWakeUp{
+        target:t="flag_03"
+      }
+
+      triggerEnable{
+        target:t="flag03_pickup"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  t1_flag_delivered_common{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ANY"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      varModify{
+        operator:t="add"
+        value:r=1.0
+        var:t="t1_score_int"
+      }
+
+      varModify{
+        operator:t="add"
+        value:r=1.0
+        var:t="total_score_int"
+      }
+
+      gameMPChangeScore{
+        value:i=-1000
+        valueSystem:t="amount"
+        team:t="B"
+      }
+
+      playHint{
+        hintType:t="standard"
+        name:t="hints/ny_gift_ctf_t1_delivered_teamA"
+        action:t="show"
+        shouldFadeOut:b=yes
+        time:r=4.0
+        priority:i=1
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        team:t="B"
+      }
+
+      playHint{
+        hintType:t="standard"
+        name:t="hints/ny_gift_ctf_t1_delivered_teamB"
+        action:t="show"
+        shouldFadeOut:b=yes
+        time:r=4.0
+        priority:i=1
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        team:t="A"
+      }
+
+      unitPlayEffect{
+        effect_type:t="specify"
+        effect:t="firework_large_single"
+        offset:p3=0.0, 250.0, 0.0
+        show:b=yes
+        attach:b=no
+        scale:r=0.75
+        loopSpawn:b=yes
+        delay:p2=1.0, 1.0
+        target:t="t1_fir_dummy"
+        radiusOffset:p2=0.0, 0.0
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  t2_flag_delivered_common{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ANY"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      varModify{
+        operator:t="add"
+        value:r=1.0
+        var:t="t2_score_int"
+      }
+
+      varModify{
+        operator:t="add"
+        value:r=1.0
+        var:t="total_score_int"
+      }
+
+      gameMPChangeScore{
+        value:i=-1000
+        valueSystem:t="amount"
+        team:t="A"
+      }
+
+      playHint{
+        hintType:t="standard"
+        name:t="hints/ny_gift_ctf_t2_delivered_teamA"
+        action:t="show"
+        shouldFadeOut:b=yes
+        time:r=5.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        team:t="B"
+      }
+
+      playHint{
+        hintType:t="standard"
+        name:t="hints/ny_gift_ctf_t2_delivered_teamB"
+        action:t="show"
+        shouldFadeOut:b=yes
+        time:r=5.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        team:t="A"
+      }
+
+      unitPlayEffect{
+        effect_type:t="specify"
+        effect:t="firework_large_single"
+        offset:p3=0.0, 250.0, 0.0
+        show:b=yes
+        attach:b=no
+        scale:r=0.75
+        loopSpawn:b=yes
+        delay:p2=1.0, 1.0
+        target:t="t2_fir_dummy"
+        radiusOffset:p2=0.0, 0.0
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  t1_flag01_delivered{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      unitWhenInArea{
+        math:t="3D"
+        object_type:t="isMarked"
+        object_marking:i=1
+        check_objects:t="any"
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="players_squad"
+        target:t="t1_flag_area"
+        unit_type_ex:t="isAlive"
+        object_var_value:i=0
+      }
+    }
+
+    actions{
+
+      unitWakeUp{
+        target:t="t1_flag_01"
+      }
+
+      addTextToUnit{
+        langID:t="icon/xmas_tree"
+        fontSize:t="big"
+        set:b=no
+        target_marking:i=0
+        target:t="players_squad"
+        useForTriggerFiltered:b=yes
+      }
+
+      unitSetIndication{
+        set:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="players_squad"
+        useForTriggerFiltered:b=yes
+        team:t="Both"
+      }
+
+      unitMark{
+        target_marking:i=0
+        target:t="players_squad"
+        useForTriggerFiltered:b=yes
+      }
+
+      triggerEnable{
+        target:t="t1_flag_delivered_common"
+      }
+
+      triggerDisable{
+        target:t="flag01_pickup"
+        target:t="flag01_holder_dead"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  t1_flag02_delivered{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      unitWhenInArea{
+        math:t="3D"
+        object_type:t="isMarked"
+        object_marking:i=2
+        check_objects:t="any"
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="players_squad"
+        target:t="t1_flag_area"
+        unit_type_ex:t="isAlive"
+        object_var_value:i=0
+      }
+    }
+
+    actions{
+
+      unitWakeUp{
+        target:t="t1_flag_02"
+      }
+
+      addTextToUnit{
+        langID:t="icon/xmas_tree"
+        fontSize:t="big"
+        set:b=no
+        target_marking:i=0
+        target:t="players_squad"
+        useForTriggerFiltered:b=yes
+      }
+
+      unitSetIndication{
+        set:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="players_squad"
+        useForTriggerFiltered:b=yes
+        team:t="Both"
+      }
+
+      unitMark{
+        target_marking:i=0
+        target:t="players_squad"
+        useForTriggerFiltered:b=yes
+      }
+
+      triggerEnable{
+        target:t="t1_flag_delivered_common"
+      }
+
+      triggerDisable{
+        target:t="flag02_pickup"
+        target:t="flag02_holder_dead"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  t1_flag03_delivered{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      unitWhenInArea{
+        math:t="3D"
+        object_type:t="isMarked"
+        object_marking:i=3
+        check_objects:t="any"
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="players_squad"
+        target:t="t1_flag_area"
+        unit_type_ex:t="isAlive"
+        object_var_value:i=0
+      }
+    }
+
+    actions{
+
+      unitWakeUp{
+        target:t="t1_flag_03"
+      }
+
+      addTextToUnit{
+        langID:t="icon/xmas_tree"
+        fontSize:t="big"
+        set:b=no
+        target_marking:i=0
+        target:t="players_squad"
+        useForTriggerFiltered:b=yes
+      }
+
+      unitSetIndication{
+        set:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="players_squad"
+        useForTriggerFiltered:b=yes
+        team:t="Both"
+      }
+
+      unitMark{
+        target_marking:i=0
+        target:t="players_squad"
+        useForTriggerFiltered:b=yes
+      }
+
+      triggerEnable{
+        target:t="t1_flag_delivered_common"
+      }
+
+      triggerDisable{
+        target:t="flag03_pickup"
+        target:t="flag03_holder_dead"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  t2_flag01_delivered{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      unitWhenInArea{
+        math:t="3D"
+        object_type:t="isMarked"
+        object_marking:i=1
+        check_objects:t="any"
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="players_squad"
+        target:t="t2_flag_area"
+        unit_type_ex:t="isAlive"
+        object_var_value:i=0
+      }
+    }
+
+    actions{
+
+      unitWakeUp{
+        target:t="t2_flag_01"
+      }
+
+      addTextToUnit{
+        langID:t="icon/xmas_tree"
+        fontSize:t="big"
+        set:b=no
+        target_marking:i=0
+        target:t="players_squad"
+        useForTriggerFiltered:b=yes
+      }
+
+      unitSetIndication{
+        set:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="players_squad"
+        useForTriggerFiltered:b=yes
+        team:t="Both"
+      }
+
+      unitMark{
+        target_marking:i=0
+        target:t="players_squad"
+        useForTriggerFiltered:b=yes
+      }
+
+      triggerEnable{
+        target:t="t2_flag_delivered_common"
+      }
+
+      triggerDisable{
+        target:t="flag01_pickup"
+        target:t="flag01_holder_dead"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  t2_flag02_delivered{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      unitWhenInArea{
+        math:t="3D"
+        object_type:t="isMarked"
+        object_marking:i=2
+        check_objects:t="any"
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="players_squad"
+        target:t="t2_flag_area"
+        unit_type_ex:t="isAlive"
+        object_var_value:i=0
+      }
+    }
+
+    actions{
+
+      unitWakeUp{
+        target:t="t2_flag_02"
+      }
+
+      addTextToUnit{
+        langID:t="icon/xmas_tree"
+        fontSize:t="big"
+        set:b=no
+        target_marking:i=0
+        target:t="players_squad"
+        useForTriggerFiltered:b=yes
+      }
+
+      unitSetIndication{
+        set:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="players_squad"
+        useForTriggerFiltered:b=yes
+        team:t="Both"
+      }
+
+      unitMark{
+        target_marking:i=0
+        target:t="players_squad"
+        useForTriggerFiltered:b=yes
+      }
+
+      triggerEnable{
+        target:t="t2_flag_delivered_common"
+      }
+
+      triggerDisable{
+        target:t="flag02_pickup"
+        target:t="flag02_holder_dead"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  t2_flag03_delivered{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      unitWhenInArea{
+        math:t="3D"
+        object_type:t="isMarked"
+        object_marking:i=3
+        check_objects:t="any"
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="players_squad"
+        target:t="t2_flag_area"
+        unit_type_ex:t="isAlive"
+        object_var_value:i=0
+      }
+    }
+
+    actions{
+
+      unitWakeUp{
+        target:t="t2_flag_03"
+      }
+
+      addTextToUnit{
+        langID:t="icon/xmas_tree"
+        fontSize:t="big"
+        set:b=no
+        target_marking:i=0
+        target:t="players_squad"
+        useForTriggerFiltered:b=yes
+      }
+
+      unitSetIndication{
+        set:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="players_squad"
+        useForTriggerFiltered:b=yes
+        team:t="Both"
+      }
+
+      unitMark{
+        target_marking:i=0
+        target:t="players_squad"
+        useForTriggerFiltered:b=yes
+      }
+
+      triggerEnable{
+        target:t="t2_flag_delivered_common"
+      }
+
+      triggerDisable{
+        target:t="flag03_pickup"
+        target:t="flag03_holder_dead"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  flag_holder_erase_marking{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.5
+      }
+    }
+
+    conditions{
+
+      unitWhenInArea{
+        math:t="3D"
+        object_type:t="isMarked"
+        object_marking:i=6
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        check_objects:t="any"
+        object:t="players_squad"
+        target:t="t1_spawnarea"
+        target:t="t2_spawnarea"
+        unit_type_ex:t="isAlive"
+        object_var_value:i=0
+      }
+    }
+
+    actions{
+
+      unitMark{
+        target_marking:i=0
+        target:t="players_squad"
+        useForTriggerFiltered:b=yes
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  t1_win{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.5
+      }
+    }
+
+    conditions{
+
+      varCompareInt{
+        var_value:t="t1_score_int"
+        value:i=3
+        comparasion_func:t="notLess"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="t1_flag01_delivered"
+        target:t="t1_flag02_delivered"
+        target:t="t1_flag03_delivered"
+        target:t="t2_flag01_delivered"
+        target:t="t2_flag02_delivered"
+        target:t="t2_flag03_delivered"
+        target:t="t1_flag_delivered_common"
+        target:t="t2_flag_delivered_common"
+      }
+
+      triggerDisable{
+        target:t="t2_win"
+      }
+
+      moSetObjectiveStatus{
+        target:t="t1_naval_ny_gift_ctf_objective"
+        status:i=2
+        object_var_comp_op:t="equal"
+        object_var_name:t=""
+        team:t="A"
+      }
+
+      moSetObjectiveStatus{
+        target:t="t2_naval_ny_gift_ctf_objective"
+        status:i=3
+        object_var_comp_op:t="equal"
+        object_var_name:t=""
+        team:t="B"
+      }
+
+      wait{
+        time:r=3.0
+      }
+
+      gameMPChangeScore{
+        value:i=-100
+        valueSystem:t="percentage"
+        team:t="B"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  t2_win{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.5
+      }
+    }
+
+    conditions{
+
+      varCompareInt{
+        var_value:t="t2_score_int"
+        value:i=3
+        comparasion_func:t="notLess"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="t1_flag01_delivered"
+        target:t="t1_flag02_delivered"
+        target:t="t1_flag03_delivered"
+        target:t="t2_flag01_delivered"
+        target:t="t2_flag02_delivered"
+        target:t="t2_flag03_delivered"
+        target:t="t1_flag_delivered_common"
+        target:t="t2_flag_delivered_common"
+      }
+
+      triggerDisable{
+        target:t="t1_win"
+      }
+
+      moSetObjectiveStatus{
+        target:t="t2_naval_ny_gift_ctf_objective"
+        status:i=2
+        object_var_comp_op:t="equal"
+        object_var_name:t=""
+        team:t="B"
+      }
+
+      moSetObjectiveStatus{
+        target:t="t1_naval_ny_gift_ctf_objective"
+        status:i=3
+        object_var_comp_op:t="equal"
+        object_var_name:t=""
+        team:t="A"
+      }
+
+      wait{
+        time:r=3.0
+      }
+
+      gameMPChangeScore{
+        value:i=-100
+        valueSystem:t="percentage"
+        team:t="A"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  flag_captured_you{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      playHint{
+        hintType:t="standard"
+        name:t="hints/ny_gift_ctf_captured_you"
+        action:t="show"
+        shouldFadeOut:b=no
+        isOverFade:b=no
+        time:r=2.0
+        priority:i=0
+        targets:t="player_01"
+        target_marking:i=1
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="players_squad"
+        target_type:t="isMarked"
+      }
+
+      playHint{
+        hintType:t="standard"
+        name:t="hints/ny_gift_ctf_captured_you"
+        action:t="show"
+        shouldFadeOut:b=no
+        isOverFade:b=no
+        time:r=2.0
+        priority:i=0
+        targets:t="player_01"
+        target_marking:i=2
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="players_squad"
+        target_type:t="isMarked"
+      }
+
+      playHint{
+        hintType:t="standard"
+        name:t="hints/ny_gift_ctf_captured_you"
+        action:t="show"
+        shouldFadeOut:b=no
+        isOverFade:b=no
+        time:r=2.0
+        priority:i=0
+        targets:t="player_01"
+        target_marking:i=3
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="players_squad"
+        target_type:t="isMarked"
+      }
+
+      playHint{
+        hintType:t="standard"
+        name:t="hints/ny_gift_ctf_captured_you"
+        action:t="show"
+        shouldFadeOut:b=no
+        isOverFade:b=no
+        time:r=2.0
+        priority:i=0
+        targets:t="player_01"
+        target_marking:i=4
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="players_squad"
+        target_type:t="isMarked"
+      }
+
+      playHint{
+        hintType:t="standard"
+        name:t="hints/ny_gift_ctf_captured_you"
+        action:t="show"
+        shouldFadeOut:b=no
+        isOverFade:b=no
+        time:r=2.0
+        priority:i=0
+        targets:t="player_01"
+        target_marking:i=5
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="players_squad"
+        target_type:t="isMarked"
+      }
+
+      missionSetTargetsIndicator{
+        target_type:t="isAlive"
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        delta:i=0
+        icon:t="score"
+        "icon army":i=1
+        set:b=yes
+        target:t="players_squad"
+        var:t="t1_score_int"
+      }
+
+      missionSetTargetsIndicator{
+        target_type:t="isAlive"
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        delta:i=0
+        icon:t="score"
+        "icon army":i=2
+        set:b=yes
+        target:t="players_squad"
+        var:t="t2_score_int"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  extra-game{
+    isCategory:b=yes
+    is_enabled:b=yes
+
+    start_extra_game{
+      is_enabled:b=yes
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=1.0
+        }
+      }
+
+      conditions{
+
+        varCompareInt{
+          var_value:t="total_score_int"
+          value:i=3
+          comparasion_func:t="equal"
+        }
+
+        varCompareInt{
+          var_value:t="t1_score_int"
+          value:i=3
+          comparasion_func:t="notEqual"
+        }
+
+        varCompareInt{
+          var_value:t="t2_score_int"
+          value:i=3
+          comparasion_func:t="notEqual"
+        }
+      }
+
+      actions{
+
+        playHint{
+          hintType:t="standard"
+          name:t="hints/naval_ny_gift_ctf_extra_round"
+          action:t="show"
+          shouldFadeOut:b=yes
+          isOverFade:b=no
+          time:r=4.0
+          priority:i=3
+          target_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          team:t="Both"
+        }
+
+        unitMoveTo{
+          target:t="flag04_pos"
+          waypointReachedDist:r=1.0
+          recalculatePathDist:r=-1.0
+          follow_target:b=no
+          teleportHeightType:t="absolute"
+          useUnitHeightForTele:b=yes
+          shouldKeepFormation:b=no
+          teleportHeightValue:r=1000.0
+          horizontalDirectionForTeleport:b=yes
+          object_marking:i=0
+          target_marking:i=1
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          fastClimb:b=no
+          destTimeMode:b=no
+          object:t="flag_04"
+          object_type:t="any"
+          move_type:t="teleport"
+        }
+
+        unitMoveTo{
+          target:t="flag05_pos"
+          waypointReachedDist:r=1.0
+          recalculatePathDist:r=-1.0
+          follow_target:b=no
+          teleportHeightType:t="absolute"
+          useUnitHeightForTele:b=yes
+          shouldKeepFormation:b=no
+          teleportHeightValue:r=1000.0
+          horizontalDirectionForTeleport:b=yes
+          object_marking:i=0
+          target_marking:i=1
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          fastClimb:b=no
+          destTimeMode:b=no
+          object:t="flag_05"
+          object_type:t="any"
+          move_type:t="teleport"
+        }
+
+        unitWakeUp{
+          target:t="flag_04"
+          target:t="flag_05"
+        }
+
+        unitSetIndication{
+          set:b=yes
+          target_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          target:t="flag_04"
+          target:t="flag_05"
+          team:t="Both"
+        }
+
+        triggerEnable{
+          target:t="flag04_pickup"
+          target:t="flag05_pickup"
+          target:t="t1_flag04_delivered"
+          target:t="t1_flag05_delivered"
+          target:t="t2_flag04_delivered"
+          target:t="t2_flag05_delivered"
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    flag04_pickup{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ANY"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=0.3
+        }
+      }
+
+      conditions{
+
+        unitDistanceBetween{
+          value:r=15.0
+          math:t="2D"
+          object_type:t="isAlive"
+          object_marking:i=0
+          target_type:t="isNotMarked"
+          target_marking:i=0
+          check_objects:t="any"
+          check_targets:t="any"
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object:t="flag_04"
+          target:t="players_squad"
+          object_var_value:i=0
+        }
+
+        unitDistanceBetween{
+          value:r=15.0
+          math:t="2D"
+          object_type:t="isAlive"
+          object_marking:i=0
+          target_type:t="isMarked"
+          target_marking:i=0
+          check_objects:t="any"
+          check_targets:t="any"
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object:t="flag_04"
+          target:t="players_squad"
+          object_var_value:i=0
+        }
+      }
+
+      actions{
+
+        unitMark{
+          target_marking:i=4
+          target:t="players_squad"
+          useForTriggerFiltered:b=yes
+        }
+
+        unitSetIndication{
+          set:b=yes
+          target_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          target:t="players_squad"
+          useForTriggerFiltered:b=yes
+          team:t="Both"
+        }
+
+        addTextToUnit{
+          langID:t="icon/xmas_tree"
+          fontSize:t="big"
+          set:b=yes
+          target_marking:i=0
+          target:t="players_squad"
+          useForTriggerFiltered:b=yes
+        }
+
+        unitPutToSleep{
+          target:t="flag_04"
+        }
+
+        triggerEnable{
+          target:t="flag04_holder_dead"
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    flag04_holder_dead{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ANY"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=0.5
+        }
+      }
+
+      conditions{
+
+        unitWhenStatus{
+          object_type:t="isMarked"
+          check_objects:t="any"
+          object_marking:i=4
+          target_type:t="isAlive"
+          check_period:r=1.0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          object:t="players_squad"
+          unit_type_ex:t="isKilled"
+        }
+
+        unitWhenStatus{
+          object_type:t="isMarked"
+          check_objects:t="any"
+          object_marking:i=4
+          target_type:t="isAlive"
+          check_period:r=1.0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          object:t="players_squad"
+          unit_type_ex:t="isOffline"
+        }
+      }
+
+      actions{
+
+        unitMoveTo{
+          target:t="players_squad"
+          waypointReachedDist:r=1.0
+          recalculatePathDist:r=-1.0
+          follow_target:b=no
+          teleportHeightType:t="absolute"
+          useUnitHeightForTele:b=yes
+          shouldKeepFormation:b=no
+          teleportHeightValue:r=1000.0
+          horizontalDirectionForTeleport:b=yes
+          object_marking:i=0
+          target_marking:i=1
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          fastClimb:b=no
+          destTimeMode:b=no
+          object:t="flag_04"
+          object_type:t="any"
+          target_type:t="isMarked"
+          move_type:t="teleport"
+        }
+
+        unitSetIndication{
+          set:b=no
+          target_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          target:t="players_squad"
+          useForTriggerFiltered:b=yes
+          team:t="Both"
+        }
+
+        addTextToUnit{
+          langID:t="icon/xmas_tree"
+          fontSize:t="big"
+          set:b=no
+          target_marking:i=0
+          target:t="players_squad"
+          useForTriggerFiltered:b=yes
+        }
+
+        unitMark{
+          target_marking:i=6
+          target:t="players_squad"
+          useForTriggerFiltered:b=yes
+        }
+
+        wait{
+          time:r=0.5
+        }
+
+        unitWakeUp{
+          target:t="flag_04"
+        }
+
+        triggerEnable{
+          target:t="flag04_pickup"
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    flag05_pickup{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ANY"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=0.3
+        }
+      }
+
+      conditions{
+
+        unitDistanceBetween{
+          value:r=15.0
+          math:t="2D"
+          object_type:t="isAlive"
+          object_marking:i=0
+          target_type:t="isNotMarked"
+          target_marking:i=0
+          check_objects:t="any"
+          check_targets:t="any"
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object:t="flag_05"
+          target:t="players_squad"
+          object_var_value:i=0
+        }
+
+        unitDistanceBetween{
+          value:r=15.0
+          math:t="2D"
+          object_type:t="isAlive"
+          object_marking:i=0
+          target_type:t="isMarked"
+          target_marking:i=0
+          check_objects:t="any"
+          check_targets:t="any"
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object:t="flag_05"
+          target:t="players_squad"
+          object_var_value:i=0
+        }
+      }
+
+      actions{
+
+        unitMark{
+          target_marking:i=5
+          target:t="players_squad"
+          useForTriggerFiltered:b=yes
+        }
+
+        unitSetIndication{
+          set:b=yes
+          target_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          target:t="players_squad"
+          useForTriggerFiltered:b=yes
+          team:t="Both"
+        }
+
+        addTextToUnit{
+          langID:t="icon/xmas_tree"
+          fontSize:t="big"
+          set:b=yes
+          target_marking:i=0
+          target:t="players_squad"
+          useForTriggerFiltered:b=yes
+        }
+
+        unitPutToSleep{
+          target:t="flag_05"
+        }
+
+        triggerEnable{
+          target:t="flag05_holder_dead"
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    flag05_holder_dead{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ANY"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=0.5
+        }
+      }
+
+      conditions{
+
+        unitWhenStatus{
+          object_type:t="isMarked"
+          check_objects:t="any"
+          object_marking:i=5
+          target_type:t="isAlive"
+          check_period:r=1.0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          object:t="players_squad"
+          unit_type_ex:t="isKilled"
+        }
+
+        unitWhenStatus{
+          object_type:t="isMarked"
+          check_objects:t="any"
+          object_marking:i=5
+          target_type:t="isAlive"
+          check_period:r=1.0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          object:t="players_squad"
+          unit_type_ex:t="isOffline"
+        }
+      }
+
+      actions{
+
+        unitMoveTo{
+          target:t="players_squad"
+          waypointReachedDist:r=1.0
+          recalculatePathDist:r=-1.0
+          follow_target:b=no
+          teleportHeightType:t="absolute"
+          useUnitHeightForTele:b=yes
+          shouldKeepFormation:b=no
+          teleportHeightValue:r=1000.0
+          horizontalDirectionForTeleport:b=yes
+          object_marking:i=0
+          target_marking:i=1
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          fastClimb:b=no
+          destTimeMode:b=no
+          object:t="flag_05"
+          object_type:t="any"
+          target_type:t="isMarked"
+          move_type:t="teleport"
+        }
+
+        unitSetIndication{
+          set:b=no
+          target_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          target:t="players_squad"
+          useForTriggerFiltered:b=yes
+          team:t="Both"
+        }
+
+        addTextToUnit{
+          langID:t="icon/xmas_tree"
+          fontSize:t="big"
+          set:b=no
+          target_marking:i=0
+          target:t="players_squad"
+          useForTriggerFiltered:b=yes
+        }
+
+        unitMark{
+          target_marking:i=6
+          target:t="players_squad"
+          useForTriggerFiltered:b=yes
+        }
+
+        wait{
+          time:r=0.5
+        }
+
+        unitWakeUp{
+          target:t="flag_05"
+        }
+
+        triggerEnable{
+          target:t="flag05_pickup"
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    t1_flag04_delivered{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=0.01
+        }
+      }
+
+      conditions{
+
+        unitWhenInArea{
+          math:t="3D"
+          object_type:t="isMarked"
+          object_marking:i=4
+          check_objects:t="any"
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object:t="players_squad"
+          target:t="t1_flag_area"
+          unit_type_ex:t="isAlive"
+          object_var_value:i=0
+        }
+      }
+
+      actions{
+
+        unitWakeUp{
+          target:t="t1_flag_04"
+        }
+
+        addTextToUnit{
+          langID:t="icon/xmas_tree"
+          fontSize:t="big"
+          set:b=no
+          target_marking:i=0
+          target:t="players_squad"
+          useForTriggerFiltered:b=yes
+        }
+
+        unitSetIndication{
+          set:b=no
+          target_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          target:t="players_squad"
+          useForTriggerFiltered:b=yes
+          team:t="Both"
+        }
+
+        unitMark{
+          target_marking:i=0
+          target:t="players_squad"
+          useForTriggerFiltered:b=yes
+        }
+
+        triggerEnable{
+          target:t="t1_flag_delivered_common"
+        }
+
+        triggerDisable{
+          target:t="flag04_pickup"
+          target:t="flag04_holder_dead"
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    t1_flag05_delivered{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=0.01
+        }
+      }
+
+      conditions{
+
+        unitWhenInArea{
+          math:t="3D"
+          object_type:t="isMarked"
+          object_marking:i=5
+          check_objects:t="any"
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object:t="players_squad"
+          target:t="t1_flag_area"
+          unit_type_ex:t="isAlive"
+          object_var_value:i=0
+        }
+      }
+
+      actions{
+
+        unitWakeUp{
+          target:t="t1_flag_05"
+        }
+
+        addTextToUnit{
+          langID:t="icon/xmas_tree"
+          fontSize:t="big"
+          set:b=no
+          target_marking:i=0
+          target:t="players_squad"
+          useForTriggerFiltered:b=yes
+        }
+
+        unitSetIndication{
+          set:b=no
+          target_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          target:t="players_squad"
+          useForTriggerFiltered:b=yes
+          team:t="Both"
+        }
+
+        unitMark{
+          target_marking:i=0
+          target:t="players_squad"
+          useForTriggerFiltered:b=yes
+        }
+
+        triggerEnable{
+          target:t="t1_flag_delivered_common"
+        }
+
+        triggerDisable{
+          target:t="flag05_pickup"
+          target:t="flag05_holder_dead"
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    t2_flag04_delivered{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=0.01
+        }
+      }
+
+      conditions{
+
+        unitWhenInArea{
+          math:t="3D"
+          object_type:t="isMarked"
+          object_marking:i=4
+          check_objects:t="any"
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object:t="players_squad"
+          target:t="t2_flag_area"
+          unit_type_ex:t="isAlive"
+          object_var_value:i=0
+        }
+      }
+
+      actions{
+
+        unitWakeUp{
+          target:t="t2_flag_04"
+        }
+
+        addTextToUnit{
+          langID:t="icon/xmas_tree"
+          fontSize:t="big"
+          set:b=no
+          target_marking:i=0
+          target:t="players_squad"
+          useForTriggerFiltered:b=yes
+        }
+
+        unitSetIndication{
+          set:b=no
+          target_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          target:t="players_squad"
+          useForTriggerFiltered:b=yes
+          team:t="Both"
+        }
+
+        unitMark{
+          target_marking:i=0
+          target:t="players_squad"
+          useForTriggerFiltered:b=yes
+        }
+
+        triggerEnable{
+          target:t="t2_flag_delivered_common"
+        }
+
+        triggerDisable{
+          target:t="flag04_pickup"
+          target:t="flag04_holder_dead"
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    t2_flag05_delivered{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=0.01
+        }
+      }
+
+      conditions{
+
+        unitWhenInArea{
+          math:t="3D"
+          object_type:t="isMarked"
+          object_marking:i=5
+          check_objects:t="any"
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object:t="players_squad"
+          target:t="t2_flag_area"
+          unit_type_ex:t="isAlive"
+          object_var_value:i=0
+        }
+      }
+
+      actions{
+
+        unitWakeUp{
+          target:t="t2_flag_05"
+        }
+
+        addTextToUnit{
+          langID:t="icon/xmas_tree"
+          fontSize:t="big"
+          set:b=no
+          target_marking:i=0
+          target:t="players_squad"
+          useForTriggerFiltered:b=yes
+        }
+
+        unitSetIndication{
+          set:b=no
+          target_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          target:t="players_squad"
+          useForTriggerFiltered:b=yes
+          team:t="Both"
+        }
+
+        unitMark{
+          target_marking:i=0
+          target:t="players_squad"
+          useForTriggerFiltered:b=yes
+        }
+
+        triggerEnable{
+          target:t="t2_flag_delivered_common"
+        }
+
+        triggerDisable{
+          target:t="flag05_pickup"
+          target:t="flag05_holder_dead"
+        }
+      }
+
+      else_actions{
+      }
+    }
+  }
+
+  flag_out_of_field{
+    isCategory:b=yes
+    is_enabled:b=yes
+
+    flag01_out{
+      is_enabled:b=yes
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ANY"
+        enableAfterComplete:b=yes
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=1.0
+        }
+      }
+
+      conditions{
+
+        unitWhenInArea{
+          math:t="3D"
+          object_type:t="isActive"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          check_objects:t="any"
+          object:t="flag_01"
+          target:t="battlearea_out01"
+          object_var_value:i=0
+        }
+
+        unitWhenInArea{
+          math:t="3D"
+          object_type:t="isActive"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          check_objects:t="any"
+          object:t="flag_01"
+          target:t="battlearea_out02"
+          object_var_value:i=0
+        }
+
+        unitWhenInArea{
+          math:t="3D"
+          object_type:t="isActive"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          check_objects:t="any"
+          object:t="flag_01"
+          target:t="battlearea_out03"
+          object_var_value:i=0
+        }
+
+        unitWhenInArea{
+          math:t="3D"
+          object_type:t="isActive"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          check_objects:t="any"
+          object:t="flag_01"
+          target:t="battlearea_out04"
+          object_var_value:i=0
+        }
+      }
+
+      actions{
+
+        triggerEnable{
+          target:t="flag01_return"
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    flag01_return{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=1.0
+        }
+      }
+
+      conditions{
+      }
+
+      actions{
+
+        unitMoveTo{
+          target:t="@flag01_pos_str"
+          waypointReachedDist:r=1.0
+          recalculatePathDist:r=-1.0
+          follow_target:b=no
+          teleportHeightType:t="absolute"
+          useUnitHeightForTele:b=yes
+          shouldKeepFormation:b=no
+          teleportHeightValue:r=1000.0
+          horizontalDirectionForTeleport:b=yes
+          object_marking:i=0
+          target_marking:i=1
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          fastClimb:b=no
+          destTimeMode:b=no
+          object:t="flag_01"
+          object_type:t="any"
+          move_type:t="teleport"
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    flag02_out{
+      is_enabled:b=yes
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ANY"
+        enableAfterComplete:b=yes
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=1.0
+        }
+      }
+
+      conditions{
+
+        unitWhenInArea{
+          math:t="3D"
+          object_type:t="isActive"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          check_objects:t="any"
+          object:t="flag_02"
+          target:t="battlearea_out01"
+          object_var_value:i=0
+        }
+
+        unitWhenInArea{
+          math:t="3D"
+          object_type:t="isActive"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          check_objects:t="any"
+          object:t="flag_02"
+          target:t="battlearea_out02"
+          object_var_value:i=0
+        }
+
+        unitWhenInArea{
+          math:t="3D"
+          object_type:t="isActive"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          check_objects:t="any"
+          object:t="flag_02"
+          target:t="battlearea_out03"
+          object_var_value:i=0
+        }
+
+        unitWhenInArea{
+          math:t="3D"
+          object_type:t="isActive"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          check_objects:t="any"
+          object:t="flag_02"
+          target:t="battlearea_out04"
+          object_var_value:i=0
+        }
+      }
+
+      actions{
+
+        triggerEnable{
+          target:t="flag02_return"
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    flag02_return{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=1.0
+        }
+      }
+
+      conditions{
+      }
+
+      actions{
+
+        unitMoveTo{
+          target:t="@flag02_pos_str"
+          waypointReachedDist:r=1.0
+          recalculatePathDist:r=-1.0
+          follow_target:b=no
+          teleportHeightType:t="absolute"
+          useUnitHeightForTele:b=yes
+          shouldKeepFormation:b=no
+          teleportHeightValue:r=1000.0
+          horizontalDirectionForTeleport:b=yes
+          object_marking:i=0
+          target_marking:i=1
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          fastClimb:b=no
+          destTimeMode:b=no
+          object:t="flag_02"
+          object_type:t="any"
+          move_type:t="teleport"
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    flag03_out{
+      is_enabled:b=yes
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ANY"
+        enableAfterComplete:b=yes
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=1.0
+        }
+      }
+
+      conditions{
+
+        unitWhenInArea{
+          math:t="3D"
+          object_type:t="isActive"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          check_objects:t="any"
+          object:t="flag_03"
+          target:t="battlearea_out01"
+          object_var_value:i=0
+        }
+
+        unitWhenInArea{
+          math:t="3D"
+          object_type:t="isActive"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          check_objects:t="any"
+          object:t="flag_03"
+          target:t="battlearea_out02"
+          object_var_value:i=0
+        }
+
+        unitWhenInArea{
+          math:t="3D"
+          object_type:t="isActive"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          check_objects:t="any"
+          object:t="flag_03"
+          target:t="battlearea_out03"
+          object_var_value:i=0
+        }
+
+        unitWhenInArea{
+          math:t="3D"
+          object_type:t="isActive"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          check_objects:t="any"
+          object:t="flag_03"
+          target:t="battlearea_out04"
+          object_var_value:i=0
+        }
+      }
+
+      actions{
+
+        triggerEnable{
+          target:t="flag03_return"
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    flag03_return{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=1.0
+        }
+      }
+
+      conditions{
+      }
+
+      actions{
+
+        unitMoveTo{
+          target:t="@flag03_pos_str"
+          waypointReachedDist:r=1.0
+          recalculatePathDist:r=-1.0
+          follow_target:b=no
+          teleportHeightType:t="absolute"
+          useUnitHeightForTele:b=yes
+          shouldKeepFormation:b=no
+          teleportHeightValue:r=1000.0
+          horizontalDirectionForTeleport:b=yes
+          object_marking:i=0
+          target_marking:i=1
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          fastClimb:b=no
+          destTimeMode:b=no
+          object:t="flag_03"
+          object_type:t="any"
+          move_type:t="teleport"
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    flag04_out{
+      is_enabled:b=yes
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ANY"
+        enableAfterComplete:b=yes
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=1.0
+        }
+      }
+
+      conditions{
+
+        unitWhenInArea{
+          math:t="3D"
+          object_type:t="isActive"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          check_objects:t="any"
+          object:t="flag_04"
+          target:t="battlearea_out01"
+          object_var_value:i=0
+        }
+
+        unitWhenInArea{
+          math:t="3D"
+          object_type:t="isActive"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          check_objects:t="any"
+          object:t="flag_04"
+          target:t="battlearea_out02"
+          object_var_value:i=0
+        }
+
+        unitWhenInArea{
+          math:t="3D"
+          object_type:t="isActive"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          check_objects:t="any"
+          object:t="flag_04"
+          target:t="battlearea_out03"
+          object_var_value:i=0
+        }
+
+        unitWhenInArea{
+          math:t="3D"
+          object_type:t="isActive"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          check_objects:t="any"
+          object:t="flag_04"
+          target:t="battlearea_out04"
+          object_var_value:i=0
+        }
+      }
+
+      actions{
+
+        triggerEnable{
+          target:t="flag04_return"
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    flag04_return{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=1.0
+        }
+      }
+
+      conditions{
+      }
+
+      actions{
+
+        unitMoveTo{
+          target:t="flag04_pos"
+          waypointReachedDist:r=1.0
+          recalculatePathDist:r=-1.0
+          follow_target:b=no
+          teleportHeightType:t="absolute"
+          useUnitHeightForTele:b=yes
+          shouldKeepFormation:b=no
+          teleportHeightValue:r=1000.0
+          horizontalDirectionForTeleport:b=yes
+          object_marking:i=0
+          target_marking:i=1
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          fastClimb:b=no
+          destTimeMode:b=no
+          object:t="flag_04"
+          object_type:t="any"
+          move_type:t="teleport"
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    flag05_out{
+      is_enabled:b=yes
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ANY"
+        enableAfterComplete:b=yes
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=1.0
+        }
+      }
+
+      conditions{
+
+        unitWhenInArea{
+          math:t="3D"
+          object_type:t="isActive"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          check_objects:t="any"
+          object:t="flag_05"
+          target:t="battlearea_out01"
+          object_var_value:i=0
+        }
+
+        unitWhenInArea{
+          math:t="3D"
+          object_type:t="isActive"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          check_objects:t="any"
+          object:t="flag_05"
+          target:t="battlearea_out02"
+          object_var_value:i=0
+        }
+
+        unitWhenInArea{
+          math:t="3D"
+          object_type:t="isActive"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          check_objects:t="any"
+          object:t="flag_05"
+          target:t="battlearea_out03"
+          object_var_value:i=0
+        }
+
+        unitWhenInArea{
+          math:t="3D"
+          object_type:t="isActive"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          check_objects:t="any"
+          object:t="flag_05"
+          target:t="battlearea_out04"
+          object_var_value:i=0
+        }
+      }
+
+      actions{
+
+        triggerEnable{
+          target:t="flag05_return"
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    flag05_return{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=1.0
+        }
+      }
+
+      conditions{
+      }
+
+      actions{
+
+        unitMoveTo{
+          target:t="flag05_pos"
+          waypointReachedDist:r=1.0
+          recalculatePathDist:r=-1.0
+          follow_target:b=no
+          teleportHeightType:t="absolute"
+          useUnitHeightForTele:b=yes
+          shouldKeepFormation:b=no
+          teleportHeightValue:r=1000.0
+          horizontalDirectionForTeleport:b=yes
+          object_marking:i=0
+          target_marking:i=1
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          fastClimb:b=no
+          destTimeMode:b=no
+          object:t="flag_05"
+          object_type:t="any"
+          move_type:t="teleport"
+        }
+      }
+
+      else_actions{
+      }
+    }
+  }
+}
+
+mission_objectives{
+  isCategory:b=yes
+  is_enabled:b=yes
+
+  t1_naval_ny_gift_ctf_objective{
+    is_enabled:b=yes
+    comments:t=""
+    type:t="abstractMissionObjective"
+
+    props{
+      isPrimary:b=yes
+      timeLimit:i=1800
+      team:t="A"
+    }
+
+    onSuccess{
+    }
+
+    onFailed{
+    }
+  }
+
+  t2_naval_ny_gift_ctf_objective{
+    is_enabled:b=yes
+    comments:t=""
+    type:t="abstractMissionObjective"
+
+    props{
+      isPrimary:b=yes
+      timeLimit:i=1800
+      team:t="B"
+    }
+
+    onSuccess{
+    }
+
+    onFailed{
+    }
+  }
+}
+
+variables{
+  t1_flag_holder:t=""
+  t2_flag_holder:t=""
+  t1_flag_move_trig_str:t=""
+  t2_flag_move_trig_str:t=""
+  flag01_pos_int:i=1
+  flag02_pos_int:i=1
+  flag03_pos_int:i=1
+  flag01_pos_str:t="flag01_pos0"
+  flag02_pos_str:t="flag02_pos0"
+  flag03_pos_str:t="flag03_pos0"
+  t1_score_int:i=0
+  t2_score_int:i=0
+  total_score_int:i=0
+}
+
+dialogs{
+}
+
+airfields{
+}
+
+effects{
+}
+
+units{
+
+  ships{
+    name:t="flag_01"
+    tm:m=[[0.824789, 0.0, -1.57668] [0.0, 1.77938, 0.0] [1.57668, 0.0, 0.824789] [-1877.1, 0.0, -1220.14]]
+    unit_class:t="giftbox"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+      isDelayed:b=yes
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="player_01"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [4216.03, 0.0, -171.791]]
+    unit_class:t="germ_ls_class"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="flag_02"
+    tm:m=[[1.77134, 0.0, -0.168995] [0.0, 1.77938, 0.0] [0.168995, 0.0, 1.77134] [-1876.29, -9.91821e-05, -1215.86]]
+    unit_class:t="giftbox"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+      isDelayed:b=yes
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="flag_03"
+    tm:m=[[1.41904, 0.0, 1.07356] [0.0, 1.77938, 0.0] [-1.07356, 0.0, 1.41904] [-1875.49, 0.0, -1211.58]]
+    unit_class:t="giftbox"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+      isDelayed:b=yes
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="flag_04"
+    tm:m=[[1.41904, 0.0, 1.07356] [0.0, 1.77938, 0.0] [-1.07356, 0.0, 1.41904] [-1875.49, 0.0, -1206.76]]
+    unit_class:t="giftbox"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+      isDelayed:b=yes
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="flag_05"
+    tm:m=[[1.41904, 0.0, 1.07356] [0.0, 1.77938, 0.0] [-1.07356, 0.0, 1.41904] [-1875.49, 0.0, -1201.94]]
+    unit_class:t="giftbox"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+      isDelayed:b=yes
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="player_02"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [3294.65, 500.0, -1243.73]]
+    unit_class:t="dummy_plane"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=1
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="player_03"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [3358.21, 500.0, -1243.73]]
+    unit_class:t="dummy_plane"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=1
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="player_04"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [3421.78, 500.0, -1243.73]]
+    unit_class:t="dummy_plane"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=1
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="player_05"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [3485.34, 500.0, -1243.73]]
+    unit_class:t="dummy_plane"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=1
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="player_06"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [3548.91, 500.0, -1243.73]]
+    unit_class:t="dummy_plane"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=1
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="player_07"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [3612.47, 500.0, -1243.73]]
+    unit_class:t="dummy_plane"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=1
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="player_08"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [3676.04, 500.0, -1243.73]]
+    unit_class:t="dummy_plane"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=1
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="player_09"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [3739.6, 500.0, -1243.73]]
+    unit_class:t="dummy_plane"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=1
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="player_10"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [3803.17, 500.0, -1243.73]]
+    unit_class:t="dummy_plane"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=1
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="player_11"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [3866.73, 500.0, -1243.73]]
+    unit_class:t="dummy_plane"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=1
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="player_12"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [3930.3, 500.0, -1243.73]]
+    unit_class:t="dummy_plane"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=1
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="player_13"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [3993.86, 500.0, -1243.73]]
+    unit_class:t="dummy_plane"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=1
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="player_14"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [4057.43, 500.0, -1243.73]]
+    unit_class:t="dummy_plane"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=1
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="player_15"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [4120.8, 500.0, -1243.73]]
+    unit_class:t="dummy_plane"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=1
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="player_16"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [4184.17, 500.0, -1243.73]]
+    unit_class:t="dummy_plane"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=1
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="player_17"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [3231.08, 500.0, -1470.61]]
+    unit_class:t="dummy_plane"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="player_18"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [3289.22, 500.0, -1470.61]]
+    unit_class:t="dummy_plane"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="player_19"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [3347.36, 500.0, -1470.61]]
+    unit_class:t="dummy_plane"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="player_20"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [3405.5, 500.0, -1470.61]]
+    unit_class:t="dummy_plane"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="player_21"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [3463.64, 500.0, -1470.61]]
+    unit_class:t="dummy_plane"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="player_22"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [3521.78, 500.0, -1470.61]]
+    unit_class:t="dummy_plane"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="player_23"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [3579.91, 500.0, -1470.61]]
+    unit_class:t="dummy_plane"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="player_24"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [3638.05, 500.0, -1470.61]]
+    unit_class:t="dummy_plane"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="player_25"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [3696.19, 500.0, -1470.61]]
+    unit_class:t="dummy_plane"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="player_26"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [3754.33, 500.0, -1470.61]]
+    unit_class:t="dummy_plane"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="player_27"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [3812.47, 500.0, -1470.61]]
+    unit_class:t="dummy_plane"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="player_28"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [3870.61, 500.0, -1470.61]]
+    unit_class:t="dummy_plane"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="player_29"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [3928.75, 500.0, -1470.61]]
+    unit_class:t="dummy_plane"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="player_30"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [3986.88, 500.0, -1470.61]]
+    unit_class:t="dummy_plane"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="player_31"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [4045.02, 500.0, -1470.61]]
+    unit_class:t="dummy_plane"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="player_32"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [4103.16, 500.0, -1470.61]]
+    unit_class:t="dummy_plane"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  squad{
+    name:t="players_squad"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [3804.91, 19.9756, -359.529]]
+
+    props{
+      object_marking:i=0
+      squad_members:t="player_01"
+      squad_members:t="player_02"
+      squad_members:t="player_03"
+      squad_members:t="player_04"
+      squad_members:t="player_05"
+      squad_members:t="player_06"
+      squad_members:t="player_07"
+      squad_members:t="player_08"
+      squad_members:t="player_09"
+      squad_members:t="player_10"
+      squad_members:t="player_11"
+      squad_members:t="player_12"
+      squad_members:t="player_13"
+      squad_members:t="player_14"
+      squad_members:t="player_15"
+      squad_members:t="player_16"
+      squad_members:t="player_17"
+      squad_members:t="player_18"
+      squad_members:t="player_19"
+      squad_members:t="player_20"
+      squad_members:t="player_21"
+      squad_members:t="player_22"
+      squad_members:t="player_23"
+      squad_members:t="player_24"
+      squad_members:t="player_25"
+      squad_members:t="player_26"
+      squad_members:t="player_27"
+      squad_members:t="player_28"
+      squad_members:t="player_29"
+      squad_members:t="player_30"
+      squad_members:t="player_31"
+      squad_members:t="player_32"
+    }
+  }
+
+  squad{
+    name:t="t1_players"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [3805.69, 19.9756, -132.355]]
+
+    props{
+      object_marking:i=0
+      squad_members:t="player_01"
+      squad_members:t="player_02"
+      squad_members:t="player_03"
+      squad_members:t="player_04"
+      squad_members:t="player_05"
+      squad_members:t="player_06"
+      squad_members:t="player_07"
+      squad_members:t="player_08"
+      squad_members:t="player_09"
+      squad_members:t="player_10"
+      squad_members:t="player_11"
+      squad_members:t="player_12"
+      squad_members:t="player_13"
+      squad_members:t="player_14"
+      squad_members:t="player_15"
+      squad_members:t="player_16"
+      squad_members:t="player_17"
+      squad_members:t="player_18"
+      squad_members:t="player_19"
+      squad_members:t="player_20"
+      squad_members:t="player_21"
+      squad_members:t="player_22"
+      squad_members:t="player_23"
+      squad_members:t="player_24"
+      squad_members:t="player_25"
+      squad_members:t="player_26"
+      squad_members:t="player_27"
+      squad_members:t="player_28"
+      squad_members:t="player_29"
+      squad_members:t="player_30"
+      squad_members:t="player_31"
+      squad_members:t="player_32"
+      object_type:t="isTeamA"
+    }
+  }
+
+  squad{
+    name:t="t2_players"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [3811.73, 19.9756, -255.006]]
+
+    props{
+      object_marking:i=0
+      squad_members:t="player_01"
+      squad_members:t="player_02"
+      squad_members:t="player_03"
+      squad_members:t="player_04"
+      squad_members:t="player_05"
+      squad_members:t="player_06"
+      squad_members:t="player_07"
+      squad_members:t="player_08"
+      squad_members:t="player_09"
+      squad_members:t="player_10"
+      squad_members:t="player_11"
+      squad_members:t="player_12"
+      squad_members:t="player_13"
+      squad_members:t="player_14"
+      squad_members:t="player_15"
+      squad_members:t="player_16"
+      squad_members:t="player_17"
+      squad_members:t="player_18"
+      squad_members:t="player_19"
+      squad_members:t="player_20"
+      squad_members:t="player_21"
+      squad_members:t="player_22"
+      squad_members:t="player_23"
+      squad_members:t="player_24"
+      squad_members:t="player_25"
+      squad_members:t="player_26"
+      squad_members:t="player_27"
+      squad_members:t="player_28"
+      squad_members:t="player_29"
+      squad_members:t="player_30"
+      squad_members:t="player_31"
+      squad_members:t="player_32"
+      object_type:t="isTeamB"
+    }
+  }
+
+  objectGroups{
+    name:t="t2_fir"
+    tm:m=[[-0.662313, 0.0, 1.34586] [0.0, 1.5, 0.0] [-1.34586, 0.0, -0.662313] [474.838, 1.2961, 501.924]]
+    unit_class:t="det_fir_garland_medium_c"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="t1_fir"
+    tm:m=[[-0.662313, 0.0, 1.34586] [0.0, 1.5, 0.0] [-1.34586, 0.0, -0.662313] [-883.934, 1.3, -851.765]]
+    unit_class:t="det_fir_garland_medium_c"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="t2_flag_01"
+    tm:m=[[1.22749, 0.0, 0.620951] [0.0, 1.37561, 0.0] [-0.620951, 0.0, 1.22749] [475.642, 0.800001, 504.392]]
+    unit_class:t="det_giftbox_ny"
+    objLayer:i=1
+
+    props{
+      army:i=2
+      active:b=no
+    }
+  }
+
+  objectGroups{
+    name:t="t1_flag_01"
+    tm:m=[[1.18999, 0.0, -0.405661] [0.0, 1.25723, 0.0] [0.406436, 0.0, 1.19227] [-886.074, 0.8, -852.651]]
+    unit_class:t="det_giftbox_ny"
+    objLayer:i=1
+
+    props{
+      army:i=0
+      active:b=no
+    }
+  }
+
+  objectGroups{
+    name:t="t1_flag_02"
+    tm:m=[[-0.227007, 0.0, 1.29717] [0.0, 1.31689, 0.0] [-1.29717, 0.0, -0.227007] [-883.271, 0.83153, -849.287]]
+    unit_class:t="det_giftbox_ny"
+    objLayer:i=1
+
+    props{
+      army:i=0
+      active:b=no
+    }
+  }
+
+  objectGroups{
+    name:t="t1_flag_03"
+    tm:m=[[1.20617, 0.0, 0.536804] [0.0, 1.32022, 0.0] [-0.536804, 0.0, 1.20617] [-882.054, 0.823, -853.503]]
+    unit_class:t="det_giftbox_ny"
+    objLayer:i=1
+
+    props{
+      army:i=0
+      active:b=no
+    }
+  }
+
+  objectGroups{
+    name:t="t2_flag_02"
+    tm:m=[[1.35913, 0.0, 0.489029] [0.0, 1.44442, 0.0] [-0.489029, 0.0, 1.35913] [475.475, 0.800001, 499.339]]
+    unit_class:t="det_giftbox_ny"
+    objLayer:i=1
+
+    props{
+      army:i=2
+      active:b=no
+    }
+  }
+
+  objectGroups{
+    name:t="t2_flag_03"
+    tm:m=[[1.20741, 0.0, -0.411599] [0.0, 1.27563, 0.0] [0.411599, 0.0, 1.20741] [472.405, 0.800001, 501.183]]
+    unit_class:t="det_giftbox_ny"
+    objLayer:i=1
+
+    props{
+      army:i=2
+      active:b=no
+    }
+  }
+
+  objectGroups{
+    name:t="t1_icefloe"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-882.756, 0.0, -850.046]]
+    unit_class:t="det_icefloe_a"
+    objLayer:i=2
+
+    props{
+      army:i=1
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="t2_icefloe"
+    tm:m=[[0.987031, 0.0, 0.16053] [0.0, 1.0, 0.0] [-0.16053, 0.0, 0.987031] [473.799, 0.0, 503.455]]
+    unit_class:t="det_icefloe_a"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="t1_flag_04"
+    tm:m=[[0.873902, 0.0, 0.989595] [0.0, 1.32022, 0.0] [-0.989595, 0.0, 0.873902] [-880.788, 0.823, -850.978]]
+    unit_class:t="det_giftbox_ny"
+    objLayer:i=1
+
+    props{
+      army:i=0
+      active:b=no
+    }
+  }
+
+  objectGroups{
+    name:t="t1_flag_05"
+    tm:m=[[0.873902, 0.0, 0.989595] [0.0, 1.32022, 0.0] [-0.989595, 0.0, 0.873902] [-884.395, 0.823, -854.301]]
+    unit_class:t="det_giftbox_ny"
+    objLayer:i=1
+
+    props{
+      army:i=0
+      active:b=no
+    }
+  }
+
+  objectGroups{
+    name:t="t2_flag_04"
+    tm:m=[[0.987172, 0.0, 1.05445] [0.0, 1.44442, 0.0] [-1.05445, 0.0, 0.987172] [477.822, 0.800001, 501.543]]
+    unit_class:t="det_giftbox_ny"
+    objLayer:i=1
+
+    props{
+      army:i=2
+      active:b=no
+    }
+  }
+
+  objectGroups{
+    name:t="t2_flag_05"
+    tm:m=[[0.647289, 0.0, 1.29128] [0.0, 1.44442, 0.0] [-1.29128, 0.0, 0.647289] [473.253, 0.800002, 503.642]]
+    unit_class:t="det_giftbox_ny"
+    objLayer:i=1
+
+    props{
+      army:i=2
+      active:b=no
+    }
+  }
+
+  area_squad{
+    name:t="t2_boat_spawn"
+    tm:m=[[0.989667, 0.0, -0.143383] [0.0, 1.0, 0.0] [0.143383, 0.0, 0.989667] [495.33, 0.00292968, -1801.99]]
+
+    props{
+      squad_members:t="t2_shipspawn01"
+      squad_members:t="t2_shipspawn02"
+      squad_members:t="t2_shipspawn03"
+      squad_members:t="t2_shipspawn04"
+      squad_members:t="t2_shipspawn05"
+      squad_members:t="t2_shipspawn06"
+      squad_members:t="t2_shipspawn07"
+      squad_members:t="t2_shipspawn08"
+      squad_members:t="t2_shipspawn09"
+      squad_members:t="t2_shipspawn10"
+      squad_members:t="t2_shipspawn11"
+      squad_members:t="t2_shipspawn12"
+      squad_members:t="t2_shipspawn13"
+      squad_members:t="t2_shipspawn14"
+      squad_members:t="t2_shipspawn15"
+      squad_members:t="t2_shipspawn16"
+      squad_members:t="t2_shipspawn20"
+      squad_members:t="t2_shipspawn18"
+      squad_members:t="t2_shipspawn19"
+      squad_members:t="t2_shipspawn22"
+      squad_members:t="t2_shipspawn21"
+      squad_members:t="t2_shipspawn17"
+    }
+  }
+
+  area_squad{
+    name:t="t1_boat_spawn"
+    tm:m=[[0.989667, 0.0, -0.143383] [0.0, 1.0, 0.0] [0.143383, 0.0, 0.989667] [-1019.03, 0.00244141, 1023.76]]
+
+    props{
+      squad_members:t="t1_shipspawn01"
+      squad_members:t="t1_shipspawn02"
+      squad_members:t="t1_shipspawn04"
+      squad_members:t="t1_shipspawn05"
+      squad_members:t="t1_shipspawn06"
+      squad_members:t="t1_shipspawn07"
+      squad_members:t="t1_shipspawn08"
+      squad_members:t="t1_shipspawn09"
+      squad_members:t="t1_shipspawn10"
+      squad_members:t="t1_shipspawn11"
+      squad_members:t="t1_shipspawn12"
+      squad_members:t="t1_shipspawn13"
+      squad_members:t="t1_shipspawn14"
+      squad_members:t="t1_shipspawn15"
+      squad_members:t="t1_shipspawn16"
+      squad_members:t="t1_shipspawn03"
+      squad_members:t="t1_shipspawn17"
+      squad_members:t="t1_shipspawn18"
+      squad_members:t="t1_shipspawn19"
+      squad_members:t="t1_shipspawn20"
+      squad_members:t="t1_shipspawn21"
+      squad_members:t="t1_shipspawn22"
+    }
+  }
+
+  structures{
+    name:t="t2_fir_dummy"
+    tm:m=[[-0.662313, 0.0, 1.34586] [0.0, 1.5, 0.0] [-1.34586, 0.0, -0.662313] [474.838, 1.45959, 501.924]]
+    unit_class:t="dummy"
+    objLayer:i=2
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+      stealthRadius:r=0.0
+      setStealth:b=yes
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="t1_fir_dummy"
+    tm:m=[[-0.662313, 0.0, 1.34586] [0.0, 1.5, 0.0] [-1.34586, 0.0, -0.662313] [-883.934, 1.55906, -851.765]]
+    unit_class:t="dummy"
+    objLayer:i=2
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+      stealthRadius:r=0.0
+      setStealth:b=yes
+    }
+
+    way{
+    }
+  }
+}
+
+areas{
+
+  t1_flag_area{
+    type:t="Sphere"
+    tm:m=[[-32.2664, 0.0, -94.6514] [0.0, 100.0, 0.0] [94.6514, 0.0, -32.2664] [-884.015, 0.0, -851.737]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  t2_flag_area{
+    type:t="Sphere"
+    tm:m=[[-75.129, 0.0, 65.9972] [0.0, 100.0, 0.0] [-65.9972, 0.0, -75.129] [474.797, 5.96046e-07, 501.759]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  battlearea{
+    type:t="Box"
+    tm:m=[[4000.0, 0.0, 0.0] [0.0, 500.0, 0.0] [0.0, -0.00127078, 4000.0] [0.0, -50.0, 0.0]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  flag01_pos01{
+    type:t="Point"
+    tm:m=[[-0.421684, 0.0, 0.906743] [0.0, 1.0, 0.0] [-0.906743, 0.0, -0.421684] [-329.835, 0.0, -216.834]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  flag01_pos02{
+    type:t="Point"
+    tm:m=[[-0.421684, 0.0, 0.906743] [0.0, 1.0, 0.0] [-0.906743, 0.0, -0.421684] [-255.727, 0.0, -134.275]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  flag01_pos03{
+    type:t="Point"
+    tm:m=[[-0.421684, 0.0, 0.906743] [0.0, 1.0, 0.0] [-0.906743, 0.0, -0.421684] [-277.413, 0.0, -270.07]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  flag01_pos04{
+    type:t="Point"
+    tm:m=[[-0.421684, 0.0, 0.906743] [0.0, 1.0, 0.0] [-0.906743, 0.0, -0.421684] [-265.13, 0.0, -201.911]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  flag01_pos05{
+    type:t="Point"
+    tm:m=[[-0.421684, 0.0, 0.906743] [0.0, 1.0, 0.0] [-0.906743, 0.0, -0.421684] [-204.585, 0.350006, -183.785]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  flag01_pos06{
+    type:t="Point"
+    tm:m=[[-0.421684, 0.0, 0.906743] [0.0, 1.0, 0.0] [-0.906743, 0.0, -0.421684] [-227.798, 0.25, -163.082]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  flag01_pos07{
+    type:t="Point"
+    tm:m=[[-0.421684, 0.0, 0.906743] [0.0, 1.0, 0.0] [-0.906743, 0.0, -0.421684] [-131.518, 0.149994, -103.696]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  flag01_pos08{
+    type:t="Point"
+    tm:m=[[-0.421684, 0.0, 0.906743] [0.0, 1.0, 0.0] [-0.906743, 0.0, -0.421684] [-172.265, 0.0499878, -57.9118]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  flag01_pos09{
+    type:t="Point"
+    tm:m=[[-0.421684, 0.0, 0.906743] [0.0, 1.0, 0.0] [-0.906743, 0.0, -0.421684] [-192.032, -0.465302, -118.585]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  flag02_pos01{
+    type:t="Point"
+    tm:m=[[-0.586892, 0.0, 0.809665] [0.0, 1.0, 0.0] [-0.809665, 0.0, -0.586892] [-352.4, 0.0, 227.25]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  flag02_pos02{
+    type:t="Point"
+    tm:m=[[-0.586892, 0.0, 0.809665] [0.0, 1.0, 0.0] [-0.809665, 0.0, -0.586892] [-373.35, 0.05, 198.849]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  flag02_pos03{
+    type:t="Point"
+    tm:m=[[-0.586892, 0.0, 0.809665] [0.0, 1.0, 0.0] [-0.809665, 0.0, -0.586892] [-331.095, 0.05, 205.083]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  flag02_pos04{
+    type:t="Point"
+    tm:m=[[-0.586892, 0.0, 0.809665] [0.0, 1.0, 0.0] [-0.809665, 0.0, -0.586892] [-287.269, 0.05, 214.276]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  flag02_pos05{
+    type:t="Point"
+    tm:m=[[-0.586892, 0.0, 0.809665] [0.0, 1.0, 0.0] [-0.809665, 0.0, -0.586892] [-240.576, 0.0, 220.663]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  flag02_pos06{
+    type:t="Point"
+    tm:m=[[-0.586892, 0.0, 0.809665] [0.0, 1.0, 0.0] [-0.809665, 0.0, -0.586892] [-195.402, -0.2, 216.085]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  flag02_pos07{
+    type:t="Point"
+    tm:m=[[-0.586892, 0.0, 0.809665] [0.0, 1.0, 0.0] [-0.809665, 0.0, -0.586892] [-216.574, -0.5, 248.42]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  flag02_pos08{
+    type:t="Point"
+    tm:m=[[-0.586892, 0.0, 0.809665] [0.0, 1.0, 0.0] [-0.809665, 0.0, -0.586892] [-268.684, -0.55, 250.844]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  flag02_pos09{
+    type:t="Point"
+    tm:m=[[-0.586892, 0.0, 0.809665] [0.0, 1.0, 0.0] [-0.809665, 0.0, -0.586892] [-315.557, -0.7, 239.303]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  flag03_pos01{
+    type:t="Point"
+    tm:m=[[-0.441542, 0.0, 0.897241] [0.0, 1.0, 0.0] [-0.897241, 0.0, -0.441542] [196.6, 0.0, -481.8]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  flag03_pos02{
+    type:t="Point"
+    tm:m=[[-0.441542, 0.0, 0.897241] [0.0, 1.0, 0.0] [-0.897241, 0.0, -0.441542] [242.5, 0.0, -462.5]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  flag03_pos03{
+    type:t="Point"
+    tm:m=[[-0.441542, 0.0, 0.897241] [0.0, 1.0, 0.0] [-0.897241, 0.0, -0.441542] [253.85, 0.0, -379.8]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  flag03_pos04{
+    type:t="Point"
+    tm:m=[[-0.441542, 0.0, 0.897241] [0.0, 1.0, 0.0] [-0.897241, 0.0, -0.441542] [252.05, 0.0, -333.05]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  flag03_pos05{
+    type:t="Point"
+    tm:m=[[-0.441542, 0.0, 0.897241] [0.0, 1.0, 0.0] [-0.897241, 0.0, -0.441542] [242.1, 0.0, -270.15]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  flag03_pos06{
+    type:t="Point"
+    tm:m=[[-0.441542, 0.0, 0.897241] [0.0, 1.0, 0.0] [-0.897241, 0.0, -0.441542] [229.85, 0.0, -403.0]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  flag03_pos07{
+    type:t="Point"
+    tm:m=[[-0.441542, 0.0, 0.897241] [0.0, 1.0, 0.0] [-0.897241, 0.0, -0.441542] [223.5, 0.0, -323.85]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  flag03_pos08{
+    type:t="Point"
+    tm:m=[[-0.441542, 0.0, 0.897241] [0.0, 1.0, 0.0] [-0.897241, 0.0, -0.441542] [201.55, 0.0, -443.05]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  flag03_pos09{
+    type:t="Point"
+    tm:m=[[-0.441542, 0.0, 0.897241] [0.0, 1.0, 0.0] [-0.897241, 0.0, -0.441542] [265.7, 0.0, -424.55]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  t1_shipspawn01{
+    type:t="Sphere"
+    tm:m=[[29.5719, 0.0, -5.05016] [0.0, 30.0, 0.0] [5.05016, 0.0, 29.5719] [-975.18, 0.00244141, 825.688]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  t1_shipspawn02{
+    type:t="Sphere"
+    tm:m=[[19.8185, 0.0, -22.5217] [0.0, 30.0, 0.0] [22.5217, 0.0, 19.8185] [-1015.33, 0.00244141, 902.391]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  t1_shipspawn03{
+    type:t="Sphere"
+    tm:m=[[2.81145, 0.0, -29.8679] [0.0, 30.0, 0.0] [29.8679, 0.0, 2.81145] [-1281.06, 0.00238038, 610.272]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  t1_shipspawn04{
+    type:t="Sphere"
+    tm:m=[[21.8203, 0.0, -20.5883] [0.0, 30.0, 0.0] [20.5883, 0.0, 21.8203] [-1099.54, 0.00244141, 870.409]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  t1_shipspawn05{
+    type:t="Sphere"
+    tm:m=[[28.4954, 0.0, 9.38197] [0.0, 30.0, 0.0] [-9.38197, 0.0, 28.4954] [-1145.06, 0.00247192, 1034.27]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  t1_shipspawn06{
+    type:t="Sphere"
+    tm:m=[[23.9173, 0.0, -18.1098] [0.0, 30.0, 0.0] [18.1098, 0.0, 23.9173] [-1088.27, 0.00244141, 941.884]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  t1_shipspawn07{
+    type:t="Sphere"
+    tm:m=[[23.5906, 0.0, -18.5332] [0.0, 30.0, 0.0] [18.5332, 0.0, 23.5906] [-1154.45, 0.00244141, 964.742]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  t1_shipspawn08{
+    type:t="Sphere"
+    tm:m=[[22.9191, 0.0, -19.3573] [0.0, 30.0, 0.0] [19.3573, 0.0, 22.9191] [-1176.2, 0.00244142, 893.159]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  t1_shipspawn09{
+    type:t="Sphere"
+    tm:m=[[29.6625, 0.0, -4.48736] [0.0, 30.0, 0.0] [4.48736, 0.0, 29.6625] [-1229.89, 0.00219727, 784.948]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  t1_shipspawn10{
+    type:t="Sphere"
+    tm:m=[[29.7616, 0.0, 3.77391] [0.0, 30.0, 0.0] [-3.77391, 0.0, 29.7616] [-1140.91, 0.00219727, 744.862]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  t1_shipspawn11{
+    type:t="Sphere"
+    tm:m=[[9.41773, 0.0, -28.4834] [0.0, 30.0, 0.0] [28.4834, 0.0, 9.41773] [-1330.62, 0.00244141, 545.121]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  t1_shipspawn12{
+    type:t="Sphere"
+    tm:m=[[13.9648, 0.0, -26.5515] [0.0, 30.0, 0.0] [26.5515, 0.0, 13.9648] [-1386.48, 0.00244141, 482.646]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  t1_shipspawn13{
+    type:t="Sphere"
+    tm:m=[[29.7971, 0.0, 3.4829] [0.0, 30.0, 0.0] [-3.4829, 0.0, 29.7971] [-1218.28, 0.00219727, 682.292]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  t1_shipspawn14{
+    type:t="Sphere"
+    tm:m=[[29.7669, 0.0, 3.73176] [0.0, 30.0, 0.0] [-3.73176, 0.0, 29.7669] [-1300.84, 0.00219727, 703.349]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  t1_shipspawn15{
+    type:t="Sphere"
+    tm:m=[[9.76532, 0.0, -28.3661] [0.0, 30.0, 0.0] [28.3661, 0.0, 9.76532] [-1358.89, 0.00244141, 633.418]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  t1_shipspawn16{
+    type:t="Sphere"
+    tm:m=[[20.9276, 0.0, -21.4949] [0.0, 30.0, 0.0] [21.4949, 0.0, 20.9276] [-1418.73, 0.00244141, 571.273]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  t2_shipspawn01{
+    type:t="Sphere"
+    tm:m=[[-20.0265, 0.0, 22.3369] [0.0, 30.0, 0.0] [-22.3369, 0.0, -20.0265] [509.57, 0.000976563, -1319.87]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  t2_shipspawn02{
+    type:t="Sphere"
+    tm:m=[[-25.3737, 0.0, 16.0054] [0.0, 30.0, 0.0] [-16.0054, 0.0, -25.3737] [568.566, 0.000976562, -1271.25]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  t2_shipspawn03{
+    type:t="Sphere"
+    tm:m=[[-29.389, 0.0, 6.02353] [0.0, 30.0, 0.0] [-6.02353, 0.0, -29.389] [623.419, 0.000976563, -1223.42]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  t2_shipspawn04{
+    type:t="Sphere"
+    tm:m=[[-27.9909, 0.0, 10.7938] [0.0, 30.0, 0.0] [-10.7938, 0.0, -27.9909] [680.513, 0.00100708, -1270.4]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  t2_shipspawn05{
+    type:t="Sphere"
+    tm:m=[[-18.9037, 0.0, 23.2949] [0.0, 30.0, 0.0] [-23.2949, 0.0, -18.9037] [526.379, 0.00100708, -1402.16]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  t2_shipspawn06{
+    type:t="Sphere"
+    tm:m=[[-20.0456, 0.0, 22.3198] [0.0, 30.0, 0.0] [-22.3198, 0.0, -20.0456] [594.92, 0.00100708, -1347.24]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  t2_shipspawn07{
+    type:t="Sphere"
+    tm:m=[[-18.4331, 0.0, 23.669] [0.0, 30.0, 0.0] [-23.669, 0.0, -18.4331] [476.492, 0.00100708, -1412.2]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  t2_shipspawn08{
+    type:t="Sphere"
+    tm:m=[[-20.2398, 0.0, 22.1439] [0.0, 30.0, 0.0] [-22.1439, 0.0, -20.2398] [549.115, 0.00100708, -1355.03]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  t2_shipspawn09{
+    type:t="Sphere"
+    tm:m=[[-23.3263, 0.0, 18.865] [0.0, 30.0, 0.0] [-18.865, 0.0, -23.3263] [521.376, 0.00106812, -1256.56]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  t2_shipspawn10{
+    type:t="Sphere"
+    tm:m=[[-29.945, 0.0, 1.81529] [0.0, 30.0, 0.0] [-1.81529, 0.0, -29.945] [718.494, 0.00247192, -1165.37]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  t2_shipspawn11{
+    type:t="Sphere"
+    tm:m=[[3.35211, 0.0, 29.8122] [0.0, 30.0, 0.0] [-29.8122, 0.0, 3.35211] [818.914, 0.00292969, -964.018]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  t2_shipspawn12{
+    type:t="Sphere"
+    tm:m=[[-2.13055, 0.0, 29.9242] [0.0, 30.0, 0.0] [-29.9242, 0.0, -2.13055] [858.353, 0.00292969, -961.777]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  t2_shipspawn13{
+    type:t="Sphere"
+    tm:m=[[1.52666, 0.0, 29.9611] [0.0, 30.0, 0.0] [-29.9611, 0.0, 1.52666] [751.871, 0.00268554, -1009.3]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  t2_shipspawn14{
+    type:t="Sphere"
+    tm:m=[[-28.3716, 0.0, 9.74944] [0.0, 30.0, 0.0] [-9.74944, 0.0, -28.3716] [570.486, 0.00247193, -1214.2]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  t2_shipspawn15{
+    type:t="Sphere"
+    tm:m=[[5.26445, 0.0, 29.5345] [0.0, 30.0, 0.0] [-29.5345, 0.0, 5.26445] [817.308, 0.00286865, -1024.11]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  t2_shipspawn16{
+    type:t="Sphere"
+    tm:m=[[-7.18048, 0.0, 29.128] [0.0, 30.0, 0.0] [-29.128, 0.0, -7.18048] [940.521, 0.00292969, -942.76]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  t2_shipspawn20{
+    type:t="Sphere"
+    tm:m=[[3.66595, 0.0, 29.7752] [0.0, 30.0, 0.0] [-29.7752, 0.0, 3.66595] [816.94, 0.0029602, -826.092]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  t2_shipspawn18{
+    type:t="Sphere"
+    tm:m=[[5.31753, 0.0, 29.5251] [0.0, 30.0, 0.0] [-29.5251, 0.0, 5.31753] [721.206, 0.00268554, -850.846]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  t2_shipspawn19{
+    type:t="Sphere"
+    tm:m=[[5.13882, 0.0, 29.5566] [0.0, 30.0, 0.0] [-29.5566, 0.0, 5.13882] [802.503, 0.00289917, -881.797]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  t2_shipspawn22{
+    type:t="Sphere"
+    tm:m=[[0.155661, 0.0, 29.9994] [0.0, 30.0, 0.0] [-29.9994, 0.0, 0.155661] [859.601, 0.0012207, -885.643]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  t2_shipspawn21{
+    type:t="Sphere"
+    tm:m=[[0.125559, 0.0, 29.9996] [0.0, 30.0, 0.0] [-29.9996, 0.0, 0.125559] [884.748, 0.00125122, -859.07]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  t2_shipspawn17{
+    type:t="Sphere"
+    tm:m=[[-0.936347, 0.0, 29.9854] [0.0, 30.0, 0.0] [-29.9854, 0.0, -0.936347] [773.752, 0.00134277, -930.885]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  t1_shipspawn17{
+    type:t="Sphere"
+    tm:m=[[9.88271, 0.0, -28.3254] [0.0, 30.0, 0.0] [28.3254, 0.0, 9.88271] [-1502.57, 0.00262451, 606.545]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  t1_shipspawn18{
+    type:t="Sphere"
+    tm:m=[[12.2004, 0.0, -27.407] [0.0, 30.0, 0.0] [27.407, 0.0, 12.2004] [-1383.73, 0.00268555, 742.637]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  t1_shipspawn19{
+    type:t="Sphere"
+    tm:m=[[3.46815, 0.0, -29.7988] [0.0, 30.0, 0.0] [29.7988, 0.0, 3.46815] [-1270.11, 0.00244141, 491.501]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  t1_shipspawn20{
+    type:t="Sphere"
+    tm:m=[[29.1703, 0.0, 7.0064] [0.0, 30.0, 0.0] [-7.0064, 0.0, 29.1703] [-1110.37, 0.0022583, 675.07]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  t1_shipspawn21{
+    type:t="Sphere"
+    tm:m=[[27.5693, 0.0, 11.8298] [0.0, 30.0, 0.0] [-11.8298, 0.0, 27.5693] [-1080.67, 0.00247192, 999.643]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  t1_shipspawn22{
+    type:t="Sphere"
+    tm:m=[[29.7275, 0.0, -4.03502] [0.0, 30.0, 0.0] [4.03502, 0.0, 29.7275] [-1339.82, 0.00244141, 799.478]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  t2_spawnarea{
+    type:t="Sphere"
+    tm:m=[[-353.235, 0.0, 717.792] [0.0, 800.0, 0.0] [-717.792, 0.0, -353.235] [698.341, 0.0, -1151.46]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  t1_spawnarea{
+    type:t="Sphere"
+    tm:m=[[-353.235, 0.0, 717.792] [0.0, 800.0, 0.0] [-717.792, 0.0, -353.235] [-1219.99, 0.0, 759.504]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  flag04_pos{
+    type:t="Point"
+    tm:m=[[-0.421684, 0.0, 0.906743] [0.0, 1.0, 0.0] [-0.906743, 0.0, -0.421684] [-481.598, 0.0, -412.781]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  flag05_pos{
+    type:t="Point"
+    tm:m=[[-0.421684, 0.0, 0.906743] [0.0, 1.0, 0.0] [-0.906743, 0.0, -0.421684] [35.572, 0.0, 100.47]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  battlearea_out01{
+    type:t="Box"
+    tm:m=[[16000.0, 0.0, 0.0] [0.0, 500.0, 0.0] [0.0, -0.00190617, 6000.0] [0.0, -50.0, 5000.0]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  battlearea_out02{
+    type:t="Box"
+    tm:m=[[16000.0, 0.0, 0.0] [0.0, 500.0, 0.0] [0.0, -0.00190617, 6000.0] [0.0, -50.0, -5000.0]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  battlearea_out03{
+    type:t="Box"
+    tm:m=[[6000.0, 0.0, 0.0] [0.0, 500.0, 0.0] [0.0, -0.00508312, 16000.0] [-5000.0, -50.0, 0.0]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  battlearea_out04{
+    type:t="Box"
+    tm:m=[[6000.0, 0.0, 0.0] [0.0, 500.0, 0.0] [0.0, -0.00508312, 16000.0] [5000.0, -50.0, 0.0]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+}
+
+objLayers{
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+}
+
+wayPoints{
+}

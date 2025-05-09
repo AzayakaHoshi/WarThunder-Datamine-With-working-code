@@ -1,0 +1,174 @@
+rocketGun:b=yes
+preset_cost:i=25
+mesh_deployed:t="us_hydra_70_m259_rocket_deployed"
+mesh:t="us_hydra_70_m259_rocket"
+helicopterGroup:i=2
+shotFreq:r=20.0
+sound:t="weapon.rocketgun_132"
+
+rocket{
+  bulletName:t="us_hydra_70_m259"
+  statType:t="hydra"
+  caliber:r=0.07
+  length:r=1.68
+  WdK:p3=0.1, 0.1, 0.1
+  CxK:r=1.65
+  distFromCmToStab:r=0.01
+  mass:r=10.13
+  massEnd:r=6.96
+  timeFire:r=1.1
+  force:r=6064.0
+  useStartSpeed:b=yes
+  startSpeed:r=0.0
+  maxSpeed:r=739.0
+  endSpeed:r=0.0
+  maxDistance:r=6200.0
+  minDistance:r=30.0
+  effectOffset:p3=-1.05, 0.0, 0.0
+  explosiveType:t="smoke_composition"
+  explosiveMass:r=0.272
+  explodeTreshold:r=0.0
+  rendinstDamageRadius:r=6.0
+  spawnExplosionFx:b=no
+  dragCx:r=0.0
+  amountPerTier:r=19.0
+  iconType:t="nar_ap_large"
+  aiGroundOnly:b=no
+  aiAirOnly:b=no
+  normalizationPreset:t="heat"
+  ricochetPreset:t="he"
+  groundRicochetPreset:t="he_small_caliber_ground"
+  secondaryShattersPreset:t="ap"
+  stabilityThreshold:r=0.5
+  stabilityCaliberToArmorThreshold:r=5.0
+  stabilityReductionAfterRicochet:r=0.3
+  stabilityReductionAfterPenetration:r=0.15
+  bulletType:t="smoke_tank"
+  slopeEffectPreset:t="ap"
+  modelName:t="tank_bullet_he"
+  fresnel:p3=0.23, 0.1, 2.0
+  explodeOnRendinst:b=yes
+  shellAnimation:t="video/shells_animations/smoke.ivf"
+  smokeShell:b=yes
+  smokeFx:t="smokescreen_big"
+  smokeExplosionFx:t="smoke_shell_explosion"
+  smokeExplosionFxVolsmoke:t="smoke_shell_explosion_old"
+  smokeShellRad:r=16.0
+  smokeActivateTime:r=5.0
+  smokeTime:r=25.0
+  groundCollisionEffect:t="smoke_shell_explosion"
+  groundFxScale:p2=1.2, 1.4
+  ricochetEffect:t="hit_59_80mm_metal_ap"
+  waterCollisionEffect:t="hit_59_80mm_water"
+  waterFxScale:p2=0.7, 0.8
+  explosionPatchRadius:r=1.5
+  waterRicochetEffect:t="hit_81_105mm_water_ap"
+  groundRicochetEffect:t="hit_81_105mm_dirt_ap"
+  destructionBreakFx:t="smoke_shell_explosion"
+  destructionFireFx:t="fire_thermite"
+  destructionExplosionFx:t="explosion_tank_ammunition_smoke"
+  fireEffect:t="fires_exhaust_jet_early_tiny"
+  smokeEffect:t="smoke_rocket_tail_dark_multiple"
+  smokeEffect2:t=""
+  hazeEffect:t=""
+  endSmokeViscosity:r=0.05
+  hitPowerMult:r=1.0
+  nearHitPower:p2=1.0, 50.0
+  midHitPower:p2=0.9, 400.0
+  farHitPower:p2=0.1, 1000.0
+  endHitPower:p2=0.01, 1500.0
+  relativeVelHitShift:p2=300.0, 1000.0
+  nearArmorPower:p2=10.0, 50.0
+  midArmorPower:p2=7.0, 400.0
+  farArmorPower:p2=0.2, 700.0
+  relativeVelArmorShift:p2=200.0, 1000.0
+  maxDeltaAngle:r=1.3
+
+  stabilityRicochetModifier{
+    mod1:p2=0.0, 0.5
+    mod2:p2=15.0, 0.7
+    mod3:p2=30.0, 0.99
+  }
+
+  collisions{
+
+    steel{
+      fx:t="smoke_shell_explosion"
+      ricochetFx:t="hit_59_80mm_stone_ap"
+    }
+  }
+
+  DamageParts{
+
+    body{
+      hp:r=50.0
+      armorClass:t="tank_structural_steel"
+      armorThickness:r=1.0
+    }
+  }
+
+  DamageEffects{
+
+    part{
+      name:t="body"
+
+      onHit{
+        shellState:t="inFlight"
+        expl:r=1.0
+      }
+
+      onHit{
+        shellState:t="onUnit"
+        damageType:t="generic"
+        expl:r=0.05
+        fire:r=0.45
+        break:r=0.5
+        damage:r=3.0
+        fHitCritical:b=yes
+      }
+
+      onHit{
+        shellState:t="onUnit"
+        damageType:t="generic"
+        expl:r=0.5
+        fire:r=0.3
+        break:r=0.2
+        damage:r=30.0
+        fHitCritical:b=yes
+      }
+
+      onHit{
+        shellState:t="onUnit"
+        damageType:t="explosion"
+        expl:r=0.45
+        fire:r=0.45
+        break:r=0.1
+        damage:r=50.0
+        fHitCritical:b=yes
+      }
+
+      onHit{
+        shellState:t="onUnit"
+        damageType:t="cumulative"
+        expl:r=0.4
+        fire:r=0.4
+        break:r=0.1
+        damage:r=100.0
+        fHitCritical:b=yes
+      }
+
+      onKill{
+        shellState:t="inFlight"
+        destruction:r=1.0
+      }
+
+      onKill{
+        shellState:t="onUnit"
+        expl:r=0.05
+        fire:r=0.05
+        break:r=0.9
+        fHitCritical:b=yes
+      }
+    }
+  }
+}

@@ -1,0 +1,124 @@
+bombGun:b=yes
+preset_cost:i=20
+shotFreq:r=10.0
+sound:t="weapon.bombgun"
+mesh:t="su_zab_50fp_1942"
+
+bomb{
+  bulletName:t="su_zab50fp"
+  mass:r=49.76
+  caliber:r=0.219
+  length:r=0.936
+  distFromCmToStab:r=0.3
+  dragCx:r=0.02
+  explosiveType:t="sks"
+  explosiveMass:r=26.35
+  useDelayExplosion:b=no
+  explosionFx:t="explosion_thermite_fireball"
+  fxGroundDust:t="dust_ground_explosions_wave_dirt_small"
+  fxGrassDust:t="dust_ground_explosions_wave_dirt_small"
+  fxSandDust:t="dust_ground_explosions_wave_sand_small"
+  fxSnowDust:t="dust_ground_explosions_wave_snow_small"
+  fxConcreteDust:t="dust_ground_explosions_wave_concrete_small"
+  fxWaterShockWave:t="dust_waterwave_big"
+  explosionPatchRadius:r=12.0
+  sound:t="weapon.bomb_mid"
+  iconType:t="napalm_small"
+
+  splash{
+    innerRadius:r=3.0
+    outerRadius:r=7.0
+    penetration:r=18.0
+    damage:r=6200.0
+    damageType:t="napalm"
+  }
+
+  fireDamage{
+    velocityMult:r=3.5
+    maxFlightTime:r=4.0
+    maxFlightDistance:r=12.0
+    maxRise:r=4.0
+    lifeTime:r=30.0
+    penetration:r=10.0
+    damage:r=10.0
+    damageType:t="napalm"
+    radius:r=7.0
+    fxType:t="explosion_thermite_wrackages"
+    burnFxType:t="explosion_thermite_firespot"
+    burnFxSize:r=12.0
+    scorchMarginSize:r=1.0
+    scorchStrength:r=1.0
+    scorchDuration:r=10.0
+    emitterCount:i=3
+    emitterDispersion:r=0.7
+  }
+
+  DamageParts{
+
+    body{
+      hp:r=25.0
+      armorClass:t="tank_structural_steel"
+      armorThickness:r=5.0
+      explosionArmorQuality:r=1.0
+      shatterArmorQuality:r=1.0
+    }
+  }
+
+  DamageEffects{
+
+    part{
+      name:t="body"
+
+      onHit{
+        shellState:t="inFlight"
+        expl:r=1.0
+      }
+
+      onHit{
+        shellState:t="onUnit"
+        damageType:t="generic"
+        expl:r=0.2
+        break:r=0.8
+        damage:r=3.0
+        fHitCritical:b=yes
+      }
+
+      onHit{
+        shellState:t="onUnit"
+        damageType:t="generic"
+        expl:r=0.5
+        break:r=0.5
+        damage:r=30.0
+        fHitCritical:b=yes
+      }
+
+      onHit{
+        shellState:t="onUnit"
+        damageType:t="explosion"
+        expl:r=0.8
+        break:r=0.2
+        damage:r=50.0
+        fHitCritical:b=yes
+      }
+
+      onHit{
+        shellState:t="onUnit"
+        damageType:t="cumulative"
+        expl:r=1.0
+        damage:r=100.0
+        fHitCritical:b=yes
+      }
+
+      onKill{
+        shellState:t="inFlight"
+        destruction:r=1.0
+      }
+
+      onKill{
+        shellState:t="onUnit"
+        expl:r=1.0
+        fHitCritical:b=yes
+      }
+    }
+  }
+}

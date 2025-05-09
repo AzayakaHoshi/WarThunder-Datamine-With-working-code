@@ -1,0 +1,3307 @@
+selected_tag:t=""
+bin_dump_file:t=""
+
+mission_settings{
+
+  player{
+    army:i=1
+    wing:t="player_wing"
+  }
+
+  player_teamB{
+    army:i=2
+  }
+
+  mission{
+    level:t="levels/britain.bin"
+    type:t="singleMission"
+    environment:t="Morning"
+    weather:t="hazy"
+    gt_cooperative:b=yes
+    restoreType:t="attempts"
+    optionalTakeOff:b=no
+    windDirectionDeg:p2=170.0, 190.0
+
+    stars{
+      year:i=1940
+      month:i=9
+      day:i=7
+    }
+  }
+
+  atmosphere{
+    pressure:r=758.0
+    temperature:r=8.0
+  }
+
+  briefing{
+    place_loc:t=""
+    date_loc:t=""
+    objective_loc:t=""
+    music:t="action_01"
+
+    part{
+      event:t=""
+      minTime:i=0
+
+      slide{
+        map:b=yes
+        minTime:i=4
+        picture:t=""
+        showAirMap:b=no
+
+        arrow{
+          width:i=1
+          side:t="ally"
+          point:t="ally_he_111"
+          point:t="squad_raf_air_def"
+        }
+
+        icon{
+          icontype:t="fighter"
+          side:t="player"
+          target:t="player_wing"
+          lookAt:t="squad_raf_air_def"
+        }
+
+        icon{
+          icontype:t="bomber"
+          side:t="ally"
+          target:t="ally_he_111"
+          lookAt:t="squad_raf_air_def"
+        }
+
+        icon{
+          icontype:t="artillery"
+          side:t="enemy"
+          target:t="squad_raf_air_def"
+        }
+
+        icon{
+          icontype:t="fighter"
+          side:t="enemy"
+          target:t="raf_hurricane_02"
+          lookAt:t="battle_zone"
+        }
+
+        icon{
+          icontype:t="destroyer"
+          side:t="ally"
+          target:t="germ_navy_ships"
+        }
+      }
+    }
+  }
+}
+
+imports{
+}
+
+triggers{
+  isCategory:b=yes
+  is_enabled:b=yes
+
+  mission_start{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      initMission{
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionSetWeatherParams{
+        waterWindStrengtMin:r=5.0
+        waterWindStrengtMax:r=7.0
+      }
+
+      unitSetProperties{
+        object:t="germ_navy_ships"
+        stealthRadius:r=7500.0
+        effShootingRate:r=1.0
+        hasExhaust:b=no
+      }
+
+      unitSetProperties{
+        object:t="squad_raf_air_def"
+        stealthRadius:r=5500.0
+        effShootingRate:r=0.3
+        hasExhaust:b=no
+      }
+
+      unitSetProperties{
+        object:t="raf_hurricane_01"
+        object:t="raf_hurricane_02"
+        object:t="raf_spitfire_02"
+        effShootingRate:r=0.8
+
+        plane{
+
+          targetDeviation{
+            trigger:t="machine gun"
+            defaultVal:r=2.0
+            limits:p2=1.0, 4.0
+          }
+        }
+      }
+
+      unitSetProperties{
+        object:t="raf_spitfire_01"
+        object:t="raf_hurricane_05"
+        effShootingRate:r=1.0
+
+        plane{
+          ai_skill:t="VETERAN"
+
+          targetDeviation{
+            trigger:t="machine gun"
+            defaultVal:r=4.0
+            limits:p2=2.0, 5.0
+          }
+        }
+      }
+
+      unitSetProperties{
+        object:t="ally_me_110"
+
+        plane{
+
+          targetDeviation{
+            trigger:t="machine gun"
+            defaultVal:r=2.0
+            limits:p2=1.0, 4.0
+          }
+        }
+      }
+
+      unitSetProperties{
+        object:t="ally_he_111"
+
+        plane{
+
+          targetDeviation{
+            trigger:t="bombs"
+            defaultVal:r=3.0
+            limits:p2=2.0, 5.0
+          }
+        }
+      }
+
+      unitSetProperties{
+        object:t="squad_bombs_target_01"
+        object:t="squad_bombs_target_02"
+        stealthRadius:r=0.0
+      }
+
+      unitMoveTo{
+        target:t="battle_point"
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=yes
+        teleportHeightValue:r=1000.0
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        fastClimb:b=no
+        destTimeMode:b=no
+        horizontalDirectionForTeleport:b=yes
+        object:t="ally_he_111"
+        object:t="ally_me_110"
+        speed:r=250.0
+      }
+
+      unitPutToSleep{
+        target:t="raf_hurricane_01"
+        target:t="raf_hurricane_02"
+        target:t="raf_spitfire_02"
+        target:t="raf_spitfire_01"
+        target:t="raf_hurricane_05"
+      }
+
+      wait{
+        time:r=3.0
+      }
+
+      moAddMissionObjective{
+        target:t="dlc_britain_the_blitz_to_battle_point"
+      }
+
+      triggerEnable{
+        target:t="update_he111_indicator"
+      }
+
+      unitSetIndication{
+        set:b=yes
+        target:t="ally_he_111"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  update_he111_indicator{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionSetTargetsIndicator{
+        target_type:t="isAlive"
+        target_marking:i=0
+        delta:i=0
+        icon:t="bomber"
+        "icon army":i=1
+        set:b=yes
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="ally_he_111"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  attacked_at_halfway{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      unitWakeUp{
+        target:t="raf_hurricane_01"
+        target:t="raf_hurricane_05"
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=yes
+        object:t="raf_hurricane_01"
+        target:t="squad_germ_planes"
+        target:t="player_wing"
+        fireRandom:b=yes
+        playerAttractedCount:i=2
+        playerAttractedEffRate:r=0.3
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=yes
+        object:t="raf_hurricane_05"
+        target:t="ally_he_111"
+        fireRandom:b=yes
+        playerAttractedCount:i=1
+        playerAttractedEffRate:r=1.0
+      }
+
+      triggerEnable{
+        target:t="raf_hurricane_01_near_germ_planes"
+        target:t="near_the_battle_point"
+        target:t="germ_bombers_destroyed"
+        target:t="raf_hurricane_05_near_germ_planes"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  raf_hurricane_01_near_germ_planes{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitDistanceBetween{
+        value:r=3500.0
+        math:t="2D"
+        object_type:t="isAlive"
+        target_type:t="isAlive"
+        check_objects:t="any"
+        check_targets:t="any"
+        object_marking:i=0
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="raf_hurricane_01"
+        target:t="squad_germ_planes"
+      }
+    }
+
+    actions{
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="ally_me_110"
+        target:t="raf_hurricane_01"
+        fireRandom:b=yes
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  raf_hurricane_05_near_germ_planes{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitDistanceBetween{
+        value:r=3500.0
+        math:t="2D"
+        object_type:t="isAlive"
+        target_type:t="isAlive"
+        check_objects:t="any"
+        check_targets:t="any"
+        object_marking:i=0
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="raf_hurricane_05"
+        target:t="squad_germ_planes"
+      }
+    }
+
+    actions{
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="ally_me_110"
+        target:t="raf_hurricane_01"
+        target:t="raf_hurricane_05"
+        fireRandom:b=yes
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  germ_bombers_destroyed{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isAlive"
+        object_marking:i=0
+        func:t="less"
+        value:i=10
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="ally_he_111"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="end_of_bombers_escort_task"
+      }
+
+      moSetObjectiveStatus{
+        target:t="dlc_britain_the_blitz_to_battle_point"
+        status:i=3
+        object_marking:i=0
+        object_var_comp_op:t="equal"
+        object_var_name:t=""
+      }
+
+      wait{
+        time:r=3.0
+      }
+
+      missionFailed{
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  near_the_battle_point{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitDistanceBetween{
+        value:r=2500.0
+        math:t="2D"
+        object_type:t="isAlive"
+        target_type:t="isAlive"
+        check_objects:t="any"
+        check_targets:t="any"
+        object_marking:i=0
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="squad_germ_planes"
+        target:t="battle_point"
+      }
+    }
+
+    actions{
+
+      missionMarkAsWaypoint{
+        visible:b=no
+        primary:b=yes
+        oriented:b=no
+        ignoreDifficulty:b=no
+        scale:r=1.0
+        target:t="battle_point"
+      }
+
+      triggerEnable{
+        target:t="raf_hurricane_01_escaped"
+        target:t="end_of_bombers_escort_task"
+      }
+
+      triggerEnable{
+        target:t="update_raf_air_def_indicator"
+        target:t="air_def_killed_enough"
+        target:t="air_def_kill_all_begin"
+        target:t="ally_me_110_escaped"
+      }
+
+      unitMoveTo{
+        target:t="evacuate_point"
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=no
+        teleportHeightValue:r=1000.0
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        fastClimb:b=no
+        destTimeMode:b=no
+        horizontalDirectionForTeleport:b=yes
+        object:t="ally_he_111"
+        speed:r=600.0
+      }
+
+      unitMoveTo{
+        target:t="raf_safe_point"
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=no
+        teleportHeightValue:r=1000.0
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        fastClimb:b=no
+        destTimeMode:b=no
+        horizontalDirectionForTeleport:b=yes
+        object:t="raf_hurricane_01"
+        object:t="raf_hurricane_05"
+        speed:r=600.0
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="ally_he_111"
+        target:t="squad_bombs_target_01"
+        target:t="squad_raf_air_def"
+        target:t="squad_bombs_target_02"
+        fireRandom:b=yes
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="ally_me_110"
+        target:t="squad_raf_air_def"
+        fireRandom:b=yes
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=yes
+        object:t="raf_hurricane_02"
+        target:t="ally_he_111"
+        target:t="player_wing"
+        target:t="ally_me_110"
+        fireRandom:b=yes
+        playerAttractedCount:i=3
+        playerAttractedEffRate:r=1.0
+        fightInArea:t="battle_zone"
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="ally_me_110"
+        target:t="raf_hurricane_02"
+        target:t="squad_raf_air_def"
+        fireRandom:b=yes
+      }
+
+      moAddMissionObjective{
+        target:t="dlc_britain_the_blitz_to_air_def_kill"
+      }
+
+      wait{
+        time:r=3.0
+      }
+
+      wait{
+        time:r=45.0
+      }
+
+      wait{
+        time:r=15.0
+      }
+
+      unitSetProperties{
+        object:t="squad_raf_air_def"
+        stealthRadius:r=50000.0
+      }
+
+      unitSetIndication{
+        set:b=yes
+        target:t="squad_raf_air_def"
+      }
+
+      unitWakeUp{
+        target:t="raf_hurricane_02"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  end_of_bombers_escort_task{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="update_he111_indicator"
+        target:t="germ_bombers_destroyed"
+      }
+
+      moSetObjectiveStatus{
+        target:t="dlc_britain_the_blitz_to_battle_point"
+        status:i=2
+        object_marking:i=0
+        object_var_comp_op:t="equal"
+        object_var_name:t=""
+      }
+
+      missionSetTargetsIndicator{
+        target_type:t="isAlive"
+        target_marking:i=0
+        delta:i=0
+        icon:t="bomber"
+        "icon army":i=1
+        set:b=no
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="ally_he_111"
+      }
+
+      unitSetIndication{
+        set:b=no
+        target:t="ally_he_111"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  raf_hurricane_01_escaped{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitDistanceBetween{
+        value:r=2500.0
+        math:t="notNear2D"
+        object_type:t="isAlive"
+        target_type:t="isAlive"
+        check_objects:t="any"
+        check_targets:t="any"
+        object_marking:i=0
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="raf_hurricane_01"
+        target:t="player_wing"
+      }
+    }
+
+    actions{
+
+      unitSetIndication{
+        set:b=no
+        target:t="raf_hurricane_01"
+        target:t="raf_hurricane_05"
+      }
+
+      unitSetProperties{
+        object:t="raf_hurricane_01"
+        object:t="raf_hurricane_05"
+        stealthRadius:r=3500.0
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  update_raf_air_def_indicator{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionSetTargetsIndicator{
+        target_type:t="isAlive"
+        target_marking:i=0
+        delta:i=0
+        icon:t="aa"
+        "icon army":i=2
+        set:b=yes
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="squad_raf_air_def"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  ally_me_110_escaped{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      timeExpires{
+        time:r=180.0
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      unitMoveTo{
+        target:t="evacuate_point"
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=no
+        teleportHeightValue:r=1000.0
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        fastClimb:b=no
+        destTimeMode:b=no
+        horizontalDirectionForTeleport:b=yes
+        object:t="ally_me_110"
+        speed:r=600.0
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  air_def_killed_enough{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ANY"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isKilledByPlayer"
+        object_marking:i=0
+        func:t="more"
+        value:i=5
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="squad_raf_air_def"
+      }
+
+      unitWhenCountMatches{
+        object_type:t="isAlive"
+        object_marking:i=0
+        func:t="less"
+        value:i=1
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="squad_raf_air_def"
+      }
+    }
+
+    actions{
+
+      moSetObjectiveStatus{
+        target:t="dlc_britain_the_blitz_to_air_def_kill"
+        status:i=2
+        object_marking:i=0
+        object_var_comp_op:t="equal"
+        object_var_name:t=""
+      }
+
+      triggerEnable{
+        target:t="check_for_air_def_add_completed"
+        target:t="player_at_halfway_to_way_back"
+        target:t="player_left_battle_zone"
+      }
+
+      wait{
+        time:r=3.0
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=yes
+        primary:b=yes
+        oriented:b=no
+        ignoreDifficulty:b=no
+        scale:r=1.0
+        target:t="germ_fleet_point"
+      }
+
+      moAddMissionObjective{
+        target:t="dlc_britain_the_blitz_evacuate"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  player_left_battle_zone{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      playersWhenInArea{
+        math:t="notNear2D"
+        players:t="isAlive"
+        check_players:t="all"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_type:t="isAlive"
+        check_period:r=1.0
+        target:t="battle_zone"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="update_raf_air_def_indicator"
+      }
+
+      missionSetTargetsIndicator{
+        target_type:t="isAlive"
+        target_marking:i=0
+        delta:i=0
+        icon:t="aa"
+        "icon army":i=2
+        set:b=no
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="squad_raf_air_def"
+      }
+
+      moSetObjectiveStatus{
+        target:t="dlc_britain_the_blitz_to_air_def_kill_add"
+        status:i=3
+        object_marking:i=0
+        object_var_comp_op:t="equal"
+        object_var_name:t=""
+      }
+
+      unitSetIndication{
+        set:b=no
+        target:t="squad_raf_air_def"
+      }
+
+      unitSetProperties{
+        object:t="squad_raf_air_def"
+        stealthRadius:r=7500.0
+      }
+
+      triggerEnable{
+        target:t="check_for_air_def_add_failed"
+        target:t="coop_check_for_additional_planes"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  coop_check_for_additional_planes{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isOnline"
+        object_marking:i=0
+        func:t="more"
+        value:i=1
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="player_wing"
+      }
+    }
+
+    actions{
+
+      unitWakeUp{
+        target:t="raf_spitfire_02"
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=yes
+        object:t="raf_spitfire_02"
+        target:t="player_wing"
+        fireRandom:b=yes
+        playerAttractedCount:i=3
+        playerAttractedEffRate:r=1.0
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  air_def_kill_all_begin{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isKilledByPlayer"
+        object_marking:i=0
+        func:t="more"
+        value:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="squad_raf_air_def"
+      }
+    }
+
+    actions{
+
+      moAddMissionObjective{
+        target:t="dlc_britain_the_blitz_to_air_def_kill_add"
+      }
+
+      triggerEnable{
+        target:t="check_for_air_def_add_completed"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  check_for_air_def_add_completed{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isAlive"
+        object_marking:i=0
+        func:t="less"
+        value:i=1
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="squad_raf_air_def"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="check_for_air_def_add_failed"
+      }
+
+      moSetObjectiveStatus{
+        target:t="dlc_britain_the_blitz_to_air_def_kill_add"
+        status:i=2
+        object_marking:i=0
+        object_var_comp_op:t="equal"
+        object_var_name:t=""
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  check_for_air_def_add_failed{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isAlive"
+        object_marking:i=0
+        func:t="more"
+        value:i=1
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="squad_raf_air_def"
+      }
+
+      unitWhenCountMatches{
+        object_type:t="isKilledByPlayer"
+        object_marking:i=0
+        func:t="more"
+        value:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="squad_raf_air_def"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="check_for_air_def_add_completed"
+      }
+
+      moSetObjectiveStatus{
+        target:t="dlc_britain_the_blitz_to_air_def_kill_add"
+        status:i=3
+        object_marking:i=0
+        object_var_comp_op:t="equal"
+        object_var_name:t=""
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  player_at_halfway_to_way_back{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      playersDistanceBetween{
+        value:r=13000.0
+        math:t="notNear2D"
+        players:t="isAlive"
+        target_type:t="isAlive"
+        check_players:t="any"
+        check_targets:t="any"
+        target:t="battle_point"
+      }
+    }
+
+    actions{
+
+      unitWakeUp{
+        target:t="raf_spitfire_01"
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=yes
+        object:t="raf_spitfire_01"
+        target:t="player_wing"
+        fireRandom:b=yes
+        playerAttractedCount:i=3
+        playerAttractedEffRate:r=1.0
+      }
+
+      triggerEnable{
+        target:t="player_near_fleet"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  player_near_fleet{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      playersDistanceBetween{
+        value:r=1500.0
+        math:t="2D"
+        players:t="isAlive"
+        target_type:t="isAlive"
+        check_players:t="any"
+        check_targets:t="any"
+        target:t="germ_fleet_point"
+      }
+    }
+
+    actions{
+
+      missionMarkAsWaypoint{
+        visible:b=no
+        primary:b=yes
+        oriented:b=no
+        ignoreDifficulty:b=no
+        scale:r=1.0
+        target:t="germ_fleet_point"
+      }
+
+      moSetObjectiveStatus{
+        target:t="dlc_britain_the_blitz_evacuate"
+        status:i=2
+        object_marking:i=0
+        object_var_comp_op:t="equal"
+        object_var_name:t=""
+      }
+
+      wait{
+        time:r=7.0
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      missionCompleted{
+        timer:b=no
+      }
+
+      missionDebriefing{
+      }
+    }
+
+    else_actions{
+    }
+  }
+}
+
+mission_objectives{
+  isCategory:b=yes
+  is_enabled:b=yes
+
+  dlc_britain_the_blitz_to_battle_point{
+    is_enabled:b=no
+    comments:t=""
+    type:t="abstractMissionObjective"
+
+    props{
+      isPrimary:b=yes
+      timeLimit:i=1800
+      scoreConst:i=100
+      scoreTime:i=400
+    }
+
+    onSuccess{
+    }
+
+    onFailed{
+    }
+  }
+
+  dlc_britain_the_blitz_to_air_def_kill{
+    is_enabled:b=no
+    comments:t=""
+    type:t="abstractMissionObjective"
+
+    props{
+      isPrimary:b=yes
+      timeLimit:i=1800
+      scoreConst:i=100
+      scoreTime:i=400
+    }
+
+    onSuccess{
+    }
+
+    onFailed{
+    }
+  }
+
+  dlc_britain_the_blitz_to_air_def_kill_add{
+    is_enabled:b=no
+    comments:t=""
+    type:t="abstractMissionObjective"
+
+    props{
+      isPrimary:b=no
+      timeLimit:i=1800
+      scoreConst:i=100
+      scoreTime:i=400
+    }
+
+    onSuccess{
+    }
+
+    onFailed{
+    }
+  }
+
+  dlc_britain_the_blitz_evacuate{
+    is_enabled:b=no
+    comments:t=""
+    type:t="abstractMissionObjective"
+
+    props{
+      isPrimary:b=yes
+      timeLimit:i=1800
+      scoreConst:i=100
+      scoreTime:i=400
+    }
+
+    onSuccess{
+    }
+
+    onFailed{
+    }
+  }
+}
+
+variables{
+}
+
+dialogs{
+}
+
+airfields{
+}
+
+effects{
+}
+
+units{
+
+  structures{
+    name:t="bomb_target_01"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [5802.25, 34.9175, 15831.8]]
+    unit_class:t="dummy"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="bomb_target_02"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [5633.55, 2.73235, 16301.6]]
+    unit_class:t="dummy"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="bomb_target_03"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [6130.1, 32.1, 16356.2]]
+    unit_class:t="dummy"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="bomb_target_04"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [6589.8, 27.25, 16684.5]]
+    unit_class:t="dummy"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="bomb_target_05"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [6172.2, 0.0, 15362.0]]
+    unit_class:t="dummy"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="bomb_target_06"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [6505.7, 0.0, 15670.4]]
+    unit_class:t="dummy"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="bomb_target_07"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [5537.5, 19.6184, 15674.5]]
+    unit_class:t="dummy"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="bomb_target_08"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [5521.4, 23.7211, 15479.8]]
+    unit_class:t="dummy"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="bomb_target_09"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [5380.8, 24.6412, 15401.9]]
+    unit_class:t="dummy"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="bomb_target_10"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [5144.65, 0.0, 16391.0]]
+    unit_class:t="dummy"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="bomb_target_11"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [5505.45, 30.7128, 16759.5]]
+    unit_class:t="dummy"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="bomb_target_12"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [6397.9, 35.3, 15852.0]]
+    unit_class:t="dummy"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="bomb_target_13"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [6833.55, 53.3, 15420.4]]
+    unit_class:t="dummy"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="bomb_target_14"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [6041.2, 0.0, 15039.0]]
+    unit_class:t="dummy"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="bomb_target_15"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [5161.7, 25.1023, 15398.5]]
+    unit_class:t="dummy"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="bomb_target_16"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [6061.1, 33.7278, 15505.0]]
+    unit_class:t="dummy"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="bomb_target_17"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [6645.8, 27.55, 16788.8]]
+    unit_class:t="dummy"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="bomb_target_18"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [6642.05, 23.9, 16898.3]]
+    unit_class:t="dummy"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="bomb_target_19"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [6409.65, 23.9, 16811.7]]
+    unit_class:t="dummy"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="bomb_target_20"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [6507.9, 35.3, 15976.1]]
+    unit_class:t="dummy"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="bomb_target_21"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [6639.5, 35.3, 15871.3]]
+    unit_class:t="dummy"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="bomb_target_22"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [6671.05, 35.3, 16055.0]]
+    unit_class:t="dummy"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  squad{
+    name:t="squad_bombs_target_01"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [6065.3, 39.95, 16005.0]]
+
+    props{
+      squad_members:t="bomb_target_01"
+      squad_members:t="bomb_target_02"
+      squad_members:t="bomb_target_03"
+      squad_members:t="bomb_target_04"
+      squad_members:t="bomb_target_05"
+      squad_members:t="bomb_target_06"
+      squad_members:t="bomb_target_07"
+      squad_members:t="bomb_target_08"
+      squad_members:t="bomb_target_09"
+      squad_members:t="bomb_target_10"
+      squad_members:t="bomb_target_11"
+      squad_members:t="bomb_target_12"
+      squad_members:t="bomb_target_13"
+      squad_members:t="bomb_target_14"
+      squad_members:t="bomb_target_15"
+      squad_members:t="bomb_target_16"
+    }
+  }
+
+  squad{
+    name:t="squad_germ_planes"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [20089.9, -1.0, -6322.3]]
+
+    props{
+      squad_members:t="ally_me_110"
+      squad_members:t="ally_he_111"
+    }
+  }
+
+  squad{
+    name:t="squad_raf_air_def"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [4687.35, 52.15, 16000.3]]
+
+    props{
+      squad_members:t="raf_air_def_01"
+      squad_members:t="raf_air_def_02"
+      squad_members:t="raf_air_def_03"
+      squad_members:t="raf_air_def_04"
+      squad_members:t="raf_air_def_05"
+      squad_members:t="raf_air_def_06"
+      squad_members:t="raf_air_def_07"
+      squad_members:t="raf_air_def_08"
+      squad_members:t="raf_air_def_09"
+      squad_members:t="raf_air_def_10"
+      squad_members:t="raf_air_def_11"
+      squad_members:t="raf_air_def_12"
+      squad_members:t="raf_air_def_13"
+      squad_members:t="raf_air_def_14"
+      squad_members:t="raf_air_def_15"
+      squad_members:t="raf_air_def_16"
+    }
+  }
+
+  squad{
+    name:t="squad_bombs_target_02"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [6213.7, 48.3, 16005.0]]
+
+    props{
+      squad_members:t="bomb_target_17"
+      squad_members:t="bomb_target_18"
+      squad_members:t="bomb_target_19"
+      squad_members:t="bomb_target_20"
+      squad_members:t="bomb_target_21"
+      squad_members:t="bomb_target_22"
+    }
+  }
+
+  armada{
+    name:t="player_wing"
+    tm:m=[[-0.573576, 0.0, 0.819152] [0.0, 1.0, 0.0] [-0.819152, 0.0, -0.573576] [21009.0, 2000.0, -7518.45]]
+    unit_class:t="bf-110c-4"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="Bf-110C-4_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=1
+      count:i=4
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=2
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="ally_me_110"
+    tm:m=[[-0.573576, 0.0, 0.819152] [0.0, 1.0, 0.0] [-0.819152, 0.0, -0.573576] [20564.4, 2500.0, -6877.75]]
+    unit_class:t="bf-110c-4"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="Bf-110C-4_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=1
+      count:i=10
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=2
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="ally_he_111"
+    tm:m=[[-0.573576, 0.0, 0.819152] [0.0, 1.0, 0.0] [-0.819152, 0.0, -0.573576] [20564.4, 2000.0, -6877.75]]
+    unit_class:t="he-111h-2"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="he-111h-2_8xSC250"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=1
+      count:i=30
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=2
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="raf_hurricane_01"
+    tm:m=[[0.953717, 0.0, -0.300706] [0.0, 1.0, 0.0] [0.300706, 0.0, 0.953717] [10608.1, 3000.0, 1830.85]]
+    unit_class:t="hurricane_mk1"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="hurricane_mk1_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=9
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=3
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="raf_hurricane_02"
+    tm:m=[[0.0436195, 0.0, -0.999048] [0.0, 1.0, 0.0] [0.999048, 0.0, 0.0436195] [6019.4, 1475.4, 19624.8]]
+    unit_class:t="hurricane_mk1"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="hurricane_mk1_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=9
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=3
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="raf_spitfire_02"
+    tm:m=[[0.130526, 0.0, 0.991445] [0.0, 1.0, 0.0] [-0.991445, 0.0, 0.130526] [8252.25, 2475.4, 5937.95]]
+    unit_class:t="spitfire_mk1"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="spitfire_mk1_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=6
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=2
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="raf_spitfire_01"
+    tm:m=[[-0.766044, 0.0, 0.642788] [0.0, 1.0, 0.0] [-0.642788, 0.0, -0.766044] [20904.0, 3000.0, -1175.3]]
+    unit_class:t="spitfire_mk1"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="spitfire_mk1_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=4
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=2
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="raf_hurricane_05"
+    tm:m=[[0.5, 0.0, -0.866025] [0.0, 1.0, 0.0] [0.866025, 0.0, 0.5] [1491.15, 3106.6, 16305.2]]
+    unit_class:t="hurricane_mk1"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="hurricane_mk1_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=6
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=3
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="raf_air_def_01"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [6309.55, 59.6105, 15179.4]]
+    unit_class:t="us_90mm_m1"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="raf_air_def_02"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [6499.6, 54.6486, 15235.7]]
+    unit_class:t="uk_12mm_m2_noground"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="raf_air_def_03"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [6642.05, 55.9344, 15109.9]]
+    unit_class:t="us_90mm_m1"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="raf_air_def_04"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [6676.5, 42.3872, 15425.6]]
+    unit_class:t="uk_12mm_m2_noground"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="raf_air_def_05"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [5868.1, 46.531, 15011.1]]
+    unit_class:t="us_90mm_m1"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="raf_air_def_06"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [5681.9, 36.0685, 15224.9]]
+    unit_class:t="uk_12mm_m2_noground"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="raf_air_def_07"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [6289.9, 0.0, 14846.4]]
+    unit_class:t="us_90mm_m1"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="raf_air_def_08"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [6922.6, 57.2158, 15035.5]]
+    unit_class:t="uk_12mm_m2_noground"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="raf_air_def_09"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [5677.05, 28.1128, 15429.3]]
+    unit_class:t="us_90mm_m1"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="raf_air_def_10"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [6115.65, 25.65, 15953.9]]
+    unit_class:t="uk_12mm_m2_noground"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="raf_air_def_11"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [5944.9, 29.55, 15824.0]]
+    unit_class:t="us_90mm_m1"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="raf_air_def_12"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [5584.3, 20.5, 15748.5]]
+    unit_class:t="uk_12mm_m2_noground"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="raf_air_def_13"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [5633.1, -1.0, 16404.2]]
+    unit_class:t="us_90mm_m1"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="raf_air_def_14"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [5521.5, -1.0, 16285.3]]
+    unit_class:t="uk_12mm_m2_noground"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="raf_air_def_15"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [4894.6, 0.0, 16296.3]]
+    unit_class:t="us_90mm_m1"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="raf_air_def_16"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [5546.9, 35.3405, 16963.9]]
+    unit_class:t="uk_12mm_m2_noground"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="germ_navy_ships"
+    tm:m=[[0.67559, 0.0, 0.737277] [0.0, 1.0, 0.0] [-0.737277, 0.0, 0.67559] [22472.4, -1.0, -7758.0]]
+    unit_class:t="germ_dd_z28"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=1
+      count:i=8
+      formation_type:t="rows"
+      formation_div:i=8
+      formation_step:p2=5.0, 3.0
+      formation_noise:p2=1.0, 1.0
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+}
+
+areas{
+
+  battle_point{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [6136.5, 2200.0, 15208.8]]
+
+    props{
+    }
+  }
+
+  raf_safe_point{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-13233.2, 2000.0, -5175.8]]
+
+    props{
+    }
+  }
+
+  evacuate_point{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [46739.7, 1200.0, -31509.2]]
+
+    props{
+    }
+  }
+
+  battle_zone{
+    type:t="Sphere"
+    tm:m=[[7000.0, 0.0, 0.0] [0.0, 7000.0, 0.0] [0.0, 0.0, 7000.0] [5872.0, 9.15, 16202.5]]
+
+    props{
+    }
+  }
+
+  germ_fleet_point{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [22305.3, 1500.0, -9415.0]]
+
+    props{
+    }
+  }
+}
+
+objLayers{
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+}
+
+wayPoints{
+}

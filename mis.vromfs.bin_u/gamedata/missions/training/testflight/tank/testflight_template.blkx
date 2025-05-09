@@ -1,0 +1,1936 @@
+selected_tag:t=""
+bin_dump_file:t=""
+
+mission_settings{
+
+  player{
+    army:i=1
+    wing:t="t1_player01"
+  }
+
+  player_teamB{
+    army:i=2
+  }
+
+  mission{
+    type:t="singleMission"
+    level:t="levels/avg_training_ground.bin"
+    environment:t="Day"
+    weather:t="hazy"
+    restoreType:t="attempts"
+    optionalTakeOff:b=no
+  }
+
+  spectator_points{
+  }
+}
+
+imports{
+
+  import_record{
+    file:t="gameData/missions/training/testFlight/tank/testFlight_sound_areas.blk"
+    importAreas:b=yes
+    importUnits:b=yes
+    importTriggers:b=yes
+    importMissionObjectives:b=yes
+    importWayPoints:b=yes
+    importDialogs:b=yes
+    showAreas:b=yes
+    showUnits:b=yes
+    showTriggers:b=yes
+    showMissionObjectives:b=yes
+    showWayPoints:b=yes
+    showDialogs:b=yes
+
+    excludes{
+    }
+  }
+}
+
+triggers{
+  isCategory:b=yes
+  is_enabled:b=yes
+
+  init{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      initMission{
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      varSetString{
+        value:t="target_tanks_squad"
+        var:t="target_tanks_squad"
+      }
+
+      varSetString{
+        value:t="t1_player01"
+        var:t="player"
+      }
+
+      unitPutToSleep{
+        target:t="@target_tanks_squad"
+        target:t="flight_target01"
+      }
+
+      missionMarkAsRespawnPoint{
+        loc_name:t=""
+        spawnEffect:b=no
+        isGroundZone:b=no
+        radius:r=-1.0
+        target:t="artillery_spawn01"
+        target:t="artillery_spawn02"
+        target:t="artillery_spawn03"
+        target:t="artillery_spawn04"
+        team:t="A"
+        isStrictSpawn:b=no
+        resetStrictSpawnIndex:b=no
+        isAirfield:b=no
+        isUnit:b=no
+        forceCreate:b=no
+        useExisting:b=no
+        ignoreTeamsOnReuse:b=no
+        isIndividual:b=no
+        onlyOnePlayerPerSpawnPoint:b=no
+        removeAreas:b=no
+        replaceAreas:b=no
+        canSpawnOnNeutral:b=no
+        showOnMap:b=yes
+
+        tags{
+          artillery:b=yes
+        }
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  end{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      playersWhenStatus{
+        players:t="isKilled"
+        check_players:t="any"
+      }
+    }
+
+    actions{
+
+      wait{
+        time:r=3.0
+      }
+
+      unitRespawn{
+        delay:r=1.0
+        offset:p3=0.0, 0.0, 0.0
+        object:t="t1_player01"
+        target:t="spawn01"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  name_assemble{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      varSetString{
+        value:t="target_tank"
+        var:t="target_tank"
+      }
+
+      varSetString{
+        value:t="tank_spawn_area"
+        var:t="tank_spawn_area"
+      }
+
+      varAddString{
+        value:t=""
+        digits:i=2
+        var:t="target_tank"
+        input_var:t="tank_num"
+      }
+
+      varAddString{
+        value:t=""
+        digits:i=2
+        var:t="tank_spawn_area"
+        input_var:t="tank_num"
+      }
+
+      triggerEnable{
+        target:t="check_exist"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  check_exist{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      objectExists{
+        target:t="@target_tank"
+        type:t="unit"
+      }
+    }
+
+    actions{
+
+      unitRespawn{
+        delay:r=1.0
+        offset:p3=0.0, 0.0, 0.0
+        object:t="@target_tank"
+        target:t="@tank_spawn_area"
+      }
+
+      unitSetVar{
+        object_var_name:t="killed"
+        object:t="@target_tank"
+        object_var_value:i=0
+      }
+
+      unitSetVar{
+        object_var_name:t="self_name"
+        object:t="@target_tank"
+        object_var_string:t="@target_tank"
+      }
+
+      unitSetVar{
+        object_var_name:t="self_spawn_area"
+        object:t="@target_tank"
+        object_var_string:t="@tank_spawn_area"
+      }
+
+      varModify{
+        operator:t="add"
+        value:r=1.0
+        var:t="tank_num"
+      }
+
+      triggerEnable{
+        target:t="name_assemble"
+      }
+    }
+
+    else_actions{
+
+      unitSetRoute{
+        route:t="way_target_tank05"
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        teleportToStart:b=yes
+        object:t="target_tank06"
+        object_type:t="isActive"
+      }
+
+      unitSetProperties{
+        object:t="@target_tanks_squad"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        forceVisibleOnMap:b=yes
+        attack_type:t="dont_aim"
+        speed:r=25.0
+        lockSpeed:b=yes
+      }
+
+      varSetInt{
+        value:i=0
+        var:t="tanks_total"
+        input_var:t="tank_num"
+      }
+
+      varSetInt{
+        value:i=0
+        var:t="tank_num"
+      }
+
+      varModify{
+        operator:t="add"
+        value:r=-1.0
+        var:t="tanks_total"
+      }
+
+      triggerEnable{
+        target:t="tick_killed"
+        target:t="atgm_init"
+      }
+    }
+  }
+
+  spawn_plane{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      objectExists{
+        target:t="flight_target01"
+        type:t="unit"
+      }
+
+      objectExists{
+        target:t="spawn_area"
+        type:t="area"
+      }
+
+      objectExists{
+        target:t="flight_point"
+        type:t="area"
+      }
+    }
+
+    actions{
+
+      unitLoadBehTree{
+        name:t="missionKamikaze"
+        objects:t="flight_target01"
+      }
+
+      unitRespawn{
+        delay:r=1.0
+        offset:p3=0.0, 0.0, 0.0
+        object:t="flight_target01"
+        target:t="spawn_area"
+      }
+
+      __unitMoveTo{
+        object_marking:i=0
+        target:t="flight_point"
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=no
+        shouldKeepFormation:b=no
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        fastClimb:b=no
+        destTimeMode:b=no
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        shouldKeepAirFormation:b=yes
+        object:t="flight_target01"
+      }
+
+      triggerEnable{
+        target:t="respawn_plane"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  spawn_plane2{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      objectExists{
+        target:t="flight_target02"
+        type:t="unit"
+      }
+
+      objectExists{
+        target:t="spawn_area02"
+        type:t="area"
+      }
+
+      objectExists{
+        target:t="flight_point02"
+        type:t="area"
+      }
+    }
+
+    actions{
+
+      unitLoadBehTree{
+        name:t="missionKamikaze"
+        objects:t="flight_target02"
+      }
+
+      unitRespawn{
+        delay:r=1.0
+        offset:p3=0.0, 0.0, 0.0
+        object:t="flight_target02"
+        target:t="spawn_area02"
+      }
+
+      __unitMoveTo{
+        object_marking:i=0
+        target:t="flight_point02"
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=no
+        shouldKeepFormation:b=no
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        fastClimb:b=no
+        destTimeMode:b=no
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        shouldKeepAirFormation:b=yes
+        object:t="flight_target02"
+      }
+
+      triggerEnable{
+        target:t="respawn_plane2"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  spawn_plane3{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      objectExists{
+        target:t="flight_target03"
+        type:t="unit"
+      }
+
+      objectExists{
+        target:t="spawn_area03"
+        type:t="area"
+      }
+    }
+
+    actions{
+
+      unitRespawn{
+        delay:r=1.0
+        offset:p3=0.0, 0.0, 0.0
+        object:t="flight_target03"
+        target:t="spawn_area03"
+      }
+
+      triggerEnable{
+        target:t="respawn_plane3"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  spawn_helicopter1{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      objectExists{
+        target:t="helicopter_target01"
+        type:t="unit"
+      }
+
+      objectExists{
+        target:t="helispawn_area01"
+        type:t="area"
+      }
+    }
+
+    actions{
+
+      varSetInt{
+        value:i=0
+        var:t="timer_replay"
+      }
+
+      unitRespawn{
+        delay:r=1.0
+        offset:p3=0.0, 0.0, 0.0
+        object:t="helicopter_target01"
+        target:t="helispawn_area01"
+        lookAtTargetUponRespawn:t="flight_point02"
+      }
+
+      unitLoadBehTree{
+        name:t="missionHitThePoint"
+        objects:t="helicopter_target01"
+        loadType:t="tree"
+      }
+
+      unitMoveTo{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="flight_point02"
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        follow_target:b=no
+        fastClimb:b=no
+        destTimeMode:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=no
+        shouldKeepAirFormation:b=yes
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object:t="helicopter_target01"
+        move_type:t="move"
+      }
+
+      triggerEnable{
+        target:t="respawn_helicopter1"
+        target:t="timer_start"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  mark_battle_area{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      objectExists{
+        target:t="game_area"
+        type:t="area"
+      }
+    }
+
+    actions{
+
+      missionBattleArea{
+        air:b=no
+        ground:b=yes
+        mapArea:b=yes
+        airMapArea:b=no
+        killArea:b=no
+        detectionArea:b=no
+        killOutOfBattleArea:b=yes
+        area:t="game_area"
+        team:t="A"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  mark_rearm_area{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      objectExists{
+        target:t="rearm_area"
+        type:t="area"
+      }
+    }
+
+    actions{
+
+      missionMarkAsRearmZone{
+        army:i=1
+        area_name:t="rearm_area"
+        enabled:b=yes
+
+        tags{
+          tank:b=yes
+        }
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  tick_killed{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenStatus{
+        object_type:t="isKilled"
+        check_objects:t="any"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object:t="@target_tanks_squad"
+      }
+    }
+
+    actions{
+
+      unitModifyVar{
+        object_var_name:t="killed"
+        operator:t="add"
+        value:i=1
+        object:t="@target_tanks_squad"
+        useForTriggerFiltered:b=yes
+      }
+
+      triggerEnable{
+        target:t="respawn_target"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  respawn_target{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      unitWhenStatus{
+        object_type:t="isUnitVar"
+        check_objects:t="any"
+        object_marking:i=0
+        object_var_name:t="killed"
+        object_var_comp_op:t="more"
+        object_var_value:i=0
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object:t="@target_tanks_squad"
+        input_var:t="target_respawn_time"
+      }
+    }
+
+    actions{
+
+      unitGetVar{
+        object_marking:i=0
+        object:t="@target_tanks_squad"
+        object_var_name:t="self_name"
+        useForTriggerFiltered:b=yes
+        out_var_string:t="target_tank"
+      }
+
+      unitGetVar{
+        object_marking:i=0
+        object:t="@target_tank"
+        object_var_name:t="self_spawn_area"
+        out_var_string:t="tank_spawn_area"
+      }
+
+      unitSetVar{
+        object_var_name:t="killed"
+        object:t="@target_tank"
+        object_var_value:i=0
+      }
+
+      unitRespawn{
+        delay:r=0.0
+        offset:p3=0.0, 0.0, 0.0
+        object:t="@target_tank"
+        target:t="@tank_spawn_area"
+        needStopOnRespawn:b=yes
+      }
+
+      triggerEnable{
+        target:t="set_route"
+      }
+
+      triggerEnable{
+        target:t="tick_killed"
+      }
+    }
+
+    else_actions{
+
+      triggerEnable{
+        target:t="tick_killed"
+      }
+    }
+  }
+
+  set_route{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      varCompareString{
+        var_value:t="target_tank"
+        value:t="target_tank06"
+        comparasion_func:t="equal"
+      }
+    }
+
+    actions{
+
+      wait{
+        time:r=0.1
+      }
+
+      unitSetRoute{
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        route:t="way_target_tank05"
+        teleportToStart:b=yes
+        object:t="@target_tank"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  respawn_plane{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenStatus{
+        object_type:t="isInactive"
+        check_objects:t="any"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object:t="flight_target01"
+      }
+    }
+
+    actions{
+
+      wait{
+        time:r=15.0
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      unitPutToSleep{
+        target:t="flight_target01"
+      }
+
+      unitRespawn{
+        delay:r=1.0
+        offset:p3=0.0, 0.0, 0.0
+        object:t="flight_target01"
+        target:t="spawn_area"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  respawn_plane2{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenStatus{
+        object_type:t="isInactive"
+        check_objects:t="any"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object:t="flight_target02"
+      }
+    }
+
+    actions{
+
+      wait{
+        time:r=15.0
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      unitPutToSleep{
+        target:t="flight_target02"
+      }
+
+      unitRespawn{
+        delay:r=1.0
+        offset:p3=0.0, 0.0, 0.0
+        object:t="flight_target02"
+        target:t="spawn_area02"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  respawn_plane3{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenStatus{
+        object_type:t="isInactive"
+        check_objects:t="any"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object:t="flight_target03"
+      }
+    }
+
+    actions{
+
+      wait{
+        time:r=15.0
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      unitPutToSleep{
+        target:t="flight_target03"
+      }
+
+      unitRespawn{
+        delay:r=1.0
+        offset:p3=0.0, 0.0, 0.0
+        object:t="flight_target03"
+        target:t="spawn_area03"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  respawn_helicopter1{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ANY"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenStatus{
+        object_type:t="isInactive"
+        check_objects:t="any"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object:t="helicopter_target01"
+      }
+
+      varCompareInt{
+        var_value:t="timer_replay"
+        value:i=60
+        comparasion_func:t="more"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="timer_start"
+      }
+
+      wait{
+        time:r=15.0
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      unitPutToSleep{
+        target:t="helicopter_target01"
+      }
+
+      varSetInt{
+        value:i=0
+        var:t="timer_replay"
+      }
+
+      triggerEnable{
+        target:t="timer_start"
+      }
+
+      unitRespawn{
+        delay:r=1.0
+        offset:p3=0.0, 0.0, 0.0
+        object:t="helicopter_target01"
+        target:t="helispawn_area01"
+        lookAtTargetUponRespawn:t="flight_point02"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  atgm_init{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      initMission{
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      varSetString{
+        value:t="target_tank_atgm"
+        var:t="atgm_unit"
+      }
+
+      varSetString{
+        value:t="tank_spawn_area_atgm"
+        var:t="atgm_unit_spawn"
+      }
+
+      varSetInt{
+        value:i=0
+        var:t="atgm_timer"
+        input_var:t="atgm_time"
+      }
+
+      triggerEnable{
+        target:t="atgm_enable"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  atgm_enable{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      objectExists{
+        target:t="atgm_vs_player_area"
+        type:t="area"
+      }
+
+      unitCheckTag{
+        target:t="@player"
+
+        tags{
+          has_aps:b=yes
+        }
+      }
+    }
+
+    actions{
+
+      missionShowMapIcon{
+        show:b=yes
+        team:t="A"
+        iconName:t="ui/gameuiskin#fighter_radar"
+        areaName:t="atgm_vs_player_area"
+        colorCode:t="Enemy"
+        scale:r=50.0
+        scaleWithMap:b=yes
+        opacity:i=192
+      }
+
+      missionShowMapIcon{
+        show:b=yes
+        team:t="A"
+        iconName:t="ui/gameuiskin#shadow_fighter_radar.svg"
+        areaName:t="atgm_vs_player_area"
+        colorCode:t="White"
+        scale:r=40.0
+        scaleWithMap:b=yes
+        opacity:i=192
+      }
+
+      unitRespawn{
+        delay:r=1.0
+        offset:p3=0.0, 0.0, 0.0
+        object:t="@atgm_unit"
+        target:t="@atgm_unit_spawn"
+      }
+
+      unitSetVar{
+        object_var_name:t="killed"
+        object:t="@atgm_unit"
+        object_var_value:i=0
+      }
+
+      unitSetVar{
+        object_var_name:t="self_name"
+        object:t="@atgm_unit"
+        object_var_string:t="@atgm_unit"
+      }
+
+      unitSetVar{
+        object_var_name:t="self_spawn_area"
+        object:t="@atgm_unit"
+        object_var_string:t="@atgm_unit_spawn"
+      }
+
+      triggerEnable{
+        target:t="atgm_restore"
+        target:t="atgm_in_area"
+        target:t="atgm_fire_on"
+        target:t="atgm_repair"
+        target:t="atgm_unit_killed"
+      }
+    }
+
+    else_actions{
+
+      unitPutToSleep{
+        target:t="atgm_objgrp_sq"
+      }
+    }
+  }
+
+  atgm_unit_killed{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenKilled{
+        target:t="@atgm_unit"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="atgm_fire_on"
+        target:t="atgm_fire_off"
+        target:t="atgm_in_area"
+      }
+
+      triggerEnable{
+        target:t="atgm_unit_respawned"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  atgm_unit_respawned{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenStatus{
+        object_type:t="isAlive"
+        check_objects:t="any"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object:t="@atgm_unit"
+      }
+    }
+
+    actions{
+
+      triggerActivate{
+        target:t="atgm_fire_off"
+        activate_type:t="ignoreConditions"
+        check_trigger_status:b=no
+        after_activation:t="disable"
+      }
+
+      triggerEnable{
+        target:t="atgm_unit_killed"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  atgm_fire_rate{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      unitWhenStatus{
+        object_type:t="isShooting"
+        check_objects:t="any"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object:t="@atgm_unit"
+      }
+    }
+
+    actions{
+
+      unitSetProperties{
+        object:t="@atgm_unit"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        attack_type:t="dont_aim"
+      }
+
+      unitSetProperties{
+        object:t="@atgm_unit"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        attack_type:t="fire_at_will"
+      }
+
+      wait{
+        time:r=5.0
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  atgm_restore{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      unitRestore{
+        target_marking:i=0
+        ressurectIfDead:b=no
+        fullRestore:b=no
+        target:t="@atgm_unit"
+        ammoRestore:b=yes
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  atgm_repair{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      unitWhenHit{
+        target:t="@player"
+        offender:t="@atgm_unit"
+        clearHandledEvents:b=yes
+      }
+    }
+
+    actions{
+
+      wait{
+        time:r=4.0
+      }
+
+      unitRestore{
+        target_marking:i=0
+        ressurectIfDead:b=no
+        fullRestore:b=yes
+        target:t="@player"
+        ammoRestore:b=no
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  atgm_in_area{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenInArea{
+        math:t="2D"
+        object_type:t="isAlive"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        check_objects:t="any"
+        object:t="@player"
+        target:t="atgm_vs_player_area"
+      }
+
+      unitWhenStatus{
+        object_type:t="isAlive"
+        check_objects:t="any"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object:t="@atgm_unit"
+      }
+    }
+
+    actions{
+
+      triggerActivate{
+        target:t="atgm_time"
+        activate_type:t="checkConidtions"
+        check_trigger_status:b=no
+        after_activation:t="disable"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  atgm_time{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenProperties{
+        object:t="@player"
+        func:t="less"
+        value:r=0.5
+        property:t="speed"
+        check_filter:t="all"
+        object_type:t="isAlive"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+      }
+    }
+
+    actions{
+
+      playHint{
+        hintType:t="standard"
+        name:t="hints/atgm_timer"
+        action:t="show"
+        shouldFadeOut:b=no
+        isOverFade:b=no
+        time:r=1.0
+        priority:i=0
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        var_name:t="atgm_timer"
+      }
+
+      varModify{
+        operator:t="add"
+        value:r=-1.0
+        var:t="atgm_timer"
+      }
+    }
+
+    else_actions{
+
+      playHint{
+        hintType:t="standard"
+        name:t="hints/atgm_warning"
+        action:t="show"
+        shouldFadeOut:b=no
+        isOverFade:b=no
+        time:r=1.0
+        priority:i=0
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+      }
+
+      varSetInt{
+        value:i=0
+        var:t="atgm_timer"
+        input_var:t="atgm_time"
+      }
+    }
+  }
+
+  atgm_fire_on{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      varCompareInt{
+        var_value:t="atgm_timer"
+        value:i=1
+        comparasion_func:t="less"
+      }
+    }
+
+    actions{
+
+      unitSetProperties{
+        object:t="@atgm_unit"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        attack_type:t="fire_at_will"
+      }
+
+      unitSetIndication{
+        set:b=yes
+        target:t="@atgm_unit"
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+      }
+
+      triggerDisable{
+        target:t="atgm_in_area"
+      }
+
+      triggerEnable{
+        target:t="atgm_fire_rate"
+      }
+
+      triggerEnable{
+        target:t="atgm_fire_off"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  atgm_fire_off{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ANY"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenInArea{
+        math:t="notNear2D"
+        object_type:t="isAlive"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        check_objects:t="any"
+        object:t="@player"
+        target:t="atgm_vs_player_area"
+      }
+
+      unitWhenProperties{
+        object:t="@player"
+        func:t="notLess"
+        value:r=0.5
+        property:t="speed"
+        check_filter:t="all"
+        object_type:t="isAlive"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+      }
+    }
+
+    actions{
+
+      unitSetProperties{
+        object:t="@atgm_unit"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        attack_type:t="dont_aim"
+      }
+
+      unitSetIndication{
+        set:b=no
+        target:t="@atgm_unit"
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+      }
+
+      varSetInt{
+        value:i=0
+        var:t="atgm_timer"
+        input_var:t="atgm_time"
+      }
+
+      triggerDisable{
+        target:t="atgm_fire_rate"
+      }
+
+      triggerEnable{
+        target:t="atgm_in_area"
+      }
+
+      triggerEnable{
+        target:t="atgm_fire_on"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  timer_start{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      varModify{
+        operator:t="add"
+        value:r=1.0
+        var:t="timer_replay"
+      }
+    }
+
+    else_actions{
+    }
+  }
+}
+
+mission_objectives{
+  isCategory:b=yes
+  is_enabled:b=yes
+}
+
+variables{
+  target_tank:t=""
+  tank_num:i=1
+  tank_spawn_area:t=""
+  tanks_total:i=0
+  unit_var:i=0
+  target_tanks_squad:t=""
+  target_respawn_time:i=25
+  atgm_timer:i=0
+  atgm_time:i=3
+  atgm_unit:t=""
+  player:t=""
+  atgm_unit_spawn:t=""
+  timer_replay:i=0
+}
+
+dialogs{
+}
+
+airfields{
+}
+
+effects{
+}
+
+units{
+}
+
+areas{
+
+  artillery_spawn01{
+    type:t="Point"
+    tm:m=[[0.300706, 0.0, 0.953717] [0.0, 1.0, 0.0] [-0.953717, 0.0, 0.300706] [1267.02, 159.532, -493.17]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  artillery_spawn02{
+    type:t="Point"
+    tm:m=[[0.300706, 0.0, 0.953717] [0.0, 1.0, 0.0] [-0.953717, 0.0, 0.300706] [1200.42, 166.037, -452.46]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  artillery_spawn03{
+    type:t="Point"
+    tm:m=[[0.300706, 0.0, 0.953717] [0.0, 1.0, 0.0] [-0.953717, 0.0, 0.300706] [1130.52, 160.526, -405.62]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  artillery_spawn04{
+    type:t="Point"
+    tm:m=[[0.300706, 0.0, 0.953717] [0.0, 1.0, 0.0] [-0.953717, 0.0, 0.300706] [1071.25, 166.2, -374.3]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+}
+
+objLayers{
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=no
+  }
+}
+
+wayPoints{
+}

@@ -1,0 +1,814 @@
+selected_tag:t=""
+bin_dump_file:t=""
+
+mission_settings{
+
+  player{
+    army:i=1
+  }
+
+  player_teamB{
+    army:i=2
+  }
+
+  mission{
+    level:t="levels/water.bin"
+    type:t="singleMission"
+    environment:t="Day"
+    weather:t="hazy"
+    restoreType:t="attempts"
+    optionalTakeOff:b=no
+  }
+
+  spectator_points{
+  }
+}
+
+imports{
+}
+
+triggers{
+  isCategory:b=yes
+  is_enabled:b=yes
+
+  team_killareas_init{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      initMission{
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      varSetString{
+        value:t="t1_killarea"
+        var:t="t1_killarea"
+        var:t="t1_killarea_temp"
+      }
+
+      varSetString{
+        value:t="t2_killarea"
+        var:t="t2_killarea"
+        var:t="t2_killarea_temp"
+      }
+
+      triggerEnable{
+        target:t="team_killareas_check_arcade"
+        target:t="team_killareas_check_realistic"
+        target:t="team_killareas_check_hardcore"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  team_killareas_check_arcade{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      initMission{
+      }
+    }
+
+    conditions{
+
+      gameWhenDifficulty{
+        difficulty:t="arcade"
+        is:t="equal"
+      }
+    }
+
+    actions{
+
+      triggerEnable{
+        target:t="t1_detection_areas_init"
+        target:t="t2_detection_areas_init"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  team_killareas_check_realistic{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      initMission{
+      }
+    }
+
+    conditions{
+
+      gameWhenDifficulty{
+        difficulty:t="realistic"
+        is:t="equal"
+      }
+    }
+
+    actions{
+
+      varAddString{
+        value:t="_realistic"
+        digits:i=0
+        var:t="t1_killarea_temp"
+        var:t="t2_killarea_temp"
+      }
+
+      triggerEnable{
+        target:t="team_killareas_check_realistic_exist"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  team_killareas_check_realistic_exist{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ANY"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      initMission{
+      }
+    }
+
+    conditions{
+
+      objectExists{
+        target:t="@t1_killarea_temp"
+        type:t="area"
+      }
+
+      objectExists{
+        target:t="@t1_killarea_temp"
+        type:t="squad"
+      }
+
+      objectExists{
+        target:t="@t2_killarea_temp"
+        type:t="area"
+      }
+
+      objectExists{
+        target:t="@t2_killarea_temp"
+        type:t="squad"
+      }
+    }
+
+    actions{
+
+      varAddString{
+        value:t="_realistic"
+        digits:i=0
+        var:t="t1_killarea"
+        var:t="t2_killarea"
+      }
+
+      triggerEnable{
+        target:t="t1_detection_areas_init"
+        target:t="t2_detection_areas_init"
+      }
+    }
+
+    else_actions{
+
+      triggerEnable{
+        target:t="t1_detection_areas_init"
+        target:t="t2_detection_areas_init"
+      }
+    }
+  }
+
+  team_killareas_check_hardcore{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      initMission{
+      }
+    }
+
+    conditions{
+
+      gameWhenDifficulty{
+        difficulty:t="simulator"
+        is:t="equal"
+      }
+    }
+
+    actions{
+
+      varAddString{
+        value:t="_hardcore"
+        digits:i=0
+        var:t="t1_killarea_temp"
+        var:t="t2_killarea_temp"
+      }
+
+      triggerEnable{
+        target:t="team_killareas_check_hardcore_exist"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  team_killareas_check_hardcore_exist{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ANY"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      initMission{
+      }
+    }
+
+    conditions{
+
+      objectExists{
+        target:t="@t1_killarea_temp"
+        type:t="area"
+      }
+
+      objectExists{
+        target:t="@t1_killarea_temp"
+        type:t="squad"
+      }
+
+      objectExists{
+        target:t="@t2_killarea_temp"
+        type:t="area"
+      }
+
+      objectExists{
+        target:t="@t2_killarea_temp"
+        type:t="squad"
+      }
+    }
+
+    actions{
+
+      varAddString{
+        value:t="_hardcore"
+        digits:i=0
+        var:t="t1_killarea"
+        var:t="t2_killarea"
+      }
+
+      triggerEnable{
+        target:t="t1_kill_areas_init"
+        target:t="t2_kill_areas_init"
+      }
+    }
+
+    else_actions{
+
+      triggerEnable{
+        target:t="t1_kill_areas_init"
+        target:t="t2_kill_areas_init"
+      }
+    }
+  }
+
+  t1_detection_areas_init{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ANY"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      initMission{
+      }
+    }
+
+    conditions{
+
+      objectExists{
+        target:t="@t1_killarea"
+        type:t="area"
+      }
+
+      objectExists{
+        target:t="@t1_killarea"
+        type:t="squad"
+      }
+    }
+
+    actions{
+
+      missionBattleArea{
+        air:b=no
+        ground:b=yes
+        mapArea:b=no
+        killArea:b=no
+        killOutOfBattleArea:b=no
+        detectionArea:b=yes
+        airMapArea:b=no
+        area:t="@t1_killarea"
+        newGridHorizontalCellCount:i=0
+        team:t="B"
+      }
+
+      triggerEnable{
+        target:t="t1_enable_crewlock"
+        target:t="t1_disable_crewlock"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  t2_detection_areas_init{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ANY"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      initMission{
+      }
+    }
+
+    conditions{
+
+      objectExists{
+        target:t="@t2_killarea"
+        type:t="area"
+      }
+
+      objectExists{
+        target:t="@t2_killarea"
+        type:t="squad"
+      }
+    }
+
+    actions{
+
+      missionBattleArea{
+        air:b=no
+        ground:b=yes
+        mapArea:b=no
+        killArea:b=no
+        killOutOfBattleArea:b=no
+        detectionArea:b=yes
+        airMapArea:b=no
+        area:t="@t2_killarea"
+        newGridHorizontalCellCount:i=0
+        team:t="A"
+      }
+
+      triggerEnable{
+        target:t="t2_enable_crewlock"
+        target:t="t2_disable_crewlock"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  t1_kill_areas_init{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ANY"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      initMission{
+      }
+    }
+
+    conditions{
+
+      objectExists{
+        target:t="@t1_killarea"
+        type:t="area"
+      }
+
+      objectExists{
+        target:t="@t1_killarea"
+        type:t="squad"
+      }
+    }
+
+    actions{
+
+      missionBattleArea{
+        air:b=no
+        ground:b=yes
+        mapArea:b=no
+        killArea:b=yes
+        killOutOfBattleArea:b=no
+        detectionArea:b=yes
+        airMapArea:b=no
+        area:t="@t1_killarea"
+        newGridHorizontalCellCount:i=0
+        team:t="B"
+      }
+
+      triggerEnable{
+        target:t="t1_enable_crewlock"
+        target:t="t1_disable_crewlock"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  t2_kill_areas_init{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ANY"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      initMission{
+      }
+    }
+
+    conditions{
+
+      objectExists{
+        target:t="@t2_killarea"
+        type:t="area"
+      }
+
+      objectExists{
+        target:t="@t2_killarea"
+        type:t="squad"
+      }
+    }
+
+    actions{
+
+      missionBattleArea{
+        air:b=no
+        ground:b=yes
+        mapArea:b=no
+        killArea:b=yes
+        killOutOfBattleArea:b=no
+        detectionArea:b=yes
+        airMapArea:b=no
+        area:t="@t2_killarea"
+        newGridHorizontalCellCount:i=0
+        team:t="A"
+      }
+
+      triggerEnable{
+        target:t="t2_enable_crewlock"
+        target:t="t2_disable_crewlock"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  t1_enable_crewlock{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.1
+      }
+    }
+
+    conditions{
+
+      varCompareBool{
+        var_value:t="t1_spawn_locked"
+        value:b=no
+        comparasion_func:t="equal"
+      }
+
+      unitWhenInArea{
+        math:t="2D"
+        object_type:t="isTeamB"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        check_objects:t="any"
+        object:t="all_players_squad"
+        target:t="@t1_killarea"
+        expand:r=150.0
+        unit_type_ex:t="isAlive"
+      }
+    }
+
+    actions{
+
+      varSetBool{
+        value:b=yes
+        var:t="t1_spawn_locked"
+      }
+
+      missionSetCrewLock{
+        needLockCrew:b=no
+        team:t="A"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  t1_disable_crewlock{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.1
+      }
+    }
+
+    conditions{
+
+      varCompareBool{
+        var_value:t="t1_spawn_locked"
+        value:b=yes
+        comparasion_func:t="equal"
+      }
+
+      unitWhenInArea{
+        math:t="notNear2D"
+        object_type:t="isTeamB"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        check_objects:t="all"
+        object:t="all_players_squad"
+        target:t="@t1_killarea"
+        expand:r=150.0
+        unit_type_ex:t="isAlive"
+      }
+    }
+
+    actions{
+
+      varSetBool{
+        value:b=no
+        var:t="t1_spawn_locked"
+      }
+
+      missionSetCrewLock{
+        needLockCrew:b=yes
+        team:t="A"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  t2_enable_crewlock{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.1
+      }
+    }
+
+    conditions{
+
+      varCompareBool{
+        var_value:t="t2_spawn_locked"
+        value:b=no
+        comparasion_func:t="equal"
+      }
+
+      unitWhenInArea{
+        math:t="2D"
+        object_type:t="isTeamA"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        check_objects:t="any"
+        object:t="all_players_squad"
+        target:t="@t2_killarea"
+        expand:r=150.0
+        unit_type_ex:t="isAlive"
+      }
+    }
+
+    actions{
+
+      varSetBool{
+        value:b=yes
+        var:t="t2_spawn_locked"
+      }
+
+      missionSetCrewLock{
+        needLockCrew:b=no
+        team:t="B"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  t2_disable_crewlock{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.1
+      }
+    }
+
+    conditions{
+
+      varCompareBool{
+        var_value:t="t2_spawn_locked"
+        value:b=yes
+        comparasion_func:t="equal"
+      }
+
+      unitWhenInArea{
+        math:t="notNear2D"
+        object_type:t="isTeamA"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        check_objects:t="all"
+        object:t="all_players_squad"
+        target:t="@t2_killarea"
+        expand:r=150.0
+        unit_type_ex:t="isAlive"
+      }
+    }
+
+    actions{
+
+      varSetBool{
+        value:b=no
+        var:t="t2_spawn_locked"
+      }
+
+      missionSetCrewLock{
+        needLockCrew:b=yes
+        team:t="B"
+      }
+    }
+
+    else_actions{
+    }
+  }
+}
+
+mission_objectives{
+  isCategory:b=yes
+  is_enabled:b=yes
+}
+
+variables{
+  t1_killarea:t=""
+  t1_killarea_temp:t=""
+  t2_killarea:t=""
+  t2_killarea_temp:t=""
+  t1_spawn_locked:b=no
+  t2_spawn_locked:b=no
+}
+
+dialogs{
+}
+
+airfields{
+}
+
+effects{
+}
+
+units{
+}
+
+areas{
+}
+
+objLayers{
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+}
+
+wayPoints{
+}

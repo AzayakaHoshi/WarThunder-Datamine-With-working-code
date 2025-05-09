@@ -1,0 +1,2712 @@
+selected_tag:t=""
+bin_dump_file:t=""
+
+mission_settings{
+
+  player{
+    army:i=1
+    wing:t="player01"
+    wing:t="player02"
+    wing:t="player03"
+    wing:t="player04"
+    wing:t="player05"
+    wing:t="player06"
+    wing:t="player07"
+    wing:t="player08"
+    wing:t="player09"
+    wing:t="player10"
+    wing:t="player11"
+    wing:t="player12"
+    wing:t="player13"
+    wing:t="player14"
+    wing:t="player15"
+    wing:t="player16"
+    wing:t="player17"
+    wing:t="player18"
+    wing:t="player19"
+    wing:t="player20"
+    wing:t="player21"
+    wing:t="player22"
+    wing:t="player23"
+    wing:t="player24"
+    wing:t="player25"
+    wing:t="player26"
+    wing:t="player27"
+    wing:t="player28"
+    wing:t="player29"
+    wing:t="player30"
+    wing:t="player31"
+    wing:t="player32"
+  }
+
+  player_teamB{
+    army:i=2
+    wing:t="player33"
+    wing:t="player34"
+    wing:t="player35"
+    wing:t="player36"
+    wing:t="player37"
+    wing:t="player38"
+    wing:t="player39"
+    wing:t="player40"
+    wing:t="player41"
+    wing:t="player42"
+    wing:t="player43"
+    wing:t="player44"
+    wing:t="player45"
+    wing:t="player46"
+    wing:t="player47"
+    wing:t="player48"
+    wing:t="player49"
+    wing:t="player50"
+    wing:t="player51"
+    wing:t="player52"
+    wing:t="player53"
+    wing:t="player54"
+    wing:t="player55"
+    wing:t="player56"
+    wing:t="player57"
+    wing:t="player58"
+    wing:t="player59"
+    wing:t="player60"
+    wing:t="player61"
+    wing:t="player62"
+    wing:t="player63"
+    wing:t="player64"
+    wing:t="player65"
+  }
+
+  mission{
+    type:t="domination"
+    level:t="levels/avg_abandoned_factory.bin"
+    restoreType:t="attempts"
+    optionalTakeOff:b=no
+    environment:t="Day"
+    weather:t="hazy"
+    locName:t="missions/BR;abandoned_factory/name"
+    locDesc:t="missions/BR/desc"
+    gt_ffa:b=yes
+    gt_last_man_standing:b=yes
+    timeLimit:i=60
+    useTankBots:b=yes
+    battleAreaColorPreset:t="battleRoyale"
+    ignoreInvulnerableTimer:b=yes
+    useCustomSuperArtillery:b=yes
+    customSuperArtillery:t="structures/streakArtillery_203mm_r150m"
+    country_axis:t="germany"
+    country_allies:t="ussr"
+
+    allowedUnitTypes{
+      isAirplanesAllowed:b=no
+      isTanksAllowed:b=yes
+      isShipsAllowed:b=no
+    }
+  }
+
+  spectator_points{
+  }
+
+  briefing{
+    place_loc:t=""
+    date_loc:t=""
+    objective_loc:t=""
+    music:t="action_01"
+
+    part{
+      event:t=""
+      minTime:i=0
+
+      slide{
+        map:b=yes
+        minTime:i=4
+        picture:t=""
+        showAirMap:b=no
+
+        icon{
+          icontype:t="tank"
+          side:t="player"
+          target:t="briefing_spawn01"
+        }
+
+        icon{
+          icontype:t="tank"
+          side:t="enemy"
+          target:t="briefing_spawn02"
+        }
+
+        icon{
+          icontype:t="tank"
+          side:t="enemy"
+          target:t="briefing_spawn03"
+        }
+
+        icon{
+          icontype:t="tank"
+          side:t="enemy"
+          target:t="briefing_spawn04"
+        }
+
+        icon{
+          icontype:t="tank"
+          side:t="enemy"
+          target:t="briefing_spawn05"
+        }
+
+        icon{
+          icontype:t="tank"
+          side:t="enemy"
+          target:t="briefing_spawn06"
+        }
+
+        icon{
+          icontype:t="tank"
+          side:t="enemy"
+          target:t="briefing_spawn07"
+        }
+
+        icon{
+          icontype:t="tank"
+          side:t="enemy"
+          target:t="briefing_spawn08"
+        }
+
+        icon{
+          icontype:t="tank"
+          side:t="enemy"
+          target:t="briefing_spawn09"
+        }
+      }
+    }
+  }
+}
+
+imports{
+
+  import_record{
+    file:t="gameData/missions/templates/battle_royale_template.blk"
+    importAreas:b=yes
+    importUnits:b=yes
+    importTriggers:b=yes
+    importMissionObjectives:b=yes
+    importWayPoints:b=yes
+    showAreas:b=yes
+    showUnits:b=yes
+    showTriggers:b=yes
+    showMissionObjectives:b=yes
+    showWayPoints:b=yes
+
+    excludes{
+    }
+  }
+}
+
+triggers{
+  isCategory:b=yes
+  is_enabled:b=yes
+
+  abandoned_factory_br_init{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      initMission{
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      varSetInt{
+        value:i=6
+        var:t="br_area_div"
+        fromDescriptor:t="br_area_div"
+      }
+
+      varSetInt{
+        value:i=8
+        var:t="artillery_disable_stage"
+        fromDescriptor:t="artillery_disable_stage"
+      }
+
+      varSetInt{
+        value:i=8
+        var:t="pickups_count"
+      }
+
+      comment{
+        value:t="(br_area_div * 2 - 1 = 11) - number of total stages"
+      }
+
+      comment{
+        value:t="(11 stages - 3 = 8) - so warning will be when 3(1 row * 3 col) or 4(2 row * 2 col) sectors left"
+      }
+
+      comment{
+        value:t="and artillery will be disabled when 2(1 row * 2 col) sectors left"
+      }
+
+      comment{
+        value:t="artillery have radius 150m radius and sector side is 1400/6=250m"
+      }
+
+      comment{
+        value:t="from 1 to br_area_div included"
+      }
+
+      comment{
+        value:t="from bottom left corner to up right corner"
+      }
+
+      comment{
+        value:t="(1,1) - bottom left"
+      }
+
+      comment{
+        value:t="(5,1) - bottom right"
+      }
+
+      comment{
+        value:t="(1,5) - up left"
+      }
+
+      comment{
+        value:t="(5,5) - up right"
+      }
+
+      varSetString{
+        value:t="(1,1);(2,1);(3,1);(4,1);(5,1);(6,1);(1,2);(6,2);(1,3);(6,3);(1,4);(6,4);(1,5);(2,5);(5,5);(6,5);(1,6);(2,6);(3,6);(4,6);(5,6);(6,6);"
+        var:t="br_final_sector_exclude"
+        fromDescriptor:t="br_final_sector_exclude"
+      }
+
+      unitSetProperties{
+        object_marking:i=0
+        object:t="object_groups_squad"
+        stealthRadius:r=0.0
+      }
+    }
+
+    else_actions{
+    }
+  }
+}
+
+mission_objectives{
+  isCategory:b=yes
+  is_enabled:b=yes
+}
+
+variables{
+}
+
+dialogs{
+}
+
+airfields{
+}
+
+effects{
+}
+
+units{
+
+  area_squad{
+    name:t="spawn_area_sq"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1921.55, 8.3, 2657.65]]
+
+    props{
+      squad_members:t="spawn04"
+      squad_members:t="spawn06"
+      squad_members:t="spawn07"
+      squad_members:t="spawn08"
+      squad_members:t="spawn10"
+      squad_members:t="spawn12"
+      squad_members:t="spawn14"
+      squad_members:t="spawn15"
+      squad_members:t="spawn16"
+      squad_members:t="spawn17"
+      squad_members:t="spawn18"
+      squad_members:t="spawn20"
+      squad_members:t="spawn21"
+      squad_members:t="spawn23"
+      squad_members:t="spawn24"
+      squad_members:t="spawn25"
+      squad_members:t="spawn26"
+      squad_members:t="spawn27"
+      squad_members:t="spawn29"
+      squad_members:t="spawn30"
+      squad_members:t="spawn31"
+      squad_members:t="spawn33"
+      squad_members:t="spawn34"
+      squad_members:t="spawn36"
+      squad_members:t="spawn37"
+      squad_members:t="spawn38"
+      squad_members:t="spawn39"
+      squad_members:t="spawn40"
+      squad_members:t="spawn41"
+      squad_members:t="spawn42"
+      squad_members:t="spawn43"
+      squad_members:t="spawn45"
+    }
+  }
+
+  area_squad{
+    name:t="pickups_area_sq"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2874.93, 8.04791, 2285.96]]
+
+    props{
+      squad_members:t="pickuparea01"
+      squad_members:t="pickuparea02"
+      squad_members:t="pickuparea03"
+      squad_members:t="pickuparea04"
+      squad_members:t="pickuparea05"
+      squad_members:t="pickuparea06"
+      squad_members:t="pickuparea07"
+      squad_members:t="pickuparea08"
+      squad_members:t="pickuparea09"
+      squad_members:t="pickuparea10"
+      squad_members:t="pickuparea11"
+      squad_members:t="pickuparea12"
+      squad_members:t="pickuparea13"
+      squad_members:t="pickuparea14"
+      squad_members:t="pickuparea15"
+      squad_members:t="pickuparea16"
+      squad_members:t="pickuparea17"
+      squad_members:t="pickuparea18"
+      squad_members:t="pickuparea19"
+      squad_members:t="pickuparea20"
+      squad_members:t="pickuparea21"
+      squad_members:t="pickuparea22"
+      squad_members:t="pickuparea23"
+      squad_members:t="pickuparea24"
+      squad_members:t="pickuparea25"
+      squad_members:t="pickuparea26"
+      squad_members:t="pickuparea27"
+      squad_members:t="pickuparea28"
+      squad_members:t="pickuparea29"
+      squad_members:t="pickuparea30"
+      squad_members:t="pickuparea31"
+      squad_members:t="pickuparea32"
+      squad_members:t="pickuparea33"
+      squad_members:t="pickuparea34"
+      squad_members:t="pickuparea35"
+      squad_members:t="pickuparea36"
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_01"
+    tm:m=[[0.778106, 0.0, -0.628133] [0.0, 1.0, 0.0] [0.628133, 0.0, 0.778106] [2443.1, 8.04791, 1816.45]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_02"
+    tm:m=[[-0.874018, 0.0, 0.485893] [0.0, 1.0, 0.0] [-0.485893, 0.0, -0.874018] [2620.75, 8.02502, 1740.5]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_03"
+    tm:m=[[0.958343, 0.0, 0.285621] [0.0, 1.0, 0.0] [-0.285621, 0.0, 0.958343] [1814.7, 8.59205, 1785.0]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_04"
+    tm:m=[[0.000163274, 0.0, -1.0] [0.0, 1.0, 0.0] [1.0, 0.0, 0.000163274] [1846.0, 8.04791, 1731.85]]
+    unit_class:t="det_factory_small_building_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_05"
+    tm:m=[[-0.98872, 0.0, 0.149774] [0.0, 1.0, 0.0] [-0.149774, 0.0, -0.98872] [1846.2, 8.04791, 1830.8]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_06"
+    tm:m=[[-0.975945, 0.0, -0.218018] [0.0, 1.0, 0.0] [0.218018, 0.0, -0.975945] [1958.9, 7.68565, 1581.35]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_07"
+    tm:m=[[0.99483, 0.0, -0.101555] [0.0, 1.0, 0.0] [0.101555, 0.0, 0.99483] [2171.15, 8.04161, 1594.8]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_08"
+    tm:m=[[0.0537641, 0.0, -0.998554] [0.0, 1.0, 0.0] [0.998554, 0.0, 0.0537641] [2355.31, 8.04791, 1888.98]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_09"
+    tm:m=[[0.69226, 0.0, -0.721648] [0.0, 1.0, 0.0] [0.721648, 0.0, 0.69226] [2606.45, 8.04791, 2270.18]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_10"
+    tm:m=[[0.718176, 0.0, 0.695862] [0.0, 1.0, 0.0] [-0.695862, 0.0, 0.718176] [1747.6, 8.04791, 2205.35]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_11"
+    tm:m=[[0.231817, 0.0, 0.972759] [0.0, 1.0, 0.0] [-0.972759, 0.0, 0.231817] [1583.53, 8.0479, 1959.13]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_12"
+    tm:m=[[0.0714269, 0.0, -0.997446] [0.0, 1.0, 0.0] [0.997446, 0.0, 0.0714269] [1615.19, 8.04028, 1590.63]]
+    unit_class:t="det_factory_small_building_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_13"
+    tm:m=[[0.999683, 0.0, 0.0251919] [0.0, 1.0, 0.0] [-0.0251919, 0.0, 0.999683] [2064.36, 8.12609, 1784.49]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_14"
+    tm:m=[[-0.892683, 0.0, 0.450685] [0.0, 1.0, 0.0] [-0.450685, 0.0, -0.892683] [2584.45, 8.05, 1766.65]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_15"
+    tm:m=[[0.0333776, 0.0, -0.999443] [0.0, 1.0, 0.0] [0.999443, 0.0, 0.0333776] [2226.21, 8.04791, 1921.67]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_16"
+    tm:m=[[0.246564, 0.0, 0.969127] [0.0, 1.0, 0.0] [-0.969127, 0.0, 0.246564] [1640.47, 8.04791, 1523.47]]
+    unit_class:t="det_factory_small_building_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_17"
+    tm:m=[[0.194838, 0.0, 0.980835] [0.0, 1.0, 0.0] [-0.980835, 0.0, 0.194838] [1702.71, 8.04791, 1530.04]]
+    unit_class:t="det_factory_building_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_18"
+    tm:m=[[-0.999933, 0.0, -0.0115826] [0.0, 1.0, 0.0] [0.0115826, 0.0, -0.999933] [1664.72, 8.04791, 1576.95]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_19"
+    tm:m=[[-0.0126215, 0.0, 0.99992] [0.0, 1.0, 0.0] [-0.99992, 0.0, -0.0126215] [1855.3, 8.04023, 2254.41]]
+    unit_class:t="det_factory_small_building_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_20"
+    tm:m=[[-0.25534, 0.0, 0.966851] [0.0, 1.0, 0.0] [-0.966851, 0.0, -0.25534] [1590.58, 8.04791, 1800.1]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_21"
+    tm:m=[[0.997916, 0.0, -0.0645223] [0.0, 1.0, 0.0] [0.0645223, 0.0, 0.997916] [1860.54, 8.04791, 1802.05]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_22"
+    tm:m=[[-0.98872, 0.0, 0.149774] [0.0, 1.0, 0.0] [-0.149774, 0.0, -0.98872] [1907.47, 8.04792, 1676.8]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_23"
+    tm:m=[[-0.0383168, 0.0, 0.999265] [0.0, 1.0, 0.0] [-0.999265, 0.0, -0.0383168] [2067.27, 8.1261, 1983.65]]
+    unit_class:t="det_factory_small_building_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_24"
+    tm:m=[[0.999683, 0.0, 0.0251919] [0.0, 1.0, 0.0] [-0.0251919, 0.0, 0.999683] [2064.21, 8.12609, 2001.6]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_25"
+    tm:m=[[-0.062032, 0.0, -0.998075] [0.0, 1.0, 0.0] [0.998075, 0.0, -0.062032] [2045.71, 8.12609, 1979.47]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_26"
+    tm:m=[[0.998418, 0.0, 0.0562255] [0.0, 1.0, 0.0] [-0.0562255, 0.0, 0.998418] [1859.89, 8.04023, 2035.5]]
+    unit_class:t="det_factory_small_building_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_27"
+    tm:m=[[0.999265, 0.0, 0.0383168] [0.0, 1.0, 0.0] [-0.0383168, 0.0, 0.999265] [2435.81, 8.12613, 2029.57]]
+    unit_class:t="det_factory_small_building_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_28"
+    tm:m=[[0.999949, 0.0, 0.0101565] [0.0, 1.0, 0.0] [-0.0101565, 0.0, 0.999949] [2412.95, 8.04792, 2053.17]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_29"
+    tm:m=[[-0.995372, 0.0, -0.0960991] [0.0, 1.0, 0.0] [0.0960991, 0.0, -0.995372] [2606.82, 8.02493, 1852.75]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_30"
+    tm:m=[[-0.406779, 0.0, -0.913526] [0.0, 1.0, 0.0] [0.913526, 0.0, -0.406779] [2685.23, 8.02494, 1778.08]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_31"
+    tm:m=[[-0.999933, 0.0, -0.0115826] [0.0, 1.0, 0.0] [0.0115826, 0.0, -0.999933] [1715.61, 8.04791, 1671.26]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_32"
+    tm:m=[[0.999933, 0.0, 0.0115824] [0.0, 1.0, 0.0] [-0.0115824, 0.0, 0.999933] [1710.8, 8.04791, 1703.52]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_33"
+    tm:m=[[0.997916, 0.0, -0.0645223] [0.0, 1.0, 0.0] [0.0645223, 0.0, 0.997916] [1839.47, 8.04791, 1935.63]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_34"
+    tm:m=[[-0.99396, 0.0, -0.109744] [0.0, 1.0, 0.0] [0.109744, 0.0, -0.99396] [1842.15, 8.04791, 1948.67]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_35"
+    tm:m=[[0.999742, 0.0, 0.022697] [0.0, 1.0, 0.0] [-0.022697, 0.0, 0.999742] [1838.92, 8.04791, 1961.51]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_36"
+    tm:m=[[-0.99992, 0.0, -0.0126218] [0.0, 1.0, 0.0] [0.0126218, 0.0, -0.99992] [1777.19, 8.04019, 1978.1]]
+    unit_class:t="det_factory_small_building_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_37"
+    tm:m=[[0.9977, 0.0, 0.0677744] [0.0, 1.0, 0.0] [-0.0677744, 0.0, 0.9977] [1840.28, 8.04791, 1673.82]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_38"
+    tm:m=[[0.0537641, 0.0, -0.998554] [0.0, 1.0, 0.0] [0.998554, 0.0, 0.0537641] [2342.31, 8.04791, 1888.98]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_39"
+    tm:m=[[0.9782, 0.0, -0.207663] [0.0, 1.0, 0.0] [0.207663, 0.0, 0.9782] [2572.21, 8.02493, 1897.98]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_41"
+    tm:m=[[0.635882, 0.0, 0.771786] [0.0, 1.0, 0.0] [-0.771786, 0.0, 0.635882] [2549.99, 8.02492, 1862.78]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_42"
+    tm:m=[[-0.892684, 0.0, 0.450685] [0.0, 1.0, 0.0] [-0.450685, 0.0, -0.892684] [2515.18, 8.04998, 1796.35]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_43"
+    tm:m=[[0.000141777, 0.0, 1.0] [0.0, 1.0, 0.0] [-1.0, 0.0, 0.000141777] [2547.21, 8.04999, 1798.92]]
+    unit_class:t="det_factory_small_building_b"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_44"
+    tm:m=[[-0.333567, 0.0, -0.942726] [0.0, 1.0, 0.0] [0.942726, 0.0, -0.333567] [2653.52, 8.02493, 2175.84]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_45"
+    tm:m=[[-0.333567, 0.0, -0.942726] [0.0, 1.0, 0.0] [0.942726, 0.0, -0.333567] [2665.56, 8.02493, 2171.62]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_46"
+    tm:m=[[0.999949, 0.0, 0.0101565] [0.0, 1.0, 0.0] [-0.0101565, 0.0, 0.999949] [2403.32, 8.04792, 2014.69]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_47"
+    tm:m=[[-0.990069, 0.0, -0.140589] [0.0, 1.0, 0.0] [0.140589, 0.0, -0.990069] [2416.5, 8.04792, 1954.27]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_48"
+    tm:m=[[-0.99944, 0.0, 0.0334702] [0.0, 1.0, 0.0] [-0.0334702, 0.0, -0.99944] [2416.92, 8.04792, 1966.54]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_49"
+    tm:m=[[0.718176, 0.0, 0.695862] [0.0, 1.0, 0.0] [-0.695862, 0.0, 0.718176] [2163.3, 8.04791, 2030.74]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_50"
+    tm:m=[[-0.80286, 0.0, -0.596168] [0.0, 1.0, 0.0] [0.596168, 0.0, -0.80286] [2139.56, 8.04791, 2020.3]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_51"
+    tm:m=[[-0.0251918, 0.0, 0.999683] [0.0, 1.0, 0.0] [-0.999683, 0.0, -0.0251918] [1834.31, 8.12609, 2303.88]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_52"
+    tm:m=[[-0.0251918, 0.0, 0.999683] [0.0, 1.0, 0.0] [-0.999683, 0.0, -0.0251918] [1755.21, 8.12608, 2310.79]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_53"
+    tm:m=[[-0.754063, 0.0, 0.656803] [0.0, 1.0, 0.0] [-0.656803, 0.0, -0.754063] [1764.04, 8.12608, 2333.42]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_54"
+    tm:m=[[0.228745, 0.0, -0.973486] [0.0, 1.0, 0.0] [0.973486, 0.0, 0.228745] [1890.0, 8.31829, 2426.29]]
+    unit_class:t="det_factory_small_building_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_55"
+    tm:m=[[0.97934, 0.0, -0.202221] [0.0, 1.0, 0.0] [0.202221, 0.0, 0.97934] [2036.95, 11.3325, 2465.42]]
+    unit_class:t="det_factory_small_building_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_56"
+    tm:m=[[0.999723, 0.0, 0.0235397] [0.0, 1.0, 0.0] [-0.0235397, 0.0, 0.999723] [1975.99, 8.12608, 2446.63]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_57"
+    tm:m=[[-0.711145, 0.0, -0.703045] [0.0, 1.0, 0.0] [0.703045, 0.0, -0.711145] [2085.41, 12.8036, 2460.88]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_58"
+    tm:m=[[-0.0458335, 0.0, -0.998949] [0.0, 1.0, 0.0] [0.998949, 0.0, -0.0458335] [2041.48, 8.04952, 2166.2]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_59"
+    tm:m=[[-0.0709788, 0.0, 0.997478] [0.0, 1.0, 0.0] [-0.997478, 0.0, -0.0709788] [2053.67, 8.04952, 2116.74]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_60"
+    tm:m=[[-0.0458335, 0.0, -0.998949] [0.0, 1.0, 0.0] [0.998949, 0.0, -0.0458335] [2101.68, 8.04953, 2280.1]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_61"
+    tm:m=[[0.720011, 0.0, -0.693963] [0.0, 1.0, 0.0] [0.693963, 0.0, 0.720011] [2066.14, 8.04953, 2325.29]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_62"
+    tm:m=[[0.621148, 0.0, 0.783694] [0.0, 1.0, 0.0] [-0.783694, 0.0, 0.621148] [2171.19, 12.8189, 2358.57]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_63"
+    tm:m=[[0.621148, 0.0, 0.783694] [0.0, 1.0, 0.0] [-0.783694, 0.0, 0.621148] [2242.04, 12.8189, 2496.04]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_64"
+    tm:m=[[-0.696533, 0.0, -0.717526] [0.0, 1.0, 0.0] [0.717526, 0.0, -0.696533] [2253.8, 12.8189, 2489.75]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_65"
+    tm:m=[[-0.581634, 0.0, -0.813451] [0.0, 1.0, 0.0] [0.813451, 0.0, -0.581634] [2198.59, 12.8189, 2535.93]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_66"
+    tm:m=[[-0.507652, 0.0, -0.861563] [0.0, 1.0, 0.0] [0.861563, 0.0, -0.507652] [2188.46, 12.8189, 2544.72]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_67"
+    tm:m=[[-0.369027, 0.0, -0.929419] [0.0, 1.0, 0.0] [0.929419, 0.0, -0.369027] [2262.19, 12.8189, 2481.01]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_68"
+    tm:m=[[-0.369027, 0.0, -0.929419] [0.0, 1.0, 0.0] [0.929419, 0.0, -0.369027] [2245.13, 12.8189, 2458.48]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_69"
+    tm:m=[[-0.678614, 0.0, -0.734494] [0.0, 1.0, 0.0] [0.734494, 0.0, -0.678614] [2108.5, 12.5723, 2545.82]]
+    unit_class:t="det_factory_small_building_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_70"
+    tm:m=[[0.620908, 0.0, 0.783884] [0.0, 1.0, 0.0] [-0.783884, 0.0, 0.620908] [2141.21, 12.6744, 2525.3]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_71"
+    tm:m=[[0.591171, 0.0, 0.806547] [0.0, 1.0, 0.0] [-0.806547, 0.0, 0.591171] [1821.5, 8.15, 2221.15]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_72"
+    tm:m=[[0.591171, 0.0, 0.806547] [0.0, 1.0, 0.0] [-0.806547, 0.0, 0.591171] [1805.76, 8.15, 2302.03]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_73"
+    tm:m=[[0.447452, 0.0, 0.894308] [0.0, 1.0, 0.0] [-0.894308, 0.0, 0.447452] [1802.92, 8.1261, 2133.04]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_74"
+    tm:m=[[0.447452, 0.0, 0.894308] [0.0, 1.0, 0.0] [-0.894308, 0.0, 0.447452] [1791.73, 8.1261, 2136.67]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_75"
+    tm:m=[[-0.0012444, 0.0, 1.0] [0.0, 1.0, 0.0] [-1.0, 0.0, -0.0012444] [1787.67, 8.1261, 2034.18]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_76"
+    tm:m=[[0.120228, 0.0, 0.992747] [0.0, 1.0, 0.0] [-0.992747, 0.0, 0.120228] [1800.85, 8.1261, 2034.43]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_77"
+    tm:m=[[-0.192363, 0.0, -0.981324] [0.0, 1.0, 0.0] [0.981324, 0.0, -0.192363] [1710.93, 8.04791, 1578.61]]
+    unit_class:t="det_factory_building_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_79"
+    tm:m=[[-0.999633, 0.0, 0.0270916] [0.0, 1.0, 0.0] [-0.0270916, 0.0, -0.999633] [1822.94, 8.04791, 1611.69]]
+    unit_class:t="det_factory_building_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_78"
+    tm:m=[[-0.905181, 0.0, 0.425026] [0.0, 1.0, 0.0] [-0.425026, 0.0, -0.905181] [1792.81, 8.04791, 1600.59]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_80"
+    tm:m=[[0.326009, 0.0, -0.945367] [0.0, 1.0, 0.0] [0.945367, 0.0, 0.326009] [1751.93, 8.04791, 1644.52]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_81"
+    tm:m=[[-0.328415, 0.0, 0.944533] [0.0, 1.0, 0.0] [-0.944533, 0.0, -0.328415] [1596.52, 8.04792, 1823.59]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_82"
+    tm:m=[[-0.608401, 0.0, 0.793629] [0.0, 1.0, 0.0] [-0.793629, 0.0, -0.608401] [1651.52, 8.04793, 1786.53]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_83"
+    tm:m=[[0.216474, 0.0, -0.976289] [0.0, 1.0, 0.0] [0.976289, 0.0, 0.216474] [2162.99, 8.12608, 1653.2]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_84"
+    tm:m=[[-0.147437, 0.0, -0.989072] [0.0, 1.0, 0.0] [0.989072, 0.0, -0.147437] [2147.01, 8.12608, 1674.45]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_85"
+    tm:m=[[-0.0754398, 0.0, -0.997151] [0.0, 1.0, 0.0] [0.997151, 0.0, -0.0754398] [2197.09, 8.12609, 1650.73]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_86"
+    tm:m=[[0.0209775, 0.0, -0.99978] [0.0, 1.0, 0.0] [0.99978, 0.0, 0.0209775] [1886.44, 8.04791, 1845.2]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_87"
+    tm:m=[[0.0209775, 0.0, -0.99978] [0.0, 1.0, 0.0] [0.99978, 0.0, 0.0209775] [1875.57, 8.04791, 1885.15]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_88"
+    tm:m=[[0.0209775, 0.0, -0.99978] [0.0, 1.0, 0.0] [0.99978, 0.0, 0.0209775] [1884.86, 8.04791, 1921.77]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_89"
+    tm:m=[[0.99999, 0.0, -0.00450965] [0.0, 1.0, 0.0] [0.00450965, 0.0, 0.99999] [2403.71, 8.0479, 1812.79]]
+    unit_class:t="det_factory_small_building_b"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_90"
+    tm:m=[[-0.999998, 0.0, 0.00230172] [0.0, 1.0, 0.0] [-0.00230172, 0.0, -0.999998] [2570.47, 8.04999, 1853.57]]
+    unit_class:t="det_factory_small_building_b"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_40"
+    tm:m=[[0.905601, 0.0, -0.42413] [0.0, 1.0, 0.0] [0.42413, 0.0, 0.905601] [2423.11, 8.04793, 1779.98]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_91"
+    tm:m=[[0.30655, 0.0, 0.951855] [0.0, 1.0, 0.0] [-0.951855, 0.0, 0.30655] [2580.84, 8.04787, 2208.91]]
+    unit_class:t="det_factory_building_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_92"
+    tm:m=[[-0.290216, 0.0, -0.956961] [0.0, 1.0, 0.0] [0.956961, 0.0, -0.290216] [2594.02, 8.04786, 2255.81]]
+    unit_class:t="det_factory_building_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_93"
+    tm:m=[[0.95824, 0.0, -0.285964] [0.0, 1.0, 0.0] [0.285964, 0.0, 0.95824] [2598.3, 8.04789, 2222.63]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_94"
+    tm:m=[[0.997581, 0.0, 0.069515] [0.0, 1.0, 0.0] [-0.069515, 0.0, 0.997581] [2596.67, 8.04789, 2202.31]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_95"
+    tm:m=[[0.471345, 0.0, -0.881949] [0.0, 1.0, 0.0] [0.881949, 0.0, 0.471345] [2561.55, 8.04789, 2205.77]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_96"
+    tm:m=[[-0.486888, 0.0, -0.873464] [0.0, 1.0, 0.0] [0.873464, 0.0, -0.486888] [2643.29, 8.0479, 2307.18]]
+    unit_class:t="det_factory_small_building_b"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_97"
+    tm:m=[[0.435304, 0.0, -0.900284] [0.0, 1.0, 0.0] [0.900284, 0.0, 0.435304] [2661.71, 8.04793, 2314.14]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_98"
+    tm:m=[[0.0192059, 0.0, 0.999816] [0.0, 1.0, 0.0] [-0.999816, 0.0, 0.0192059] [1814.32, 8.12611, 2161.56]]
+    unit_class:t="det_factory_small_building_b"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_99"
+    tm:m=[[-0.999682, 0.0, 0.0252296] [0.0, 1.0, 0.0] [-0.0252296, 0.0, -0.999682] [1814.75, 8.15, 2281.0]]
+    unit_class:t="det_factory_building_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_100"
+    tm:m=[[-0.852261, 0.0, 0.523119] [0.0, 1.0, 0.0] [-0.523119, 0.0, -0.852261] [2195.76, 12.8189, 2170.57]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_101"
+    tm:m=[[-0.787228, 0.0, -0.616663] [0.0, 1.0, 0.0] [0.616663, 0.0, -0.787228] [2149.08, 12.8189, 2233.48]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_102"
+    tm:m=[[0.663403, 0.0, -0.748263] [0.0, 1.0, 0.0] [0.748263, 0.0, 0.663403] [2088.91, 12.8189, 2146.55]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_103"
+    tm:m=[[-0.508575, 0.0, -0.861018] [0.0, 1.0, 0.0] [0.861018, 0.0, -0.508575] [2124.07, 12.8189, 2147.99]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_104"
+    tm:m=[[0.0880161, 0.0, -0.99612] [0.0, 1.0, 0.0] [0.99612, 0.0, 0.0880161] [2104.47, 12.8189, 2240.7]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_105"
+    tm:m=[[0.95532, 0.0, -0.295575] [0.0, 1.0, 0.0] [0.295575, 0.0, 0.95532] [2154.19, 12.8189, 2195.84]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_106"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2187.88, 12.8189, 2107.92]]
+    unit_class:t="det_factory_building_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_107"
+    tm:m=[[0.749249, 0.0, 0.662289] [0.0, 1.0, 0.0] [-0.662289, 0.0, 0.749249] [2237.92, 8.04791, 2013.25]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_108"
+    tm:m=[[0.990044, 0.0, -0.140762] [0.0, 1.0, 0.0] [0.140762, 0.0, 0.990044] [2177.45, 8.0479, 1984.15]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_109"
+    tm:m=[[0.990044, 0.0, -0.140762] [0.0, 1.0, 0.0] [0.140762, 0.0, 0.990044] [2203.96, 8.0479, 1991.04]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_110"
+    tm:m=[[0.887585, 0.0, -0.460645] [0.0, 1.0, 0.0] [0.460645, 0.0, 0.887585] [2158.85, 8.0479, 1968.5]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_111"
+    tm:m=[[0.999683, 0.0, 0.0251919] [0.0, 1.0, 0.0] [-0.0251919, 0.0, 0.999683] [1918.93, 8.12609, 1825.97]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_112"
+    tm:m=[[0.000163274, 0.0, -1.0] [0.0, 1.0, 0.0] [1.0, 0.0, 0.000163274] [1822.4, 8.04793, 1731.41]]
+    unit_class:t="det_factory_building_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_113"
+    tm:m=[[-0.486888, 0.0, -0.873464] [0.0, 1.0, 0.0] [0.873464, 0.0, -0.486888] [2383.1, 8.04783, 2644.56]]
+    unit_class:t="det_factory_small_building_b"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_114"
+    tm:m=[[0.0245447, 0.0, 0.999699] [0.0, 1.0, 0.0] [-0.999699, 0.0, 0.0245447] [2431.01, 8.04794, 2689.1]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_115"
+    tm:m=[[0.84329, 0.0, 0.537459] [0.0, 1.0, 0.0] [-0.537459, 0.0, 0.84329] [2278.17, 8.04797, 2625.42]]
+    unit_class:t="det_pipes_set_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_116"
+    tm:m=[[0.642942, 0.0, 0.765914] [0.0, 1.0, 0.0] [-0.765914, 0.0, 0.642942] [2282.0, 12.5723, 2647.25]]
+    unit_class:t="det_factory_small_building_a"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  squad{
+    name:t="object_groups_squad"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1551.2, 8.04791, 1577.85]]
+
+    props{
+      squad_members:t="objectGroups_01"
+      squad_members:t="objectGroups_02"
+      squad_members:t="objectGroups_03"
+      squad_members:t="objectGroups_04"
+      squad_members:t="objectGroups_05"
+      squad_members:t="objectGroups_06"
+      squad_members:t="objectGroups_07"
+      squad_members:t="objectGroups_08"
+      squad_members:t="objectGroups_09"
+      squad_members:t="objectGroups_10"
+      squad_members:t="objectGroups_11"
+      squad_members:t="objectGroups_12"
+      squad_members:t="objectGroups_13"
+      squad_members:t="objectGroups_14"
+      squad_members:t="objectGroups_15"
+      squad_members:t="objectGroups_16"
+      squad_members:t="objectGroups_17"
+      squad_members:t="objectGroups_18"
+      squad_members:t="objectGroups_19"
+      squad_members:t="objectGroups_20"
+      squad_members:t="objectGroups_21"
+      squad_members:t="objectGroups_22"
+      squad_members:t="objectGroups_23"
+      squad_members:t="objectGroups_24"
+      squad_members:t="objectGroups_25"
+      squad_members:t="objectGroups_26"
+      squad_members:t="objectGroups_27"
+      squad_members:t="objectGroups_28"
+      squad_members:t="objectGroups_29"
+      squad_members:t="objectGroups_30"
+      squad_members:t="objectGroups_31"
+      squad_members:t="objectGroups_32"
+      squad_members:t="objectGroups_33"
+      squad_members:t="objectGroups_34"
+      squad_members:t="objectGroups_35"
+      squad_members:t="objectGroups_36"
+      squad_members:t="objectGroups_37"
+      squad_members:t="objectGroups_38"
+      squad_members:t="objectGroups_39"
+      squad_members:t="objectGroups_41"
+      squad_members:t="objectGroups_42"
+      squad_members:t="objectGroups_43"
+      squad_members:t="objectGroups_44"
+      squad_members:t="objectGroups_45"
+      squad_members:t="objectGroups_46"
+      squad_members:t="objectGroups_47"
+      squad_members:t="objectGroups_48"
+      squad_members:t="objectGroups_49"
+      squad_members:t="objectGroups_50"
+      squad_members:t="objectGroups_51"
+      squad_members:t="objectGroups_52"
+      squad_members:t="objectGroups_53"
+      squad_members:t="objectGroups_54"
+      squad_members:t="objectGroups_55"
+      squad_members:t="objectGroups_56"
+      squad_members:t="objectGroups_57"
+      squad_members:t="objectGroups_58"
+      squad_members:t="objectGroups_59"
+      squad_members:t="objectGroups_60"
+      squad_members:t="objectGroups_61"
+      squad_members:t="objectGroups_62"
+      squad_members:t="objectGroups_63"
+      squad_members:t="objectGroups_64"
+      squad_members:t="objectGroups_65"
+      squad_members:t="objectGroups_66"
+      squad_members:t="objectGroups_67"
+      squad_members:t="objectGroups_68"
+      squad_members:t="objectGroups_69"
+      squad_members:t="objectGroups_70"
+      squad_members:t="objectGroups_71"
+      squad_members:t="objectGroups_72"
+      squad_members:t="objectGroups_73"
+      squad_members:t="objectGroups_74"
+      squad_members:t="objectGroups_75"
+      squad_members:t="objectGroups_76"
+      squad_members:t="objectGroups_77"
+      squad_members:t="objectGroups_79"
+      squad_members:t="objectGroups_78"
+      squad_members:t="objectGroups_80"
+      squad_members:t="objectGroups_81"
+      squad_members:t="objectGroups_82"
+      squad_members:t="objectGroups_83"
+      squad_members:t="objectGroups_84"
+      squad_members:t="objectGroups_85"
+      squad_members:t="objectGroups_86"
+      squad_members:t="objectGroups_87"
+      squad_members:t="objectGroups_88"
+      squad_members:t="objectGroups_89"
+      squad_members:t="objectGroups_90"
+      squad_members:t="objectGroups_40"
+      squad_members:t="objectGroups_91"
+      squad_members:t="objectGroups_92"
+      squad_members:t="objectGroups_93"
+      squad_members:t="objectGroups_94"
+      squad_members:t="objectGroups_95"
+      squad_members:t="objectGroups_96"
+      squad_members:t="objectGroups_97"
+      squad_members:t="objectGroups_98"
+      squad_members:t="objectGroups_99"
+      squad_members:t="objectGroups_100"
+      squad_members:t="objectGroups_101"
+      squad_members:t="objectGroups_102"
+      squad_members:t="objectGroups_103"
+      squad_members:t="objectGroups_104"
+      squad_members:t="objectGroups_105"
+      squad_members:t="objectGroups_106"
+      squad_members:t="objectGroups_107"
+      squad_members:t="objectGroups_108"
+      squad_members:t="objectGroups_109"
+      squad_members:t="objectGroups_110"
+      squad_members:t="objectGroups_111"
+      squad_members:t="objectGroups_112"
+      squad_members:t="objectGroups_113"
+      squad_members:t="objectGroups_114"
+      squad_members:t="objectGroups_115"
+      squad_members:t="objectGroups_116"
+    }
+  }
+
+  tankModels{
+    name:t="player01"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1744.14, 138.077, 1785.93]]
+    unit_class:t="aaa_dummy"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+}
+
+areas{
+
+  tank_map_area{
+    type:t="Box"
+    tm:m=[[-1440.72, 0.0, 0.0] [0.0, 175.475, 0.0] [0.0, 0.0, -1440.72] [2242.14, 92.4033, 2142.27]]
+    objLayer:i=3
+
+    props{
+    }
+  }
+
+  briefing_spawn01{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2425.9, 682.148, 2013.75]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  briefing_spawn02{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2486.35, 583.746, 2730.4]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  briefing_spawn03{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2559.75, 682.25, 2291.35]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  briefing_spawn04{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2652.45, 682.148, 1849.85]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  briefing_spawn05{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2371.75, 682.148, 1807.95]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  briefing_spawn06{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2242.15, 569.348, 1607.4]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  briefing_spawn07{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1824.6, 682.148, 1710.3]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  briefing_spawn08{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2105.6, 682.148, 1973.15]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  briefing_spawn09{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2149.2, 682.148, 2201.2]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  tank_map_area01{
+    type:t="Box"
+    tm:m=[[-1336.61, 0.0, 0.0] [0.0, 175.475, 0.0] [0.0, 0.0, -1336.61] [2242.14, 92.4, 2142.27]]
+    objLayer:i=3
+
+    props{
+    }
+  }
+
+  spawn04{
+    type:t="Sphere"
+    tm:m=[[-6.76494, 0.0, 9.91136] [0.0, 12.0, 0.0] [-9.91136, 0.0, -6.76494] [2200.32, 8.04926, 1595.47]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  spawn06{
+    type:t="Sphere"
+    tm:m=[[-9.30339, 0.0, 7.57935] [0.0, 12.0, 0.0] [-7.57935, 0.0, -9.30339] [1878.6, 8.05, 1570.6]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  spawn07{
+    type:t="Sphere"
+    tm:m=[[-6.76494, 0.0, 9.91136] [0.0, 12.0, 0.0] [-9.91136, 0.0, -6.76494] [1632.3, 8.05, 1485.1]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  spawn08{
+    type:t="Sphere"
+    tm:m=[[-6.76494, 0.0, 9.91136] [0.0, 12.0, 0.0] [-9.91136, 0.0, -6.76494] [1784.76, 8.04929, 1673.46]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  spawn10{
+    type:t="Sphere"
+    tm:m=[[-11.9858, 0.0, 0.583528] [0.0, 12.0, 0.0] [-0.332758, 0.0, -6.83493] [2177.0, 8.05, 1685.55]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  spawn12{
+    type:t="Sphere"
+    tm:m=[[-5.31622, 0.0, 10.7582] [0.0, 12.0, 0.0] [-10.7582, 0.0, -5.31622] [2651.9, 8.0, 1742.4]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  spawn14{
+    type:t="Sphere"
+    tm:m=[[6.97221, 0.0, 9.76669] [0.0, 12.0, 0.0] [-9.76669, 0.0, 6.97221] [2617.66, 8.05, 1852.48]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  spawn15{
+    type:t="Sphere"
+    tm:m=[[6.76567, 0.0, 9.91086] [0.0, 12.0, 0.0] [-9.91086, 0.0, 6.76567] [2481.15, 8.05, 1797.9]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  spawn16{
+    type:t="Sphere"
+    tm:m=[[6.76567, 0.0, 9.91086] [0.0, 12.0, 0.0] [-9.91086, 0.0, 6.76567] [2372.95, 8.05, 1796.9]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  spawn17{
+    type:t="Sphere"
+    tm:m=[[-3.26813, 0.0, 11.5464] [0.0, 12.0, 0.0] [-11.5464, 0.0, -3.26813] [2300.5, 8.05, 1823.85]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  spawn18{
+    type:t="Sphere"
+    tm:m=[[-0.882788, 0.0, -11.9675] [0.0, 12.0, 0.0] [11.9675, 0.0, -0.882788] [2234.23, 8.05, 1819.65]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  spawn20{
+    type:t="Sphere"
+    tm:m=[[-8.57332, 0.0, 8.39625] [0.0, 12.0, 0.0] [-8.39625, 0.0, -8.57332] [2112.46, 8.05, 1783.7]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  spawn21{
+    type:t="Sphere"
+    tm:m=[[0.517244, 0.0, 11.9888] [0.0, 12.0, 0.0] [-11.9888, 0.0, 0.517244] [1887.85, 8.04791, 1801.55]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  spawn23{
+    type:t="Sphere"
+    tm:m=[[-11.9782, 0.0, 0.723339] [0.0, 12.0, 0.0] [-0.723339, 0.0, -11.9782] [1581.85, 8.05, 1914.8]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  spawn24{
+    type:t="Sphere"
+    tm:m=[[-1.29712, 0.0, 11.9297] [0.0, 12.0, 0.0] [-11.9297, 0.0, -1.29712] [1770.85, 8.05, 1871.1]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  spawn25{
+    type:t="Sphere"
+    tm:m=[[-1.29712, 0.0, 11.9297] [0.0, 12.0, 0.0] [-11.9297, 0.0, -1.29712] [1907.45, 8.05, 1932.6]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  spawn26{
+    type:t="Sphere"
+    tm:m=[[5.16994, 0.0, 10.8292] [0.0, 12.0, 0.0] [-10.8292, 0.0, 5.16994] [2488.25, 8.05, 2729.0]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  spawn27{
+    type:t="Sphere"
+    tm:m=[[6.54863, 0.0, -10.0556] [0.0, 12.0, 0.0] [10.0556, 0.0, 6.54863] [2252.25, 13.0, 2535.85]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  spawn29{
+    type:t="Sphere"
+    tm:m=[[7.38219, 0.0, 9.4606] [0.0, 12.0, 0.0] [-9.4606, 0.0, 7.38219] [2092.37, 13.0, 2468.73]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  spawn30{
+    type:t="Sphere"
+    tm:m=[[-0.24633, 0.0, -11.9975] [0.0, 12.0, 0.0] [11.9975, 0.0, -0.24633] [1841.74, 8.05, 2368.44]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  spawn31{
+    type:t="Sphere"
+    tm:m=[[-0.036362, 0.0, -11.9999] [0.0, 12.0, 0.0] [11.9999, 0.0, -0.036362] [1755.45, 8.05, 2267.2]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  spawn33{
+    type:t="Sphere"
+    tm:m=[[7.8755, 0.0, -9.05413] [0.0, 12.0, 0.0] [9.05413, 0.0, 7.8755] [2514.57, 8.05, 2292.52]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  spawn34{
+    type:t="Sphere"
+    tm:m=[[8.39408, 0.0, -8.57553] [0.0, 12.0, 0.0] [8.57553, 0.0, 8.39408] [2641.8, 8.05, 2245.85]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  spawn36{
+    type:t="Sphere"
+    tm:m=[[11.6216, 0.0, -2.98957] [0.0, 12.0, 0.0] [2.98957, 0.0, 11.6216] [2342.15, 8.05, 2221.75]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  spawn37{
+    type:t="Sphere"
+    tm:m=[[-0.149034, 2.9782, -11.6236] [11.9469, -1.04587, -0.421152] [-1.11758, -11.5774, -2.95203] [2219.2, 8.15, 2170.4]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  spawn38{
+    type:t="Sphere"
+    tm:m=[[-9.72722, 0.0, 7.02715] [0.0, 12.0, 0.0] [-7.02715, 0.0, -9.72722] [2194.32, 12.85, 2397.96]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  spawn39{
+    type:t="Sphere"
+    tm:m=[[0.058183, 2.9782, -11.6244] [11.9525, -1.04587, -0.208128] [-1.06479, -11.5774, -2.97148] [2131.8, 8.15, 2228.9]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  spawn40{
+    type:t="Sphere"
+    tm:m=[[11.6175, 2.9782, 0.40519] [-0.148791, -1.04587, 11.9534] [3.00195, -11.5774, -0.975601] [2043.5, 8.15, 2091.6]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  spawn41{
+    type:t="Sphere"
+    tm:m=[[0.343042, 0.0, 11.9951] [2.92438e-09, 12.0, 1.02256e-07] [-11.9951, 0.0, 0.343041] [2096.71, 8.15, 1998.81]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  spawn42{
+    type:t="Sphere"
+    tm:m=[[-0.626955, 0.0, -11.9836] [-5.3447e-09, 12.0, -1.02158e-07] [11.9836, 0.0, -0.626955] [2075.31, 8.14999, 1951.43]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  spawn43{
+    type:t="Sphere"
+    tm:m=[[0.626956, 0.0, 11.9836] [5.34471e-09, 12.0, 1.02158e-07] [-11.9836, 0.0, 0.626956] [2226.27, 8.14999, 1930.88]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  spawn45{
+    type:t="Sphere"
+    tm:m=[[6.46834, 0.0, 10.1074] [5.51417e-08, 12.0, 8.6164e-08] [-10.1074, 0.0, 6.46834] [2468.66, 8.15, 1950.53]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  spawn46{
+    type:t="Sphere"
+    tm:m=[[-0.996499, 0.0, 11.9585] [0.0, 12.0, 0.0] [-11.9585, 0.0, -0.996499] [2344.03, 8.05, 1920.62]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickuparea01{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2598.86, 7.62982, 1995.63]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickuparea02{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2507.77, 8.04131, 2107.92]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickuparea03{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2554.89, 8.00846, 1726.68]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickuparea04{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2379.92, 8.04791, 1674.09]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickuparea05{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2433.13, 8.04791, 1931.24]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickuparea06{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2259.92, 8.02524, 1664.04]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickuparea07{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2024.27, 8.03791, 1582.15]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickuparea08{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1995.99, 8.04791, 1670.74]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickuparea09{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1890.04, 8.04791, 1721.09]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickuparea10{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1667.36, 8.23231, 1789.56]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickuparea11{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2184.73, 8.04791, 2030.75]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickuparea12{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2237.02, 8.08952, 2106.18]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickuparea13{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2104.34, 8.04791, 2126.34]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickuparea14{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1879.5, 6.98824, 2180.94]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickuparea15{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1778.82, 8.04791, 2061.76]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickuparea16{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1664.28, 8.04791, 2340.29]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickuparea17{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1892.47, 7.88596, 2365.11]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickuparea18{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2185.08, 12.8392, 2465.51]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickuparea19{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2298.14, 8.06316, 2253.63]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickuparea20{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2673.27, 8.04791, 2635.09]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickuparea21{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2538.4, 8.04417, 2351.18]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickuparea22{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2319.81, 8.04791, 2052.1]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickuparea23{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2195.12, 11.0556, 2315.85]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickuparea24{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1989.54, 8.04791, 2230.98]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickuparea25{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1986.41, 8.04791, 2124.21]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickuparea26{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1989.36, 8.11448, 2036.82]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickuparea27{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1744.82, 8.04791, 2706.36]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickuparea28{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2131.91, 8.12609, 1903.84]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickuparea29{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1966.1, 8.04791, 1796.02]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickuparea30{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2236.76, 6.98824, 1467.93]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickuparea31{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2542.86, 8.35862, 1570.8]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickuparea32{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1978.43, 8.04791, 1724.78]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickuparea33{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2182.22, 8.04791, 1754.27]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickuparea34{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2266.08, 8.04791, 1723.55]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickuparea35{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2554.89, 8.03265, 1669.85]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickuparea36{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2811.04, 7.80997, 1752.59]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+}
+
+objLayers{
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=no
+  }
+}
+
+wayPoints{
+}
+
+__viewPoints{
+
+  viewpt_01{
+    pos:p3=1761.96, 12.55, 2229.46
+    ht:r=4.5021
+  }
+
+  viewpt_02{
+    pos:p3=1718.0, 8.07446, 2280.96
+    ht:r=0.0
+  }
+}

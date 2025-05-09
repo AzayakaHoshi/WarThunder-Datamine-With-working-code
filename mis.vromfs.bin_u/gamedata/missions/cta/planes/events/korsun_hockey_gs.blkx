@@ -1,0 +1,2594 @@
+selected_tag:t=""
+bin_dump_file:t=""
+
+mission_settings{
+
+  atmosphere{
+    pressure:r=760.0
+    temperature:r=-5.0
+  }
+
+  player{
+    army:i=1
+    wing:t="t1_player01"
+    wing:t="t1_player02"
+    wing:t="t1_player03"
+    wing:t="t1_player04"
+    wing:t="t1_player05"
+    wing:t="t1_player06"
+    wing:t="t1_player07"
+    wing:t="t1_player08"
+    wing:t="t1_player09"
+    wing:t="t1_player10"
+    wing:t="t1_player11"
+    wing:t="t1_player12"
+    wing:t="t1_player13"
+    wing:t="t1_player14"
+    wing:t="t1_player15"
+    wing:t="t1_player16"
+  }
+
+  player_teamB{
+    army:i=2
+    wing:t="t2_player01"
+    wing:t="t2_player02"
+    wing:t="t2_player03"
+    wing:t="t2_player04"
+    wing:t="t2_player05"
+    wing:t="t2_player06"
+    wing:t="t2_player07"
+    wing:t="t2_player08"
+    wing:t="t2_player09"
+    wing:t="t2_player10"
+    wing:t="t2_player11"
+    wing:t="t2_player12"
+    wing:t="t2_player13"
+    wing:t="t2_player14"
+    wing:t="t2_player15"
+    wing:t="t2_player16"
+    wing:t="t2_player17"
+  }
+
+  mission{
+    level:t="levels/korsun.bin"
+    type:t="domination"
+    restoreType:t="attempts"
+    optionalTakeOff:b=no
+    environment:t="Day"
+    weather:t="hazy"
+    scoreLimit:i=500
+    deathPenaltyMul:r=0.0
+    country_axis:t="germany"
+    country_allies:t="ussr"
+    timeLimit:i=25
+
+    allowedUnitTypes{
+      isAirplanesAllowed:b=yes
+    }
+  }
+
+  spectator_points{
+  }
+}
+
+imports{
+}
+
+triggers{
+  isCategory:b=yes
+  is_enabled:b=yes
+
+  start_mission{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      initMission{
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionMarkAsRespawnPoint{
+        loc_name:t="missions/air_spawn1"
+        spawnEffect:b=no
+        isAirfield:b=no
+        isUnit:b=no
+        offset:p3=0.0, 0.0, 0.0
+        radius:r=-1.0
+        isStrictSpawn:b=no
+        useExisting:b=no
+        isIndividual:b=no
+        removeAreas:b=no
+        canSpawnOnNeutral:b=no
+        showOnMap:b=yes
+        target:t="t1_air_spawn"
+        team:t="A"
+
+        tags{
+          tank:b=no
+        }
+      }
+
+      missionMarkAsRespawnPoint{
+        loc_name:t="missions/air_spawn1"
+        spawnEffect:b=no
+        isAirfield:b=no
+        isUnit:b=no
+        offset:p3=0.0, 0.0, 0.0
+        radius:r=-1.0
+        isStrictSpawn:b=no
+        useExisting:b=no
+        isIndividual:b=no
+        removeAreas:b=no
+        canSpawnOnNeutral:b=no
+        showOnMap:b=yes
+        target:t="t2_air_spawn"
+        team:t="B"
+
+        tags{
+          tank:b=no
+        }
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=yes
+        primary:b=no
+        oriented:b=no
+        ignoreDifficulty:b=no
+        scale:r=1.0
+        target:t="t1_circle"
+        team:t="A"
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=yes
+        primary:b=no
+        oriented:b=no
+        ignoreDifficulty:b=no
+        scale:r=1.0
+        target:t="t2_circle"
+        team:t="B"
+      }
+
+      varSetRandomInt{
+        var:t="last_win"
+        from:i=0
+        to_not_including:i=1
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  t1_check_shoot{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.2
+      }
+    }
+
+    conditions{
+
+      unitWhenStatus{
+        object_type:t="hittedBy"
+        check_objects:t="any"
+        object_marking:i=0
+        target_type:t="isTeamA"
+        check_period:r=0.2
+        object:t="armada_01"
+        hittedByTarget:t="all_players_squad"
+      }
+    }
+
+    actions{
+
+      varModify{
+        operator:t="add"
+        value:r=1.0
+        var:t="t1_shoots"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  t2_check_shoot{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.2
+      }
+    }
+
+    conditions{
+
+      unitWhenStatus{
+        object_type:t="hittedBy"
+        check_objects:t="any"
+        object_marking:i=0
+        target_type:t="isTeamB"
+        check_period:r=0.2
+        object:t="armada_01"
+        hittedByTarget:t="all_players_squad"
+      }
+    }
+
+    actions{
+
+      varModify{
+        operator:t="add"
+        value:r=1.0
+        var:t="t2_shoots"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  t1_check_movement{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=3.0
+      }
+    }
+
+    conditions{
+
+      varCompareInt{
+        var_value:t="t1_shoots"
+        value:i=0
+        comparasion_func:t="more"
+        var_value_other:t="t2_shoots"
+      }
+    }
+
+    actions{
+
+      unitMoveTo{
+        target:t="t2_circle"
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=no
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object:t="armada_01"
+        speed:r=450.0
+      }
+
+      varSetInt{
+        value:i=0
+        var:t="t1_shoots"
+      }
+
+      varSetInt{
+        value:i=0
+        var:t="t2_shoots"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  t2_check_movement{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=3.0
+      }
+    }
+
+    conditions{
+
+      varCompareInt{
+        var_value:t="t2_shoots"
+        value:i=0
+        comparasion_func:t="more"
+        var_value_other:t="t1_shoots"
+      }
+    }
+
+    actions{
+
+      unitMoveTo{
+        target:t="t1_circle"
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=no
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object:t="armada_01"
+        speed:r=450.0
+      }
+
+      varSetInt{
+        value:i=0
+        var:t="t1_shoots"
+      }
+
+      varSetInt{
+        value:i=0
+        var:t="t2_shoots"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  t1_win_point{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitDistanceBetween{
+        value:r=250.0
+        math:t="2D"
+        object_type:t="isAlive"
+        object_marking:i=0
+        target_type:t="isAlive"
+        target_marking:i=0
+        check_objects:t="any"
+        check_targets:t="any"
+        object:t="armada_01"
+        target:t="t2_circle"
+      }
+    }
+
+    actions{
+
+      unitPutToSleep{
+        target:t="armada_01"
+      }
+
+      varSetInt{
+        value:i=0
+        var:t="last_win"
+      }
+
+      gameMPChangeScore{
+        value:i=-100
+        valueSystem:t="amount"
+        team:t="B"
+      }
+
+      playHint{
+        hintType:t="custom"
+        name:t="hints/goal_win"
+        action:t="show"
+        shouldFadeOut:b=yes
+        time:r=-1.0
+        team:t="A"
+      }
+
+      playHint{
+        hintType:t="custom"
+        name:t="hints/goal_loose"
+        action:t="show"
+        shouldFadeOut:b=yes
+        time:r=-1.0
+        team:t="B"
+      }
+
+      playHint{
+        hintType:t="custom"
+        name:t="hints/goal_win"
+        action:t="hide"
+        shouldFadeOut:b=yes
+        time:r=-1.0
+        team:t="A"
+      }
+
+      playHint{
+        hintType:t="custom"
+        name:t="hints/goal_loose"
+        action:t="hide"
+        shouldFadeOut:b=yes
+        time:r=-1.0
+        team:t="B"
+      }
+
+      wait{
+        time:r=3.0
+      }
+
+      wait{
+        time:r=2.0
+      }
+
+      triggerEnable{
+        target:t="respawn_ball_hints"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  t2_win_point{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitDistanceBetween{
+        value:r=250.0
+        math:t="2D"
+        object_type:t="isAlive"
+        object_marking:i=0
+        target_type:t="isAlive"
+        target_marking:i=0
+        check_objects:t="any"
+        check_targets:t="any"
+        object:t="armada_01"
+        target:t="t1_circle"
+      }
+    }
+
+    actions{
+
+      unitPutToSleep{
+        target:t="armada_01"
+      }
+
+      varSetInt{
+        value:i=1
+        var:t="last_win"
+      }
+
+      gameMPChangeScore{
+        value:i=-100
+        valueSystem:t="amount"
+        team:t="A"
+      }
+
+      playHint{
+        hintType:t="custom"
+        name:t="hints/goal_win"
+        action:t="show"
+        shouldFadeOut:b=yes
+        time:r=-1.0
+        team:t="B"
+      }
+
+      playHint{
+        hintType:t="custom"
+        name:t="hints/goal_loose"
+        action:t="show"
+        shouldFadeOut:b=yes
+        time:r=-1.0
+        team:t="A"
+      }
+
+      playHint{
+        hintType:t="custom"
+        name:t="hints/goal_win"
+        action:t="hide"
+        shouldFadeOut:b=yes
+        time:r=-1.0
+        team:t="B"
+      }
+
+      playHint{
+        hintType:t="custom"
+        name:t="hints/goal_loose"
+        action:t="hide"
+        shouldFadeOut:b=yes
+        time:r=-1.0
+        team:t="A"
+      }
+
+      wait{
+        time:r=3.0
+      }
+
+      wait{
+        time:r=2.0
+      }
+
+      triggerEnable{
+        target:t="respawn_ball_hints"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  t1_respawn_ball{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.0
+      }
+    }
+
+    conditions{
+
+      varCompareInt{
+        var_value:t="last_win"
+        value:i=0
+        comparasion_func:t="equal"
+      }
+    }
+
+    actions{
+
+      unitRespawn{
+        delay:r=1.0
+        offset:p3=0.0, 0.0, 0.0
+        object:t="armada_01"
+        target:t="center_point"
+      }
+
+      unitMoveTo{
+        target:t="center_point"
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=no
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object:t="armada_01"
+        move_type:t="teleport"
+        lookat:t="center_look_point"
+      }
+
+      unitMoveTo{
+        target:t="t1_circle"
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=no
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object:t="armada_01"
+        speed:r=450.0
+      }
+
+      triggerDisable{
+        target:t="t2_respawn_ball"
+      }
+
+      unitSetIndication{
+        set:b=yes
+        target:t="armada_01"
+      }
+
+      triggerEnable{
+        target:t="t1_win_point"
+        target:t="t2_win_point"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  t2_respawn_ball{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.0
+      }
+    }
+
+    conditions{
+
+      varCompareInt{
+        var_value:t="last_win"
+        value:i=1
+        comparasion_func:t="equal"
+      }
+    }
+
+    actions{
+
+      unitRespawn{
+        delay:r=1.0
+        offset:p3=0.0, 0.0, 0.0
+        object:t="armada_01"
+        target:t="center_point"
+      }
+
+      unitMoveTo{
+        target:t="center_point"
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=no
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object:t="armada_01"
+        move_type:t="teleport"
+        lookat:t="center_look_point"
+      }
+
+      unitMoveTo{
+        target:t="t2_circle"
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=no
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object:t="armada_01"
+        speed:r=450.0
+      }
+
+      triggerDisable{
+        target:t="t1_respawn_ball"
+      }
+
+      unitSetIndication{
+        set:b=yes
+        target:t="armada_01"
+      }
+
+      triggerEnable{
+        target:t="t1_win_point"
+        target:t="t2_win_point"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  goal_repair{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.5
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      unitRestore{
+        ressurectIfDead:b=yes
+        fullRestore:b=yes
+        target:t="armada_01"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  respawn_ball_hints{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      playHint{
+        hintType:t="custom"
+        name:t="hints/goal_spawn_in_5"
+        action:t="show"
+        shouldFadeOut:b=yes
+        time:r=-1.0
+      }
+
+      playHint{
+        hintType:t="custom"
+        name:t="hints/goal_spawn_in_5"
+        action:t="hide"
+        shouldFadeOut:b=yes
+        time:r=-1.0
+      }
+
+      playHint{
+        hintType:t="custom"
+        name:t="hints/goal_spawn_in_4"
+        action:t="show"
+        shouldFadeOut:b=yes
+        time:r=-1.0
+      }
+
+      playHint{
+        hintType:t="custom"
+        name:t="hints/goal_spawn_in_4"
+        action:t="hide"
+        shouldFadeOut:b=yes
+        time:r=-1.0
+      }
+
+      playHint{
+        hintType:t="custom"
+        name:t="hints/goal_spawn_in_3"
+        action:t="show"
+        shouldFadeOut:b=yes
+        time:r=-1.0
+      }
+
+      playHint{
+        hintType:t="custom"
+        name:t="hints/goal_spawn_in_3"
+        action:t="hide"
+        shouldFadeOut:b=yes
+        time:r=-1.0
+      }
+
+      playHint{
+        hintType:t="custom"
+        name:t="hints/goal_spawn_in_2"
+        action:t="show"
+        shouldFadeOut:b=yes
+        time:r=-1.0
+      }
+
+      playHint{
+        hintType:t="custom"
+        name:t="hints/goal_spawn_in_2"
+        action:t="hide"
+        shouldFadeOut:b=yes
+        time:r=-1.0
+      }
+
+      playHint{
+        hintType:t="custom"
+        name:t="hints/goal_spawn_in_1"
+        action:t="show"
+        shouldFadeOut:b=yes
+        time:r=-1.0
+      }
+
+      playHint{
+        hintType:t="custom"
+        name:t="hints/goal_spawn_in_1"
+        action:t="hide"
+        shouldFadeOut:b=yes
+        time:r=-1.0
+      }
+
+      playHint{
+        hintType:t="custom"
+        name:t="hints/goal_spawn_in_ready"
+        action:t="show"
+        shouldFadeOut:b=yes
+        time:r=-1.0
+      }
+
+      playHint{
+        hintType:t="custom"
+        name:t="hints/goal_spawn_in_ready"
+        action:t="hide"
+        shouldFadeOut:b=yes
+        time:r=-1.0
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      triggerEnable{
+        target:t="t1_respawn_ball"
+        target:t="t2_respawn_ball"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  start_match{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenInArea{
+        math:t="3D"
+        object_type:t="isAlive"
+        object_marking:i=0
+        check_objects:t="any"
+        object:t="all_players_squad"
+        target:t="match_area"
+      }
+    }
+
+    actions{
+
+      triggerEnable{
+        target:t="respawn_ball_hints"
+      }
+
+      wait{
+        time:r=5.0
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="all_players_squad"
+        target:t="armada_01"
+      }
+    }
+
+    else_actions{
+    }
+  }
+}
+
+mission_objectives{
+  isCategory:b=yes
+  is_enabled:b=yes
+}
+
+variables{
+  t1_shoots:i=0
+  t2_shoots:i=0
+  last_win:i=0
+}
+
+dialogs{
+}
+
+airfields{
+}
+
+effects{
+}
+
+units{
+
+  armada{
+    name:t="armada_01"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-5375.55, 1000.0, -17417.9]]
+    unit_class:t="arado-234_hockey"
+    objLayer:i=1
+    closed_waypoints:b=no
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=0
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      isDelayed:b=yes
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="t1_player01"
+    tm:m=[[0.976296, 0.0, -0.21644] [0.0, 1.0, 0.0] [0.21644, 0.0, 0.976296] [-7086.35, 3000.0, -17154.3]]
+    unit_class:t="yak-3"
+    objLayer:i=1
+    closed_waypoints:b=no
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=1
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      player:b=yes
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="t1_player02"
+    tm:m=[[-0.996195, 0.0, 0.0871559] [0.0, 1.0, 0.0] [-0.0871559, 0.0, -0.996195] [491.65, 3000.0, -27414.1]]
+    unit_class:t="p-36g"
+    objLayer:i=1
+    closed_waypoints:b=no
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      player:b=yes
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="t1_player03"
+    tm:m=[[-0.996195, 0.0, 0.0871559] [0.0, 1.0, 0.0] [-0.0871559, 0.0, -0.996195] [806.15, 3000.0, -27414.1]]
+    unit_class:t="p-36g"
+    objLayer:i=1
+    closed_waypoints:b=no
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      player:b=yes
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="t1_player04"
+    tm:m=[[-0.996195, 0.0, 0.0871559] [0.0, 1.0, 0.0] [-0.0871559, 0.0, -0.996195] [1151.8, 3000.0, -27414.1]]
+    unit_class:t="p-36g"
+    objLayer:i=1
+    closed_waypoints:b=no
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      player:b=yes
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="t1_player05"
+    tm:m=[[-0.996195, 0.0, 0.0871559] [0.0, 1.0, 0.0] [-0.0871559, 0.0, -0.996195] [1427.35, 3000.0, -27414.1]]
+    unit_class:t="p-36g"
+    objLayer:i=1
+    closed_waypoints:b=no
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      player:b=yes
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="t1_player06"
+    tm:m=[[-0.996195, 0.0, 0.0871559] [0.0, 1.0, 0.0] [-0.0871559, 0.0, -0.996195] [1656.15, 3000.0, -27414.1]]
+    unit_class:t="p-36g"
+    objLayer:i=1
+    closed_waypoints:b=no
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      player:b=yes
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="t1_player07"
+    tm:m=[[-0.996195, 0.0, 0.0871559] [0.0, 1.0, 0.0] [-0.0871559, 0.0, -0.996195] [1917.55, 3000.0, -27414.1]]
+    unit_class:t="p-36g"
+    objLayer:i=1
+    closed_waypoints:b=no
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      player:b=yes
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="t1_player08"
+    tm:m=[[-0.996195, 0.0, 0.0871559] [0.0, 1.0, 0.0] [-0.0871559, 0.0, -0.996195] [2181.35, 3000.0, -27414.1]]
+    unit_class:t="p-36g"
+    objLayer:i=1
+    closed_waypoints:b=no
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      player:b=yes
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="t1_player09"
+    tm:m=[[-0.996195, 0.0, 0.0871559] [0.0, 1.0, 0.0] [-0.0871559, 0.0, -0.996195] [2423.8, 3000.0, -27414.1]]
+    unit_class:t="p-36g"
+    objLayer:i=1
+    closed_waypoints:b=no
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      player:b=yes
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="t1_player10"
+    tm:m=[[-0.996195, 0.0, 0.0871559] [0.0, 1.0, 0.0] [-0.0871559, 0.0, -0.996195] [2664.85, 3000.0, -27414.1]]
+    unit_class:t="p-36g"
+    objLayer:i=1
+    closed_waypoints:b=no
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      player:b=yes
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="t1_player11"
+    tm:m=[[-0.996195, 0.0, 0.0871559] [0.0, 1.0, 0.0] [-0.0871559, 0.0, -0.996195] [2928.6, 3000.0, -27414.1]]
+    unit_class:t="p-36g"
+    objLayer:i=1
+    closed_waypoints:b=no
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      player:b=yes
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="t1_player12"
+    tm:m=[[-0.996195, 0.0, 0.0871559] [0.0, 1.0, 0.0] [-0.0871559, 0.0, -0.996195] [3198.8, 3000.0, -27414.1]]
+    unit_class:t="p-36g"
+    objLayer:i=1
+    closed_waypoints:b=no
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      player:b=yes
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="t1_player13"
+    tm:m=[[-0.996195, 0.0, 0.0871559] [0.0, 1.0, 0.0] [-0.0871559, 0.0, -0.996195] [3534.25, 3000.0, -27414.1]]
+    unit_class:t="p-36g"
+    objLayer:i=1
+    closed_waypoints:b=no
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      player:b=yes
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="t1_player14"
+    tm:m=[[-0.996195, 0.0, 0.0871559] [0.0, 1.0, 0.0] [-0.0871559, 0.0, -0.996195] [3835.0, 3000.0, -27414.1]]
+    unit_class:t="p-36g"
+    objLayer:i=1
+    closed_waypoints:b=no
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      player:b=yes
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="t1_player15"
+    tm:m=[[-0.996195, 0.0, 0.0871559] [0.0, 1.0, 0.0] [-0.0871559, 0.0, -0.996195] [4076.2, 3000.0, -27414.1]]
+    unit_class:t="p-36g"
+    objLayer:i=1
+    closed_waypoints:b=no
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      player:b=yes
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="t1_player16"
+    tm:m=[[-0.996195, 0.0, 0.0871559] [0.0, 1.0, 0.0] [-0.0871559, 0.0, -0.996195] [4401.65, 3000.0, -27414.1]]
+    unit_class:t="p-36g"
+    objLayer:i=1
+    closed_waypoints:b=no
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      player:b=yes
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="t2_player01"
+    tm:m=[[-0.996195, 0.0, 0.0871559] [0.0, 1.0, 0.0] [-0.0871559, 0.0, -0.996195] [491.65, 3000.0, -29697.0]]
+    unit_class:t="p-36g"
+    objLayer:i=1
+    closed_waypoints:b=no
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      player:b=yes
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="t2_player02"
+    tm:m=[[-0.996195, 0.0, 0.0871559] [0.0, 1.0, 0.0] [-0.0871559, 0.0, -0.996195] [630.65, 3000.0, -29697.0]]
+    unit_class:t="p-36g"
+    objLayer:i=1
+    closed_waypoints:b=no
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      player:b=no
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="t2_player03"
+    tm:m=[[-0.996195, 0.0, 0.0871559] [0.0, 1.0, 0.0] [-0.0871559, 0.0, -0.996195] [964.55, 3000.0, -29697.0]]
+    unit_class:t="p-36g"
+    objLayer:i=1
+    closed_waypoints:b=no
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      player:b=no
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="t2_player04"
+    tm:m=[[-0.996195, 0.0, 0.0871559] [0.0, 1.0, 0.0] [-0.0871559, 0.0, -0.996195] [1251.6, 3000.0, -29697.0]]
+    unit_class:t="p-36g"
+    objLayer:i=1
+    closed_waypoints:b=no
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      player:b=no
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="t2_player05"
+    tm:m=[[-0.996195, 0.0, 0.0871559] [0.0, 1.0, 0.0] [-0.0871559, 0.0, -0.996195] [1548.75, 3000.0, -29697.0]]
+    unit_class:t="p-36g"
+    objLayer:i=1
+    closed_waypoints:b=no
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      player:b=no
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="t2_player06"
+    tm:m=[[-0.996195, 0.0, 0.0871559] [0.0, 1.0, 0.0] [-0.0871559, 0.0, -0.996195] [1846.2, 3000.0, -29697.0]]
+    unit_class:t="p-36g"
+    objLayer:i=1
+    closed_waypoints:b=no
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      player:b=no
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="t2_player07"
+    tm:m=[[-0.996195, 0.0, 0.0871559] [0.0, 1.0, 0.0] [-0.0871559, 0.0, -0.996195] [2124.75, 3000.0, -29697.0]]
+    unit_class:t="p-36g"
+    objLayer:i=1
+    closed_waypoints:b=no
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      player:b=no
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="t2_player08"
+    tm:m=[[-0.996195, 0.0, 0.0871559] [0.0, 1.0, 0.0] [-0.0871559, 0.0, -0.996195] [2419.9, 3000.0, -29697.0]]
+    unit_class:t="p-36g"
+    objLayer:i=1
+    closed_waypoints:b=no
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      player:b=no
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="t2_player09"
+    tm:m=[[-0.996195, 0.0, 0.0871559] [0.0, 1.0, 0.0] [-0.0871559, 0.0, -0.996195] [2739.7, 3000.0, -29697.0]]
+    unit_class:t="p-36g"
+    objLayer:i=1
+    closed_waypoints:b=no
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      player:b=no
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="t2_player10"
+    tm:m=[[-0.996195, 0.0, 0.0871559] [0.0, 1.0, 0.0] [-0.0871559, 0.0, -0.996195] [3039.25, 3000.0, -29697.0]]
+    unit_class:t="p-36g"
+    objLayer:i=1
+    closed_waypoints:b=no
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      player:b=no
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="t2_player11"
+    tm:m=[[-0.996195, 0.0, 0.0871559] [0.0, 1.0, 0.0] [-0.0871559, 0.0, -0.996195] [3414.8, 3000.0, -29697.0]]
+    unit_class:t="p-36g"
+    objLayer:i=1
+    closed_waypoints:b=no
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      player:b=no
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="t2_player12"
+    tm:m=[[-0.996195, 0.0, 0.0871559] [0.0, 1.0, 0.0] [-0.0871559, 0.0, -0.996195] [3700.45, 3000.0, -29697.0]]
+    unit_class:t="p-36g"
+    objLayer:i=1
+    closed_waypoints:b=no
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      player:b=no
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="t2_player13"
+    tm:m=[[-0.996195, 0.0, 0.0871559] [0.0, 1.0, 0.0] [-0.0871559, 0.0, -0.996195] [4089.6, 3000.0, -29697.0]]
+    unit_class:t="p-36g"
+    objLayer:i=1
+    closed_waypoints:b=no
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      player:b=no
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="t2_player14"
+    tm:m=[[-0.996195, 0.0, 0.0871559] [0.0, 1.0, 0.0] [-0.0871559, 0.0, -0.996195] [4383.6, 3000.0, -29697.0]]
+    unit_class:t="p-36g"
+    objLayer:i=1
+    closed_waypoints:b=no
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      player:b=no
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="t2_player15"
+    tm:m=[[-0.996195, 0.0, 0.0871559] [0.0, 1.0, 0.0] [-0.0871559, 0.0, -0.996195] [4787.1, 3000.0, -29697.0]]
+    unit_class:t="p-36g"
+    objLayer:i=1
+    closed_waypoints:b=no
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      player:b=no
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="t2_player16"
+    tm:m=[[-0.996195, 0.0, 0.0871559] [0.0, 1.0, 0.0] [-0.0871559, 0.0, -0.996195] [5127.5, 3000.0, -29697.0]]
+    unit_class:t="p-36g"
+    objLayer:i=1
+    closed_waypoints:b=no
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      player:b=no
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="t2_player17"
+    tm:m=[[-0.996195, 0.0, 0.0871559] [0.0, 1.0, 0.0] [-0.0871559, 0.0, -0.996195] [5470.55, 3000.0, -29697.0]]
+    unit_class:t="p-36g"
+    objLayer:i=1
+    closed_waypoints:b=no
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      player:b=no
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  squad{
+    name:t="all_players_squad"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-7129.0, 1.4, -25990.2]]
+
+    props{
+      squad_members:t="t1_player01"
+      squad_members:t="t1_player02"
+      squad_members:t="t1_player03"
+      squad_members:t="t1_player04"
+      squad_members:t="t1_player05"
+      squad_members:t="t1_player06"
+      squad_members:t="t1_player07"
+      squad_members:t="t1_player08"
+      squad_members:t="t1_player09"
+      squad_members:t="t1_player10"
+      squad_members:t="t1_player11"
+      squad_members:t="t1_player12"
+      squad_members:t="t1_player13"
+      squad_members:t="t1_player14"
+      squad_members:t="t1_player15"
+      squad_members:t="t1_player16"
+      squad_members:t="t2_player01"
+      squad_members:t="t2_player02"
+      squad_members:t="t2_player03"
+      squad_members:t="t2_player04"
+      squad_members:t="t2_player05"
+      squad_members:t="t2_player06"
+      squad_members:t="t2_player07"
+      squad_members:t="t2_player08"
+      squad_members:t="t2_player09"
+      squad_members:t="t2_player10"
+      squad_members:t="t2_player11"
+      squad_members:t="t2_player12"
+      squad_members:t="t2_player13"
+      squad_members:t="t2_player14"
+      squad_members:t="t2_player15"
+      squad_members:t="t2_player16"
+      squad_members:t="t2_player17"
+    }
+  }
+}
+
+areas{
+
+  t1_circle{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-10164.5, 3000.0, -18212.3]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  t2_circle{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [3808.45, 3000.0, -18232.8]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  center_point{
+    type:t="Point"
+    tm:m=[[-0.258819, 0.0, -0.965926] [0.0, 1.0, 0.0] [0.965926, 0.0, -0.258819] [-3189.65, 3000.0, -18235.7]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  center_look_point{
+    type:t="Point"
+    tm:m=[[-0.258819, 0.0, -0.965926] [0.0, 1.0, 0.0] [0.965926, 0.0, -0.258819] [-3192.8, 3000.0, -24234.6]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  match_area{
+    type:t="Sphere"
+    tm:m=[[14000.0, 0.0, 0.0] [0.0, 14000.0, 0.0] [0.0, 0.0, 14000.0] [-3192.9, 3000.0, -18234.5]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  area_02{
+    type:t="Sphere"
+    tm:m=[[18000.0, 0.0, 0.0] [0.0, 18000.0, 0.0] [0.0, 0.0, 18000.0] [-3192.9, 4500.0, -18234.5]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  t1_air_spawn{
+    type:t="Sphere"
+    tm:m=[[300.0, 0.0, 0.0] [0.0, 300.0, 0.0] [0.0, 0.0, 300.0] [-12192.5, 4500.0, -18234.2]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  t2_air_spawn{
+    type:t="Sphere"
+    tm:m=[[-300.0, 0.0, 3.43323e-05] [0.0, 300.0, 0.0] [-3.43323e-05, 0.0, -300.0] [5805.2, 4500.0, -18234.2]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+}
+
+objLayers{
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+}
+
+wayPoints{
+}

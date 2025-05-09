@@ -1,0 +1,330 @@
+selected_tag:t=""
+bin_dump_file:t=""
+
+mission_settings{
+
+  player{
+    army:i=1
+    wing:t="armada_01"
+  }
+
+  player_teamB{
+    army:i=2
+  }
+
+  mission{
+    locName:t="missions/testFlight"
+    level:t="levels/avg_japan.bin"
+    type:t="testFlight"
+    restoreType:t="manual"
+    optionalTakeOff:b=no
+    environment:t="Day"
+    weather:t="good"
+    windDirection:p3=1.0, 0.0, 0.0
+  }
+
+  spectator_points{
+  }
+
+  briefing{
+    place_loc:t=""
+    date_loc:t=""
+    objective_loc:t=""
+    music:t="action_01"
+
+    part{
+      event:t=""
+      minTime:i=0
+
+      slide{
+        map:b=yes
+        minTime:i=4
+        picture:t=""
+        showAirMap:b=yes
+
+        icon{
+          icontype:t="fighter"
+          side:t="player"
+          target:t="airfield00"
+          lookAt:t="airfield01"
+        }
+
+        icon{
+          icontype:t="airfield"
+          side:t="ally"
+          target:t="airfield01"
+        }
+
+        icon{
+          icontype:t="transport"
+          side:t="ally"
+          target:t="ships_01"
+        }
+
+        icon{
+          icontype:t="artillery"
+          side:t="ally"
+          target:t="structures_01"
+        }
+
+        icon{
+          icontype:t="artillery"
+          side:t="ally"
+          target:t="structures_02"
+        }
+
+        icon{
+          icontype:t="artillery"
+          side:t="ally"
+          target:t="structures_03"
+        }
+      }
+    }
+  }
+}
+
+imports{
+}
+
+triggers{
+  isCategory:b=yes
+  is_enabled:b=yes
+
+  init{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      initMission{
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      addAirfield{
+        runwayStart:t="airfield00"
+        runwayEnd:t="airfield01"
+        runwayWidth:r=50.0
+        army:i=1
+        spawnPoint:t="spawnpoint"
+      }
+
+      spawnOnAirfield{
+        runwayName:t="airfield00"
+        objects:t="armada_01"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  end{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      playersWhenStatus{
+        players:t="isKilled"
+        check_players:t="any"
+      }
+    }
+
+    actions{
+
+      wait{
+        time:r=3.0
+      }
+
+      spawnOnAirfield{
+        runwayName:t="airfield00"
+        objects:t="armada_01"
+      }
+    }
+
+    else_actions{
+    }
+  }
+}
+
+mission_objectives{
+  isCategory:b=yes
+  is_enabled:b=yes
+}
+
+variables{
+}
+
+dialogs{
+}
+
+airfields{
+}
+
+effects{
+}
+
+units{
+
+  armada{
+    name:t="armada_01"
+    tm:m=[[-0.171208, 0.0, -0.985235] [0.0, 1.0, 0.0] [0.985235, 0.0, -0.171208] [3705.41, 1827.09, 8608.24]]
+    unit_class:t="mig-17"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      count:i=1
+      speed:r=0.0
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=1.5
+        col_distances:r=1.5
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_01"
+    tm:m=[[-0.170338, 0.0, -0.985386] [0.0, 1.0, 0.0] [0.985386, 0.0, -0.170338] [3487.57, 1823.18, 7928.21]]
+    unit_class:t="dynAF_korea_2k"
+    objLayer:i=2
+
+    props{
+      army:i=1
+      active:b=yes
+    }
+  }
+
+  wheeled_vehicles{
+    name:t="tracked_vehicles_01"
+    tm:m=[[0.649226, 0.0, -0.760595] [0.0, 1.0, 0.0] [0.760595, 0.0, 0.649226] [2100.99, 1835.52, 3260.55]]
+    unit_class:t="us_cargo_truck"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+}
+
+areas{
+
+  airfield00{
+    type:t="Sphere"
+    tm:m=[[-33.3062, 0.0, -227.879] [0.0, 230.3, 0.0] [227.879, 0.0, -33.3062] [3645.0, 1829.56, 8782.53]]
+
+    props{
+    }
+  }
+
+  airfield01{
+    type:t="Sphere"
+    tm:m=[[-22.9433, 0.0, -229.154] [0.0, 230.3, 0.0] [229.154, 0.0, -22.9433] [3292.54, 1817.77, 6784.75]]
+
+    props{
+    }
+  }
+
+  spawnpoint{
+    type:t="Sphere"
+    tm:m=[[-11.0634, 0.0, -75.6958] [0.0, 76.5, 0.0] [75.6958, 0.0, -11.0634] [3644.94, 1829.56, 8782.54]]
+
+    props{
+    }
+  }
+}
+
+objLayers{
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+}
+
+wayPoints{
+}

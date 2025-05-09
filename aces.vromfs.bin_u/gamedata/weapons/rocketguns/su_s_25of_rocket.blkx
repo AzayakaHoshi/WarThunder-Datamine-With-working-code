@@ -1,0 +1,349 @@
+rocketGun:b=yes
+preset_cost:i=25
+mesh:t="su_s_25of_rocket"
+mesh_deployed:t="su_s_25of_rocket_deployed"
+helicopterGroup:i=2
+shotFreq:r=20.0
+sound:t="weapon.rocketgun_132"
+
+rocket{
+  bulletName:t="su_s_25of_rocket"
+  statType:t="hydra"
+  caliber:r=0.34
+  length:r=3.3
+  WdK:p3=0.1, 0.1, 0.1
+  CxK:r=0.95
+  distFromCmToStab:r=0.01
+  mass:r=367.0
+  massEnd:r=277.0
+  timeFire:r=2.35
+  force:r=83000.0
+  useStartSpeed:b=yes
+  startSpeed:r=0.0
+  maxSpeed:r=555.0
+  endSpeed:r=0.0
+  maxDistance:r=8000.0
+  minDistance:r=30.0
+  effectOffset:p3=-0.3, 0.0, 0.0
+  explosiveType:t="tnt"
+  explosiveMass:r=27.0
+  explodeTreshold:r=0.0
+  rendinstDamageRadius:r=6.0
+  spawnExplosionFx:b=no
+  dragCx:r=0.011
+  amountPerTier:r=1.0
+  iconType:t="rockets_he_large"
+  aiGroundOnly:b=no
+  aiAirOnly:b=no
+  normalizationPreset:t="heat"
+  ricochetPreset:t="he"
+  groundRicochetPreset:t="he_ground"
+  secondaryShattersPreset:t="ap_rocket"
+  stabilityThreshold:r=0.05
+  stabilityCaliberToArmorThreshold:r=5.0
+  stabilityReductionAfterRicochet:r=0.5
+  stabilityReductionAfterPenetration:r=0.15
+  bulletType:t="rocket_tank"
+  slopeEffectPreset:t="ap"
+  fresnel:p3=0.23, 0.1, 2.0
+  explodeOnRendinst:b=yes
+  useEffectiveArmorThicknessForShatter:b=yes
+  hitPowerMult:r=1.0
+  nearHitPower:p2=1.0, 50.0
+  midHitPower:p2=0.9, 400.0
+  farHitPower:p2=0.1, 1000.0
+  endHitPower:p2=0.01, 1500.0
+  relativeVelHitShift:p2=300.0, 1000.0
+  nearArmorPower:p2=10.0, 50.0
+  midArmorPower:p2=7.0, 400.0
+  farArmorPower:p2=0.2, 700.0
+  relativeVelArmorShift:p2=200.0, 1000.0
+  explosionEffect:t="explosion_midair_rocket_medium"
+  groundCollisionEffect:t="bomb_expl_100kg"
+  ricochetEffect:t="hit_59_80mm_metal_ap"
+  waterCollisionEffect:t="hit_59_80mm_water"
+  explosionPatchRadius:r=5.0
+  waterRicochetEffect:t="hit_81_105mm_water_ap"
+  groundRicochetEffect:t="hit_81_105mm_dirt_ap"
+  visualShattersWaterOffset:r=1.2
+  visualShattersGroundOffset:r=1.2
+  fireEffect:t="fires_exhaust_jet_early_big"
+  smokeEffect:t="smoke_rocket_tail_light_huge"
+  smokeEffect2:t=""
+  hazeEffect:t="haze_missile"
+  endSmokeViscosity:r=0.05
+  maxDeltaAngle:r=1.0
+
+  damage{
+
+    explosive{
+      offset:r=0.4
+    }
+  }
+
+  pressureDamage{
+    damageType:t="pressure"
+  }
+
+  stabilityRicochetModifier{
+    mod1:p2=0.0, 0.5
+    mod2:p2=20.0, 0.6
+    mod3:p2=30.0, 1.0
+  }
+
+  DamageParts{
+
+    body{
+      hp:r=50.0
+      armorClass:t="tank_structural_steel"
+      armorThickness:r=1.0
+    }
+  }
+
+  DamageEffects{
+
+    part{
+      name:t="body"
+
+      onHit{
+        shellState:t="inFlight"
+        expl:r=1.0
+      }
+
+      onHit{
+        shellState:t="onUnit"
+        damageType:t="generic"
+        expl:r=0.05
+        fire:r=0.45
+        break:r=0.5
+        damage:r=3.0
+        fHitCritical:b=yes
+      }
+
+      onHit{
+        shellState:t="onUnit"
+        damageType:t="generic"
+        expl:r=0.5
+        fire:r=0.3
+        break:r=0.2
+        damage:r=30.0
+        fHitCritical:b=yes
+      }
+
+      onHit{
+        shellState:t="onUnit"
+        damageType:t="explosion"
+        expl:r=0.45
+        fire:r=0.45
+        break:r=0.1
+        damage:r=50.0
+        fHitCritical:b=yes
+      }
+
+      onHit{
+        shellState:t="onUnit"
+        damageType:t="cumulative"
+        expl:r=0.4
+        fire:r=0.4
+        break:r=0.1
+        damage:r=100.0
+        fHitCritical:b=yes
+      }
+
+      onKill{
+        shellState:t="inFlight"
+        destruction:r=1.0
+      }
+
+      onKill{
+        shellState:t="onUnit"
+        expl:r=0.05
+        fire:r=0.05
+        break:r=0.9
+        fHitCritical:b=yes
+      }
+    }
+  }
+
+  shatterCollisions{
+    groundCollisionEffect:t="hit_12_18mm_dirt_ap"
+    waterCollisionEffect:t="hit_8_11mm_water"
+
+    default{
+      fx:t="hit_12_18mm_dirt_ap"
+    }
+
+    horLandMesh{
+      fx:t="hit_12_18mm_dirt_ap"
+    }
+
+    soil{
+      fx:t="hit_12_18mm_dirt_ap"
+    }
+
+    dirt{
+      fx:t="hit_12_18mm_dirt_ap"
+    }
+
+    road{
+      fx:t="hit_12_18mm_dirt_ap"
+    }
+
+    bricks_red{
+      fx:t="hit_12_18mm_red_brick_ap"
+    }
+
+    roadSoil{
+      fx:t="hit_12_18mm_dirt_ap"
+    }
+
+    steppe{
+      fx:t="hit_12_18mm_sand_ap"
+    }
+
+    sand{
+      fx:t="hit_12_18mm_sand_ap"
+    }
+
+    duneSand{
+      fx:t="hit_12_18mm_sand_ap"
+    }
+
+    roadSand{
+      fx:t="hit_12_18mm_sand_ap"
+    }
+
+    quickSand{
+      fx:t="hit_12_18mm_sand_ap"
+    }
+
+    snow{
+      fx:t="hit_12_18mm_snow_ap"
+    }
+
+    ice{
+      fx:t="hit_12_18mm_snow_ap"
+    }
+
+    roadSnow{
+      fx:t="hit_12_18mm_snow_ap"
+    }
+
+    snowLower{
+      fx:t="hit_12_18mm_snow_ap"
+    }
+
+    glass{
+      fx:t="hit_12_18mm_metal_ap"
+    }
+
+    wood{
+      fx:t="hit_12_18mm_wood_ap"
+    }
+
+    steel{
+      fx:t="hit_12_18mm_metal_ap"
+    }
+
+    metal{
+      fx:t="hit_12_18mm_metal_ap"
+    }
+
+    tank_structural_steel{
+      fx:t="hit_12_18mm_metal_ap"
+    }
+
+    aluminum_armor{
+      fx:t="hit_12_18mm_metal_ap"
+    }
+
+    tank_rubber_screens{
+      fx:t="hit_12_18mm_stone_ap"
+    }
+
+    buildings{
+      fx:t="hit_12_18mm_stone_ap"
+    }
+
+    verLandMesh{
+      fx:t="hit_12_18mm_stone_ap"
+    }
+
+    concrete{
+      fx:t="hit_12_18mm_stone_ap"
+    }
+
+    rocks{
+      fx:t="hit_12_18mm_stone_ap"
+    }
+
+    rocksSlippery{
+      fx:t="hit_12_18mm_stone_ap"
+    }
+
+    fabric{
+      fx:t="hit_12_18mm_stone_ap"
+    }
+
+    stone_snow{
+      fx:t="hit_12_18mm_snow_ap"
+    }
+
+    armorPierceLowCal{
+      fx:t="hit_12_18mm_metal_ap"
+    }
+
+    armorPierceMedCal{
+      fx:t="hit_12_18mm_metal_ap"
+    }
+
+    armorPierceHiCal{
+      fx:t="hit_12_18mm_metal_ap"
+    }
+
+    armorNPLowCal{
+      fx:t="hit_12_18mm_metal_ap"
+    }
+
+    armorNPMedCal{
+      fx:t="hit_12_18mm_metal_ap"
+    }
+
+    armorNPHiCal{
+      fx:t="hit_12_18mm_metal_ap"
+    }
+  }
+
+  collisions{
+
+    steel{
+      fx:t="explosion_midair_medium"
+      ricochetFx:t="hit_81_105mm_metal_ap"
+    }
+
+    aluminum_armor{
+      fx:t="explosion_midair_medium"
+      ricochetFx:t="hit_81_105mm_metal_ap"
+    }
+
+    tank_structural_steel{
+      fx:t="explosion_midair_medium"
+      ricochetFx:t="hit_81_105mm_metal_ap"
+    }
+
+    armor{
+      fx:t="explosion_midair_medium"
+      ricochetFx:t="hit_81_105mm_metal_ap"
+    }
+
+    buildings{
+      fx:t="explosion_midair_medium"
+      ricochetFx:t="hit_106_132mm_stone_ap"
+    }
+
+    wood{
+      fx:t="explosion_midair_medium"
+      ricochetFx:t="hit_106_132mm_wood_ap"
+    }
+  }
+}

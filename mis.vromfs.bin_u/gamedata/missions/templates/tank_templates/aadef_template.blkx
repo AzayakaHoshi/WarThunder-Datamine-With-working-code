@@ -1,0 +1,828 @@
+selected_tag:t=""
+bin_dump_file:t=""
+
+mission_settings{
+
+  player{
+    army:i=1
+  }
+
+  player_teamB{
+    army:i=2
+  }
+
+  mission{
+    level:t="levels/water.bin"
+    type:t="domination"
+    environment:t="Day"
+    weather:t="clear"
+    restoreType:t="attempts"
+    optionalTakeOff:b=no
+  }
+}
+
+imports{
+
+  import_record{
+    file:t="gameData/missions/templates/tank_templates/defence_spawn_template.blk"
+    importAreas:b=yes
+    importUnits:b=yes
+    importTriggers:b=yes
+    importMissionObjectives:b=yes
+    importWayPoints:b=yes
+    showAreas:b=yes
+    showUnits:b=yes
+    showTriggers:b=yes
+    showMissionObjectives:b=yes
+    showWayPoints:b=yes
+
+    excludes{
+    }
+  }
+
+  import_record{
+    file:t="gameData/missions/templates/score_penalty_by_time.blk"
+    importAreas:b=yes
+    importUnits:b=yes
+    importTriggers:b=yes
+    importMissionObjectives:b=yes
+    importWayPoints:b=yes
+    showAreas:b=yes
+    showUnits:b=yes
+    showTriggers:b=yes
+    showMissionObjectives:b=yes
+    showWayPoints:b=yes
+
+    excludes{
+    }
+  }
+}
+
+triggers{
+  isCategory:b=yes
+  is_enabled:b=yes
+
+  aadef_set_common{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      initMission{
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      varSetString{
+        value:t="aadef_battle_area"
+        var:t="zone_name"
+      }
+
+      varSetString{
+        value:t="ai_target_unit_squad"
+        var:t="ai_target_unit_squad_name"
+      }
+
+      unitSetProperties{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="@ai_target_unit_squad_name"
+        attack_type:t="dont_aim"
+      }
+
+      unitPutToSleep{
+        target:t="@ai_target_unit_squad_name"
+      }
+
+      varSetInt{
+        value:i=10
+        var:t="ai_target_unit_count"
+        fromDescriptor:t="aiTargetCount"
+      }
+
+      varSetInt{
+        value:i=0
+        var:t="ai_target_alive_count"
+        input_var:t="ai_target_unit_count"
+      }
+
+      varSetInt{
+        value:i=0
+        var:t="ai_target_kill_penalty"
+        fromDescriptor:t="scoreLimit"
+      }
+
+      varModify{
+        operator:t="divAB"
+        value:r=0.0
+        var:t="ai_target_kill_penalty"
+        use_variable:b=yes
+        var_value:t="ai_target_unit_count"
+      }
+
+      varModify{
+        operator:t="mul"
+        value:r=-1.0
+        var:t="ai_target_kill_penalty"
+      }
+
+      unitWakeUp{
+        target:t="@ai_target_unit_squad_name"
+        varNameNumToWakeUp:t="ai_target_unit_count"
+        order:t="random"
+      }
+
+      triggerEnable{
+        target:t="aadef_check_a"
+        target:t="aadef_set_battle_area"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  aadef_check_a{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      initMission{
+      }
+    }
+
+    conditions{
+
+      missionNamePostfix{
+        postfix:t="_aadefa"
+      }
+    }
+
+    actions{
+
+      varSetBool{
+        value:b=yes
+        var:t="score_by_time_for_team_b"
+      }
+
+      triggerEnable{
+        target:t="aadefa_objectives"
+        target:t="aadefa_check_target_dead"
+        target:t="aadefa_check_all_targets_dead"
+        target:t="aadefa_counter"
+        target:t="defence_spawn_start_t1"
+      }
+    }
+
+    else_actions{
+
+      triggerEnable{
+        target:t="aadef_check_b"
+      }
+    }
+  }
+
+  aadef_check_b{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      initMission{
+      }
+    }
+
+    conditions{
+
+      missionNamePostfix{
+        postfix:t="_aadefb"
+      }
+    }
+
+    actions{
+
+      varSetBool{
+        value:b=yes
+        var:t="score_by_time_for_team_a"
+      }
+
+      triggerEnable{
+        target:t="aadefb_objectives"
+        target:t="aadefb_check_target_dead"
+        target:t="aadefb_check_all_targets_dead"
+        target:t="aadefb_counter"
+        target:t="defence_spawn_start_t2"
+      }
+    }
+
+    else_actions{
+
+      comment{
+        value:t="something wrong"
+      }
+    }
+  }
+
+  aadef_set_battle_area{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      initMission{
+      }
+    }
+
+    conditions{
+
+      objectExists{
+        target:t="@zone_name"
+        type:t="area"
+      }
+    }
+
+    actions{
+
+      missionBattleArea{
+        air:b=no
+        ground:b=yes
+        mapArea:b=yes
+        killOutOfBattleArea:b=yes
+        target:t="@battle_area_name"
+        killArea:b=no
+        detectionArea:b=no
+        airMapArea:b=no
+        area:t="@zone_name"
+        newGridHorizontalCellCount:i=0
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  aadefa{
+    isCategory:b=yes
+    is_enabled:b=yes
+
+    aadefa_objectives{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=1.0
+        }
+      }
+
+      conditions{
+
+        missionNamePostfix{
+          postfix:t="_aadefa"
+        }
+      }
+
+      actions{
+
+        wait{
+          time:r=3.0
+        }
+
+        moAddMissionObjective{
+          target:t="t1_ai_base_defend"
+          object_var_comp_op:t="equal"
+          object_var_name:t=""
+          object_marking:i=0
+        }
+
+        moAddMissionObjective{
+          target:t="t2_ai_base_attack"
+          object_var_comp_op:t="equal"
+          object_var_name:t=""
+          object_marking:i=0
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    aadefa_check_target_dead{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=yes
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=0.1
+        }
+      }
+
+      conditions{
+
+        unitWhenCountMatches{
+          object_type:t="isActive"
+          object_marking:i=0
+          func:t="less"
+          value:i=1
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object:t="@ai_target_unit_squad_name"
+          var:t="ai_target_alive_count"
+        }
+      }
+
+      actions{
+
+        varModify{
+          operator:t="subAB"
+          value:r=1.0
+          var:t="ai_target_alive_count"
+        }
+
+        gameMPChangeScore{
+          value:i=1
+          valueSystem:t="amount"
+          var:t="ai_target_kill_penalty"
+          team:t="A"
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    aadefa_check_all_targets_dead{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=1.0
+        }
+      }
+
+      conditions{
+
+        unitWhenCountMatches{
+          object_type:t="isActive"
+          object_marking:i=0
+          func:t="less"
+          value:i=1
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object:t="@ai_target_unit_squad_name"
+        }
+      }
+
+      actions{
+
+        moSetObjectiveStatus{
+          target:t="t1_ai_base_defend"
+          status:i=3
+          object_var_comp_op:t="equal"
+          object_var_name:t=""
+          object_marking:i=0
+          team:t="A"
+        }
+
+        moSetObjectiveStatus{
+          target:t="t2_ai_base_attack"
+          status:i=2
+          object_var_comp_op:t="equal"
+          object_var_name:t=""
+          object_marking:i=0
+          team:t="B"
+        }
+
+        gameMPChangeScore{
+          value:i=-100
+          valueSystem:t="percentage"
+          team:t="A"
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    aadefa_counter{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=yes
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=1.0
+        }
+      }
+
+      conditions{
+      }
+
+      actions{
+
+        missionSetTargetsIndicator{
+          target_type:t="isActive"
+          target_marking:i=0
+          delta:i=0
+          icon:t="tank"
+          "icon army":i=1
+          set:b=yes
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          target:t="@ai_target_unit_squad_name"
+        }
+      }
+
+      else_actions{
+      }
+    }
+  }
+
+  aadefb{
+    isCategory:b=yes
+    is_enabled:b=yes
+
+    aadefb_objectives{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=1.0
+        }
+      }
+
+      conditions{
+
+        missionNamePostfix{
+          postfix:t="_aadefb"
+        }
+      }
+
+      actions{
+
+        wait{
+          time:r=3.0
+        }
+
+        moAddMissionObjective{
+          target:t="t2_ai_base_defend"
+          object_var_comp_op:t="equal"
+          object_var_name:t=""
+          object_marking:i=0
+        }
+
+        moAddMissionObjective{
+          target:t="t1_ai_base_attack"
+          object_var_comp_op:t="equal"
+          object_var_name:t=""
+          object_marking:i=0
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    aadefb_check_target_dead{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=yes
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=0.1
+        }
+      }
+
+      conditions{
+
+        unitWhenCountMatches{
+          object_type:t="isActive"
+          object_marking:i=0
+          func:t="less"
+          value:i=1
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object:t="@ai_target_unit_squad_name"
+          var:t="ai_target_alive_count"
+        }
+      }
+
+      actions{
+
+        varModify{
+          operator:t="subAB"
+          value:r=1.0
+          var:t="ai_target_alive_count"
+        }
+
+        gameMPChangeScore{
+          value:i=1
+          valueSystem:t="amount"
+          var:t="ai_target_kill_penalty"
+          team:t="B"
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    aadefb_check_all_targets_dead{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=1.0
+        }
+      }
+
+      conditions{
+
+        unitWhenCountMatches{
+          object_type:t="isActive"
+          object_marking:i=0
+          func:t="less"
+          value:i=1
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object:t="@ai_target_unit_squad_name"
+        }
+      }
+
+      actions{
+
+        moSetObjectiveStatus{
+          target:t="t2_ai_base_defend"
+          status:i=3
+          object_var_comp_op:t="equal"
+          object_var_name:t=""
+          object_marking:i=0
+          team:t="B"
+        }
+
+        moSetObjectiveStatus{
+          target:t="t1_ai_base_attack"
+          status:i=2
+          object_var_comp_op:t="equal"
+          object_var_name:t=""
+          object_marking:i=0
+          team:t="A"
+        }
+
+        gameMPChangeScore{
+          value:i=-100
+          valueSystem:t="percentage"
+          team:t="B"
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    aadefb_counter{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=yes
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=1.0
+        }
+      }
+
+      conditions{
+      }
+
+      actions{
+
+        missionSetTargetsIndicator{
+          target_type:t="isActive"
+          target_marking:i=0
+          delta:i=0
+          icon:t="tank"
+          "icon army":i=2
+          set:b=yes
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          target:t="@ai_target_unit_squad_name"
+        }
+      }
+
+      else_actions{
+      }
+    }
+  }
+}
+
+mission_objectives{
+  isCategory:b=yes
+  is_enabled:b=yes
+
+  t1_ai_base_defend{
+    is_enabled:b=no
+    comments:t=""
+    type:t="abstractMissionObjective"
+
+    props{
+      isPrimary:b=yes
+      timeLimit:i=1800
+      team:t="A"
+    }
+
+    onSuccess{
+    }
+
+    onFailed{
+    }
+  }
+
+  t2_ai_base_defend{
+    is_enabled:b=no
+    comments:t=""
+    type:t="abstractMissionObjective"
+
+    props{
+      isPrimary:b=yes
+      timeLimit:i=1800
+      team:t="B"
+    }
+
+    onSuccess{
+    }
+
+    onFailed{
+    }
+  }
+
+  t1_ai_base_attack{
+    is_enabled:b=no
+    comments:t=""
+    type:t="abstractMissionObjective"
+
+    props{
+      isPrimary:b=yes
+      timeLimit:i=1800
+      team:t="A"
+    }
+
+    onSuccess{
+    }
+
+    onFailed{
+    }
+  }
+
+  t2_ai_base_attack{
+    is_enabled:b=no
+    comments:t=""
+    type:t="abstractMissionObjective"
+
+    props{
+      isPrimary:b=yes
+      timeLimit:i=1800
+      team:t="B"
+    }
+
+    onSuccess{
+    }
+
+    onFailed{
+    }
+  }
+}
+
+variables{
+  ai_target_unit_squad_name:t="ai_target_unit_squad"
+  ai_target_unit_count:i=0
+  ai_target_alive_count:i=0
+  ai_target_kill_penalty:i=0
+  zone_name:t=""
+}
+
+dialogs{
+}
+
+airfields{
+}
+
+effects{
+}
+
+units{
+}
+
+areas{
+}
+
+objLayers{
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+}
+
+wayPoints{
+}

@@ -1,0 +1,1816 @@
+selected_tag:t=""
+bin_dump_file:t=""
+
+mission_settings{
+
+  player{
+    army:i=1
+  }
+
+  player_teamB{
+    army:i=2
+  }
+
+  mission{
+    type:t="singleMission"
+    level:t="levels/water.bin"
+    environment:t="Day"
+    weather:t="hazy"
+  }
+}
+
+imports{
+}
+
+triggers{
+  isCategory:b=yes
+  is_enabled:b=yes
+
+  start_mission_check{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      initMission{
+      }
+    }
+
+    conditions{
+
+      playerShortcutPressed{
+        control:t="ID_CONTINUE"
+      }
+    }
+
+    actions{
+
+      missionSetTimeSpeed{
+        speed:r=1.0
+        realtimeTriggers:b=yes
+      }
+
+      playHint{
+        hintType:t="standard"
+        name:t="hints/po_2op_event_mission/start"
+        action:t="hide"
+        shouldFadeOut:b=no
+        isOverFade:b=no
+        time:r=-1.0
+        priority:i=0
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  init_mission_props{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playersWhenStatus{
+        players:t="isActive"
+        check_players:t="any"
+      }
+    }
+
+    actions{
+
+      missionBattleArea{
+        air:b=yes
+        ground:b=no
+        mapArea:b=yes
+        airMapArea:b=yes
+        killArea:b=no
+        detectionArea:b=no
+        killOutOfBattleArea:b=yes
+        area:t="player_battle_area"
+        team:t="A"
+      }
+
+      missionBattleArea{
+        air:b=yes
+        ground:b=no
+        mapArea:b=yes
+        airMapArea:b=yes
+        killArea:b=no
+        detectionArea:b=no
+        killOutOfBattleArea:b=no
+        area:t="enemy_battle_area"
+        team:t="B"
+      }
+
+      unitSetProperties{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="player"
+        isImmortal:b=yes
+      }
+
+      unitLoadBehTree{
+        name:t="eventMissionSimpleEnergyAttack"
+        objects:t="enemy_sq"
+        loadType:t="tree"
+      }
+
+      playHint{
+        hintType:t="standard"
+        name:t="hints/po_2op_event_mission/start"
+        action:t="show"
+        shouldFadeOut:b=no
+        isOverFade:b=no
+        time:r=-1.0
+        priority:i=0
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+      }
+
+      missionSetTimeSpeed{
+        speed:r=0.0
+        realtimeTriggers:b=no
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  enemy_spawn_check_count{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.5
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isActive"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        func:t="less"
+        value:i=0
+        object:t="enemy_sq"
+        var:t="enemies_max_count"
+      }
+    }
+
+    actions{
+
+      varSetBool{
+        value:b=yes
+        var:t="need_to_spawn_enemy"
+      }
+
+      triggerEnable{
+        target:t="enemy_spawn_check_idx"
+      }
+    }
+
+    else_actions{
+
+      varSetBool{
+        value:b=no
+        var:t="need_to_spawn_enemy"
+      }
+
+      triggerEnable{
+        target:t="enemy_spawn_check_count"
+      }
+    }
+  }
+
+  enemy_spawn_check_idx{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.5
+      }
+    }
+
+    conditions{
+
+      varCompareInt{
+        var_value:t="enemy_spawn_idx"
+        value:i=16
+        comparasion_func:t="more"
+      }
+    }
+
+    actions{
+
+      varSetInt{
+        value:i=1
+        var:t="enemy_spawn_idx"
+      }
+
+      triggerEnable{
+        target:t="enemy_spawn"
+      }
+    }
+
+    else_actions{
+
+      triggerEnable{
+        target:t="enemy_spawn"
+      }
+    }
+  }
+
+  enemy_spawn{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.5
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isActive"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        func:t="less"
+        value:i=0
+        object:t="enemy_sq"
+        var:t="enemies_max_count"
+      }
+    }
+
+    actions{
+
+      varSetString{
+        value:t="spawn_"
+        var:t="enemy_spawn_str"
+      }
+
+      varAddString{
+        value:t="@enemy_spawn_idx"
+        digits:i=2
+        var:t="enemy_spawn_str"
+      }
+
+      unitRespawn{
+        delay:r=0.0
+        offset:p3=0.0, 0.0, 0.0
+        object:t="enemy_sq"
+        object_type:t="isDelayed"
+        target:t="@enemy_spawn_str"
+        randomObjectsCount:i=1
+        isStealth:b=yes
+        setObjectMarking:i=0
+        shouldKeepFormation:b=no
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="enemy_sq"
+        attack_type:t="attack_target"
+        target:t="player"
+      }
+
+      unitSetProperties{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="enemy_sq"
+        stealthRadius:r=2000.0
+        calmDetection:b=yes
+      }
+
+      varModify{
+        operator:t="add"
+        value:r=1.0
+        var:t="enemy_spawn_idx"
+      }
+
+      triggerEnable{
+        target:t="enemy_spawn_check_idx"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  enemy_out_delay{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ANY"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.2
+      }
+    }
+
+    conditions{
+
+      unitWhenInArea{
+        math:t="notNear2D"
+        object_type:t="isAlive"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        check_objects:t="any"
+        object:t="enemy_sq"
+        target:t="enemy_battle_area"
+      }
+
+      unitWhenInArea{
+        math:t="3D"
+        object_type:t="isAlive"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        check_objects:t="any"
+        object:t="enemy_sq"
+        target:t="enemy_too_high_area"
+      }
+    }
+
+    actions{
+
+      unitPutToSleep{
+        target:t="enemy_sq"
+        useForTriggerFiltered:b=yes
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  enemy_killed_delay{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.2
+      }
+    }
+
+    conditions{
+
+      unitWhenInArea{
+        math:t="3D"
+        object_type:t="isKilled"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        check_objects:t="any"
+        object:t="enemy_sq"
+        target:t="player_bottom_return_area"
+      }
+    }
+
+    actions{
+
+      unitPutToSleep{
+        target:t="enemy_sq"
+        useForTriggerFiltered:b=yes
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  player_reload{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=5.0
+      }
+    }
+
+    conditions{
+
+      varCompareBool{
+        var_value:t="is_op"
+        value:b=yes
+        comparasion_func:t="equal"
+      }
+    }
+
+    actions{
+
+      unitRestore{
+        target_marking:i=0
+        ressurectIfDead:b=no
+        fullRestore:b=no
+        target:t="player"
+        ammoRestore:b=yes
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  player_battlearea_handler{
+    isCategory:b=yes
+    is_enabled:b=yes
+
+    player_too_low{
+      is_enabled:b=yes
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=yes
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=1.0
+        }
+      }
+
+      conditions{
+
+        unitWhenInArea{
+          math:t="3D"
+          object_type:t="isAlive"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          check_objects:t="any"
+          object:t="player"
+          target:t="player_bottom_area"
+        }
+      }
+
+      actions{
+
+        playSound{
+          name:t="aircraft/gui/alarm_alt"
+          loop:b=no
+          start:b=yes
+        }
+
+        playHint{
+          hintType:t="standard"
+          name:t="hints/po_2op_event_mission/climd"
+          action:t="warning"
+          shouldFadeOut:b=no
+          isOverFade:b=no
+          time:r=1.0
+          priority:i=0
+          target_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          shouldBlink:b=yes
+          warningTime:r=1.0
+          target:t="player"
+        }
+
+        varModify{
+          operator:t="add"
+          value:r=-1.0
+          var:t="player_low_alt_timer"
+        }
+      }
+
+      else_actions{
+
+        varSetInt{
+          value:i=10
+          var:t="player_low_alt_timer"
+        }
+      }
+    }
+
+    player_too_low_reset{
+      is_enabled:b=yes
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ANY"
+        enableAfterComplete:b=yes
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=1.0
+        }
+      }
+
+      conditions{
+
+        varCompareInt{
+          var_value:t="player_low_alt_timer"
+          value:i=0
+          comparasion_func:t="notMore"
+        }
+
+        unitWhenInArea{
+          math:t="3D"
+          object_type:t="isAlive"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          check_objects:t="any"
+          object:t="player"
+          target:t="player_bottom_return_area"
+        }
+      }
+
+      actions{
+
+        playSound{
+          name:t="aircraft/gui/alarm_alt"
+          loop:b=no
+          start:b=no
+        }
+
+        unitMoveTo{
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          target:t="player_respawn_pos"
+          target_var_name:t=""
+          target_var_comp_op:t="equal"
+          target_var_value:i=0
+          target_marking:i=0
+          waypointReachedDist:r=10.0
+          recalculatePathDist:r=-1.0
+          follow_target:b=no
+          fastClimb:b=no
+          destTimeMode:b=no
+          teleportHeightType:t="absolute"
+          useUnitHeightForTele:b=no
+          shouldKeepFormation:b=no
+          teleportHeightValue:r=1500.0
+          horizontalDirectionForTeleport:b=yes
+          object:t="player"
+          move_type:t="teleport"
+          lookat:t="spawn_02"
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    player_too_high{
+      is_enabled:b=yes
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=yes
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=1.0
+        }
+      }
+
+      conditions{
+
+        unitWhenInArea{
+          math:t="3D"
+          object_type:t="isAlive"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          check_objects:t="any"
+          object:t="player"
+          target:t="player_up_area"
+        }
+      }
+
+      actions{
+
+        playSound{
+          name:t="aircraft/gui/alarm_alt"
+          loop:b=no
+          start:b=yes
+        }
+
+        playHint{
+          hintType:t="standard"
+          name:t="hints/po_2op_event_mission/descend"
+          action:t="warning"
+          shouldFadeOut:b=no
+          isOverFade:b=no
+          time:r=1.0
+          priority:i=0
+          target_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          shouldBlink:b=yes
+          warningTime:r=1.0
+          target:t="player"
+        }
+
+        varModify{
+          operator:t="add"
+          value:r=-1.0
+          var:t="player_high_alt_timer"
+        }
+      }
+
+      else_actions{
+
+        varSetInt{
+          value:i=10
+          var:t="player_high_alt_timer"
+        }
+      }
+    }
+
+    player_too_high_reset{
+      is_enabled:b=yes
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ANY"
+        enableAfterComplete:b=yes
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=1.0
+        }
+      }
+
+      conditions{
+
+        varCompareInt{
+          var_value:t="player_high_alt_timer"
+          value:i=0
+          comparasion_func:t="notMore"
+        }
+
+        unitWhenInArea{
+          math:t="3D"
+          object_type:t="isAlive"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          check_objects:t="any"
+          object:t="player"
+          target:t="enemy_too_high_area"
+        }
+      }
+
+      actions{
+
+        playSound{
+          name:t="aircraft/gui/alarm_alt"
+          loop:b=no
+          start:b=no
+        }
+
+        unitMoveTo{
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          target:t="player_respawn_pos"
+          target_var_name:t=""
+          target_var_comp_op:t="equal"
+          target_var_value:i=0
+          target_marking:i=0
+          waypointReachedDist:r=10.0
+          recalculatePathDist:r=-1.0
+          follow_target:b=no
+          fastClimb:b=no
+          destTimeMode:b=no
+          teleportHeightType:t="absolute"
+          useUnitHeightForTele:b=no
+          shouldKeepFormation:b=no
+          teleportHeightValue:r=1500.0
+          horizontalDirectionForTeleport:b=yes
+          object:t="player"
+          move_type:t="teleport"
+          lookat:t="spawn_02"
+        }
+      }
+
+      else_actions{
+      }
+    }
+  }
+
+  player_status_and_timers{
+    isCategory:b=yes
+    is_enabled:b=yes
+
+    kill_counter{
+      is_enabled:b=yes
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=yes
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=0.1
+        }
+      }
+
+      conditions{
+
+        unitWhenStatus{
+          object_type:t="isMarked"
+          check_objects:t="any"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          target_type:t="isAlive"
+          check_period:r=1.0
+          object:t="enemy_sq"
+          unit_type_ex:t="isKilledByPlayer"
+        }
+      }
+
+      actions{
+
+        unitMark{
+          target_marking:i=1
+          target:t="enemy_sq"
+          useForTriggerFiltered:b=yes
+        }
+
+        varModify{
+          operator:t="add"
+          value:r=1.0
+          var:t="kill_count"
+        }
+
+        triggerEnable{
+          target:t="kill_add_op_time"
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    kill_add_op_time{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=0.1
+        }
+      }
+
+      conditions{
+
+        varCompareBool{
+          var_value:t="is_op"
+          value:b=yes
+          comparasion_func:t="equal"
+        }
+      }
+
+      actions{
+
+        varModify{
+          operator:t="add"
+          value:r=0.0
+          var:t="op_timer"
+          use_variable:b=yes
+          var_value:t="kill_op_timer_add"
+        }
+
+        playHint{
+          hintType:t="bottom"
+          name:t="hints/po_2op_event_mission/to_op_timer"
+          action:t="show"
+          shouldFadeOut:b=yes
+          isOverFade:b=no
+          time:r=2.0
+          priority:i=0
+          target_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          var_name:t="kill_op_timer_add"
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    set_indicators{
+      is_enabled:b=yes
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=yes
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=0.2
+        }
+      }
+
+      conditions{
+      }
+
+      actions{
+
+        missionSetTargetsIndicator{
+          target_type:t="any"
+          target_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          delta:i=0
+          icon:t="score"
+          "icon army":i=1
+          set:b=yes
+          target:t="player"
+          var:t="kill_count"
+        }
+
+        __missionSetTargetsIndicator{
+          target_type:t="isActive"
+          target_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          delta:i=0
+          icon:t="air"
+          "icon army":i=2
+          set:b=yes
+          target:t="enemy_sq"
+        }
+
+        missionSetTimeIndicator{
+          var:t="op_timer"
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    op_timer_tick{
+      is_enabled:b=yes
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=yes
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=1.0
+        }
+      }
+
+      conditions{
+
+        varCompareInt{
+          var_value:t="op_timer"
+          value:i=0
+          comparasion_func:t="more"
+        }
+      }
+
+      actions{
+
+        varModify{
+          operator:t="add"
+          value:r=-1.0
+          var:t="op_timer"
+        }
+      }
+
+      else_actions{
+
+        playSound{
+          name:t="dialogs_crew_aircraft/voice1/voice_message_return_to_base_0"
+          loop:b=no
+          start:b=yes
+        }
+
+        unitSetProperties{
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          object:t="player"
+          isImmortal:b=no
+        }
+
+        varSetBool{
+          value:b=no
+          var:t="is_op"
+        }
+
+        triggerDisable{
+          target:t="op_timer_tick"
+        }
+      }
+    }
+
+    objective_completed{
+      is_enabled:b=yes
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=0.2
+        }
+      }
+
+      conditions{
+
+        varCompareInt{
+          var_value:t="kill_count"
+          value:i=100
+          comparasion_func:t="notLess"
+        }
+      }
+
+      actions{
+
+        moSetObjectiveStatus{
+          target:t="missions/po_2op_event_mission/objective"
+          status:i=2
+          object_var_comp_op:t="equal"
+          object_var_name:t=""
+        }
+
+        missionCompleted{
+          timer:b=no
+          debriefingTimer:i=7
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    player_death{
+      is_enabled:b=yes
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=0.2
+        }
+      }
+
+      conditions{
+
+        unitWhenStatus{
+          object_type:t="isKilled"
+          check_objects:t="any"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          target_type:t="isAlive"
+          check_period:r=1.0
+          object:t="player"
+        }
+
+        varCompareInt{
+          var_value:t="kill_count"
+          value:i=100
+          comparasion_func:t="less"
+        }
+      }
+
+      actions{
+
+        missionFailed{
+        }
+      }
+
+      else_actions{
+      }
+    }
+  }
+
+  d_point{
+    isCategory:b=yes
+    is_enabled:b=yes
+
+    player_too_far{
+      is_enabled:b=yes
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=1.0
+        }
+      }
+
+      conditions{
+
+        unitDistanceBetween{
+          value:r=1800.0
+          math:t="notNear3D"
+          object_type:t="isAlive"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          target_type:t="isAlive"
+          target_marking:i=0
+          check_objects:t="any"
+          check_targets:t="any"
+          object:t="player"
+          target:t="d_point"
+          compareCenters:b=yes
+        }
+
+        unitWhenInArea{
+          math:t="notNear3D"
+          object_type:t="isAlive"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          check_objects:t="any"
+          object:t="player"
+          target:t="player_bottom_area"
+        }
+
+        unitWhenStatus{
+          object_type:t="isAlive"
+          check_objects:t="any"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          target_type:t="isAlive"
+          check_period:r=1.0
+          object:t="player"
+        }
+
+        varCompareBool{
+          var_value:t="is_op"
+          value:b=yes
+          comparasion_func:t="equal"
+        }
+      }
+
+      actions{
+
+        triggerEnable{
+          target:t="enable_d_point"
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    enable_d_point{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=1.0
+        }
+      }
+
+      conditions{
+      }
+
+      actions{
+
+        missionMarkAsCaptureZone{
+          army:i=2
+          timeMultiplier:r=1.0
+          disableZone:b=no
+          name_for_respawn_base:t=""
+          target:t="player_respawn_pos"
+          iconIndex:i=3
+          canCaptureOnGround:b=no
+          playAirfieldSound:b=no
+          canCaptureInAir:b=no
+          canCaptureByGM:b=yes
+          onlyPlayersCanCapture:b=yes
+
+          zoneDefenders{
+          }
+        }
+
+        playHint{
+          hintType:t="standard"
+          name:t="voice_message_attack_D_1"
+          action:t="show"
+          shouldFadeOut:b=yes
+          isOverFade:b=no
+          time:r=3.0
+          priority:i=0
+          target_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+        }
+
+        playSound{
+          name:t="dialogs_crew_aircraft/voice3/voice_message_attack_D_0"
+          loop:b=no
+          start:b=yes
+        }
+
+        triggerEnable{
+          target:t="check_d_point"
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    check_d_point{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=0.1
+        }
+      }
+
+      conditions{
+
+        unitDistanceBetween{
+          value:r=100.0
+          math:t="3D"
+          object_type:t="isAlive"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          target_type:t="isAlive"
+          target_marking:i=0
+          check_objects:t="any"
+          check_targets:t="any"
+          object:t="player"
+          target:t="d_point"
+          compareCenters:b=yes
+        }
+      }
+
+      actions{
+
+        missionMarkAsCaptureZone{
+          army:i=0
+          timeMultiplier:r=1.0
+          disableZone:b=yes
+          name_for_respawn_base:t=""
+          target:t="player_respawn_pos"
+          iconIndex:i=3
+          canCaptureOnGround:b=no
+          playAirfieldSound:b=no
+          canCaptureInAir:b=no
+          canCaptureByGM:b=yes
+          onlyPlayersCanCapture:b=yes
+
+          zoneDefenders{
+          }
+        }
+
+        triggerEnable{
+          target:t="capture_add_op_time"
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    capture_add_op_time{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=0.1
+        }
+      }
+
+      conditions{
+
+        varCompareBool{
+          var_value:t="is_op"
+          value:b=yes
+          comparasion_func:t="equal"
+        }
+      }
+
+      actions{
+
+        varModify{
+          operator:t="add"
+          value:r=0.0
+          var:t="op_timer"
+          use_variable:b=yes
+          var_value:t="capture_op_timer_add"
+        }
+
+        playHint{
+          hintType:t="bottom"
+          name:t="hints/po_2op_event_mission/to_op_timer"
+          action:t="show"
+          shouldFadeOut:b=yes
+          isOverFade:b=no
+          time:r=2.0
+          priority:i=0
+          target_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          var_name:t="capture_op_timer_add"
+        }
+
+        triggerEnable{
+          target:t="player_too_far"
+        }
+      }
+
+      else_actions{
+      }
+    }
+  }
+
+  barrel_roll{
+    isCategory:b=yes
+    is_enabled:b=yes
+
+    barrel_roll_timer_tick{
+      is_enabled:b=yes
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=yes
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=1.0
+        }
+      }
+
+      conditions{
+
+        varCompareInt{
+          var_value:t="barrel_roll_timer"
+          value:i=0
+          comparasion_func:t="more"
+        }
+      }
+
+      actions{
+
+        varModify{
+          operator:t="add"
+          value:r=-1.0
+          var:t="barrel_roll_timer"
+        }
+      }
+
+      else_actions{
+
+        triggerEnable{
+          target:t="barrel_roll_check_necessity"
+        }
+
+        triggerDisable{
+          target:t="barrel_roll_timer_tick"
+        }
+      }
+    }
+
+    barrel_roll_check_necessity{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=yes
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=0.2
+        }
+      }
+
+      conditions{
+
+        varCompareBool{
+          var_value:t="is_op"
+          value:b=no
+          comparasion_func:t="equal"
+        }
+
+        varCompareInt{
+          var_value:t="barrel_roll_ability_count"
+          value:i=0
+          comparasion_func:t="more"
+        }
+
+        unitWhenStatus{
+          object_type:t="isAlive"
+          check_objects:t="any"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          target_type:t="isAlive"
+          check_period:r=1.0
+          object:t="player"
+        }
+      }
+
+      actions{
+
+        playHint{
+          hintType:t="standard"
+          name:t="hints/po_2op_event_mission/do_a_barrel_roll"
+          action:t="show"
+          shouldFadeOut:b=yes
+          isOverFade:b=no
+          time:r=5.0
+          priority:i=0
+          target_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+        }
+
+        triggerEnable{
+          target:t="do_barrel_roll"
+        }
+
+        triggerDisable{
+          target:t="barrel_roll_check_necessity"
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    do_barrel_roll{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ANY"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=0.2
+        }
+      }
+
+      conditions{
+
+        playerWhenManeuver{
+          manName:t="barrel_left"
+        }
+
+        playerWhenManeuver{
+          manName:t="barrel_right"
+        }
+      }
+
+      actions{
+
+        playHint{
+          hintType:t="standard"
+          name:t="hints/po_2op_event_mission/do_a_barrel_roll"
+          action:t="hide"
+          shouldFadeOut:b=yes
+          isOverFade:b=no
+          time:r=5.0
+          priority:i=0
+          target_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+        }
+
+        playHint{
+          hintType:t="bottom"
+          name:t="hints/po_2op_event_mission/to_op_timer"
+          action:t="show"
+          shouldFadeOut:b=yes
+          isOverFade:b=no
+          time:r=5.0
+          priority:i=0
+          target_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          var_name:t="barrel_roll_op_timer_add"
+        }
+
+        playSound{
+          name:t="dialogs_crew_aircraft/voice2/voice_message_well_done_0"
+          loop:b=no
+          start:b=yes
+        }
+
+        varModify{
+          operator:t="add"
+          value:r=0.0
+          var:t="op_timer"
+          use_variable:b=yes
+          var_value:t="barrel_roll_op_timer_add"
+        }
+
+        varModify{
+          operator:t="add"
+          value:r=-1.0
+          var:t="barrel_roll_ability_count"
+        }
+
+        varSetInt{
+          value:i=0
+          var:t="barrel_roll_timer"
+          input_var:t="barrel_roll_cooldown"
+        }
+
+        varSetBool{
+          value:b=yes
+          var:t="is_op"
+        }
+
+        unitSetProperties{
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          object_var_value:i=0
+          object:t="player"
+          isImmortal:b=yes
+        }
+
+        triggerEnable{
+          target:t="barrel_roll_timer_tick"
+          target:t="op_timer_tick"
+        }
+      }
+
+      else_actions{
+      }
+    }
+  }
+
+  mission_states{
+    isCategory:b=yes
+    is_enabled:b=yes
+
+    first_up{
+      is_enabled:b=yes
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=0.2
+        }
+      }
+
+      conditions{
+
+        varCompareInt{
+          var_value:t="kill_count"
+          value:i=35
+          comparasion_func:t="notLess"
+        }
+      }
+
+      actions{
+
+        varModify{
+          operator:t="add"
+          value:r=-2.0
+          var:t="kill_op_timer_add"
+        }
+
+        varModify{
+          operator:t="add"
+          value:r=5.0
+          var:t="barrel_roll_op_timer_add"
+        }
+
+        varModify{
+          operator:t="add"
+          value:r=10.0
+          var:t="enemies_max_count"
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    second_up{
+      is_enabled:b=yes
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=0.2
+        }
+      }
+
+      conditions{
+
+        varCompareInt{
+          var_value:t="kill_count"
+          value:i=70
+          comparasion_func:t="notLess"
+        }
+      }
+
+      actions{
+
+        varModify{
+          operator:t="add"
+          value:r=-2.0
+          var:t="kill_op_timer_add"
+        }
+
+        varModify{
+          operator:t="add"
+          value:r=5.0
+          var:t="barrel_roll_op_timer_add"
+        }
+
+        varModify{
+          operator:t="add"
+          value:r=10.0
+          var:t="enemies_max_count"
+        }
+      }
+
+      else_actions{
+      }
+    }
+  }
+}
+
+mission_objectives{
+  isCategory:b=yes
+  is_enabled:b=yes
+
+  "missions/po_2op_event_mission/objective"{
+    is_enabled:b=yes
+    comments:t=""
+    type:t="abstractMissionObjective"
+
+    props{
+      isPrimary:b=yes
+      timeLimit:i=1800
+    }
+
+    onSuccess{
+    }
+
+    onFailed{
+    }
+  }
+}
+
+variables{
+  need_to_spawn_enemy:b=no
+  enemy_spawn_idx:i=1
+  enemy_spawn_str:t=""
+  kill_count:i=0
+  enemies_max_count:i=20
+  player_low_alt_timer:i=0
+  player_high_alt_timer:i=0
+  op_timer:i=60
+  is_op:b=yes
+  kill_op_timer_add:i=7
+  capture_op_timer_add:i=15
+  barrel_roll_op_timer_add:i=10
+  barrel_roll_cooldown:i=90
+  barrel_roll_timer:i=0
+  barrel_roll_ability_count:i=3
+}
+
+dialogs{
+}
+
+airfields{
+}
+
+effects{
+}
+
+units{
+}
+
+areas{
+}
+
+objLayers{
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+}
+
+wayPoints{
+}

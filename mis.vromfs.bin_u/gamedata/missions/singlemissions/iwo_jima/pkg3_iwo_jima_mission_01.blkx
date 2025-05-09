@@ -1,0 +1,1725 @@
+selected_tag:t=""
+bin_dump_file:t=""
+
+mission_settings{
+
+  atmosphere{
+    pressure:r=760.0
+    temperature:r=24.0
+  }
+
+  player{
+    army:i=1
+    wing:t="player_wing"
+  }
+
+  player_teamB{
+    army:i=2
+  }
+
+  mission{
+    level:t="levels/iwo_jima.bin"
+    type:t="singleMission"
+    restoreType:t="attempts"
+    optionalTakeOff:b=no
+    environment:t="Day"
+    weather:t="cloudy"
+    forceSkiesInitialRandomSeed:b=yes
+    skiesInitialRandomSeed:i=10
+    gt_cooperative:b=yes
+
+    stars{
+      year:i=1945
+      month:i=2
+      day:i=21
+    }
+
+    customWeather{
+      windDir:p2=0.6, 0.8
+      wind_scale:r=1.0
+      max_wind_strength:r=6.0
+
+      sky{
+        mie_height:r=0.9
+        mieG:r=0.5
+        betaMScale:r=0.7
+        clouds_overcast:r=0.5
+      }
+
+      clouds_gen{
+        humidity:r=0.8
+        persistence:r=0.2
+        asymmetry:r=0.6
+      }
+
+      clouds_position{
+        start_altitude:r=3.5
+        thickness:r=4.0
+        light_extinction:r=1.0
+        amb_extinction_mul:r=1.0
+      }
+
+      clouds_render{
+        silver_lining:r=0.3
+        sun_light:r=0.5
+        ambient:r=0.8
+        silver_lining_eccentricity:r=0.6
+      }
+
+      strata_clouds{
+        amount:r=0.5
+        altitude:r=11.0
+      }
+
+      rain{
+        rainFromInvisibleClouds:b=no
+        probability:r=0.0
+      }
+    }
+  }
+
+  spectator_points{
+  }
+
+  briefing{
+    place_loc:t=""
+    date_loc:t=""
+    objective_loc:t=""
+    music:t="action_01"
+
+    part{
+      event:t=""
+      minTime:i=0
+
+      slide{
+        map:b=yes
+        minTime:i=4
+        picture:t=""
+
+        icon{
+          icontype:t="fighter"
+          side:t="player"
+          target:t="player_wing"
+          lookAt:t="jpn_bombers"
+        }
+
+        icon{
+          icontype:t="carrier"
+          side:t="ally"
+          target:t="us_carrier"
+        }
+
+        icon{
+          icontype:t="bomber"
+          side:t="enemy"
+          target:t="jpn_bombers"
+          lookAt:t="airfield_point"
+        }
+
+        icon{
+          icontype:t="airfield"
+          side:t="enemy"
+          target:t="airfield_point"
+        }
+      }
+    }
+  }
+}
+
+imports{
+}
+
+triggers{
+  isCategory:b=yes
+  is_enabled:b=yes
+
+  start_mission{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      initMission{
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      unitSetProperties{
+        object:t="jpn_bombers"
+        effShootingRate:r=0.6
+
+        plane{
+
+          targetDeviation{
+            trigger:t="gunner"
+            defaultVal:r=3.0
+            limits:p2=1.0, 4.0
+          }
+        }
+      }
+
+      unitSetProperties{
+        object:t="jpn_fighters_01"
+        object:t="jpn_fighters_02"
+        effShootingRate:r=0.8
+
+        plane{
+
+          targetDeviation{
+            trigger:t="machine gun"
+            defaultVal:r=2.0
+            limits:p2=1.0, 5.0
+          }
+        }
+      }
+
+      unitSetProperties{
+        object:t="f6f3_ai"
+        effShootingRate:r=0.8
+
+        plane{
+
+          targetDeviation{
+            trigger:t="machine gun"
+            defaultVal:r=3.0
+            limits:p2=1.0, 5.0
+          }
+        }
+      }
+
+      unitMoveTo{
+        target:t="airfield_point"
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=yes
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object:t="jpn_bombers"
+        speed:r=220.0
+      }
+
+      unitMoveTo{
+        target:t="jpn_bombers"
+        follow_target:b=yes
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=yes
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object:t="jpn_fighters_01"
+        speed:r=220.0
+        follow_offset:p3=-150.0, 550.0, 20.0
+      }
+
+      unitMoveTo{
+        target:t="airfield_point"
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=yes
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object:t="jpn_fighters_01"
+      }
+
+      unitMoveTo{
+        target:t="player_wing"
+        follow_target:b=yes
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=yes
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object:t="f6f3_ai"
+        follow_offset:p3=-150.0, 220.0, 20.0
+      }
+
+      unitMoveTo{
+        target:t="player_wing"
+        follow_target:b=yes
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=no
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object:t="f6f3_ai"
+        follow_radius:r=500.0
+      }
+
+      wait{
+        time:r=3.0
+      }
+
+      moAddMissionObjective{
+        target:t="pkg3_iwo_jima_mission_01_bombers"
+      }
+
+      unitSetIndication{
+        set:b=yes
+        target:t="jpn_bombers"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  update_indicator{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionSetTargetsIndicator{
+        target_type:t="isAlive"
+        target_marking:i=0
+        delta:i=0
+        icon:t="bomber"
+        "icon army":i=2
+        set:b=yes
+        target:t="jpn_bombers"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  fail_mission{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitDistanceBetween{
+        value:r=1500.0
+        math:t="2D"
+        object_type:t="isAlive"
+        target_type:t="isAlive"
+        check_objects:t="any"
+        check_targets:t="any"
+        object_marking:i=0
+        target_marking:i=0
+        object:t="jpn_bombers"
+        target:t="airfield_point"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="update_indicator"
+        target:t="bombers_defeated"
+      }
+
+      moSetObjectiveStatus{
+        target:t="pkg3_iwo_jima_mission_01_bombers"
+        status:i=3
+      }
+
+      unitSetIndication{
+        set:b=no
+        target:t="jpn_bombers"
+      }
+
+      missionSetTargetsIndicator{
+        target_type:t="isAlive"
+        target_marking:i=0
+        delta:i=0
+        icon:t="tank"
+        "icon army":i=2
+        set:b=no
+        target:t="jpn_bombers"
+      }
+
+      wait{
+        time:r=3.0
+      }
+
+      missionFailed{
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  player_near_bombers{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      playersDistanceBetween{
+        value:r=4500.0
+        math:t="2D"
+        players:t="isAlive"
+        target_type:t="isAlive"
+        check_players:t="any"
+        check_targets:t="any"
+        target:t="jpn_bombers"
+      }
+    }
+
+    actions{
+
+      unitAttackTarget{
+        playerAttracted:b=yes
+        object:t="jpn_fighters_01"
+        object:t="jpn_fighters_02"
+        target:t="player_wing"
+        target:t="f6f3_ai"
+        fireRandom:b=yes
+        playerAttractedCount:i=2
+        playerAttractedEffRate:r=0.8
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="f6f3_ai"
+        target:t="jpn_fighters_01"
+        target:t="jpn_bombers"
+        fireRandom:b=yes
+      }
+
+      triggerEnable{
+        target:t="attack_player"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  zero_02_near_player{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitDistanceBetween{
+        value:r=4500.0
+        math:t="2D"
+        object_type:t="isAlive"
+        target_type:t="isAlive"
+        check_objects:t="any"
+        check_targets:t="any"
+        object_marking:i=0
+        target_marking:i=0
+        object:t="jpn_fighters_02"
+        target:t="player_wing"
+      }
+    }
+
+    actions{
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="f6f3_ai"
+        target:t="jpn_fighters_01"
+        target:t="jpn_fighters_02"
+        target:t="jpn_bombers"
+        fireRandom:b=yes
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  bombers_defeated{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isAlive"
+        object_marking:i=0
+        func:t="less"
+        value:i=3
+        object:t="jpn_bombers"
+        var:t="bombers_to_left"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="fail_mission"
+        target:t="update_indicator"
+      }
+
+      unitSetIndication{
+        set:b=no
+        target:t="jpn_bombers"
+      }
+
+      missionSetTargetsIndicator{
+        target_type:t="isAlive"
+        target_marking:i=0
+        delta:i=0
+        icon:t="bomber"
+        "icon army":i=2
+        set:b=no
+        target:t="jpn_bombers"
+      }
+
+      moSetObjectiveStatus{
+        target:t="pkg3_iwo_jima_mission_01_bombers"
+        status:i=2
+      }
+
+      wait{
+        time:r=3.0
+      }
+
+      moAddMissionObjective{
+        target:t="pkg3_iwo_jima_mission_01_return"
+      }
+
+      triggerEnable{
+        target:t="player_return"
+        target:t="halfway_to_carrier"
+        target:t="enemies_fighters_go_back"
+      }
+
+      unitMoveTo{
+        target:t="us_carrier"
+        follow_target:b=yes
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=no
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object:t="f6f3_ai"
+        follow_offset:p3=-150.0, 750.0, 20.0
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=yes
+        primary:b=yes
+        oriented:b=no
+        ignoreDifficulty:b=no
+        scale:r=1.0
+        target:t="us_carrier_point"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  player_return{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitDistanceBetween{
+        value:r=1500.0
+        math:t="2D"
+        object_type:t="isAlive"
+        target_type:t="isAlive"
+        check_objects:t="any"
+        check_targets:t="any"
+        object_marking:i=0
+        target_marking:i=0
+        object:t="player_wing"
+        target:t="us_carrier"
+      }
+    }
+
+    actions{
+
+      triggerEnable{
+        target:t="player_landed"
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=no
+        primary:b=yes
+        oriented:b=no
+        ignoreDifficulty:b=no
+        scale:r=1.0
+        target:t="us_carrier_point"
+      }
+
+      moSetObjectiveStatus{
+        target:t="pkg3_iwo_jima_mission_01_return"
+        status:i=2
+      }
+
+      wait{
+        time:r=7.0
+      }
+
+      missionCompleted{
+        timer:b=yes
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  halfway_to_carrier{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitDistanceBetween{
+        value:r=4500.0
+        math:t="2D"
+        object_type:t="isAlive"
+        target_type:t="isAlive"
+        check_objects:t="any"
+        check_targets:t="any"
+        object_marking:i=0
+        target_marking:i=0
+        object:t="player_wing"
+        target:t="us_carrier"
+      }
+    }
+
+    actions{
+
+      moAddMissionObjective{
+        target:t="pkg3_iwo_jima_mission_01_land"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  enemies_fighters_go_back{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      playersDistanceBetween{
+        value:r=5500.0
+        math:t="notNear2D"
+        players:t="isAlive"
+        target_type:t="isAlive"
+        check_players:t="all"
+        check_targets:t="all"
+        target:t="jpn_bombers"
+      }
+    }
+
+    actions{
+
+      unitMoveTo{
+        target:t="jpn_bombers"
+        follow_target:b=yes
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=no
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object:t="jpn_fighters_01"
+        object:t="jpn_fighters_02"
+        follow_offset:p3=-150.0, 200.0, 20.0
+      }
+
+      triggerEnable{
+        target:t="player_near_bombers"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  player_landed{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      playersWhenOnLZ{
+        object_type:t="isAlive"
+        object_marking:i=0
+        check_objects:t="any"
+        afterRepaired:b=no
+        object:t="player_wing"
+        target:t="us_carrier"
+      }
+    }
+
+    actions{
+
+      moSetObjectiveStatus{
+        target:t="pkg3_iwo_jima_mission_01_land"
+        status:i=2
+      }
+
+      wait{
+        time:r=3.0
+      }
+
+      missionDebriefing{
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  check_for_real{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      gameWhenDifficulty{
+        difficulty:t="realistic"
+        is:t="equal"
+      }
+    }
+
+    actions{
+
+      varSetInt{
+        value:i=6
+        var:t="bombers_to_left"
+      }
+
+      triggerDisable{
+        target:t="check_for_real"
+        target:t="check_for_simul"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  check_for_simul{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      gameWhenDifficulty{
+        difficulty:t="simulator"
+        is:t="equal"
+      }
+    }
+
+    actions{
+
+      varSetInt{
+        value:i=8
+        var:t="bombers_to_left"
+      }
+
+      triggerDisable{
+        target:t="check_for_real"
+        target:t="check_for_simul"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  attack_player{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=10.0
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      unitAttackTarget{
+        playerAttracted:b=yes
+        object:t="jpn_fighters_01"
+        object:t="jpn_fighters_02"
+        target:t="player_wing"
+        target:t="f6f3_ai"
+        fireRandom:b=yes
+        playerAttractedCount:i=2
+        playerAttractedEffRate:r=0.5
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="f6f3_ai"
+        target:t="jpn_fighters_01"
+        target:t="jpn_bombers"
+        fireRandom:b=yes
+      }
+    }
+
+    else_actions{
+    }
+  }
+}
+
+mission_objectives{
+  isCategory:b=yes
+  is_enabled:b=yes
+
+  pkg3_iwo_jima_mission_01_bombers{
+    is_enabled:b=no
+    comments:t=""
+    type:t="abstractMissionObjective"
+
+    props{
+      isPrimary:b=yes
+      timeLimit:i=1800
+      scoreConst:i=100
+      scoreTime:i=400
+    }
+
+    onSuccess{
+    }
+
+    onFailed{
+    }
+  }
+
+  pkg3_iwo_jima_mission_01_return{
+    is_enabled:b=no
+    comments:t=""
+    type:t="abstractMissionObjective"
+
+    props{
+      isPrimary:b=yes
+      timeLimit:i=1800
+      scoreConst:i=100
+      scoreTime:i=400
+    }
+
+    onSuccess{
+    }
+
+    onFailed{
+    }
+  }
+
+  pkg3_iwo_jima_mission_01_land{
+    is_enabled:b=no
+    comments:t=""
+    type:t="abstractMissionObjective"
+
+    props{
+      isPrimary:b=no
+      timeLimit:i=1800
+      scoreConst:i=100
+      scoreTime:i=400
+    }
+
+    onSuccess{
+    }
+
+    onFailed{
+    }
+  }
+}
+
+variables{
+  bombers_to_left:i=3
+}
+
+dialogs{
+}
+
+airfields{
+}
+
+effects{
+}
+
+units{
+
+  armada{
+    name:t="player_wing"
+    tm:m=[[0.5, 0.0, 0.866025] [0.0, 1.0, 0.0] [-0.866025, 0.0, 0.5] [6487.05, 3500.0, -12970.2]]
+    unit_class:t="f6f-3"
+    closed_waypoints:b=no
+    weapons:t="f6f-5_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=1
+      count:i=4
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=2
+      skin:t="us_navy"
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="f6f3_ai"
+    tm:m=[[0.608761, 0.0, 0.793353] [0.0, 1.0, 0.0] [-0.793353, 0.0, 0.608761] [6695.36, 3500.0, -12662.5]]
+    unit_class:t="f6f-3"
+    closed_waypoints:b=no
+    weapons:t="f6f-5_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=1
+      count:i=4
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=2
+      skin:t="us_navy"
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="jpn_bombers"
+    tm:m=[[-0.766044, 0.0, 0.642788] [0.0, 1.0, 0.0] [-0.642788, 0.0, -0.766044] [22934.7, 2500.0, -15116.4]]
+    unit_class:t="g4m1"
+    closed_waypoints:b=no
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=18
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=2
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="jpn_fighters_01"
+    tm:m=[[-0.766044, 0.0, 0.642788] [0.0, 1.0, 0.0] [-0.642788, 0.0, -0.766044] [23080.0, 4060.85, -15304.7]]
+    unit_class:t="a6m5_zero"
+    closed_waypoints:b=no
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=6
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=2
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="jpn_fighters_02"
+    tm:m=[[-0.766044, 0.0, 0.642788] [0.0, 1.0, 0.0] [-0.642788, 0.0, -0.766044] [455.55, 2589.7, 250.8]]
+    unit_class:t="a6m5_zero"
+    closed_waypoints:b=no
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=6
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=2
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="us_carrier"
+    tm:m=[[0.34202, 0.0, 0.939693] [0.0, 1.0, 0.0] [-0.939693, 0.0, 0.34202] [6769.6, 0.0, -16166.8]]
+    unit_class:t="uss_cv_enterprise"
+    closed_waypoints:b=no
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=1
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="us_destroyer_01"
+    tm:m=[[0.34202, 0.0, 0.939693] [0.0, 1.0, 0.0] [-0.939693, 0.0, 0.34202] [6388.05, 0.0, -16166.8]]
+    unit_class:t="uss_dd_versus"
+    closed_waypoints:b=no
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=1
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="us_destroyer_02"
+    tm:m=[[0.34202, 0.0, 0.939693] [0.0, 1.0, 0.0] [-0.939693, 0.0, 0.34202] [7019.35, 0.0, -17609.6]]
+    unit_class:t="uss_dd_versus"
+    closed_waypoints:b=no
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=1
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="us_destroyer_03"
+    tm:m=[[0.34202, 0.0, 0.939693] [0.0, 1.0, 0.0] [-0.939693, 0.0, 0.34202] [7454.75, 0.0, -16477.8]]
+    unit_class:t="uss_dd_versus"
+    closed_waypoints:b=no
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=1
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="air_defence_01"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-284.4, 266.5, 980.5]]
+    unit_class:t="jpn_25mm_t96"
+    closed_waypoints:b=no
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+      effShootingRate:r=0.1
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="air_defence_02"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-903.95, 266.5, 1069.4]]
+    unit_class:t="jpn_25mm_t96"
+    closed_waypoints:b=no
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+      effShootingRate:r=0.1
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="air_defence_03"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-1578.25, 266.5, -13.8]]
+    unit_class:t="jpn_25mm_t96"
+    closed_waypoints:b=no
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+      effShootingRate:r=0.1
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="air_defence_04"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-2610.35, 266.5, -732.8]]
+    unit_class:t="jpn_25mm_t96"
+    closed_waypoints:b=no
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+      effShootingRate:r=0.1
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="air_defence_05"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-3184.7, 266.5, -101.9]]
+    unit_class:t="jpn_25mm_t96"
+    closed_waypoints:b=no
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+      effShootingRate:r=0.1
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="air_defence_06"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [779.35, 266.5, 1063.95]]
+    unit_class:t="jpn_25mm_t96"
+    closed_waypoints:b=no
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+      effShootingRate:r=0.1
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="air_defence_07"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [926.6, 266.5, 1564.45]]
+    unit_class:t="jpn_25mm_t96"
+    closed_waypoints:b=no
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+      effShootingRate:r=0.1
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="air_defence_08"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [662.4, 266.5, 1931.95]]
+    unit_class:t="jpn_25mm_t96"
+    closed_waypoints:b=no
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+      effShootingRate:r=0.1
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="air_defence_09"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1508.95, 266.5, 1444.2]]
+    unit_class:t="jpn_25mm_t96"
+    closed_waypoints:b=no
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+      effShootingRate:r=0.1
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="air_defence_10"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-185.6, 266.5, 1504.1]]
+    unit_class:t="jpn_25mm_t96"
+    closed_waypoints:b=no
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+      effShootingRate:r=0.1
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="air_defence_11"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-2492.4, 266.5, -1332.95]]
+    unit_class:t="jpn_25mm_t96"
+    closed_waypoints:b=no
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+      effShootingRate:r=0.1
+    }
+
+    way{
+    }
+  }
+}
+
+areas{
+
+  airfield_point{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-1096.9, 2500.0, 614.35]]
+
+    props{
+    }
+  }
+
+  us_carrier_point{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [6971.75, 1723.2, -16121.0]]
+
+    props{
+    }
+  }
+}
+
+objLayers{
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+}
+
+wayPoints{
+}

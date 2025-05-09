@@ -1,0 +1,536 @@
+rocketGun:b=yes
+preset_cost:i=25
+mesh:t="su_9m123_rocket"
+mesh_deployed:t="su_9m123_rocket_deployed"
+helicopterGroup:i=2
+shotFreq:r=20.0
+sound:t="weapon.rocketgun_132"
+
+rocket{
+  bulletName:t="cn_hj_9"
+  statType:t="hydra"
+  caliber:r=0.152
+  length:r=1.5
+  CxK:r=1.75
+  wingAreaMult:r=1.95
+  finsAoaHor:r=0.125
+  finsAoaVer:r=0.125
+  distFromCmToStab:r=0.03
+  mass:r=29.0
+  massEnd:r=25.0
+  massEnd1:r=23.5
+  fireDelay:r=0.1
+  timeFire:r=1.0
+  timeFire1:r=11.0
+  force:r=6450.0
+  force1:r=390.0
+  timeLife:r=24.0
+  thrustDeviation:r=0.01
+  useStartSpeed:b=yes
+  startSpeed:r=75.0
+  maxDistance:r=5500.0
+  minDistance:r=30.0
+  operatedDist:r=5500.0
+  visRotationFreqX:r=5.0
+  maxLaunchAngle:r=3.0
+  autoAimingMaxAngle:r=2.5
+  guidanceType:t="saclos"
+  launchZoneDistance:r=100.0
+  maxAxisValues:r=0.75
+  maxDeltaAngle:r=0.02
+  explosiveType:t="tp_88"
+  explosiveMass:r=3.1
+  normalizationPreset:t="heat"
+  ricochetPreset:t="atgm"
+  groundRicochetPreset:t="atgm"
+  secondaryShattersPreset:t="ap"
+  stabilityThreshold:r=0.5
+  stabilityCaliberToArmorThreshold:r=5.0
+  stabilityReductionAfterRicochet:r=0.3
+  stabilityReductionAfterPenetration:r=0.15
+  bulletType:t="atgm_tandem_tank"
+  cumulativeSecondaryShattersPreset:t="atgm"
+  explodeOnRendinst:b=yes
+  fresnel:p3=0.23, 0.1, 2.0
+  shellAnimation:t="video/shells_animations/atgm_tandem.ivf"
+  dragCx:r=0.0032
+  explosionEffect:t="hit_81_132mm_heat"
+  groundCollisionEffect:t="hit_59_80mm_dirt_he"
+  ricochetEffect:t="hit_59_80mm_metal_ap"
+  waterCollisionEffect:t="hit_59_80mm_water"
+  explosionPatchRadius:r=3.4
+  waterRicochetEffect:t="hit_81_105mm_water_ap"
+  groundRicochetEffect:t="hit_81_105mm_dirt_ap"
+  visualShattersWaterOffset:r=1.2
+  visualShattersGroundOffset:r=1.2
+  hasTracerTrail:b=yes
+  hasTracerTrail:b=yes
+  hazeEffect:t="haze_missile"
+  effectOffset:p3=0.0, 0.0, 0.0
+  rendinstDamageRadius:r=1.0
+  spawnExplosionFx:b=no
+  hitPowerMult:r=100.0
+  distanceFuse:b=no
+  relativeVelHitShift:p2=300.0, 1000.0
+  relativeVelArmorShift:p2=200.0, 1000.0
+  hitPower:r=260.0
+  fuseDelayDist:r=0.4
+  explodeTreshold:r=0.01
+  aiGroundOnly:b=no
+  aiAirOnly:b=no
+  tracerTrailEmitter:p3=0.0, 0.0, 0.0
+  amountPerTier:r=4.0
+  iconType:t="atgm_type1_x4_late"
+
+  guidance{
+    beaconBand:i=5
+    launchSector:r=10.0
+    controlConeFov:r=25.0
+    breakLockMaxTime:r=5.0
+
+    lineOfSightAutopilot{
+      crossDistToReqCrossVelMult:r=4.0
+      reqCrossVelRationMax:r=0.75
+      velDiffToReqAccelMult:r=6.0
+
+      accelControl{
+        velFrameReference:b=yes
+        baseIndSpeed:r=1800.0
+        reqAccelMax:r=10.0
+        accelControlProp:r=0.0361
+        accelControlIntg:r=0.0
+        accelControlDiff:r=0.0005
+        accelControlIntgLim:r=0.0
+      }
+    }
+  }
+
+  stabilityRicochetModifier{
+    mod1:p2=0.0, 0.5
+    mod2:p2=15.0, 0.7
+    mod3:p2=30.0, 0.99
+  }
+
+  pressureDamage{
+    damageType:t="pressure"
+  }
+
+  DamageParts{
+
+    body{
+      hp:r=50.0
+      armorClass:t="tank_structural_steel"
+      armorThickness:r=1.0
+    }
+  }
+
+  DamageEffects{
+
+    part{
+      name:t="body"
+
+      onHit{
+        shellState:t="inFlight"
+        expl:r=1.0
+      }
+
+      onHit{
+        shellState:t="onUnit"
+        damageType:t="generic"
+        expl:r=0.05
+        fire:r=0.45
+        break:r=0.5
+        damage:r=3.0
+        fHitCritical:b=yes
+      }
+
+      onHit{
+        shellState:t="onUnit"
+        damageType:t="generic"
+        expl:r=0.5
+        fire:r=0.3
+        break:r=0.2
+        damage:r=30.0
+        fHitCritical:b=yes
+      }
+
+      onHit{
+        shellState:t="onUnit"
+        damageType:t="explosion"
+        expl:r=0.45
+        fire:r=0.45
+        break:r=0.1
+        damage:r=50.0
+        fHitCritical:b=yes
+      }
+
+      onHit{
+        shellState:t="onUnit"
+        damageType:t="cumulative"
+        expl:r=0.4
+        fire:r=0.4
+        break:r=0.1
+        damage:r=100.0
+        fHitCritical:b=yes
+      }
+
+      onKill{
+        shellState:t="inFlight"
+        destruction:r=1.0
+      }
+
+      onKill{
+        shellState:t="onUnit"
+        expl:r=0.05
+        fire:r=0.05
+        break:r=0.9
+        fHitCritical:b=yes
+      }
+    }
+  }
+
+  collisions{
+
+    steel{
+      fx:t="explosion_midair_small"
+      ricochetFx:t="hit_81_105mm_metal_ap"
+    }
+
+    aluminum_armor{
+      fx:t="explosion_midair_small"
+      ricochetFx:t="hit_81_105mm_metal_ap"
+    }
+
+    tank_structural_steel{
+      fx:t="explosion_midair_small"
+      ricochetFx:t="hit_81_105mm_metal_ap"
+    }
+
+    armor{
+      fx:t="explosion_midair_small"
+      ricochetFx:t="hit_81_105mm_metal_ap"
+    }
+
+    buildings{
+      fx:t="explosion_midair_small"
+      ricochetFx:t="hit_106_132mm_stone_ap"
+    }
+
+    wood{
+      fx:t="explosion_midair_small"
+      ricochetFx:t="hit_106_132mm_wood_ap"
+    }
+  }
+
+  shatterCollisions{
+    groundCollisionEffect:t="hit_12_18mm_dirt_ap"
+    waterCollisionEffect:t="hit_8_11mm_water"
+
+    default{
+      fx:t="hit_12_18mm_dirt_ap"
+    }
+
+    horLandMesh{
+      fx:t="hit_12_18mm_dirt_ap"
+    }
+
+    soil{
+      fx:t="hit_12_18mm_dirt_ap"
+    }
+
+    dirt{
+      fx:t="hit_12_18mm_dirt_ap"
+    }
+
+    road{
+      fx:t="hit_12_18mm_dirt_ap"
+    }
+
+    bricks_red{
+      fx:t="hit_12_18mm_red_brick_ap"
+    }
+
+    roadSoil{
+      fx:t="hit_12_18mm_dirt_ap"
+    }
+
+    steppe{
+      fx:t="hit_12_18mm_sand_ap"
+    }
+
+    sand{
+      fx:t="hit_12_18mm_sand_ap"
+    }
+
+    duneSand{
+      fx:t="hit_12_18mm_sand_ap"
+    }
+
+    roadSand{
+      fx:t="hit_12_18mm_sand_ap"
+    }
+
+    quickSand{
+      fx:t="hit_12_18mm_sand_ap"
+    }
+
+    snow{
+      fx:t="hit_12_18mm_snow_ap"
+    }
+
+    ice{
+      fx:t="hit_12_18mm_snow_ap"
+    }
+
+    roadSnow{
+      fx:t="hit_12_18mm_snow_ap"
+    }
+
+    snowLower{
+      fx:t="hit_12_18mm_snow_ap"
+    }
+
+    glass{
+      fx:t="hit_12_18mm_metal_ap"
+    }
+
+    wood{
+      fx:t="hit_12_18mm_wood_ap"
+    }
+
+    steel{
+      fx:t="hit_12_18mm_metal_ap"
+    }
+
+    metal{
+      fx:t="hit_12_18mm_metal_ap"
+    }
+
+    tank_structural_steel{
+      fx:t="hit_12_18mm_metal_ap"
+    }
+
+    aluminum_armor{
+      fx:t="hit_12_18mm_metal_ap"
+    }
+
+    tank_rubber_screens{
+      fx:t="hit_12_18mm_stone_ap"
+    }
+
+    buildings{
+      fx:t="hit_12_18mm_stone_ap"
+    }
+
+    verLandMesh{
+      fx:t="hit_12_18mm_stone_ap"
+    }
+
+    concrete{
+      fx:t="hit_12_18mm_stone_ap"
+    }
+
+    rocks{
+      fx:t="hit_12_18mm_stone_ap"
+    }
+
+    rocksSlippery{
+      fx:t="hit_12_18mm_stone_ap"
+    }
+
+    fabric{
+      fx:t="hit_12_18mm_stone_ap"
+    }
+
+    stone_snow{
+      fx:t="hit_12_18mm_snow_ap"
+    }
+
+    armorPierceLowCal{
+      fx:t="hit_12_18mm_metal_ap"
+    }
+
+    armorPierceMedCal{
+      fx:t="hit_12_18mm_metal_ap"
+    }
+
+    armorPierceHiCal{
+      fx:t="hit_12_18mm_metal_ap"
+    }
+
+    armorNPLowCal{
+      fx:t="hit_12_18mm_metal_ap"
+    }
+
+    armorNPMedCal{
+      fx:t="hit_12_18mm_metal_ap"
+    }
+
+    armorNPHiCal{
+      fx:t="hit_12_18mm_metal_ap"
+    }
+  }
+
+  tracerTrail{
+    hasTracerTrail:b=yes
+    rocketTailName:t="emtr_jet_1"
+    fireEffect:t="fires_exhaust_jet_early_tiny"
+    smokeEffect:t="smoke_rocket_tail_doubleside"
+    smokeEffect2:t=""
+    endSmokeViscosity:r=0.05
+  }
+
+  tracerTrail{
+    hasTracerTrail:b=yes
+    rocketTailName:t="emtr_jet_2"
+    fireEffect:t="fires_exhaust_jet_early_tiny"
+    smokeEffect:t="smoke_rocket_tail_doubleside"
+    smokeEffect2:t=""
+    endSmokeViscosity:r=0.05
+  }
+
+  tracerTrail{
+    hasTracerTrail:b=yes
+    rocketTailName:t="emtr_jet_3"
+    fireEffect:t="fires_exhaust_jet_early_tiny"
+    smokeEffect:t="smoke_rocket_tail_doubleside"
+    smokeEffect2:t=""
+    endSmokeViscosity:r=0.05
+  }
+
+  tracerTrail{
+    hasTracerTrail:b=yes
+    rocketTailName:t="emtr_jet_4"
+    fireEffect:t="fires_exhaust_jet_early_tiny"
+    smokeEffect:t="smoke_rocket_tail_doubleside"
+    smokeEffect2:t=""
+    endSmokeViscosity:r=0.05
+  }
+
+  tracerTrail{
+    smokeEffect:t=""
+
+    visual{
+      traceFreq:i=1
+      tracer:t="tracers_rocket_med_red_sparks"
+      trail:t="noTrail"
+    }
+  }
+
+  hitpower{
+    HitPower0m:p2=1.0, 500.0
+    HitPower1000m:p2=0.9, 1000.0
+    HitPower1500m:p2=0.65, 1500.0
+    HitPower2500m:p2=0.5, 2500.0
+    HitPower7000m:p2=0.0, 7000.0
+  }
+
+  damage{
+
+    explosive{
+      radius:r=0.3
+      offset:r=0.2
+    }
+
+    shatter{
+      useRealShatters:b=yes
+      countPortion:r=0.15
+
+      segment{
+        radiusScale:r=1.0
+        penetrationScale:r=1.5
+        damageScale:r=1.5
+        angles:p2=0.0, 9.0
+        countPortion:r=0.1
+      }
+
+      segment{
+        angles:p2=10.0, 29.0
+        countPortion:r=0.0
+      }
+
+      segment{
+        radiusScale:r=1.0
+        penetrationScale:r=1.0
+        damageScale:r=1.0
+        angles:p2=30.0, 124.0
+        countPortion:r=0.35
+      }
+
+      segment{
+        radiusScale:r=1.0
+        penetrationScale:r=1.5
+        damageScale:r=1.5
+        angles:p2=45.0, 70.0
+        countPortion:r=0.05
+      }
+
+      segment{
+        angles:p2=125.0, 169.0
+        countPortion:r=0.0
+      }
+
+      segment{
+        radiusScale:r=1.0
+        penetrationScale:r=1.0
+        damageScale:r=1.0
+        angles:p2=170.0, 189.0
+        countPortion:r=0.1
+      }
+
+      segment{
+        angles:p2=190.0, 234.0
+        countPortion:r=0.0
+      }
+
+      segment{
+        radiusScale:r=1.0
+        penetrationScale:r=1.0
+        damageScale:r=1.0
+        angles:p2=235.0, 329.0
+        countPortion:r=0.35
+      }
+
+      segment{
+        radiusScale:r=1.0
+        penetrationScale:r=1.5
+        damageScale:r=1.5
+        angles:p2=290.0, 315.0
+        countPortion:r=0.05
+      }
+
+      segment{
+        angles:p2=330.0, 349.0
+        countPortion:r=0.0
+      }
+
+      segment{
+        radiusScale:r=1.0
+        penetrationScale:r=1.5
+        damageScale:r=1.5
+        angles:p2=350.0, 359.0
+        countPortion:r=0.1
+      }
+    }
+  }
+
+  shatterDamage{
+    breachConeAngle:r=45.0
+  }
+
+  kineticDamage{
+    damageType:t="tandemPrecharge"
+  }
+
+  armorpower{
+    ArmorPower0m:p2=50.0, 10.0
+    ArmorPower10000m:p2=50.0, 10000.0
+  }
+
+  cumulativeDamage{
+    armorPower:r=1200.0
+    distance:r=12.0
+    damage:r=900.0
+    onHitChanceMultFire:r=25.0
+  }
+}

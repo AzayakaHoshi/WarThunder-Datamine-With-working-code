@@ -1,0 +1,2571 @@
+selected_tag:t=""
+bin_dump_file:t=""
+
+mission_settings{
+
+  player{
+    army:i=1
+    wing:t="player01"
+    wing:t="player02"
+    wing:t="player03"
+    wing:t="player04"
+    wing:t="player05"
+    wing:t="player06"
+    wing:t="player07"
+    wing:t="player08"
+    wing:t="player09"
+    wing:t="player10"
+    wing:t="player11"
+    wing:t="player12"
+    wing:t="player13"
+    wing:t="player14"
+    wing:t="player15"
+    wing:t="player16"
+    wing:t="player17"
+    wing:t="player18"
+    wing:t="player19"
+    wing:t="player20"
+    wing:t="player21"
+    wing:t="player22"
+    wing:t="player23"
+    wing:t="player24"
+    wing:t="player25"
+    wing:t="player26"
+    wing:t="player27"
+    wing:t="player28"
+    wing:t="player29"
+    wing:t="player30"
+    wing:t="player31"
+    wing:t="player32"
+  }
+
+  player_teamB{
+    army:i=2
+    wing:t="player33"
+    wing:t="player34"
+    wing:t="player35"
+    wing:t="player36"
+    wing:t="player37"
+    wing:t="player38"
+    wing:t="player39"
+    wing:t="player40"
+    wing:t="player41"
+    wing:t="player42"
+    wing:t="player43"
+    wing:t="player44"
+    wing:t="player45"
+    wing:t="player46"
+    wing:t="player47"
+    wing:t="player48"
+    wing:t="player49"
+    wing:t="player50"
+    wing:t="player51"
+    wing:t="player52"
+    wing:t="player53"
+    wing:t="player54"
+    wing:t="player55"
+    wing:t="player56"
+    wing:t="player57"
+    wing:t="player58"
+    wing:t="player59"
+    wing:t="player60"
+    wing:t="player61"
+    wing:t="player62"
+    wing:t="player63"
+    wing:t="player64"
+    wing:t="player65"
+  }
+
+  mission{
+    type:t="domination"
+    level:t="levels/avg_port_novorossiysk.bin"
+    restoreType:t="attempts"
+    optionalTakeOff:b=no
+    environment:t="Day"
+    weather:t="hazy"
+    locName:t="missions/BR;port_novorossiysk/name"
+    locDesc:t="missions/BR/desc"
+    gt_ffa:b=yes
+    gt_last_man_standing:b=yes
+    timeLimit:i=60
+    useTankBots:b=yes
+    battleAreaColorPreset:t="battleRoyale"
+    ignoreInvulnerableTimer:b=yes
+    useCustomSuperArtillery:b=yes
+    customSuperArtillery:t="structures/streakArtillery_203mm_r150m"
+    country_axis:t="germany"
+    country_allies:t="ussr"
+
+    allowedUnitTypes{
+      isAirplanesAllowed:b=no
+      isTanksAllowed:b=yes
+      isShipsAllowed:b=no
+      isHelicoptersAllowed:b=no
+    }
+  }
+
+  spectator_points{
+  }
+
+  briefing{
+    place_loc:t=""
+    date_loc:t=""
+    objective_loc:t=""
+    music:t="action_01"
+
+    part{
+      event:t=""
+      minTime:i=0
+
+      slide{
+        map:b=yes
+        minTime:i=4
+        picture:t=""
+        showAirMap:b=no
+
+        icon{
+          icontype:t="tank"
+          side:t="player"
+          target:t="briefing_spawn01"
+        }
+
+        icon{
+          icontype:t="tank"
+          side:t="enemy"
+          target:t="briefing_spawn02"
+        }
+
+        icon{
+          icontype:t="tank"
+          side:t="enemy"
+          target:t="briefing_spawn03"
+        }
+
+        icon{
+          icontype:t="tank"
+          side:t="enemy"
+          target:t="briefing_spawn04"
+        }
+
+        icon{
+          icontype:t="tank"
+          side:t="enemy"
+          target:t="briefing_spawn05"
+        }
+
+        icon{
+          icontype:t="tank"
+          side:t="enemy"
+          target:t="briefing_spawn06"
+        }
+
+        icon{
+          icontype:t="tank"
+          side:t="enemy"
+          target:t="briefing_spawn07"
+        }
+
+        icon{
+          icontype:t="tank"
+          side:t="enemy"
+          target:t="briefing_spawn08"
+        }
+
+        icon{
+          icontype:t="tank"
+          side:t="enemy"
+          target:t="briefing_spawn09"
+        }
+      }
+    }
+  }
+}
+
+imports{
+
+  import_record{
+    file:t="gameData/missions/templates/battle_royale_template.blk"
+    importAreas:b=yes
+    importUnits:b=yes
+    importTriggers:b=yes
+    importMissionObjectives:b=yes
+    importWayPoints:b=yes
+    showAreas:b=yes
+    showUnits:b=yes
+    showTriggers:b=yes
+    showMissionObjectives:b=yes
+    showWayPoints:b=yes
+
+    excludes{
+    }
+  }
+}
+
+triggers{
+  isCategory:b=yes
+  is_enabled:b=yes
+
+  finland_br_init{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      initMission{
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      varSetInt{
+        value:i=6
+        var:t="br_area_div"
+        fromDescriptor:t="br_area_div"
+      }
+
+      varSetInt{
+        value:i=8
+        var:t="artillery_disable_stage"
+        fromDescriptor:t="artillery_disable_stage"
+      }
+
+      varSetInt{
+        value:i=8
+        var:t="pickups_count"
+      }
+
+      comment{
+        value:t="(br_area_div * 2 - 1 = 11) - number of total stages"
+      }
+
+      comment{
+        value:t="(11 stages - 3 = 8) - so warning will be when 3(1 row * 3 col) or 4(2 row * 2 col) sectors left"
+      }
+
+      comment{
+        value:t="and artillery will be disabled when 2(1 row * 2 col) sectors left"
+      }
+
+      comment{
+        value:t="artillery have radius 150m radius and sector side is 1400/6=250m"
+      }
+
+      comment{
+        value:t="from 1 to br_area_div included"
+      }
+
+      comment{
+        value:t="from bottom left corner to up right corner"
+      }
+
+      comment{
+        value:t="(1,1) - bottom left"
+      }
+
+      comment{
+        value:t="(5,1) - bottom right"
+      }
+
+      comment{
+        value:t="(1,5) - up left"
+      }
+
+      comment{
+        value:t="(5,5) - up right"
+      }
+
+      varSetString{
+        value:t="(1,1);(2,1);(3,1);(4,1);(5,1);(6,1);(1,2);(2,2);(3,2);(1,3);(2,3);(6,3);(1,4);(4,4);(5,4);(6,4);(1,5);(4,5);(5,5);(6,5);(1,6);(2,6);(3,6);(4,6);(5,6);(6,6);"
+        var:t="br_final_sector_exclude"
+        fromDescriptor:t="br_final_sector_exclude"
+      }
+
+      unitSetProperties{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="object_groups_sqad"
+        stealthRadius:r=0.0
+      }
+    }
+
+    else_actions{
+    }
+  }
+}
+
+mission_objectives{
+  isCategory:b=yes
+  is_enabled:b=yes
+}
+
+variables{
+}
+
+dialogs{
+}
+
+airfields{
+}
+
+effects{
+}
+
+units{
+
+  area_squad{
+    name:t="spawn_area_sq"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1881.06, 0.0, 97.0107]]
+
+    props{
+      squad_members:t="spawn_01"
+      squad_members:t="spawn_02"
+      squad_members:t="spawn_03"
+      squad_members:t="spawn_04"
+      squad_members:t="spawn_05"
+      squad_members:t="spawn_07"
+      squad_members:t="spawn_09"
+      squad_members:t="spawn_10"
+      squad_members:t="spawn_13"
+      squad_members:t="spawn_14"
+      squad_members:t="spawn_16"
+      squad_members:t="spawn_17"
+      squad_members:t="spawn_19"
+      squad_members:t="spawn_20"
+      squad_members:t="spawn_21"
+      squad_members:t="spawn_23"
+      squad_members:t="spawn_24"
+      squad_members:t="spawn_25"
+      squad_members:t="spawn_26"
+      squad_members:t="spawn_27"
+      squad_members:t="spawn_29"
+      squad_members:t="spawn_31"
+      squad_members:t="spawn_32"
+      squad_members:t="spawn_33"
+      squad_members:t="spawn_34"
+      squad_members:t="spawn_35"
+      squad_members:t="spawn_36"
+      squad_members:t="spawn_39"
+      squad_members:t="spawn_40"
+      squad_members:t="spawn_41"
+      squad_members:t="spawn_42"
+      squad_members:t="spawn_43"
+    }
+  }
+
+  area_squad{
+    name:t="pickups_area_sq"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1354.48, -6.95896, 946.62]]
+
+    props{
+      squad_members:t="pickup_area01"
+      squad_members:t="pickup_area02"
+      squad_members:t="pickup_area03"
+      squad_members:t="pickup_area04"
+      squad_members:t="pickup_area05"
+      squad_members:t="pickup_area06"
+      squad_members:t="pickup_area07"
+      squad_members:t="pickup_area08"
+      squad_members:t="pickup_area09"
+      squad_members:t="pickup_area10"
+      squad_members:t="pickup_area11"
+      squad_members:t="pickup_area12"
+      squad_members:t="pickup_area13"
+      squad_members:t="pickup_area14"
+      squad_members:t="pickup_area15"
+      squad_members:t="pickup_area16"
+      squad_members:t="pickup_area17"
+      squad_members:t="pickup_area18"
+      squad_members:t="pickup_area19"
+      squad_members:t="pickup_area20"
+      squad_members:t="pickup_area21"
+      squad_members:t="pickup_area22"
+      squad_members:t="pickup_area23"
+      squad_members:t="pickup_area24"
+      squad_members:t="pickup_area25"
+      squad_members:t="pickup_area26"
+      squad_members:t="pickup_area27"
+      squad_members:t="pickup_area28"
+      squad_members:t="pickup_area29"
+      squad_members:t="pickup_area30"
+      squad_members:t="pickup_area31"
+      squad_members:t="pickup_area32"
+      squad_members:t="pickup_area33"
+      squad_members:t="pickup_area34"
+      squad_members:t="pickup_area35"
+      squad_members:t="pickup_area36"
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_05"
+    tm:m=[[0.945558, 0.124485, -0.300706] [-0.130526, 0.991445, 0.0] [0.298133, 0.03925, 0.953717] [1011.6, 13.9, 735.25]]
+    unit_class:t="det_ussr_tram"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_01"
+    tm:m=[[0.843391, 0.0, 0.5373] [0.0, 1.0, 0.0] [-0.5373, 0.0, 0.843391] [988.15, 14.3629, 770.45]]
+    unit_class:t="det_t_34"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_02"
+    tm:m=[[0.766044, 0.0, -0.642788] [0.0, 1.0, 0.0] [0.642788, 0.0, 0.766044] [1090.35, 9.17166, 766.5]]
+    unit_class:t="det_t_34"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_03"
+    tm:m=[[-0.88701, 0.0, -0.461749] [0.0, 1.0, 0.0] [0.461749, 0.0, -0.88701] [1795.45, 5.4, 431.95]]
+    unit_class:t="det_t_34"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_06"
+    tm:m=[[-0.216439, 0.0, -0.976296] [0.0, 1.0, 0.0] [0.976296, 0.0, -0.216439] [1750.7, 5.5, 391.9]]
+    unit_class:t="det_t_34"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_07"
+    tm:m=[[-0.0436202, 0.0, 0.999048] [0.0, 1.0, 0.0] [-0.999048, 0.0, -0.0436202] [1673.96, 5.5, 534.002]]
+    unit_class:t="det_t_34"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_08"
+    tm:m=[[-0.675589, 0.0, -0.737278] [0.0, 1.0, 0.0] [0.737278, 0.0, -0.675589] [1637.8, 5.88565, 461.7]]
+    unit_class:t="det_t_34"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_10"
+    tm:m=[[-0.999048, 0.0, -0.04362] [0.0, 1.0, 0.0] [0.04362, 0.0, -0.999048] [1131.8, 8.35731, 765.55]]
+    unit_class:t="det_t_34"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_11"
+    tm:m=[[0.843044, -0.0767331, 0.532343] [0.0907357, 0.995875, -0.000145625] [-0.530136, 0.0484254, 0.846529] [1040.2, 13.45, 711.2]]
+    unit_class:t="det_ussr_tram"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_13"
+    tm:m=[[-0.999048, 0.0, -0.04362] [0.0, 1.0, 0.0] [0.04362, 0.0, -0.999048] [967.7, 6.42149, 1237.4]]
+    unit_class:t="det_t_34"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_14"
+    tm:m=[[0.887011, 0.0, 0.461749] [0.0, 1.0, 0.0] [-0.461749, 0.0, 0.887011] [873.4, 7.2, 1234.45]]
+    unit_class:t="czech_hedgehog_dynamic_5blocks"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_15"
+    tm:m=[[0.984808, 0.0, -0.173648] [0.0, 1.0, 0.0] [0.173648, 0.0, 0.984808] [887.5, 7.2, 1238.45]]
+    unit_class:t="czech_hedgehog_dynamic_5blocks"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_16"
+    tm:m=[[0.5373, 0.0, -0.843391] [0.0, 1.0, 0.0] [0.843391, 0.0, 0.5373] [900.5, 7.2, 1231.55]]
+    unit_class:t="czech_hedgehog_dynamic_5blocks"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_17"
+    tm:m=[[-0.0436188, 0.0, -0.999048] [0.0, 1.0, 0.0] [0.999048, 0.0, -0.0436188] [857.25, 7.9, 1153.7]]
+    unit_class:t="det_t_34"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_18"
+    tm:m=[[0.843392, 0.0, -0.537299] [0.0, 1.0, 0.0] [0.537299, 0.0, 0.843392] [832.6, 8.13491, 1133.05]]
+    unit_class:t="det_t_34"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_04"
+    tm:m=[[0.1341, -0.0767331, 0.987993] [0.0584353, 0.995875, 0.069414] [-0.989244, 0.0484254, 0.138031] [1093.65, 18.3687, 537.3]]
+    unit_class:t="det_t_34"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_09"
+    tm:m=[[0.501981, -0.0767331, 0.861468] [0.0805508, 0.995875, 0.0417679] [-0.86112, 0.0484254, 0.506091] [1150.05, 14.269, 537.3]]
+    unit_class:t="det_t_34"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_21"
+    tm:m=[[0.0474803, -0.0767331, 0.995921] [0.0521632, 0.995875, 0.0742428] [-0.997509, 0.0484254, 0.0512872] [1184.99, 11.6824, 545.268]]
+    unit_class:t="det_t_34"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_22"
+    tm:m=[[0.0474803, -0.0767331, 0.995921] [0.0521632, 0.995875, 0.0742428] [-0.997509, 0.0484254, 0.0512872] [1420.3, 7.91154, 304.828]]
+    unit_class:t="det_t_34"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_23"
+    tm:m=[[-0.81444, -0.0767331, 0.575152] [-0.0345885, 0.995875, 0.0838846] [-0.579217, 0.0484254, -0.813734] [1470.65, 6.57295, 332.657]]
+    unit_class:t="det_t_34"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_24"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [755.709, 7.95654, 1558.6]]
+    unit_class:t="debris_bricks_large_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_25"
+    tm:m=[[0.446095, 0.0, 0.894985] [0.0, 1.0, 0.0] [-0.894985, 0.0, 0.446095] [680.025, 7.95654, 1446.57]]
+    unit_class:t="debris_bricks_large_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_26"
+    tm:m=[[0.843044, -0.0767331, 0.532343] [0.0907357, 0.995875, -0.000145625] [-0.530136, 0.0484254, 0.846529] [629.307, 7.62895, 1418.42]]
+    unit_class:t="det_ussr_tram"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_27"
+    tm:m=[[0.622616, 0.0, -0.782527] [0.0, 1.0, 0.0] [0.782527, 0.0, 0.622616] [737.041, 7.95654, 1444.12]]
+    unit_class:t="debris_bricks_large_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_28"
+    tm:m=[[0.991633, 0.0, -0.12909] [0.0, 1.0, 0.0] [0.12909, 0.0, 0.991633] [718.318, 7.95654, 1494.21]]
+    unit_class:t="debris_bricks_large_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_29"
+    tm:m=[[-0.22577, 0.0, 0.97418] [0.0, 1.0, 0.0] [-0.97418, 0.0, -0.22577] [818.241, 6.42148, 1386.85]]
+    unit_class:t="det_t_34"
+    objLayer:i=2
+
+    props{
+      army:i=0
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_30"
+    tm:m=[[0.622616, 0.0, -0.782527] [0.0, 1.0, 0.0] [0.782527, 0.0, 0.622616] [964.613, 6.41455, 1258.34]]
+    unit_class:t="debris_bricks_large"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_31"
+    tm:m=[[0.622616, 0.0, -0.782527] [0.0, 1.0, 0.0] [0.782527, 0.0, 0.622616] [957.135, 6.41983, 1300.24]]
+    unit_class:t="debris_bricks_large"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_32"
+    tm:m=[[0.145014, 0.0, 0.989429] [0.0, 1.0, 0.0] [-0.989429, 0.0, 0.145014] [877.6, 5.35, 1394.0]]
+    unit_class:t="debris_bricks_large_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_33"
+    tm:m=[[-0.264191, 0.0, -0.964471] [0.0, 1.0, 0.0] [0.964471, 0.0, -0.264191] [1028.86, 4.95787, 1329.44]]
+    unit_class:t="debris_bricks_large_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_34"
+    tm:m=[[-0.998324, 0.0, 0.0578678] [0.0, 1.0, 0.0] [-0.0578678, 0.0, -0.998324] [911.187, 7.11128, 1407.86]]
+    unit_class:t="debris_bricks_large_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_35"
+    tm:m=[[-0.998032, 0.0, -0.0627139] [0.0, 1.0, 0.0] [0.0627139, 0.0, -0.998032] [962.36, 4.95789, 1397.59]]
+    unit_class:t="debris_bricks_large_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_36"
+    tm:m=[[0.622616, 0.0, -0.782527] [0.0, 1.0, 0.0] [0.782527, 0.0, 0.622616] [992.126, 6.1057, 1278.67]]
+    unit_class:t="debris_bricks_large"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_37"
+    tm:m=[[-0.973997, 0.0, 0.226562] [0.0, 1.0, 0.0] [-0.226562, 0.0, -0.973997] [1003.19, 5.98325, 1285.46]]
+    unit_class:t="debris_bricks_large"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_38"
+    tm:m=[[0.660023, 0.0, -0.751246] [0.0, 1.0, 0.0] [0.751246, 0.0, 0.660023] [1011.22, 5.86732, 1291.86]]
+    unit_class:t="debris_bricks_large"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_39"
+    tm:m=[[0.660023, -0.00453311, -0.751232] [0.0, 0.999982, -0.00603413] [0.751246, 0.00398266, 0.660011] [1083.93, 5.48058, 1139.43]]
+    unit_class:t="debris_bricks_large"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_40"
+    tm:m=[[-0.891174, 0.0, -0.453662] [0.0, 1.0, 0.0] [0.453662, 0.0, -0.891174] [1099.58, 5.43638, 1156.78]]
+    unit_class:t="debris_bricks_large"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_41"
+    tm:m=[[-0.741216, 0.0040505, 0.671254] [0.0, 0.999982, -0.00603413] [-0.671266, -0.00447259, -0.741203] [1090.67, 5.43764, 1151.54]]
+    unit_class:t="debris_bricks_large"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_42"
+    tm:m=[[0.622616, 0.0, -0.782527] [0.0, 1.0, 0.0] [0.782527, 0.0, 0.622616] [1067.59, 5.55357, 1111.61]]
+    unit_class:t="debris_bricks_large_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_43"
+    tm:m=[[0.622616, 0.0, -0.782527] [0.0, 1.0, 0.0] [0.782527, 0.0, 0.622616] [1130.24, 5.60607, 1115.33]]
+    unit_class:t="debris_bricks_large_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_44"
+    tm:m=[[0.883569, 0.0, -0.468302] [0.0, 1.0, 0.0] [0.468302, 0.0, 0.883569] [1117.18, 5.65956, 1154.6]]
+    unit_class:t="debris_bricks_large"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_45"
+    tm:m=[[-0.505134, 0.0, -0.863041] [0.0, 1.0, 0.0] [0.863041, 0.0, -0.505134] [1114.66, 5.60606, 1095.98]]
+    unit_class:t="debris_bricks_large_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_46"
+    tm:m=[[-0.863396, 0.0, -0.504527] [0.0, 1.0, 0.0] [0.504527, 0.0, -0.863396] [990.484, 6.41455, 1225.45]]
+    unit_class:t="debris_bricks_large"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_47"
+    tm:m=[[0.622616, 0.0, -0.782527] [0.0, 1.0, 0.0] [0.782527, 0.0, 0.622616] [983.724, 5.60606, 1161.15]]
+    unit_class:t="debris_bricks_large_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_48"
+    tm:m=[[-0.999272, 0.0, -0.0381428] [0.0, 1.0, 0.0] [0.0381428, 0.0, -0.999272] [1007.25, 5.60603, 1116.18]]
+    unit_class:t="debris_bricks_large_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_49"
+    tm:m=[[0.622616, 0.0, -0.782527] [0.0, 1.0, 0.0] [0.782527, 0.0, 0.622616] [812.596, 7.11121, 1078.16]]
+    unit_class:t="debris_bricks_large_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_50"
+    tm:m=[[0.622616, 0.0, -0.782527] [0.0, 1.0, 0.0] [0.782527, 0.0, 0.622616] [680.223, 9.40987, 1034.97]]
+    unit_class:t="debris_bricks_large_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_51"
+    tm:m=[[-0.891174, 0.0, -0.453662] [0.0, 1.0, 0.0] [0.453662, 0.0, -0.891174] [738.62, 7.93694, 1017.64]]
+    unit_class:t="debris_bricks_large"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_52"
+    tm:m=[[0.238874, 0.0, 0.971051] [0.0, 1.0, 0.0] [-0.971051, 0.0, 0.238874] [786.807, 7.93694, 1005.01]]
+    unit_class:t="debris_bricks_large"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_53"
+    tm:m=[[-0.560359, 0.0, -0.82825] [0.0, 1.0, 0.0] [0.82825, 0.0, -0.560359] [742.816, 8.50786, 1095.4]]
+    unit_class:t="debris_bricks_large_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_54"
+    tm:m=[[-0.560359, 0.0, -0.82825] [0.0, 1.0, 0.0] [0.82825, 0.0, -0.560359] [617.51, 8.1124, 1131.47]]
+    unit_class:t="debris_bricks_large_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_55"
+    tm:m=[[0.852205, 0.0, -0.523208] [0.0, 1.0, 0.0] [0.523208, 0.0, 0.852205] [870.698, 9.40987, 961.237]]
+    unit_class:t="debris_bricks_large_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_56"
+    tm:m=[[0.622616, 0.0, -0.782527] [0.0, 1.0, 0.0] [0.782527, 0.0, 0.622616] [848.39, 11.3581, 977.986]]
+    unit_class:t="debris_bricks_large"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_57"
+    tm:m=[[0.908456, 0.0, 0.417981] [0.0, 1.0, 0.0] [-0.417981, 0.0, 0.908456] [842.917, 11.3581, 973.305]]
+    unit_class:t="debris_bricks_large"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_58"
+    tm:m=[[0.622616, 0.0, -0.782527] [0.0, 1.0, 0.0] [0.782527, 0.0, 0.622616] [834.367, 8.15528, 1095.96]]
+    unit_class:t="debris_bricks_large_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_59"
+    tm:m=[[0.622616, 0.0, -0.782527] [0.0, 1.0, 0.0] [0.782527, 0.0, 0.622616] [679.81, 7.27042, 1230.68]]
+    unit_class:t="debris_bricks_large_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_60"
+    tm:m=[[0.547801, 0.0, 0.836609] [0.0, 1.0, 0.0] [-0.836609, 0.0, 0.547801] [569.124, 7.27042, 1260.85]]
+    unit_class:t="debris_bricks_large_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_61"
+    tm:m=[[0.839866, 0.0, -0.542793] [0.0, 1.0, 0.0] [0.542793, 0.0, 0.839866] [645.373, 7.30299, 1310.3]]
+    unit_class:t="debris_bricks_large_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_62"
+    tm:m=[[-0.891174, 0.0, -0.453662] [0.0, 1.0, 0.0] [0.453662, 0.0, -0.891174] [654.738, 7.45301, 1353.0]]
+    unit_class:t="debris_bricks_large"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_63"
+    tm:m=[[0.241298, 0.0, 0.970451] [0.0, 1.0, 0.0] [-0.970451, 0.0, 0.241298] [644.002, 7.46959, 1359.71]]
+    unit_class:t="debris_bricks_large"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_64"
+    tm:m=[[0.622616, 0.0, -0.782527] [0.0, 1.0, 0.0] [0.782527, 0.0, 0.622616] [983.55, 7.7, 995.8]]
+    unit_class:t="debris_bricks_large_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_65"
+    tm:m=[[0.622616, 0.0, -0.782527] [0.0, 1.0, 0.0] [0.782527, 0.0, 0.622616] [992.732, 8.86662, 925.361]]
+    unit_class:t="debris_bricks_large_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_66"
+    tm:m=[[0.622616, 0.0, -0.782527] [0.0, 1.0, 0.0] [0.782527, 0.0, 0.622616] [972.75, 4.98, 1101.28]]
+    unit_class:t="debris_bricks_large_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_67"
+    tm:m=[[-0.891174, 0.0, -0.453662] [0.0, 1.0, 0.0] [0.453662, 0.0, -0.891174] [828.42, 10.1421, 1014.19]]
+    unit_class:t="debris_bricks_large"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_68"
+    tm:m=[[0.622616, 0.0, -0.782527] [0.0, 1.0, 0.0] [0.782527, 0.0, 0.622616] [950.921, 5.55415, 1453.23]]
+    unit_class:t="debris_bricks_large_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_69"
+    tm:m=[[0.622616, 0.0, -0.782527] [0.0, 1.0, 0.0] [0.782527, 0.0, 0.622616] [840.555, 7.46652, 1409.24]]
+    unit_class:t="debris_bricks_large_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_70"
+    tm:m=[[-0.979796, 0.0, 0.199997] [0.0, 1.0, 0.0] [-0.199997, 0.0, -0.979796] [792.715, 7.46661, 1321.39]]
+    unit_class:t="debris_bricks_large_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_71"
+    tm:m=[[0.622616, 0.0, -0.782527] [0.0, 1.0, 0.0] [0.782527, 0.0, 0.622616] [1102.59, 7.7806, 792.048]]
+    unit_class:t="debris_bricks_large_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_72"
+    tm:m=[[-0.283891, 0.0, -0.958856] [0.0, 1.0, 0.0] [0.958856, 0.0, -0.283891] [1211.7, 6.85, 771.35]]
+    unit_class:t="debris_bricks_large_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_73"
+    tm:m=[[-0.283891, 0.0, -0.958856] [0.0, 1.0, 0.0] [0.958856, 0.0, -0.283891] [1283.75, 6.17531, 699.53]]
+    unit_class:t="debris_bricks_large_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_74"
+    tm:m=[[-0.283891, 0.0, -0.958856] [0.0, 1.0, 0.0] [0.958856, 0.0, -0.283891] [1332.59, 6.17532, 618.005]]
+    unit_class:t="debris_bricks_large_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_75"
+    tm:m=[[-0.283891, 0.0, -0.958856] [0.0, 1.0, 0.0] [0.958856, 0.0, -0.283891] [1346.23, 6.17531, 606.532]]
+    unit_class:t="debris_bricks_large_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_76"
+    tm:m=[[-0.283891, 0.0, -0.958856] [0.0, 1.0, 0.0] [0.958856, 0.0, -0.283891] [1347.89, 7.13137, 555.391]]
+    unit_class:t="debris_bricks_large_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_77"
+    tm:m=[[-0.283891, 0.0, -0.958856] [0.0, 1.0, 0.0] [0.958856, 0.0, -0.283891] [1045.92, 12.9121, 684.229]]
+    unit_class:t="debris_bricks_large_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_78"
+    tm:m=[[-0.283891, 0.0, -0.958856] [0.0, 1.0, 0.0] [0.958856, 0.0, -0.283891] [1420.57, 5.57906, 626.548]]
+    unit_class:t="debris_bricks_large_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_79"
+    tm:m=[[-0.283891, 0.0, -0.958856] [0.0, 1.0, 0.0] [0.958856, 0.0, -0.283891] [1369.77, 5.15816, 697.737]]
+    unit_class:t="debris_bricks_large_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_80"
+    tm:m=[[-0.283891, 0.0, -0.958856] [0.0, 1.0, 0.0] [0.958856, 0.0, -0.283891] [1498.24, 5.1582, 685.093]]
+    unit_class:t="debris_bricks_large_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_81"
+    tm:m=[[-0.945561, 0.0, 0.325445] [0.0, 1.0, 0.0] [-0.325445, 0.0, -0.945561] [1523.15, 5.15822, 661.12]]
+    unit_class:t="debris_bricks_large_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_82"
+    tm:m=[[0.993586, 0.0, -0.113074] [0.0, 1.0, 0.0] [0.113074, 0.0, 0.993586] [1508.06, 5.15822, 673.667]]
+    unit_class:t="debris_bricks_large_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_83"
+    tm:m=[[-0.283891, 0.0, -0.958856] [0.0, 1.0, 0.0] [0.958856, 0.0, -0.283891] [1293.63, 5.15817, 739.047]]
+    unit_class:t="debris_bricks_large_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_84"
+    tm:m=[[-0.283891, 0.0, -0.958856] [0.0, 1.0, 0.0] [0.958856, 0.0, -0.283891] [1219.1, 6.17533, 656.516]]
+    unit_class:t="debris_bricks_large_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_85"
+    tm:m=[[-0.945561, 0.0, 0.325445] [0.0, 1.0, 0.0] [-0.325445, 0.0, -0.945561] [1523.94, 5.15823, 496.61]]
+    unit_class:t="debris_bricks_large_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_86"
+    tm:m=[[-0.945561, 0.0, 0.325445] [0.0, 1.0, 0.0] [-0.325445, 0.0, -0.945561] [1481.83, 5.15825, 487.61]]
+    unit_class:t="debris_bricks_large_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_87"
+    tm:m=[[-0.945561, 0.0, 0.325445] [0.0, 1.0, 0.0] [-0.325445, 0.0, -0.945561] [1445.3, 6.43489, 336.323]]
+    unit_class:t="debris_bricks_large_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_88"
+    tm:m=[[0.97995, 0.0, -0.19924] [0.0, 1.0, 0.0] [0.19924, 0.0, 0.97995] [1557.89, 6.19807, 389.769]]
+    unit_class:t="debris_bricks_large_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_89"
+    tm:m=[[0.97995, 0.0, -0.19924] [0.0, 1.0, 0.0] [0.19924, 0.0, 0.97995] [1487.63, 6.19807, 377.333]]
+    unit_class:t="debris_bricks_large_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_90"
+    tm:m=[[0.97995, 0.0, -0.19924] [0.0, 1.0, 0.0] [0.19924, 0.0, 0.97995] [1352.14, 8.31438, 365.904]]
+    unit_class:t="debris_bricks_large_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_91"
+    tm:m=[[0.894992, 0.0, -0.446081] [0.0, 1.0, 0.0] [0.446081, 0.0, 0.894992] [1297.99, 8.31438, 489.614]]
+    unit_class:t="debris_bricks_large_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_92"
+    tm:m=[[-0.917008, 0.0, -0.398868] [0.0, 1.0, 0.0] [0.398868, 0.0, -0.917008] [1732.97, 5.15824, 346.233]]
+    unit_class:t="debris_bricks_large_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_93"
+    tm:m=[[0.777227, 0.0, -0.629219] [0.0, 1.0, 0.0] [0.629219, 0.0, 0.777227] [1755.51, 3.40201, 348.641]]
+    unit_class:t="debris_bricks_large_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_94"
+    tm:m=[[-0.930465, 0.0, 0.366381] [0.0, 1.0, 0.0] [-0.366381, 0.0, -0.930465] [1724.89, 4.13583, 526.18]]
+    unit_class:t="debris_bricks_large_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_95"
+    tm:m=[[-0.930465, 0.0, 0.366381] [0.0, 1.0, 0.0] [-0.366381, 0.0, -0.930465] [1595.13, 4.13585, 489.8]]
+    unit_class:t="debris_bricks_large_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_96"
+    tm:m=[[-0.317427, 0.0, 0.948282] [0.0, 1.0, 0.0] [-0.948282, 0.0, -0.317427] [1637.96, 4.13585, 515.053]]
+    unit_class:t="debris_bricks_large_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_97"
+    tm:m=[[-0.283891, 0.0, -0.958856] [0.0, 1.0, 0.0] [0.958856, 0.0, -0.283891] [1631.57, 4.13585, 528.946]]
+    unit_class:t="debris_bricks_large_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_98"
+    tm:m=[[0.948282, 0.0, 0.317427] [0.0, 1.0, 0.0] [-0.317427, 0.0, 0.948282] [1599.53, 4.13584, 507.043]]
+    unit_class:t="debris_bricks_large_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_99"
+    tm:m=[[-0.283891, 0.0, -0.958856] [0.0, 1.0, 0.0] [0.958856, 0.0, -0.283891] [1108.08, 6.86833, 808.551]]
+    unit_class:t="debris_bricks_large_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_100"
+    tm:m=[[0.97995, 0.0, -0.199241] [0.0, 1.0, 0.0] [0.199241, 0.0, 0.97995] [1171.81, 6.86833, 720.734]]
+    unit_class:t="debris_bricks_large_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_101"
+    tm:m=[[0.97995, 0.0, -0.199241] [0.0, 1.0, 0.0] [0.199241, 0.0, 0.97995] [1053.3, 9.72644, 799.695]]
+    unit_class:t="debris_bricks_large_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_102"
+    tm:m=[[0.97995, 0.0, -0.199241] [0.0, 1.0, 0.0] [0.199241, 0.0, 0.97995] [1035.42, 8.28114, 880.276]]
+    unit_class:t="debris_bricks_large_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_103"
+    tm:m=[[0.97995, 0.0, -0.199241] [0.0, 1.0, 0.0] [0.199241, 0.0, 0.97995] [1069.72, 9.72644, 752.304]]
+    unit_class:t="debris_bricks_large_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_104"
+    tm:m=[[0.97995, 0.0, -0.199241] [0.0, 1.0, 0.0] [0.199241, 0.0, 0.97995] [995.323, 11.2671, 803.934]]
+    unit_class:t="debris_bricks_large_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_105"
+    tm:m=[[0.97995, 0.0, -0.199241] [0.0, 1.0, 0.0] [0.199241, 0.0, 0.97995] [1000.4, 11.2671, 750.379]]
+    unit_class:t="debris_bricks_large_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_106"
+    tm:m=[[-0.408668, 0.0, 0.687743] [0.0, 0.8, 0.0] [-0.687743, 0.0, -0.408668] [1034.4, 6.05, 1058.55]]
+    unit_class:t="debris_bricks_large_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_107"
+    tm:m=[[0.896204, 0.0, -0.443641] [0.0, 1.0, 0.0] [0.443641, 0.0, 0.896204] [1000.3, 7.14099, 1014.2]]
+    unit_class:t="debris_bricks_medium_b"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_108"
+    tm:m=[[-0.872829, 0.0, 0.488025] [0.0, 1.0, 0.0] [-0.488025, 0.0, -0.872829] [994.35, 7.45, 1011.55]]
+    unit_class:t="debris_bricks_medium"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+
+  squad{
+    name:t="object_groups_sqad"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1200.36, 5.48724, 1013.21]]
+
+    props{
+      object_marking:i=0
+      squad_members:t="objectGroups_05"
+      squad_members:t="objectGroups_01"
+      squad_members:t="objectGroups_02"
+      squad_members:t="objectGroups_03"
+      squad_members:t="objectGroups_06"
+      squad_members:t="objectGroups_07"
+      squad_members:t="objectGroups_08"
+      squad_members:t="objectGroups_10"
+      squad_members:t="objectGroups_11"
+      squad_members:t="objectGroups_13"
+      squad_members:t="objectGroups_14"
+      squad_members:t="objectGroups_15"
+      squad_members:t="objectGroups_16"
+      squad_members:t="objectGroups_17"
+      squad_members:t="objectGroups_18"
+      squad_members:t="objectGroups_04"
+      squad_members:t="objectGroups_09"
+      squad_members:t="objectGroups_21"
+      squad_members:t="objectGroups_22"
+      squad_members:t="objectGroups_23"
+      squad_members:t="objectGroups_24"
+      squad_members:t="objectGroups_25"
+      squad_members:t="objectGroups_26"
+      squad_members:t="objectGroups_27"
+      squad_members:t="objectGroups_28"
+      squad_members:t="objectGroups_29"
+      squad_members:t="objectGroups_30"
+      squad_members:t="objectGroups_31"
+      squad_members:t="objectGroups_32"
+      squad_members:t="objectGroups_33"
+      squad_members:t="objectGroups_34"
+      squad_members:t="objectGroups_35"
+      squad_members:t="objectGroups_36"
+      squad_members:t="objectGroups_37"
+      squad_members:t="objectGroups_38"
+      squad_members:t="objectGroups_39"
+      squad_members:t="objectGroups_40"
+      squad_members:t="objectGroups_41"
+      squad_members:t="objectGroups_42"
+      squad_members:t="objectGroups_43"
+      squad_members:t="objectGroups_44"
+      squad_members:t="objectGroups_45"
+      squad_members:t="objectGroups_46"
+      squad_members:t="objectGroups_47"
+      squad_members:t="objectGroups_48"
+      squad_members:t="objectGroups_49"
+      squad_members:t="objectGroups_50"
+      squad_members:t="objectGroups_51"
+      squad_members:t="objectGroups_52"
+      squad_members:t="objectGroups_53"
+      squad_members:t="objectGroups_54"
+      squad_members:t="objectGroups_55"
+      squad_members:t="objectGroups_56"
+      squad_members:t="objectGroups_57"
+      squad_members:t="objectGroups_58"
+      squad_members:t="objectGroups_59"
+      squad_members:t="objectGroups_60"
+      squad_members:t="objectGroups_61"
+      squad_members:t="objectGroups_62"
+      squad_members:t="objectGroups_63"
+      squad_members:t="objectGroups_64"
+      squad_members:t="objectGroups_65"
+      squad_members:t="objectGroups_66"
+      squad_members:t="objectGroups_67"
+      squad_members:t="objectGroups_68"
+      squad_members:t="objectGroups_69"
+      squad_members:t="objectGroups_70"
+      squad_members:t="objectGroups_71"
+      squad_members:t="objectGroups_72"
+      squad_members:t="objectGroups_73"
+      squad_members:t="objectGroups_74"
+      squad_members:t="objectGroups_75"
+      squad_members:t="objectGroups_76"
+      squad_members:t="objectGroups_77"
+      squad_members:t="objectGroups_78"
+      squad_members:t="objectGroups_79"
+      squad_members:t="objectGroups_80"
+      squad_members:t="objectGroups_81"
+      squad_members:t="objectGroups_82"
+      squad_members:t="objectGroups_83"
+      squad_members:t="objectGroups_84"
+      squad_members:t="objectGroups_85"
+      squad_members:t="objectGroups_86"
+      squad_members:t="objectGroups_87"
+      squad_members:t="objectGroups_88"
+      squad_members:t="objectGroups_89"
+      squad_members:t="objectGroups_90"
+      squad_members:t="objectGroups_91"
+      squad_members:t="objectGroups_92"
+      squad_members:t="objectGroups_93"
+      squad_members:t="objectGroups_94"
+      squad_members:t="objectGroups_95"
+      squad_members:t="objectGroups_96"
+      squad_members:t="objectGroups_97"
+      squad_members:t="objectGroups_98"
+      squad_members:t="objectGroups_99"
+      squad_members:t="objectGroups_100"
+      squad_members:t="objectGroups_101"
+      squad_members:t="objectGroups_102"
+      squad_members:t="objectGroups_103"
+      squad_members:t="objectGroups_104"
+      squad_members:t="objectGroups_105"
+      squad_members:t="objectGroups_106"
+      squad_members:t="objectGroups_107"
+      squad_members:t="objectGroups_108"
+    }
+  }
+
+  armada{
+    name:t="player01"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1339.42, 408.17, 1462.64]]
+    unit_class:t="dummy_plane"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+}
+
+areas{
+
+  tank_map_area{
+    type:t="Box"
+    tm:m=[[-1460.43, 0.0, 0.0] [0.0, 175.475, 0.0] [0.0, 0.0, -1460.43] [1063.6, 9.29902, 898.4]]
+    objLayer:i=3
+
+    props{
+    }
+  }
+
+  briefing_spawn01{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1352.35, 625.718, 790.0]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  briefing_spawn02{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1110.15, 617.068, 1104.1]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  briefing_spawn03{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1190.6, 625.443, 612.3]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  briefing_spawn04{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1685.3, 623.168, 483.7]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  briefing_spawn05{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1467.8, 623.594, 486.7]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  briefing_spawn06{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1043.85, 645.068, 681.8]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  briefing_spawn07{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [839.9, 659.568, 922.6]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  briefing_spawn08{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [565.55, 642.818, 1168.5]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  briefing_spawn09{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [860.55, 625.268, 1402.6]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  tank_map_area01{
+    type:t="Box"
+    tm:m=[[-1354.9, 0.0, 0.0] [0.0, 175.475, 0.0] [0.0, 0.0, -1354.9] [1063.6, 9.3, 898.4]]
+    objLayer:i=3
+
+    props{
+    }
+  }
+
+  spawn_01{
+    type:t="Sphere"
+    tm:m=[[-2.90034, 0.0, -11.6442] [0.0, 12.0, 0.0] [11.6442, 0.0, -2.90034] [1686.4, 5.48058, 344.441]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  spawn_02{
+    type:t="Sphere"
+    tm:m=[[-8.55435, 0.0, 8.41565] [0.0, 12.0, 0.0] [-8.41565, 0.0, -8.55435] [1779.5, 5.48056, 469.262]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  spawn_03{
+    type:t="Sphere"
+    tm:m=[[12.0, 0.0, 0.0171313] [0.0, 12.0, 0.0] [-0.0171313, 0.0, 12.0] [1394.22, 9.34153, 292.552]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  spawn_04{
+    type:t="Sphere"
+    tm:m=[[11.2785, 0.0, 4.09816] [0.0, 12.0, 0.0] [-4.09816, 0.0, 11.2785] [1174.45, 9.3, 638.35]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  spawn_05{
+    type:t="Sphere"
+    tm:m=[[-5.71346, 0.0, 10.5526] [0.0, 12.0, 0.0] [-10.5526, 0.0, -5.71346] [1460.57, 5.48059, 463.969]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  spawn_07{
+    type:t="Sphere"
+    tm:m=[[1.06118, 0.0, 11.953] [0.0, 12.0, 0.0] [-11.953, 0.0, 1.06118] [1525.1, 5.4806, 686.969]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  spawn_09{
+    type:t="Sphere"
+    tm:m=[[2.01566, 0.0, 11.8295] [0.0, 12.0, 0.0] [-11.8295, 0.0, 2.01566] [1570.13, 5.53583, 491.078]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  spawn_10{
+    type:t="Sphere"
+    tm:m=[[-8.20089, 0.0, 8.76045] [0.0, 12.0, 0.0] [-8.76045, 0.0, -8.20089] [1349.99, 6.77464, 519.802]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  spawn_13{
+    type:t="Sphere"
+    tm:m=[[-3.49366, 0.0, 11.4802] [0.0, 12.0, 0.0] [-11.4802, 0.0, -3.49366] [1359.95, 6.77463, 622.956]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  spawn_14{
+    type:t="Sphere"
+    tm:m=[[8.61653, 0.0, 8.35197] [0.0, 12.0, 0.0] [-8.35197, 0.0, 8.61653] [1396.42, 5.64183, 688.601]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  spawn_16{
+    type:t="Sphere"
+    tm:m=[[9.19197, 0.0, 7.71407] [0.0, 12.0, 0.0] [-7.71407, 0.0, 9.19197] [1224.6, 6.77465, 749.601]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  spawn_19{
+    type:t="Sphere"
+    tm:m=[[0.629288, 0.0, 11.9835] [0.0, 12.0, 0.0] [-11.9835, 0.0, 0.629288] [1028.5, 15.75, 689.45]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  spawn_20{
+    type:t="Sphere"
+    tm:m=[[0.629288, 0.0, 11.9835] [0.0, 12.0, 0.0] [-11.9835, 0.0, 0.629288] [1116.15, 8.8, 754.9]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  spawn_21{
+    type:t="Sphere"
+    tm:m=[[4.76405, 0.0, 11.0138] [0.0, 12.0, 0.0] [-11.0138, 0.0, 4.76405] [1014.2, 10.5, 815.15]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  spawn_23{
+    type:t="Sphere"
+    tm:m=[[-7.33571, 0.0, 9.49671] [0.0, 12.0, 0.0] [-9.49671, 0.0, -7.33571] [1005.05, 10.5, 878.15]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  spawn_24{
+    type:t="Sphere"
+    tm:m=[[-5.32678, 0.0, 10.7529] [0.0, 12.0, 0.0] [-10.7529, 0.0, -5.32678] [1062.7, 6.25, 974.25]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  spawn_25{
+    type:t="Sphere"
+    tm:m=[[-11.4299, 0.0, -3.65477] [0.0, 12.0, 0.0] [3.65477, 0.0, -11.4299] [853.085, 15.2, 960.139]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  spawn_26{
+    type:t="Sphere"
+    tm:m=[[-9.66754, 0.0, -7.10905] [0.0, 12.0, 0.0] [7.10905, 0.0, -9.66754] [973.3, 7.0, 1058.25]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  spawn_27{
+    type:t="Sphere"
+    tm:m=[[-4.21426, 0.0, -11.2357] [0.0, 12.0, 0.0] [11.2357, 0.0, -4.21426] [1103.71, 5.78937, 1138.33]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  spawn_29{
+    type:t="Sphere"
+    tm:m=[[11.9932, 0.0, -0.404865] [0.0, 12.0, 0.0] [0.404865, 0.0, 11.9932] [835.652, 8.60001, 1066.62]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  spawn_31{
+    type:t="Sphere"
+    tm:m=[[0.070832, 0.0, -11.9998] [0.0, 12.0, 0.0] [11.9998, 0.0, 0.070832] [1000.66, 6.14317, 1208.75]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  spawn_32{
+    type:t="Sphere"
+    tm:m=[[-0.744209, 0.0, -11.9769] [0.0, 12.0, 0.0] [11.9769, 0.0, -0.744209] [884.15, 8.6, 1225.95]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  spawn_33{
+    type:t="Sphere"
+    tm:m=[[7.41861, 0.0, 9.43208] [0.0, 12.0, 0.0] [-9.43208, 0.0, 7.41861] [960.6, 6.4, 1275.3]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  spawn_34{
+    type:t="Sphere"
+    tm:m=[[11.9217, 0.0, 1.36847] [0.0, 12.0, 0.0] [-1.36847, 0.0, 11.9217] [651.114, 8.75, 1065.63]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  spawn_35{
+    type:t="Sphere"
+    tm:m=[[9.36896, 0.0, -7.49817] [0.0, 12.0, 0.0] [7.49817, 0.0, 9.36896] [572.283, 8.75, 1231.8]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  spawn_36{
+    type:t="Sphere"
+    tm:m=[[-10.2675, 0.0, 6.21112] [0.0, 12.0, 0.0] [-6.21112, 0.0, -10.2675] [656.6, 7.36433, 1332.95]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  spawn_39{
+    type:t="Sphere"
+    tm:m=[[11.5252, 0.0, -3.34206] [0.0, 12.0, 0.0] [3.34206, 0.0, 11.5252] [882.785, 5.68857, 1542.21]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  spawn_40{
+    type:t="Sphere"
+    tm:m=[[-7.35931, 0.0, -9.47843] [0.0, 12.0, 0.0] [9.47843, 0.0, -7.35931] [736.088, 7.97229, 1542.41]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  spawn_41{
+    type:t="Sphere"
+    tm:m=[[4.03865, 0.0, 11.3] [0.0, 12.0, 0.0] [-11.3, 0.0, 4.03865] [725.725, 7.36432, 1231.42]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  spawn_42{
+    type:t="Sphere"
+    tm:m=[[9.88789, 0.0, -6.79918] [0.0, 12.0, 0.0] [6.79918, 0.0, 9.88789] [760.021, 7.35001, 1436.33]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  spawn_43{
+    type:t="Sphere"
+    tm:m=[[9.36898, 0.0, -7.49817] [0.0, 12.0, 0.0] [7.49817, 0.0, 9.36898] [838.477, 7.67069, 1146.36]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  spawn_17{
+    type:t="Sphere"
+    tm:m=[[11.2863, 0.0, -4.07662] [0.0, 12.0, 0.0] [4.07662, 0.0, 11.2863] [1097.1, 18.85, 518.7]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickup_area01{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1317.9, 5.57079, 789.9]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickup_area02{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1209.4, 8.75944, 887.175]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickup_area03{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1144.35, 5.44319, 1013.69]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickup_area04{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1621.08, 5.42533, 567.422]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickup_area05{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1635.09, 5.46953, 482.059]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickup_area06{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1560.79, 5.65302, 417.714]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickup_area07{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1444.46, 5.75169, 558.7]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickup_area08{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1313.22, 8.81724, 441.525]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickup_area09{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1107.06, 10.0559, 708.525]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickup_area10{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1023.86, 17.6744, 645.754]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickup_area11{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1088.94, 7.76275, 871.005]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickup_area12{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [765.75, 9.10827, 1058.35]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickup_area13{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [661.1, 7.21543, 1285.15]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickup_area14{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1577.4, 5.41428, 849.0]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickup_area15{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1393.2, 7.00452, 853.45]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickup_area16{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1257.1, 6.14749, 987.05]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickup_area17{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1182.7, 11.0634, 569.5]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickup_area18{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1080.1, 12.9097, 661.05]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickup_area19{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [985.35, 14.9562, 758.75]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickup_area20{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [929.8, 18.4875, 768.7]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickup_area21{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [836.35, 18.6255, 879.55]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickup_area22{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [492.7, 8.24199, 1232.05]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickup_area23{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [501.75, 8.00137, 1510.6]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickup_area24{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [430.55, 8.54736, 1375.0]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickup_area25{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1106.35, 6.7, 1350.2]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickup_area26{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [912.65, 7.15302, 1158.65]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickup_area27{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1051.0, 5.77837, 1076.1]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickup_area28{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [974.15, 6.63878, 1123.75]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickup_area29{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [979.0, 8.17046, 972.9]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickup_area30{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1063.25, 8.7804, 821.0]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickup_area31{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1296.7, 6.32483, 668.9]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickup_area32{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1653.15, 5.41428, 756.5]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickup_area33{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [771.05, 15.8005, 951.85]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickup_area34{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1047.65, 11.0209, 764.8]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickup_area35{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1060.95, 3.3, 1265.6]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  pickup_area36{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1108.05, 5.56842, 1231.5]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+}
+
+objLayers{
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=no
+  }
+}
+
+wayPoints{
+}
+
+__viewPoints{
+
+  viewpt_01{
+    pos:p3=1040.05, 10.7892, 1003.5
+    ht:r=4.5
+  }
+}

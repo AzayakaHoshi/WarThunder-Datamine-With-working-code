@@ -1,0 +1,1282 @@
+selected_tag:t=""
+bin_dump_file:t=""
+
+mission_settings{
+
+  player{
+    army:i=1
+  }
+
+  player_teamB{
+    army:i=2
+  }
+
+  mission{
+    type:t="domination"
+    level:t="levels/hurtgen.bin"
+    environment:t="Day"
+    weather:t="hazy"
+  }
+}
+
+imports{
+}
+
+triggers{
+  isCategory:b=yes
+  is_enabled:b=yes
+
+  aat_init{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      initMission{
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t=""
+      }
+
+      missionGetBalanceLevel{
+        input_var:t="aat_matching_rank"
+      }
+
+      unitSetVar{
+        object_var_name:t="visible_for_aaa"
+        object:t="t1_players_squad"
+        object:t="t2_players_squad"
+        object_var_value:i=0
+      }
+
+      unitSetProperties{
+        object:t="t1_all_aaa_squad"
+        object:t="t2_all_aaa_squad"
+        attack_type:t="hold_fire"
+      }
+
+      triggerEnable{
+        target:t="aat_t1_player_spawned"
+        target:t="aat_t2_player_spawned"
+        target:t="aat_t1_player_has_bomb"
+        target:t="aat_t2_player_has_bomb"
+        target:t="aat_t1_player_killed_ai"
+        target:t="aat_t2_player_killed_ai"
+      }
+
+      triggerEnable{
+        target:t="aat_rlc_logic_turn_on"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  aat_shoot_logic{
+    isCategory:b=yes
+    is_enabled:b=yes
+
+    aat_t1_player_spawned{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=yes
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=1.0
+        }
+      }
+
+      conditions{
+
+        unitWhenRespawn{
+          object_var_name:t="visible_for_aaa"
+          object_var_comp_op:t="equal"
+          object:t="t1_players_squad"
+          object_var_value:i=1
+        }
+      }
+
+      actions{
+
+        unitSetVar{
+          object_var_name:t="visible_for_aaa"
+          object:t="t1_players_squad"
+          useForTriggerFiltered:b=yes
+          object_var_value:i=0
+        }
+
+        comment{
+          value:t=""
+        }
+
+        triggerEnable{
+          target:t="aat_t2_check_aaa"
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    aat_t2_player_spawned{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=yes
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=1.0
+        }
+      }
+
+      conditions{
+
+        unitWhenRespawn{
+          object_var_name:t="visible_for_aaa"
+          object_var_comp_op:t="equal"
+          object:t="t2_players_squad"
+          object_var_value:i=1
+        }
+      }
+
+      actions{
+
+        unitSetVar{
+          object_var_name:t="visible_for_aaa"
+          object:t="t2_players_squad"
+          useForTriggerFiltered:b=yes
+          object_var_value:i=0
+        }
+
+        comment{
+          value:t=""
+        }
+
+        triggerEnable{
+          target:t="aat_t1_check_aaa"
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    aat_t1_player_has_bomb{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=yes
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=1.0
+        }
+      }
+
+      conditions{
+
+        unitWhenCountMatches{
+          object_type:t="canBomb"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          func:t="more"
+          value:i=0
+          object:t="t1_players_squad"
+        }
+      }
+
+      actions{
+
+        unitSetVar{
+          object_var_name:t="visible_for_aaa"
+          object:t="t1_players_squad"
+          useForTriggerFiltered:b=yes
+          object_var_value:i=1
+        }
+
+        comment{
+          value:t=""
+        }
+
+        triggerEnable{
+          target:t="aat_t2_check_aaa"
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    aat_t2_player_has_bomb{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=yes
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=1.0
+        }
+      }
+
+      conditions{
+
+        unitWhenCountMatches{
+          object_type:t="canBomb"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          func:t="more"
+          value:i=0
+          object:t="t2_players_squad"
+        }
+      }
+
+      actions{
+
+        unitSetVar{
+          object_var_name:t="visible_for_aaa"
+          object:t="t2_players_squad"
+          useForTriggerFiltered:b=yes
+          object_var_value:i=1
+        }
+
+        comment{
+          value:t=""
+        }
+
+        triggerEnable{
+          target:t="aat_t1_check_aaa"
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    aat_t1_player_killed_ai{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ANY"
+        enableAfterComplete:b=yes
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=1.0
+        }
+      }
+
+      conditions{
+
+        unitWhenHitOtherUnit{
+          target:t="t2_quest_units_squad"
+          offender:t="t1_players_squad"
+        }
+
+        unitWhenHitOtherUnit{
+          target:t="t2_all_aaa_squad"
+          offender:t="t1_players_squad"
+        }
+      }
+
+      actions{
+
+        unitSetVar{
+          object_var_name:t="visible_for_aaa"
+          object:t="t1_players_squad"
+          useForTriggerFiltered:b=yes
+          object_var_value:i=1
+        }
+
+        comment{
+          value:t=""
+        }
+
+        triggerEnable{
+          target:t="aat_t2_check_aaa"
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    aat_t2_player_killed_ai{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ANY"
+        enableAfterComplete:b=yes
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=1.0
+        }
+      }
+
+      conditions{
+
+        unitWhenHitOtherUnit{
+          target:t="t1_quest_units_squad"
+          offender:t="t2_players_squad"
+        }
+
+        unitWhenHitOtherUnit{
+          target:t="t1_all_aaa_squad"
+          offender:t="t2_players_squad"
+        }
+      }
+
+      actions{
+
+        unitSetVar{
+          object_var_name:t="visible_for_aaa"
+          object:t="t2_players_squad"
+          useForTriggerFiltered:b=yes
+          object_var_value:i=1
+        }
+
+        comment{
+          value:t=""
+        }
+
+        triggerEnable{
+          target:t="aat_t1_check_aaa"
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    aat_t1_check_aaa{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=1.0
+        }
+      }
+
+      conditions{
+
+        unitWhenCountMatches{
+          object_type:t="isUnitVar"
+          object_marking:i=0
+          object_var_name:t="visible_for_aaa"
+          object_var_comp_op:t="equal"
+          func:t="more"
+          value:i=0
+          object:t="t2_players_squad"
+          object_var_value:i=1
+        }
+      }
+
+      actions{
+
+        unitAttackTarget{
+          playerAttracted:b=no
+          object:t="t1_all_aaa_squad"
+          target:t="t2_players_squad"
+          useForTriggerFiltered:b=yes
+          filterWhom:t="target"
+          fireRandom:b=yes
+          targetDistMax:r=4000.0
+        }
+      }
+
+      else_actions{
+
+        unitSetProperties{
+          object:t="t1_all_aaa_squad"
+          attack_type:t="hold_fire"
+        }
+      }
+    }
+
+    aat_t2_check_aaa{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=1.0
+        }
+      }
+
+      conditions{
+
+        unitWhenCountMatches{
+          object_type:t="isUnitVar"
+          object_marking:i=0
+          object_var_name:t="visible_for_aaa"
+          object_var_comp_op:t="equal"
+          func:t="more"
+          value:i=0
+          object:t="t1_players_squad"
+          object_var_value:i=1
+        }
+      }
+
+      actions{
+
+        unitAttackTarget{
+          playerAttracted:b=no
+          object:t="t2_all_aaa_squad"
+          target:t="t1_players_squad"
+          useForTriggerFiltered:b=yes
+          filterWhom:t="target"
+          fireRandom:b=yes
+          targetDistMax:r=4000.0
+        }
+      }
+
+      else_actions{
+
+        unitSetProperties{
+          object:t="t2_all_aaa_squad"
+          attack_type:t="hold_fire"
+        }
+      }
+    }
+  }
+
+  aat_rlc_logic{
+    isCategory:b=yes
+    is_enabled:b=yes
+
+    aat_rlc_logic_turn_on{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=1.0
+        }
+      }
+
+      conditions{
+
+        varCompareInt{
+          var_value:t="aat_matching_rank"
+          value:i=20
+          comparasion_func:t="more"
+        }
+      }
+
+      actions{
+
+        comment{
+          value:t=""
+        }
+
+        comment{
+          value:t=""
+        }
+
+        varSetString{
+          value:t="t1_def_aaa_squad"
+          var:t="aat_t1_aaa_squad_name"
+        }
+
+        varSetString{
+          value:t="t2_def_aaa_squad"
+          var:t="aat_t2_aaa_squad_name"
+        }
+
+        triggerEnable{
+          target:t="aat_t1_rlc_check_default_name"
+          target:t="aat_t2_rlc_check_default_name"
+        }
+      }
+
+      else_actions{
+
+        comment{
+          value:t=""
+        }
+
+        triggerDisable{
+          target:t="aat_rlc_logic_turn_on"
+        }
+      }
+    }
+
+    aat_t1_rlc_check_default_name{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=0.0
+        }
+      }
+
+      conditions{
+
+        objectExists{
+          target:t="@aat_t1_aaa_squad_name"
+          type:t="squad"
+        }
+      }
+
+      actions{
+
+        comment{
+          value:t=""
+        }
+
+        triggerEnable{
+          target:t="aat_t1_check_rlc_enemy_near"
+          target:t="aat_t1_check_rlc_enemy_far"
+        }
+      }
+
+      else_actions{
+
+        comment{
+          value:t=""
+        }
+
+        comment{
+          value:t=""
+        }
+
+        varSetString{
+          value:t="t1_def_aaa_top_squad"
+          var:t="aat_t1_aaa_squad_name"
+        }
+
+        triggerEnable{
+          target:t="aat_t1_rlc_check_top_name"
+        }
+      }
+    }
+
+    aat_t1_rlc_check_top_name{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=0.0
+        }
+      }
+
+      conditions{
+
+        objectExists{
+          target:t="@aat_t1_aaa_squad_name"
+          type:t="squad"
+        }
+      }
+
+      actions{
+
+        comment{
+          value:t=""
+        }
+
+        triggerEnable{
+          target:t="aat_t1_check_rlc_enemy_near"
+          target:t="aat_t1_check_rlc_enemy_far"
+        }
+      }
+
+      else_actions{
+
+        comment{
+          value:t=""
+        }
+
+        comment{
+          value:t=""
+        }
+
+        varSetString{
+          value:t="t1_def_aaa_high_squad"
+          var:t="aat_t1_aaa_squad_name"
+        }
+
+        triggerEnable{
+          target:t="aat_t1_rlc_check_high_name"
+        }
+      }
+    }
+
+    aat_t1_rlc_check_high_name{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=0.0
+        }
+      }
+
+      conditions{
+
+        objectExists{
+          target:t="@aat_t1_aaa_squad_name"
+          type:t="squad"
+        }
+      }
+
+      actions{
+
+        comment{
+          value:t=""
+        }
+
+        triggerEnable{
+          target:t="aat_t1_check_rlc_enemy_near"
+          target:t="aat_t1_check_rlc_enemy_far"
+        }
+      }
+
+      else_actions{
+
+        comment{
+          value:t=""
+        }
+
+        comment{
+          value:t=""
+        }
+
+        varSetString{
+          value:t="ft_t1_aaa_squad"
+          var:t="aat_t1_aaa_squad_name"
+        }
+
+        triggerEnable{
+          target:t="aat_t1_rlc_check_ec_name"
+        }
+      }
+    }
+
+    aat_t1_rlc_check_ec_name{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=0.0
+        }
+      }
+
+      conditions{
+
+        objectExists{
+          target:t="@aat_t1_aaa_squad_name"
+          type:t="squad"
+        }
+      }
+
+      actions{
+
+        comment{
+          value:t=""
+        }
+
+        triggerEnable{
+          target:t="aat_t1_check_rlc_enemy_near"
+          target:t="aat_t1_check_rlc_enemy_far"
+        }
+      }
+
+      else_actions{
+
+        comment{
+          value:t=""
+        }
+
+        triggerDisable{
+          target:t="aat_t1_rlc_check_ec_name"
+        }
+      }
+    }
+
+    aat_t2_rlc_check_default_name{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=0.0
+        }
+      }
+
+      conditions{
+
+        objectExists{
+          target:t="@aat_t2_aaa_squad_name"
+          type:t="squad"
+        }
+      }
+
+      actions{
+
+        comment{
+          value:t=""
+        }
+
+        triggerEnable{
+          target:t="aat_t2_check_rlc_enemy_near"
+          target:t="aat_t2_check_rlc_enemy_far"
+        }
+      }
+
+      else_actions{
+
+        comment{
+          value:t=""
+        }
+
+        comment{
+          value:t=""
+        }
+
+        varSetString{
+          value:t="t2_def_aaa_top_squad"
+          var:t="aat_t2_aaa_squad_name"
+        }
+
+        triggerEnable{
+          target:t="aat_t2_rlc_check_top_name"
+        }
+      }
+    }
+
+    aat_t2_rlc_check_top_name{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=0.0
+        }
+      }
+
+      conditions{
+
+        objectExists{
+          target:t="@aat_t2_aaa_squad_name"
+          type:t="squad"
+        }
+      }
+
+      actions{
+
+        comment{
+          value:t=""
+        }
+
+        triggerEnable{
+          target:t="aat_t2_check_rlc_enemy_near"
+          target:t="aat_t2_check_rlc_enemy_far"
+        }
+      }
+
+      else_actions{
+
+        comment{
+          value:t=""
+        }
+
+        comment{
+          value:t=""
+        }
+
+        varSetString{
+          value:t="t2_def_aaa_high_squad"
+          var:t="aat_t2_aaa_squad_name"
+        }
+
+        triggerEnable{
+          target:t="aat_t2_rlc_check_high_name"
+        }
+      }
+    }
+
+    aat_t2_rlc_check_high_name{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=0.0
+        }
+      }
+
+      conditions{
+
+        objectExists{
+          target:t="@aat_t2_aaa_squad_name"
+          type:t="squad"
+        }
+      }
+
+      actions{
+
+        comment{
+          value:t=""
+        }
+
+        triggerEnable{
+          target:t="aat_t2_check_rlc_enemy_near"
+          target:t="aat_t2_check_rlc_enemy_far"
+        }
+      }
+
+      else_actions{
+
+        comment{
+          value:t=""
+        }
+
+        comment{
+          value:t=""
+        }
+
+        varSetString{
+          value:t="ft_t2_aaa_squad"
+          var:t="aat_t2_aaa_squad_name"
+        }
+
+        triggerDisable{
+          target:t="aat_t2_rlc_check_high_name"
+        }
+      }
+    }
+
+    aat_t2_rlc_check_ec_name{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=0.0
+        }
+      }
+
+      conditions{
+
+        objectExists{
+          target:t="@aat_t2_aaa_squad_name"
+          type:t="squad"
+        }
+      }
+
+      actions{
+
+        comment{
+          value:t=""
+        }
+
+        triggerEnable{
+          target:t="aat_t2_check_rlc_enemy_near"
+          target:t="aat_t2_check_rlc_enemy_far"
+        }
+      }
+
+      else_actions{
+
+        comment{
+          value:t=""
+        }
+
+        triggerDisable{
+          target:t="aat_t2_rlc_check_ec_name"
+        }
+      }
+    }
+
+    aat_t1_check_rlc_enemy_near{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=yes
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=1.0
+        }
+      }
+
+      conditions{
+
+        unitDistanceBetween{
+          value:r=15000.0
+          math:t="2D"
+          object_type:t="isActive"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          target_type:t="isActive"
+          target_marking:i=0
+          check_objects:t="any"
+          check_targets:t="any"
+          object:t="@aat_t1_aaa_squad_name"
+          target:t="t2_players_squad"
+          compareCenters:b=no
+          check_all_units:b=yes
+        }
+      }
+
+      actions{
+
+        unitSetProperties{
+          object:t="@aat_t1_aaa_squad_name"
+          useForTriggerFiltered:b=yes
+          useSearchRadar:b=yes
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    aat_t2_check_rlc_enemy_near{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=yes
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=1.0
+        }
+      }
+
+      conditions{
+
+        unitDistanceBetween{
+          value:r=15000.0
+          math:t="2D"
+          object_type:t="isActive"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          target_type:t="isActive"
+          target_marking:i=0
+          check_objects:t="any"
+          check_targets:t="any"
+          object:t="@aat_t2_aaa_squad_name"
+          target:t="t1_players_squad"
+          compareCenters:b=no
+          check_all_units:b=yes
+        }
+      }
+
+      actions{
+
+        unitSetProperties{
+          object:t="@aat_t2_aaa_squad_name"
+          useSearchRadar:b=yes
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    aat_t1_check_rlc_enemy_far{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=yes
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=1.0
+        }
+      }
+
+      conditions{
+
+        unitDistanceBetween{
+          value:r=15000.0
+          math:t="notNear2D"
+          object_type:t="isActive"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          target_type:t="isActive"
+          target_marking:i=0
+          check_objects:t="any"
+          check_targets:t="all"
+          object:t="@aat_t1_aaa_squad_name"
+          target:t="t2_players_squad"
+          compareCenters:b=no
+          check_all_units:b=yes
+        }
+      }
+
+      actions{
+
+        unitSetProperties{
+          object:t="@aat_t1_aaa_squad_name"
+          useForTriggerFiltered:b=yes
+          useSearchRadar:b=no
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    aat_t2_check_rlc_enemy_far{
+      is_enabled:b=no
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=yes
+      }
+
+      events{
+
+        periodicEvent{
+          time:r=1.0
+        }
+      }
+
+      conditions{
+
+        unitDistanceBetween{
+          value:r=15000.0
+          math:t="notNear2D"
+          object_type:t="isActive"
+          object_marking:i=0
+          object_var_name:t=""
+          object_var_comp_op:t="equal"
+          target_type:t="isActive"
+          target_marking:i=0
+          check_objects:t="any"
+          check_targets:t="all"
+          object:t="@aat_t2_aaa_squad_name"
+          target:t="t1_players_squad"
+          compareCenters:b=no
+          check_all_units:b=yes
+        }
+      }
+
+      actions{
+
+        unitSetProperties{
+          object:t="@aat_t2_aaa_squad_name"
+          useSearchRadar:b=no
+        }
+      }
+
+      else_actions{
+      }
+    }
+  }
+}
+
+mission_objectives{
+  isCategory:b=yes
+  is_enabled:b=yes
+}
+
+variables{
+  aat_matching_rank:i=0
+  aat_t1_aaa_squad_name:t=""
+  aat_t2_aaa_squad_name:t=""
+}
+
+dialogs{
+}
+
+airfields{
+}
+
+effects{
+}
+
+units{
+}
+
+areas{
+}
+
+objLayers{
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+}
+
+wayPoints{
+}

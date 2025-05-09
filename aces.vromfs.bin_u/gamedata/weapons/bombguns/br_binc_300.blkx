@@ -1,0 +1,126 @@
+bombGun:b=yes
+preset_cost:i=100
+shotFreq:r=10.0
+sound:t="weapon.bombgun"
+mesh:t="br_binc_300_incendiary"
+
+bomb{
+  bulletName:t="br_binc_300"
+  mass:r=401.4
+  caliber:r=0.47
+  length:r=3.757
+  distFromCmToStab:r=1.37
+  dragCx:r=0.07
+  explosiveType:t="napalm"
+  explosiveMass:r=358.3
+  useDelayExplosion:b=no
+  fxGroundDust:t="dust_ground_explosions_wave_dirt_med"
+  fxGrassDust:t="dust_ground_explosions_wave_dirt_med"
+  fxSandDust:t="dust_ground_explosions_wave_sand_med"
+  fxSnowDust:t="dust_ground_explosions_wave_snow_med"
+  fxConcreteDust:t="dust_ground_explosions_wave_concrete_med"
+  fxWaterShockWave:t="dust_waterwave_big"
+  waterExplosionEffect:t="explosion_napalm_fireball"
+  explosionFx:t="explosion_napalm_fireball"
+  sound:t="weapon.bomb_mid"
+  sound:t="weapon.bomb_std"
+  explosionPatchRadius:r=15.0
+  iconType:t="napalm_large"
+
+  splash{
+    innerRadius:r=9.0
+    outerRadius:r=16.0
+    penetration:r=24.0
+    damage:r=15700.0
+    damageType:t="napalm"
+  }
+
+  fireDamage{
+    velocityMult:r=3.5
+    maxFlightTime:r=10.0
+    maxFlightDistance:r=50.0
+    maxRise:r=10.0
+    lifeTime:r=30.0
+    penetration:r=10.0
+    damage:r=10.0
+    damageType:t="napalm"
+    radius:r=7.0
+    fxType:t="explosion_napalm_wrackages"
+    burnFxType:t="explosion_napalm_firespot"
+    burnFxSize:r=12.0
+    scorchMarginSize:r=1.0
+    scorchStrength:r=1.0
+    scorchDuration:r=10.0
+    emitterCount:i=3
+    emitterDispersion:r=0.7
+  }
+
+  DamageParts{
+
+    body{
+      hp:r=25.0
+      armorClass:t="tank_structural_steel"
+      armorThickness:r=5.0
+      explosionArmorQuality:r=1.0
+      shatterArmorQuality:r=1.0
+    }
+  }
+
+  DamageEffects{
+
+    part{
+      name:t="body"
+
+      onHit{
+        shellState:t="inFlight"
+        expl:r=1.0
+      }
+
+      onHit{
+        shellState:t="onUnit"
+        damageType:t="generic"
+        expl:r=0.2
+        break:r=0.8
+        damage:r=3.0
+        fHitCritical:b=yes
+      }
+
+      onHit{
+        shellState:t="onUnit"
+        damageType:t="generic"
+        expl:r=0.5
+        break:r=0.5
+        damage:r=30.0
+        fHitCritical:b=yes
+      }
+
+      onHit{
+        shellState:t="onUnit"
+        damageType:t="explosion"
+        expl:r=0.8
+        break:r=0.2
+        damage:r=50.0
+        fHitCritical:b=yes
+      }
+
+      onHit{
+        shellState:t="onUnit"
+        damageType:t="cumulative"
+        expl:r=1.0
+        damage:r=100.0
+        fHitCritical:b=yes
+      }
+
+      onKill{
+        shellState:t="inFlight"
+        destruction:r=1.0
+      }
+
+      onKill{
+        shellState:t="onUnit"
+        expl:r=1.0
+        fHitCritical:b=yes
+      }
+    }
+  }
+}

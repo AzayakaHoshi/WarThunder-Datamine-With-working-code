@@ -1,0 +1,1510 @@
+selected_tag:t=""
+bin_dump_file:t=""
+
+mission_settings{
+
+  atmosphere{
+    pressure:r=759.0
+    temperature:r=16.0
+  }
+
+  player{
+    army:i=1
+    wing:t="player"
+  }
+
+  player_teamB{
+    army:i=2
+  }
+
+  mission{
+    level:t="levels/britain.bin"
+    type:t="singleMission"
+    restoreType:t="tactical control"
+    optionalTakeOff:b=no
+    environment:t="Day"
+    weather:t="cloudy"
+    forceSkiesInitialRandomSeed:b=yes
+    skiesInitialRandomSeed:i=3
+    gt_cooperative:b=yes
+    gt_reload_explosives:b=yes
+
+    customWeather{
+      windDir:p2=0.6, 0.8
+      wind_scale:r=1.0
+      max_wind_strength:r=6.0
+
+      sky{
+        mie_height:r=1.0
+        mieG:r=0.4
+        betaMScale:r=0.55
+        clouds_overcast:r=0.5
+      }
+
+      clouds_gen{
+        humidity:r=0.5
+        persistence:r=0.5
+        asymmetry:r=0.2
+      }
+
+      clouds_position{
+        start_altitude:r=1.0
+        thickness:r=4.0
+        light_extinction:r=1.0
+        amb_extinction_mul:r=1.0
+      }
+
+      clouds_render{
+        silver_lining:r=0.3
+        sun_light:r=0.5
+        ambient:r=0.8
+        silver_lining_eccentricity:r=0.6
+      }
+
+      strata_clouds{
+        amount:r=0.5
+        altitude:r=11.0
+      }
+
+      rain{
+        rainFromInvisibleClouds:b=no
+        probability:r=0.0
+      }
+    }
+  }
+
+  spectator_points{
+  }
+
+  briefing{
+    place_loc:t=""
+    date_loc:t=""
+    objective_loc:t=""
+    music:t="action_01"
+
+    part{
+      event:t=""
+      minTime:i=0
+
+      slide{
+        map:b=yes
+        minTime:i=4
+        picture:t=""
+
+        arrow{
+          width:i=1
+          side:t="ally"
+          point:t="luftwaffe"
+          point:t="ships_start_area"
+        }
+
+        icon{
+          icontype:t="bomber"
+          side:t="player"
+          target:t="player"
+          lookAt:t="ships_start_area"
+        }
+
+        icon{
+          icontype:t="bomber"
+          side:t="ally"
+          target:t="luftwaffe"
+          lookAt:t="ships_start_area"
+        }
+
+        icon{
+          icontype:t="transport"
+          side:t="enemy"
+          target:t="convoy_ships_cargo00"
+        }
+      }
+    }
+  }
+}
+
+imports{
+}
+
+triggers{
+  isCategory:b=yes
+  is_enabled:b=yes
+
+  initial{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      initMission{
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      unitSetIndication{
+        set:b=yes
+        target:t="leader_of_formation"
+      }
+
+      unitMoveTo{
+        target:t="ships_start_area"
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=no
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object:t="luftwaffe"
+      }
+
+      wait{
+        time:r=0.01
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      wait{
+        time:r=3.0
+      }
+
+      unitSetProperties{
+        object:t="luftwaffe"
+        object:t="raf_fighters00"
+        object:t="raf_fighters01"
+
+        plane{
+
+          targetDeviation{
+            trigger:t="machine gun"
+            defaultVal:r=3.0
+            limits:p2=1.0, 4.0
+          }
+
+          targetDeviation{
+            trigger:t="gunner"
+            defaultVal:r=1.0
+            limits:p2=0.5, 2.0
+          }
+
+          targetDeviation{
+            trigger:t="cannon"
+            defaultVal:r=0.9
+            limits:p2=2.0, 4.0
+          }
+        }
+      }
+
+      unitSetProperties{
+        object:t="hms_squad"
+        object:t="raf_fighters00"
+        object:t="raf_fighters01"
+        effShootingRate:r=0.5
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=yes
+        object:t="raf_fighters00"
+        target:t="player"
+        target:t="luftwaffe"
+        fireRandom:b=yes
+        playerAttractedCount:i=2
+        playerAttractedEffRate:r=0.5
+      }
+
+      moAddMissionObjective{
+        target:t="single_britain_channelBattles_att00"
+      }
+
+      moAddMissionObjective{
+        target:t="single_britain_channelBattles_fly00"
+      }
+
+      unitMark{
+        target_marking:i=1
+        target:t="convoy_ships_cargo"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  if_offline{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ANY"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.2
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      unitDamage{
+        part:i=0
+        power:r=0.8
+        useEffect:b=no
+        countEffects:i=1
+        delay:p2=1.0, 1.0
+        offset:p3=0.0, 0.0, 0.0
+        radiusOffset:p2=10.0, 15.0
+        target:t="convoy_ships_cargo"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  if_offline_properties{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=10.0
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      unitSetProperties{
+        object:t="player"
+        targetableByAi:b=no
+      }
+
+      unitSetProperties{
+        object:t="player_himself"
+        targetableByAi:b=yes
+      }
+
+      wait{
+        time:r=0.5
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  near_ships{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenInArea{
+        math:t="3D"
+        object_type:t="isAlive"
+        object_marking:i=0
+        check_objects:t="any"
+        object:t="luftwaffe"
+        object:t="player"
+        target:t="ships_start_area"
+      }
+    }
+
+    actions{
+
+      unitMoveTo{
+        target:t="ships_target_area"
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=no
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object:t="hms_squad"
+        move_type:t="zigzag_move"
+        zzPeriod:r=8.0
+        zzAmp:r=2500.0
+        speed:r=60.0
+      }
+
+      unitSetIndication{
+        set:b=no
+        target:t="leader_of_formation"
+      }
+
+      unitSetIndication{
+        set:b=yes
+        target:t="convoy_ships_cargo"
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="luftwaffe"
+        target:t="hms_squad"
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="hms_squad"
+        target:t="luftwaffe"
+        fireRandom:b=yes
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=yes
+        object:t="raf_fighters01"
+        target:t="player"
+        target:t="luftwaffe"
+        fireRandom:b=yes
+        playerAttractedCount:i=2
+        playerAttractedEffRate:r=0.5
+      }
+
+      triggerEnable{
+        target:t="mission_failed"
+        target:t="players_count_trigger"
+      }
+
+      triggerEnable{
+        target:t="ships_counter_trigger"
+        target:t="dead_ships_counter"
+        target:t="ships_done"
+      }
+
+      triggerDisable{
+        target:t="secondary_objective_failed"
+        target:t="secondary_objective_completed"
+      }
+
+      triggerDisable{
+        target:t="players_count_trigger"
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      wait{
+        time:r=20.0
+      }
+
+      unitWakeUp{
+        target:t="raf_fighters01"
+      }
+
+      unitSetProperties{
+        object:t="hms_squad"
+        attack_type:t="fire_at_will"
+        effShootingRate:r=0.1
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  players_count_trigger{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.1
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isOnline"
+        object_marking:i=0
+        func:t="more"
+        value:i=0
+        object:t="player"
+        var:t="players_count_var"
+      }
+    }
+
+    actions{
+
+      varModify{
+        operator:t="add"
+        value:r=1.0
+        var:t="players_count_var"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  ships_counter_trigger{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionSetTargetsIndicator{
+        target_type:t="isAlive"
+        target_marking:i=0
+        delta:i=0
+        icon:t="ship"
+        "icon army":i=2
+        set:b=yes
+        target:t="player"
+        var:t="players_count_var"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  dead_ships_counter{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isKilled"
+        object_marking:i=0
+        func:t="more"
+        value:i=1
+        object:t="convoy_ships_cargo"
+        var:t="dead_ships_var"
+      }
+    }
+
+    actions{
+
+      varModify{
+        operator:t="add"
+        value:r=1.0
+        var:t="dead_ships_var"
+      }
+
+      varModify{
+        operator:t="subAB"
+        value:r=1.0
+        var:t="players_count_var"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  ships_done{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      varCompareInt{
+        var_value:t="players_count_var"
+        value:i=1
+        comparasion_func:t="less"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="mission_failed"
+        target:t="ships_counter_trigger"
+      }
+
+      missionSetTargetsIndicator{
+        target_type:t="isAlive"
+        target_marking:i=0
+        delta:i=0
+        icon:t="ship"
+        "icon army":i=2
+        set:b=no
+        target:t="player"
+        var:t="players_count_var"
+      }
+
+      moSetObjectiveStatus{
+        target:t="single_britain_channelBattles_att00"
+        status:i=2
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=yes
+        primary:b=yes
+        oriented:b=no
+        ignoreDifficulty:b=no
+        scale:r=1.0
+        target:t="final_area"
+      }
+
+      wait{
+        time:r=2.0
+      }
+
+      moAddMissionObjective{
+        target:t="single_britain_channelBattles_fly01"
+      }
+
+      unitSetIndication{
+        set:b=no
+        target:t="convoy_ships_cargo"
+      }
+
+      triggerEnable{
+        target:t="mission_completed"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  mission_completed{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenInArea{
+        math:t="2D"
+        object_type:t="isAlive"
+        object_marking:i=0
+        check_objects:t="any"
+        object:t="player"
+        target:t="final_area"
+      }
+    }
+
+    actions{
+
+      missionMarkAsWaypoint{
+        visible:b=no
+        primary:b=yes
+        oriented:b=no
+        ignoreDifficulty:b=no
+        scale:r=1.0
+        target:t="final_area"
+      }
+
+      moSetObjectiveStatus{
+        target:t="single_britain_channelBattles_fly01"
+        status:i=2
+      }
+
+      wait{
+        time:r=2.0
+      }
+
+      missionCompleted{
+        timer:b=no
+        debriefingTimer:i=3
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  mission_failed{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenInArea{
+        math:t="2D"
+        object_type:t="isMarked"
+        object_marking:i=2
+        check_objects:t="any"
+        object:t="convoy_ships_cargo"
+        target:t="ships_target_area"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="mission_completed"
+      }
+
+      moSetObjectiveStatus{
+        target:t="single_britain_channelBattles_att00"
+        status:i=3
+      }
+
+      unitSetIndication{
+        set:b=no
+        target:t="convoy_ships_cargo"
+      }
+
+      wait{
+        time:r=2.0
+      }
+
+      missionFailed{
+        debriefingTimer:i=3
+        timer:b=no
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  secondary_objective_failed{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitDistanceBetween{
+        value:r=3500.0
+        math:t="notNear2D"
+        object_type:t="isAlive"
+        target_type:t="isAlive"
+        check_objects:t="any"
+        check_targets:t="any"
+        object_marking:i=0
+        target_marking:i=0
+        object:t="player_himself"
+        target:t="luftwaffe"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="secondary_objective_completed"
+      }
+
+      moSetObjectiveStatus{
+        target:t="single_britain_channelBattles_fly00"
+        status:i=3
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  secondary_objective_completed{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      unitDistanceBetween{
+        value:r=3500.0
+        math:t="2D"
+        object_type:t="isAlive"
+        target_type:t="isAlive"
+        check_objects:t="any"
+        check_targets:t="any"
+        object_marking:i=0
+        target_marking:i=0
+        object:t="player_himself"
+        target:t="luftwaffe"
+      }
+
+      unitWhenInArea{
+        math:t="3D"
+        object_type:t="isAlive"
+        object_marking:i=0
+        check_objects:t="any"
+        object:t="luftwaffe"
+        object:t="player"
+        target:t="ships_start_area"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="secondary_objective_failed"
+      }
+
+      moSetObjectiveStatus{
+        target:t="single_britain_channelBattles_fly00"
+        status:i=2
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  luftwaffe_turning_back{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenStatus{
+        object_type:t="noBombs"
+        object_marking:i=0
+        check_objects:t="all"
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object:t="luftwaffe"
+      }
+    }
+
+    actions{
+
+      unitMoveTo{
+        target:t="final_area"
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=yes
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object:t="luftwaffe"
+      }
+    }
+
+    else_actions{
+    }
+  }
+}
+
+mission_objectives{
+  isCategory:b=yes
+  is_enabled:b=yes
+
+  single_britain_channelBattles_att00{
+    is_enabled:b=no
+    comments:t=""
+    type:t="abstractMissionObjective"
+
+    props{
+      isPrimary:b=yes
+      timeLimit:i=1800
+      scoreConst:i=100
+      scoreTime:i=400
+    }
+
+    onSuccess{
+    }
+
+    onFailed{
+    }
+  }
+
+  single_britain_channelBattles_fly00{
+    is_enabled:b=no
+    comments:t=""
+    type:t="abstractMissionObjective"
+
+    props{
+      isPrimary:b=no
+      timeLimit:i=1800
+      scoreConst:i=100
+      scoreTime:i=400
+    }
+
+    onSuccess{
+    }
+
+    onFailed{
+    }
+  }
+
+  single_britain_channelBattles_fly01{
+    is_enabled:b=no
+    comments:t=""
+    type:t="abstractMissionObjective"
+
+    props{
+      isPrimary:b=yes
+      timeLimit:i=1800
+      scoreConst:i=100
+      scoreTime:i=400
+    }
+
+    onSuccess{
+    }
+
+    onFailed{
+    }
+  }
+}
+
+variables{
+  players_count_var:i=1
+  dead_ships_var:i=0
+}
+
+dialogs{
+}
+
+airfields{
+}
+
+effects{
+}
+
+units{
+
+  armada{
+    name:t="player"
+    tm:m=[[-0.573577, 0.0, 0.819152] [0.0, 1.0, 0.0] [-0.819152, 0.0, -0.573577] [40208.3, 3000.0, -17858.9]]
+    unit_class:t="ju-87b-2"
+    closed_waypoints:b=no
+    weapons:t="Ju87_B2_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=1
+      count:i=4
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=2
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="luftwaffe"
+    tm:m=[[-0.608761, 0.0, 0.793353] [0.0, 1.0, 0.0] [-0.793353, 0.0, -0.608761] [39885.7, 3000.0, -17418.9]]
+    unit_class:t="ju-87b-2"
+    closed_waypoints:b=no
+    weapons:t="Ju87_B2_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=1
+      count:i=12
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=3
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="raf_fighters00"
+    tm:m=[[-0.34202, 0.0, -0.939693] [0.0, 1.0, 0.0] [0.939693, 0.0, -0.34202] [42239.0, 3000.0, -10559.3]]
+    unit_class:t="hurricane_mk1"
+    closed_waypoints:b=no
+    weapons:t="hurricane_mk1_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=6
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=2
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="raf_fighters01"
+    tm:m=[[-0.34202, 0.0, -0.939693] [0.0, 1.0, 0.0] [0.939693, 0.0, -0.34202] [28412.6, 3000.0, 3230.0]]
+    unit_class:t="spitfire_mk1"
+    closed_waypoints:b=no
+    weapons:t="spitfire_mk1_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=8
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=2
+      isDelayed:b=yes
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  squad{
+    name:t="player_himself"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [40313.8, -1.0, -16638.1]]
+
+    props{
+      squad_members:t="player"
+      object_type:t="isPlayer"
+    }
+  }
+
+  squad{
+    name:t="leader_of_formation"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [40174.2, -1.0, -17080.2]]
+
+    props{
+      squad_members:t="luftwaffe"
+      object_type:t="isFormationLeader"
+    }
+  }
+
+  squad{
+    name:t="hms_squad"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [20034.1, -1.0, -25254.8]]
+
+    props{
+      squad_members:t="convoy_ships_cargo00"
+      squad_members:t="convoy_ships_cruiser00"
+      squad_members:t="convoy_ships_cruiser01"
+      squad_members:t="convoy_ships_destroyer00"
+      squad_members:t="convoy_ships_cargo01"
+      squad_members:t="convoy_ships_cargo02"
+      squad_members:t="convoy_ships_destroyer01"
+      squad_members:t="convoy_ships_cargo03"
+    }
+  }
+
+  squad{
+    name:t="convoy_ships_cargo"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [28950.1, -1.0, -4896.3]]
+
+    props{
+      squad_members:t="convoy_ships_cargo00"
+      squad_members:t="convoy_ships_cargo01"
+      squad_members:t="convoy_ships_cargo02"
+      squad_members:t="convoy_ships_cargo03"
+    }
+  }
+
+  ships{
+    name:t="convoy_ships_cargo00"
+    tm:m=[[-0.843392, 0.0, -0.5373] [0.0, 1.0, 0.0] [0.5373, 0.0, -0.843392] [29140.8, -1.0, -3778.55]]
+    unit_class:t="hms_cargo_ship"
+    closed_waypoints:b=no
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=2
+      formation_type:t="rows"
+      formation_div:i=2
+      formation_step:p2=15.0, 6.0
+      formation_noise:p2=-0.3, -0.2
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="convoy_ships_cruiser00"
+    tm:m=[[-0.843392, 0.0, -0.5373] [0.0, 1.0, 0.0] [0.5373, 0.0, -0.843392] [29362.8, -1.0, -4249.39]]
+    unit_class:t="hms_leander"
+    closed_waypoints:b=no
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=2
+      formation_step:p2=15.0, 5.0
+      formation_noise:p2=-0.3, -0.2
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="convoy_ships_cruiser01"
+    tm:m=[[-0.843392, 0.0, -0.5373] [0.0, 1.0, 0.0] [0.5373, 0.0, -0.843392] [30065.3, -1.0, -3311.2]]
+    unit_class:t="hms_leander"
+    closed_waypoints:b=no
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=2
+      formation_type:t="rows"
+      formation_div:i=2
+      formation_step:p2=15.0, 5.0
+      formation_noise:p2=0.2, -0.2
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="convoy_ships_destroyer00"
+    tm:m=[[-0.843392, 0.0, -0.5373] [0.0, 1.0, 0.0] [0.5373, 0.0, -0.843392] [28775.5, -1.0, -4136.05]]
+    unit_class:t="uss_dd_georgetown"
+    closed_waypoints:b=no
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=2
+      formation_step:p2=15.0, 5.0
+      formation_noise:p2=-0.3, -0.2
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="convoy_ships_cargo01"
+    tm:m=[[-0.843392, 0.0, -0.5373] [0.0, 1.0, 0.0] [0.5373, 0.0, -0.843392] [29847.2, -1.0, -3903.2]]
+    unit_class:t="hms_cargo_ship"
+    closed_waypoints:b=no
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=2
+      formation_step:p2=15.0, 6.0
+      formation_noise:p2=-0.3, -0.2
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="convoy_ships_cargo02"
+    tm:m=[[-0.843392, 0.0, -0.5373] [0.0, 1.0, 0.0] [0.5373, 0.0, -0.843392] [30207.5, -1.0, -3820.5]]
+    unit_class:t="hms_cargo_ship"
+    closed_waypoints:b=no
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=2
+      formation_step:p2=15.0, 6.0
+      formation_noise:p2=-0.3, -0.2
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="convoy_ships_destroyer01"
+    tm:m=[[-0.843392, 0.0, -0.5373] [0.0, 1.0, 0.0] [0.5373, 0.0, -0.843392] [28414.6, -1.0, -4593.6]]
+    unit_class:t="uss_dd_georgetown"
+    closed_waypoints:b=no
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=2
+      formation_step:p2=15.0, 5.0
+      formation_noise:p2=-0.3, -0.2
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="convoy_ships_cargo03"
+    tm:m=[[-0.843392, 0.0, -0.5373] [0.0, 1.0, 0.0] [0.5373, 0.0, -0.843392] [29308.6, -1.0, -3249.75]]
+    unit_class:t="hms_cargo_ship"
+    closed_waypoints:b=no
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+}
+
+areas{
+
+  ships_start_area{
+    type:t="Sphere"
+    tm:m=[[4884.6, 0.0, 0.0] [0.0, 4884.6, 0.0] [0.0, 0.0, 4884.6] [29121.6, 3000.0, -4106.35]]
+
+    props{
+    }
+  }
+
+  ships_target_area{
+    type:t="Sphere"
+    tm:m=[[4173.7, 0.0, 0.0] [0.0, 4173.7, 0.0] [0.0, 0.0, 4173.7] [9861.2, -1.0, -31346.5]]
+
+    props{
+    }
+  }
+
+  final_area{
+    type:t="Sphere"
+    tm:m=[[4070.5, 0.0, 0.0] [0.0, 4070.5, 0.0] [0.0, 0.0, 4070.5] [40210.5, 1919.95, -20971.6]]
+
+    props{
+    }
+  }
+}
+
+objLayers{
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+}
+
+wayPoints{
+}

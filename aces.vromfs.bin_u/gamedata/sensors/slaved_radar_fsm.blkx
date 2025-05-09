@@ -1,0 +1,52 @@
+stateInit:t="search"
+
+transitions{
+
+  scan{
+    event:t="update"
+
+    actions{
+
+      scan{
+        targetsOfInterestFirst:b=yes
+      }
+    }
+  }
+
+  detect{
+    event:t="targetInSight"
+
+    actions{
+
+      setDistGatePos{
+        source:t="continuousScale"
+        width:r=0.0
+      }
+
+      setRelSpeedGatePos{
+        source:t="continuousScale"
+        width:r=0.0
+      }
+
+      detectTarget{
+        targetsOfInterestFirst:b=yes
+      }
+    }
+  }
+
+  addTarget{
+    event:t="targetDetected"
+
+    actions{
+
+      addTarget{
+        targetsOfInterestFirst:b=yes
+      }
+
+      updateTargetOfInterest{
+        targetsOfInterestFirst:b=yes
+        limit:i=1000
+      }
+    }
+  }
+}

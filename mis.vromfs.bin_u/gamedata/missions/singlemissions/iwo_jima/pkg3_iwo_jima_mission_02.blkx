@@ -1,0 +1,2238 @@
+selected_tag:t=""
+bin_dump_file:t=""
+
+mission_settings{
+
+  atmosphere{
+    pressure:r=760.0
+    temperature:r=24.0
+  }
+
+  player{
+    army:i=1
+    wing:t="player_wing"
+  }
+
+  player_teamB{
+    army:i=2
+  }
+
+  mission{
+    level:t="levels/iwo_jima.bin"
+    type:t="singleMission"
+    restoreType:t="attempts"
+    optionalTakeOff:b=no
+    environment:t="Day"
+    weather:t="cloudy"
+
+    stars{
+      year:i=1945
+      month:i=2
+      day:i=20
+      time:r=12.0
+    }
+  }
+
+  briefing{
+    place_loc:t=""
+    date_loc:t=""
+    objective_loc:t=""
+    music:t="action_01"
+
+    part{
+      event:t=""
+      minTime:i=0
+
+      slide{
+        map:b=yes
+        minTime:i=4
+        picture:t=""
+
+        icon{
+          icontype:t="fighter"
+          side:t="player"
+          target:t="player_wing"
+          lookAt:t="target_point"
+        }
+
+        icon{
+          icontype:t="artillery"
+          side:t="enemy"
+          target:t="target_point"
+        }
+
+        icon{
+          icontype:t="carrier"
+          side:t="ally"
+          target:t="us_carrier"
+        }
+
+        icon{
+          icontype:t="airfield"
+          side:t="enemy"
+          target:t="jpn_airfield_start_01"
+        }
+      }
+    }
+  }
+}
+
+imports{
+}
+
+triggers{
+  isCategory:b=yes
+  is_enabled:b=yes
+
+  start_mission{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      initMission{
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      unitSetProperties{
+        object:t="jpn_fighters_squad"
+
+        plane{
+
+          targetDeviation{
+            trigger:t="machine gun"
+            defaultVal:r=0.6
+            limits:p2=0.6, 1.8
+          }
+        }
+      }
+
+      unitSetProperties{
+        object:t="f4u1c_ai"
+
+        plane{
+
+          targetDeviation{
+            trigger:t="machine gun"
+            defaultVal:r=2.4
+            limits:p2=0.8, 2.4
+          }
+        }
+      }
+
+      addAirfield{
+        runwayStart:t="jpn_airfield_start_01"
+        runwayEnd:t="jpn_airfield_end_01"
+        runwayWidth:r=30.0
+        army:i=2
+        spawnPoint:t="a01_spawn_01"
+        spawnPoint:t="a01_spawn_02"
+        spawnPoint:t="a01_spawn_03"
+        spawnPoint:t="a01_spawn_04"
+      }
+
+      addAirfield{
+        runwayStart:t="jpn_airfield_start_02"
+        runwayEnd:t="jpn_airfield_end_02"
+        runwayWidth:r=30.0
+        army:i=2
+        spawnPoint:t="a02_spawn_01"
+        spawnPoint:t="a02_spawn_02"
+        spawnPoint:t="a02_spawn_03"
+        spawnPoint:t="a02_spawn_04"
+      }
+
+      addAirfield{
+        runwayStart:t="jpn_airfield_start_03"
+        runwayEnd:t="jpn_airfield_end_03"
+        runwayWidth:r=30.0
+        army:i=2
+        spawnPoint:t="a03_spawn_01"
+        spawnPoint:t="a03_spawn_02"
+        spawnPoint:t="a03_spawn_03"
+        spawnPoint:t="a03_spawn_04"
+      }
+
+      addAirfield{
+        runwayStart:t="jpn_airfield_start_04"
+        runwayEnd:t="jpn_airfield_end_04"
+        runwayWidth:r=30.0
+        army:i=2
+        spawnPoint:t="a04_spawn_01"
+        spawnPoint:t="a04_spawn_02"
+        spawnPoint:t="a04_spawn_03"
+        spawnPoint:t="a04_spawn_04"
+      }
+
+      spawnOnAirfield{
+        runwayName:t="jpn_airfield_start_01"
+        objects:t="a5m5_zero_01"
+      }
+
+      spawnOnAirfield{
+        runwayName:t="jpn_airfield_start_02"
+        objects:t="a5m5_zero_02"
+      }
+
+      spawnOnAirfield{
+        runwayName:t="jpn_airfield_start_03"
+        objects:t="a5m5_zero_03"
+      }
+
+      spawnOnAirfield{
+        runwayName:t="jpn_airfield_start_04"
+        objects:t="a5m5_zero_04"
+      }
+
+      unitPutToSleep{
+        target:t="a5m5_zero_05"
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=yes
+        object:t="jpn_fighters_squad"
+        target:t="player_wing"
+        target:t="f4u1c_ai"
+        fireRandom:b=yes
+        playerAttractedCount:i=2
+        playerAttractedEffRate:r=0.8
+      }
+
+      unitMoveTo{
+        target:t="player_wing"
+        follow_target:b=yes
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=no
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object:t="f4u1c_ai"
+        follow_radius:r=500.0
+      }
+
+      wait{
+        time:r=3.0
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=yes
+        primary:b=yes
+        oriented:b=no
+        ignoreDifficulty:b=no
+        scale:r=1.0
+        target:t="target_point"
+      }
+
+      moAddMissionObjective{
+        target:t="pkg3_iwo_jima_mission_02_fly"
+      }
+    }
+  }
+
+  near_target_point{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      playersDistanceBetween{
+        value:r=4500.0
+        math:t="2D"
+        players:t="isAlive"
+        target_type:t="isAlive"
+        check_players:t="any"
+        check_targets:t="any"
+        target:t="target_point"
+      }
+    }
+
+    actions{
+
+      moSetObjectiveStatus{
+        target:t="pkg3_iwo_jima_mission_02_fly"
+        status:i=2
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=no
+        primary:b=yes
+        oriented:b=no
+        ignoreDifficulty:b=no
+        scale:r=1.0
+        target:t="target_point"
+      }
+
+      wait{
+        time:r=3.0
+      }
+
+      unitSetIndication{
+        set:b=yes
+        target:t="jpn_artillery_squad"
+      }
+
+      triggerEnable{
+        target:t="update_indicator"
+        target:t="artillery_destroyed"
+      }
+
+      moAddMissionObjective{
+        target:t="pkg3_iwo_jima_mission_02_destroy"
+      }
+    }
+  }
+
+  update_indicator{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionSetTargetsIndicator{
+        target_type:t="isAlive"
+        target_marking:i=0
+        delta:i=0
+        icon:t="cannon"
+        "icon army":i=2
+        set:b=yes
+        target:t="jpn_artillery_squad"
+      }
+
+      varModify{
+        var:t="timer"
+        operator:t="add"
+        value:r=1.0
+      }
+    }
+  }
+
+  jpn_fighters_near_player{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      playersDistanceBetween{
+        value:r=4500.0
+        math:t="2D"
+        players:t="isAlive"
+        target_type:t="isAlive"
+        check_players:t="any"
+        check_targets:t="any"
+        target:t="jpn_fighters_squad"
+      }
+    }
+
+    actions{
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="f4u1c_ai"
+        target:t="jpn_fighters_squad"
+        target:t="jpn_artillery_squad"
+        target:t="jpn_aaa_squad"
+        fireRandom:b=yes
+      }
+    }
+  }
+
+  artillery_destroyed{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isAlive"
+        object_marking:i=0
+        func:t="less"
+        value:i=1
+        object:t="jpn_artillery_squad"
+      }
+    }
+
+    actions{
+
+      moSetObjectiveStatus{
+        target:t="pkg3_iwo_jima_mission_02_destroy"
+        status:i=2
+      }
+
+      wait{
+        time:r=3.0
+      }
+
+      moAddMissionObjective{
+        target:t="pkg3_iwo_jima_mission_02_retreat"
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=yes
+        primary:b=yes
+        oriented:b=no
+        ignoreDifficulty:b=no
+        scale:r=1.0
+        target:t="retreat_point"
+      }
+
+      triggerEnable{
+        target:t="complete_mission"
+      }
+
+      unitMoveTo{
+        target:t="retreat_point"
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=no
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object:t="f4u1c_ai"
+      }
+    }
+  }
+
+  complete_mission{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      playersDistanceBetween{
+        value:r=1500.0
+        math:t="2D"
+        players:t="isAlive"
+        target_type:t="isAlive"
+        check_players:t="any"
+        check_targets:t="any"
+        target:t="retreat_point"
+      }
+    }
+
+    actions{
+
+      missionMarkAsWaypoint{
+        visible:b=no
+        primary:b=yes
+        oriented:b=no
+        ignoreDifficulty:b=no
+        scale:r=1.0
+        target:t="retreat_point"
+      }
+
+      moSetObjectiveStatus{
+        target:t="pkg3_iwo_jima_mission_02_retreat"
+        status:i=2
+      }
+
+      wait{
+        time:r=3.0
+      }
+
+      missionCompleted{
+        timer:b=no
+      }
+    }
+  }
+
+  second_wave_appear{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ANY"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      varCompareInt{
+        var_value:t="timer"
+        value:i=240
+        comparasion_func:t="more"
+      }
+
+      unitWhenCountMatches{
+        object_type:t="isActive"
+        object_marking:i=0
+        func:t="less"
+        value:i=5
+        object:t="jpn_fighters_squad"
+      }
+
+      unitWhenCountMatches{
+        object_type:t="isAlive"
+        object_marking:i=0
+        func:t="less"
+        value:i=5
+        object:t="jpn_artillery_squad"
+      }
+    }
+
+    actions{
+
+      unitWakeUp{
+        target:t="a5m5_zero_05"
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=yes
+        object:t="jpn_fighters_squad"
+        target:t="f4u1c_ai"
+        target:t="player_wing"
+        fireRandom:b=yes
+        playerAttractedCount:i=2
+        playerAttractedEffRate:r=0.8
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="f4u1c_ai"
+        target:t="jpn_fighters_squad"
+        target:t="jpn_artillery_squad"
+        target:t="jpn_aaa_squad"
+        fireRandom:b=yes
+      }
+    }
+  }
+}
+
+mission_objectives{
+  isCategory:b=yes
+  is_enabled:b=yes
+
+  pkg3_iwo_jima_mission_02_fly{
+    is_enabled:b=no
+    comments:t=""
+    type:t="abstractMissionObjective"
+
+    props{
+      isPrimary:b=yes
+      timeLimit:i=1800
+      scoreConst:i=100
+      scoreTime:i=400
+    }
+
+    onSuccess{
+    }
+
+    onFailed{
+    }
+  }
+
+  pkg3_iwo_jima_mission_02_destroy{
+    is_enabled:b=no
+    comments:t=""
+    type:t="abstractMissionObjective"
+
+    props{
+      isPrimary:b=yes
+      timeLimit:i=1800
+      scoreConst:i=100
+      scoreTime:i=400
+    }
+
+    onSuccess{
+    }
+
+    onFailed{
+    }
+  }
+
+  pkg3_iwo_jima_mission_02_retreat{
+    is_enabled:b=no
+    comments:t=""
+    type:t="abstractMissionObjective"
+
+    props{
+      isPrimary:b=yes
+      timeLimit:i=1800
+      scoreConst:i=100
+      scoreTime:i=400
+    }
+
+    onSuccess{
+    }
+
+    onFailed{
+    }
+  }
+}
+
+variables{
+  timer:i=0
+}
+
+dialogs{
+}
+
+airfields{
+}
+
+effects{
+}
+
+units{
+
+  armada{
+    name:t="player_wing"
+    tm:m=[[0.173648, 0.0, -0.984808] [0.0, 1.0, 0.0] [0.984808, 0.0, 0.173648] [-3926.95, 1322.5, 11763.9]]
+    closed_waypoints:b=no
+    unit_class:t="f4u-1c"
+    weapons:t="f4u-1c_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+
+    props{
+      army:i=1
+      count:i=4
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=2
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="f4u1c_ai"
+    tm:m=[[0.173648, 0.0, -0.984808] [0.0, 1.0, 0.0] [0.984808, 0.0, 0.173648] [-3757.31, 1702.95, 11130.7]]
+    closed_waypoints:b=no
+    unit_class:t="f4u-1c"
+    weapons:t="f4u-1c_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+
+    props{
+      army:i=1
+      count:i=4
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=2
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="a5m5_zero_01"
+    tm:m=[[-0.996195, 0.0, 0.0871557] [0.0, 1.0, 0.0] [-0.0871557, 0.0, -0.996195] [4247.35, 1702.95, -1470.25]]
+    closed_waypoints:b=no
+    unit_class:t="a6m5_zero"
+    weapons:t="a6m5_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+
+    props{
+      army:i=2
+      count:i=4
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=2
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="a5m5_zero_02"
+    tm:m=[[-0.996195, 0.0, 0.0871557] [0.0, 1.0, 0.0] [-0.0871557, 0.0, -0.996195] [4247.35, 2270.2, -1470.25]]
+    closed_waypoints:b=no
+    unit_class:t="a6m5_zero"
+    weapons:t="a6m5_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+
+    props{
+      army:i=2
+      count:i=4
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=2
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="a5m5_zero_03"
+    tm:m=[[-0.996195, 0.0, 0.0871557] [0.0, 1.0, 0.0] [-0.0871557, 0.0, -0.996195] [4247.35, 2648.85, -1470.25]]
+    closed_waypoints:b=no
+    unit_class:t="a6m5_zero"
+    weapons:t="a6m5_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+
+    props{
+      army:i=2
+      count:i=4
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=2
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="a5m5_zero_04"
+    tm:m=[[-0.996195, 0.0, 0.0871557] [0.0, 1.0, 0.0] [-0.0871557, 0.0, -0.996195] [4247.35, 3071.9, -1470.25]]
+    closed_waypoints:b=no
+    unit_class:t="a6m5_zero"
+    weapons:t="a6m5_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+
+    props{
+      army:i=2
+      count:i=4
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=2
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="a5m5_zero_05"
+    tm:m=[[-0.996195, 0.0, 0.0871557] [0.0, 1.0, 0.0] [-0.0871557, 0.0, -0.996195] [4247.35, 5365.95, 1364.3]]
+    closed_waypoints:b=no
+    unit_class:t="a6m5_zero"
+    weapons:t="a6m5_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+
+    props{
+      army:i=2
+      count:i=8
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=2
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="us_carrier"
+    tm:m=[[-0.258819, 0.0, -0.965926] [0.0, 1.0, 0.0] [0.965926, 0.0, -0.258819] [-3831.9, -80.25, 14040.5]]
+    closed_waypoints:b=no
+    unit_class:t="uss_cv_lexington"
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+
+    props{
+      army:i=1
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="us_destroyer_01"
+    tm:m=[[-0.258819, 0.0, -0.965926] [0.0, 1.0, 0.0] [0.965926, 0.0, -0.258819] [-4281.0, -80.25, 14031.5]]
+    closed_waypoints:b=no
+    unit_class:t="uss_dd_versus"
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+
+    props{
+      army:i=1
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="us_destroyer_02"
+    tm:m=[[-0.258819, 0.0, -0.965926] [0.0, 1.0, 0.0] [0.965926, 0.0, -0.258819] [-3439.49, -80.25, 14243.8]]
+    closed_waypoints:b=no
+    unit_class:t="uss_dd_versus"
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+
+    props{
+      army:i=1
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="us_destroyer_03"
+    tm:m=[[0.965926, 0.0, -0.258819] [0.0, 1.0, 0.0] [0.258819, 0.0, 0.965926] [-6035.2, -54.0, -5931.6]]
+    closed_waypoints:b=no
+    unit_class:t="uss_dd_sims"
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+
+    props{
+      army:i=1
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+      effShootingRate:r=0.1
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="us_destroyer_04"
+    tm:m=[[0.793353, 0.0, 0.608761] [0.0, 1.0, 0.0] [-0.608761, 0.0, 0.793353] [-5310.5, -54.0, -5479.7]]
+    closed_waypoints:b=no
+    unit_class:t="uss_dd_versus"
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+
+    props{
+      army:i=1
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+      effShootingRate:r=0.1
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="us_destroyer_05"
+    tm:m=[[0.793353, 0.0, 0.608761] [0.0, 1.0, 0.0] [-0.608761, 0.0, 0.793353] [-5536.3, -54.0, -5813.25]]
+    closed_waypoints:b=no
+    unit_class:t="uss_dd_versus"
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+
+    props{
+      army:i=1
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+      effShootingRate:r=0.1
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="jpn_artillery_01"
+    tm:m=[[0.67559, 0.0, 0.737277] [0.0, 1.0, 0.0] [-0.737277, 0.0, 0.67559] [-5812.5, 0.0, -4453.25]]
+    closed_waypoints:b=no
+    unit_class:t="jpn_47mm_t1_coastfort"
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="jpn_artillery_02"
+    tm:m=[[0.67559, 0.0, 0.737277] [0.0, 1.0, 0.0] [-0.737277, 0.0, 0.67559] [-5756.05, 0.0, -4508.4]]
+    closed_waypoints:b=no
+    unit_class:t="jpn_47mm_t1_coastfort"
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="jpn_artillery_03"
+    tm:m=[[0.67559, 0.0, 0.737277] [0.0, 1.0, 0.0] [-0.737277, 0.0, 0.67559] [-5766.45, 0.0, -4476.9]]
+    closed_waypoints:b=no
+    unit_class:t="jpn_47mm_t1_coastfort"
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="jpn_artillery_04"
+    tm:m=[[0.67559, 0.0, 0.737277] [0.0, 1.0, 0.0] [-0.737277, 0.0, 0.67559] [-5789.3, 375.831, -4526.45]]
+    closed_waypoints:b=no
+    unit_class:t="jpn_47mm_t1_coastfort"
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="jpn_artillery_05"
+    tm:m=[[0.866025, 0.0, -0.5] [0.0, 1.0, 0.0] [0.5, 0.0, 0.866025] [-5743.05, 370.82, -4862.85]]
+    closed_waypoints:b=no
+    unit_class:t="jpn_47mm_t1_coastfort"
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="jpn_artillery_06"
+    tm:m=[[0.953717, 0.0, -0.300706] [0.0, 1.0, 0.0] [0.300706, 0.0, 0.953717] [-5760.7, 376.197, -4894.65]]
+    closed_waypoints:b=no
+    unit_class:t="jpn_47mm_t1_coastfort"
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="jpn_artillery_07"
+    tm:m=[[0.906308, 0.0, -0.422618] [0.0, 1.0, 0.0] [0.422618, 0.0, 0.906308] [-5778.05, 447.074, -4850.55]]
+    closed_waypoints:b=no
+    unit_class:t="jpn_47mm_t1_coastfort"
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="jpn_artillery_08"
+    tm:m=[[0.793353, 0.0, -0.608761] [0.0, 1.0, 0.0] [0.608761, 0.0, 0.793353] [-5840.9, 451.404, -4954.05]]
+    closed_waypoints:b=no
+    unit_class:t="jpn_47mm_t1_coastfort"
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="jpn_artillery_09"
+    tm:m=[[0.793353, 0.0, -0.608761] [0.0, 1.0, 0.0] [0.608761, 0.0, 0.793353] [-5796.85, 405.931, -4933.5]]
+    closed_waypoints:b=no
+    unit_class:t="jpn_47mm_t1_coastfort"
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="jpn_artillery_10"
+    tm:m=[[0.793353, 0.0, -0.608761] [0.0, 1.0, 0.0] [0.608761, 0.0, 0.793353] [-5845.55, 402.975, -5002.3]]
+    closed_waypoints:b=no
+    unit_class:t="jpn_47mm_t1_coastfort"
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="jpn_artillery_11"
+    tm:m=[[0.34202, 0.0, -0.939693] [0.0, 1.0, 0.0] [0.939693, 0.0, 0.34202] [-6027.85, 402.691, -5181.1]]
+    closed_waypoints:b=no
+    unit_class:t="jpn_47mm_t1_coastfort"
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="jpn_artillery_12"
+    tm:m=[[0.34202, 0.0, -0.939693] [0.0, 1.0, 0.0] [0.939693, 0.0, 0.34202] [-5986.55, 381.077, -5178.3]]
+    closed_waypoints:b=no
+    unit_class:t="jpn_47mm_t1_coastfort"
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="jpn_artillery_13"
+    tm:m=[[0.737277, 0.0, -0.67559] [0.0, 1.0, 0.0] [0.67559, 0.0, 0.737277] [-5890.4, 275.573, -5170.8]]
+    closed_waypoints:b=no
+    unit_class:t="jpn_47mm_t1_coastfort"
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="jpn_artillery_14"
+    tm:m=[[-0.21644, 0.0, -0.976296] [0.0, 1.0, 0.0] [0.976296, 0.0, -0.21644] [-6290.15, 283.297, -5369.25]]
+    closed_waypoints:b=no
+    unit_class:t="jpn_47mm_t1_coastfort"
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="jpn_artillery_15"
+    tm:m=[[-0.21644, 0.0, -0.976296] [0.0, 1.0, 0.0] [0.976296, 0.0, -0.21644] [-6222.25, 314.394, -5340.1]]
+    closed_waypoints:b=no
+    unit_class:t="jpn_47mm_t1_coastfort"
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="jpn_artillery_16"
+    tm:m=[[-0.21644, 0.0, -0.976296] [0.0, 1.0, 0.0] [0.976296, 0.0, -0.21644] [-6221.15, 133.021, -5444.9]]
+    closed_waypoints:b=no
+    unit_class:t="jpn_47mm_t1_coastfort"
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="jpn_aaa_01"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1486.45, 266.65, 1639.55]]
+    closed_waypoints:b=no
+    unit_class:t="jpn_25mm_t96"
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+      effShootingRate:r=0.1
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="jpn_aaa_02"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1083.85, 266.65, 1547.1]]
+    closed_waypoints:b=no
+    unit_class:t="jpn_25mm_t96"
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+      effShootingRate:r=0.1
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="jpn_aaa_03"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [708.85, 266.65, 2068.3]]
+    closed_waypoints:b=no
+    unit_class:t="jpn_25mm_t96"
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+      effShootingRate:r=0.1
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="jpn_aaa_04"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-268.0, 266.65, 1449.9]]
+    closed_waypoints:b=no
+    unit_class:t="jpn_25mm_t96"
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+      effShootingRate:r=0.1
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="jpn_aaa_05"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-47.45, 266.65, 932.05]]
+    closed_waypoints:b=no
+    unit_class:t="jpn_25mm_t96"
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+      effShootingRate:r=0.1
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="jpn_aaa_06"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-861.4, 266.65, 1060.2]]
+    closed_waypoints:b=no
+    unit_class:t="jpn_25mm_t96"
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+      effShootingRate:r=0.1
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="jpn_aaa_07"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-1889.87, 52.0847, -2291.15]]
+    closed_waypoints:b=no
+    unit_class:t="jpn_25mm_t96"
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+      effShootingRate:r=0.1
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="jpn_aaa_08"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-2721.42, 38.8231, -2813.05]]
+    closed_waypoints:b=no
+    unit_class:t="jpn_25mm_t96"
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+      effShootingRate:r=0.1
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="jpn_aaa_09"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-3443.25, 124.371, -2977.75]]
+    closed_waypoints:b=no
+    unit_class:t="jpn_25mm_t96"
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+      effShootingRate:r=0.1
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="jpn_aaa_10"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-3318.37, 180.632, -2640.35]]
+    closed_waypoints:b=no
+    unit_class:t="jpn_25mm_t96"
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+      effShootingRate:r=0.1
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="jpn_aaa_11"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-6176.55, 330.431, -4921.6]]
+    closed_waypoints:b=no
+    unit_class:t="jpn_25mm_t96"
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+      effShootingRate:r=0.1
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="jpn_aaa_12"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-6165.95, 314.3, -4784.7]]
+    closed_waypoints:b=no
+    unit_class:t="jpn_25mm_t96"
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+      effShootingRate:r=0.1
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="jpn_aaa_13"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-6241.1, 324.369, -4880.55]]
+    closed_waypoints:b=no
+    unit_class:t="jpn_25mm_t96"
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+      effShootingRate:r=0.1
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="jpn_aaa_14"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-6238.2, 417.071, -5134.7]]
+    closed_waypoints:b=no
+    unit_class:t="jpn_25mm_t96"
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+      effShootingRate:r=0.1
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="jpn_aaa_15"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-6322.5, 0.0, -5058.45]]
+    closed_waypoints:b=no
+    unit_class:t="jpn_25mm_t96"
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+      effShootingRate:r=0.1
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="jpn_aaa_16"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-6316.45, 0.0, -5163.15]]
+    closed_waypoints:b=no
+    unit_class:t="jpn_25mm_t96"
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+      effShootingRate:r=0.1
+    }
+
+    way{
+    }
+  }
+
+  squad{
+    name:t="jpn_fighters_squad"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-4087.47, 165.8, -1976.95]]
+    closed_waypoints:b=no
+    unit_class:t=""
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+
+    props{
+      squad_members:t="a5m5_zero_01"
+      squad_members:t="a5m5_zero_02"
+      squad_members:t="a5m5_zero_03"
+      squad_members:t="a5m5_zero_04"
+      squad_members:t="a5m5_zero_05"
+    }
+
+    way{
+    }
+  }
+
+  squad{
+    name:t="jpn_artillery_squad"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-6885.3, -23.4, -2457.0]]
+    closed_waypoints:b=no
+    unit_class:t=""
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+
+    props{
+      squad_members:t="jpn_artillery_01"
+      squad_members:t="jpn_artillery_02"
+      squad_members:t="jpn_artillery_03"
+      squad_members:t="jpn_artillery_04"
+      squad_members:t="jpn_artillery_05"
+      squad_members:t="jpn_artillery_06"
+      squad_members:t="jpn_artillery_07"
+      squad_members:t="jpn_artillery_08"
+      squad_members:t="jpn_artillery_09"
+      squad_members:t="jpn_artillery_10"
+      squad_members:t="jpn_artillery_11"
+      squad_members:t="jpn_artillery_12"
+      squad_members:t="jpn_artillery_13"
+      squad_members:t="jpn_artillery_14"
+      squad_members:t="jpn_artillery_15"
+      squad_members:t="jpn_artillery_16"
+    }
+
+    way{
+    }
+  }
+
+  squad{
+    name:t="jpn_aaa_squad"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-6000.8, -20.65, -2214.15]]
+    closed_waypoints:b=no
+    unit_class:t=""
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+
+    props{
+      squad_members:t="jpn_aaa_01"
+      squad_members:t="jpn_aaa_02"
+      squad_members:t="jpn_aaa_03"
+      squad_members:t="jpn_aaa_04"
+      squad_members:t="jpn_aaa_05"
+      squad_members:t="jpn_aaa_06"
+      squad_members:t="jpn_aaa_07"
+      squad_members:t="jpn_aaa_08"
+      squad_members:t="jpn_aaa_09"
+      squad_members:t="jpn_aaa_10"
+      squad_members:t="jpn_aaa_11"
+      squad_members:t="jpn_aaa_12"
+      squad_members:t="jpn_aaa_13"
+      squad_members:t="jpn_aaa_14"
+      squad_members:t="jpn_aaa_15"
+      squad_members:t="jpn_aaa_16"
+    }
+
+    way{
+    }
+  }
+}
+
+areas{
+
+  target_point{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-5157.25, 1322.0, -1839.1]]
+
+    props{
+    }
+  }
+
+  jpn_airfield_start_01{
+    type:t="Sphere"
+    tm:m=[[120.0, 0.0, 0.0] [0.0, 120.0, 0.0] [0.0, 0.0, 120.0] [1665.7, 266.85, 1287.75]]
+
+    props{
+    }
+  }
+
+  jpn_airfield_end_01{
+    type:t="Sphere"
+    tm:m=[[120.0, 0.0, 0.0] [0.0, 120.0, 0.0] [0.0, 0.0, 120.0] [161.95, 266.85, 1245.45]]
+
+    props{
+    }
+  }
+
+  jpn_airfield_start_02{
+    type:t="Sphere"
+    tm:m=[[120.0, 0.0, 0.0] [0.0, 120.0, 0.0] [0.0, 0.0, 120.0] [1467.3, 266.85, 2139.5]]
+
+    props{
+    }
+  }
+
+  jpn_airfield_end_02{
+    type:t="Sphere"
+    tm:m=[[120.0, 0.0, 0.0] [0.0, 120.0, 0.0] [0.0, 0.0, 120.0] [84.2, 266.85, 1355.4]]
+
+    props{
+    }
+  }
+
+  jpn_airfield_start_03{
+    type:t="Sphere"
+    tm:m=[[120.0, 0.0, 0.0] [0.0, 120.0, 0.0] [0.0, 0.0, 120.0] [-1084.3, 266.85, 92.25]]
+
+    props{
+    }
+  }
+
+  jpn_airfield_end_03{
+    type:t="Sphere"
+    tm:m=[[120.0, 0.0, 0.0] [0.0, 120.0, 0.0] [0.0, 0.0, 120.0] [-2839.55, 266.85, -1242.2]]
+
+    props{
+    }
+  }
+
+  jpn_airfield_start_04{
+    type:t="Sphere"
+    tm:m=[[120.0, 0.0, 0.0] [0.0, 120.0, 0.0] [0.0, 0.0, 120.0] [-2664.6, 266.85, 602.55]]
+
+    props{
+    }
+  }
+
+  jpn_airfield_end_04{
+    type:t="Sphere"
+    tm:m=[[120.0, 0.0, 0.0] [0.0, 120.0, 0.0] [0.0, 0.0, 120.0] [-2988.3, 266.85, -1102.65]]
+
+    props{
+    }
+  }
+
+  a01_spawn_01{
+    type:t="Sphere"
+    tm:m=[[56.9, 0.0, 0.0] [0.0, 56.9, 0.0] [0.0, 0.0, 56.9] [1485.55, 266.85, 1254.45]]
+
+    props{
+    }
+  }
+
+  a01_spawn_02{
+    type:t="Sphere"
+    tm:m=[[56.9, 0.0, 0.0] [0.0, 56.9, 0.0] [0.0, 0.0, 56.9] [1486.05, 266.85, 1314.5]]
+
+    props{
+    }
+  }
+
+  a01_spawn_03{
+    type:t="Sphere"
+    tm:m=[[56.9, 0.0, 0.0] [0.0, 56.9, 0.0] [0.0, 0.0, 56.9] [1552.35, 266.85, 1252.5]]
+
+    props{
+    }
+  }
+
+  a01_spawn_04{
+    type:t="Sphere"
+    tm:m=[[56.9, 0.0, 0.0] [0.0, 56.9, 0.0] [0.0, 0.0, 56.9] [1557.95, 266.85, 1315.6]]
+
+    props{
+    }
+  }
+
+  a02_spawn_01{
+    type:t="Sphere"
+    tm:m=[[56.9, 0.0, 0.0] [0.0, 56.9, 0.0] [0.0, 0.0, 56.9] [1274.9, 266.85, 1989.9]]
+
+    props{
+    }
+  }
+
+  a02_spawn_02{
+    type:t="Sphere"
+    tm:m=[[56.9, 0.0, 0.0] [0.0, 56.9, 0.0] [0.0, 0.0, 56.9] [1240.35, 266.85, 2047.6]]
+
+    props{
+    }
+  }
+
+  a02_spawn_03{
+    type:t="Sphere"
+    tm:m=[[56.9, 0.0, 0.0] [0.0, 56.9, 0.0] [0.0, 0.0, 56.9] [1345.55, 266.85, 2027.2]]
+
+    props{
+    }
+  }
+
+  a02_spawn_04{
+    type:t="Sphere"
+    tm:m=[[56.9, 0.0, 0.0] [0.0, 56.9, 0.0] [0.0, 0.0, 56.9] [1312.65, 266.85, 2084.45]]
+
+    props{
+    }
+  }
+
+  a03_spawn_01{
+    type:t="Sphere"
+    tm:m=[[56.9, 0.0, 0.0] [0.0, 56.9, 0.0] [0.0, 0.0, 56.9] [-1191.4, 266.85, -62.75]]
+
+    props{
+    }
+  }
+
+  a03_spawn_02{
+    type:t="Sphere"
+    tm:m=[[56.9, 0.0, 0.0] [0.0, 56.9, 0.0] [0.0, 0.0, 56.9] [-1247.55, 266.85, 8.15]]
+
+    props{
+    }
+  }
+
+  a03_spawn_03{
+    type:t="Sphere"
+    tm:m=[[56.9, 0.0, 0.0] [0.0, 56.9, 0.0] [0.0, 0.0, 56.9] [-1123.6, 266.85, -5.4]]
+
+    props{
+    }
+  }
+
+  a03_spawn_04{
+    type:t="Sphere"
+    tm:m=[[56.9, 0.0, 0.0] [0.0, 56.9, 0.0] [0.0, 0.0, 56.9] [-1177.5, 266.85, 63.05]]
+
+    props{
+    }
+  }
+
+  a04_spawn_01{
+    type:t="Sphere"
+    tm:m=[[56.9, 0.0, 0.0] [0.0, 56.9, 0.0] [0.0, 0.0, 56.9] [-2640.9, 266.85, 382.55]]
+
+    props{
+    }
+  }
+
+  a04_spawn_02{
+    type:t="Sphere"
+    tm:m=[[56.9, 0.0, 0.0] [0.0, 56.9, 0.0] [0.0, 0.0, 56.9] [-2732.5, 266.85, 391.35]]
+
+    props{
+    }
+  }
+
+  a04_spawn_03{
+    type:t="Sphere"
+    tm:m=[[56.9, 0.0, 0.0] [0.0, 56.9, 0.0] [0.0, 0.0, 56.9] [-2634.85, 266.85, 460.8]]
+
+    props{
+    }
+  }
+
+  a04_spawn_04{
+    type:t="Sphere"
+    tm:m=[[56.9, 0.0, 0.0] [0.0, 56.9, 0.0] [0.0, 0.0, 56.9] [-2729.8, 266.85, 481.5]]
+
+    props{
+    }
+  }
+
+  retreat_point{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-3785.27, 1200.0, 13927.7]]
+
+    props{
+    }
+  }
+}

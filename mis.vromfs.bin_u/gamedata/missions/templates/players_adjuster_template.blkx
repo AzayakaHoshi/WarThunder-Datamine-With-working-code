@@ -1,0 +1,1173 @@
+selected_tag:t=""
+bin_dump_file:t=""
+
+mission_settings{
+
+  player{
+    army:i=1
+    wing:t=""
+  }
+
+  player_teamB{
+    army:i=2
+  }
+
+  mission{
+    level:t="levels/water.bin"
+    type:t="singleMission"
+    restoreType:t="attempts"
+    optionalTakeOff:b=no
+    environment:t="Day"
+    weather:t="hazy"
+  }
+
+  spectator_points{
+  }
+}
+
+imports{
+}
+
+triggers{
+  isCategory:b=yes
+  is_enabled:b=yes
+
+  pa_init{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.0
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      varSetInt{
+        value:i=0
+        var:t="pa_players_count"
+      }
+
+      comment{
+        value:t="special~'no ne na init"
+      }
+
+      comment{
+        value:t="SHABLON ZAMENYAET SOBOJ land_units_death_template"
+      }
+
+      comment{
+        value:t="poetomu imena triggerov i peremennyh nameryano ostavleny konfliktuyushchimi"
+      }
+
+      comment{
+        value:t="-------------------------------------------------------------------------"
+      }
+
+      comment{
+        value:t="shablon, vklyuchayushchij zavisimost~' kolichestva nazemki"
+      }
+
+      comment{
+        value:t="ot kolichestva igrokov"
+      }
+
+      comment{
+        value:t="-------------------------------------------------------------------------"
+      }
+
+      comment{
+        value:t="kolichestvo nazemki"
+      }
+
+      comment{
+        value:t="4 igroka v komande: 11"
+      }
+
+      comment{
+        value:t="10 igrokovv komande: 21"
+      }
+
+      comment{
+        value:t="vse igroki: 29 (vsya)"
+      }
+
+      comment{
+        value:t="-------------------------------------------------------------------------"
+      }
+
+      comment{
+        value:t="spisok peremennyh"
+      }
+
+      comment{
+        value:t="pa_cur_tickets - tekushchee kolichestvo ochkov komandy"
+      }
+
+      comment{
+        value:t="pa_tickets_cost - stoimost~' smerti nazemki"
+      }
+
+      comment{
+        value:t="pa_units_quantity - kolichestvo aktivnyh yunitov"
+      }
+
+      comment{
+        value:t="t1_land_death_counter - kolichestvo umershih yunitov komandy A"
+      }
+
+      comment{
+        value:t="t2_land_death_counter - kolichestvo umershih yunitov komandy B"
+      }
+
+      comment{
+        value:t="pa_players_count - kolichestvo aktivnyh igrokov"
+      }
+
+      comment{
+        value:t="-------------------------------------------------------------------------"
+      }
+
+      comment{
+        value:t="pryachem vseh yunitov"
+      }
+
+      comment{
+        value:t="po lyubomu probuzhdaem 5ppl skvad, chtoby ne pustoval schetchik vragov"
+      }
+
+      comment{
+        value:t="vklyuchaem proverku kolichestva aktivnyh igrokov cherez 30 sekund"
+      }
+
+      comment{
+        value:t="zapolnyaem imya skvada dlya subquest_units"
+      }
+
+      unitPutToSleep{
+        target:t="t1_quest_units_squad"
+        target:t="t2_quest_units_squad"
+      }
+
+      unitWakeUp{
+        target:t="t1_quest_units_squad"
+        numToWakeUp:i=21
+      }
+
+      unitWakeUp{
+        target:t="t2_quest_units_squad"
+        numToWakeUp:i=21
+      }
+
+      triggerEnable{
+        target:t="pa_sb_check"
+      }
+
+      varSetString{
+        value:t="t1_subquest_units_squad"
+        var:t="subquest_units_t1_name"
+      }
+
+      varSetString{
+        value:t="t2_subquest_units_squad"
+        var:t="subquest_units_t2_name"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  pa_players_plus_calculator{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isOnline"
+        func:t="more"
+        value:i=0
+        object_marking:i=0
+        object:t="all_players_squad"
+        var:t="pa_players_count"
+      }
+    }
+
+    actions{
+
+      varModify{
+        operator:t="add"
+        value:r=1.0
+        var:t="pa_players_count"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  pa_players_minus_calculator{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isOnline"
+        func:t="less"
+        value:i=0
+        object_marking:i=0
+        object:t="all_players_squad"
+        var:t="pa_players_count"
+      }
+    }
+
+    actions{
+
+      varModify{
+        operator:t="add"
+        value:r=-1.0
+        var:t="pa_players_count"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  pa_sb_check{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      gameWhenDifficulty{
+        difficulty:t="simulator"
+        is:t="notEqual"
+      }
+    }
+
+    actions{
+
+      comment{
+        value:t="ne simulyator - obychnaya logika"
+      }
+
+      triggerEnable{
+        target:t="pa_check_5_ppl"
+        target:t="pa_check_10_ppl"
+        target:t="pa_check_all_ppl"
+      }
+    }
+
+    else_actions{
+
+      comment{
+        value:t="simulyator - spavnim vseh"
+      }
+
+      comment{
+        value:t="dizejblim proverku kolichestva igrokov"
+      }
+
+      comment{
+        value:t="vystavlyaem kolichestvo igrokov chtoby proverka proshla korrektno"
+      }
+
+      comment{
+        value:t="zapuskaem proverku na to chto vse igroki aktivny"
+      }
+
+      triggerDisable{
+        target:t="pa_players_plus_calculator"
+        target:t="pa_players_minus_calculator"
+      }
+
+      varSetInt{
+        value:i=32
+        var:t="pa_players_count"
+      }
+
+      triggerEnable{
+        target:t="pa_check_all_ppl"
+      }
+    }
+  }
+
+  pa_check_5_ppl{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=45.0
+      }
+    }
+
+    conditions{
+
+      varCompareInt{
+        var_value:t="pa_players_count"
+        value:i=9
+        comparasion_func:t="less"
+      }
+    }
+
+    actions{
+
+      comment{
+        value:t="igrokov: 8 ili men~'she"
+      }
+
+      comment{
+        value:t="proveryaem obshchee kolichestvo igrokov v obeih komandah"
+      }
+
+      comment{
+        value:t="poetomu sravnivaem ne s 5-tyu, a s 10-t~'yu"
+      }
+
+      comment{
+        value:t="probuzhdaem skvad, raschitannyj na 5 igrokov v komande"
+      }
+
+      comment{
+        value:t="pryachem skvad sabkvest yunitov, kotorye poyavyatsya na 20 minute igry"
+      }
+
+      comment{
+        value:t="proveryaem tip missii"
+      }
+
+      triggerDisable{
+        target:t="pa_players_plus_calculator"
+        target:t="pa_players_minus_calculator"
+      }
+
+      triggerDisable{
+        target:t="pa_check_10_ppl"
+        target:t="pa_check_all_ppl"
+      }
+
+      unitPutToSleep{
+        target:t="t1_quest_units_squad"
+        target:t="t2_quest_units_squad"
+      }
+
+      unitWakeUp{
+        target:t="t1_quest_units_squad"
+        numToWakeUp:i=21
+      }
+
+      unitWakeUp{
+        target:t="t2_quest_units_squad"
+        numToWakeUp:i=21
+      }
+
+      triggerEnable{
+        target:t="hide_subquest_t1_units"
+        target:t="hide_subquest_t2_units"
+      }
+
+      triggerEnable{
+        target:t="pa_chek_one_side_mission_type"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  pa_check_10_ppl{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=45.0
+      }
+    }
+
+    conditions{
+
+      varCompareInt{
+        var_value:t="pa_players_count"
+        value:i=8
+        comparasion_func:t="more"
+      }
+
+      varCompareInt{
+        var_value:t="pa_players_count"
+        value:i=21
+        comparasion_func:t="less"
+      }
+    }
+
+    actions{
+
+      comment{
+        value:t="igrokov bol~'she 9 no men~'she 20"
+      }
+
+      comment{
+        value:t="proveryaem obshchee kolichestvo igrokov v obeih komandah"
+      }
+
+      comment{
+        value:t="poetomu sravnivaem ne s 10-tyu, a s 20-t~'yu"
+      }
+
+      comment{
+        value:t="probuzhdaem skvad, raschitannyj na 5 igrokov v komande"
+      }
+
+      comment{
+        value:t="pryachem skvad sabkvest yunitov, kotorye poyavyatsya na 20 minute igry"
+      }
+
+      comment{
+        value:t="proveryaem tip missii"
+      }
+
+      triggerDisable{
+        target:t="pa_players_plus_calculator"
+        target:t="pa_players_minus_calculator"
+      }
+
+      triggerDisable{
+        target:t="pa_check_5_ppl"
+        target:t="pa_check_all_ppl"
+      }
+
+      unitPutToSleep{
+        target:t="t1_quest_units_squad"
+        target:t="t2_quest_units_squad"
+      }
+
+      unitWakeUp{
+        target:t="t1_quest_units_squad"
+        numToWakeUp:i=29
+      }
+
+      unitWakeUp{
+        target:t="t2_quest_units_squad"
+        numToWakeUp:i=29
+      }
+
+      triggerEnable{
+        target:t="hide_subquest_t1_units"
+        target:t="hide_subquest_t2_units"
+      }
+
+      triggerEnable{
+        target:t="pa_chek_one_side_mission_type"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  pa_check_all_ppl{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ANY"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=45.0
+      }
+    }
+
+    conditions{
+
+      varCompareInt{
+        var_value:t="pa_players_count"
+        value:i=20
+        comparasion_func:t="more"
+      }
+    }
+
+    actions{
+
+      comment{
+        value:t="igrokov bol~'she 20. kolichestvo nazemki: 29"
+      }
+
+      comment{
+        value:t="proveryaem obshchee kolichestvo igrokov v obeih komandah"
+      }
+
+      comment{
+        value:t="probuzhdaem skvad, raschitannyj na polnye komandy"
+      }
+
+      comment{
+        value:t="pryachem skvad sabkvest yunitov, kotorye poyavyatsya na 20 minute igry"
+      }
+
+      comment{
+        value:t="proveryaem tip missii"
+      }
+
+      triggerDisable{
+        target:t="pa_players_plus_calculator"
+        target:t="pa_players_minus_calculator"
+      }
+
+      triggerDisable{
+        target:t="pa_check_5_ppl"
+        target:t="pa_check_10_ppl"
+      }
+
+      unitWakeUp{
+        target:t="t1_quest_units_squad"
+      }
+
+      unitWakeUp{
+        target:t="t2_quest_units_squad"
+      }
+
+      triggerEnable{
+        target:t="hide_subquest_t1_units"
+        target:t="hide_subquest_t2_units"
+      }
+
+      triggerEnable{
+        target:t="pa_chek_one_side_mission_type"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  pa_chek_one_side_mission_type{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      varCompareBool{
+        var_value:t="pa_one_side_mission"
+        value:b=yes
+        comparasion_func:t="equal"
+      }
+    }
+
+    actions{
+
+      comment{
+        value:t="kvestovaya nazemka est~' tol~'bko u odnoj storony. ne delim na 2"
+      }
+
+      comment{
+        value:t="zapuskaem podschet ochkov, kotorye budut otnimat~'sya pri smerti yunita"
+      }
+
+      varSetInt{
+        value:i=1
+        var:t="pa_div_modifier"
+      }
+
+      triggerEnable{
+        target:t="pa_ajust_tickets_cost"
+      }
+    }
+
+    else_actions{
+
+      comment{
+        value:t="nazemka est~' u obeih storon, nado delit~' na 2"
+      }
+
+      comment{
+        value:t="zapuskaem podschet ochkov, kotorye budut otnimat~'sya pri smerti yunita"
+      }
+
+      varSetInt{
+        value:i=2
+        var:t="pa_div_modifier"
+      }
+
+      triggerEnable{
+        target:t="pa_ajust_tickets_cost"
+      }
+    }
+  }
+
+  pa_ajust_tickets_cost{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isActive"
+        object_marking:i=0
+        func:t="more"
+        value:i=0
+        object:t="t1_quest_units_squad"
+        object:t="t2_quest_units_squad"
+        var:t="pa_units_quantity"
+      }
+    }
+
+    actions{
+
+      comment{
+        value:t="schitaem kolichestvo aktivnyh yunitov v obeih komandah"
+      }
+
+      comment{
+        value:t="uvelichivaem peremennuyu podscheta"
+      }
+
+      varModify{
+        operator:t="add"
+        value:r=1.0
+        var:t="pa_units_quantity"
+      }
+    }
+
+    else_actions{
+
+      comment{
+        value:t="podschitali kolichestvo yunitov"
+      }
+
+      comment{
+        value:t="podelim chislo na ustanovlennyj modifikator"
+      }
+
+      comment{
+        value:t="poluchim kolichestvo tekushchih ochkov komandy A"
+      }
+
+      comment{
+        value:t="razdelim kolichestvo ochkov na kolichestvo yunitov"
+      }
+
+      comment{
+        value:t="dobavim 1 chtoby garantirovat~' nulevoe kolichestvo ochkov pri smerti vsej nazemki"
+      }
+
+      comment{
+        value:t="umnozhaem chislo na -1, chtoby tikety otnimalis~'"
+      }
+
+      comment{
+        value:t="zapuskaem trigger okonchaniya podschetov"
+      }
+
+      varModify{
+        operator:t="divAB"
+        value:r=2.0
+        var:t="pa_units_quantity"
+        use_variable:b=yes
+        var_value:t="pa_div_modifier"
+      }
+
+      varModify{
+        operator:t="add"
+        value:r=0.0
+        var:t="pa_tickets_cost"
+        use_variable:b=yes
+        var_value:t="pa_cur_tickets"
+      }
+
+      varModify{
+        operator:t="divAB"
+        value:r=1.0
+        var:t="pa_tickets_cost"
+        use_variable:b=yes
+        var_value:t="pa_units_quantity"
+      }
+
+      varModify{
+        operator:t="add"
+        value:r=1.0
+        var:t="pa_tickets_cost"
+      }
+
+      varModify{
+        operator:t="mul"
+        value:r=-1.0
+        var:t="pa_tickets_cost"
+      }
+
+      varSetInt{
+        value:i=0
+        var:t="pa_cur_tickets"
+        source_var:t="mpTi1"
+      }
+
+      varSetInt{
+        value:i=0
+        var:t="pa_tickets_cost"
+      }
+
+      triggerEnable{
+        target:t="pa_ajust_tickets_end"
+      }
+    }
+  }
+
+  pa_ajust_tickets_end{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      comment{
+        value:t="zakonchili podschet triggerov"
+      }
+
+      comment{
+        value:t="vyklyuchaem trigger podscheta"
+      }
+
+      comment{
+        value:t="zapuskaem sluzhebnye triggery"
+      }
+
+      triggerDisable{
+        target:t="pa_ajust_tickets_cost"
+      }
+
+      triggerEnable{
+        target:t="t1_land_damaged"
+        target:t="t2_land_damaged"
+        target:t="t1_all_land_destroyed"
+        target:t="t2_all_land_destroyed"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  t1_land_damaged{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isKilled"
+        object_marking:i=0
+        func:t="more"
+        value:i=0
+        object:t="t1_quest_units_squad"
+        var:t="t1_land_death_counter"
+      }
+    }
+
+    actions{
+
+      gameMPChangeScore{
+        value:i=-100
+        valueSystem:t="amount"
+        var:t="pa_tickets_cost"
+        team:t="A"
+      }
+
+      varModify{
+        operator:t="add"
+        value:r=1.0
+        var:t="t1_land_death_counter"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  t2_land_damaged{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isKilled"
+        object_marking:i=0
+        func:t="more"
+        value:i=0
+        object:t="t2_quest_units_squad"
+        var:t="t2_land_death_counter"
+      }
+    }
+
+    actions{
+
+      gameMPChangeScore{
+        value:i=-100
+        valueSystem:t="amount"
+        var:t="pa_tickets_cost"
+        team:t="B"
+      }
+
+      varModify{
+        operator:t="add"
+        value:r=1.0
+        var:t="t2_land_death_counter"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  t1_all_land_destroyed{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isActive"
+        object_marking:i=0
+        func:t="less"
+        value:i=1
+        object:t="t1_quest_units_squad"
+      }
+    }
+
+    actions{
+
+      triggerEnable{
+        target:t="t1_loose"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  t2_all_land_destroyed{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isActive"
+        object_marking:i=0
+        func:t="less"
+        value:i=1
+        object:t="t2_quest_units_squad"
+      }
+    }
+
+    actions{
+
+      triggerEnable{
+        target:t="t2_loose"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  hide_subquest_t1_units{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.0
+      }
+    }
+
+    conditions{
+
+      objectExists{
+        target:t="@subquest_units_t1_name"
+        type:t="squad"
+      }
+    }
+
+    actions{
+
+      comment{
+        value:t="pryachem skvad sabkvest yunitov, kotorye poyavyatsya na 20 minute igry"
+      }
+
+      unitPutToSleep{
+        target:t="@subquest_units_t1_name"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  hide_subquest_t2_units{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.0
+      }
+    }
+
+    conditions{
+
+      objectExists{
+        target:t="@subquest_units_t2_name"
+        type:t="squad"
+      }
+    }
+
+    actions{
+
+      comment{
+        value:t="pryachem skvad sabkvest yunitov, kotorye poyavyatsya na 20 minute igry"
+      }
+
+      unitPutToSleep{
+        target:t="@subquest_units_t2_name"
+      }
+    }
+
+    else_actions{
+    }
+  }
+}
+
+mission_objectives{
+  isCategory:b=yes
+  is_enabled:b=yes
+}
+
+variables{
+  pa_units_quantity:i=0
+  pa_cur_tickets:i=0
+  t1_land_death_counter:i=0
+  t2_land_death_counter:i=0
+  pa_tickets_cost:i=0
+  pa_players_count:i=0
+  subquest_units_t1_name:t=""
+  subquest_units_t2_name:t=""
+  pa_one_side_mission:b=no
+  pa_div_modifier:i=0
+}
+
+dialogs{
+}
+
+airfields{
+}
+
+effects{
+}
+
+units{
+}
+
+areas{
+}
+
+objLayers{
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+}
+
+wayPoints{
+}

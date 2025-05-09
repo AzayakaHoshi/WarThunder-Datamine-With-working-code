@@ -1,0 +1,5990 @@
+selected_tag:t=""
+bin_dump_file:t=""
+
+mission_settings{
+
+  player{
+    army:i=1
+    wing:t="player"
+  }
+
+  player_teamB{
+    army:i=2
+  }
+
+  mission{
+    level:t="levels/stalingrad.bin"
+    type:t="training"
+    environment:t="Day"
+    weather:t="cloudy"
+    gt_training:b=no
+    isLimitedFuel:b=no
+    isLimitedAmmo:b=no
+    openDiffLevels:b=no
+    restoreType:t="manual"
+    difficulty:t="arcade"
+    optionalTakeOff:b=no
+    forceSkiesInitialRandomSeed:b=yes
+    skiesInitialRandomSeed:i=3
+
+    customWeather{
+      windDir:p2=0.6, 0.8
+      wind_scale:r=1.0
+      max_wind_strength:r=6.0
+
+      sky{
+        mie_height:r=1.0
+      }
+
+      strata_clouds{
+        amount:r=0.5
+        altitude:r=11.0
+      }
+    }
+  }
+
+  atmosphere{
+    pressure:r=760.0
+    temperature:r=0.0
+  }
+
+  spectator_points{
+  }
+
+  briefing{
+    place_loc:t=""
+    date_loc:t=""
+    objective_loc:t=""
+    music:t="action_01"
+    viewAreaScale:r=4.0
+
+    part{
+      event:t=""
+      minTime:i=0
+
+      slide{
+        map:b=yes
+        minTime:i=4
+        picture:t=""
+        showAirMap:b=no
+
+        icon{
+          icontype:t="bomber"
+          side:t="player"
+          target:t="player_spawn01"
+          lookAt:t="bombing_area"
+        }
+
+        icon{
+          icontype:t="airfield"
+          side:t="neutral"
+          target:t="damagable_place01"
+        }
+      }
+    }
+  }
+}
+
+imports{
+
+  import_record{
+    file:t="gameData/missions/bridges/stalingrad_bridges.blk"
+    importAreas:b=yes
+    importUnits:b=yes
+    importTriggers:b=yes
+    importMissionObjectives:b=yes
+    importWayPoints:b=yes
+    showAreas:b=yes
+    showUnits:b=yes
+    showTriggers:b=yes
+    showMissionObjectives:b=yes
+    showWayPoints:b=yes
+
+    excludes{
+    }
+  }
+}
+
+triggers{
+  isCategory:b=yes
+  is_enabled:b=yes
+
+  bomb_initial{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.0
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="bomb_view_enabled"
+        target:t="bomb_dropped"
+        target:t="bomb_hit_the_airfield"
+        target:t="retry_bomb_hint"
+        target:t="mission_timer"
+        target:t="mission_slow_timer"
+        target:t="bomb_cutscene"
+      }
+
+      triggerDisable{
+        target:t="dialogue_intro_p01"
+        target:t="dialogue_intro_p02"
+        target:t="dialogue_intro_p03"
+        target:t="dialogue_intro_p04"
+        target:t="dialogue_intro_p05"
+        target:t="dialogue_sight_p01"
+        target:t="dialogue_sight_p02"
+        target:t="dialogue_sight_p03"
+        target:t="dialogue_sight_p04"
+        target:t="dialogue_sight_p05"
+        target:t="dialogue_sight_p06"
+        target:t="dialogue_drop_bombs_p01"
+        target:t="dialogue_drop_bombs_p02"
+        target:t="dialogue_drop_bombs_p03"
+        target:t="dialogue_drop_bombs_p04"
+        target:t="dialogue_turrets_p01"
+        target:t="dialogue_turrets_p02"
+        target:t="dialogue_turrets_p03"
+        target:t="dialogue_turrets_p04"
+        target:t="dialogue_turrets_alt_p04"
+        target:t="dialogue_turrets_p05"
+      }
+
+      triggerDisable{
+        target:t="gunner_initial_ps4_hint"
+        target:t="gunner_initial_ps4_hint_Thrustmaster"
+        target:t="bomb_change_view_hint_Thrustmaster"
+      }
+
+      missionStopSpeech{
+      }
+
+      missionDisableRadiochat{
+        doDisable:b=yes
+      }
+
+      unitSetProperties{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="crowd_enemy_squad"
+        targetableByAi:b=no
+        attack_type:t="hold_fire"
+        ignoresEnemy:b=yes
+        aiEnabled:b=no
+        stayOnGround:b=yes
+      }
+
+      unitSetProperties{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="player"
+        isImmortal:b=yes
+      }
+
+      unitSetProperties{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="enemy_planes"
+        effShootingRate:r=0.1
+
+        plane{
+
+          targetDeviation{
+            trigger:t="machine gun"
+            defaultVal:r=2.0
+            limits:p2=1.5, 3.0
+          }
+        }
+      }
+
+      unitSetProperties{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="dummy_airfield"
+        stealthRadius:r=0.0
+      }
+
+      missionSetFade{
+        mode:t="fadeOut"
+        color:p3=0.0, 0.0, 0.0
+        time:r=0.1
+      }
+
+      missionSetFade{
+        mode:t="fadeIn"
+        color:p3=0.0, 0.0, 0.0
+        time:r=0.5
+      }
+
+      playerControls{
+        setStatus:t="disable"
+        control:t="ALL"
+      }
+
+      playerControls{
+        setStatus:t="enable"
+        control:t="ID_FLIGHTMENU"
+        control:t="ID_FLIGHTMENU_SETUP"
+        control:t="ID_CONTINUE"
+        control:t="ID_CONTINUE_SETUP"
+      }
+
+      playerControls{
+        setStatus:t="disable"
+        control:t="ALL"
+      }
+
+      playerControls{
+        setStatus:t="enable"
+        control:t="ID_FLIGHTMENU"
+        control:t="ID_FLIGHTMENU_SETUP"
+        control:t="ID_CONTINUE"
+        control:t="ID_CONTINUE_SETUP"
+        control:t="ID_TACTICAL_MAP"
+      }
+
+      unitPutToSleep{
+        target:t="enemies_squad"
+      }
+
+      bigQueryAddRecord{
+        name:t="tutorialB_bomber"
+        params:t="task 1/4: start mission"
+      }
+
+      wait{
+        time:r=0.6
+      }
+
+      wait{
+        time:r=0.1
+      }
+
+      wait{
+        time:r=0.1
+      }
+
+      wait{
+        time:r=0.6
+      }
+
+      wait{
+        time:r=0.05
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      wait{
+        time:r=2.0
+      }
+
+      unitRestore{
+        ressurectIfDead:b=yes
+        fullRestore:b=yes
+        target_marking:i=0
+        target:t="player"
+        target:t="dummy_airfield"
+        ammoRestore:b=yes
+      }
+
+      unitMoveTo{
+        target:t="player_spawn01"
+        follow_target:b=no
+        teleportHeightType:t="target"
+        useUnitHeightForTele:b=no
+        shouldKeepFormation:b=no
+        teleportHeightValue:r=0.0
+        horizontalDirectionForTeleport:b=yes
+        object_marking:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        fastClimb:b=no
+        destTimeMode:b=no
+        object:t="player"
+        move_type:t="teleport"
+        speed:r=200.0
+        lookat:t="bombing_area"
+        velocity:r=300.0
+      }
+
+      playerOptions{
+        respawnBullets:b=yes
+      }
+
+      playerOptions{
+        currentView:t="3rdperson"
+      }
+
+      unitSetControls{
+        controls:t="power"
+        value:r=1.0
+        force:b=yes
+        objects:t="player"
+      }
+
+      triggerEnable{
+        target:t="dialogue_intro_p01"
+      }
+
+      triggerEnable{
+        target:t="bomb_intro_skip"
+        target:t="retry_bomb_hint"
+      }
+
+      unitForceRearmSpeed{
+        rearmSpeedK:r=30.0
+        target:t="player"
+      }
+
+      missionSetTimeSpeed{
+        speed:r=0.0
+        realtimeTriggers:b=yes
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorialB_bomber_intro"
+        action:t="show"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        shouldBlink:b=no
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorialB_bomber_intro_continue"
+        action:t="show"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        shouldBlink:b=no
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  bomb_intro_skip{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playerShortcutPressed{
+        control:t="ID_CONTINUE"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="bomb_initial"
+        target:t="dialogue_intro_p01"
+        target:t="dialogue_intro_p02"
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t=""
+        action:t="hideCur"
+        shouldFadeOut:b=yes
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorialB_about_bombers"
+        action:t="show"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        shouldBlink:b=no
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorialB_about_bombers_continue"
+        action:t="show"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        shouldBlink:b=no
+      }
+
+      missionStopSpeech{
+      }
+
+      wait{
+        time:r=0.5
+      }
+
+      wait{
+        time:r=2.0
+      }
+
+      triggerEnable{
+        target:t="dialogue_intro_p03"
+      }
+
+      triggerEnable{
+        target:t="bomb_safety_hint"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  bomb_safety_hint{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playerShortcutPressed{
+        control:t="ID_CONTINUE"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="bomb_initial"
+        target:t="bomb_intro_skip"
+        target:t="dialogue_intro_p03"
+        target:t="dialogue_intro_p04"
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorialB_about_bombers"
+        action:t="hideCur"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        shouldBlink:b=no
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorialB_about_safety"
+        action:t="show"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        shouldBlink:b=no
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorialB_about_safety_continue"
+        action:t="show"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        shouldBlink:b=no
+      }
+
+      missionStopSpeech{
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      wait{
+        time:r=2.0
+      }
+
+      triggerEnable{
+        target:t="dialogue_intro_p05"
+      }
+
+      triggerEnable{
+        target:t="bomb_sight_hint"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  bomb_sight_hint{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playerShortcutPressed{
+        control:t="ID_CONTINUE"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="bomb_safety_hint"
+        target:t="dialogue_intro_p05"
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorialB_about_safety"
+        action:t="hideCur"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        shouldBlink:b=no
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorialB_about_sight"
+        action:t="show"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        shouldBlink:b=no
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorialB_about_sight_continue"
+        action:t="show"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        shouldBlink:b=no
+      }
+
+      missionStopSpeech{
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      wait{
+        time:r=2.0
+      }
+
+      triggerEnable{
+        target:t="dialogue_sight_p01"
+      }
+
+      triggerEnable{
+        target:t="bomb_change_view_hint"
+        target:t="bomb_change_view_hint_Thrustmaster"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  bomb_change_view_hint{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playerWhenOptions{
+        isThrustmasterHotas4:b=no
+      }
+
+      playerShortcutPressed{
+        control:t="ID_CONTINUE"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="bomb_sight_hint"
+        target:t="dialogue_sight_p01"
+        target:t="bomb_change_view_hint_Thrustmaster"
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorialB_about_sight"
+        action:t="hideCur"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        shouldBlink:b=no
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorialB_change_view"
+        action:t="show"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        item:t="ID_TOGGLE_VIEW"
+        shouldBlink:b=no
+      }
+
+      playerControls{
+        setStatus:t="enable"
+        control:t="ID_TOGGLE_VIEW"
+      }
+
+      missionStopSpeech{
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      triggerEnable{
+        target:t="bomb_return_tps"
+        target:t="dialogue_sight_p02"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  bomb_change_view_hint_Thrustmaster{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playerWhenOptions{
+        isThrustmasterHotas4:b=yes
+      }
+
+      playerShortcutPressed{
+        control:t="ID_CONTINUE"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="bomb_sight_hint"
+        target:t="dialogue_sight_p01"
+        target:t="bomb_change_view_hint"
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorialB_about_sight"
+        action:t="hideCur"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        shouldBlink:b=no
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorialB_change_view"
+        action:t="show"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        item:t="ID_TOGGLE_VIEW=2"
+        shouldBlink:b=no
+      }
+
+      playerControls{
+        setStatus:t="enable"
+        control:t="ID_TOGGLE_VIEW"
+      }
+
+      missionStopSpeech{
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      triggerEnable{
+        target:t="bomb_return_tps"
+        target:t="dialogue_sight_p02"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  bomb_return_tps{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playerWhenOptions{
+        currentView:t="bomb_view"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="bomb_change_view_hint"
+        target:t="dialogue_sight_p02"
+        target:t="dialogue_sight_p03"
+      }
+
+      missionStopSpeech{
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorialB_change_view"
+        action:t="hideCur"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        item:t="ID_TOGGLE_VIEW"
+        shouldBlink:b=no
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorialB_return_third_person_view"
+        action:t="show"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        item:t="ID_TOGGLE_VIEW"
+        shouldBlink:b=no
+      }
+
+      triggerEnable{
+        target:t="bomb_ps4_no_f7"
+      }
+
+      triggerEnable{
+        target:t="bomb_bomb_view_hint"
+        target:t="dialogue_sight_p04"
+      }
+
+      wait{
+        time:r=0.5
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  bomb_ps4_no_f7{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ANY"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playerWhenOptions{
+        isGamepadClassicConsole:b=yes
+      }
+
+      playerWhenOptions{
+        isGamepadPseudoMouseAim:b=yes
+      }
+
+      playerWhenOptions{
+        isThrustmasterHotas4:b=yes
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="bomb_bomb_view_hint"
+        target:t="bomb_return_tps"
+      }
+
+      triggerEnable{
+        target:t="bomb_ps4_no_f7_cont"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  bomb_ps4_no_f7_cont{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playerWhenOptions{
+        currentView:t="bomb_view"
+      }
+    }
+
+    actions{
+
+      triggerActivate{
+        target:t="bomb_view_enabled"
+        activate_type:t="ignoreConditions"
+        check_trigger_status:b=no
+        after_activation:t="disable"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  bomb_bomb_view_hint{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playerWhenOptions{
+        currentView:t="3rdperson"
+      }
+
+      playerWhenOptions{
+        isGamepadPseudoMouseAim:b=no
+      }
+
+      playerWhenOptions{
+        isGamepadClassicConsole:b=no
+      }
+
+      playerWhenOptions{
+        isThrustmasterHotas4:b=no
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="bomb_return_tps"
+        target:t="dialogue_sight_p04"
+        target:t="bomb_ps4_no_f7"
+      }
+
+      missionStopSpeech{
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorialB_return_third_person_view"
+        action:t="hide"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        item:t="ID_TOGGLE_VIEW"
+        shouldBlink:b=no
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorialB_bomb_sight"
+        action:t="show"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        item:t="ID_CAMERA_BOMBVIEW"
+        shouldBlink:b=no
+      }
+
+      playerControls{
+        setStatus:t="disable"
+        control:t="ID_TOGGLE_VIEW"
+      }
+
+      playerControls{
+        setStatus:t="enable"
+        control:t="ID_CAMERA_BOMBVIEW"
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      triggerEnable{
+        target:t="bomb_view_enabled"
+        target:t="dialogue_sight_p05"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  bomb_view_enabled{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ANY"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playerShortcutPressed{
+        control:t="ID_CAMERA_BOMBVIEW"
+        gamepadControls:b=no
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="mission_slow_timer"
+        target:t="bomb_bomb_view_hint"
+        target:t="dialogue_sight_p05"
+        target:t="dialogue_sight_p06"
+      }
+
+      varSetInt{
+        value:i=0
+        var:t="timer_slow"
+      }
+
+      missionStopSpeech{
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorialB_bomb_sight"
+        action:t="hideCur"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        item:t="ID_CAMERA_BOMBVIEW"
+        shouldBlink:b=no
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorialB_drop_bomb"
+        action:t="show"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        item:t="ID_BOMBS"
+        shouldBlink:b=no
+      }
+
+      missionSetTimeSpeed{
+        speed:r=1.0
+        realtimeTriggers:b=no
+      }
+
+      bigQueryAddRecord{
+        name:t="tutorialB_bomber"
+        params:t="task 2/4: player tried different view modes"
+      }
+
+      wait{
+        time:r=0.5
+      }
+
+      playerControls{
+        setStatus:t="enable"
+        control:t="ID_BOMBS"
+      }
+
+      triggerEnable{
+        target:t="bomb_dropped"
+        target:t="mission_timer"
+        target:t="dialogue_drop_bombs_p01"
+      }
+
+      moAddMissionObjective{
+        target:t="tutorialB_bomber_destroy_airfield"
+        object_var_comp_op:t="equal"
+        object_var_name:t=""
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  bomb_dropped{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playerShortcutPressed{
+        control:t="ID_BOMBS"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="bomb_view_enabled"
+        target:t="dialogue_drop_bombs_p01"
+      }
+
+      missionStopSpeech{
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorialB_drop_bomb"
+        action:t="hideCur"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        item:t="ID_BOMBS"
+        shouldBlink:b=no
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorialB_bombs_counter"
+        action:t="show"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        shouldBlink:b=no
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorialB_bombs_counter_continue"
+        action:t="show"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        shouldBlink:b=no
+      }
+
+      playerOptions{
+        currentView:t="follow_bomb"
+      }
+
+      playerOptions{
+        currentView:t="bomb_view"
+      }
+
+      wait{
+        time:r=3.0
+      }
+
+      wait{
+        time:r=0.5
+      }
+
+      wait{
+        time:r=2.0
+      }
+
+      unitForceRearmSpeed{
+        rearmSpeedK:r=1.0
+        target:t="player"
+      }
+
+      triggerEnable{
+        target:t="dialogue_drop_bombs_p02"
+      }
+
+      triggerEnable{
+        target:t="bomb_counter_hint"
+      }
+
+      missionSetTimeSpeed{
+        speed:r=0.0
+        realtimeTriggers:b=yes
+      }
+
+      hudElementBlink{
+        element:t="bombs"
+        time:r=100.0
+        blink:b=yes
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  bomb_counter_hint{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playerShortcutPressed{
+        control:t="ID_CONTINUE"
+      }
+    }
+
+    actions{
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t=""
+        action:t="hideCur"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        shouldBlink:b=no
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorialB_drop_all_bombs"
+        action:t="show"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        item:t="ID_BOMBS"
+        shouldBlink:b=no
+      }
+
+      triggerDisable{
+        target:t="bomb_dropped"
+        target:t="dialogue_drop_bombs_p02"
+      }
+
+      hudElementBlink{
+        element:t="bombs"
+        time:r=10.0
+        blink:b=no
+      }
+
+      missionStopSpeech{
+      }
+
+      wait{
+        time:r=0.5
+      }
+
+      triggerEnable{
+        target:t="bomb_drop_all"
+        target:t="dialogue_drop_bombs_p03"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  bomb_drop_all{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playerShortcutPressed{
+        control:t="ID_BOMBS"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="bomb_counter_hint"
+        target:t="dialogue_drop_bombs_p03"
+      }
+
+      missionStopSpeech{
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t=""
+        action:t="hideCur"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        shouldBlink:b=no
+      }
+
+      missionSetTimeSpeed{
+        speed:r=1.0
+        realtimeTriggers:b=yes
+      }
+
+      varSetInt{
+        value:i=0
+        var:t="timer"
+      }
+
+      triggerEnable{
+        target:t="bomb_cutscene"
+        target:t="mission_timer"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  bomb_cutscene{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ANY"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      unitWhenStatus{
+        object_type:t="noBombs"
+        object_marking:i=0
+        check_objects:t="all"
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="player"
+      }
+
+      varCompareInt{
+        var_value:t="timer"
+        value:i=5
+        comparasion_func:t="more"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="mission_timer"
+        target:t="mission_slow_timer"
+      }
+
+      unitSetProperties{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="crowd_enemy_vehicles06"
+        speed:r=30.0
+      }
+
+      unitSetProperties{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="crowd_enemy_squad"
+        stealthRadius:r=0.0
+      }
+
+      showSmartCutscene{
+        sceneType:t="area"
+        startSubTypeOnTheMarch:t=""
+        startSubTypeGroundUnits:t=""
+        startSubTypeArea:t="a6"
+        startSubTypeUnitAttackUnit:t=""
+        startSubTypeUnitMoveToUnit:t=""
+        startSubTypeTwoUnits:t=""
+        startSubTypeTakeoff:t=""
+        startSubTypeFlyBy:t=""
+        duration:r=11.0
+        wait:b=no
+        changeCameras:b=no
+        teleportAllAttackers:b=no
+        allowTeleportAttackers:b=yes
+        inverseCameraDirection:b=no
+        delayPlayer:b=yes
+        fadeIn:b=yes
+        fadeOut:b=no
+        allowDeadUnits:b=no
+        object:t="cutscene_area01"
+      }
+
+      showSmartCutscene{
+        sceneType:t="area"
+        startSubTypeOnTheMarch:t=""
+        startSubTypeGroundUnits:t=""
+        startSubTypeArea:t="a4"
+        startSubTypeUnitAttackUnit:t=""
+        startSubTypeUnitMoveToUnit:t=""
+        startSubTypeTwoUnits:t=""
+        startSubTypeTakeoff:t=""
+        startSubTypeFlyBy:t=""
+        duration:r=10.0
+        wait:b=no
+        changeCameras:b=no
+        teleportAllAttackers:b=no
+        allowTeleportAttackers:b=yes
+        inverseCameraDirection:b=no
+        delayPlayer:b=yes
+        fadeIn:b=yes
+        fadeOut:b=yes
+        allowDeadUnits:b=no
+        object:t="bombing_area"
+      }
+
+      wait{
+        time:r=10.0
+      }
+
+      wait{
+        time:r=5.0
+      }
+
+      wait{
+        time:r=3.0
+      }
+
+      wait{
+        time:r=0.5
+      }
+
+      wait{
+        time:r=0.5
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      wait{
+        time:r=0.5
+      }
+
+      wait{
+        time:r=0.5
+      }
+
+      wait{
+        time:r=0.5
+      }
+
+      wait{
+        time:r=0.5
+      }
+
+      wait{
+        time:r=0.3
+      }
+
+      wait{
+        time:r=0.7
+      }
+
+      wait{
+        time:r=2.0
+      }
+
+      wait{
+        time:r=0.5
+      }
+
+      missionStartCutscene{
+        target:t="crowd_enemy_plane11"
+        second_target:t="crowd_enemy_plane01"
+        duration:r=5.0
+        camera_type:t="flat_linear"
+        direction_amp:r=1.0
+        flat_offs:p3=100.0, 100.0, 100.0
+        zoom:r=1.0
+        frequency:r=1.0
+        linear_at_vel:p3=0.0, 0.0, 0.0
+        linear_eye_vel:p3=0.0, 0.0, 0.0
+        linear_at_accel:r=0.0
+        linear_eye_accel:r=0.0
+        linear_relative:b=no
+        pitch:r=0.1
+        yaw:r=0.0
+        pitch_amplitude:r=1.0
+        yaw_amplitude:r=1.0
+        distance:r=30.0
+        shake_mult:r=1.0
+        splineEye:t=""
+        splineAt:t=""
+        splineSpeed:r=100.0
+        resetCamera:b=yes
+        shake_accel:r=0.0
+        fov_accel:r=0.0
+        mustHaveGui:b=no
+        delayPlayer:b=yes
+      }
+
+      unitPlayEffect{
+        effect:t="bomb_expl_100kg"
+        offset:p3=0.0, 0.0, 0.0
+        show:b=yes
+        loop:b=no
+        scale:r=1.0
+        effect_type:t="specify"
+        attach:b=no
+        loopSpawn:b=yes
+        delay:p2=1.0, 1.0
+        target:t="explosion00"
+        radiusOffset:p2=0.0, 0.0
+      }
+
+      unitPlayEffect{
+        effect:t="bomb_expl_100kg"
+        offset:p3=0.0, 0.0, 0.0
+        show:b=yes
+        loop:b=no
+        scale:r=1.0
+        effect_type:t="specify"
+        attach:b=no
+        loopSpawn:b=yes
+        delay:p2=1.0, 1.0
+        target:t="explosion01"
+        radiusOffset:p2=0.0, 0.0
+      }
+
+      unitPlayEffect{
+        effect:t="bomb_expl_100kg"
+        offset:p3=0.0, 0.0, 0.0
+        show:b=yes
+        loop:b=no
+        scale:r=1.0
+        effect_type:t="specify"
+        attach:b=no
+        loopSpawn:b=yes
+        delay:p2=1.0, 1.0
+        target:t="explosion02"
+        radiusOffset:p2=0.0, 0.0
+      }
+
+      unitPlayEffect{
+        effect:t="bomb_expl_100kg"
+        offset:p3=0.0, 0.0, 0.0
+        show:b=yes
+        loop:b=no
+        scale:r=1.0
+        effect_type:t="specify"
+        attach:b=no
+        loopSpawn:b=yes
+        delay:p2=1.0, 1.0
+        target:t="explosion03"
+        radiusOffset:p2=0.0, 0.0
+      }
+
+      unitPlayEffect{
+        effect:t="bomb_expl_100kg"
+        offset:p3=0.0, 0.0, 0.0
+        show:b=yes
+        loop:b=no
+        scale:r=1.0
+        effect_type:t="specify"
+        attach:b=no
+        loopSpawn:b=yes
+        delay:p2=1.0, 1.0
+        target:t="explosion04"
+        radiusOffset:p2=0.0, 0.0
+      }
+
+      unitPlayEffect{
+        effect:t="bomb_expl_100kg"
+        offset:p3=0.0, 0.0, 0.0
+        show:b=yes
+        loop:b=no
+        scale:r=1.0
+        effect_type:t="specify"
+        attach:b=no
+        loopSpawn:b=yes
+        delay:p2=1.0, 1.0
+        target:t="explosion05"
+        radiusOffset:p2=0.0, 0.0
+      }
+
+      unitPlayEffect{
+        effect:t="bomb_expl_100kg"
+        offset:p3=0.0, 0.0, 0.0
+        show:b=yes
+        loop:b=no
+        scale:r=1.0
+        effect_type:t="specify"
+        attach:b=no
+        loopSpawn:b=yes
+        delay:p2=1.0, 1.0
+        target:t="explosion06"
+        target:t="explosion07"
+        radiusOffset:p2=0.0, 0.0
+      }
+
+      unitPlayEffect{
+        effect:t="bomb_expl_100kg"
+        offset:p3=0.0, 0.0, 0.0
+        show:b=yes
+        loop:b=no
+        scale:r=1.0
+        effect_type:t="specify"
+        attach:b=no
+        loopSpawn:b=yes
+        delay:p2=1.0, 1.0
+        target:t="explosion08"
+        radiusOffset:p2=0.0, 0.0
+      }
+
+      unitPlayEffect{
+        effect:t="bomb_expl_100kg"
+        offset:p3=0.0, 0.0, 0.0
+        show:b=yes
+        loop:b=no
+        scale:r=1.0
+        effect_type:t="specify"
+        attach:b=no
+        loopSpawn:b=yes
+        delay:p2=1.0, 1.0
+        target:t="explosion09"
+        radiusOffset:p2=0.0, 0.0
+      }
+
+      unitPlayEffect{
+        effect:t="bomb_expl_100kg"
+        offset:p3=0.0, 0.0, 0.0
+        show:b=yes
+        loop:b=no
+        scale:r=1.0
+        effect_type:t="specify"
+        attach:b=no
+        loopSpawn:b=yes
+        delay:p2=1.0, 1.0
+        target:t="explosion10"
+        radiusOffset:p2=0.0, 0.0
+      }
+
+      missionDestroyArea{
+        target_type:t="ALL"
+        area:t="explosion00"
+      }
+
+      missionDestroyArea{
+        target_type:t="ALL"
+        area:t="explosion01"
+      }
+
+      missionDestroyArea{
+        target_type:t="ALL"
+        area:t="explosion02"
+      }
+
+      missionDestroyArea{
+        target_type:t="ALL"
+        area:t="explosion03"
+      }
+
+      missionDestroyArea{
+        target_type:t="ALL"
+        area:t="explosion04"
+      }
+
+      missionDestroyArea{
+        target_type:t="ALL"
+        area:t="explosion05"
+      }
+
+      missionDestroyArea{
+        target_type:t="ALL"
+        area:t="explosion06"
+        area:t="explosion07"
+      }
+
+      missionDestroyArea{
+        target_type:t="ALL"
+        area:t="explosion08"
+      }
+
+      missionDestroyArea{
+        target_type:t="ALL"
+        area:t="explosion09"
+      }
+
+      missionDestroyArea{
+        target_type:t="ALL"
+        area:t="explosion10"
+      }
+
+      triggerEnable{
+        target:t="dialogue_drop_bombs_p04"
+      }
+
+      triggerEnable{
+        target:t="bomb_hit_the_airfield"
+      }
+
+      playerOptions{
+        currentView:t="3rdperson"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  bomb_hit_the_airfield{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.0
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      playerOptions{
+        currentView:t="3rdperson"
+      }
+
+      triggerDisable{
+        target:t="bomb_initial"
+        target:t="bomb_view_enabled"
+        target:t="bomb_dropped"
+        target:t="retry_gunner_hint"
+        target:t="mission_slow_timer"
+        target:t="mission_timer"
+        target:t="bomb_cutscene"
+      }
+
+      triggerDisable{
+        target:t="dialogue_intro_p01"
+        target:t="dialogue_intro_p02"
+        target:t="dialogue_intro_p03"
+        target:t="dialogue_intro_p04"
+        target:t="dialogue_intro_p05"
+        target:t="dialogue_sight_p01"
+        target:t="dialogue_sight_p02"
+        target:t="dialogue_sight_p03"
+        target:t="dialogue_sight_p04"
+        target:t="dialogue_sight_p05"
+        target:t="dialogue_sight_p06"
+        target:t="dialogue_drop_bombs_p01"
+        target:t="dialogue_drop_bombs_p02"
+        target:t="dialogue_drop_bombs_p03"
+        target:t="dialogue_drop_bombs_p04"
+        target:t="dialogue_turrets_p01"
+        target:t="dialogue_turrets_p02"
+        target:t="dialogue_turrets_p03"
+        target:t="dialogue_turrets_p04"
+        target:t="dialogue_turrets_alt_p04"
+        target:t="dialogue_turrets_p05"
+      }
+
+      missionStopSpeech{
+      }
+
+      varSetInt{
+        value:i=0
+        var:t="timer"
+      }
+
+      varSetInt{
+        value:i=0
+        var:t="timer_slow"
+      }
+
+      unitSetProperties{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="dummy_airfield"
+        stealthRadius:r=0.0
+      }
+
+      moSetObjectiveStatus{
+        target:t="tutorialB_bomber_destroy_airfield"
+        status:i=2
+        object_var_comp_op:t="equal"
+        object_var_name:t=""
+      }
+
+      bigQueryAddRecord{
+        name:t="tutorialB_bomber"
+        params:t="task 3/4: player dropped the bombs on the airfield"
+      }
+
+      wait{
+        time:r=2.0
+      }
+
+      triggerEnable{
+        target:t="gunner_initial"
+        target:t="gunner_initial_ps4"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  retry_bomb_hint{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ANY"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      varCompareInt{
+        var_value:t="timer"
+        value:i=60
+        comparasion_func:t="more"
+      }
+
+      unitWhenStatus{
+        object_type:t="isUseless"
+        object_marking:i=0
+        check_objects:t="all"
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="player"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="bomb_initial"
+        target:t="bomb_view_enabled"
+        target:t="bomb_dropped"
+        target:t="bomb_hit_the_airfield"
+        target:t="mission_timer"
+        target:t="mission_slow_timer"
+        target:t="bomb_cutscene"
+      }
+
+      triggerDisable{
+        target:t="dialogue_intro_p01"
+        target:t="dialogue_intro_p02"
+        target:t="dialogue_intro_p03"
+        target:t="dialogue_intro_p04"
+        target:t="dialogue_intro_p05"
+        target:t="dialogue_sight_p01"
+        target:t="dialogue_sight_p02"
+        target:t="dialogue_sight_p03"
+        target:t="dialogue_sight_p04"
+        target:t="dialogue_sight_p05"
+        target:t="dialogue_sight_p06"
+        target:t="dialogue_drop_bombs_p01"
+        target:t="dialogue_drop_bombs_p02"
+        target:t="dialogue_drop_bombs_p03"
+        target:t="dialogue_drop_bombs_p04"
+        target:t="dialogue_turrets_p01"
+        target:t="dialogue_turrets_p02"
+        target:t="dialogue_turrets_p03"
+        target:t="dialogue_turrets_p04"
+        target:t="dialogue_turrets_alt_p04"
+        target:t="dialogue_turrets_p05"
+      }
+
+      triggerDisable{
+        target:t="gunner_initial_ps4_hint"
+        target:t="gunner_initial_ps4_hint_Thrustmaster"
+        target:t="bomb_change_view_hint_Thrustmaster"
+      }
+
+      missionStopSpeech{
+      }
+
+      varSetInt{
+        value:i=0
+        var:t="timer"
+      }
+
+      varSetInt{
+        value:i=0
+        var:t="timer_slow"
+      }
+
+      playerControls{
+        setStatus:t="disable"
+        control:t="ALL"
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t=""
+        action:t="hideCur"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        shouldBlink:b=no
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorialB_retry"
+        action:t="show"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        shouldBlink:b=no
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorialB_retry"
+        action:t="hide"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        shouldBlink:b=no
+      }
+
+      missionSetTimeSpeed{
+        speed:r=1.0
+        realtimeTriggers:b=no
+      }
+
+      wait{
+        time:r=2.0
+      }
+
+      wait{
+        time:r=0.5
+      }
+
+      triggerEnable{
+        target:t="bomb_initial"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  gunner_initial{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playerWhenOptions{
+        isGamepadClassicConsole:b=no
+      }
+
+      playerWhenOptions{
+        isGamepadPseudoMouseAim:b=no
+      }
+
+      playerWhenOptions{
+        isThrustmasterHotas4:b=no
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="gunner_initial_ps4_hint"
+        target:t="gunner_initial_ps4_hint_Thrustmaster"
+        target:t="bomb_change_view_hint_Thrustmaster"
+      }
+
+      triggerDisable{
+        target:t="bomb_initial"
+        target:t="bomb_view_enabled"
+        target:t="bomb_dropped"
+        target:t="bomb_hit_the_airfield"
+        target:t="retry_gunner_hint"
+        target:t="retry_bomb_hint"
+        target:t="mission_timer"
+        target:t="mission_slow_timer"
+        target:t="gunner_gunner_view"
+        target:t="mission_completed"
+        target:t="bomb_cutscene"
+        target:t="bomb_ps4_no_f7"
+        target:t="gunner_initial_ps4"
+      }
+
+      triggerDisable{
+        target:t="dialogue_intro_p01"
+        target:t="dialogue_intro_p02"
+        target:t="dialogue_intro_p03"
+        target:t="dialogue_intro_p04"
+        target:t="dialogue_intro_p05"
+        target:t="dialogue_sight_p01"
+        target:t="dialogue_sight_p02"
+        target:t="dialogue_sight_p03"
+        target:t="dialogue_sight_p04"
+        target:t="dialogue_sight_p05"
+        target:t="dialogue_sight_p06"
+        target:t="dialogue_drop_bombs_p01"
+        target:t="dialogue_drop_bombs_p02"
+        target:t="dialogue_drop_bombs_p03"
+        target:t="dialogue_drop_bombs_p04"
+        target:t="dialogue_turrets_p01"
+        target:t="dialogue_turrets_p02"
+        target:t="dialogue_turrets_p03"
+        target:t="dialogue_turrets_p04"
+        target:t="dialogue_turrets_alt_p04"
+        target:t="dialogue_turrets_p05"
+      }
+
+      missionStopSpeech{
+      }
+
+      playerOptions{
+        aiGunnerEnabled:b=no
+      }
+
+      playerOptions{
+        respawnBullets:b=yes
+      }
+
+      playerOptions{
+        currentView:t="3rdperson"
+      }
+
+      playerControls{
+        setStatus:t="disable"
+        control:t="ALL"
+      }
+
+      playerControls{
+        setStatus:t="enable"
+        control:t="ID_FLIGHTMENU"
+        control:t="ID_FLIGHTMENU_SETUP"
+        control:t="ID_CONTINUE"
+        control:t="ID_CONTINUE_SETUP"
+      }
+
+      playerControls{
+        setStatus:t="enable"
+        control:t="ID_TACTICAL_MAP"
+        control:t="ID_TOGGLE_VIEW"
+        control:t="ID_CAMERA_GUNNER"
+        control:t="AXIS_AILERONS"
+        control:t="AXIS_ELEVATOR"
+        control:t="AXIS_RUDDER"
+        control:t="AXIS_THROTTLE"
+        control:t="AXIS_CAMX"
+        control:t="AXIS_CAMY"
+        control:t="AXIS_MOUSE_AIM_X"
+        control:t="AXIS_MOUSE_AIM_Y"
+      }
+
+      unitSetProperties{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="player"
+        isImmortal:b=yes
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t=""
+        action:t="hideCur"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        shouldBlink:b=no
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorialB_gunner_view"
+        action:t="show"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        item:t="ID_CAMERA_GUNNER"
+        shouldBlink:b=no
+      }
+
+      missionSetFade{
+        mode:t="fadeOut"
+        color:p3=0.0, 0.0, 0.0
+        time:r=0.5
+      }
+
+      missionSetFade{
+        mode:t="fadeIn"
+        color:p3=0.0, 0.0, 0.0
+        time:r=0.5
+      }
+
+      varSetInt{
+        value:i=0
+        var:t="timer"
+      }
+
+      wait{
+        time:r=0.6
+      }
+
+      wait{
+        time:r=0.1
+      }
+
+      wait{
+        time:r=0.6
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      unitWakeUp{
+        target:t="enemy_planes"
+      }
+
+      unitRestore{
+        ressurectIfDead:b=yes
+        fullRestore:b=yes
+        target_marking:i=0
+        target:t="player"
+        target:t="enemy_planes"
+        ammoRestore:b=yes
+      }
+
+      unitMoveTo{
+        target:t="player_spawn02"
+        follow_target:b=no
+        teleportHeightType:t="target"
+        useUnitHeightForTele:b=no
+        shouldKeepFormation:b=no
+        teleportHeightValue:r=0.0
+        horizontalDirectionForTeleport:b=yes
+        object_marking:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        fastClimb:b=no
+        destTimeMode:b=no
+        object:t="player"
+        move_type:t="teleport"
+        speed:r=250.0
+        lookat:t="orienting_point"
+        velocity:r=250.0
+      }
+
+      unitMoveTo{
+        target:t="enemy_spawn01"
+        follow_target:b=no
+        teleportHeightType:t="target"
+        useUnitHeightForTele:b=no
+        shouldKeepFormation:b=yes
+        teleportHeightValue:r=0.0
+        horizontalDirectionForTeleport:b=yes
+        object_marking:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        fastClimb:b=no
+        destTimeMode:b=no
+        object:t="enemy_planes"
+        move_type:t="teleport"
+        lookat:t="player_spawn02"
+        velocity:r=250.0
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=yes
+        object:t="enemy_planes"
+        target:t="player"
+        playerAttractedCount:i=1
+        playerAttractedEffRate:r=0.1
+      }
+
+      unitForceRearmSpeed{
+        rearmSpeedK:r=100000.0
+        target:t="player"
+      }
+
+      missionSetTimeSpeed{
+        speed:r=0.0
+        realtimeTriggers:b=yes
+      }
+
+      triggerEnable{
+        target:t="dialogue_turrets_p01"
+      }
+
+      triggerEnable{
+        target:t="gunner_gunner_view"
+        target:t="retry_gunner_hint"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  gunner_initial_ps4{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ANY"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playerWhenOptions{
+        isGamepadClassicConsole:b=yes
+      }
+
+      playerWhenOptions{
+        isGamepadPseudoMouseAim:b=yes
+      }
+
+      playerWhenOptions{
+        isThrustmasterHotas4:b=yes
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="gunner_initial_ps4_hint"
+        target:t="gunner_initial_ps4_hint_Thrustmaster"
+        target:t="bomb_change_view_hint_Thrustmaster"
+      }
+
+      triggerDisable{
+        target:t="bomb_initial"
+        target:t="bomb_view_enabled"
+        target:t="bomb_dropped"
+        target:t="bomb_hit_the_airfield"
+        target:t="retry_gunner_hint"
+        target:t="retry_bomb_hint"
+        target:t="mission_timer"
+        target:t="mission_slow_timer"
+        target:t="gunner_gunner_view"
+        target:t="mission_completed"
+        target:t="bomb_cutscene"
+        target:t="bomb_ps4_no_f7"
+        target:t="gunner_initial"
+      }
+
+      triggerDisable{
+        target:t="dialogue_intro_p01"
+        target:t="dialogue_intro_p02"
+        target:t="dialogue_intro_p03"
+        target:t="dialogue_intro_p04"
+        target:t="dialogue_intro_p05"
+        target:t="dialogue_sight_p01"
+        target:t="dialogue_sight_p02"
+        target:t="dialogue_sight_p03"
+        target:t="dialogue_sight_p04"
+        target:t="dialogue_sight_p05"
+        target:t="dialogue_sight_p06"
+        target:t="dialogue_drop_bombs_p01"
+        target:t="dialogue_drop_bombs_p02"
+        target:t="dialogue_drop_bombs_p03"
+        target:t="dialogue_drop_bombs_p04"
+        target:t="dialogue_turrets_p01"
+        target:t="dialogue_turrets_p02"
+        target:t="dialogue_turrets_p03"
+        target:t="dialogue_turrets_p04"
+        target:t="dialogue_turrets_alt_p04"
+        target:t="dialogue_turrets_p05"
+      }
+
+      missionStopSpeech{
+      }
+
+      playerOptions{
+        aiGunnerEnabled:b=no
+      }
+
+      playerOptions{
+        respawnBullets:b=yes
+      }
+
+      playerOptions{
+        currentView:t="3rdperson"
+      }
+
+      playerControls{
+        setStatus:t="disable"
+        control:t="ALL"
+      }
+
+      playerControls{
+        setStatus:t="enable"
+        control:t="ID_FLIGHTMENU"
+        control:t="ID_FLIGHTMENU_SETUP"
+        control:t="ID_CONTINUE"
+        control:t="ID_CONTINUE_SETUP"
+      }
+
+      unitSetProperties{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="player"
+        isImmortal:b=yes
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t=""
+        action:t="hideCur"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        shouldBlink:b=no
+      }
+
+      missionSetFade{
+        mode:t="fadeOut"
+        color:p3=0.0, 0.0, 0.0
+        time:r=0.5
+      }
+
+      missionSetFade{
+        mode:t="fadeIn"
+        color:p3=0.0, 0.0, 0.0
+        time:r=0.5
+      }
+
+      varSetInt{
+        value:i=0
+        var:t="timer"
+      }
+
+      wait{
+        time:r=0.6
+      }
+
+      wait{
+        time:r=0.1
+      }
+
+      wait{
+        time:r=0.6
+      }
+
+      unitWakeUp{
+        target:t="enemy_planes"
+      }
+
+      unitRestore{
+        ressurectIfDead:b=yes
+        fullRestore:b=yes
+        target_marking:i=0
+        target:t="player"
+        target:t="enemy_planes"
+        ammoRestore:b=yes
+      }
+
+      unitMoveTo{
+        target:t="player_spawn02"
+        follow_target:b=no
+        teleportHeightType:t="target"
+        useUnitHeightForTele:b=no
+        shouldKeepFormation:b=no
+        teleportHeightValue:r=0.0
+        horizontalDirectionForTeleport:b=yes
+        object_marking:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        fastClimb:b=no
+        destTimeMode:b=no
+        object:t="player"
+        move_type:t="teleport"
+        speed:r=250.0
+        lookat:t="orienting_point"
+        velocity:r=250.0
+      }
+
+      unitMoveTo{
+        target:t="enemy_spawn01"
+        follow_target:b=no
+        teleportHeightType:t="target"
+        useUnitHeightForTele:b=no
+        shouldKeepFormation:b=yes
+        teleportHeightValue:r=0.0
+        horizontalDirectionForTeleport:b=yes
+        object_marking:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        fastClimb:b=no
+        destTimeMode:b=no
+        object:t="enemy_planes"
+        move_type:t="teleport"
+        lookat:t="player_spawn02"
+        velocity:r=250.0
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=yes
+        object:t="enemy_planes"
+        target:t="player"
+        playerAttractedCount:i=1
+        playerAttractedEffRate:r=0.1
+      }
+
+      unitForceRearmSpeed{
+        rearmSpeedK:r=100000.0
+        target:t="player"
+      }
+
+      missionSetTimeSpeed{
+        speed:r=0.0
+        realtimeTriggers:b=yes
+      }
+
+      triggerEnable{
+        target:t="dialogue_turrets_p01"
+        target:t="gunner_initial_ps4_hint"
+        target:t="gunner_initial_ps4_hint_Thrustmaster"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  gunner_initial_ps4_hint{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playerWhenOptions{
+        isThrustmasterHotas4:b=no
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="gunner_initial_ps4_hint_Thrustmaster"
+      }
+
+      playerControls{
+        setStatus:t="enable"
+        control:t="ID_TACTICAL_MAP"
+        control:t="ID_TOGGLE_VIEW"
+        control:t="ID_CAMERA_GUNNER"
+        control:t="AXIS_AILERONS"
+        control:t="AXIS_ELEVATOR"
+        control:t="AXIS_RUDDER"
+        control:t="AXIS_THROTTLE"
+        control:t="AXIS_CAMX"
+        control:t="AXIS_CAMY"
+        control:t="AXIS_MOUSE_AIM_X"
+        control:t="AXIS_MOUSE_AIM_Y"
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorialB_gunner_view"
+        action:t="show"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        item:t="ID_TOGGLE_VIEW"
+        shouldBlink:b=no
+      }
+
+      triggerEnable{
+        target:t="gunner_gunner_view"
+        target:t="retry_gunner_hint"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  gunner_initial_ps4_hint_Thrustmaster{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      playerWhenOptions{
+        isThrustmasterHotas4:b=yes
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="gunner_initial_ps4_hint"
+      }
+
+      playerControls{
+        setStatus:t="enable"
+        control:t="ID_TACTICAL_MAP"
+        control:t="ID_TOGGLE_VIEW"
+        control:t="ID_CAMERA_GUNNER"
+        control:t="AXIS_AILERONS"
+        control:t="AXIS_ELEVATOR"
+        control:t="AXIS_RUDDER"
+        control:t="AXIS_THROTTLE"
+        control:t="AXIS_CAMX"
+        control:t="AXIS_CAMY"
+        control:t="AXIS_MOUSE_AIM_X"
+        control:t="AXIS_MOUSE_AIM_Y"
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorialB_gunner_view"
+        action:t="show"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        item:t="ID_TOGGLE_VIEW=2"
+        shouldBlink:b=no
+      }
+
+      triggerEnable{
+        target:t="gunner_gunner_view"
+        target:t="retry_gunner_hint"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  gunner_gunner_view{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.0
+      }
+    }
+
+    conditions{
+
+      playerWhenOptions{
+        currentView:t="gunner_cockpit"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="gunner_initial"
+        target:t="dialogue_turrets_p01"
+        target:t="dialogue_turrets_p02"
+      }
+
+      missionStopSpeech{
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorialB_gunner_view"
+        action:t="hideCur"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        item:t="ID_CAMERA_GUNNER"
+        shouldBlink:b=no
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorialB_gunner_fire"
+        action:t="show"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        item:t="pseudo_fire"
+        shouldBlink:b=no
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorialB_gunner_fire"
+        action:t="hideCur"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        item:t="ID_FIRE"
+        item:t="ID_FIRE_MGUNS"
+        item:t="fire"
+        shouldBlink:b=no
+      }
+
+      playerControls{
+        setStatus:t="enable"
+        control:t="ID_TACTICAL_MAP"
+        control:t="ID_FIRE"
+        control:t="ID_FIRE_MGUNS"
+        control:t="ID_FIRE_CANNONS"
+        control:t="ID_ZOOM"
+        control:t="ID_ZOOM_TOGGLE"
+        control:t="ID_TARGET_CAMERA"
+        control:t="AXIS_CAMX"
+        control:t="AXIS_CAMY"
+        control:t="AXIS_TURRET_X"
+        control:t="AXIS_TURRET_Y"
+        control:t="AXIS_ZOOM"
+        control:t="AXIS_FIRE"
+        control:t="AXIS_AILERONS"
+        control:t="AXIS_ELEVATOR"
+        control:t="AXIS_RUDDER"
+        control:t="AXIS_THROTTLE"
+        control:t="AXIS_MOUSE_AIM_X"
+        control:t="AXIS_MOUSE_AIM_Y"
+      }
+
+      missionSetTimeSpeed{
+        speed:r=1.0
+        realtimeTriggers:b=yes
+      }
+
+      moAddMissionObjective{
+        target:t="tutorialB_bomber_destroy_planes"
+        object_var_comp_op:t="equal"
+        object_var_name:t=""
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      wait{
+        time:r=3.0
+      }
+
+      triggerEnable{
+        target:t="mission_completed"
+        target:t="mission_timer"
+        target:t="mission_completed_fighters_far"
+        target:t="dialogue_turrets_p03"
+      }
+
+      unitSetIndication{
+        set:b=yes
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="enemy_planes"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  retry_gunner_hint{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ANY"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      varCompareInt{
+        var_value:t="timer"
+        value:i=60
+        comparasion_func:t="more"
+      }
+
+      varCompareInt{
+        var_value:t="timer_slow"
+        value:i=20
+        comparasion_func:t="more"
+      }
+
+      unitWhenStatus{
+        object_type:t="isUseless"
+        object_marking:i=0
+        check_objects:t="all"
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="player"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="bomb_initial"
+        target:t="bomb_view_enabled"
+        target:t="bomb_dropped"
+        target:t="bomb_hit_the_airfield"
+        target:t="gunner_initial"
+        target:t="retry_bomb_hint"
+        target:t="mission_timer"
+        target:t="mission_slow_timer"
+        target:t="gunner_gunner_view"
+        target:t="mission_completed"
+      }
+
+      triggerDisable{
+        target:t="dialogue_intro_p01"
+        target:t="dialogue_intro_p02"
+        target:t="dialogue_intro_p03"
+        target:t="dialogue_intro_p04"
+        target:t="dialogue_intro_p05"
+        target:t="dialogue_sight_p01"
+        target:t="dialogue_sight_p02"
+        target:t="dialogue_sight_p03"
+        target:t="dialogue_sight_p04"
+        target:t="dialogue_sight_p05"
+        target:t="dialogue_sight_p06"
+        target:t="dialogue_drop_bombs_p01"
+        target:t="dialogue_drop_bombs_p02"
+        target:t="dialogue_drop_bombs_p03"
+        target:t="dialogue_drop_bombs_p04"
+        target:t="dialogue_turrets_p01"
+        target:t="dialogue_turrets_p02"
+        target:t="dialogue_turrets_p03"
+        target:t="dialogue_turrets_p04"
+        target:t="dialogue_turrets_alt_p04"
+        target:t="dialogue_turrets_p05"
+      }
+
+      triggerDisable{
+        target:t="gunner_initial_ps4_hint"
+        target:t="gunner_initial_ps4_hint_Thrustmaster"
+        target:t="bomb_change_view_hint_Thrustmaster"
+      }
+
+      missionStopSpeech{
+      }
+
+      varSetInt{
+        value:i=0
+        var:t="timer"
+      }
+
+      varSetInt{
+        value:i=0
+        var:t="timer_slow"
+      }
+
+      playerControls{
+        setStatus:t="disable"
+        control:t="ALL"
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t=""
+        action:t="hideCur"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        shouldBlink:b=no
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorialB_retry"
+        action:t="show"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        shouldBlink:b=no
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorialB_retry"
+        action:t="hide"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        shouldBlink:b=no
+      }
+
+      missionSetTimeSpeed{
+        speed:r=1.0
+        realtimeTriggers:b=no
+      }
+
+      wait{
+        time:r=2.0
+      }
+
+      wait{
+        time:r=0.5
+      }
+
+      triggerEnable{
+        target:t="gunner_initial"
+        target:t="gunner_initial_ps4"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  mission_completed{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ANY"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenStatus{
+        object_type:t="isUseless"
+        object_marking:i=0
+        check_objects:t="all"
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="enemy_planes"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="bomb_initial"
+        target:t="bomb_safety_hint"
+        target:t="bomb_sight_hint"
+        target:t="bomb_change_view_hint"
+        target:t="bomb_bomb_view_hint"
+        target:t="bomb_view_enabled"
+        target:t="bomb_dropped"
+        target:t="bomb_cutscene"
+        target:t="bomb_hit_the_airfield"
+        target:t="retry_bomb_hint"
+        target:t="gunner_initial"
+        target:t="gunner_gunner_view"
+        target:t="retry_gunner_hint"
+        target:t="mission_timer"
+        target:t="bomb_return_tps"
+        target:t="bomb_counter_hint"
+        target:t="bomb_drop_all"
+        target:t="mission_completed_fighters_far"
+      }
+
+      triggerDisable{
+        target:t="dialogue_intro_p01"
+        target:t="dialogue_intro_p02"
+        target:t="dialogue_intro_p03"
+        target:t="dialogue_intro_p04"
+        target:t="dialogue_intro_p05"
+        target:t="dialogue_sight_p01"
+        target:t="dialogue_sight_p02"
+        target:t="dialogue_sight_p03"
+        target:t="dialogue_sight_p04"
+        target:t="dialogue_sight_p05"
+        target:t="dialogue_sight_p06"
+        target:t="dialogue_drop_bombs_p01"
+        target:t="dialogue_drop_bombs_p02"
+        target:t="dialogue_drop_bombs_p03"
+        target:t="dialogue_drop_bombs_p04"
+        target:t="dialogue_turrets_p01"
+        target:t="dialogue_turrets_p02"
+        target:t="dialogue_turrets_p03"
+        target:t="dialogue_turrets_p04"
+        target:t="dialogue_turrets_alt_p04"
+        target:t="dialogue_turrets_p05"
+      }
+
+      moSetObjectiveStatus{
+        target:t="tutorialB_bomber_destroy_planes"
+        status:i=2
+        object_var_comp_op:t="equal"
+        object_var_name:t=""
+      }
+
+      missionStopSpeech{
+      }
+
+      varSetInt{
+        value:i=0
+        var:t="timer"
+      }
+
+      wait{
+        time:r=0.5
+      }
+
+      triggerEnable{
+        target:t="dialogue_turrets_alt_p04"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  mission_completed_fighters_far{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ANY"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitDistanceBetween{
+        value:r=750.0
+        math:t="notNear3D"
+        object_type:t="isAlive"
+        object_marking:i=0
+        target_type:t="isAlive"
+        target_marking:i=0
+        check_objects:t="all"
+        check_targets:t="any"
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="player"
+        target:t="enemy_planes"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="bomb_initial"
+        target:t="bomb_safety_hint"
+        target:t="bomb_sight_hint"
+        target:t="bomb_change_view_hint"
+        target:t="bomb_bomb_view_hint"
+        target:t="bomb_view_enabled"
+        target:t="bomb_dropped"
+        target:t="bomb_cutscene"
+        target:t="bomb_hit_the_airfield"
+        target:t="retry_bomb_hint"
+        target:t="gunner_initial"
+        target:t="gunner_gunner_view"
+        target:t="retry_gunner_hint"
+        target:t="mission_timer"
+        target:t="bomb_return_tps"
+        target:t="bomb_counter_hint"
+        target:t="bomb_drop_all"
+        target:t="mission_completed"
+      }
+
+      triggerDisable{
+        target:t="dialogue_intro_p01"
+        target:t="dialogue_intro_p02"
+        target:t="dialogue_intro_p03"
+        target:t="dialogue_intro_p04"
+        target:t="dialogue_intro_p05"
+        target:t="dialogue_sight_p01"
+        target:t="dialogue_sight_p02"
+        target:t="dialogue_sight_p03"
+        target:t="dialogue_sight_p04"
+        target:t="dialogue_sight_p05"
+        target:t="dialogue_sight_p06"
+        target:t="dialogue_drop_bombs_p01"
+        target:t="dialogue_drop_bombs_p02"
+        target:t="dialogue_drop_bombs_p03"
+        target:t="dialogue_drop_bombs_p04"
+        target:t="dialogue_turrets_p01"
+        target:t="dialogue_turrets_p02"
+        target:t="dialogue_turrets_p03"
+        target:t="dialogue_turrets_p04"
+        target:t="dialogue_turrets_alt_p04"
+        target:t="dialogue_turrets_p05"
+      }
+
+      missionStopSpeech{
+      }
+
+      unitMoveTo{
+        target:t="retreat_point"
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=yes
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object_marking:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        fastClimb:b=no
+        destTimeMode:b=no
+        object:t="enemy_planes"
+      }
+
+      unitSetProperties{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="enemy_planes"
+        attack_type:t="hold_fire"
+      }
+
+      varSetInt{
+        value:i=0
+        var:t="timer"
+      }
+
+      wait{
+        time:r=2.0
+      }
+
+      wait{
+        time:r=0.5
+      }
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t="hints/tutorialB_enemy_retreat"
+        action:t="show"
+        shouldFadeOut:b=no
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        shouldBlink:b=no
+      }
+
+      moSetObjectiveStatus{
+        target:t="tutorialB_bomber_destroy_planes"
+        status:i=2
+        object_var_comp_op:t="equal"
+        object_var_name:t=""
+      }
+
+      triggerEnable{
+        target:t="dialogue_turrets_p04"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  mission_timer{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      varModify{
+        operator:t="add"
+        value:r=1.0
+        var:t="timer"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  mission_slow_timer{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.1
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      varModify{
+        operator:t="add"
+        value:r=1.0
+        var:t="timer_slow"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  forever_full_ammo{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=4.0
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      unitRestore{
+        ressurectIfDead:b=no
+        fullRestore:b=yes
+        target_marking:i=0
+        target:t="player"
+        ammoRestore:b=yes
+      }
+
+      playerOptions{
+        respawnBullets:b=yes
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  dialogue_intro_p01{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionPlayDialogue{
+        dialog:t="tutorialB_bomber_intro_p01"
+        subtitles:b=no
+      }
+
+      triggerEnable{
+        target:t="dialogue_intro_p02"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  dialogue_intro_p02{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionPlayDialogue{
+        dialog:t="tutorialB_bomber_intro_p02"
+        subtitles:b=no
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  dialogue_intro_p03{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionPlayDialogue{
+        dialog:t="tutorialB_bomber_intro_p03"
+        subtitles:b=no
+      }
+
+      triggerEnable{
+        target:t="dialogue_intro_p04"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  dialogue_intro_p04{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionPlayDialogue{
+        dialog:t="tutorialB_bomber_intro_p04"
+        subtitles:b=no
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  dialogue_intro_p05{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionPlayDialogue{
+        dialog:t="tutorialB_bomber_intro_p05"
+        subtitles:b=no
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  dialogue_sight_p01{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionPlayDialogue{
+        dialog:t="tutorialB_bomber_sight_p01"
+        subtitles:b=no
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  dialogue_sight_p02{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionPlayDialogue{
+        dialog:t="tutorialB_bomber_sight_p02"
+        subtitles:b=no
+      }
+
+      triggerEnable{
+        target:t="dialogue_sight_p03"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  dialogue_sight_p03{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionPlayDialogue{
+        dialog:t="tutorialB_bomber_sight_p03"
+        subtitles:b=no
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  dialogue_sight_p04{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionPlayDialogue{
+        dialog:t="tutorialB_bomber_sight_p04"
+        subtitles:b=no
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  dialogue_sight_p05{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionPlayDialogue{
+        dialog:t="tutorialB_bomber_sight_p05"
+        subtitles:b=no
+      }
+
+      triggerEnable{
+        target:t="dialogue_sight_p06"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  dialogue_sight_p06{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionPlayDialogue{
+        dialog:t="tutorialB_bomber_sight_p06"
+        subtitles:b=no
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  dialogue_drop_bombs_p01{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionPlayDialogue{
+        dialog:t="tutorialB_bomber_drop_bombs_p01"
+        subtitles:b=no
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  dialogue_drop_bombs_p02{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionPlayDialogue{
+        dialog:t="tutorialB_bomber_drop_bombs_p02"
+        subtitles:b=no
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  dialogue_drop_bombs_p03{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionPlayDialogue{
+        dialog:t="tutorialB_bomber_drop_bombs_p03"
+        subtitles:b=no
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  dialogue_drop_bombs_p04{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionPlayDialogue{
+        dialog:t="tutorialB_bomber_drop_bombs_p04"
+        subtitles:b=no
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  dialogue_turrets_p01{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionPlayDialogue{
+        dialog:t="tutorialB_bomber_turrets_p01"
+        subtitles:b=no
+      }
+
+      triggerEnable{
+        target:t="dialogue_turrets_p02"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  dialogue_turrets_p02{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionPlayDialogue{
+        dialog:t="tutorialB_bomber_turrets_p02"
+        subtitles:b=no
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  dialogue_turrets_p03{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionPlayDialogue{
+        dialog:t="tutorialB_bomber_turrets_p03"
+        subtitles:b=no
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  dialogue_turrets_p04{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      playHint{
+        hintType:t="tutorialHint"
+        name:t=""
+        action:t="hideCur"
+        shouldFadeOut:b=yes
+        time:r=-1.0
+        priority:i=0
+        isOverFade:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+      }
+
+      missionPlayDialogue{
+        dialog:t="tutorialB_bomber_turrets_p04"
+        subtitles:b=no
+      }
+
+      triggerEnable{
+        target:t="dialogue_turrets_p05"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  dialogue_turrets_alt_p04{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionPlayDialogue{
+        dialog:t="tutorialB_bomber_turrets_alt_p04"
+        subtitles:b=no
+      }
+
+      triggerEnable{
+        target:t="dialogue_turrets_p05"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  dialogue_turrets_p05{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionPlayDialogue{
+        dialog:t="tutorialB_bomber_turrets_p05"
+        subtitles:b=no
+      }
+
+      bigQueryAddRecord{
+        name:t="tutorialB_bomber"
+        params:t="task 4/4: player killed or escaped from the enemy planes and finished the tutorial"
+      }
+
+      missionCompleted{
+        timer:b=no
+        debriefingTimer:i=2
+      }
+    }
+
+    else_actions{
+    }
+  }
+}
+
+mission_objectives{
+  isCategory:b=yes
+  is_enabled:b=yes
+
+  tutorialB_bomber_destroy_airfield{
+    is_enabled:b=no
+    comments:t=""
+    type:t="abstractMissionObjective"
+
+    props{
+      isPrimary:b=yes
+      timeLimit:i=1800
+      scoreConst:i=100
+      scoreTime:i=400
+    }
+
+    onSuccess{
+    }
+
+    onFailed{
+    }
+  }
+
+  tutorialB_bomber_destroy_planes{
+    is_enabled:b=no
+    comments:t=""
+    type:t="abstractMissionObjective"
+
+    props{
+      isPrimary:b=yes
+      timeLimit:i=1800
+      scoreConst:i=100
+      scoreTime:i=400
+    }
+
+    onSuccess{
+    }
+
+    onFailed{
+    }
+  }
+}
+
+variables{
+  timer:i=0
+  timer_slow:i=0
+}
+
+dialogs{
+
+  tutorialB_bomber_intro_p01{
+
+    speech{
+      id:t="tutorialB_bomber_intro_p01"
+      speakerId:t=""
+
+      props{
+        time:r=1.0
+      }
+    }
+  }
+
+  tutorialB_bomber_intro_p02{
+
+    speech{
+      id:t="tutorialB_bomber_intro_p02"
+      speakerId:t=""
+
+      props{
+        time:r=1.0
+      }
+    }
+  }
+
+  tutorialB_bomber_intro_p03{
+
+    speech{
+      id:t="tutorialB_bomber_intro_p03"
+      speakerId:t=""
+
+      props{
+        time:r=1.0
+      }
+    }
+  }
+
+  tutorialB_bomber_intro_p04{
+
+    speech{
+      id:t="tutorialB_bomber_intro_p04"
+      speakerId:t=""
+
+      props{
+        time:r=1.0
+      }
+    }
+  }
+
+  tutorialB_bomber_intro_p05{
+
+    speech{
+      id:t="tutorialB_bomber_intro_p05"
+      speakerId:t=""
+
+      props{
+        time:r=1.0
+      }
+    }
+  }
+
+  tutorialB_bomber_sight_p01{
+
+    speech{
+      id:t="tutorialB_bomber_sight_p01"
+      speakerId:t=""
+
+      props{
+        time:r=1.0
+      }
+    }
+  }
+
+  tutorialB_bomber_sight_p02{
+
+    speech{
+      id:t="tutorialB_bomber_sight_p02"
+      speakerId:t=""
+
+      props{
+        time:r=1.0
+      }
+    }
+  }
+
+  tutorialB_bomber_sight_p03{
+
+    speech{
+      id:t="tutorialB_bomber_sight_p03"
+      speakerId:t=""
+
+      props{
+        time:r=1.0
+      }
+    }
+  }
+
+  tutorialB_bomber_sight_p04{
+
+    speech{
+      id:t="tutorialB_bomber_sight_p04"
+      speakerId:t=""
+
+      props{
+        time:r=1.0
+      }
+    }
+  }
+
+  tutorialB_bomber_sight_p05{
+
+    speech{
+      id:t="tutorialB_bomber_sight_p05"
+      speakerId:t=""
+
+      props{
+        time:r=1.0
+      }
+    }
+  }
+
+  tutorialB_bomber_sight_p06{
+
+    speech{
+      id:t="tutorialB_bomber_sight_p06"
+      speakerId:t=""
+
+      props{
+        time:r=1.0
+      }
+    }
+  }
+
+  tutorialB_bomber_drop_bombs_p01{
+
+    speech{
+      id:t="tutorialB_bomber_drop_bombs_p01"
+      speakerId:t=""
+
+      props{
+        time:r=1.0
+      }
+    }
+  }
+
+  tutorialB_bomber_drop_bombs_p02{
+
+    speech{
+      id:t="tutorialB_bomber_drop_bombs_p02"
+      speakerId:t=""
+
+      props{
+        time:r=1.0
+      }
+    }
+  }
+
+  tutorialB_bomber_drop_bombs_p03{
+
+    speech{
+      id:t="tutorialB_bomber_drop_bombs_p03"
+      speakerId:t=""
+
+      props{
+        time:r=1.0
+      }
+    }
+  }
+
+  tutorialB_bomber_drop_bombs_p04{
+
+    speech{
+      id:t="tutorialB_bomber_drop_bombs_p04"
+      speakerId:t=""
+
+      props{
+        time:r=1.0
+      }
+    }
+  }
+
+  tutorialB_bomber_turrets_p01{
+
+    speech{
+      id:t="tutorialB_bomber_turrets_p01"
+      speakerId:t=""
+
+      props{
+        time:r=1.0
+      }
+    }
+  }
+
+  tutorialB_bomber_turrets_p02{
+
+    speech{
+      id:t="tutorialB_bomber_turrets_p02"
+      speakerId:t=""
+
+      props{
+        time:r=1.0
+      }
+    }
+  }
+
+  tutorialB_bomber_turrets_p03{
+
+    speech{
+      id:t="tutorialB_bomber_turrets_p03"
+      speakerId:t=""
+
+      props{
+        time:r=1.0
+      }
+    }
+  }
+
+  tutorialB_bomber_turrets_p04{
+
+    speech{
+      id:t="tutorialB_bomber_turrets_p04"
+      speakerId:t=""
+
+      props{
+        time:r=1.0
+      }
+    }
+  }
+
+  tutorialB_bomber_turrets_alt_p04{
+
+    speech{
+      id:t="tutorialB_bomber_turrets_alt_p04"
+      speakerId:t=""
+
+      props{
+        time:r=1.0
+      }
+    }
+  }
+
+  tutorialB_bomber_turrets_p05{
+
+    speech{
+      id:t="tutorialB_bomber_turrets_p05"
+      speakerId:t=""
+
+      props{
+        time:r=1.0
+      }
+    }
+  }
+}
+
+airfields{
+}
+
+effects{
+}
+
+units{
+
+  armada{
+    name:t="player"
+    tm:m=[[-0.984807, 0.0, -0.173649] [0.0, 1.0, 0.0] [0.173649, 0.0, -0.984807] [-8640.97, 3823.35, 4605.0]]
+    unit_class:t="tu-2"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="tu-2_9xfab100"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+
+    props{
+      army:i=1
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      uniqueName:t=""
+      speed:r=400.0
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="enemy_planes"
+    tm:m=[[-0.906308, 0.0, -0.422617] [0.0, 1.0, 0.0] [0.422617, 0.0, -0.906308] [-6221.97, 503.2, 1956.71]]
+    unit_class:t="he_112b_2"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+
+    props{
+      army:i=2
+      count:i=2
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      uniqueName:t=""
+      numInWing:i=2
+
+      plane{
+        wing_formation:t="Line"
+        row_distances:r=6.0
+        col_distances:r=6.0
+        super_formation:t="Diamond"
+        super_row_distances:r=3.0
+        super_col_distances:r=3.0
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="crowd_enemy_plane00"
+    tm:m=[[0.573576, 0.0, -0.819152] [0.0, 1.0, 0.0] [0.819152, 0.0, 0.573576] [-12185.8, 127.85, 2053.6]]
+    unit_class:t="he-111h-6"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      uniqueName:t=""
+      aiEnabled:b=no
+      targetableByAi:b=no
+      speed:r=0.0
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="crowd_enemy_plane01"
+    tm:m=[[0.939693, 0.0, -0.34202] [0.0, 1.0, 0.0] [0.34202, 0.0, 0.939693] [-12245.4, 129.55, 2022.05]]
+    unit_class:t="he-111h-6"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      uniqueName:t=""
+      aiEnabled:b=no
+      targetableByAi:b=no
+      speed:r=0.0
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="crowd_enemy_plane02"
+    tm:m=[[0.843391, 0.0, -0.5373] [0.0, 1.0, 0.0] [0.5373, 0.0, 0.843391] [-12212.0, 127.75, 2021.75]]
+    unit_class:t="he-111h-6"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      uniqueName:t=""
+      aiEnabled:b=no
+      targetableByAi:b=no
+      speed:r=0.0
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="crowd_enemy_plane03"
+    tm:m=[[0.67559, 0.0, -0.737277] [0.0, 1.0, 0.0] [0.737277, 0.0, 0.67559] [-12056.3, 127.75, 2134.1]]
+    unit_class:t="he-111h-6"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      uniqueName:t=""
+      aiEnabled:b=no
+      targetableByAi:b=no
+      speed:r=0.0
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="crowd_enemy_plane04"
+    tm:m=[[0.5373, 0.0, -0.843391] [0.0, 1.0, 0.0] [0.843391, 0.0, 0.5373] [-12028.9, 127.75, 2150.85]]
+    unit_class:t="he-111h-6"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      uniqueName:t=""
+      aiEnabled:b=no
+      targetableByAi:b=no
+      speed:r=0.0
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="crowd_enemy_plane05"
+    tm:m=[[0.5373, 0.0, -0.843391] [0.0, 1.0, 0.0] [0.843391, 0.0, 0.5373] [-11824.5, 127.75, 2300.85]]
+    unit_class:t="he-111h-6"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      uniqueName:t=""
+      aiEnabled:b=no
+      targetableByAi:b=no
+      speed:r=0.0
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="crowd_enemy_plane06"
+    tm:m=[[0.5373, 0.0, -0.843391] [0.0, 1.0, 0.0] [0.843391, 0.0, 0.5373] [-11582.0, 127.75, 2495.95]]
+    unit_class:t="he-111h-6"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      uniqueName:t=""
+      aiEnabled:b=no
+      targetableByAi:b=no
+      speed:r=0.0
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="crowd_enemy_plane07"
+    tm:m=[[0.5373, 0.0, -0.843391] [0.0, 1.0, 0.0] [0.843391, 0.0, 0.5373] [-11548.4, 127.75, 2503.35]]
+    unit_class:t="he-111h-6"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      uniqueName:t=""
+      aiEnabled:b=no
+      targetableByAi:b=no
+      speed:r=0.0
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="crowd_enemy_plane08"
+    tm:m=[[-0.737277, 0.0, -0.67559] [0.0, 1.0, 0.0] [0.67559, 0.0, -0.737277] [-11422.5, 127.75, 2402.9]]
+    unit_class:t="he-111h-6"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      uniqueName:t=""
+      aiEnabled:b=no
+      targetableByAi:b=no
+      speed:r=0.0
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="crowd_enemy_plane09"
+    tm:m=[[-0.737277, 0.0, -0.67559] [0.0, 1.0, 0.0] [0.67559, 0.0, -0.737277] [-11440.3, 127.75, 2432.55]]
+    unit_class:t="he-111h-6"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      uniqueName:t=""
+      aiEnabled:b=no
+      targetableByAi:b=no
+      speed:r=0.0
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="crowd_enemy_plane10"
+    tm:m=[[-0.737277, 0.0, -0.67559] [0.0, 1.0, 0.0] [0.67559, 0.0, -0.737277] [-11388.1, 127.75, 2426.65]]
+    unit_class:t="he-111h-6"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      uniqueName:t=""
+      aiEnabled:b=no
+      targetableByAi:b=no
+      speed:r=0.0
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="crowd_enemy_plane11"
+    tm:m=[[-0.737277, 0.0, -0.67559] [0.0, 1.0, 0.0] [0.67559, 0.0, -0.737277] [-11411.4, 127.75, 2455.15]]
+    unit_class:t="he-111h-6"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      uniqueName:t=""
+      aiEnabled:b=no
+      targetableByAi:b=no
+      speed:r=0.0
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="crowd_enemy_plane12"
+    tm:m=[[-0.382683, 0.0, -0.92388] [0.0, 1.0, 0.0] [0.92388, 0.0, -0.382683] [-11430.0, 127.75, 2493.65]]
+    unit_class:t="he-111h-6"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      uniqueName:t=""
+      aiEnabled:b=no
+      targetableByAi:b=no
+      speed:r=0.0
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="damagable_place01"
+    tm:m=[[-0.843392, 0.0, -0.537299] [0.0, 1.0, 0.0] [0.537299, 0.0, -0.843392] [-11930.5, 158.559, 2163.13]]
+    unit_class:t="dummy_airfield"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="damagable_place02"
+    tm:m=[[-0.843392, 0.0, -0.537299] [0.0, 1.0, 0.0] [0.537299, 0.0, -0.843392] [-11483.8, 158.559, 2477.28]]
+    unit_class:t="dummy_airfield"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  squad{
+    name:t="enemies_squad"
+    tm:m=[[-0.906308, 0.0, -0.422617] [0.0, 1.0, 0.0] [0.422617, 0.0, -0.906308] [-6875.67, 94.8005, 3843.63]]
+
+    props{
+      object_marking:i=0
+      squad_members:t="enemy_planes"
+    }
+  }
+
+  squad{
+    name:t="dummy_airfield"
+    tm:m=[[0.258819, 0.0, 0.965926] [0.0, 1.0, 0.0] [-0.965926, 0.0, 0.258819] [-12298.1, -75.3415, 3279.72]]
+
+    props{
+      object_marking:i=0
+      squad_members:t="damagable_place01"
+      squad_members:t="damagable_place02"
+    }
+  }
+
+  squad{
+    name:t="crowd_enemy_squad"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-11760.0, 179.55, 1772.5]]
+
+    props{
+      object_marking:i=0
+      squad_members:t="crowd_enemy_plane00"
+      squad_members:t="crowd_enemy_plane01"
+      squad_members:t="crowd_enemy_plane02"
+      squad_members:t="crowd_enemy_plane03"
+      squad_members:t="crowd_enemy_plane04"
+      squad_members:t="crowd_enemy_plane05"
+      squad_members:t="crowd_enemy_plane06"
+      squad_members:t="crowd_enemy_plane07"
+      squad_members:t="crowd_enemy_plane08"
+      squad_members:t="crowd_enemy_plane09"
+      squad_members:t="crowd_enemy_plane10"
+      squad_members:t="crowd_enemy_plane11"
+      squad_members:t="crowd_enemy_plane12"
+      squad_members:t="crowd_enemy_vehicles00"
+      squad_members:t="crowd_enemy_vehicles01"
+      squad_members:t="crowd_enemy_vehicles02"
+      squad_members:t="crowd_enemy_vehicles03"
+      squad_members:t="crowd_enemy_vehicles04"
+      squad_members:t="crowd_enemy_vehicles05"
+      squad_members:t="crowd_enemy_vehicles06"
+    }
+  }
+
+  wheeled_vehicles{
+    name:t="crowd_enemy_vehicles00"
+    tm:m=[[0.573576, 0.0, -0.819152] [0.0, 1.0, 0.0] [0.819152, 0.0, 0.573576] [-11692.7, 185.5, 2433.5]]
+    unit_class:t="germ_opelBlitz_fuel"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+
+    props{
+      army:i=2
+      count:i=4
+      formation_type:t="rows"
+      formation_div:i=1
+      formation_step:p2=5.0, 5.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="hold_fire"
+    }
+
+    way{
+    }
+  }
+
+  wheeled_vehicles{
+    name:t="crowd_enemy_vehicles01"
+    tm:m=[[0.573576, 0.0, -0.819152] [0.0, 1.0, 0.0] [0.819152, 0.0, 0.573576] [-11427.0, 185.5, 2610.25]]
+    unit_class:t="germ_opelBlitz_fuel"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+
+    props{
+      army:i=2
+      count:i=4
+      formation_type:t="rows"
+      formation_div:i=1
+      formation_step:p2=5.0, 5.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="hold_fire"
+    }
+
+    way{
+    }
+  }
+
+  wheeled_vehicles{
+    name:t="crowd_enemy_vehicles02"
+    tm:m=[[-0.608761, 0.0, 0.793353] [0.0, 1.0, 0.0] [-0.793353, 0.0, -0.608761] [-11481.5, 185.5, 2266.8]]
+    unit_class:t="germ_opelBlitz_med"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+
+    props{
+      army:i=2
+      count:i=3
+      formation_type:t="rows"
+      formation_div:i=1
+      formation_step:p2=5.0, 5.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="hold_fire"
+    }
+
+    way{
+    }
+  }
+
+  wheeled_vehicles{
+    name:t="crowd_enemy_vehicles03"
+    tm:m=[[0.608761, 0.0, -0.793354] [0.0, 1.0, 0.0] [0.793354, 0.0, 0.608761] [-11675.3, 185.5, 2419.65]]
+    unit_class:t="germ_opelBlitz_med"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+
+    props{
+      army:i=2
+      count:i=3
+      formation_type:t="rows"
+      formation_div:i=1
+      formation_step:p2=5.0, 5.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="hold_fire"
+    }
+
+    way{
+    }
+  }
+
+  wheeled_vehicles{
+    name:t="crowd_enemy_vehicles04"
+    tm:m=[[0.608761, 0.0, -0.793354] [0.0, 1.0, 0.0] [0.793354, 0.0, 0.608761] [-11984.3, 185.5, 2290.3]]
+    unit_class:t="germ_opelBlitz_med"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+
+    props{
+      army:i=2
+      count:i=3
+      formation_type:t="rows"
+      formation_div:i=1
+      formation_step:p2=5.0, 5.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="hold_fire"
+    }
+
+    way{
+    }
+  }
+
+  wheeled_vehicles{
+    name:t="crowd_enemy_vehicles05"
+    tm:m=[[0.608761, 0.0, -0.793354] [0.0, 1.0, 0.0] [0.793354, 0.0, 0.608761] [-12111.8, 185.5, 2273.85]]
+    unit_class:t="germ_horch"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+
+    props{
+      army:i=2
+      count:i=8
+      formation_type:t="rows"
+      formation_div:i=2
+      formation_step:p2=10.0, 5.0
+      formation_noise:p2=0.2, 0.3
+      uniqueName:t=""
+      attack_type:t="hold_fire"
+    }
+
+    way{
+    }
+  }
+
+  wheeled_vehicles{
+    name:t="crowd_enemy_vehicles06"
+    tm:m=[[-0.819152, 0.0, -0.573576] [0.0, 1.0, 0.0] [0.573576, 0.0, -0.819152] [-11578.3, 201.932, 2411.68]]
+    unit_class:t="germ_kubelwagen"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+
+    props{
+      army:i=2
+      count:i=2
+      formation_type:t="cols"
+      formation_div:i=1
+      formation_step:p2=5.0, 5.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="hold_fire"
+    }
+
+    way{
+
+      crowd_enemy_vehicles06_wp_01{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-11657.1, 199.964, 2344.85]]
+
+        props{
+          speed:r=300.0
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          tas:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      crowd_enemy_vehicles06_wp_02{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-11849.3, 200.206, 2197.4]]
+
+        props{
+          speed:r=300.0
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          tas:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      crowd_enemy_vehicles06_wp_03{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-11934.3, 200.206, 2136.8]]
+
+        props{
+          speed:r=300.0
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          tas:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      crowd_enemy_vehicles06_wp_04{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-12151.2, 200.206, 1974.65]]
+
+        props{
+          speed:r=300.0
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          tas:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      crowd_enemy_vehicles06_wp_05{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-12206.3, 200.206, 1962.3]]
+
+        props{
+          speed:r=300.0
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          tas:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      crowd_enemy_vehicles06_wp_06{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-12266.1, 185.5, 2001.85]]
+
+        props{
+          speed:r=300.0
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          tas:b=no
+          canUsePathFinder:b=no
+        }
+      }
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_01"
+    tm:m=[[-0.808693, 0.0, -0.588232] [0.0, 1.0, 0.0] [0.588232, 0.0, -0.808693] [-11845.1, 192.264, 2184.64]]
+    unit_class:t="dynAF_sicily_ally"
+    objLayer:i=2
+
+    props{
+      army:i=2
+      active:b=yes
+    }
+  }
+}
+
+areas{
+
+  player_spawn01{
+    type:t="Sphere"
+    tm:m=[[218.485, 0.0, -284.735] [0.0, 358.9, 0.0] [284.735, 0.0, 218.485] [-9395.8, 3823.35, 4140.1]]
+
+    props{
+      forceReplication:b=yes
+    }
+  }
+
+  big_area{
+    type:t="Sphere"
+    tm:m=[[14484.7, 0.0, -18876.8] [0.0, 23793.7, 0.0] [18876.8, 0.0, 14484.7] [-9511.0, -82.7, 732.75]]
+
+    props{
+      forceReplication:b=yes
+    }
+  }
+
+  bombing_area{
+    type:t="Sphere"
+    tm:m=[[700.0, 0.0, -240.269] [0.0, 700.0, 0.0] [240.269, 0.0, 700.0] [-11744.2, 183.85, 2353.65]]
+
+    props{
+      forceReplication:b=yes
+    }
+  }
+
+  player_spawn02{
+    type:t="Sphere"
+    tm:m=[[218.485, 0.0, -284.735] [0.0, 358.9, 0.0] [284.735, 0.0, 218.485] [-12566.2, 3823.35, -1604.2]]
+
+    props{
+      forceReplication:b=yes
+    }
+  }
+
+  enemy_spawn01{
+    type:t="Sphere"
+    tm:m=[[218.485, 0.0, -284.735] [0.0, 358.9, 0.0] [284.735, 0.0, 218.485] [-12400.5, 3823.35, -1480.13]]
+
+    props{
+      forceReplication:b=yes
+    }
+  }
+
+  orienting_point{
+    type:t="Sphere"
+    tm:m=[[218.485, 0.0, -284.735] [0.0, 358.9, 0.0] [284.735, 0.0, 218.485] [-14051.9, 3823.35, -2700.09]]
+
+    props{
+      forceReplication:b=yes
+    }
+  }
+
+  cutscene_area01{
+    type:t="Sphere"
+    tm:m=[[111.7, 0.0, 0.0] [0.0, 111.7, 0.0] [0.0, 0.0, 111.7] [-11625.3, 185.5, 2411.45]]
+
+    props{
+      forceReplication:b=yes
+    }
+  }
+
+  explosion00{
+    type:t="Sphere"
+    tm:m=[[100.0, 0.0, 0.0] [0.0, 100.0, 0.0] [0.0, 0.0, 100.0] [-11470.8, 185.5, 2605.9]]
+
+    props{
+      forceReplication:b=yes
+    }
+  }
+
+  explosion01{
+    type:t="Sphere"
+    tm:m=[[100.0, 0.0, 0.0] [0.0, 100.0, 0.0] [0.0, 0.0, 100.0] [-11447.4, 185.5, 2470.4]]
+
+    props{
+      forceReplication:b=yes
+    }
+  }
+
+  explosion02{
+    type:t="Sphere"
+    tm:m=[[100.0, 0.0, 0.0] [0.0, 100.0, 0.0] [0.0, 0.0, 100.0] [-11433.0, 185.5, 2365.2]]
+
+    props{
+      forceReplication:b=yes
+    }
+  }
+
+  explosion03{
+    type:t="Sphere"
+    tm:m=[[100.0, 0.0, 0.0] [0.0, 100.0, 0.0] [0.0, 0.0, 100.0] [-11636.3, 185.5, 2447.55]]
+
+    props{
+      forceReplication:b=yes
+    }
+  }
+
+  explosion04{
+    type:t="Sphere"
+    tm:m=[[100.0, 0.0, 0.0] [0.0, 100.0, 0.0] [0.0, 0.0, 100.0] [-11644.5, 185.5, 2276.3]]
+
+    props{
+      forceReplication:b=yes
+    }
+  }
+
+  explosion05{
+    type:t="Sphere"
+    tm:m=[[100.0, 0.0, 0.0] [0.0, 100.0, 0.0] [0.0, 0.0, 100.0] [-11834.8, 185.5, 2367.25]]
+
+    props{
+      forceReplication:b=yes
+    }
+  }
+
+  explosion06{
+    type:t="Sphere"
+    tm:m=[[100.0, 0.0, 0.0] [0.0, 100.0, 0.0] [0.0, 0.0, 100.0] [-11890.7, 185.5, 2255.5]]
+
+    props{
+      forceReplication:b=yes
+    }
+  }
+
+  explosion07{
+    type:t="Sphere"
+    tm:m=[[100.0, 0.0, 0.0] [0.0, 100.0, 0.0] [0.0, 0.0, 100.0] [-11812.0, 185.5, 2146.3]]
+
+    props{
+      forceReplication:b=yes
+    }
+  }
+
+  explosion08{
+    type:t="Sphere"
+    tm:m=[[100.0, 0.0, 0.0] [0.0, 100.0, 0.0] [0.0, 0.0, 100.0] [-11979.8, 185.5, 2139.4]]
+
+    props{
+      forceReplication:b=yes
+    }
+  }
+
+  explosion09{
+    type:t="Sphere"
+    tm:m=[[100.0, 0.0, 0.0] [0.0, 100.0, 0.0] [0.0, 0.0, 100.0] [-11980.3, 185.5, 2031.6]]
+
+    props{
+      forceReplication:b=yes
+    }
+  }
+
+  explosion10{
+    type:t="Sphere"
+    tm:m=[[100.0, 0.0, 0.0] [0.0, 100.0, 0.0] [0.0, 0.0, 100.0] [-12160.4, 185.5, 2054.25]]
+
+    props{
+      forceReplication:b=yes
+    }
+  }
+
+  retreat_point{
+    type:t="Sphere"
+    tm:m=[[218.485, 0.0, -284.735] [0.0, 358.9, 0.0] [284.735, 0.0, 218.485] [-2695.8, 3823.35, 10543.8]]
+
+    props{
+      forceReplication:b=yes
+    }
+  }
+}
+
+objLayers{
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+}
+
+wayPoints{
+}

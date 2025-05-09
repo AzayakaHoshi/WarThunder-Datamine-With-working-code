@@ -1,0 +1,2808 @@
+selected_tag:t=""
+bin_dump_file:t=""
+
+mission_settings{
+
+  player{
+    army:i=1
+    wing:t="player"
+  }
+
+  player_teamB{
+    army:i=2
+  }
+
+  mission{
+    level:t="levels/britain.bin"
+    type:t="singleMission"
+    environment:t="Day"
+    weather:t="clear"
+    gt_cooperative:b=yes
+    restoreType:t="tactical control"
+    optionalTakeOff:b=no
+  }
+
+  atmosphere{
+    pressure:r=759.0
+    temperature:r=16.0
+  }
+
+  briefing{
+    place_loc:t=""
+    date_loc:t=""
+    objective_loc:t=""
+    music:t="action_01"
+
+    part{
+      event:t=""
+      minTime:i=0
+
+      slide{
+        map:b=yes
+        minTime:i=4
+        picture:t=""
+        showAirMap:b=no
+
+        arrow{
+          width:i=1
+          side:t="player"
+          point:t="player"
+          point:t="waypoint00"
+        }
+
+        arrow{
+          width:i=1
+          side:t="player"
+          point:t="waypoint00"
+          point:t="waypoint01"
+          point:t="waypoint01"
+        }
+
+        icon{
+          icontype:t="fighter"
+          side:t="player"
+          target:t="player"
+          lookAt:t="waypoint00"
+        }
+
+        icon{
+          icontype:t="building"
+          side:t="ally"
+          target:t="radar_icon"
+        }
+      }
+    }
+  }
+}
+
+imports{
+}
+
+triggers{
+  isCategory:b=yes
+  is_enabled:b=yes
+
+  waypoint00{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      initMission{
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t=""
+      }
+
+      unitLoadBehTree{
+        name:t="missionBomber"
+        objects:t="luftwaffe_bombers00"
+        objects:t="luftwaffe_bombers01"
+        objects:t="luftwaffe_bombers02"
+      }
+
+      unitLoadBehTree{
+        name:t="missionFighter"
+        objects:t="luftwaffe_fighters00"
+        objects:t="luftwaffe_fighters01"
+        objects:t="luftwaffe_fighters02"
+        objects:t="ally_planes"
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=yes
+        primary:b=yes
+        oriented:b=no
+        ignoreDifficulty:b=no
+        scale:r=1.0
+        target:t="waypoint00"
+      }
+
+      triggerEnable{
+        target:t="waypoint01"
+      }
+
+      unitSetProperties{
+        object:t="wave01"
+        object:t="wave02"
+        object:t="wave03"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+
+        plane{
+
+          targetDeviation{
+            trigger:t="machine gun"
+            defaultVal:r=0.7
+            limits:p2=0.1, 1.0
+          }
+
+          targetDeviation{
+            trigger:t="gunner"
+            defaultVal:r=0.7
+            limits:p2=0.1, 1.0
+          }
+        }
+      }
+
+      unitSetProperties{
+        object:t="radar_icon"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        isImmortal:b=yes
+      }
+
+      unitSetProperties{
+        object:t="air_def_squad"
+        object:t="ships_squad"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        effShootingRate:r=0.01
+        hasExhaust:b=no
+      }
+
+      unitPutToSleep{
+        target:t="wave01"
+        target:t="wave02"
+        target:t="wave03"
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      moAddMissionObjective{
+        target:t="single_britain_theHardestDay_fly00"
+      }
+
+      unitMoveTo{
+        object_marking:i=0
+        target:t="player"
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        follow_target:b=yes
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=yes
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        fastClimb:b=no
+        destTimeMode:b=no
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        object:t="ally_planes"
+        target_type:t="isActive"
+        follow_offset:p3=0.0, 250.0, 0.0
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        target_marking:i=0
+        object:t="ally_planes"
+        target:t="germany_planes"
+        fireRandom:b=yes
+        targetDistMax:r=4000.0
+        maxNumAttackersPerTarget:i=1
+        attackAltRange:p2=250.0, 7000.0
+        keepDeadUnitsInTargetList:b=yes
+        anchorTarget:t="player"
+        targetToAnchorDist:p2=3000.0, 4000.0
+        resetObjectToFollow:b=no
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  if_offline{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenStatus{
+        object_type:t="isOffline"
+        object_marking:i=0
+        check_objects:t="all"
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object:t="player"
+      }
+    }
+
+    actions{
+
+      unitSetProperties{
+        object:t="player"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        targetableByAi:b=no
+      }
+
+      unitSetProperties{
+        object:t="player_himself"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        targetableByAi:b=yes
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  waypoint01{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenInArea{
+        math:t="2D"
+        object_type:t="isAlive"
+        object_marking:i=0
+        check_objects:t="any"
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="player"
+        target:t="waypoint00"
+      }
+    }
+
+    actions{
+
+      comment{
+        value:t=""
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=no
+        primary:b=yes
+        oriented:b=no
+        ignoreDifficulty:b=no
+        scale:r=1.0
+        target:t="waypoint00"
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=yes
+        primary:b=yes
+        oriented:b=no
+        ignoreDifficulty:b=no
+        scale:r=1.0
+        target:t="waypoint01"
+      }
+
+      triggerEnable{
+        target:t="wave_arrival"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  wave_arrival{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitDistanceBetween{
+        value:r=2500.0
+        math:t="2D"
+        object_type:t="isAlive"
+        target_type:t="isAlive"
+        check_objects:t="any"
+        check_targets:t="any"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        target_marking:i=0
+        object:t="player"
+        target:t="waypoint01"
+      }
+    }
+
+    actions{
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t=""
+      }
+
+      missionMarkAsWaypoint{
+        visible:b=no
+        primary:b=yes
+        oriented:b=no
+        ignoreDifficulty:b=no
+        scale:r=1.0
+        target:t="waypoint01"
+      }
+
+      moSetObjectiveStatus{
+        target:t="single_britain_theHardestDay_fly00"
+        status:i=2
+        object_marking:i=0
+        object_var_comp_op:t="equal"
+        object_var_name:t=""
+      }
+
+      unitWakeUp{
+        target:t="wave01"
+      }
+
+      unitWakeUp{
+        target:t="wave02"
+      }
+
+      unitWakeUp{
+        target:t="wave03"
+      }
+
+      unitMoveTo{
+        target:t="radar_area"
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=yes
+        teleportHeightValue:r=1000.0
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        fastClimb:b=no
+        destTimeMode:b=no
+        horizontalDirectionForTeleport:b=yes
+        object:t="luftwaffe_bombers00"
+        speed:r=250.0
+      }
+
+      unitMoveTo{
+        object_marking:i=0
+        target:t="luftwaffe_bombers00"
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        follow_target:b=yes
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=yes
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        fastClimb:b=no
+        destTimeMode:b=no
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        object:t="luftwaffe_fighters00"
+        target_type:t="isActive"
+        follow_offset:p3=0.0, 250.0, 0.0
+      }
+
+      unitMoveTo{
+        target:t="radar_area"
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=yes
+        teleportHeightValue:r=1000.0
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        fastClimb:b=no
+        destTimeMode:b=no
+        horizontalDirectionForTeleport:b=yes
+        object:t="wave02"
+      }
+
+      unitMoveTo{
+        object_marking:i=0
+        target:t="luftwaffe_bombers01"
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        follow_target:b=yes
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=yes
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        fastClimb:b=no
+        destTimeMode:b=no
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        object:t="luftwaffe_fighters01"
+        target_type:t="isActive"
+        follow_offset:p3=0.0, 250.0, 0.0
+      }
+
+      unitMoveTo{
+        target:t="radar_area"
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=yes
+        teleportHeightValue:r=1000.0
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        fastClimb:b=no
+        destTimeMode:b=no
+        horizontalDirectionForTeleport:b=yes
+        object:t="wave03"
+      }
+
+      unitMoveTo{
+        object_marking:i=0
+        target:t="luftwaffe_bombers02"
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        follow_target:b=yes
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=yes
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        fastClimb:b=no
+        destTimeMode:b=no
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        object:t="luftwaffe_fighters02"
+        target_type:t="isActive"
+        follow_offset:p3=0.0, 250.0, 0.0
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        target_marking:i=0
+        object:t="luftwaffe_fighters00"
+        target:t="british_planes"
+        fireRandom:b=yes
+        targetDistMax:r=4000.0
+        maxNumAttackersPerTarget:i=1
+        attackAltRange:p2=250.0, 7000.0
+        keepDeadUnitsInTargetList:b=yes
+        anchorTarget:t="luftwaffe_bombers00"
+        targetToAnchorDist:p2=3000.0, 4000.0
+        resetObjectToFollow:b=no
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        target_marking:i=0
+        object:t="luftwaffe_fighters01"
+        target:t="british_planes"
+        fireRandom:b=yes
+        targetDistMax:r=4000.0
+        maxNumAttackersPerTarget:i=1
+        attackAltRange:p2=250.0, 7000.0
+        keepDeadUnitsInTargetList:b=yes
+        anchorTarget:t="luftwaffe_bombers01"
+        targetToAnchorDist:p2=3000.0, 4000.0
+        resetObjectToFollow:b=no
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        target_marking:i=0
+        object:t="luftwaffe_fighters02"
+        target:t="british_planes"
+        fireRandom:b=yes
+        targetDistMax:r=4000.0
+        maxNumAttackersPerTarget:i=1
+        attackAltRange:p2=250.0, 7000.0
+        keepDeadUnitsInTargetList:b=yes
+        anchorTarget:t="luftwaffe_bombers02"
+        targetToAnchorDist:p2=3000.0, 4000.0
+        resetObjectToFollow:b=no
+      }
+
+      unitSetIndication{
+        set:b=yes
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="luftwaffe_bombers00"
+      }
+
+      unitSetIndication{
+        set:b=yes
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="luftwaffe_bombers01"
+      }
+
+      unitSetIndication{
+        set:b=yes
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="luftwaffe_bombers02"
+      }
+
+      moAddMissionObjective{
+        target:t="single_britain_theHardestDay_att00"
+      }
+
+      moAddMissionObjective{
+        target:t="single_britain_theHardestDay_att01"
+      }
+
+      wait{
+        time:r=2.0
+      }
+
+      wait{
+        time:r=180.0
+      }
+
+      wait{
+        time:r=120.0
+      }
+
+      triggerEnable{
+        target:t="01wave_turn"
+        target:t="01fighters_go_away"
+      }
+
+      triggerEnable{
+        target:t="02wave_turn"
+        target:t="02fighters_go_away"
+      }
+
+      triggerEnable{
+        target:t="mission_completed02"
+        target:t="03wave_turn"
+        target:t="03fighters_go_away"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  01wave_turn{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isAlive"
+        object_marking:i=0
+        func:t="less"
+        value:i=8
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="luftwaffe_bombers00"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="01wave_bomb"
+      }
+
+      unitDropAmmo{
+        object:t="luftwaffe_bombers00"
+      }
+
+      unitMoveTo{
+        target:t="way_to_france"
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=yes
+        teleportHeightValue:r=1000.0
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        fastClimb:b=no
+        destTimeMode:b=no
+        horizontalDirectionForTeleport:b=yes
+        object:t="luftwaffe_bombers00"
+      }
+
+      unitSetIndication{
+        set:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="luftwaffe_bombers00"
+      }
+
+      varModify{
+        operator:t="add"
+        value:r=1.0
+        var:t="waves_turned"
+      }
+
+      varModify{
+        operator:t="add"
+        value:r=1.0
+        var:t="waves_gone"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  02wave_turn{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isAlive"
+        object_marking:i=0
+        func:t="less"
+        value:i=9
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="luftwaffe_bombers01"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="02wave_bomb"
+      }
+
+      unitDropAmmo{
+        object:t="luftwaffe_bombers01"
+      }
+
+      unitMoveTo{
+        target:t="way_to_france"
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=yes
+        teleportHeightValue:r=1000.0
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        fastClimb:b=no
+        destTimeMode:b=no
+        horizontalDirectionForTeleport:b=yes
+        object:t="luftwaffe_bombers01"
+      }
+
+      unitSetIndication{
+        set:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="luftwaffe_bombers01"
+      }
+
+      varModify{
+        operator:t="add"
+        value:r=1.0
+        var:t="waves_turned"
+      }
+
+      varModify{
+        operator:t="add"
+        value:r=1.0
+        var:t="waves_gone"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  03wave_turn{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isAlive"
+        object_marking:i=0
+        func:t="less"
+        value:i=9
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="luftwaffe_bombers02"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="03wave_bomb"
+      }
+
+      unitDropAmmo{
+        object:t="luftwaffe_bombers02"
+      }
+
+      unitMoveTo{
+        target:t="way_to_france"
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=yes
+        teleportHeightValue:r=1000.0
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        fastClimb:b=no
+        destTimeMode:b=no
+        horizontalDirectionForTeleport:b=yes
+        object:t="luftwaffe_bombers02"
+      }
+
+      unitSetIndication{
+        set:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="luftwaffe_bombers02"
+      }
+
+      varModify{
+        operator:t="add"
+        value:r=1.0
+        var:t="waves_turned"
+      }
+
+      varModify{
+        operator:t="add"
+        value:r=1.0
+        var:t="waves_gone"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  01wave_bomb{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenInArea{
+        math:t="3D"
+        object_type:t="isAlive"
+        object_marking:i=0
+        check_objects:t="any"
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="luftwaffe_bombers00"
+        target:t="radar_area"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="01wave_turn"
+      }
+
+      unitMoveTo{
+        target:t="way_to_france"
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=no
+        teleportHeightValue:r=1000.0
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        fastClimb:b=no
+        destTimeMode:b=no
+        horizontalDirectionForTeleport:b=yes
+        object:t="wave01"
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="luftwaffe_bombers00"
+        target:t="radar_icon"
+      }
+
+      unitSetIndication{
+        set:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="luftwaffe_bombers00"
+      }
+
+      varModify{
+        operator:t="add"
+        value:r=1.0
+        var:t="waves_gone"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  02wave_bomb{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenInArea{
+        math:t="3D"
+        object_type:t="isAlive"
+        object_marking:i=0
+        check_objects:t="any"
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="luftwaffe_bombers01"
+        target:t="radar_area"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="02wave_turn"
+      }
+
+      unitMoveTo{
+        target:t="way_to_france"
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=no
+        teleportHeightValue:r=1000.0
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        fastClimb:b=no
+        destTimeMode:b=no
+        horizontalDirectionForTeleport:b=yes
+        object:t="wave02"
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="luftwaffe_bombers01"
+        target:t="radar_icon"
+      }
+
+      unitSetIndication{
+        set:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="luftwaffe_bombers01"
+      }
+
+      varModify{
+        operator:t="add"
+        value:r=1.0
+        var:t="waves_gone"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  03wave_bomb{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenInArea{
+        math:t="3D"
+        object_type:t="isAlive"
+        object_marking:i=0
+        check_objects:t="any"
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object:t="luftwaffe_bombers02"
+        target:t="radar_area"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="03wave_turn"
+      }
+
+      unitMoveTo{
+        target:t="way_to_france"
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=no
+        teleportHeightValue:r=1000.0
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        fastClimb:b=no
+        destTimeMode:b=no
+        horizontalDirectionForTeleport:b=yes
+        object:t="wave03"
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="luftwaffe_bombers02"
+        target:t="radar_icon"
+      }
+
+      unitSetIndication{
+        set:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="luftwaffe_bombers02"
+      }
+
+      varModify{
+        operator:t="add"
+        value:r=1.0
+        var:t="waves_gone"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  mission_completed01{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      varCompareInt{
+        var_value:t="waves_turned"
+        value:i=1
+        comparasion_func:t="more"
+      }
+
+      varCompareInt{
+        var_value:t="waves_gone"
+        value:i=2
+        comparasion_func:t="more"
+      }
+
+      unitWhenStatus{
+        object_type:t="isAlive"
+        object_marking:i=0
+        check_objects:t="any"
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object:t="luftwaffe_bombers00"
+        object:t="luftwaffe_bombers01"
+        object:t="luftwaffe_bombers02"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="mission_failed"
+        target:t="mission_completed02"
+      }
+
+      moSetObjectiveStatus{
+        target:t="single_britain_theHardestDay_att00"
+        status:i=2
+        object_marking:i=0
+        object_var_comp_op:t="equal"
+        object_var_name:t=""
+      }
+
+      moSetObjectiveStatus{
+        target:t="single_britain_theHardestDay_att01"
+        status:i=3
+        object_marking:i=0
+        object_var_comp_op:t="equal"
+        object_var_name:t=""
+      }
+
+      unitSetIndication{
+        set:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="luftwaffe_bombers00"
+        target:t="luftwaffe_bombers01"
+        target:t="luftwaffe_bombers02"
+      }
+
+      wait{
+        time:r=2.0
+      }
+
+      missionCompleted{
+        timer:b=no
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  mission_completed02{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenStatus{
+        object_type:t="isKilled"
+        object_marking:i=0
+        check_objects:t="all"
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object:t="luftwaffe_bombers00"
+        object:t="luftwaffe_bombers01"
+        object:t="luftwaffe_bombers02"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="mission_failed"
+        target:t="mission_completed01"
+      }
+
+      moSetObjectiveStatus{
+        target:t="single_britain_theHardestDay_att00"
+        status:i=2
+        object_marking:i=0
+        object_var_comp_op:t="equal"
+        object_var_name:t=""
+      }
+
+      moSetObjectiveStatus{
+        target:t="single_britain_theHardestDay_att01"
+        status:i=2
+        object_marking:i=0
+        object_var_comp_op:t="equal"
+        object_var_name:t=""
+      }
+
+      unitSetIndication{
+        set:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="luftwaffe_bombers00"
+        target:t="luftwaffe_bombers01"
+        target:t="luftwaffe_bombers02"
+      }
+
+      wait{
+        time:r=2.0
+      }
+
+      missionCompleted{
+        timer:b=no
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  mission_failed{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      varCompareInt{
+        var_value:t="waves_gone"
+        value:i=2
+        comparasion_func:t="more"
+      }
+
+      varCompareInt{
+        var_value:t="waves_turned"
+        value:i=2
+        comparasion_func:t="less"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="mission_completed01"
+        target:t="mission_completed02"
+      }
+
+      moSetObjectiveStatus{
+        target:t="single_britain_theHardestDay_att00"
+        status:i=3
+        object_marking:i=0
+        object_var_comp_op:t="equal"
+        object_var_name:t=""
+      }
+
+      moSetObjectiveStatus{
+        target:t="single_britain_theHardestDay_att01"
+        status:i=3
+        object_marking:i=0
+        object_var_comp_op:t="equal"
+        object_var_name:t=""
+      }
+
+      unitSetIndication{
+        set:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="luftwaffe_bombers00"
+        target:t="luftwaffe_bombers01"
+        target:t="luftwaffe_bombers02"
+      }
+
+      wait{
+        time:r=2.0
+      }
+
+      missionFailed{
+        timer:b=no
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  01fighters_go_away{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      timeExpires{
+        time:r=300.0
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      unitSetProperties{
+        object:t="luftwaffe_fighters00"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        attack_type:t="hold_fire"
+      }
+
+      unitMoveTo{
+        target:t="way_to_france"
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=yes
+        teleportHeightValue:r=1000.0
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        fastClimb:b=no
+        destTimeMode:b=no
+        horizontalDirectionForTeleport:b=yes
+        object:t="luftwaffe_fighters00"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  02fighters_go_away{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      timeExpires{
+        time:r=300.0
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      unitSetProperties{
+        object:t="luftwaffe_fighters01"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        attack_type:t="hold_fire"
+      }
+
+      unitMoveTo{
+        target:t="way_to_france"
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=yes
+        teleportHeightValue:r=1000.0
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        fastClimb:b=no
+        destTimeMode:b=no
+        horizontalDirectionForTeleport:b=yes
+        object:t="luftwaffe_fighters01"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  03fighters_go_away{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      timeExpires{
+        time:r=300.0
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      unitSetProperties{
+        object:t="luftwaffe_fighters02"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        attack_type:t="hold_fire"
+      }
+
+      unitMoveTo{
+        target:t="way_to_france"
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=yes
+        teleportHeightValue:r=1000.0
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        fastClimb:b=no
+        destTimeMode:b=no
+        horizontalDirectionForTeleport:b=yes
+        object:t="luftwaffe_fighters02"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  00fighters_attack_player{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitDistanceBetween{
+        value:r=5000.0
+        math:t="2D"
+        object_type:t="isAlive"
+        target_type:t="isAlive"
+        check_objects:t="any"
+        check_targets:t="any"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        target_marking:i=0
+        object:t="luftwaffe_bombers00"
+        target:t="player"
+      }
+    }
+
+    actions{
+
+      unitAttackTarget{
+        playerAttracted:b=yes
+        object:t="luftwaffe_fighters00"
+        target:t="player"
+        playerAttractedCount:i=1
+        playerAttractedEffRate:r=0.1
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  01fighters_attack_player{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitDistanceBetween{
+        value:r=5000.0
+        math:t="2D"
+        object_type:t="isAlive"
+        target_type:t="isAlive"
+        check_objects:t="any"
+        check_targets:t="any"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        target_marking:i=0
+        object:t="luftwaffe_bombers01"
+        target:t="player"
+      }
+    }
+
+    actions{
+
+      unitAttackTarget{
+        playerAttracted:b=yes
+        object:t="luftwaffe_fighters01"
+        target:t="player"
+        playerAttractedCount:i=1
+        playerAttractedEffRate:r=0.1
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  02fighters_attack_player{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitDistanceBetween{
+        value:r=5000.0
+        math:t="2D"
+        object_type:t="isAlive"
+        target_type:t="isAlive"
+        check_objects:t="any"
+        check_targets:t="any"
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        target_marking:i=0
+        object:t="luftwaffe_bombers02"
+        target:t="player"
+      }
+    }
+
+    actions{
+
+      unitAttackTarget{
+        playerAttracted:b=yes
+        object:t="luftwaffe_fighters02"
+        target:t="player"
+        playerAttractedCount:i=1
+        playerAttractedEffRate:r=0.1
+      }
+    }
+
+    else_actions{
+    }
+  }
+}
+
+mission_objectives{
+  isCategory:b=yes
+  is_enabled:b=yes
+
+  single_britain_theHardestDay_fly00{
+    is_enabled:b=no
+    comments:t=""
+    type:t="abstractMissionObjective"
+
+    props{
+      isPrimary:b=yes
+      timeLimit:i=1800
+      scoreConst:i=100
+      scoreTime:i=400
+    }
+
+    onSuccess{
+    }
+
+    onFailed{
+    }
+  }
+
+  single_britain_theHardestDay_att00{
+    is_enabled:b=no
+    comments:t=""
+    type:t="abstractMissionObjective"
+
+    props{
+      isPrimary:b=yes
+      timeLimit:i=1800
+      scoreConst:i=100
+      scoreTime:i=400
+    }
+
+    onSuccess{
+    }
+
+    onFailed{
+    }
+  }
+
+  single_britain_theHardestDay_att01{
+    is_enabled:b=no
+    comments:t=""
+    type:t="abstractMissionObjective"
+
+    props{
+      isPrimary:b=no
+      timeLimit:i=1800
+      scoreConst:i=100
+      scoreTime:i=400
+    }
+
+    onSuccess{
+    }
+
+    onFailed{
+    }
+  }
+}
+
+variables{
+  waves_turned:i=0
+  waves_gone:i=0
+}
+
+dialogs{
+}
+
+airfields{
+}
+
+effects{
+}
+
+units{
+
+  armada{
+    name:t="player"
+    tm:m=[[-0.422802, 0.0, -0.906223] [0.0, 1.0, 0.0] [0.906223, 0.0, -0.422802] [35889.5, 2155.05, 2242.87]]
+    unit_class:t="spitfire_mk1"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="spitfire_mk1_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=1
+      count:i=4
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      player:b=yes
+      numInWing:i=4
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="luftwaffe_bombers00"
+    tm:m=[[-0.866026, 0.0, 0.5] [0.0, 1.0, 0.0] [-0.5, 0.0, -0.866026] [44243.7, 2155.05, -22413.3]]
+    unit_class:t="ju-87b-2"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="Ju87_B2_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=14
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=2
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="luftwaffe_bombers01"
+    tm:m=[[-0.382684, 0.0, 0.92388] [0.0, 1.0, 0.0] [-0.92388, 0.0, -0.382684] [40344.0, 3585.3, -29541.6]]
+    unit_class:t="ju-87b-2"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="Ju87_B2_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=12
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=2
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="luftwaffe_bombers02"
+    tm:m=[[-0.707107, 0.0, 0.707107] [0.0, 1.0, 0.0] [-0.707107, 0.0, -0.707107] [49083.9, 1530.4, -22341.7]]
+    unit_class:t="ju-87b-2"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="Ju87_B2_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=12
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=2
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="luftwaffe_fighters00"
+    tm:m=[[-0.866026, 0.0, 0.5] [0.0, 1.0, 0.0] [-0.5, 0.0, -0.866026] [45185.1, 2237.8, -22957.3]]
+    unit_class:t="bf-110c-4"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="Bf-110C-4_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=3
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=2
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="luftwaffe_fighters01"
+    tm:m=[[-0.642788, 0.0, 0.766045] [0.0, 1.0, 0.0] [-0.766045, 0.0, -0.642788] [40156.3, 2237.8, -31076.3]]
+    unit_class:t="bf-110c-4"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="Bf-110C-4_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=4
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=2
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="luftwaffe_fighters02"
+    tm:m=[[-0.819153, 0.0, 0.573576] [0.0, 1.0, 0.0] [-0.573576, 0.0, -0.819153] [49993.5, 2237.8, -23462.8]]
+    unit_class:t="bf-110c-4"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="Bf-110C-4_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=5
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=2
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="ally_planes"
+    tm:m=[[-0.215047, 0.0, -0.976604] [0.0, 1.0, 0.0] [0.976604, 0.0, -0.215047] [35973.4, 2155.06, 2486.29]]
+    unit_class:t="spitfire_mk1"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="spitfire_mk1_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=1
+      count:i=4
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=2
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="radar_icon"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [24062.9, 177.733, 481.25]]
+    unit_class:t="dummy"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=1
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="air_def05"
+    tm:m=[[0.866025, 0.0, -0.5] [0.0, 1.0, 0.0] [0.5, 0.0, 0.866025] [22301.1, 54.55, -1485.3]]
+    unit_class:t="uk_87mm_mkII"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=1
+      count:i=2
+      formation_type:t="cols"
+      formation_div:i=3
+      formation_step:p2=4.0, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="air_def06"
+    tm:m=[[0.422618, 0.0, -0.906308] [0.0, 1.0, 0.0] [0.906308, 0.0, 0.422618] [21046.4, 80.1, -2299.6]]
+    unit_class:t="uk_87mm_mkII"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=1
+      count:i=2
+      formation_type:t="cols"
+      formation_div:i=3
+      formation_step:p2=4.0, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="air_def07"
+    tm:m=[[0.422618, 0.0, -0.906308] [0.0, 1.0, 0.0] [0.906308, 0.0, 0.422618] [23533.7, 54.55, -870.45]]
+    unit_class:t="uk_87mm_mkII"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=1
+      count:i=2
+      formation_type:t="cols"
+      formation_div:i=3
+      formation_step:p2=4.0, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="air_def08"
+    tm:m=[[0.0871558, 0.0, -0.996195] [0.0, 1.0, 0.0] [0.996195, 0.0, 0.0871558] [24108.3, 176.8, 334.95]]
+    unit_class:t="uk_87mm_mkII"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=1
+      count:i=2
+      formation_type:t="cols"
+      formation_div:i=3
+      formation_step:p2=2.0, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  squad{
+    name:t="wave01"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [47369.9, -1.0, -22373.8]]
+
+    props{
+      squad_members:t="luftwaffe_bombers00"
+      squad_members:t="luftwaffe_fighters00"
+    }
+  }
+
+  squad{
+    name:t="wave02"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [40760.0, 50.6, -29510.4]]
+
+    props{
+      squad_members:t="luftwaffe_bombers01"
+      squad_members:t="luftwaffe_fighters01"
+    }
+  }
+
+  squad{
+    name:t="wave03"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [49291.2, -1.0, -25881.8]]
+
+    props{
+      squad_members:t="luftwaffe_bombers02"
+      squad_members:t="luftwaffe_fighters02"
+    }
+  }
+
+  squad{
+    name:t="player_himself"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [40888.0, -1.0, -10173.7]]
+
+    props{
+      squad_members:t="player"
+      object_type:t="isPlayer"
+    }
+  }
+
+  squad{
+    name:t="air_def_squad"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [24281.4, 152.1, 1270.5]]
+
+    props{
+      squad_members:t="air_def05"
+      squad_members:t="air_def06"
+      squad_members:t="air_def07"
+      squad_members:t="air_def08"
+    }
+  }
+
+  squad{
+    name:t="ships_squad"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [23745.1, 169.5, 1245.55]]
+
+    props{
+      squad_members:t="crowd_ship00"
+      squad_members:t="crowd_ship01"
+      squad_members:t="crowd_ship02"
+      squad_members:t="crowd_ship03"
+      squad_members:t="crowd_ship04"
+      squad_members:t="crowd_ship05"
+    }
+  }
+
+  squad{
+    name:t="british_planes"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [47405.1, 2155.06, -1898.61]]
+
+    props{
+      squad_members:t="player"
+      squad_members:t="ally_planes"
+    }
+  }
+
+  squad{
+    name:t="germany_planes"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [44834.4, 2330.69, -25298.8]]
+
+    props{
+      squad_members:t="luftwaffe_bombers01"
+      squad_members:t="luftwaffe_fighters01"
+      squad_members:t="luftwaffe_bombers00"
+      squad_members:t="luftwaffe_fighters00"
+      squad_members:t="luftwaffe_bombers02"
+      squad_members:t="luftwaffe_fighters02"
+    }
+  }
+
+  ships{
+    name:t="crowd_ship00"
+    tm:m=[[0.422618, 0.0, -0.906308] [0.0, 1.0, 0.0] [0.906308, 0.0, 0.422618] [23996.0, -1.0, -975.9]]
+    unit_class:t="hms_cargo_ship"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=1
+      count:i=3
+      formation_type:t="cols"
+      formation_div:i=3
+      formation_step:p2=3.0, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="crowd_ship01"
+    tm:m=[[0.866025, 0.0, -0.5] [0.0, 1.0, 0.0] [0.5, 0.0, 0.866025] [22816.4, -1.0, -1899.5]]
+    unit_class:t="hms_leander"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=1
+      count:i=1
+      formation_type:t="cols"
+      formation_div:i=3
+      formation_step:p2=3.0, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="crowd_ship02"
+    tm:m=[[0.737277, 0.0, -0.67559] [0.0, 1.0, 0.0] [0.67559, 0.0, 0.737277] [22918.4, -1.0, -1660.15]]
+    unit_class:t="uss_dd_georgetown"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=1
+      count:i=1
+      formation_type:t="cols"
+      formation_div:i=3
+      formation_step:p2=3.0, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="crowd_ship03"
+    tm:m=[[0.67559, 0.0, -0.737277] [0.0, 1.0, 0.0] [0.737277, 0.0, 0.67559] [22990.8, -1.0, -1585.1]]
+    unit_class:t="hms_cargo_ship"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=1
+      count:i=3
+      formation_type:t="cols"
+      formation_div:i=3
+      formation_step:p2=3.0, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="crowd_ship04"
+    tm:m=[[0.5, 0.0, -0.866025] [0.0, 1.0, 0.0] [0.866025, 0.0, 0.5] [23734.2, -400.3, -1041.15]]
+    unit_class:t="fishboat2"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=1
+      count:i=3
+      formation_type:t="cols"
+      formation_div:i=3
+      formation_step:p2=5.0, 3.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="crowd_ship05"
+    tm:m=[[0.5, 0.0, -0.866025] [0.0, 1.0, 0.0] [0.866025, 0.0, 0.5] [23075.7, -400.3, -1461.05]]
+    unit_class:t="fishboat2"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=1
+      count:i=3
+      formation_type:t="cols"
+      formation_div:i=3
+      formation_step:p2=5.0, 3.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  objectGroups{
+    name:t="objectGroups_01"
+    tm:m=[[-0.634727, 0.0, 0.772737] [0.0, 1.0, 0.0] [-0.772737, 0.0, -0.634727] [23545.5, 152.3, 2696.1]]
+    unit_class:t="dynaf_universal_1line_a"
+    objLayer:i=2
+
+    props{
+      army:i=1
+      active:b=yes
+    }
+  }
+}
+
+areas{
+
+  waypoint00{
+    type:t="Sphere"
+    tm:m=[[1500.0, 0.0, 0.0] [0.0, 1500.0, 0.0] [0.0, 0.0, 1500.0] [34573.8, 2155.1, -3365.17]]
+
+    props{
+    }
+  }
+
+  waypoint01{
+    type:t="Sphere"
+    tm:m=[[1500.0, 0.0, 0.0] [0.0, 1500.0, 0.0] [0.0, 0.0, 1500.0] [34735.8, 2155.1, -11071.0]]
+
+    props{
+    }
+  }
+
+  radar_area{
+    type:t="Sphere"
+    tm:m=[[7000.0, 0.0, 0.0] [0.0, 7000.0, 0.0] [0.0, 0.0, 7000.0] [24056.2, 2150.25, 491.5]]
+
+    props{
+    }
+  }
+
+  way_to_france{
+    type:t="Sphere"
+    tm:m=[[2194.0, 0.0, 0.0] [0.0, 2194.0, 0.0] [0.0, 0.0, 2194.0] [53220.4, 2762.75, -38549.7]]
+
+    props{
+    }
+  }
+}
+
+objLayers{
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+}
+
+wayPoints{
+}

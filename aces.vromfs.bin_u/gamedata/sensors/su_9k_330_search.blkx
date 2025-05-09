@@ -1,0 +1,456 @@
+type:t="radar"
+name:t="9K330 TA"
+launchedMissilesPredictedPositionsMax:i=2
+
+transivers{
+
+  search{
+    power:r=1500.0
+    band:i=5
+    rcs:r=5.0
+    range:r=27000.0
+    rangeMax:r=35000.0
+
+    antenna{
+
+      azimuth{
+        angleHalfSens:r=1.5
+        sideLobesSensitivity:r=-30.0
+      }
+
+      elevation{
+        angleHalfSens:r=12.0
+        sideLobesSensitivity:r=-30.0
+      }
+    }
+  }
+}
+
+scanPatterns{
+
+  searchNarrow{
+    type:t="cylinder"
+    azimuthLimits:p2=-180.0, 180.0
+    elevationLimits:p2=0.0, 12.0
+    yawStabLimit:r=180.0
+    pitchStabLimit:r=10.0
+    rollStabLimit:r=10.0
+    period:r=1.0
+    barHeight:r=12.0
+    barsCount:i=1
+    rowMajor:b=yes
+    centerElevation:r=6.0
+    preciseMinor:b=yes
+  }
+
+  searchMedium{
+    type:t="cylinder"
+    azimuthLimits:p2=-180.0, 180.0
+    elevationLimits:p2=0.0, 32.0
+    yawStabLimit:r=180.0
+    pitchStabLimit:r=10.0
+    rollStabLimit:r=10.0
+    period:r=3.0
+    barHeight:r=10.65
+    barsCount:i=3
+    rowMajor:b=yes
+    centerElevation:r=16.0
+    preciseMinor:b=yes
+  }
+
+  searchWide{
+    type:t="cylinder"
+    azimuthLimits:p2=-180.0, 180.0
+    elevationLimits:p2=0.0, 64.0
+    yawStabLimit:r=180.0
+    pitchStabLimit:r=10.0
+    rollStabLimit:r=10.0
+    period:r=6.0
+    barHeight:r=10.65
+    barsCount:i=6
+    rowMajor:b=yes
+    centerElevation:r=32.0
+    preciseMinor:b=yes
+  }
+}
+
+scanPatternSets{
+
+  search{
+    scanPattern1:t="searchMedium"
+    scanPattern2:t="searchWide"
+    scanPattern3:t="searchNarrow"
+  }
+}
+
+signals{
+
+  search{
+    groundClutter:b=no
+    friendFoeId:b=yes
+    absDopplerSpeed:b=yes
+
+    distance{
+      presents:b=yes
+      minValue:r=500.0
+      maxValue:r=35000.0
+    }
+
+    dopplerSpeed{
+      presents:b=yes
+      minValue:r=10.0
+      maxValue:r=1000.0
+      signalWidthMin:r=5.0
+      width:r=0.0
+    }
+  }
+}
+
+scopeRangeSets{
+
+  search{
+    range1:r=10000.0
+    range2:r=30000.0
+  }
+}
+
+fsms{
+
+  main{
+    stateInit:t="init"
+
+    actionsTemplates{
+
+      init{
+
+        setEnabled{
+          value:b=no
+        }
+
+        setCenterAzimuth{
+          source:t="constant"
+          value:r=0.0
+        }
+
+        setCenterElevation{
+          source:t="constant"
+          value:r=0.0
+        }
+
+        setCenterElevation{
+          source:t="constant"
+          value:r=-3.5
+        }
+
+        setScanPatternSet{
+          scanPatternSet:t="search"
+        }
+
+        setScopeRangeSet{
+          scopeRangeSet:t="search"
+        }
+
+        setTransiver{
+          transiver:t="search"
+        }
+
+        setSignal{
+          signal:t="search"
+        }
+
+        setTargetDesignationRange{
+          azimuthRange:p2=-30.0, 30.0
+          azimuthWidth:r=4.0
+          elevationRange:p2=0.0, 60.0
+          elevationWidth:r=4.0
+          distanceRange:p2=0.0, 30000.0
+          distanceRelWidthMin:r=0.05
+        }
+      }
+
+      setStandbyMode{
+
+        setModeName{
+          name:t="standby"
+        }
+
+        setEnabled{
+          value:b=no
+        }
+      }
+
+      resetStandbyMode{
+      }
+
+      setSearchMode{
+
+        setModeName{
+          name:t="search"
+        }
+
+        setEnabled{
+          value:b=yes
+        }
+
+        setFsmActive{
+          fsm:t="search"
+          active:b=yes
+        }
+
+        setCueEnabled{
+          value:b=yes
+        }
+
+        setScanDirectionPhase{
+          azimuth:r=180.0
+          elevation:r=0.0
+        }
+      }
+
+      resetSearchMode{
+
+        clearTargets{
+        }
+
+        setFsmActive{
+          fsm:t="search"
+          active:b=no
+        }
+
+        setCueEnabled{
+          value:b=no
+        }
+      }
+    }
+
+    transitions{
+
+      init{
+        stateFrom:t="init"
+        event:t="init"
+        stateTo:t="standby"
+
+        actions{
+
+          init{
+          }
+
+          setStandbyMode{
+          }
+        }
+      }
+
+      switchOn{
+        stateFrom:t="standby"
+        command:t="switch"
+        event:t="enable"
+        stateTo:t="search"
+
+        actions{
+
+          setSearchMode{
+          }
+        }
+      }
+
+      switchScanPattern{
+        stateFrom:t="standby"
+        stateFrom:t="search"
+        command:t="scanPatternSwitch"
+
+        actions{
+
+          setNextScanPattern{
+          }
+        }
+      }
+
+      switchScopeRange{
+        command:t="rangeSwitch"
+
+        actions{
+
+          setNextScopeRange{
+          }
+        }
+      }
+
+      switchingOff{
+        stateFrom:t="search"
+        command:t="switch"
+        event:t="disable"
+        stateTo:t="antennaParking"
+
+        actions{
+
+          setFsmActive{
+            fsm:t="parkAntenna"
+            active:b=yes
+          }
+        }
+      }
+
+      switchOff{
+        stateFrom:t="antennaParking"
+        event:t="inScanDirectionPhase"
+        stateTo:t="standby"
+
+        actions{
+
+          setFsmActive{
+            fsm:t="parkAntenna"
+            active:b=no
+          }
+
+          setScanDirectionPhase{
+            azimuth:r=180.0
+            elevation:r=0.0
+          }
+
+          setStandbyMode{
+          }
+        }
+      }
+    }
+  }
+
+  search{
+    stateInit:t="search"
+
+    transitions{
+
+      scan{
+        event:t="update"
+
+        actions{
+
+          scan{
+          }
+        }
+      }
+
+      detect{
+        event:t="targetInSight"
+
+        actions{
+
+          setDistGatePos{
+            source:t="continuousScale"
+            width:r=0.0
+          }
+
+          setRelSpeedGatePos{
+            source:t="continuousScale"
+            width:r=0.0
+          }
+
+          detectTarget{
+          }
+        }
+      }
+
+      addTarget{
+        event:t="targetDetected"
+
+        actions{
+
+          addTarget{
+          }
+
+          updateActiveDetectedTarget{
+          }
+        }
+      }
+
+      switchSelectedTarget{
+        command:t="switchTarget"
+
+        actions{
+
+          setNextDetectedTargetActive{
+          }
+        }
+      }
+
+      setCueAzimuth{
+        command:t="cueAxisX"
+
+        actions{
+
+          setCueAzimuth{
+          }
+        }
+      }
+
+      setCueDist{
+        command:t="cueAxisY"
+
+        actions{
+
+          setCueDist{
+          }
+        }
+      }
+
+      setCueElevation{
+        command:t="cueAxisZ"
+
+        actions{
+
+          setCueElevation{
+          }
+        }
+      }
+
+      setSelectedTarget{
+        command:t="switchToTarget"
+
+        actions{
+
+          setDetectedTargetActive{
+          }
+        }
+      }
+
+      designateTarget{
+        command:t="selectTarget"
+
+        actions{
+
+          designateActiveDetectedTarget{
+            type:i=0
+            sensorIndex:i=1
+          }
+
+          designateTargetUnderCue{
+            type:i=0
+            sensorIndex:i=1
+          }
+        }
+      }
+    }
+  }
+
+  parkAntenna{
+    stateInit:t="init"
+
+    transitions{
+
+      checkAntennaParked{
+        event:t="update"
+
+        actions{
+
+          checkInScanDirectionPhase{
+            azimuth:r=180.0
+            elevation:r=0.0
+          }
+        }
+      }
+    }
+  }
+}
+
+hideInAvailableModeNameIds{
+  mode:t="standby"
+}

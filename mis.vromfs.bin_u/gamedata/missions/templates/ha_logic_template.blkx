@@ -1,0 +1,1241 @@
+selected_tag:t=""
+bin_dump_file:t=""
+
+mission_settings{
+
+  player{
+    army:i=1
+    wing:t=""
+  }
+
+  player_teamB{
+    army:i=2
+  }
+
+  mission{
+    type:t="singleMission"
+    level:t="levels/water.bin"
+    restoreType:t="attempts"
+    optionalTakeOff:b=no
+    environment:t="Day"
+    weather:t="hazy"
+  }
+
+  spectator_points{
+  }
+}
+
+imports{
+}
+
+triggers{
+  isCategory:b=yes
+  is_enabled:b=yes
+
+  ha_init{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      initMission{
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      triggerEnable{
+        target:t="ha_t1_generate_rotator"
+        target:t="ha_t2_generate_rotator"
+      }
+
+      triggerEnable{
+        target:t="ha_t1_repair_restart"
+        target:t="ha_t2_repair_restart"
+      }
+
+      wait{
+        time:r=20.0
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  ha_t1_generate_rotator{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.1
+      }
+    }
+
+    conditions{
+
+      varCompareInt{
+        var_value:t="ha_t1_area_generate_idx"
+        value:i=0
+        comparasion_func:t="less"
+        var_value_other:t="ha_max_zones_count"
+      }
+    }
+
+    actions{
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t=""
+      }
+
+      varModify{
+        operator:t="add"
+        value:r=1.0
+        var:t="ha_t1_area_generate_idx"
+      }
+
+      varSetString{
+        value:t="t1_camp_area_"
+        var:t="ha_t1_area_generate_name"
+      }
+
+      varAddString{
+        value:t="@ha_t1_area_generate_idx"
+        digits:i=2
+        var:t="ha_t1_area_generate_name"
+      }
+
+      triggerEnable{
+        target:t="ha_t1_generate_check_name"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  ha_t1_generate_check_name{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.1
+      }
+    }
+
+    conditions{
+
+      objectExists{
+        target:t="@ha_t1_area_generate_name"
+        type:t="area"
+      }
+    }
+
+    actions{
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t=""
+      }
+
+      missionSetBombingArea{
+        army:i=1
+        target:t="@ha_t1_area_generate_name"
+        hp:r=10000.0
+        hpFire:r=100.0
+        fireSpeed:r=1.0
+      }
+
+      triggerEnable{
+        target:t="ha_t1_generate_rotator"
+      }
+    }
+
+    else_actions{
+
+      triggerEnable{
+        target:t="ha_t1_generate_rotator"
+      }
+    }
+  }
+
+  ha_t2_generate_rotator{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.1
+      }
+    }
+
+    conditions{
+
+      varCompareInt{
+        var_value:t="ha_t2_area_generate_idx"
+        value:i=0
+        comparasion_func:t="less"
+        var_value_other:t="ha_max_zones_count"
+      }
+    }
+
+    actions{
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t=""
+      }
+
+      varModify{
+        operator:t="add"
+        value:r=1.0
+        var:t="ha_t2_area_generate_idx"
+      }
+
+      varSetString{
+        value:t="t2_camp_area_"
+        var:t="ha_t2_area_generate_name"
+      }
+
+      varAddString{
+        value:t="@ha_t2_area_generate_idx"
+        digits:i=2
+        var:t="ha_t2_area_generate_name"
+      }
+
+      triggerEnable{
+        target:t="ha_t2_generate_check_name"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  ha_t2_generate_check_name{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.1
+      }
+    }
+
+    conditions{
+
+      objectExists{
+        target:t="@ha_t2_area_generate_name"
+        type:t="area"
+      }
+    }
+
+    actions{
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t=""
+      }
+
+      missionSetBombingArea{
+        army:i=2
+        target:t="@ha_t2_area_generate_name"
+        hp:r=10000.0
+        hpFire:r=100.0
+        fireSpeed:r=1.0
+      }
+
+      triggerEnable{
+        target:t="ha_t2_generate_rotator"
+      }
+    }
+
+    else_actions{
+
+      triggerEnable{
+        target:t="ha_t2_generate_rotator"
+      }
+    }
+  }
+
+  ha_t1_repair_restart{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.1
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      varSetInt{
+        value:i=0
+        var:t="ha_t1_area_repair_idx"
+      }
+
+      comment{
+        value:t=""
+      }
+
+      triggerEnable{
+        target:t="ha_t1_repair_rotator"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  ha_t1_repair_rotator{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.1
+      }
+    }
+
+    conditions{
+
+      varCompareInt{
+        var_value:t="ha_t1_area_repair_idx"
+        value:i=0
+        comparasion_func:t="less"
+        var_value_other:t="ha_max_zones_count"
+      }
+    }
+
+    actions{
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t=""
+      }
+
+      varModify{
+        operator:t="add"
+        value:r=1.0
+        var:t="ha_t1_area_repair_idx"
+      }
+
+      varSetString{
+        value:t="t1_camp_area_"
+        var:t="ha_t1_area_repair_name"
+      }
+
+      varAddString{
+        value:t="@ha_t1_area_repair_idx"
+        digits:i=2
+        var:t="ha_t1_area_repair_name"
+      }
+
+      triggerEnable{
+        target:t="ha_t1_repair_check_name"
+      }
+    }
+
+    else_actions{
+
+      triggerEnable{
+        target:t="ha_t1_repair_restart"
+      }
+    }
+  }
+
+  ha_t1_repair_check_name{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      objectExists{
+        target:t="@ha_t1_area_repair_name"
+        type:t="area"
+      }
+    }
+
+    actions{
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t=""
+      }
+
+      missionGetBombingAreaHP{
+        target:t="@ha_t1_area_repair_name"
+        input_var:t="ht_t1_area_repair_cur_hp"
+      }
+
+      triggerEnable{
+        target:t="ha_t1_repair_check_hp"
+      }
+    }
+
+    else_actions{
+
+      triggerEnable{
+        target:t="ha_t1_repair_rotator"
+      }
+    }
+  }
+
+  ha_t1_repair_check_hp{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      varCompareReal{
+        var_value:t="ht_t1_area_repair_cur_hp"
+        value:r=0.0
+        comparasion_func:t="less"
+        var_value_other:t="ht_area_max_hp"
+      }
+
+      varCompareReal{
+        var_value:t="ht_t1_area_repair_cur_hp"
+        value:r=0.0
+        comparasion_func:t="more"
+      }
+    }
+
+    actions{
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t=""
+      }
+
+      missionBombingAreaDamage{
+        target:t="@ha_t1_area_repair_name"
+        damageHP:r=-100.0
+      }
+
+      triggerEnable{
+        target:t="ha_t1_repair_rotator"
+      }
+    }
+
+    else_actions{
+
+      triggerEnable{
+        target:t="ha_t1_repair_rotator"
+      }
+    }
+  }
+
+  ha_t2_repair_restart{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.1
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      varSetInt{
+        value:i=0
+        var:t="ha_t2_area_repair_idx"
+      }
+
+      comment{
+        value:t=""
+      }
+
+      triggerEnable{
+        target:t="ha_t2_repair_rotator"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  ha_t2_repair_rotator{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.1
+      }
+    }
+
+    conditions{
+
+      varCompareInt{
+        var_value:t="ha_t2_area_repair_idx"
+        value:i=0
+        comparasion_func:t="less"
+        var_value_other:t="ha_max_zones_count"
+      }
+    }
+
+    actions{
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t=""
+      }
+
+      varModify{
+        operator:t="add"
+        value:r=1.0
+        var:t="ha_t2_area_repair_idx"
+      }
+
+      varSetString{
+        value:t="t2_camp_area_"
+        var:t="ha_t2_area_repair_name"
+      }
+
+      varAddString{
+        value:t="@ha_t2_area_repair_idx"
+        digits:i=2
+        var:t="ha_t2_area_repair_name"
+      }
+
+      triggerEnable{
+        target:t="ha_t2_repair_check_name"
+      }
+    }
+
+    else_actions{
+
+      triggerEnable{
+        target:t="ha_t2_repair_restart"
+      }
+    }
+  }
+
+  ha_t2_repair_check_name{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      objectExists{
+        target:t="@ha_t2_area_repair_name"
+        type:t="area"
+      }
+    }
+
+    actions{
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t=""
+      }
+
+      missionGetBombingAreaHP{
+        target:t="@ha_t2_area_repair_name"
+        input_var:t="ht_t2_area_repair_cur_hp"
+      }
+
+      triggerEnable{
+        target:t="ha_t2_repair_check_hp"
+      }
+    }
+
+    else_actions{
+
+      triggerEnable{
+        target:t="ha_t2_repair_rotator"
+      }
+    }
+  }
+
+  ha_t2_repair_check_hp{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      varCompareReal{
+        var_value:t="ht_t2_area_repair_cur_hp"
+        value:r=0.0
+        comparasion_func:t="less"
+        var_value_other:t="ht_area_max_hp"
+      }
+
+      varCompareReal{
+        var_value:t="ht_t2_area_repair_cur_hp"
+        value:r=0.0
+        comparasion_func:t="more"
+      }
+    }
+
+    actions{
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t=""
+      }
+
+      missionBombingAreaDamage{
+        target:t="@ha_t2_area_repair_name"
+        damageHP:r=-100.0
+      }
+
+      triggerEnable{
+        target:t="ha_t2_repair_rotator"
+      }
+    }
+
+    else_actions{
+
+      triggerEnable{
+        target:t="ha_t2_repair_rotator"
+      }
+    }
+  }
+
+  ha_t1_check_restart{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.1
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      varSetInt{
+        value:i=0
+        var:t="ha_t1_area_check_idx"
+      }
+
+      comment{
+        value:t=""
+      }
+
+      triggerEnable{
+        target:t="ha_t1_check_rotator"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  ha_t1_check_rotator{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.1
+      }
+    }
+
+    conditions{
+
+      varCompareInt{
+        var_value:t="ha_t1_area_check_idx"
+        value:i=0
+        comparasion_func:t="less"
+        var_value_other:t="ha_max_zones_count"
+      }
+    }
+
+    actions{
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t=""
+      }
+
+      varModify{
+        operator:t="add"
+        value:r=1.0
+        var:t="ha_t1_area_check_idx"
+      }
+
+      varSetString{
+        value:t="t1_camp_area_"
+        var:t="ha_t1_area_check_name"
+      }
+
+      varSetString{
+        value:t="t1_camp_area_"
+        var:t="ht_t1_check_status_var"
+      }
+
+      varAddString{
+        value:t="@ha_t1_area_repair_idx"
+        digits:i=2
+        var:t="ha_t1_area_check_name"
+      }
+
+      varAddString{
+        value:t="@ha_t1_area_repair_idx"
+        digits:i=2
+        var:t="ht_t1_check_status_var"
+      }
+
+      varAddString{
+        value:t="_destroyed"
+        digits:i=0
+        var:t="ht_t1_check_status_var"
+      }
+
+      triggerEnable{
+        target:t="ha_t1_check_name"
+      }
+    }
+
+    else_actions{
+
+      triggerEnable{
+        target:t="ha_t1_check_restart"
+      }
+    }
+  }
+
+  ha_t1_check_name{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      objectExists{
+        target:t="@ha_t1_area_check_name"
+        type:t="area"
+      }
+
+      varCompareInt{
+        var_value:t="@ht_t1_check_status_var"
+        value:i=0
+        comparasion_func:t="equal"
+      }
+    }
+
+    actions{
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t=""
+      }
+
+      varSetInt{
+        value:i=1
+        var:t="@ht_t1_check_status_var"
+      }
+
+      gameMPChangeScore{
+        value:i=-34
+        valueSystem:t="percentage"
+        team:t="A"
+      }
+
+      triggerEnable{
+        target:t="ha_t1_check_rotator"
+      }
+    }
+
+    else_actions{
+
+      triggerEnable{
+        target:t="ha_t1_check_rotator"
+      }
+    }
+  }
+
+  ha_t2_check_restart{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.1
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      varSetInt{
+        value:i=0
+        var:t="ha_t2_area_check_idx"
+      }
+
+      comment{
+        value:t=""
+      }
+
+      triggerEnable{
+        target:t="ha_t2_check_rotator"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  ha_t2_check_rotator{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.1
+      }
+    }
+
+    conditions{
+
+      varCompareInt{
+        var_value:t="ha_t2_area_check_idx"
+        value:i=0
+        comparasion_func:t="less"
+        var_value_other:t="ha_max_zones_count"
+      }
+    }
+
+    actions{
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t=""
+      }
+
+      varModify{
+        operator:t="add"
+        value:r=1.0
+        var:t="ha_t2_area_check_idx"
+      }
+
+      varSetString{
+        value:t="t2_camp_area_"
+        var:t="ha_t2_area_check_name"
+      }
+
+      varSetString{
+        value:t="t2_camp_area_"
+        var:t="ht_t2_check_status_var"
+      }
+
+      varAddString{
+        value:t="@ha_t2_area_repair_idx"
+        digits:i=2
+        var:t="ha_t2_area_check_name"
+      }
+
+      varAddString{
+        value:t="@ha_t2_area_repair_idx"
+        digits:i=2
+        var:t="ht_t2_check_status_var"
+      }
+
+      varAddString{
+        value:t="_destroyed"
+        digits:i=0
+        var:t="ht_t2_check_status_var"
+      }
+
+      triggerEnable{
+        target:t="ha_t2_check_name"
+      }
+    }
+
+    else_actions{
+
+      triggerEnable{
+        target:t="ha_t2_check_restart"
+      }
+    }
+  }
+
+  ha_t2_check_name{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      objectExists{
+        target:t="@ha_t2_area_check_name"
+        type:t="area"
+      }
+
+      varCompareInt{
+        var_value:t="@ht_t2_check_status_var"
+        value:i=0
+        comparasion_func:t="equal"
+      }
+    }
+
+    actions{
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t=""
+      }
+
+      comment{
+        value:t=""
+      }
+
+      varSetInt{
+        value:i=1
+        var:t="@ht_t2_check_status_var"
+      }
+
+      gameMPChangeScore{
+        value:i=-34
+        valueSystem:t="percentage"
+        team:t="B"
+      }
+
+      triggerEnable{
+        target:t="ha_t2_check_rotator"
+      }
+    }
+
+    else_actions{
+
+      triggerEnable{
+        target:t="ha_t2_check_rotator"
+      }
+    }
+  }
+}
+
+mission_objectives{
+  isCategory:b=yes
+  is_enabled:b=yes
+}
+
+variables{
+  ha_t1_area_generate_name:t=""
+  ha_t2_area_generate_name:t=""
+  ha_t1_area_generate_idx:i=0
+  ha_t2_area_generate_idx:i=0
+  ha_max_zones_count:i=3
+  ha_t1_area_check_idx:i=0
+  ha_t2_area_check_idx:i=0
+  ha_t1_area_check_name:t=""
+  ha_t2_area_check_name:t=""
+  ha_t1_area_repair_idx:i=0
+  ha_t2_area_repair_idx:i=0
+  ha_t1_area_repair_name:t=""
+  ha_t2_area_repair_name:t=""
+  ht_t1_area_repair_cur_hp:r=0.0
+  ht_t2_area_repair_cur_hp:r=0.0
+  ht_area_max_hp:r=9900.0
+  t1_area_01_destroyed:i=0
+  t1_area_02_destroyed:i=0
+  t1_area_03_destroyed:i=0
+  t2_area_01_destroyed:i=0
+  t2_area_02_destroyed:i=0
+  t2_area_03_destroyed:i=0
+  ht_t1_check_status_var:t=""
+  ht_t2_check_status_var:t=""
+}
+
+dialogs{
+}
+
+airfields{
+}
+
+effects{
+}
+
+units{
+}
+
+areas{
+}
+
+objLayers{
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+}
+
+wayPoints{
+}

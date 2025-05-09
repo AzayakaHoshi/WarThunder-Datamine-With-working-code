@@ -1,0 +1,5811 @@
+selected_tag:t=""
+bin_dump_file:t=""
+
+mission_settings{
+
+  player{
+    army:i=1
+    wing:t="player_ship"
+  }
+
+  player_teamB{
+    army:i=2
+  }
+
+  mission{
+    type:t="benchmark"
+    level:t="levels/avn_norway_islands.bin"
+    environment:t="12"
+    weather:t="cloudy"
+    reqFeature:t="ShipBenchmarkAccess"
+    restoreType:t="attempts"
+    optionalTakeOff:b=no
+    forceSkiesInitialRandomSeed:b=yes
+    skiesInitialRandomSeed:i=15
+  }
+
+  spectator_points{
+  }
+}
+
+imports{
+}
+
+triggers{
+  isCategory:b=yes
+  is_enabled:b=yes
+
+  initial01{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      initMission{
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      unitPutToSleep{
+        target:t="teamA_avia_squad"
+        target:t="teamB_avia_squad"
+      }
+
+      unitSetProperties{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="teamA_avia_squad"
+        object:t="teamB_avia_squad"
+        attack_type:t="hold_fire"
+        effShootingRate:r=0.0
+        aiGunnersEnabled:b=no
+        aiEnabled:b=no
+      }
+
+      unitSetProperties{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="all_units_squad"
+        attack_type:t="attack_target"
+        accuracy:r=1.0
+        maxDeviationAngle:r=0.0
+        checkVisibilityTarget:b=no
+        effShootingRate:r=0.0
+        speed:r=25.0
+        lockSpeed:b=yes
+        enableShipCollisionAvoidance:b=no
+
+        controls{
+
+          targetDeviation{
+            trigger:t="machine gun"
+            defaultVal:r=0.0
+            limits:p2=0.0, 0.0
+          }
+
+          targetDeviation{
+            trigger:t="cannon"
+            defaultVal:r=0.0
+            limits:p2=0.0, 0.0
+          }
+        }
+      }
+
+      missionSetTimeSpeed{
+        speed:r=0.0
+        realtimeTriggers:b=yes
+      }
+
+      missionSetTimeSpeed{
+        speed:r=1.0
+        realtimeTriggers:b=yes
+      }
+
+      unitPlayEffect{
+        effect_type:t="specify"
+        effect:t="ship_smoke_big"
+        offset:p3=0.0, 0.0, 0.0
+        show:b=yes
+        attach:b=no
+        scale:r=1.0
+        loopSpawn:b=yes
+        delay:p2=1.0, 1.0
+        target:t="smoke02"
+        target:t="smoke04"
+        radiusOffset:p2=0.0, 0.0
+      }
+
+      unitPlayEffect{
+        effect_type:t="specify"
+        effect:t="land_crash_smoke"
+        offset:p3=0.0, 0.0, 0.0
+        show:b=yes
+        attach:b=no
+        scale:r=1.0
+        loopSpawn:b=yes
+        delay:p2=1.0, 1.0
+        target:t="smoke06"
+        target:t="smoke09"
+        radiusOffset:p2=0.0, 0.0
+      }
+
+      unitPlayEffect{
+        effect_type:t="specify"
+        effect:t="land_crash_smoke"
+        offset:p3=0.0, 0.0, 0.0
+        show:b=yes
+        attach:b=no
+        scale:r=1.0
+        loopSpawn:b=yes
+        delay:p2=1.0, 1.0
+        target:t="smoke07"
+        radiusOffset:p2=0.0, 0.0
+      }
+
+      unitPlayEffect{
+        effect_type:t="specify"
+        effect:t="ship_smoke_big"
+        offset:p3=0.0, 0.0, 0.0
+        show:b=yes
+        attach:b=no
+        scale:r=1.0
+        loopSpawn:b=yes
+        delay:p2=1.0, 1.0
+        target:t="smoke03"
+        radiusOffset:p2=0.0, 0.0
+      }
+
+      unitPlayEffect{
+        effect_type:t="specify"
+        effect:t="ship_smoke_big"
+        offset:p3=0.0, 0.0, 0.0
+        show:b=yes
+        attach:b=no
+        scale:r=1.0
+        loopSpawn:b=yes
+        delay:p2=1.0, 1.0
+        target:t="smoke01"
+        target:t="smoke05"
+        radiusOffset:p2=0.0, 0.0
+      }
+
+      unitPlayEffect{
+        effect_type:t="specify"
+        effect:t="land_crash_fire"
+        offset:p3=0.0, 0.0, 0.0
+        show:b=yes
+        attach:b=no
+        scale:r=1.0
+        loopSpawn:b=yes
+        delay:p2=1.0, 1.0
+        target:t="smoke08"
+        radiusOffset:p2=0.0, 0.0
+      }
+
+      missionForceUpdate{
+        target_type:t="isAlive"
+        dt:r=0.05
+        timeToUpdate:r=3.0
+        target:t="teamA_avia04"
+      }
+
+      missionForceUpdate{
+        target_type:t="isAlive"
+        dt:r=0.05
+        timeToUpdate:r=10.0
+        target:t="teamA_units"
+        target:t="teamB_units"
+        target:t="teamA_avia04"
+      }
+
+      triggerEnable{
+        target:t="cutscenes01"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  initial01_debug{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      initMission{
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      unitPutToSleep{
+        target:t="teamA_avia_squad"
+        target:t="teamB_avia_squad"
+      }
+
+      unitSetProperties{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="teamA_avia_squad"
+        object:t="teamB_avia_squad"
+        attack_type:t="hold_fire"
+        aiEnabled:b=no
+      }
+
+      unitSetProperties{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="all_units_squad"
+        attack_type:t="dont_aim"
+        checkVisibilityTarget:b=no
+        speed:r=25.0
+        lockSpeed:b=yes
+        enableShipCollisionAvoidance:b=no
+      }
+
+      missionSetTimeSpeed{
+        speed:r=0.0
+        realtimeTriggers:b=yes
+      }
+
+      missionSetTimeSpeed{
+        speed:r=1.0
+        realtimeTriggers:b=yes
+      }
+
+      unitPlayEffect{
+        effect_type:t="specify"
+        effect:t="ship_smoke_big"
+        offset:p3=0.0, 0.0, 0.0
+        show:b=yes
+        attach:b=no
+        scale:r=1.0
+        loopSpawn:b=yes
+        delay:p2=1.0, 1.0
+        target:t="smoke02"
+        target:t="smoke04"
+        radiusOffset:p2=0.0, 0.0
+      }
+
+      unitPlayEffect{
+        effect_type:t="specify"
+        effect:t="land_crash_smoke"
+        offset:p3=0.0, 0.0, 0.0
+        show:b=yes
+        attach:b=no
+        scale:r=1.0
+        loopSpawn:b=yes
+        delay:p2=1.0, 1.0
+        target:t="smoke06"
+        target:t="smoke09"
+        radiusOffset:p2=0.0, 0.0
+      }
+
+      unitPlayEffect{
+        effect_type:t="specify"
+        effect:t="land_crash_smoke"
+        offset:p3=0.0, 0.0, 0.0
+        show:b=yes
+        attach:b=no
+        scale:r=1.0
+        loopSpawn:b=yes
+        delay:p2=1.0, 1.0
+        target:t="smoke07"
+        radiusOffset:p2=0.0, 0.0
+      }
+
+      unitPlayEffect{
+        effect_type:t="specify"
+        effect:t="ship_smoke_big"
+        offset:p3=0.0, 0.0, 0.0
+        show:b=yes
+        attach:b=no
+        scale:r=1.0
+        loopSpawn:b=yes
+        delay:p2=1.0, 1.0
+        target:t="smoke03"
+        radiusOffset:p2=0.0, 0.0
+      }
+
+      unitPlayEffect{
+        effect_type:t="specify"
+        effect:t="ship_smoke_big"
+        offset:p3=0.0, 0.0, 0.0
+        show:b=yes
+        attach:b=no
+        scale:r=1.0
+        loopSpawn:b=yes
+        delay:p2=1.0, 1.0
+        target:t="smoke01"
+        target:t="smoke05"
+        radiusOffset:p2=0.0, 0.0
+      }
+
+      unitPlayEffect{
+        effect_type:t="specify"
+        effect:t="land_crash_fire"
+        offset:p3=0.0, 0.0, 0.0
+        show:b=yes
+        attach:b=no
+        scale:r=1.0
+        loopSpawn:b=yes
+        delay:p2=1.0, 1.0
+        target:t="smoke08"
+        radiusOffset:p2=0.0, 0.0
+      }
+
+      missionForceUpdate{
+        target_type:t="isAlive"
+        dt:r=0.05
+        timeToUpdate:r=3.0
+        target:t="teamA_avia04"
+      }
+
+      missionForceUpdate{
+        target_type:t="isAlive"
+        dt:r=0.05
+        timeToUpdate:r=10.0
+        target:t="teamA_units"
+        target:t="teamB_units"
+        target:t="teamA_avia04"
+      }
+
+      missionForceUpdate{
+        target_type:t="isAlive"
+        dt:r=0.05
+        timeToUpdate:r=30.0
+        target:t="scene03"
+      }
+
+      triggerEnable{
+        target:t="cutscenes04"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  cutscenes01{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.0
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      unitWakeUp{
+        target:t="teamA_avia01"
+        target:t="teamA_avia02"
+      }
+
+      unitSetProperties{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="avia_group01"
+        object:t="avia_group02"
+        object:t="teamB_avia04"
+        ignoreCollisions:b=yes
+        aiEnabled:b=yes
+
+        plane{
+
+          targetDeviation{
+            trigger:t="machine gun"
+            defaultVal:r=0.0
+            limits:p2=0.0, 0.0
+          }
+
+          targetDeviation{
+            trigger:t="cannon"
+            defaultVal:r=0.0
+            limits:p2=0.0, 0.0
+          }
+
+          targetDeviation{
+            trigger:t="rockets"
+            defaultVal:r=0.0
+            limits:p2=0.0, 0.0
+          }
+        }
+      }
+
+      unitSetProperties{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="teamA_ship_05"
+
+        controls{
+
+          weaponTriggers{
+            trigger:t="gunner0"
+            set:b=yes
+          }
+        }
+      }
+
+      unitSetProperties{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="teamA_ship_03"
+
+        controls{
+
+          weaponTriggers{
+            trigger:t="gunner0"
+            set:b=yes
+          }
+        }
+      }
+
+      unitSetProperties{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="teamB_ship_03"
+
+        controls{
+
+          weaponTriggers{
+            trigger:t="gunner0"
+            set:b=yes
+          }
+        }
+      }
+
+      unitSetProperties{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="teamB_ship_07"
+
+        controls{
+
+          weaponTriggers{
+            trigger:t="gunner0"
+            set:b=yes
+          }
+        }
+      }
+
+      unitSetProperties{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="teamA_ship_08"
+
+        controls{
+
+          weaponTriggers{
+            trigger:t="gunner0"
+            set:b=yes
+          }
+        }
+      }
+
+      unitSetProperties{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="teamB_ship_04"
+
+        controls{
+
+          weaponTriggers{
+            trigger:t="gunner0"
+            set:b=yes
+          }
+        }
+      }
+
+      unitSetProperties{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="teamA_ship_04"
+        object:t="teamB_destroyer01"
+
+        controls{
+
+          weaponTriggers{
+            trigger:t="gunner0"
+            set:b=yes
+          }
+        }
+      }
+
+      unitLoadBehTree{
+        name:t="missionHitThePoint"
+        objects:t="teamB_avia03"
+        loadType:t="tree"
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="teamA_avia02"
+        object:t="teamA_avia01"
+        target:t="teamB_ship_01"
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="teamB_avia04"
+        target:t="teamA_avia01"
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="teamB_ship_06"
+        target:t="teamA_ship_02"
+      }
+
+      unitMoveTo{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="avia_point01"
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=no
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        fastClimb:b=no
+        destTimeMode:b=no
+        object:t="teamB_avia03"
+      }
+
+      missionStartCutscene{
+        target:t="cutscene_point01"
+        second_target:t="cutscene_point01"
+        duration:r=10.0
+        camera_type:t="flat_linear"
+        direction_amp:r=1.0
+        flat_offs:p3=100.0, 100.0, 100.0
+        zoom:r=0.01
+        frequency:r=1.0
+        linear_at_vel:p3=-25.0, 0.0, 48.5
+        linear_eye_vel:p3=-25.0, -6.0, 48.5
+        linear_at_accel:r=0.0
+        linear_eye_accel:r=0.0
+        linear_relative:b=no
+        pitch:r=0.1
+        yaw:r=0.0
+        pitch_amplitude:r=1.0
+        yaw_amplitude:r=1.0
+        distance:r=30.0
+        shake_mult:r=0.0
+        splineEye:t=""
+        splineAt:t=""
+        splineSpeed:r=100.0
+        resetCamera:b=yes
+        shake_accel:r=0.0
+        fov_accel:r=0.0
+        mustHaveGui:b=no
+        linear_at:p3=-180.0, -80.0, 350.0
+        linear_eye:p3=0.0, 0.0, 0.0
+        endFade:p2=2.0, 1.0
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      wait{
+        time:r=1.7
+      }
+
+      wait{
+        time:r=1.3
+      }
+
+      wait{
+        time:r=0.5
+      }
+
+      wait{
+        time:r=1.5
+      }
+
+      wait{
+        time:r=0.2
+      }
+
+      wait{
+        time:r=0.8
+      }
+
+      wait{
+        time:r=3.0
+      }
+
+      __unitSetProperties{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="teamB_destroyer02"
+
+        controls{
+
+          weaponTriggers{
+            trigger:t="gunner3"
+            set:b=yes
+          }
+        }
+      }
+
+      triggerEnable{
+        target:t="cutscenes02_ai"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  cutscenes02{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.0
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      unitWakeUp{
+        target:t="avia_group01"
+      }
+
+      unitSetProperties{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="teamB_avia03"
+        object:t="teamA_avia03"
+        aiEnabled:b=yes
+      }
+
+      unitSetProperties{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="teamA_avia02"
+        object:t="teamA_avia01"
+
+        plane{
+
+          weaponTriggers{
+            trigger:t="cannon"
+            set:b=yes
+          }
+        }
+      }
+
+      unitSetProperties{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="teamA_avia01"
+
+        plane{
+
+          weaponTriggers{
+            trigger:t="rockets"
+            set:b=yes
+          }
+        }
+      }
+
+      unitSetProperties{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="teamA_avia03"
+
+        plane{
+
+          weaponTriggers{
+            trigger:t="cannon"
+            set:b=yes
+          }
+
+          weaponTriggers{
+            trigger:t="machine gun"
+            set:b=yes
+          }
+        }
+      }
+
+      unitLoadBehTree{
+        name:t="missionHitThePoint"
+        objects:t="teamA_avia03"
+        objects:t="teamB_avia03"
+        loadType:t="tree"
+      }
+
+      unitMoveTo{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="avia_point01"
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=no
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        fastClimb:b=no
+        destTimeMode:b=no
+        object:t="teamA_avia03"
+        object:t="teamB_avia03"
+      }
+
+      missionStartCutscene{
+        target:t="cutscene_point02"
+        second_target:t="cutscene_point02"
+        duration:r=10.0
+        camera_type:t="flat_linear"
+        direction_amp:r=1.0
+        flat_offs:p3=100.0, 100.0, 100.0
+        zoom:r=0.01
+        frequency:r=1.0
+        linear_at_vel:p3=0.0, 0.0, 0.0
+        linear_eye_vel:p3=-82.0, 0.0, 1.6
+        linear_at_accel:r=0.0
+        linear_eye_accel:r=0.0
+        linear_relative:b=no
+        pitch:r=0.1
+        yaw:r=0.0
+        pitch_amplitude:r=1.0
+        yaw_amplitude:r=1.0
+        distance:r=30.0
+        shake_mult:r=0.0
+        splineEye:t=""
+        splineAt:t=""
+        splineSpeed:r=100.0
+        resetCamera:b=yes
+        shake_accel:r=0.0
+        fov_accel:r=0.0
+        mustHaveGui:b=no
+        linear_at:p3=-820.0, 0.0, 15.8
+        linear_eye:p3=0.0, 0.0, 0.0
+        endFade:p2=2.0, 1.0
+      }
+
+      wait{
+        time:r=5.0
+      }
+
+      wait{
+        time:r=5.0
+      }
+
+      __triggerEnable{
+        target:t="cutscenes03"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  cutscenes02_ai{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.0
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      unitWakeUp{
+        target:t="avia_group01"
+      }
+
+      unitSetProperties{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="teamA_avia01"
+        object:t="teamA_avia02"
+        attack_type:t="attack_target"
+        effShootingRate:r=1.0
+        aiEnabled:b=yes
+
+        plane{
+
+          targetDeviation{
+            trigger:t="machine gun"
+            defaultVal:r=0.0
+            limits:p2=0.0, 0.0
+          }
+
+          targetDeviation{
+            trigger:t="cannon"
+            defaultVal:r=0.0
+            limits:p2=0.0, 0.0
+          }
+
+          targetDeviation{
+            trigger:t="rockets"
+            defaultVal:r=0.0
+            limits:p2=0.0, 0.0
+          }
+        }
+      }
+
+      unitSetProperties{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="avia_group01"
+        attack_type:t="attack_target"
+        aiEnabled:b=yes
+
+        plane{
+
+          targetDeviation{
+            trigger:t="machine gun"
+            defaultVal:r=0.0
+            limits:p2=0.0, 0.0
+          }
+
+          targetDeviation{
+            trigger:t="cannon"
+            defaultVal:r=0.0
+            limits:p2=0.0, 0.0
+          }
+
+          targetDeviation{
+            trigger:t="rockets"
+            defaultVal:r=0.0
+            limits:p2=0.0, 0.0
+          }
+        }
+      }
+
+      unitSetProperties{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="teamA_avia02"
+        object:t="teamA_avia01"
+
+        plane{
+
+          weaponTriggers{
+            trigger:t="cannon"
+            set:b=yes
+          }
+        }
+      }
+
+      unitSetProperties{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="teamA_avia01"
+
+        plane{
+
+          weaponTriggers{
+            trigger:t="rockets"
+            set:b=yes
+          }
+        }
+      }
+
+      unitSetProperties{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="teamA_avia03"
+
+        plane{
+
+          weaponTriggers{
+            trigger:t="cannon"
+            set:b=yes
+          }
+
+          weaponTriggers{
+            trigger:t="machine gun"
+            set:b=yes
+          }
+        }
+      }
+
+      unitSetProperties{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="teamA_ship_06"
+
+        controls{
+
+          weaponTriggers{
+            trigger:t="gunner0"
+            set:b=yes
+          }
+        }
+      }
+
+      unitLoadBehTree{
+        name:t="missionHitThePoint"
+        objects:t="teamB_avia03"
+        loadType:t="tree"
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="teamA_avia02"
+        object:t="teamA_avia01"
+        target:t="teamB_ship_01"
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="teamA_avia03"
+        target:t="teamB_avia03"
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="teamB_avia05"
+        target:t="teamA_avia03"
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="teamA_avia02"
+        object:t="teamA_avia01"
+        target:t="teamB_ship_01"
+        fireMode:t="salvo"
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="teamA_ship_01"
+        target:t="teamB_ship_06"
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="teamA_ship_02"
+        target:t="teamB_ship_06"
+      }
+
+      unitMoveTo{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="avia_point01"
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=no
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        fastClimb:b=no
+        destTimeMode:b=no
+        object:t="teamB_avia03"
+      }
+
+      missionStartCutscene{
+        target:t="cutscene_point02"
+        second_target:t="cutscene_point02"
+        duration:r=10.0
+        camera_type:t="flat_linear"
+        direction_amp:r=1.0
+        flat_offs:p3=100.0, 100.0, 100.0
+        zoom:r=0.01
+        frequency:r=1.0
+        linear_at_vel:p3=0.0, 0.0, 0.0
+        linear_eye_vel:p3=-82.0, 0.0, 1.6
+        linear_at_accel:r=0.0
+        linear_eye_accel:r=0.0
+        linear_relative:b=no
+        pitch:r=0.1
+        yaw:r=0.0
+        pitch_amplitude:r=1.0
+        yaw_amplitude:r=1.0
+        distance:r=30.0
+        shake_mult:r=0.0
+        splineEye:t=""
+        splineAt:t=""
+        splineSpeed:r=100.0
+        resetCamera:b=yes
+        shake_accel:r=0.0
+        fov_accel:r=0.0
+        mustHaveGui:b=no
+        linear_at:p3=-820.0, 0.0, 15.8
+        linear_eye:p3=0.0, 0.0, 0.0
+        endFade:p2=2.0, 1.0
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      wait{
+        time:r=4.0
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      wait{
+        time:r=1.0
+      }
+
+      wait{
+        time:r=3.0
+      }
+
+      unitDropAmmo{
+        object:t="teamB_ship_08"
+      }
+
+      triggerEnable{
+        target:t="cutscenes03"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  cutscenes03{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.0
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionStartCutscene{
+        target:t="cutscene_point05"
+        second_target:t="cutscene_point05"
+        duration:r=10.0
+        camera_type:t="flat_linear"
+        direction_amp:r=1.0
+        flat_offs:p3=100.0, 100.0, 100.0
+        zoom:r=0.01
+        frequency:r=1.0
+        linear_at_vel:p3=0.0, 0.0, 0.0
+        linear_eye_vel:p3=-30.0, 0.0, 55.0
+        linear_at_accel:r=0.0
+        linear_eye_accel:r=0.0
+        linear_relative:b=no
+        pitch:r=0.1
+        yaw:r=0.0
+        pitch_amplitude:r=1.0
+        yaw_amplitude:r=1.0
+        distance:r=30.0
+        shake_mult:r=0.0
+        splineEye:t=""
+        splineAt:t=""
+        splineSpeed:r=100.0
+        resetCamera:b=yes
+        shake_accel:r=0.0
+        fov_accel:r=0.0
+        mustHaveGui:b=no
+        linear_at:p3=265.0, 0.0, 288.0
+        linear_eye:p3=0.0, 0.0, 0.0
+        endFade:p2=1.0, 0.0
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="teamA_ship_02"
+        target:t="teamB_ship_06"
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="teamB_ship_06"
+        object:t="teamB_ship_08"
+        target:t="teamA_ship_02"
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="teamA_ship_06"
+        target:t="teamB_ship_08"
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="teamA_destroyer01"
+        target:t="teamB_ship_08"
+      }
+
+      unitSetProperties{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="teamA_destroyer01"
+
+        controls{
+
+          weaponTriggers{
+            trigger:t="gunner0"
+            set:b=yes
+          }
+        }
+      }
+
+      wait{
+        time:r=5.0
+      }
+
+      wait{
+        time:r=5.0
+      }
+
+      unitPlayEffect{
+        effect_type:t="specify"
+        effect:t="ship_model_fire"
+        offset:p3=-3.0, 0.5, 0.0
+        show:b=yes
+        attach:b=yes
+        scale:r=0.5
+        loopSpawn:b=yes
+        delay:p2=1.0, 1.0
+        target:t="teamA_ship_02"
+        radiusOffset:p2=0.0, 0.0
+      }
+
+      triggerEnable{
+        target:t="cutscenes04"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  cutscenes04{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.0
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      unitSetProperties{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="scene03"
+        speed:r=60.0
+        lockSpeed:b=yes
+      }
+
+      unitSetProperties{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="avia_group02"
+
+        plane{
+
+          targetDeviation{
+            trigger:t="machine gun"
+            defaultVal:r=0.0
+            limits:p2=0.0, 0.0
+          }
+
+          targetDeviation{
+            trigger:t="cannon"
+            defaultVal:r=0.0
+            limits:p2=0.0, 0.0
+          }
+        }
+      }
+
+      unitSetProperties{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="teamB_destroyer02"
+
+        controls{
+
+          weaponTriggers{
+            trigger:t="gunner3"
+            set:b=yes
+          }
+        }
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="teamA_ship_09"
+        target:t="teamB_ship_11"
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="teamA_ship_12"
+        target:t="teamB_ship_10"
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="teamA_ship_11"
+        target:t="teamB_ship_09"
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="teamA_ship_10"
+        target:t="teamB_ship_11"
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="teamA_ship_07"
+        target:t="teamB_ship_09"
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="teamB_ship_02"
+        target:t="teamA_ship_12"
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="teamB_ship_10"
+        target:t="teamA_ship_12"
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="teamB_ship_11"
+        target:t="teamA_ship_07"
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="teamB_ship_05"
+        target:t="teamA_ship_10"
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="teamB_ship_09"
+        target:t="teamA_ship_07"
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="teamB_avia01"
+        target:t="teamA_ship_09"
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="teamB_avia02"
+        target:t="teamA_ship_11"
+      }
+
+      unitWakeUp{
+        target:t="avia_group02"
+      }
+
+      unitWakeUp{
+        target:t="teamA_avia04"
+      }
+
+      missionStartCutscene{
+        target:t="cutscene_point03"
+        second_target:t="cutscene_point03"
+        duration:r=12.0
+        camera_type:t="flat_linear"
+        direction_amp:r=1.0
+        flat_offs:p3=100.0, 100.0, 100.0
+        zoom:r=0.1
+        frequency:r=1.0
+        linear_at_vel:p3=44.0, 0.8, 20.0
+        linear_eye_vel:p3=44.0, 0.8, 20.0
+        linear_at_accel:r=0.0
+        linear_eye_accel:r=0.0
+        linear_relative:b=no
+        pitch:r=0.1
+        yaw:r=0.0
+        pitch_amplitude:r=1.0
+        yaw_amplitude:r=1.0
+        distance:r=30.0
+        shake_mult:r=0.0
+        splineEye:t=""
+        splineAt:t=""
+        splineSpeed:r=100.0
+        resetCamera:b=yes
+        shake_accel:r=0.0
+        fov_accel:r=0.0
+        mustHaveGui:b=no
+        linear_at:p3=164.0, 0.0, 73.0
+        linear_eye:p3=0.0, 0.0, 0.0
+        endFade:p2=1.0, 0.0
+      }
+
+      wait{
+        time:r=6.0
+      }
+
+      wait{
+        time:r=6.0
+      }
+
+      unitDropAmmo{
+        object:t="teamB_ship_05"
+        triggerGroup:t="torpedoes"
+      }
+
+      unitDropAmmo{
+        object:t="teamA_avia04"
+      }
+
+      triggerEnable{
+        target:t="cutscenes05"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  cutscenes05{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.0
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionStartCutscene{
+        target:t="cutscene_point04"
+        second_target:t="area_02"
+        duration:r=12.0
+        camera_type:t="flat_linear"
+        direction_amp:r=1.0
+        flat_offs:p3=100.0, 100.0, 100.0
+        zoom:r=0.01
+        frequency:r=1.0
+        linear_at_vel:p3=0.0, 0.0, 0.0
+        linear_eye_vel:p3=50.0, 0.0, 6.0
+        linear_at_accel:r=0.0
+        linear_eye_accel:r=0.0
+        linear_relative:b=no
+        pitch:r=0.1
+        yaw:r=0.0
+        pitch_amplitude:r=1.0
+        yaw_amplitude:r=1.0
+        distance:r=30.0
+        shake_mult:r=0.0
+        splineEye:t=""
+        splineAt:t=""
+        splineSpeed:r=100.0
+        resetCamera:b=yes
+        shake_accel:r=0.0
+        fov_accel:r=0.0
+        mustHaveGui:b=no
+        linear_at:p3=443.0, -80.0, -278.0
+        linear_eye:p3=0.0, 0.0, 0.0
+        endFade:p2=2.0, 1.0
+      }
+
+      wait{
+        time:r=12.0
+      }
+
+      triggerEnable{
+        target:t="cutscenes06"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  cutscenes06{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.0
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionStartCutscene{
+        target:t="cutscene_point06"
+        second_target:t="cutscene_point06"
+        duration:r=13.0
+        camera_type:t="flat_linear"
+        direction_amp:r=1.0
+        flat_offs:p3=100.0, 100.0, 100.0
+        zoom:r=0.01
+        frequency:r=1.0
+        linear_at_vel:p3=15.0, 10.0, 0.0
+        linear_eye_vel:p3=0.0, 10.0, 0.0
+        linear_at_accel:r=0.0
+        linear_eye_accel:r=0.0
+        linear_relative:b=no
+        pitch:r=0.1
+        yaw:r=0.0
+        pitch_amplitude:r=1.0
+        yaw_amplitude:r=1.0
+        distance:r=30.0
+        shake_mult:r=0.0
+        splineEye:t=""
+        splineAt:t=""
+        splineSpeed:r=100.0
+        resetCamera:b=yes
+        shake_accel:r=0.0
+        fov_accel:r=0.0
+        mustHaveGui:b=no
+        linear_at:p3=-350.0, -100.0, -250.0
+        linear_eye:p3=0.0, 0.0, 0.0
+        endFade:p2=2.0, 1.0
+      }
+
+      wait{
+        time:r=12.0
+      }
+
+      missionDebriefing{
+      }
+    }
+
+    else_actions{
+    }
+  }
+}
+
+mission_objectives{
+  isCategory:b=yes
+  is_enabled:b=yes
+}
+
+variables{
+}
+
+dialogs{
+}
+
+airfields{
+}
+
+effects{
+}
+
+units{
+
+  ships{
+    name:t="teamA_ship_01"
+    tm:m=[[0.995978, 0.0, 0.0896053] [0.0, 1.0, 0.0] [-0.0896053, 0.0, 0.995978] [1877.0, -6.10352e-05, 2137.88]]
+    unit_class:t="uk_fairmile_d_601_616"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=yes
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+
+    props{
+      army:i=1
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+
+      teamA_ship_01_wp_01{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1924.33, 0.0, 2135.7]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_01_wp_02{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1959.71, 0.0, 2182.11]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_01_wp_03{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2007.32, 0.0, 2236.76]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_01_wp_04{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2067.94, 3.05176e-05, 2252.64]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_01_wp_05{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2111.07, 3.05176e-05, 2217.64]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_01_wp_06{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2138.89, 0.0, 2163.61]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_01_wp_07{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2091.9, 0.0, 2102.1]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_01_wp_08{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2014.63, 0.0, 2092.66]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_01_wp_09{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1995.99, 0.0, 2136.65]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_01_wp_10{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2060.57, 0.0, 2210.42]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_01_wp_11{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2152.39, 0.0, 2248.48]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_01_wp_12{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2211.1, 3.05176e-05, 2220.35]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+    }
+  }
+
+  ships{
+    name:t="teamA_ship_02"
+    tm:m=[[0.445519, 0.0, 0.895273] [0.0, 1.0, 0.0] [-0.895273, 0.0, 0.445519] [1666.12, 0.000183106, 1982.13]]
+    unit_class:t="uk_dark_class_mtb"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+
+    props{
+      army:i=1
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+
+      teamA_ship_02_wp_01{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1716.09, 0.00012207, 2028.78]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_02_wp_02{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1969.24, 0.0, 2151.63]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+    }
+  }
+
+  ships{
+    name:t="teamA_ship_03"
+    tm:m=[[0.852738, 0.0, 0.522339] [0.0, 1.0, 0.0] [-0.522339, 0.0, 0.852738] [2187.12, -0.00012207, 1308.32]]
+    unit_class:t="uk_fairmile_d_601_616"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+
+    props{
+      army:i=1
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+
+      teamA_ship_03_wp_01{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2470.46, 0.0, 1486.05]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_03_wp_02{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2728.13, 3.05176e-05, 1721.62]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_03_wp_03{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2816.37, 0.00012207, 1748.35]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_03_wp_04{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2913.66, 0.0, 1673.71]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_03_wp_05{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2884.98, 0.0, 1542.88]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_03_wp_06{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2769.12, 0.0, 1433.42]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_03_wp_07{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2656.34, 0.0, 1525.51]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_03_wp_08{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2518.42, 0.00012207, 1778.17]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_03_wp_09{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2562.02, 0.0, 1975.81]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+    }
+  }
+
+  ships{
+    name:t="teamA_ship_04"
+    tm:m=[[0.938399, 0.0, 0.345554] [0.0, 1.0, 0.0] [-0.345554, 0.0, 0.938399] [2190.04, 0.0, 1411.64]]
+    unit_class:t="uk_fairmile_d_617_632"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+
+    props{
+      army:i=1
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+
+      teamA_ship_04_wp_01{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2367.96, 0.0, 1517.99]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_04_wp_02{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2660.78, 0.0, 1768.52]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_04_wp_03{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2802.63, 0.0, 1909.23]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_04_wp_04{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2946.5, 0.0, 1938.51]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_04_wp_05{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2964.1, 0.0, 1846.45]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_04_wp_06{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2898.94, 0.0, 1709.75]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_04_wp_07{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2836.72, 0.00012207, 1560.27]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_04_wp_08{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2712.26, 0.0, 1423.07]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_04_wp_09{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2603.38, 0.0, 1457.84]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+    }
+  }
+
+  ships{
+    name:t="teamA_ship_05"
+    tm:m=[[0.889428, 0.0, 0.457077] [0.0, 1.0, 0.0] [-0.457077, 0.0, 0.889428] [2251.6, -0.000244141, 1389.95]]
+    unit_class:t="uk_fairmile_d_601_616"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+
+    props{
+      army:i=1
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+
+      teamA_ship_05_wp_01{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2441.74, 0.0, 1526.81]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_05_wp_02{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2686.85, -3.05176e-05, 1774.39]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_05_wp_03{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2905.4, 0.0, 1878.3]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_05_wp_04{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [3055.52, 0.0, 1918.6]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_05_wp_05{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [3240.43, 0.0, 1892.06]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_05_wp_06{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [3325.63, 0.0, 1728.25]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_05_wp_07{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [3183.63, 0.0, 1595.97]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_05_wp_08{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [3060.85, 0.00012207, 1599.23]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_05_wp_09{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2998.25, 0.0, 1687.98]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_05_wp_10{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2835.7, 0.00012207, 1958.74]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+    }
+  }
+
+  ships{
+    name:t="teamA_ship_06"
+    tm:m=[[0.856767, 0.0, -0.515703] [0.0, 1.0, 0.0] [0.515703, 0.0, 0.856767] [1368.28, 0.0, 2300.35]]
+    unit_class:t="uk_fairmile_d_617_632"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+
+    props{
+      army:i=1
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+
+      teamA_ship_06_wp_01{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1686.69, 0.0, 2145.31]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_06_wp_02{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1789.49, 0.0, 2136.78]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+    }
+  }
+
+  ships{
+    name:t="teamA_ship_07"
+    tm:m=[[0.95913, 0.0, 0.282967] [0.0, 1.0, 0.0] [-0.282967, 0.0, 0.95913] [1657.64, -3.05176e-05, 2620.42]]
+    unit_class:t="uk_fairmile_d_601_616"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+
+    props{
+      army:i=1
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+
+      teamA_ship_07_wp_01{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1943.05, 0.0, 2706.51]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_07_wp_06{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2414.25, 0.0, 2751.26]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_07_wp_07{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2509.11, -6.10352e-05, 2780.0]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_07_wp_08{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2581.25, 0.0, 2816.14]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_07_wp_09{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2634.24, 0.0, 2878.77]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_07_wp_10{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2730.75, 0.0, 2953.7]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_07_wp_11{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2799.11, 3.05176e-05, 2995.22]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+    }
+  }
+
+  ships{
+    name:t="teamA_ship_08"
+    tm:m=[[0.975437, 0.0, 0.22028] [0.0, 1.0, 0.0] [-0.22028, 0.0, 0.975437] [2216.66, 0.0, 1497.23]]
+    unit_class:t="uk_fairmile_d_601_616"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+
+    props{
+      army:i=1
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+
+      teamA_ship_08_wp_01{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2325.23, 3.05176e-05, 1527.32]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_08_wp_02{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2590.67, 3.05176e-05, 1849.95]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_08_wp_03{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2750.64, 0.0, 2034.02]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_08_wp_04{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2871.18, 0.0, 2053.26]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_08_wp_05{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [3049.66, 0.0, 2031.54]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_08_wp_06{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [3051.57, 0.0, 1920.0]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_08_wp_07{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2991.81, 0.0, 1768.57]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_08_wp_08{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2938.62, 0.0, 1643.44]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+    }
+  }
+
+  ships{
+    name:t="teamB_ship_02"
+    tm:m=[[-0.335384, 0.0, 0.942082] [0.0, 1.0, 0.0] [-0.942082, 0.0, -0.335384] [2567.55, -0.000488281, 2216.49]]
+    unit_class:t="germ_s_100_class"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+
+      teamB_ship_02_wp_01{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2395.17, 0.0, 2559.62]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_02_wp_02{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2174.89, 6.10352e-05, 2584.47]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_02_wp_03{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2088.28, 0.00012207, 2649.82]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_02_wp_04{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2120.43, 0.0, 2771.3]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_02_wp_05{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2321.66, 0.0, 2769.73]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_02_wp_06{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2574.53, 0.00012207, 2605.09]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_02_wp_07{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2883.94, 0.0, 2573.61]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+    }
+  }
+
+  ships{
+    name:t="teamB_ship_03"
+    tm:m=[[-0.827555, 0.0, -0.561384] [0.0, 1.0, 0.0] [0.561384, 0.0, -0.827555] [2858.7, 0.000305176, 1783.79]]
+    unit_class:t="germ_s_100_class"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+
+      teamB_ship_03_wp_01{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2418.73, 0.0, 1467.76]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_03_wp_02{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2406.36, 6.10352e-05, 1485.39]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_03_wp_03{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2337.19, 0.0, 1553.98]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_03_wp_04{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2366.2, 6.10352e-05, 1644.62]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_03_wp_05{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2555.94, 6.10352e-05, 1827.18]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_03_wp_06{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2629.85, 0.0, 1961.31]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_03_wp_07{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2869.24, 0.0, 2006.06]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_03_wp_08{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2987.59, 0.0, 1852.68]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+    }
+  }
+
+  ships{
+    name:t="teamB_ship_04"
+    tm:m=[[-0.961685, 0.0, -0.274157] [0.0, 1.0, 0.0] [0.274157, 0.0, -0.961685] [2841.73, 0.0, 1631.5]]
+    unit_class:t="germ_s_100_s_174_class"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+
+      teamB_ship_04_wp_01{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2514.04, 0.0, 1498.18]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_04_wp_02{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2418.29, 0.0, 1451.42]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_04_wp_03{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2322.53, 0.0, 1614.27]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_04_wp_04{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2499.86, 6.10352e-05, 1709.84]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_04_wp_05{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2575.66, 0.0, 1599.68]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_04_wp_06{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2603.13, 0.0, 1459.58]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_04_wp_07{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2701.28, 0.0, 1360.15]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_04_wp_08{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2845.46, 6.10352e-05, 1618.86]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_04_wp_09{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2719.88, 0.0, 1794.26]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_04_wp_10{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2553.84, 0.0, 1867.49]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+    }
+  }
+
+  ships{
+    name:t="teamB_ship_05"
+    tm:m=[[-0.804528, 0.0, -0.593914] [0.0, 1.0, 0.0] [0.593914, 0.0, -0.804528] [2565.73, -0.000976563, 2947.58]]
+    unit_class:t="germ_ls4_class"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="germ_ls4_class_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+
+      teamB_ship_05_wp_01{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2141.94, 0.0, 2682.09]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_05_wp_02{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2217.2, 6.10352e-05, 2644.45]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_05_wp_03{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2323.68, 0.0, 2629.58]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_05_wp_04{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2606.49, 0.0, 2572.2]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_05_wp_05{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2823.93, 0.0, 2602.43]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+    }
+  }
+
+  ships{
+    name:t="teamB_ship_06"
+    tm:m=[[-0.974694, 0.0, 0.223543] [0.0, 1.0, 0.0] [-0.223543, 0.0, -0.974694] [2392.56, -10.752, 2090.6]]
+    unit_class:t="germ_s_100_class"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+
+      teamB_ship_06_wp_03{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2193.45, 0.0, 2118.94]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_06_wp_04{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2090.49, 0.0, 2202.14]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_06_wp_05{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1977.86, 0.0, 2082.13]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_06_wp_01{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1902.06, 0.0, 2082.86]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_06_wp_02{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1859.02, 0.0, 2110.12]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_06_wp_06{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1862.61, 0.0, 2156.05]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_06_wp_07{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1896.77, 0.0, 2185.36]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_06_wp_08{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1979.52, 0.0, 2229.4]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_06_wp_09{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2062.91, 0.0, 2255.61]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_06_wp_10{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2146.61, 0.0, 2234.15]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+    }
+  }
+
+  ships{
+    name:t="teamB_ship_07"
+    tm:m=[[-0.694474, 0.0, -0.719517] [0.0, 1.0, 0.0] [0.719517, 0.0, -0.694474] [2747.41, 0.000335693, 2009.95]]
+    unit_class:t="germ_type140_jaguar"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+
+      teamB_ship_07_wp_01{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2627.98, 0.000366211, 1875.45]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_07_wp_02{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2397.71, 0.000366211, 1487.42]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_07_wp_03{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2525.72, 0.0, 1389.97]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_07_wp_04{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2664.42, 0.0, 1287.54]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_07_wp_05{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2801.56, 0.0, 1327.05]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_07_wp_06{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2871.25, 0.0, 1490.14]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_07_wp_07{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2968.91, 0.0, 1568.16]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+    }
+  }
+
+  ships{
+    name:t="teamB_ship_08"
+    tm:m=[[-0.99287, 0.0, 0.119199] [0.0, 1.0, 0.0] [-0.119199, 0.0, -0.99287] [2520.84, 6.10352e-05, 2135.79]]
+    unit_class:t="germ_type140_jaguar"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+
+      teamB_ship_08_wp_01{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2288.13, 0.000183105, 2173.76]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_08_wp_02{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1769.57, 0.000183105, 2057.95]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+    }
+  }
+
+  ships{
+    name:t="teamB_ship_01"
+    tm:m=[[-0.965128, 0.0, 0.261779] [0.0, 1.0, 0.0] [-0.261779, 0.0, -0.965128] [2285.86, -0.000305176, 2166.79]]
+    unit_class:t="germ_s_100_class"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+
+      teamB_ship_01_wp_01{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2133.54, -3.05176e-05, 2207.01]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_01_wp_02{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2043.0, -3.05176e-05, 2210.14]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_01_wp_03{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2029.45, -3.05176e-05, 2155.79]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_01_wp_04{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2083.94, -3.05176e-05, 2115.48]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_01_wp_05{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2148.04, 0.0, 2112.13]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_01_wp_06{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2241.64, 1.52588e-05, 2114.96]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_01_wp_07{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2290.74, 0.0, 2154.54]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_01_wp_08{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2278.32, 0.0, 2207.09]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_01_wp_09{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2212.32, 3.05176e-05, 2242.24]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_01_wp_10{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2117.4, 0.0, 2259.04]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_01_wp_11{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2012.52, -1.52588e-05, 2241.76]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_01_wp_12{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1926.93, -1.52588e-05, 2172.68]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+    }
+  }
+
+  ships{
+    name:t="teamA_destroyer01"
+    tm:m=[[0.835976, 0.0, -0.548766] [0.0, 1.0, 0.0] [0.548766, 0.0, 0.835976] [1357.39, 0.000228882, 2401.06]]
+    unit_class:t="uk_destroyer_tribal"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+
+    props{
+      army:i=1
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+
+      teamA_destroyer01_wp_01{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1577.93, 0.0, 2271.58]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_destroyer01_wp_02{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1680.27, -3.7835e-10, 2226.89]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_destroyer01_wp_03{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1876.78, -3.7835e-10, 2180.14]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+    }
+  }
+
+  ships{
+    name:t="player_ship"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [656.838, 0.0, 1276.96]]
+    unit_class:t="uk_fairmile_d_601_616"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+
+    props{
+      army:i=1
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="teamB_destroyer01"
+    tm:m=[[-0.562458, 0.0, -0.826827] [0.0, 1.0, 0.0] [0.826827, 0.0, -0.562458] [2822.14, 0.000549316, 2021.44]]
+    unit_class:t="germ_destroyer_class1936_z20_karlgalster"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+
+      teamB_destroyer01_wp_01{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2700.52, 0.0, 1853.86]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_destroyer01_wp_02{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2532.43, 0.0, 1687.07]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_destroyer01_wp_03{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2489.44, 6.10352e-05, 1555.02]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_destroyer01_wp_04{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2565.0, 0.0, 1446.5]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_destroyer01_wp_05{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2649.06, 0.0, 1342.23]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_destroyer01_wp_06{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2766.3, 6.10352e-05, 1383.87]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_destroyer01_wp_07{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2901.55, 0.0, 1575.81]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_destroyer01_wp_08{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [3059.36, 0.0, 1646.39]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_destroyer01_wp_09{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [3148.48, 0.0, 1633.52]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_destroyer01_wp_10{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [3255.29, 0.0, 1690.35]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+    }
+  }
+
+  ships{
+    name:t="teamB_destroyer02"
+    tm:m=[[-0.442743, 0.0, 0.896649] [0.0, 1.0, 0.0] [-0.896649, 0.0, -0.442743] [2751.34, 6.10352e-05, 2163.12]]
+    unit_class:t="germ_destroyer_class1924_leopard1932"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+
+      teamB_destroyer02_wp_01{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2366.82, 9.15527e-05, 2798.02]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_destroyer02_wp_02{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2221.28, 0.0, 2927.0]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+    }
+  }
+
+  ships{
+    name:t="teamA_ship_09"
+    tm:m=[[0.971775, 0.0, 0.235911] [0.0, 1.0, 0.0] [-0.235911, 0.0, 0.971775] [1624.45, 0.000152588, 2519.05]]
+    unit_class:t="uk_fairmile_d_617_632"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+
+    props{
+      army:i=1
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+
+      teamA_ship_09_wp_01{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2135.11, -3.05176e-05, 2659.88]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_09_wp_02{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2533.64, -0.000236512, 2599.74]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_09_wp_03{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2699.77, 0.00012207, 2577.58]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_09_wp_04{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2898.3, 0.00012207, 2653.15]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+    }
+  }
+
+  ships{
+    name:t="teamA_ship_10"
+    tm:m=[[0.994998, 0.0, 0.0998985] [0.0, 1.0, 0.0] [-0.0998985, 0.0, 0.994998] [1723.36, 9.15527e-05, 2654.11]]
+    unit_class:t="uk_fairmile_c"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+
+    props{
+      army:i=1
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+
+      teamA_ship_10_wp_01{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1916.44, 6.10352e-05, 2710.84]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_10_wp_02{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2024.02, 0.0, 2737.27]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_10_wp_03{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2117.29, -3.63798e-11, 2813.52]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_10_wp_04{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2118.13, 0.0, 2894.76]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_10_wp_05{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2208.92, 0.0, 2946.19]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_10_wp_06{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2291.2, 0.0, 2931.85]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_10_wp_07{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2535.2, 0.0, 2931.03]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_10_wp_08{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2633.12, 0.0, 2933.5]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+    }
+  }
+
+  ships{
+    name:t="teamA_ship_11"
+    tm:m=[[0.992677, 0.0, 0.120803] [0.0, 1.0, 0.0] [-0.120803, 0.0, 0.992677] [1813.35, 0.00012207, 2772.37]]
+    unit_class:t="uk_fairmile_c"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+
+    props{
+      army:i=1
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+
+      teamA_ship_11_wp_01{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1932.44, 0.000183105, 2906.04]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_11_wp_02{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2010.67, 0.000152588, 2968.8]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_11_wp_03{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2075.86, 0.0, 2995.77]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_11_wp_04{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2410.2, 0.0, 2861.65]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_11_wp_05{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2457.7, 3.05176e-05, 2763.08]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_11_wp_06{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2443.29, 0.0, 2700.09]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_11_wp_07{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2453.02, 0.0, 2591.77]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_11_wp_08{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2487.1, 0.0, 2555.85]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_11_wp_09{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2599.23, 0.0, 2537.42]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_11_wp_10{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2671.15, 0.0, 2574.06]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+    }
+  }
+
+  ships{
+    name:t="teamA_ship_12"
+    tm:m=[[0.963885, 0.0, 0.26632] [0.0, 1.0, 0.0] [-0.26632, 0.0, 0.963885] [1866.19, 0.00012207, 2571.73]]
+    unit_class:t="uk_fairmile_d_601_616"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+
+    props{
+      army:i=1
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+
+      teamA_ship_12_wp_01{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2015.01, 3.12866e-10, 2620.13]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_12_wp_02{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2058.54, 3.12866e-10, 2630.78]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_12_wp_04{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2176.93, 0.0, 2626.75]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_12_wp_06{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2309.54, 0.0, 2659.96]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_12_wp_07{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2504.44, 0.0, 2639.96]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_12_wp_08{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2589.99, -6.10352e-05, 2624.53]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_12_wp_09{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2698.55, 0.0, 2591.0]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamA_ship_12_wp_10{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2867.63, 0.0, 2517.65]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+    }
+  }
+
+  ships{
+    name:t="teamB_ship_09"
+    tm:m=[[-0.834909, 0.0, -0.550387] [0.0, 1.0, 0.0] [0.550387, 0.0, -0.834909] [2601.18, -0.000976563, 3033.41]]
+    unit_class:t="germ_s38"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+
+      teamB_ship_09_wp_01{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2131.12, 0.000366211, 2686.77]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_09_wp_02{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2185.21, -0.000427246, 2620.15]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_09_wp_03{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2307.83, 0.0, 2610.69]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_09_wp_04{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2363.0, 0.0, 2625.82]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_09_wp_05{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2531.14, 0.0, 2778.14]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_09_wp_06{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2682.92, 6.10352e-05, 2939.89]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_09_wp_07{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2788.78, 0.0, 2981.65]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+    }
+  }
+
+  ships{
+    name:t="teamB_ship_10"
+    tm:m=[[-0.999989, 0.0, 0.00477523] [0.0, 1.0, 0.0] [-0.00477523, 0.0, -0.999989] [2648.54, -0.000488281, 2500.78]]
+    unit_class:t="germ_type140_jaguar"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+
+      teamB_ship_10_wp_01{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2161.66, 0.0, 2628.42]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_10_wp_02{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2075.24, 6.10352e-05, 2731.22]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_10_wp_03{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2114.23, 0.0, 2875.75]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_10_wp_04{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2169.67, 0.0, 2933.97]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_10_wp_05{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2200.9, 0.0, 2937.16]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_10_wp_06{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2522.33, 0.0, 2910.73]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_10_wp_07{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2713.66, 0.0, 2917.09]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+    }
+  }
+
+  ships{
+    name:t="teamB_ship_11"
+    tm:m=[[-0.930748, 0.0, -0.365661] [0.0, 1.0, 0.0] [0.365661, 0.0, -0.930748] [2674.26, -0.000976563, 2929.67]]
+    unit_class:t="germ_s_100_s_174_class"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+
+      teamB_ship_11_wp_01{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2251.01, 0.000366211, 2668.76]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_11_wp_02{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2183.9, 0.0, 2717.67]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_11_wp_03{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2195.27, 0.0, 2794.38]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_11_wp_04{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2266.21, 0.0, 2869.69]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_11_wp_05{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2446.94, 0.0, 2919.3]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+
+      teamB_ship_11_wp_06{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2700.27, 6.10352e-05, 2997.28]]
+
+        props{
+          speed:r=300.0
+          tas:b=no
+          moveType:t="MOVETO_STRAIGHT"
+          shouldKeepFormation:b=no
+          canUsePathFinder:b=no
+        }
+      }
+    }
+  }
+
+  squad{
+    name:t="teamA_units"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1110.39, 0.0, 744.16]]
+
+    props{
+      object_marking:i=0
+      squad_members:t="teamA_ship_01"
+      squad_members:t="teamA_ship_02"
+      squad_members:t="teamA_ship_03"
+      squad_members:t="teamA_ship_04"
+      squad_members:t="teamA_ship_05"
+      squad_members:t="teamA_ship_06"
+      squad_members:t="teamA_ship_07"
+      squad_members:t="teamA_ship_08"
+      squad_members:t="teamA_destroyer01"
+      squad_members:t="teamA_ship_09"
+      squad_members:t="teamA_ship_10"
+      squad_members:t="teamA_ship_11"
+      squad_members:t="teamA_ship_12"
+    }
+  }
+
+  squad{
+    name:t="teamB_units"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1360.02, 0.000366211, 710.908]]
+
+    props{
+      object_marking:i=0
+      squad_members:t="teamB_ship_02"
+      squad_members:t="teamB_ship_03"
+      squad_members:t="teamB_ship_04"
+      squad_members:t="teamB_ship_05"
+      squad_members:t="teamB_ship_06"
+      squad_members:t="teamB_ship_07"
+      squad_members:t="teamB_ship_08"
+      squad_members:t="teamB_ship_01"
+      squad_members:t="teamB_ship_10"
+      squad_members:t="teamB_ship_09"
+      squad_members:t="teamB_ship_11"
+      squad_members:t="teamB_destroyer01"
+      squad_members:t="teamB_destroyer02"
+    }
+  }
+
+  squad{
+    name:t="all_units_squad"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2582.03, 0.0, 822.36]]
+
+    props{
+      object_marking:i=0
+      squad_members:t="teamA_units"
+      squad_members:t="teamB_units"
+    }
+  }
+
+  squad{
+    name:t="shooting_group01"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2159.11, 0.0, 2887.61]]
+
+    props{
+      object_marking:i=0
+      squad_members:t="teamA_ship_11"
+      squad_members:t="teamA_ship_12"
+      squad_members:t="teamB_ship_10"
+    }
+  }
+
+  squad{
+    name:t="shooting_group02"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2117.6, -0.000427246, 2882.98]]
+
+    props{
+      object_marking:i=0
+      squad_members:t="teamB_ship_09"
+      squad_members:t="teamA_ship_10"
+    }
+  }
+
+  squad{
+    name:t="shooting_group03"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2075.46, -0.000183105, 2860.03]]
+
+    props{
+      object_marking:i=0
+      squad_members:t="teamA_ship_09"
+      squad_members:t="teamB_ship_02"
+    }
+  }
+
+  squad{
+    name:t="teamA_avia_squad"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1579.42, 0.0, 2786.23]]
+
+    props{
+      object_marking:i=0
+      squad_members:t="teamA_avia01"
+      squad_members:t="teamA_avia02"
+      squad_members:t="teamA_avia03"
+      squad_members:t="teamA_avia04"
+    }
+  }
+
+  squad{
+    name:t="teamB_avia_squad"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1630.88, 0.0, 2754.57]]
+
+    props{
+      object_marking:i=0
+      squad_members:t="teamB_avia01"
+      squad_members:t="teamB_avia02"
+      squad_members:t="teamB_avia03"
+      squad_members:t="teamB_avia04"
+      squad_members:t="teamB_avia05"
+    }
+  }
+
+  squad{
+    name:t="shooting_group04"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2004.71, 0.0, 2221.66]]
+
+    props{
+      object_marking:i=0
+      squad_members:t="teamB_ship_01"
+      squad_members:t="teamB_ship_07"
+      squad_members:t="teamA_destroyer01"
+      squad_members:t="teamA_ship_01"
+      squad_members:t="teamA_ship_08"
+      squad_members:t="teamA_ship_03"
+      squad_members:t="teamB_ship_04"
+    }
+  }
+
+  squad{
+    name:t="shooting_group05"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1959.0, 0.0, 2209.78]]
+
+    props{
+      object_marking:i=0
+      squad_members:t="teamB_ship_08"
+      squad_members:t="teamB_ship_06"
+      squad_members:t="teamA_ship_06"
+      squad_members:t="teamA_ship_02"
+      squad_members:t="teamA_ship_04"
+      squad_members:t="teamA_ship_05"
+      squad_members:t="teamB_ship_03"
+    }
+  }
+
+  squad{
+    name:t="avia_group01"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1860.87, 0.0, 1945.54]]
+
+    props{
+      object_marking:i=0
+      squad_members:t="teamA_avia01"
+      squad_members:t="teamA_avia03"
+      squad_members:t="teamB_avia03"
+      squad_members:t="teamA_avia02"
+      squad_members:t="teamB_avia05"
+    }
+  }
+
+  squad{
+    name:t="scene01"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [3029.5, 0.0, 2156.14]]
+
+    props{
+      object_marking:i=0
+      squad_members:t="teamA_ship_08"
+      squad_members:t="teamA_ship_05"
+      squad_members:t="teamA_ship_04"
+      squad_members:t="teamA_ship_03"
+      squad_members:t="teamB_ship_04"
+      squad_members:t="teamB_ship_03"
+      squad_members:t="teamB_destroyer01"
+      squad_members:t="teamB_ship_07"
+    }
+  }
+
+  squad{
+    name:t="scene02"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2521.71, 0.0, 1944.74]]
+
+    props{
+      object_marking:i=0
+      squad_members:t="teamB_ship_01"
+      squad_members:t="teamB_ship_02"
+      squad_members:t="teamB_ship_08"
+      squad_members:t="teamB_destroyer02"
+      squad_members:t="teamB_ship_06"
+      squad_members:t="teamA_destroyer01"
+      squad_members:t="teamA_ship_06"
+      squad_members:t="teamA_ship_01"
+      squad_members:t="teamA_ship_02"
+      squad_members:t="teamA_avia04"
+      squad_members:t="teamA_avia01"
+      squad_members:t="teamA_avia02"
+      squad_members:t="teamA_avia03"
+      squad_members:t="teamB_avia03"
+    }
+  }
+
+  squad{
+    name:t="scene03"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2924.58, 6.10352e-05, 2812.96]]
+
+    props{
+      object_marking:i=0
+      squad_members:t="teamB_ship_09"
+      squad_members:t="teamB_ship_05"
+      squad_members:t="teamB_ship_11"
+      squad_members:t="teamB_ship_10"
+      squad_members:t="teamA_ship_11"
+      squad_members:t="teamA_ship_12"
+      squad_members:t="teamA_ship_10"
+      squad_members:t="teamA_ship_09"
+      squad_members:t="teamA_ship_07"
+    }
+  }
+
+  squad{
+    name:t="avia_group02"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2481.08, 0.0, 2813.11]]
+
+    props{
+      object_marking:i=0
+      squad_members:t="teamB_avia02"
+      squad_members:t="teamB_avia01"
+    }
+  }
+
+  armada{
+    name:t="teamA_avia01"
+    tm:m=[[0.963258, -0.26466, 0.0456923] [0.26773, 0.959713, -0.0852779] [-0.0212825, 0.0943779, 0.995309] [493.45, 631.674, 2265.22]]
+    unit_class:t="spitfire_f22"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="6_rockets"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+
+    props{
+      army:i=1
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=1
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="teamA_avia02"
+    tm:m=[[0.985285, -0.168256, -0.0300559] [0.168334, 0.98573, 6.2352e-05] [0.0296161, -0.00512111, 0.999549] [560.558, 510.323, 2352.4]]
+    unit_class:t="spitfire_f22"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="6_rockets"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+
+    props{
+      army:i=1
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=1
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="teamA_avia03"
+    tm:m=[[0.99999, -3.21839e-09, -0.004436] [-4.50936e-07, 1.0, 7.39641e-08] [0.0044361, -8.52252e-09, 0.99999] [1292.15, 37.7911, 2189.88]]
+    unit_class:t="hellcat_fmk1"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="f6f-5_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+
+    props{
+      army:i=1
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=1
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="teamA_avia04"
+    tm:m=[[0.386153, 0.0, -0.922434] [-0.000164747, 1.0, -6.85469e-05] [0.922434, 0.000178323, 0.386153] [1829.94, 248.049, 4106.33]]
+    unit_class:t="blenheim_mkiv"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="blenheim_mkiv_2_500lb"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+
+    props{
+      army:i=1
+      count:i=9
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=3
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=1.5
+        col_distances:r=1.5
+        super_formation:t="Echelon"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="teamB_avia01"
+    tm:m=[[-0.928315, 0.0, -0.371793] [-4.36587e-07, 1.0, 7.22888e-07] [0.371795, 0.0, -0.928315] [2536.65, 339.674, 2824.14]]
+    unit_class:t="ju-87g_1"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="Ju-87G-1_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=100
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=1
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="teamB_avia02"
+    tm:m=[[-0.934939, -1.11022e-15, -0.354808] [7.10914e-08, 1.0, 4.57308e-07] [0.354809, -2.20021e-15, -0.934939] [2792.95, 380.909, 3093.91]]
+    unit_class:t="ju-87g_1"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="Ju-87G-1_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=100
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=1
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="teamB_avia03"
+    tm:m=[[0.999986, 0.0, -0.00524373] [-3.70798e-07, 1.0, -4.07814e-07] [0.00524228, 8.47369e-11, 0.999986] [1564.88, 37.7664, 2178.24]]
+    unit_class:t="bf-109k-4"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=100
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=1
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="teamB_avia04"
+    tm:m=[[-0.980764, 0.0258546, -0.193476] [0.0263184, 0.999654, 0.000175141] [0.193414, -0.00492033, -0.981104] [3030.98, 168.672, 2013.58]]
+    unit_class:t="fw-190d-12"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=1
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=1.5
+        col_distances:r=1.5
+        super_formation:t="Echelon"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="teamB_avia05"
+    tm:m=[[0.952126, 0.0, -0.305703] [-4.76268e-07, 1.0, -2.77439e-07] [0.305701, 8.47369e-11, 0.952127] [975.805, 84.4198, 2331.53]]
+    unit_class:t="bf-109k-4"
+    objLayer:i=1
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=100
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+
+    props{
+      army:i=2
+      count:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=1
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+}
+
+areas{
+
+  cutscene_point01{
+    type:t="Point"
+    tm:m=[[0.710998, 0.0, 0.703194] [0.0, 1.0, 0.0] [-0.703194, 0.0, 0.710998] [2939.35, 103.5, 814.301]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  cutscene_point02{
+    type:t="Point"
+    tm:m=[[0.710998, 0.0, 0.703194] [0.0, 1.0, 0.0] [-0.703194, 0.0, 0.710998] [2669.95, 19.8793, 2158.22]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  cutscene_point00{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1752.9, 45.237, 2833.07]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  cutscene_point03{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1527.98, 5.00006, 2427.8]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  area_02{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2170.35, 6.57562, 2649.82]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  cutscene_point04{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1694.81, 90.2922, 2966.41]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  smoke01{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2191.37, 4.7433, 2458.63]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  smoke02{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1859.24, 27.4856, 2418.89]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  smoke03{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2108.94, 57.5523, 1786.09]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  smoke04{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2222.11, 55.7111, 1882.82]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  smoke05{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1100.68, 25.1691, 2104.54]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  area_01{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1556.59, 6.57559, 2142.7]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  smoke06{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2286.32, 13.2881, 1726.03]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  smoke07{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2065.37, 29.9011, 2427.16]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  smoke08{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2340.9, 11.0583, 2295.03]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  cutscene_point05{
+    type:t="Point"
+    tm:m=[[0.710998, 0.0, 0.703194] [0.0, 1.0, 0.0] [-0.703194, 0.0, 0.710998] [1677.42, 10.5001, 1772.81]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  cutscene_point06{
+    type:t="Point"
+    tm:m=[[0.710998, 0.0, 0.703194] [0.0, 1.0, 0.0] [-0.703194, 0.0, 0.710998] [2532.88, 90.0, 2890.77]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  smoke09{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1921.3, 36.8232, 1742.95]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  avia_point01{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2686.98, 61.0, 2156.99]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+}
+
+objLayers{
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+}
+
+wayPoints{
+}

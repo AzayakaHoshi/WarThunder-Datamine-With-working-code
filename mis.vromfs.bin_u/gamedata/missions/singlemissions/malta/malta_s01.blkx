@@ -1,0 +1,3870 @@
+selected_tag:t=""
+bin_dump_file:t=""
+
+mission_settings{
+
+  atmosphere{
+    pressure:r=760.0
+    temperature:r=0.0
+  }
+
+  player{
+    army:i=1
+    wing:t="player"
+  }
+
+  player_teamB{
+    army:i=2
+  }
+
+  mission{
+    level:t="levels/malta.bin"
+    type:t="singleMission"
+    restoreType:t="tactical control"
+    optionalTakeOff:b=no
+    environment:t="Day"
+    weather:t="hazy"
+    windDirection:p3=1.0, 0.0, 0.0
+    gt_cooperative:b=yes
+  }
+
+  spectator_points{
+  }
+
+  briefing{
+    place_loc:t=""
+    date_loc:t=""
+    objective_loc:t=""
+    music:t="action_01"
+    viewAreaScale:r=2.0
+
+    part{
+      event:t=""
+      minTime:i=0
+
+      slide{
+        map:b=yes
+        minTime:i=4
+        picture:t=""
+        showAirMap:b=no
+
+        arrow{
+          width:i=1
+          side:t="player"
+          point:t="player"
+          point:t="air_def42"
+        }
+
+        icon{
+          icontype:t="fighter"
+          side:t="player"
+          target:t="player"
+          lookAt:t="air_def42"
+        }
+
+        icon{
+          icontype:t="artillery"
+          side:t="enemy"
+          target:t="air_def42_area"
+        }
+
+        icon{
+          icontype:t="artillery"
+          side:t="enemy"
+          target:t="air_def57_area"
+        }
+
+        icon{
+          icontype:t="artillery"
+          side:t="enemy"
+          target:t="air_def09_area"
+        }
+      }
+    }
+  }
+}
+
+imports{
+}
+
+triggers{
+  isCategory:b=yes
+  is_enabled:b=yes
+
+  initial{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      initMission{
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      unitSetProperties{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="air_def_squad01"
+        object:t="air_def_squad02"
+        object:t="air_def_squad03"
+        object:t="figters_target_squad"
+        object:t="luftwaffe"
+        object:t="allied_squad01"
+        object:t="allied_squad02"
+        effShootingRate:r=0.1
+      }
+
+      unitSetProperties{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="player"
+        targetableByAi:b=no
+      }
+
+      unitSetProperties{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="player_himself"
+        targetableByAi:b=yes
+      }
+
+      unitSetProperties{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="cargo_squad"
+        engineFire:b=no
+        attack_type:t="hold_fire"
+        ignoresEnemy:b=yes
+        hasExhaust:b=no
+      }
+
+      unitSetStealth{
+        set:b=yes
+        radius:r=0.0
+        target:t="targets_for_bombers"
+        target:t="cargo_squad"
+        target:t="barrel_squad"
+        target:t="figters_target_squad"
+      }
+
+      unitMoveTo{
+        target:t="waypoint00"
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=no
+        shouldKeepFormation:b=yes
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        object:t="luftwaffe"
+        distributionRadius:r=0.0
+      }
+
+      unitSetIndication{
+        set:b=yes
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="for_indicator"
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="allied_squad01"
+        object:t="allied_squad02"
+        target:t="figters_target_squad"
+        fireRandom:b=yes
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  bombers_attack{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitDistanceBetween{
+        value:r=1000.0
+        math:t="2D"
+        object_type:t="isAlive"
+        target_type:t="isAlive"
+        check_objects:t="any"
+        check_targets:t="any"
+        object_marking:i=0
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="luftwaffe"
+        target:t="waypoint00"
+      }
+    }
+
+    actions{
+
+      unitMoveTo{
+        target:t="evac"
+        follow_target:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=no
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        object:t="luftwaffe"
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        object:t="luftwaffe"
+        target:t="targets_for_bombers"
+        fireRandom:b=yes
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  air_def09_group_destroyed{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      unitWhenStatus{
+        object_type:t="isKilled"
+        object_marking:i=0
+        check_objects:t="any"
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object:t="air_def09"
+      }
+    }
+
+    actions{
+
+      unitPlayEffect{
+        effect:t="ship_model_expl"
+        offset:p3=0.0, 0.0, 0.0
+        show:b=yes
+        loop:b=no
+        scale:r=1.0
+        effect_type:t="specify"
+        radiusOffset:p2=0.0, 0.0
+        attach:b=no
+        loopSpawn:b=yes
+        delay:p2=1.0, 1.0
+        target:t="air_def09"
+      }
+
+      missionDestroyArea{
+        target_type:t="ALL"
+        area:t="air_def09_area"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  air_def16_group_destroyed{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      unitWhenStatus{
+        object_type:t="isKilled"
+        object_marking:i=0
+        check_objects:t="any"
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object:t="air_def16"
+      }
+    }
+
+    actions{
+
+      unitPlayEffect{
+        effect:t="ship_model_expl"
+        offset:p3=0.0, 0.0, 0.0
+        show:b=yes
+        loop:b=no
+        scale:r=1.0
+        effect_type:t="specify"
+        radiusOffset:p2=0.0, 0.0
+        attach:b=no
+        loopSpawn:b=yes
+        delay:p2=1.0, 1.0
+        target:t="air_def16"
+      }
+
+      missionDestroyArea{
+        target_type:t="ALL"
+        area:t="aie_def16_area"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  air_def27_group_destroyed{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      unitWhenStatus{
+        object_type:t="isKilled"
+        object_marking:i=0
+        check_objects:t="any"
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object:t="air_def27"
+      }
+    }
+
+    actions{
+
+      unitPlayEffect{
+        effect:t="ship_model_expl"
+        offset:p3=0.0, 0.0, 0.0
+        show:b=yes
+        loop:b=no
+        scale:r=1.0
+        effect_type:t="specify"
+        radiusOffset:p2=0.0, 0.0
+        attach:b=no
+        loopSpawn:b=yes
+        delay:p2=1.0, 1.0
+        target:t="air_def27"
+      }
+
+      missionDestroyArea{
+        target_type:t="ALL"
+        area:t="air_def27_area"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  air_def42_group_destroyed{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      unitWhenStatus{
+        object_type:t="isKilled"
+        object_marking:i=0
+        check_objects:t="any"
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object:t="air_def42"
+      }
+    }
+
+    actions{
+
+      unitPlayEffect{
+        effect:t="ship_model_expl"
+        offset:p3=0.0, 0.0, 0.0
+        show:b=yes
+        loop:b=no
+        scale:r=1.0
+        effect_type:t="specify"
+        radiusOffset:p2=0.0, 0.0
+        attach:b=no
+        loopSpawn:b=yes
+        delay:p2=1.0, 1.0
+        target:t="air_def42"
+      }
+
+      missionDestroyArea{
+        target_type:t="ALL"
+        area:t="air_def42_area"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  air_def48_group_destroyed{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      unitWhenStatus{
+        object_type:t="isKilled"
+        object_marking:i=0
+        check_objects:t="any"
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object:t="air_def48"
+      }
+    }
+
+    actions{
+
+      unitPlayEffect{
+        effect:t="ship_model_expl"
+        offset:p3=0.0, 0.0, 0.0
+        show:b=yes
+        loop:b=no
+        scale:r=1.0
+        effect_type:t="specify"
+        radiusOffset:p2=0.0, 0.0
+        attach:b=no
+        loopSpawn:b=yes
+        delay:p2=1.0, 1.0
+        target:t="air_def48"
+      }
+
+      missionDestroyArea{
+        target_type:t="ALL"
+        area:t="air_def48_area"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  air_def47_group_destroyed{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      unitWhenStatus{
+        object_type:t="isKilled"
+        object_marking:i=0
+        check_objects:t="any"
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object:t="air_def47"
+      }
+    }
+
+    actions{
+
+      unitPlayEffect{
+        effect:t="ship_model_expl"
+        offset:p3=0.0, 0.0, 0.0
+        show:b=yes
+        loop:b=no
+        scale:r=1.0
+        effect_type:t="specify"
+        radiusOffset:p2=0.0, 0.0
+        attach:b=no
+        loopSpawn:b=yes
+        delay:p2=1.0, 1.0
+        target:t="air_def47"
+      }
+
+      missionDestroyArea{
+        target_type:t="ALL"
+        area:t="air_def47_area"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  air_def55_group_destroyed{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      unitWhenStatus{
+        object_type:t="isKilled"
+        object_marking:i=0
+        check_objects:t="any"
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object:t="air_def55"
+      }
+    }
+
+    actions{
+
+      unitPlayEffect{
+        effect:t="ship_model_expl"
+        offset:p3=0.0, 0.0, 0.0
+        show:b=yes
+        loop:b=no
+        scale:r=1.0
+        effect_type:t="specify"
+        radiusOffset:p2=0.0, 0.0
+        attach:b=no
+        loopSpawn:b=yes
+        delay:p2=1.0, 1.0
+        target:t="air_def55"
+      }
+
+      missionDestroyArea{
+        target_type:t="ALL"
+        area:t="air_def55_area"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  air_def57_group_destroyed{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      unitWhenStatus{
+        object_type:t="isKilled"
+        object_marking:i=0
+        check_objects:t="any"
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object:t="air_def57"
+      }
+    }
+
+    actions{
+
+      unitPlayEffect{
+        effect:t="ship_model_expl"
+        offset:p3=0.0, 0.0, 0.0
+        show:b=yes
+        loop:b=no
+        scale:r=1.0
+        effect_type:t="specify"
+        radiusOffset:p2=0.0, 0.0
+        attach:b=no
+        loopSpawn:b=yes
+        delay:p2=1.0, 1.0
+        target:t="air_def57"
+      }
+
+      missionDestroyArea{
+        target_type:t="ALL"
+        area:t="air_def57_area"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  air_def69_group_destroyed{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+
+      unitWhenStatus{
+        object_type:t="isKilled"
+        object_marking:i=0
+        check_objects:t="any"
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_type:t="isAlive"
+        check_period:r=1.0
+        object:t="air_def69"
+      }
+    }
+
+    actions{
+
+      unitPlayEffect{
+        effect:t="ship_model_expl"
+        offset:p3=0.0, 0.0, 0.0
+        show:b=yes
+        loop:b=no
+        scale:r=1.0
+        effect_type:t="specify"
+        radiusOffset:p2=0.0, 0.0
+        attach:b=no
+        loopSpawn:b=yes
+        delay:p2=1.0, 1.0
+        target:t="air_def69"
+      }
+
+      missionDestroyArea{
+        target_type:t="ALL"
+        area:t="air_def69_area"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  mission_completed{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      unitWhenCountMatches{
+        object_type:t="isAlive"
+        object_marking:i=0
+        func:t="less"
+        value:i=1
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="air_def_squad01"
+        object:t="air_def_squad02"
+        object:t="air_def_squad03"
+      }
+    }
+
+    actions{
+
+      triggerDisable{
+        target:t="air_def_count"
+      }
+
+      missionSetTargetsIndicator{
+        target_type:t="isAlive"
+        target_marking:i=0
+        delta:i=0
+        icon:t="aa"
+        "icon army":i=2
+        set:b=no
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="air_def_squad01"
+        target:t="air_def_squad02"
+        target:t="air_def_squad03"
+      }
+
+      unitSetIndication{
+        set:b=no
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="air_def_squad01"
+        target:t="air_def_squad02"
+        target:t="air_def_squad03"
+      }
+
+      moSetObjectiveStatus{
+        target:t="single_malta_m01_att00"
+        status:i=2
+      }
+
+      wait{
+        time:r=3.0
+      }
+
+      missionCompleted{
+        timer:b=no
+        debriefingTimer:i=4
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  air_def_count{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=yes
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      missionSetTargetsIndicator{
+        target_type:t="isAlive"
+        target_marking:i=0
+        delta:i=0
+        icon:t="aa"
+        "icon army":i=2
+        set:b=yes
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="air_def_squad01"
+        target:t="air_def_squad02"
+        target:t="air_def_squad03"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  aaa_hold{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      wait{
+        time:r=5.0
+      }
+
+      wait{
+        time:r=10.0
+      }
+
+      unitSetProperties{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="air_def_squad01"
+        object:t="air_def_squad02"
+        attack_type:t="hold_fire"
+      }
+
+      unitSetProperties{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="air_def_squad03"
+        object:t="figters_target_squad"
+        attack_type:t="hold_fire"
+      }
+
+      triggerEnable{
+        target:t="aaa_fire"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  aaa_fire{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      wait{
+        time:r=15.0
+      }
+
+      wait{
+        time:r=10.0
+      }
+
+      unitSetProperties{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="air_def_squad01"
+        object:t="air_def_squad02"
+        attack_type:t="fire_at_will"
+      }
+
+      unitSetProperties{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        object:t="air_def_squad03"
+        object:t="figters_target_squad"
+        attack_type:t="fire_at_will"
+      }
+
+      triggerEnable{
+        target:t="aaa_hold"
+      }
+    }
+
+    else_actions{
+    }
+  }
+}
+
+mission_objectives{
+  isCategory:b=yes
+  is_enabled:b=yes
+
+  single_malta_m01_att00{
+    is_enabled:b=yes
+    comments:t=""
+    type:t="abstractMissionObjective"
+
+    props{
+      isPrimary:b=yes
+      timeLimit:i=1800
+      scoreConst:i=100
+      scoreTime:i=400
+    }
+
+    onSuccess{
+    }
+
+    onFailed{
+    }
+  }
+}
+
+variables{
+}
+
+dialogs{
+}
+
+airfields{
+}
+
+effects{
+}
+
+units{
+
+  armada{
+    name:t="player"
+    tm:m=[[-0.642788, 0.0, -0.766044] [0.0, 1.0, 0.0] [0.766044, 0.0, -0.642788] [15610.9, 405.45, -1054.15]]
+    unit_class:t="fiat_g50_seria2_italy"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="fiat_g50_seria2_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      count:i=4
+      uniqueName:t=""
+      numInWing:i=2
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=1.5
+        col_distances:r=1.5
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="luftwaffe00"
+    tm:m=[[-0.766044, 0.0, -0.642788] [0.0, 1.0, 0.0] [0.642788, 0.0, -0.766044] [16483.2, 2026.5, -320.2]]
+    unit_class:t="ju-87b-2"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="Ju87_B2_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      count:i=12
+      uniqueName:t=""
+      numInWing:i=3
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=2.0
+        col_distances:r=2.0
+        super_formation:t="Diamond"
+        super_row_distances:r=2.0
+        super_col_distances:r=2.0
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="luftwaffe01"
+    tm:m=[[-0.766044, 0.0, -0.642788] [0.0, 1.0, 0.0] [0.642788, 0.0, -0.766044] [21197.8, 2026.5, 3713.25]]
+    unit_class:t="ju-87b-2"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="Ju87_B2_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      count:i=12
+      uniqueName:t=""
+      numInWing:i=3
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=2.0
+        col_distances:r=2.0
+        super_formation:t="Diamond"
+        super_row_distances:r=2.0
+        super_col_distances:r=2.0
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="luftwaffe02"
+    tm:m=[[-0.766044, 0.0, -0.642788] [0.0, 1.0, 0.0] [0.642788, 0.0, -0.766044] [24627.8, 2026.5, 6568.4]]
+    unit_class:t="ju-87b-2"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="Ju87_B2_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      count:i=12
+      uniqueName:t=""
+      numInWing:i=3
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=2.0
+        col_distances:r=2.0
+        super_formation:t="Diamond"
+        super_row_distances:r=2.0
+        super_col_distances:r=2.0
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="luftwaffe03"
+    tm:m=[[-0.5373, 0.0, -0.843391] [0.0, 1.0, 0.0] [0.843391, 0.0, -0.5373] [14733.1, 2026.5, 9410.95]]
+    unit_class:t="ju-87b-2"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="Ju87_B2_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      count:i=12
+      uniqueName:t=""
+      numInWing:i=3
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=2.0
+        col_distances:r=2.0
+        super_formation:t="Diamond"
+        super_row_distances:r=2.0
+        super_col_distances:r=2.0
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="luftwaffe04"
+    tm:m=[[-0.965926, 0.0, -0.258819] [0.0, 1.0, 0.0] [0.258819, 0.0, -0.965926] [21304.1, 2026.5, -5019.5]]
+    unit_class:t="ju-87b-2"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="Ju87_B2_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      count:i=12
+      uniqueName:t=""
+      numInWing:i=3
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=2.0
+        col_distances:r=2.0
+        super_formation:t="Diamond"
+        super_row_distances:r=2.0
+        super_col_distances:r=2.0
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="allied_squad01"
+    tm:m=[[-0.906308, 0.0, -0.422618] [0.0, 1.0, 0.0] [0.422618, 0.0, -0.906308] [15242.5, 405.45, -2913.65]]
+    unit_class:t="fiat_g50_seria2_italy"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="fiat_g50_seria2_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      count:i=6
+      uniqueName:t=""
+      numInWing:i=2
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=1.5
+        col_distances:r=1.5
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="allied_squad02"
+    tm:m=[[-0.21644, 0.0, -0.976296] [0.0, 1.0, 0.0] [0.976296, 0.0, -0.21644] [11842.7, 405.45, 218.25]]
+    unit_class:t="fiat_g50_seria2_italy"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="fiat_g50_seria2_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=1
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      count:i=6
+      uniqueName:t=""
+      numInWing:i=2
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=1.5
+        col_distances:r=1.5
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="air_def09"
+    tm:m=[[0.21644, 0.0, -0.976296] [0.0, 1.0, 0.0] [0.976296, 0.0, 0.21644] [12182.7, 85.55, -5103.8]]
+    unit_class:t="us_40mm_bofors_noground"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="air_def11"
+    tm:m=[[-0.642787, 0.0, 0.766045] [0.0, 1.0, 0.0] [-0.766045, 0.0, -0.642787] [12153.8, 77.7257, -5054.85]]
+    unit_class:t="us_40mm_bofors_noground"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="air_def16"
+    tm:m=[[0.953717, 0.0, 0.300705] [0.0, 1.0, 0.0] [-0.300705, 0.0, 0.953717] [12166.4, 73.95, -4420.1]]
+    unit_class:t="us_40mm_bofors_noground"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="air_def18"
+    tm:m=[[0.793353, 0.0, -0.608762] [0.0, 1.0, 0.0] [0.608762, 0.0, 0.793353] [12176.9, 65.4207, -4431.7]]
+    unit_class:t="us_40mm_bofors_noground"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="air_def22"
+    tm:m=[[0.707107, 0.0, 0.707106] [0.0, 1.0, 0.0] [-0.707106, 0.0, 0.707107] [12143.4, 68.5, -3935.35]]
+    unit_class:t="us_40mm_bofors_noground"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="air_def27"
+    tm:m=[[0.342021, 0.0, 0.939692] [0.0, 1.0, 0.0] [-0.939692, 0.0, 0.342021] [12292.1, 73.4, -3880.6]]
+    unit_class:t="us_40mm_bofors_noground"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="air_def31"
+    tm:m=[[0.843391, 0.0, -0.5373] [0.0, 1.0, 0.0] [0.5373, 0.0, 0.843391] [12280.6, 73.8503, -3995.65]]
+    unit_class:t="us_40mm_bofors_noground"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="air_def37"
+    tm:m=[[-0.130525, 0.0, 0.991445] [0.0, 1.0, 0.0] [-0.991445, 0.0, -0.130525] [12223.5, 107.332, -3932.95]]
+    unit_class:t="us_40mm_bofors_noground"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="air_def42"
+    tm:m=[[0.461749, 0.0, 0.88701] [0.0, 1.0, 0.0] [-0.88701, 0.0, 0.461749] [12233.8, 116.333, -3956.9]]
+    unit_class:t="us_40mm_bofors_noground"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="air_def44"
+    tm:m=[[-0.608181, -0.0436194, 0.792599] [-0.0265538, 0.999048, 0.0346056] [-0.793354, -4.02987e-08, -0.60876] [11748.5, 60.6, -4039.65]]
+    unit_class:t="us_40mm_bofors_noground"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="air_def46"
+    tm:m=[[0.842589, -0.0436194, 0.536787] [0.0367882, 0.999048, 0.0234367] [-0.537299, -4.02987e-08, 0.843392] [11816.6, 60.6195, -4080.35]]
+    unit_class:t="us_40mm_bofors_noground"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="air_def47"
+    tm:m=[[0.0870737, -0.0436194, 0.995246] [0.00380168, 0.999048, 0.0434534] [-0.996194, -4.02987e-08, 0.0871566] [11772.6, 92.0, -4077.4]]
+    unit_class:t="us_40mm_bofors_noground"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="air_def48"
+    tm:m=[[-0.499999, 0.0, 0.866026] [0.0, 1.0, 0.0] [-0.866026, 0.0, -0.499999] [12106.3, 88.062, -4055.35]]
+    unit_class:t="us_40mm_bofors_noground"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="air_def50"
+    tm:m=[[-0.766044, 0.0, 0.642788] [0.0, 1.0, 0.0] [-0.642788, 0.0, -0.766044] [12063.9, 67.85, -4070.65]]
+    unit_class:t="us_40mm_bofors_noground"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="air_def51"
+    tm:m=[[0.819151, 0.0, -0.573577] [0.0, 1.0, 0.0] [0.573577, 0.0, 0.819151] [11727.9, 65.75, -3493.35]]
+    unit_class:t="us_40mm_bofors_noground"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="air_def54"
+    tm:m=[[-0.965925, 0.0, 0.25882] [0.0, 1.0, 0.0] [-0.25882, 0.0, -0.965925] [11683.8, 65.75, -3481.85]]
+    unit_class:t="us_40mm_bofors_noground"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="air_def57"
+    tm:m=[[0.939692, 0.0, 0.342019] [0.0, 1.0, 0.0] [-0.342019, 0.0, 0.939692] [11409.0, 76.6, -3098.85]]
+    unit_class:t="us_40mm_bofors_noground"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="air_def58"
+    tm:m=[[0.939692, 0.0, 0.342019] [0.0, 1.0, 0.0] [-0.342019, 0.0, 0.939692] [11449.8, 39.9197, -3087.55]]
+    unit_class:t="us_40mm_bofors_noground"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="air_def62"
+    tm:m=[[0.92388, 0.0, 0.382682] [0.0, 1.0, 0.0] [-0.382682, 0.0, 0.92388] [11140.3, 77.0013, -3801.45]]
+    unit_class:t="us_40mm_bofors_noground"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="air_def66"
+    tm:m=[[0.422619, 0.0, 0.906307] [0.0, 1.0, 0.0] [-0.906307, 0.0, 0.422619] [11103.7, 84.0, -3792.2]]
+    unit_class:t="us_40mm_bofors_noground"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="air_def69"
+    tm:m=[[0.976296, 0.0, 0.216439] [0.0, 1.0, 0.0] [-0.216439, 0.0, 0.976296] [11080.7, 102.85, -3826.15]]
+    unit_class:t="us_40mm_bofors_noground"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="air_def70"
+    tm:m=[[-0.965925, 0.0, 0.25882] [0.0, 1.0, 0.0] [-0.25882, 0.0, -0.965925] [11049.5, 84.0, -3809.4]]
+    unit_class:t="us_40mm_bofors_noground"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="air_def55"
+    tm:m=[[0.608762, 0.0, 0.793353] [0.0, 1.0, 0.0] [-0.793353, 0.0, 0.608762] [11706.7, 73.1796, -3481.85]]
+    unit_class:t="us_40mm_bofors_noground"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="fighters_target01"
+    tm:m=[[-0.5373, 0.0, 0.843391] [0.0, 1.0, 0.0] [-0.843391, 0.0, -0.5373] [12766.3, 23.4, -5174.7]]
+    unit_class:t="us_40mm_bofors_noground"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="fighters_target03"
+    tm:m=[[-0.5373, 0.0, 0.843391] [0.0, 1.0, 0.0] [-0.843391, 0.0, -0.5373] [10342.1, 23.4, -3500.95]]
+    unit_class:t="us_40mm_bofors_noground"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="fighters_target05"
+    tm:m=[[-0.5373, 0.0, 0.843391] [0.0, 1.0, 0.0] [-0.843391, 0.0, -0.5373] [12207.7, 45.35, -5682.25]]
+    unit_class:t="us_40mm_bofors_noground"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="fighters_target06"
+    tm:m=[[-0.5373, 0.0, 0.843391] [0.0, 1.0, 0.0] [-0.843391, 0.0, -0.5373] [11711.2, 23.4, -5900.55]]
+    unit_class:t="us_40mm_bofors_noground"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="fighters_target11"
+    tm:m=[[-0.5373, 0.0, 0.843391] [0.0, 1.0, 0.0] [-0.843391, 0.0, -0.5373] [10677.8, 23.4, -6611.05]]
+    unit_class:t="us_40mm_bofors_noground"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  air_defence{
+    name:t="fighters_target15"
+    tm:m=[[-0.5373, 0.0, 0.843391] [0.0, 1.0, 0.0] [-0.843391, 0.0, -0.5373] [11045.4, 24.2183, -4875.55]]
+    unit_class:t="us_40mm_bofors_noground"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  squad{
+    name:t="air_def_squad01"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [12242.4, -22.6, -3577.0]]
+
+    props{
+      squad_members:t="air_def09"
+      squad_members:t="air_def11"
+      squad_members:t="air_def16"
+      squad_members:t="air_def18"
+      squad_members:t="air_def22"
+    }
+  }
+
+  squad{
+    name:t="air_def_squad02"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [12298.6, -22.6, -3626.75]]
+
+    props{
+      squad_members:t="air_def27"
+      squad_members:t="air_def31"
+      squad_members:t="air_def37"
+      squad_members:t="air_def42"
+      squad_members:t="air_def44"
+      squad_members:t="air_def46"
+      squad_members:t="air_def47"
+      squad_members:t="air_def48"
+      squad_members:t="air_def50"
+      squad_members:t="air_def51"
+      squad_members:t="air_def54"
+      squad_members:t="air_def57"
+      squad_members:t="air_def58"
+    }
+  }
+
+  squad{
+    name:t="air_def_squad03"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [12361.0, -22.6, -3682.0]]
+
+    props{
+      squad_members:t="air_def62"
+      squad_members:t="air_def66"
+      squad_members:t="air_def69"
+      squad_members:t="air_def70"
+      squad_members:t="air_def55"
+    }
+  }
+
+  squad{
+    name:t="player_himself"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [12569.0, -38.65, -3511.55]]
+
+    props{
+      squad_members:t="player"
+      object_type:t="isPlayer"
+    }
+  }
+
+  squad{
+    name:t="luftwaffe"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [11736.5, -36.95, -2415.8]]
+
+    props{
+      squad_members:t="luftwaffe00"
+      squad_members:t="luftwaffe01"
+      squad_members:t="luftwaffe02"
+      squad_members:t="luftwaffe03"
+      squad_members:t="luftwaffe04"
+    }
+  }
+
+  squad{
+    name:t="cargo_squad"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [10716.4, 2.0, -4483.15]]
+
+    props{
+      squad_members:t="cargo00"
+      squad_members:t="cargo01"
+      squad_members:t="cargo02"
+      squad_members:t="cargo03"
+      squad_members:t="cargo04"
+      squad_members:t="cargo05"
+      squad_members:t="cargo06"
+      squad_members:t="cargo07"
+      squad_members:t="cargo08"
+      squad_members:t="cargo09"
+      squad_members:t="cargo10"
+      squad_members:t="cargo11"
+      squad_members:t="cargo12"
+    }
+  }
+
+  squad{
+    name:t="targets_for_bombers"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [11981.9, 2.0, -2718.15]]
+
+    props{
+      squad_members:t="targets01"
+      squad_members:t="targets02"
+      squad_members:t="targets04"
+      squad_members:t="targets05"
+      squad_members:t="targets06"
+      squad_members:t="targets07"
+      squad_members:t="targets08"
+      squad_members:t="targets10"
+      squad_members:t="targets11"
+    }
+  }
+
+  squad{
+    name:t="for_indicator"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [12720.1, 2.0, -4203.75]]
+
+    props{
+      squad_members:t="air_def09"
+      squad_members:t="air_def16"
+      squad_members:t="air_def27"
+      squad_members:t="air_def47"
+      squad_members:t="air_def48"
+      squad_members:t="air_def42"
+      squad_members:t="air_def57"
+      squad_members:t="air_def55"
+      squad_members:t="air_def69"
+    }
+  }
+
+  squad{
+    name:t="figters_target_squad"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [12320.9, 106.35, -6180.45]]
+
+    props{
+      squad_members:t="fighters_target01"
+      squad_members:t="fighters_target03"
+      squad_members:t="fighters_target05"
+      squad_members:t="fighters_target06"
+      squad_members:t="fighters_target11"
+      squad_members:t="fighters_target15"
+    }
+  }
+
+  squad{
+    name:t="barrel_squad"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [11667.5, 2.0, -3148.65]]
+
+    props{
+      squad_members:t="barrels_01"
+      squad_members:t="barrels_02"
+      squad_members:t="barrels_03"
+      squad_members:t="barrels_04"
+      squad_members:t="barrels_05"
+      squad_members:t="barrels_06"
+      squad_members:t="barrels_07"
+      squad_members:t="barrels_08"
+      squad_members:t="barrels_09"
+      squad_members:t="barrels_10"
+      squad_members:t="barrels_11"
+      squad_members:t="barrels_12"
+      squad_members:t="barrels_13"
+      squad_members:t="barrels_14"
+      squad_members:t="barrels_15"
+      squad_members:t="barrels_16"
+    }
+  }
+
+  ships{
+    name:t="cargo00"
+    tm:m=[[-0.766044, 0.0, 0.642788] [0.0, 1.0, 0.0] [-0.642788, 0.0, -0.766044] [10865.2, -32.75, -6056.3]]
+    unit_class:t="hms_cargo_ship"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="cargo01"
+    tm:m=[[0.707107, 0.0, -0.707107] [0.0, 1.0, 0.0] [0.707107, 0.0, 0.707107] [10807.7, -32.7, -5882.55]]
+    unit_class:t="hms_cargo_ship"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="cargo02"
+    tm:m=[[-0.737277, 0.0, 0.67559] [0.0, 1.0, 0.0] [-0.67559, 0.0, -0.737277] [10996.6, -32.7, -6006.5]]
+    unit_class:t="hms_cargo_ship"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="cargo03"
+    tm:m=[[-0.5, 0.0, 0.866025] [0.0, 1.0, 0.0] [-0.866025, 0.0, -0.5] [11360.5, -32.7, -5794.15]]
+    unit_class:t="hms_cargo_ship"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="cargo04"
+    tm:m=[[-0.887011, 0.0, -0.461749] [0.0, 1.0, 0.0] [0.461749, 0.0, -0.887011] [11916.8, -32.7, -5687.35]]
+    unit_class:t="hms_cargo_ship"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="cargo05"
+    tm:m=[[-0.573577, 0.0, 0.819152] [0.0, 1.0, 0.0] [-0.819152, 0.0, -0.573577] [10924.1, -32.7, -4375.1]]
+    unit_class:t="hms_cargo_ship"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="cargo06"
+    tm:m=[[0.258819, 0.0, -0.965926] [0.0, 1.0, 0.0] [0.965926, 0.0, 0.258819] [10487.6, -32.7, -4748.4]]
+    unit_class:t="hms_cargo_ship"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="cargo07"
+    tm:m=[[0.34202, 0.0, -0.939693] [0.0, 1.0, 0.0] [0.939693, 0.0, 0.34202] [10070.0, -32.7, -4549.2]]
+    unit_class:t="hms_cargo_ship"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="cargo08"
+    tm:m=[[0.258819, 0.0, 0.965926] [0.0, 1.0, 0.0] [-0.965926, 0.0, 0.258819] [10458.3, -32.7, -4129.95]]
+    unit_class:t="hms_cargo_ship"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="cargo09"
+    tm:m=[[-0.34202, 0.0, 0.939693] [0.0, 1.0, 0.0] [-0.939693, 0.0, -0.34202] [10662.8, -32.7, -3410.45]]
+    unit_class:t="hms_cargo_ship"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="cargo10"
+    tm:m=[[-0.766044, 0.0, -0.642788] [0.0, 1.0, 0.0] [0.642788, 0.0, -0.766044] [11745.5, -32.7, -5164.95]]
+    unit_class:t="hms_cargo_ship"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=2
+      formation_type:t="cols"
+      formation_div:i=1
+      formation_step:p2=5.0, 3.0
+      formation_noise:p2=0.3, -0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="cargo11"
+    tm:m=[[0.21644, 0.0, -0.976296] [0.0, 1.0, 0.0] [0.976296, 0.0, 0.21644] [12536.8, -32.7, -5192.65]]
+    unit_class:t="hms_cargo_ship"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=2
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  ships{
+    name:t="cargo12"
+    tm:m=[[-0.939693, 0.0, -0.34202] [0.0, 1.0, 0.0] [0.34202, 0.0, -0.939693] [11320.7, -32.7, -4045.6]]
+    unit_class:t="hms_cargo_ship"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=5.0, 2.0
+      formation_noise:p2=0.3, -0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="targets01"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [11343.3, 5.4, -4857.5]]
+    unit_class:t="dummy"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="targets02"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [11017.7, 4.05, -5414.55]]
+    unit_class:t="dummy"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="targets04"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [11831.7, 46.5, -4297.95]]
+    unit_class:t="dummy"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="targets05"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [11289.8, 20.65, -4510.15]]
+    unit_class:t="dummy"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="targets06"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [10882.0, 32.65, -3854.6]]
+    unit_class:t="dummy"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="targets07"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [12157.8, 20.65, -5773.55]]
+    unit_class:t="dummy"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="targets08"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [11736.3, 1.99989, -6219.6]]
+    unit_class:t="dummy"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="targets10"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [10072.9, 0.7, -6246.2]]
+    unit_class:t="dummy"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="targets11"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [10666.2, 5.4, -5023.15]]
+    unit_class:t="dummy"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="barrels_01"
+    tm:m=[[0.92388, 0.0, -0.382683] [0.0, 1.0, 0.0] [0.382683, 0.0, 0.92388] [12234.2, 116.333, -3966.8]]
+    unit_class:t="stuff_tentBarrels"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="barrels_02"
+    tm:m=[[0.608762, 0.0, 0.793353] [0.0, 1.0, 0.0] [-0.793353, 0.0, 0.608762] [12284.4, 73.4152, -3882.5]]
+    unit_class:t="stuff_barrels"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=3
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=1.0, 1.0
+      formation_noise:p2=0.4, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="barrels_03"
+    tm:m=[[0.866025, 0.0, 0.5] [0.0, 1.0, 0.0] [-0.5, 0.0, 0.866025] [12078.2, 67.8448, -4053.7]]
+    unit_class:t="stuff_barrels"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=2
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.4, 0.3
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="barrels_04"
+    tm:m=[[0.608762, 0.0, 0.793353] [0.0, 1.0, 0.0] [-0.793353, 0.0, 0.608762] [12092.8, 88.062, -4071.05]]
+    unit_class:t="stuff_tentCaissons"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="barrels_05"
+    tm:m=[[0.573577, 0.0, 0.819152] [0.0, 1.0, 0.0] [-0.819152, 0.0, 0.573577] [11763.7, 91.9971, -4075.05]]
+    unit_class:t="stuff_caissons"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=2
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=0.7, 0.9
+      formation_noise:p2=0.4, 0.4
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="barrels_06"
+    tm:m=[[2.98023e-08, 0.0, 1.0] [0.0, 1.0, 0.0] [-1.0, 0.0, 2.98023e-08] [12155.5, 73.941, -4418.25]]
+    unit_class:t="stuff_caissons"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=2
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 1.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="barrels_07"
+    tm:m=[[-0.887011, 0.0, 0.461749] [0.0, 1.0, 0.0] [-0.461749, 0.0, -0.887011] [12168.3, 85.5472, -5103.25]]
+    unit_class:t="stuff_tentBarrels"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=2
+      formation_type:t="rows"
+      formation_div:i=1
+      formation_step:p2=0.0, 1.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="barrels_08"
+    tm:m=[[0.707107, 0.0, 0.707107] [0.0, 1.0, 0.0] [-0.707107, 0.0, 0.707107] [12181.5, 85.5472, -5090.8]]
+    unit_class:t="stuff_barrels"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=3
+      formation_type:t="rows"
+      formation_div:i=2
+      formation_step:p2=1.0, 1.0
+      formation_noise:p2=0.2, 0.4
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="barrels_09"
+    tm:m=[[-0.258819, 0.0, 0.965926] [0.0, 1.0, 0.0] [-0.965926, 0.0, -0.258819] [11093.7, 97.2732, -3820.55]]
+    unit_class:t="stuff_barrels"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=2
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=1.0, 1.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="barrels_10"
+    tm:m=[[0.819152, 0.0, 0.573576] [0.0, 1.0, 0.0] [-0.573576, 0.0, 0.819152] [11093.3, 97.2732, -3816.9]]
+    unit_class:t="stuff_caissons"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="barrels_11"
+    tm:m=[[0.173648, 0.0, -0.984808] [0.0, 1.0, 0.0] [0.984808, 0.0, 0.173648] [11702.0, 65.7749, -3463.4]]
+    unit_class:t="stuff_tentBarrels"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="barrels_12"
+    tm:m=[[0.173648, 0.0, -0.984808] [0.0, 1.0, 0.0] [0.984808, 0.0, 0.173648] [11717.3, 73.1796, -3482.55]]
+    unit_class:t="stuff_barrels"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="barrels_13"
+    tm:m=[[-0.819152, 0.0, -0.573576] [0.0, 1.0, 0.0] [0.573576, 0.0, -0.819152] [11401.3, 76.6289, -3093.4]]
+    unit_class:t="stuff_barrels"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=3
+      formation_type:t="rows"
+      formation_div:i=2
+      formation_step:p2=1.0, 0.8
+      formation_noise:p2=-0.1, 0.3
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="barrels_14"
+    tm:m=[[0.608761, 0.0, -0.793354] [0.0, 1.0, 0.0] [0.793354, 0.0, 0.608761] [11710.1, 65.7749, -3464.15]]
+    unit_class:t="stuff_tentCaissons"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="barrels_15"
+    tm:m=[[0.92388, 0.0, -0.382683] [0.0, 1.0, 0.0] [0.382683, 0.0, 0.92388] [12230.4, 116.333, -3959.0]]
+    unit_class:t="stuff_barrels"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=2
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 1.0
+      formation_noise:p2=0.4, 0.2
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+
+  structures{
+    name:t="barrels_16"
+    tm:m=[[0.92388, 0.0, -0.382683] [0.0, 1.0, 0.0] [0.382683, 0.0, 0.92388] [12222.2, 116.333, -3963.65]]
+    unit_class:t="stuff_caissons"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 1.0
+      formation_noise:p2=0.4, 0.2
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+    }
+  }
+}
+
+areas{
+
+  waypoint00{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [12828.0, 2308.75, -3111.1]]
+
+    props{
+    }
+  }
+
+  air_def09_area{
+    type:t="Sphere"
+    tm:m=[[174.5, 0.0, 0.0] [0.0, 174.5, 0.0] [0.0, 0.0, 174.5] [12185.4, 85.55, -5088.25]]
+
+    props{
+    }
+  }
+
+  aie_def16_area{
+    type:t="Sphere"
+    tm:m=[[48.9, 0.0, 0.0] [0.0, 48.9, 0.0] [0.0, 0.0, 48.9] [12165.5, 73.95, -4425.0]]
+
+    props{
+    }
+  }
+
+  air_def42_area{
+    type:t="Cylinder"
+    tm:m=[[120.0, 0.0, 0.0] [0.0, 221.85, 0.0] [0.0, 0.0, 120.0] [12218.5, -14.15, -4002.0]]
+
+    props{
+    }
+  }
+
+  air_def27_area{
+    type:t="Sphere"
+    tm:m=[[105.9, 0.0, 0.0] [0.0, 105.9, 0.0] [0.0, 0.0, 105.9] [12281.5, 73.4, -3876.85]]
+
+    props{
+    }
+  }
+
+  air_def48_area{
+    type:t="Sphere"
+    tm:m=[[136.7, 0.0, 0.0] [0.0, 136.7, 0.0] [0.0, 0.0, 136.7] [12082.6, 88.05, -4070.3]]
+
+    props{
+    }
+  }
+
+  air_def47_area{
+    type:t="Sphere"
+    tm:m=[[184.0, 0.0, 0.0] [0.0, 184.0, 0.0] [0.0, 0.0, 184.0] [11780.1, 92.0, -4070.7]]
+
+    props{
+    }
+  }
+
+  air_def55_area{
+    type:t="Sphere"
+    tm:m=[[116.403, 0.0, 0.0] [0.0, 116.403, 0.0] [0.0, 0.0, 116.403] [11712.7, 73.2, -3483.25]]
+
+    props{
+    }
+  }
+
+  air_def57_area{
+    type:t="Sphere"
+    tm:m=[[167.4, 0.0, 0.0] [0.0, 167.4, 0.0] [0.0, 0.0, 167.4] [11409.9, 76.65, -3098.5]]
+
+    props{
+    }
+  }
+
+  air_def69_area{
+    type:t="Sphere"
+    tm:m=[[306.56, 0.0, 0.0] [0.0, 306.56, 0.0] [0.0, 0.0, 306.56] [11081.0, 102.85, -3824.9]]
+
+    props{
+    }
+  }
+
+  waypoint01{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [30082.7, 2308.75, 19804.2]]
+
+    props{
+    }
+  }
+
+  evac{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [61515.1, 1000.0, 51253.0]]
+
+    props{
+    }
+  }
+}
+
+objLayers{
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+}
+
+wayPoints{
+}
