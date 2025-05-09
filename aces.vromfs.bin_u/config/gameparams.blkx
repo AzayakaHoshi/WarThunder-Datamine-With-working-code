@@ -72,6 +72,7 @@ effectsZNearOffsetInCockpit:r=2.0
 invisibleSupportUnits:b=yes
 unitDefaultVisibilityDistance:r=2000.0
 applyViewDistKToVisibilityResolution:b=yes
+tankAlwaysDetectedDistance:r=215.0
 shellCasingFallFx:t="hit_12_18mm_water"
 minMassMultApexObjectsCollidedWithHero:r=0.002
 maxMassMultApexObjectsCollidedWithHero:r=0.04
@@ -6196,6 +6197,13 @@ tracerTrails{
     color:c=228, 228, 228, 228
     deviation:r=5.0
   }
+
+  tinyTrail{
+    particleHalfSizeFrom:r=0.004
+    particleHalfSizeTo:r=0.016
+    color:c=228, 228, 228, 228
+    deviation:r=5.0
+  }
 }
 
 turbulence{
@@ -8010,6 +8018,7 @@ difficulty_settings{
       tankBoundingHeightDetectionMult:p2=1.6, 0.4
       shipBoundingHeightDetectionRange:p2=6.0, 27.0
       shipBoundingHeightDetectionMult:p2=1.0, 0.05
+      humanDetectionMult:r=8.0
     }
 
     normal{
@@ -8026,6 +8035,7 @@ difficulty_settings{
       tankBoundingHeightDetectionMult:p2=1.6, 0.4
       shipBoundingHeightDetectionRange:p2=6.0, 27.0
       shipBoundingHeightDetectionMult:p2=1.0, 0.05
+      humanDetectionMult:r=8.0
     }
 
     far{
@@ -8042,6 +8052,7 @@ difficulty_settings{
       tankBoundingHeightDetectionMult:p2=1.6, 0.4
       shipBoundingHeightDetectionRange:p2=6.0, 27.0
       shipBoundingHeightDetectionMult:p2=1.0, 0.05
+      humanDetectionMult:r=8.0
     }
   }
 
@@ -8585,7 +8596,7 @@ enviCoverMaterials{
 
       dust{
         name:t="dust"
-        color:p3=0.35, 0.3, 0.24
+        color:p3=0.62, 0.58, 0.52
         metalness:r=0.0
         texScale:r=3.7
         maxLevel:r=1.0
@@ -8594,9 +8605,9 @@ enviCoverMaterials{
 
       mud{
         name:t="mud"
-        color:p3=0.045, 0.042, 0.045
+        color:p3=0.22, 0.21, 0.198
         metalness:r=0.0
-        texScale:r=3.7
+        texScale:r=12.7
         maxLevel:r=1.0
         topProjScale:r=0.0
       }
@@ -8614,7 +8625,7 @@ enviCoverMaterials{
 
       dust{
         name:t="dust"
-        color:p3=0.35, 0.3, 0.24
+        color:p3=0.62, 0.58, 0.52
         metalness:r=0.0
         texScale:r=3.7
         maxLevel:r=1.0
@@ -8623,9 +8634,9 @@ enviCoverMaterials{
 
       mud{
         name:t="mud"
-        color:p3=0.045, 0.042, 0.045
+        color:p3=0.22, 0.21, 0.198
         metalness:r=0.0
-        texScale:r=3.7
+        texScale:r=12.7
         maxLevel:r=1.0
         topProjScale:r=0.0
       }
@@ -8649,10 +8660,20 @@ enviCoverMaterials{
         maxLevel:r=1.0
         topProjScale:r=4.01
       }
+
+      mud{
+        name:t="mud"
+        color:p3=0.22, 0.21, 0.198
+        metalness:r=0.0
+        texScale:r=12.7
+        maxLevel:r=1.0
+        topProjScale:r=0.0
+      }
     }
 
     materialTextures{
       texName:t="tank_snow_mask"
+      texName:t="tank_dirt_mask"
     }
   }
 }
@@ -20036,6 +20057,26 @@ armorPartNamesGround{
       name:t="wheel_r_02_dm"
       modelNames:t="amd_35_kwk39"
     }
+
+    p{
+      name:t="wheel_r_01_dm"
+      modelNames:t="garford_putilov"
+    }
+
+    p{
+      name:t="wheel_r_02_dm"
+      modelNames:t="garford_putilov"
+    }
+
+    p{
+      name:t="wheel_l_01_dm"
+      modelNames:t="garford_putilov"
+    }
+
+    p{
+      name:t="wheel_l_02_dm"
+      modelNames:t="garford_putilov"
+    }
   }
 
   crew{
@@ -20921,6 +20962,10 @@ armorPartNamesAir{
 
     p{
       name:t="apu"
+    }
+
+    p{
+      name:t="air_balloon"
     }
   }
 }
@@ -24034,4 +24079,10 @@ planeCriticalSpeed{
   minFlapsForSpeedReduction:r=0.11
   flapsSpeedReduction:r=15.0
   minDirVelAngleDegrees:r=6.0
+}
+
+navQueryFilterWeights{
+  jumpWeight:r=10.0
+  jumpDownWeight:r=2.0
+  jumpDownThreshold:r=0.4
 }

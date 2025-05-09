@@ -1,0 +1,314 @@
+model:t="snr_75"
+hasExpl:b=no
+hasDmg2:b=no
+hasQualityModels:b=yes
+collisionSphere0:p4=0.0, -1.5, 0.0, 5.0
+collisionSphere1:p4=5.0, 2.0, 0.0, 1.0
+exhaustFx:t="tank_exhaust_med"
+damagedExhaustFx:t="tank_broken_exhaust"
+thermalExhaustFx:t="tank_exhaust_nightvision"
+dustFx:t=""
+support_unit_class:t="structures/ussr_152mm_d1"
+support_unit_tag:t="artillery"
+useSimpleDeathConditionsAndEffects:b=no
+timeToFire:r=5.0
+subclass:t="heavyVehicle"
+onRadarAs:t="unknown"
+moveType:t="vehicle"
+maxFwdSpeed:r=0.0
+maxRevSpeed:r=0.0
+maxAngSpeed:r=20.0
+maxAccel:r=10.0
+maxDecel:r=10.0
+maxAngAccel0:r=10.0
+maxAngAccelV:r=10.0
+maxAngAccel:r=10.0
+groundNormSmoothViscosity:r=0.1
+minDistBetween:r=10.0
+maxAnglesForFire:p2=-70.0, 70.0
+expClass:t="exp_heavy_tank"
+mass:r=5000.0
+bulletHitFx:t="ground_model_hit"
+partDamageFx:t="part_damage"
+explosionFx:t="tank_explosion"
+fireFx:t="ground_model_fire"
+destroysRendInstances:b=yes
+destroysTrees:b=yes
+killIfFlipped:b=yes
+cruiseVelocity:r=8.0
+type:t="typeLightTank"
+
+DamageParts{
+  formatVersion:i=2
+  armorClass:t="RHA_tank"
+  hp:r=50.0
+
+  hull_shields{
+    hp:r=50.0
+    explosionArmorQuality:r=0.2
+    shatterArmorQuality:r=0.2
+    restrainDamage:r=0.1
+    napalmDamageMult:r=100.0
+    napalmArmorQuality:r=0.05
+    armorClass:t="RHA_tank"
+
+    body_dm{
+      armorThickness:r=20.0
+      hp:r=200.0
+    }
+
+    turret_front_dm{
+      armorThickness:r=20.0
+      hp:r=200.0
+    }
+
+    antenna_target_tagging_dm{
+      armorThickness:r=10.0
+    }
+  }
+}
+
+DamageEffects{
+
+  part{
+    name:t="body_dm"
+
+    onKill{
+      full_expl:r=1.0
+    }
+  }
+
+  part{
+    name:t="turret_front_dm"
+
+    onKill{
+      full_expl:r=1.0
+    }
+  }
+}
+
+tank_crew{
+}
+
+explosion{
+
+  expl{
+    node:t="body"
+    partNo:i=0
+    timeToExplode:r=0.5
+    preEffectName:t=""
+    postEffectName:t="smoke_ground_black_fx"
+    explosionEffectName:t="explosion_midair_medium"
+    timeForPostEffect:r=60.0
+    preScale:r=1.0
+    postScale:r=1.0
+  }
+}
+
+MetaParts{
+
+  body{
+    hp:r=30.0
+    part:t="body_dm"
+    part:t="turret_front_dm"
+
+    effect{
+      conditionDamageType:t="generic"
+      expl:r=1.0
+      conditionDamage:r=10.0
+      kill:b=yes
+      killEffect:t="scorched"
+    }
+
+    effect{
+      conditionDamageType:t="explosion"
+      expl:r=1.0
+      conditionDamage:r=10.0
+      kill:b=yes
+      killEffect:t="scorched"
+    }
+
+    effect{
+      conditionDamageType:t="shatter"
+      expl:r=1.0
+      conditionDamage:r=10.0
+      kill:b=yes
+      killEffect:t="scorched"
+    }
+
+    effect{
+      conditionDamageType:t="cumulative"
+      expl:r=1.0
+      conditionDamage:r=10.0
+      kill:b=yes
+      killEffect:t="scorched"
+    }
+
+    effect{
+      conditionDamageType:t="napalm"
+      expl:r=1.0
+      conditionDamage:r=10.0
+      kill:b=yes
+      killEffect:t="scorched"
+    }
+  }
+}
+
+sound{
+  path:t="sounds/engines/apc"
+  pathStudio:t="aircraft/engines/apc"
+  engine:t=""
+  turret_turn:t="turret_turn_manual"
+}
+
+class_tags{
+}
+
+commonWeapons{
+
+  Weapon{
+    dummy:b=yes
+    trigger:t="gunner0"
+    triggerGroup:t="primary"
+    blk:t="gameData/Weapons/dummy_weapon.blk"
+    emitter:t="bone_gun"
+    defaultYaw:r=0.0
+    defaultPitch:r=0.0
+    speedYaw:r=85.0
+    speedPitch:r=40.0
+    bullets:i=1
+
+    turret{
+      head:t="bone_turret"
+      gun:t="bone_gun"
+    }
+
+    limits{
+      yaw:p2=-180.0, 180.0
+      pitch:p2=-8.0, 80.0
+    }
+
+    gunStabilizer{
+      hasVerticalGunFreeMode:b=no
+      hasHorizontal:b=yes
+      horizontalOmegaMult:r=1.0
+      horizontalSpeedLimitKPH:r=75.0
+      hasVertical:b=yes
+      verticalOmegaMult:r=1.0
+      verticalSpeedLimitKPH:r=75.0
+      speedFromVehicleVerticalMult:r=-1.0
+
+      errorKPHToDegrees{
+        row:p2=5.0, 0.0
+        row:p2=25.0, 0.015
+        row:p2=35.0, 0.02
+        row:p2=45.0, 0.1
+        row:p2=50.0, 0.3
+      }
+    }
+  }
+}
+
+weapon_presets{
+
+  preset{
+    name:t="ussr_ai_sam_radar_snr_75_default"
+    blk:t="gameData/units/tankModels/weaponPresets/ussr_ai_sam_radar_snr_75_default.blk"
+  }
+}
+
+VehiclePhys{
+
+  Mass{
+    Empty:r=5000.0
+    Fuel:r=0.0
+    TakeOff:r=5000.0
+    momentOfInertia:p3=6.0, 1.0, 6.0
+    CenterOfGravity:p3=-0.8, 0.2, 0.0
+    AdvancedMass:b=no
+    CenterOfGravityClampY:p2=0.0, 0.7
+    cls_body:r=1.0
+  }
+
+  tracks{
+    animationMultiplier:r=0.5
+    height:r=0.0
+    width:r=0.1
+    trackPhysMat:t="wheel"
+    fricFrontal:p2=10.0, 10.0
+  }
+
+  collisionProps{
+    cls_body:t="convex_hull"
+  }
+
+  engine{
+    horsePowers:r=1.0
+    maxRPM:r=2200.0
+    minRPM:r=700.0
+  }
+
+  mechanics{
+    maxBrakeForce:r=3200.0
+    driveGearRadius:r=0.3165
+    mainGearRatio:r=1.084
+    sideGearRatio:r=4.3
+    tracked:b=no
+
+    gearRatios{
+      ratio:r=-15.0
+      ratio:r=0.0
+      ratio:r=15.0
+    }
+  }
+
+  suspension{
+    suspensionOffsets:p3=-0.05, -0.05, 0.05
+    defaultGearRadius:r=0.372
+    defaultDampeningForce:p2=17000.0, 17000.0
+    hasSuspensionOnDriveGear:b=yes
+    dampeningRelaxationRatio:r=0.4
+    dampeningCompressionRatio:r=0.15
+    brokenWheelSteeringDeflection:r=-15.0
+    wheel_l_01:r=0.372
+    wheel_r_01:r=0.372
+    wheel_l_02:r=0.372
+    wheel_r_02:r=0.372
+
+    driven{
+      wheel_l_01:b=yes
+      wheel_r_01:b=yes
+      wheel_l_02:b=yes
+      wheel_r_02:b=yes
+    }
+  }
+}
+
+cockpit{
+  zoomOutFov:r=10.21
+  zoomInFov:r=9.21
+  sightFov:r=5.0
+  sightName:t="stormer_sight"
+  openedCockpit:b=yes
+  headPos:p3=0.2, 3.3, -6.0
+  headPosOnShooting:p3=-2.0, 1.8, 0.2
+  detectionHeight:r=2.8
+}
+
+modifications{
+
+  manual_extinguisher{
+  }
+
+  tank_tool_kit{
+  }
+}
+
+sensors{
+
+  sensor{
+    blk:t="gameData/sensors/su_snr_75.blk"
+    turretIndex:i=0
+    dmPart:t="antenna_target_tagging_dm"
+  }
+}

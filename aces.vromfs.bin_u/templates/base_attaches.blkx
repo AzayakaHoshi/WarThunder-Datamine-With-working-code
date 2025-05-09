@@ -1,0 +1,135 @@
+attached_to_parent{
+
+  "attachedToParent:tag"{
+  }
+}
+
+skeleton_attach_inited{
+
+  "skeletonAttachInited:tag"{
+  }
+}
+
+base_skeleton_attach{
+
+  "skeleton_attach__skeletonRemap:list<u16>"{
+  }
+
+  "skeleton_attach__skeletonRecalcBranch:list<u8>"{
+  }
+}
+
+attachable_wear{
+  _use:t="attachable_wear_without_collres_animchar"
+  _use:t="base_collres_vis_item"
+}
+
+item_with_owner{
+  _replicated:t="item__ownerEid"
+  _replicated:t="item__lastOwner"
+  _tracked:t="item__ownerEid"
+  _tracked:t="item__lastOwner"
+
+  "item__ownerEid:eid"{
+  }
+
+  "item__lastOwner:eid"{
+  }
+}
+
+slot_attachable_no_slotname{
+  _tracked:t="slot_attach__attachedTo"
+  _tracked:t="slot_attach__slotId"
+  _replicated:t="slot_attach__attachedTo"
+  _replicated:t="slot_attach__slotId"
+  slot_attach__slotId:i=-1
+
+  "slot_attach:tag"{
+  }
+
+  "slot_attach__attachedTo:eid"{
+  }
+
+  "slot_attach__inAttachedList:eid"{
+  }
+}
+
+base_local_invis_item{
+  _use:t="item_with_owner"
+  _use:t="slot_attachable_no_slotname"
+  slot_attach__visible:b=yes
+  _replicated:t="slot_attach__visible"
+  _tracked:t="slot_attach__visible"
+  animchar_render__enabled:b=yes
+  hide_counter:i=0
+
+  "additional_data:list<p4>"{
+    _tags:t="render"
+  }
+}
+
+base_local_vis_item{
+  _use:t="animchar"
+  _use:t="base_local_invis_item"
+}
+
+base_vis_item{
+  _use:t="base_local_vis_item"
+  _use:t="replicating"
+
+  "net__notInInitialScope:tag"{
+  }
+}
+
+base_collres_vis_item{
+  _use:t="base_vis_item"
+
+  collres{
+  }
+}
+
+skeleton_attached{
+  skeleton_attach__attached:b=no
+  _replicated:t="skeleton_attach__attached"
+  _replicated:t="skeleton_attach__attachedTo"
+  _tracked:t="skeleton_attach__attachedTo"
+
+  "skeleton_attach__attachedTo:eid"{
+  }
+}
+
+disable_update{
+
+  "disableUpdate:tag"{
+  }
+
+  "attachmentUpdate:tag"{
+  }
+}
+
+attachable_scaled_item{
+
+  _group{
+    _track:b=yes
+    _replicate:b=yes
+
+    "animchar__scaledWtmNodeIds:list<i>"{
+    }
+
+    "animchar__scaledWtmScales:list<p3>"{
+    }
+
+    "animchar__scaledWtmRecalc:list<b>"{
+    }
+  }
+}
+
+attachable_wear_without_collres_animchar{
+  _use:t="ecs_no_debug"
+  _use:t="skeleton_attached"
+  _use:t="disable_update"
+  item__recreateInEquipment:t=""
+  animchar__updatable:b=no
+  paintColor:p4=1.0, 1.0, 1.0, 0.0
+  _tracked:t="paintColor"
+}

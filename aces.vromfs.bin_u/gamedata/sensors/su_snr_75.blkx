@@ -1,0 +1,996 @@
+type:t="radar"
+name:t="S75 RSN-75"
+
+transivers{
+
+  common{
+    power:r=1000.0
+    band:i=6
+    rcs:r=4.2
+    range:r=70000.0
+    rangeMax:r=120000.0
+
+    antenna{
+      angleHalfSens:r=7.5
+      sideLobesSensitivity:r=-35.0
+    }
+  }
+}
+
+scanPatterns{
+
+  search90{
+    type:t="pyramide"
+    azimuthLimits:p2=-180.0, 180.0
+    elevationLimits:p2=-10.0, 87.0
+    yawStabLimit:r=180.0
+    pitchStabLimit:r=10.0
+    rollStabLimit:r=10.0
+    period:r=4.3
+    width:r=7.5
+    barHeight:r=1.5
+    barsCount:i=60
+    rowMajor:b=no
+    barsOneWay:b=no
+    isSmoothMajor:b=yes
+  }
+
+  lock{
+    type:t="pyramide"
+    azimuthLimits:p2=-180.0, 180.0
+    elevationLimits:p2=-10.0, 87.0
+    yawStabLimit:r=180.0
+    pitchStabLimit:r=87.0
+    rollStabLimit:r=10.0
+    period:r=0.25
+    width:r=7.5
+    barHeight:r=1.5
+    barsCount:i=3
+    rowMajor:b=no
+    indicate:b=yes
+  }
+
+  losLock{
+    type:t="pyramide"
+    azimuthLimits:p2=-180.0, 180.0
+    elevationLimits:p2=-10.0, 87.0
+    yawStabLimit:r=180.0
+    pitchStabLimit:r=87.0
+    rollStabLimit:r=10.0
+    period:r=0.25
+    width:r=0.75
+    barHeight:r=1.5
+    barsCount:i=1
+    rowMajor:b=no
+    indicate:b=yes
+  }
+
+  track{
+    type:t="no"
+    yawStabLimit:r=180.0
+    azimuthLimits:p2=-180.0, 180.0
+    elevationLimits:p2=-10.0, 87.0
+    pitchStabLimit:r=87.0
+    rollStabLimit:r=10.0
+    track:b=yes
+  }
+}
+
+signals{
+
+  common{
+    groundClutter:b=no
+    angularAccuracy:r=0.05
+    distanceAccuracy:r=5.0
+    absDopplerSpeed:b=yes
+    track:b=yes
+
+    distance{
+      presents:b=yes
+      minValue:r=750.0
+      maxValue:r=120000.0
+      width:r=60.0
+    }
+
+    dopplerSpeed{
+      presents:b=yes
+      minValue:r=15.0
+      maxValue:r=1000.0
+      signalWidthMin:r=5.0
+      width:r=0.0
+    }
+  }
+}
+
+transmitters{
+
+  rc{
+    power:r=1000.0
+    band:i=6
+
+    antenna{
+      angleHalfSens:r=15.0
+      sideLobesSensitivity:r=-20.0
+    }
+  }
+}
+
+scanPatternSets{
+
+  search{
+    scanPattern1:t="search90"
+  }
+}
+
+scopeRangeSets{
+
+  common{
+    range1:r=30000.0
+    range2:r=60000.0
+  }
+}
+
+fsms{
+
+  main{
+    stateInit:t="init"
+
+    actionsTemplates{
+
+      init{
+
+        setEnabled{
+          value:b=no
+        }
+
+        setTransiver{
+          transiver:t="common"
+        }
+
+        setSignal{
+          signal:t="common"
+        }
+
+        setTargetDesignationRange{
+          azimuthRange:p2=-180.0, 180.0
+          azimuthWidth:r=7.5
+          distanceRange:p2=0.0, 60000.0
+        }
+
+        setScopeRangeSet{
+          scopeRangeSet:t="common"
+        }
+      }
+
+      setLockMode{
+
+        setModeName{
+          name:t="acquisition"
+        }
+
+        setEnabled{
+          value:b=yes
+        }
+
+        setDesignatedTarget{
+          set:b=yes
+        }
+
+        setCenterAzimuth{
+          source:t="targetDesignation"
+        }
+
+        clearTargetsOfInterest{
+        }
+
+        setScanPatternSet{
+        }
+
+        setScanPattern{
+          scanPattern:t="lock"
+        }
+
+        resetScanPhase{
+        }
+
+        setFsmActive{
+          fsm:t="lock"
+          active:b=yes
+        }
+
+        setDistGatePos{
+          source:t="targetDesignation"
+          width:r=1000.0
+        }
+      }
+
+      setLosVisualPreLockMode{
+
+        setEnabled{
+          value:b=yes
+        }
+
+        setScanPatternSet{
+        }
+
+        setScanPattern{
+          scanPattern:t="losLock"
+        }
+
+        resetScanPhase{
+        }
+
+        setCenterAzimuth{
+          source:t="targetDesignation"
+        }
+
+        setCenterElevation{
+          source:t="targetDesignation"
+        }
+
+        clearTargetsOfInterest{
+        }
+
+        setFsmActive{
+          fsm:t="lock"
+          active:b=yes
+        }
+      }
+
+      setLosLockMode{
+
+        setModeName{
+          name:t="acquisition"
+        }
+
+        setEnabled{
+          value:b=yes
+        }
+
+        setEnabled{
+          value:b=yes
+        }
+
+        setWeaponDetectionAllowance{
+          source:t="targetDesignation"
+        }
+
+        setDesignatedTarget{
+          set:b=no
+        }
+
+        setDistGatePos{
+          source:t="constRange"
+          pos:r=3000.0
+          width:r=60000.0
+        }
+      }
+
+      setVisualLockMode{
+
+        setModeName{
+          name:t="acquisition"
+        }
+
+        setEnabled{
+          value:b=yes
+        }
+
+        setWeaponDetectionAllowance{
+          source:t="const"
+          value:b=yes
+        }
+
+        setDesignatedTarget{
+          set:b=yes
+        }
+
+        setDistGatePos{
+          source:t="targetDesignation"
+          width:r=1000.0
+        }
+      }
+
+      setTrackMode{
+
+        setModeName{
+          name:t="track"
+        }
+
+        setEnabled{
+          value:b=yes
+        }
+
+        setEnabled{
+          value:b=yes
+        }
+
+        setWeaponDetectionAllowance{
+          source:t="const"
+          value:b=yes
+        }
+
+        setDesignatedTarget{
+          set:b=no
+        }
+
+        setScanPatternSet{
+        }
+
+        setScanPattern{
+          scanPattern:t="track"
+        }
+
+        clearTargetsOfInterest{
+        }
+
+        addTargetOfInterest{
+        }
+
+        setLastTargetOfInterestActive{
+        }
+
+        updateActiveTargetOfInterest{
+        }
+
+        setCenterAzimuth{
+          source:t="activeTargetOfInterest"
+        }
+
+        setCenterElevation{
+          source:t="activeTargetOfInterest"
+        }
+
+        setDistGatePos{
+          source:t="activeTargetOfInterest"
+          width:r=0.0
+        }
+
+        setFsmActive{
+          fsm:t="track"
+          active:b=yes
+        }
+      }
+    }
+
+    transitions{
+
+      init{
+        stateFrom:t="init"
+        event:t="init"
+        stateTo:t="standbyOrSearch"
+
+        actions{
+
+          init{
+          }
+
+          setFsmActive{
+            fsm:t="standbyOrSearch"
+            active:b=yes
+          }
+        }
+      }
+
+      selectTarget{
+        stateFrom:t="standbyOrSearch"
+        command:t="selectTarget"
+
+        actions{
+
+          updateActiveDetectedTarget{
+          }
+
+          designateActiveDetectedTarget{
+            type:i=0
+            self:b=yes
+            sensorIndex:i=0
+          }
+
+          designateTargetUnderCue{
+            type:i=0
+            self:b=yes
+            sensorIndex:i=0
+          }
+        }
+      }
+
+      checkLockType0{
+        stateFrom:t="standbyOrSearch"
+        command:t="designateTarget"
+        stateTo:t="checkLockType0"
+
+        actions{
+
+          checkDesignationTypeEquals{
+            value:i=0
+          }
+        }
+      }
+
+      lock{
+        stateFrom:t="checkLockType0"
+        event:t="designationTypeEquals"
+        stateTo:t="lock"
+
+        actions{
+
+          setFsmActive{
+            fsm:t="standbyOrSearch"
+            active:b=no
+          }
+
+          setLockMode{
+          }
+        }
+      }
+
+      checkLockType1{
+        stateFrom:t="checkLockType0"
+        event:t="designationTypeNotEquals"
+        stateTo:t="checkLockType1"
+
+        actions{
+
+          checkDesignationTypeEquals{
+            value:i=1
+          }
+        }
+      }
+
+      losLock{
+        stateFrom:t="checkLockType1"
+        event:t="designationTypeEquals"
+        stateTo:t="losLock"
+
+        actions{
+
+          setFsmActive{
+            fsm:t="standbyOrSearch"
+            active:b=no
+          }
+
+          setLosVisualPreLockMode{
+          }
+
+          setLosLockMode{
+          }
+        }
+      }
+
+      checkLockType2{
+        stateFrom:t="checkLockType1"
+        event:t="designationTypeNotEquals"
+        stateTo:t="checkLockType2"
+
+        actions{
+
+          checkDesignationTypeEquals{
+            value:i=2
+          }
+        }
+      }
+
+      visualLock{
+        stateFrom:t="checkLockType2"
+        event:t="designationTypeEquals"
+        stateTo:t="visualLock"
+
+        actions{
+
+          setFsmActive{
+            fsm:t="standbyOrSearch"
+            active:b=no
+          }
+
+          setLosVisualPreLockMode{
+          }
+
+          setVisualLockMode{
+          }
+        }
+      }
+
+      finishLockTypeCheck{
+        stateFrom:t="checkLockType2"
+        event:t="designationTypeNotEquals"
+        stateTo:t="standbyOrSearch"
+      }
+
+      track{
+        stateFrom:t="lock"
+        stateFrom:t="losLock"
+        stateFrom:t="visualLock"
+        event:t="targetDetected"
+        stateTo:t="track"
+
+        actions{
+
+          setFsmActive{
+            fsm:t="lock"
+            active:b=no
+          }
+
+          setFsmActive{
+            fsm:t="lock"
+            active:b=no
+          }
+
+          setTrackMode{
+          }
+        }
+      }
+
+      failedLock{
+        stateFrom:t="lock"
+        stateFrom:t="losLock"
+        stateFrom:t="visualLock"
+        event:t="scanFinished"
+        stateTo:t="standbyOrSearch"
+
+        actions{
+
+          setFsmActive{
+            fsm:t="lock"
+            active:b=no
+          }
+
+          setFsmActive{
+            fsm:t="standbyOrSearch"
+            active:b=yes
+          }
+        }
+      }
+
+      finishedTrack{
+        stateFrom:t="track"
+        event:t="targetsOfInterestCleanup"
+        command:t="selectTarget"
+        command:t="designateTarget"
+        stateTo:t="standbyOrSearch"
+
+        actions{
+
+          setFsmActive{
+            fsm:t="track"
+            active:b=no
+          }
+
+          setFsmActive{
+            fsm:t="standbyOrSearch"
+            active:b=yes
+          }
+        }
+      }
+
+      switchScanPattern{
+        stateFrom:t="standbyOrSearch"
+        command:t="scanPatternSwitch"
+
+        actions{
+
+          setNextScanPattern{
+          }
+        }
+      }
+
+      switchScopeRange{
+        command:t="rangeSwitch"
+
+        actions{
+
+          setNextScopeRange{
+          }
+        }
+      }
+
+      activateWeaponTracking{
+        event:t="updateWeaponTracking"
+
+        actions{
+
+          setWeaponRcTransmissionTimeOut{
+            timeOut:r=2.0
+          }
+        }
+      }
+
+      deactivateWeaponTracking{
+        event:t="update"
+
+        actions{
+
+          checkWeaponRcTransmissionTimeOut{
+            transmitter:t="rc"
+          }
+        }
+      }
+    }
+  }
+
+  search{
+    stateInit:t="search"
+
+    transitions{
+
+      scan{
+        event:t="update"
+
+        actions{
+
+          setCenterAzimuth{
+            source:t="body"
+          }
+
+          scan{
+          }
+        }
+      }
+
+      detect{
+        event:t="targetInSight"
+
+        actions{
+
+          setDistGatePos{
+            source:t="continuousScale"
+            width:r=0.0
+          }
+
+          setRelSpeedGatePos{
+            source:t="continuousScale"
+            width:r=0.0
+          }
+
+          detectTarget{
+          }
+        }
+      }
+
+      addTarget{
+        event:t="targetDetected"
+
+        actions{
+
+          addTarget{
+          }
+
+          updateActiveDetectedTarget{
+          }
+        }
+      }
+
+      switchSelectedTarget{
+        command:t="switchTarget"
+
+        actions{
+
+          setNextDetectedTargetActive{
+          }
+        }
+      }
+
+      setCueAzimuth{
+        command:t="cueAxisX"
+
+        actions{
+
+          setCueAzimuth{
+          }
+        }
+      }
+
+      setCueDist{
+        command:t="cueAxisY"
+
+        actions{
+
+          setCueDist{
+          }
+        }
+      }
+
+      setCueElevation{
+        command:t="cueAxisZ"
+
+        actions{
+
+          setCueElevation{
+          }
+        }
+      }
+    }
+  }
+
+  standbyOrSearch{
+    stateInit:t="init"
+
+    actionsTemplates{
+
+      setStandbyMode{
+
+        setModeName{
+          name:t="standby"
+        }
+
+        setEnabled{
+          value:b=no
+        }
+
+        clearTargetsOfInterest{
+        }
+
+        setCenterElevation{
+          source:t="constant"
+          value:r=7.5
+        }
+
+        setScanPatternSet{
+          scanPatternSet:t="search"
+        }
+      }
+
+      setSearchMode{
+
+        setModeName{
+          name:t="search"
+        }
+
+        setEnabled{
+          value:b=yes
+        }
+
+        setEnabled{
+          value:b=yes
+        }
+
+        setWeaponDetectionAllowance{
+          source:t="const"
+          value:b=yes
+        }
+
+        setDesignatedTarget{
+          set:b=no
+        }
+
+        setCenterAzimuth{
+          source:t="constant"
+          value:r=0.0
+        }
+
+        setCenterAzimuth{
+          source:t="body"
+        }
+
+        setFsmActive{
+          fsm:t="search"
+          active:b=yes
+        }
+
+        clearTargetsOfInterest{
+        }
+
+        setCueEnabled{
+          value:b=yes
+        }
+
+        setCenterElevation{
+          source:t="constant"
+          value:r=7.5
+        }
+
+        setScanPatternSet{
+          scanPatternSet:t="search"
+        }
+
+        setScanDirectionPhase{
+          azimuth:r=0.0
+          elevation:r=0.0
+        }
+      }
+
+      resetSearchMode{
+
+        clearTargets{
+        }
+
+        setFsmActive{
+          fsm:t="search"
+          active:b=no
+        }
+
+        setCueEnabled{
+          value:b=no
+        }
+      }
+    }
+
+    transitions{
+
+      init{
+        stateFrom:t="init"
+        event:t="init"
+        stateTo:t="standby"
+
+        actions{
+
+          setStandbyMode{
+          }
+        }
+      }
+
+      switchToSearch{
+        stateFrom:t="standby"
+        command:t="switch"
+        event:t="enable"
+        stateTo:t="search"
+
+        actions{
+
+          setSearchMode{
+          }
+        }
+      }
+
+      switchToStandby{
+        stateFrom:t="search"
+        command:t="switch"
+        event:t="disable"
+        stateTo:t="standby"
+
+        actions{
+
+          resetSearchMode{
+          }
+
+          setStandbyMode{
+          }
+        }
+      }
+
+      activateStandby{
+        stateFrom:t="standbyInactive"
+        event:t="fsmActivate"
+        stateTo:t="standby"
+
+        actions{
+
+          resetSearchMode{
+          }
+
+          setStandbyMode{
+          }
+        }
+      }
+
+      deactivateStandby{
+        stateFrom:t="standby"
+        event:t="fsmDeactivate"
+        stateTo:t="standbyInactive"
+      }
+
+      activateSearch{
+        stateFrom:t="searchInactive"
+        event:t="fsmActivate"
+        stateTo:t="search"
+
+        actions{
+
+          setSearchMode{
+          }
+        }
+      }
+
+      deactivateSearch{
+        stateFrom:t="search"
+        event:t="fsmDeactivate"
+        stateTo:t="searchInactive"
+
+        actions{
+
+          resetSearchMode{
+          }
+        }
+      }
+    }
+  }
+
+  lock{
+    stateInit:t="lock"
+
+    transitions{
+
+      scan{
+        event:t="update"
+
+        actions{
+
+          scan{
+          }
+        }
+      }
+
+      detect{
+        event:t="targetInSight"
+
+        actions{
+
+          detectTarget{
+            ignoreOwnWeapon:b=yes
+            rangeMult:r=1.0
+          }
+        }
+      }
+    }
+  }
+
+  track{
+    stateInit:t="track"
+
+    transitions{
+
+      detect{
+        event:t="update"
+
+        actions{
+
+          detectTarget{
+            ignoreOwnWeapon:b=yes
+            rangeMult:r=1.0
+          }
+        }
+      }
+
+      track{
+        event:t="targetDetected"
+
+        actions{
+
+          updateActiveTargetOfInterest{
+          }
+
+          setCenterAzimuth{
+            source:t="activeTargetOfInterest"
+          }
+
+          setCenterElevation{
+            source:t="activeTargetOfInterest"
+          }
+
+          setDistGatePos{
+            source:t="activeTargetOfInterest"
+            width:r=0.0
+          }
+        }
+      }
+
+      extrapolate{
+        event:t="targetNotDetected"
+
+        actions{
+
+          extrapolateTargetsOfInterest{
+          }
+
+          clearTargetsOfInterest{
+            timeOut:r=3.0
+            dirRateLim:r=1.0
+          }
+
+          setCenterAzimuth{
+            source:t="activeTargetOfInterest"
+          }
+
+          setCenterElevation{
+            source:t="activeTargetOfInterest"
+          }
+
+          setDistGatePos{
+            source:t="activeTargetOfInterest"
+            width:r=0.0
+          }
+        }
+      }
+    }
+  }
+}

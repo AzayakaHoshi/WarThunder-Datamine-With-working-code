@@ -60,6 +60,21 @@ transivers{
       }
     }
   }
+
+  GTMTrack{
+    sideLobesAttenuation:r=-20.0
+    power:r=1000.0
+    band:i=8
+    rcs:r=40.0
+    range:r=18000.0
+    rangeMax:r=25000.0
+    multipathEffect:p4=0.0, 1.0, 60.0, 0.0
+
+    antenna{
+      angleHalfSens:r=0.5
+      sideLobesSensitivity:r=-50.0
+    }
+  }
 }
 
 illuminationTransmitter{
@@ -139,6 +154,20 @@ scanPatterns{
     width:r=3.0
     barHeight:r=2.5
     barsCount:i=3
+    rowMajor:b=no
+    indicate:b=yes
+  }
+
+  GTMBvrLock{
+    type:t="pyramide"
+    azimuthLimits:p2=-40.0, 40.0
+    elevationLimits:p2=-55.0, 25.0
+    rollStabLimit:r=90.0
+    pitchStabLimit:r=60.0
+    period:r=0.5
+    width:r=10.0
+    barHeight:r=0.5
+    barsCount:i=4
     rowMajor:b=no
     indicate:b=yes
   }
@@ -224,8 +253,8 @@ signals{
 
     dopplerSpeed{
       presents:b=yes
-      minValue:r=-900.0
-      maxValue:r=900.0
+      minValue:r=-2500.0
+      maxValue:r=2500.0
       signalWidthMin:r=2.0
       width:r=38.0
     }
@@ -271,8 +300,8 @@ signals{
 
     dopplerSpeed{
       presents:b=yes
-      minValue:r=-900.0
-      maxValue:r=900.0
+      minValue:r=-2500.0
+      maxValue:r=2500.0
       signalWidthMin:r=2.0
       width:r=24.0
     }
@@ -322,8 +351,8 @@ signals{
 
     dopplerSpeed{
       presents:b=yes
-      minValue:r=-900.0
-      maxValue:r=900.0
+      minValue:r=-2500.0
+      maxValue:r=2500.0
       signalWidthMin:r=2.0
       width:r=24.0
     }
@@ -347,8 +376,8 @@ signals{
 
     dopplerSpeed{
       presents:b=yes
-      minValue:r=-900.0
-      maxValue:r=900.0
+      minValue:r=-2500.0
+      maxValue:r=2500.0
       signalWidthMin:r=2.0
       width:r=24.0
     }
@@ -1096,7 +1125,7 @@ fsms{
         }
       }
 
-      setGtmBvrLockMode{
+      setGtmTwsBvrLockModeCommon{
 
         setBvrLockModeCommon{
         }
@@ -1107,15 +1136,11 @@ fsms{
         }
 
         setScanPattern{
-          scanPattern:t="bvrLockSearch"
+          scanPattern:t="GTMBvrLock"
         }
 
-        setTransiver{
-          transiver:t="GTM"
-        }
-
-        setSignal{
-          signal:t="GTMSearch"
+        setCenterAzimuth{
+          source:t="targetDesignation"
         }
 
         setDistGatePos{
@@ -1129,18 +1154,12 @@ fsms{
           width:r=3000.0
         }
 
-        setModeName{
-          name:t="GTM acquisition"
-        }
-      }
-
-      setGtmTwsBvrLockMode{
-
-        setGtmBvrLockMode{
+        setTransiver{
+          transiver:t="GTMTrack"
         }
 
-        setModeName{
-          name:t="TWS GTM acquisition"
+        setSignal{
+          signal:t="GTMTrack"
         }
       }
 
@@ -1154,15 +1173,85 @@ fsms{
 
       setGtmBvrTrackMode{
 
-        setTrackMode{
+        setEnabled{
+          value:b=yes
+        }
+
+        setScanPatternSet{
+        }
+
+        setScanPattern{
+          scanPattern:t="track"
+        }
+
+        addTargetOfInterest{
+        }
+
+        setLastTargetOfInterestActive{
+        }
+
+        updateActiveTargetOfInterest{
+        }
+
+        setCenterAzimuth{
+          source:t="activeTargetOfInterest"
+        }
+
+        setCenterElevation{
+          source:t="activeTargetOfInterest"
+        }
+
+        setDistGatePos{
+          source:t="activeTargetOfInterest"
+          width:r=0.0
+        }
+
+        setModeName{
+          name:t="GTM track"
+        }
+
+        setFsmActive{
+          fsm:t="gtmTrack"
+          active:b=yes
         }
 
         setTransiver{
-          transiver:t="GTM"
+          transiver:t="GTMTrack"
         }
 
         setSignal{
           signal:t="GTMTrack"
+        }
+      }
+
+      resetGtmBvrTrackMode{
+
+        clearTargetsOfInterest{
+        }
+
+        setFsmActive{
+          fsm:t="gtmTrack"
+          active:b=no
+        }
+      }
+
+      setGtmBvrLockMode{
+
+        setGtmTwsBvrLockModeCommon{
+        }
+
+        setModeName{
+          name:t="GTM acquisition"
+        }
+      }
+
+      setGtmTwsBvrLockMode{
+
+        setGtmTwsBvrLockModeCommon{
+        }
+
+        setModeName{
+          name:t="TWS GTM acquisition"
         }
       }
 
@@ -2218,6 +2307,12 @@ fsms{
 
           setCustomActionTemplate{
             fsm:t="main"
+            name:t="resetBvrTrackMode"
+            actionTemplateName:t="resetGtmBvrTrackMode"
+          }
+
+          setCustomActionTemplate{
+            fsm:t="main"
             name:t="resetSearchMode"
             actionTemplateName:t="resetSearchMode"
           }
@@ -2284,6 +2379,12 @@ fsms{
 
           setCustomActionTemplate{
             fsm:t="main"
+            name:t="resetBvrTrackMode"
+            actionTemplateName:t="resetGtmBvrTrackMode"
+          }
+
+          setCustomActionTemplate{
+            fsm:t="main"
             name:t="resetSearchMode"
             actionTemplateName:t="resetTwsMode"
           }
@@ -2346,6 +2447,12 @@ fsms{
             fsm:t="main"
             name:t="setBvrTrackMode"
             actionTemplateName:t="setTrackMode"
+          }
+
+          setCustomActionTemplate{
+            fsm:t="main"
+            name:t="resetBvrTrackMode"
+            actionTemplateName:t="resetTrackMode"
           }
 
           setCustomActionTemplate{
@@ -2514,9 +2621,6 @@ fsms{
             timeOut:r=8.0
           }
 
-          updateActiveDetectedTarget{
-          }
-
           setCueToActiveTargetOfInterest{
           }
 
@@ -2575,6 +2679,12 @@ fsms{
 
           addTargetOfInterestCandidate{
           }
+
+          updateActiveDetectedTarget{
+          }
+
+          setCueToActiveTargetOfInterest{
+          }
         }
       }
 
@@ -2591,12 +2701,6 @@ fsms{
             posGateRange:p2=0.0, 300.0
             dopplerSpeedGateRange2:p2=0.0, 200.0
             dopplerSpeedGateMaxTime:r=2.0
-          }
-
-          updateActiveDetectedTarget{
-          }
-
-          setCueToActiveTargetOfInterest{
           }
         }
       }
@@ -3039,6 +3143,88 @@ fsms{
 
           setModeName{
             name:t="track memory"
+          }
+        }
+      }
+    }
+  }
+
+  gtmTrack{
+    stateInit:t="track"
+
+    transitions{
+
+      detect{
+        event:t="update"
+
+        actions{
+
+          detectTarget{
+            ignoreOwnWeapon:b=yes
+            rangeMult:r=1.0
+          }
+        }
+      }
+
+      track{
+        event:t="targetDetected"
+
+        actions{
+
+          updateActiveTargetOfInterest{
+
+            dirFilter{
+              rateLim:p2=0.78, 0.78
+              limTimeOut:r=1.0
+              inertialTimeMax:r=1.0
+            }
+
+            distFilter{
+              accelLim:p2=150.0, 150.0
+              limTimeOut:r=1.0
+              inertialTimeMax:r=1.0
+            }
+          }
+
+          setCenterAzimuth{
+            source:t="activeTargetOfInterest"
+          }
+
+          setCenterElevation{
+            source:t="activeTargetOfInterest"
+          }
+
+          setDistGatePos{
+            source:t="activeTargetOfInterest"
+            width:r=0.0
+          }
+        }
+      }
+
+      extrapolate{
+        event:t="targetNotDetected"
+
+        actions{
+
+          extrapolateTargetsOfInterest{
+          }
+
+          clearTargetsOfInterest{
+            timeOut:r=3.0
+            dirRateLim:r=1.0
+          }
+
+          setCenterAzimuth{
+            source:t="activeTargetOfInterest"
+          }
+
+          setCenterElevation{
+            source:t="activeTargetOfInterest"
+          }
+
+          setDistGatePos{
+            source:t="activeTargetOfInterest"
+            width:r=0.0
           }
         }
       }
