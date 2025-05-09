@@ -3,8 +3,7 @@ Updated for "Hornet's Sting"
 
 ## Description
 Using [kotiq's wt-tools](https://github.com/kotiq/wt-tools) and automation to update this Repository
-If you have any questions you can join the [WTPU](https://discord.gg/qYZjehfMjB)<br>
-or you can join [Avarik's server](https://discord.gg/H2SRCxtTGg) and request the CDK enjoyer role and ask more specific stuff there.
+If you have any questions you can join [Avarik's server](https://discord.gg/H2SRCxtTGg) and request the CDK enjoyer role.
 My discord name is Shinoa or Azayaka
 
 If you have any problems or questions regarding: This Repository, blk files and their structure, the CDK's Location/Mission editor or the Asset Viewer please create a [issue](https://github.com/War-Thunder-Player-Union/WarThunder-Datamine-With-working-code/issues) and we will try our best to help.
