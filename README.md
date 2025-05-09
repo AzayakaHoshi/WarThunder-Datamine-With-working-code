@@ -3,11 +3,6 @@ Updated for "Hornet's Sting"
 
 (the versions cannot be automatically updated atm due to the ["Version file"](aces.vromfs.bin_u/version) missing)<br>
 (this is purely for looks and has nothing to do with the actual datamine)
-##  Versions (Autoupdated)
-### Current Version
-Version: [2.43.0.78](aces.vromfs.bin_u/version)
-### Last Version
-Version: [2.43.0.75](version_store.txt)
 
 ## Description
 Using [kotiq's wt-tools](https://github.com/kotiq/wt-tools) and automation to update this Repository
