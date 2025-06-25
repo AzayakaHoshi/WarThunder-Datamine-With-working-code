@@ -246,6 +246,12 @@ triggers{
 
     actions{
 
+      unitSetProperties{
+        object:t="@target_tank"
+        forceVisibleOnMap:b=yes
+        attack_type:t="dont_aim"
+      }
+
       unitRespawn{
         delay:r=1.0
         offset:p3=0.0, 0.0, 0.0
@@ -283,6 +289,10 @@ triggers{
     }
 
     else_actions{
+
+      wait{
+        time:r=2.0
+      }
 
       unitSetRoute{
         route:t="way_target_tank05"
@@ -366,8 +376,12 @@ triggers{
 
     actions{
 
-      unitLoadBehTree{
-        name:t="missionKamikaze"
+      comment{
+        value:t="disable missionkamikadze cause it going to plane crash"
+      }
+
+      __unitLoadBehTree{
+        name:t=""
         objects:t="flight_target01"
       }
 
@@ -448,7 +462,11 @@ triggers{
 
     actions{
 
-      unitLoadBehTree{
+      comment{
+        value:t="disable missionkamikadze cause it going to plane crash"
+      }
+
+      __unitLoadBehTree{
         name:t="missionKamikaze"
         objects:t="flight_target02"
       }
@@ -620,6 +638,65 @@ triggers{
       triggerEnable{
         target:t="respawn_helicopter1"
         target:t="timer_start"
+        target:t="change_point_helicopter"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  change_point_helicopter{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ANY"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=1.0
+      }
+    }
+
+    conditions{
+
+      varCompareInt{
+        var_value:t="timer_replay"
+        value:i=30
+        comparasion_func:t="more"
+      }
+    }
+
+    actions{
+
+      unitMoveTo{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="flight_point03"
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        follow_target:b=no
+        fastClimb:b=no
+        destTimeMode:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=no
+        shouldKeepAirFormation:b=yes
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object:t="helicopter_target01"
+        move_type:t="move"
       }
     }
 
@@ -874,7 +951,7 @@ triggers{
     actions{
 
       wait{
-        time:r=0.1
+        time:r=2.0
       }
 
       unitSetRoute{
@@ -1097,7 +1174,7 @@ triggers{
 
       varCompareInt{
         var_value:t="timer_replay"
-        value:i=60
+        value:i=90
         comparasion_func:t="more"
       }
     }
@@ -1106,6 +1183,7 @@ triggers{
 
       triggerDisable{
         target:t="timer_start"
+        target:t="change_point_helicopter"
       }
 
       wait{
@@ -1129,12 +1207,41 @@ triggers{
         target:t="timer_start"
       }
 
+      triggerEnable{
+        target:t="change_point_helicopter"
+      }
+
       unitRespawn{
         delay:r=1.0
         offset:p3=0.0, 0.0, 0.0
         object:t="helicopter_target01"
         target:t="helispawn_area01"
         lookAtTargetUponRespawn:t="flight_point02"
+      }
+
+      unitMoveTo{
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target:t="flight_point02"
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        follow_target:b=no
+        fastClimb:b=no
+        destTimeMode:b=no
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=no
+        shouldKeepAirFormation:b=yes
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object:t="helicopter_target01"
+        move_type:t="move"
       }
     }
 
@@ -1878,7 +1985,7 @@ areas{
 
   artillery_spawn01{
     type:t="Point"
-    tm:m=[[0.300706, 0.0, 0.953717] [0.0, 1.0, 0.0] [-0.953717, 0.0, 0.300706] [1267.02, 159.532, -493.17]]
+    tm:m=[[0.0871559, 0.0, 0.996195] [0.0, 1.0, 0.0] [-0.996195, 0.0, 0.0871559] [1158.35, 317.84, -412.074]]
     objLayer:i=0
 
     props{
@@ -1887,7 +1994,7 @@ areas{
 
   artillery_spawn02{
     type:t="Point"
-    tm:m=[[0.300706, 0.0, 0.953717] [0.0, 1.0, 0.0] [-0.953717, 0.0, 0.300706] [1200.42, 166.037, -452.46]]
+    tm:m=[[0.0871559, 0.0, 0.996195] [0.0, 1.0, 0.0] [-0.996195, 0.0, 0.0871559] [1084.51, 302.897, -386.744]]
     objLayer:i=0
 
     props{
@@ -1896,7 +2003,7 @@ areas{
 
   artillery_spawn03{
     type:t="Point"
-    tm:m=[[0.300706, 0.0, 0.953717] [0.0, 1.0, 0.0] [-0.953717, 0.0, 0.300706] [1130.52, 160.526, -405.62]]
+    tm:m=[[0.0871559, 0.0, 0.996195] [0.0, 1.0, 0.0] [-0.996195, 0.0, 0.0871559] [1006.13, 290.989, -356.143]]
     objLayer:i=0
 
     props{
@@ -1905,7 +2012,7 @@ areas{
 
   artillery_spawn04{
     type:t="Point"
-    tm:m=[[0.300706, 0.0, 0.953717] [0.0, 1.0, 0.0] [-0.953717, 0.0, 0.300706] [1071.25, 166.2, -374.3]]
+    tm:m=[[0.0871559, 0.0, 0.996195] [0.0, 1.0, 0.0] [-0.996195, 0.0, 0.0871559] [941.489, 285.187, -338.394]]
     objLayer:i=0
 
     props{

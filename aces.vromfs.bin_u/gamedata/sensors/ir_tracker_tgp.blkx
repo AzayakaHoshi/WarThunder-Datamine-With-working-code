@@ -8,6 +8,7 @@ transivers{
 
   track{
     power:r=60.0
+    active:b=no
     band:i=-1
     rcs:r=3000.0
     range:r=10000.0
@@ -78,6 +79,11 @@ signals{
       width:r=200.0
       maxValue:r=15000.0
     }
+
+    angles{
+      presents:b=yes
+      resolution:r=0.0001
+    }
   }
 }
 
@@ -145,7 +151,7 @@ fsms{
         }
       }
 
-      setLockMode{
+      setLockModeCommon1{
 
         setModeName{
           name:t="acquisition"
@@ -163,10 +169,9 @@ fsms{
         setEnabled{
           value:b=yes
         }
+      }
 
-        setScanPattern{
-          scanPattern:t="lock"
-        }
+      setLockModeCommon2{
 
         resetScanPhase{
         }
@@ -182,6 +187,19 @@ fsms{
           fsm:t="lock"
           active:b=yes
         }
+      }
+
+      setLockModeCue{
+
+        setLockModeCommon1{
+        }
+
+        setScanPattern{
+          scanPattern:t="lock"
+        }
+
+        setLockModeCommon2{
+        }
 
         setCenterElevation{
           source:t="targetDesignation"
@@ -191,9 +209,45 @@ fsms{
           source:t="targetDesignation"
           width:r=50.0
         }
+
+        setAngularSize{
+          source:t="const"
+          value:r=0.05
+        }
       }
 
-      setLosVisualPreLockMode{
+      setLockModeTarget{
+
+        setLockModeCommon1{
+        }
+
+        setScanPattern{
+          scanPattern:t="lock"
+        }
+
+        setLockModeCommon2{
+        }
+
+        setCenterElevation{
+          source:t="targetDesignation"
+        }
+
+        setDistGatePos{
+          source:t="targetDesignation"
+          width:r=50.0
+        }
+
+        setAngularSize{
+          source:t="const"
+          value:r=0.05
+        }
+      }
+
+      setLosVisualLockModeCommon{
+
+        setEnabled{
+          value:b=yes
+        }
 
         setEnabled{
           value:b=yes
@@ -221,16 +275,15 @@ fsms{
           fsm:t="lock"
           active:b=yes
         }
-      }
-
-      setLosLockMode{
 
         setModeName{
           name:t="acquisition"
         }
+      }
 
-        setEnabled{
-          value:b=yes
+      setLosLockMode{
+
+        setLosVisualLockModeCommon{
         }
 
         setWeaponDetectionAllowance{
@@ -246,16 +299,16 @@ fsms{
           pos:r=7500.0
           width:r=15000.0
         }
+
+        setAngularSize{
+          source:t="const"
+          value:r=0.05
+        }
       }
 
       setVisualLockMode{
 
-        setModeName{
-          name:t="acquisition"
-        }
-
-        setEnabled{
-          value:b=yes
+        setLosVisualLockModeCommon{
         }
 
         setWeaponDetectionAllowance{
@@ -270,6 +323,11 @@ fsms{
         setDistGatePos{
           source:t="targetDesignation"
           width:r=50.0
+        }
+
+        setAngularSize{
+          source:t="const"
+          value:r=0.05
         }
       }
 
@@ -345,95 +403,115 @@ fsms{
         }
       }
 
-      checkLockType0{
+      checkLockTypeCue{
         stateFrom:t="standby"
         command:t="designateTarget"
-        stateTo:t="checkLockType0"
+        stateTo:t="checkLockTypeCue"
 
         actions{
 
           checkDesignationTypeEquals{
-            value:i=0
+            type:t="cue"
           }
         }
       }
 
-      lock{
-        stateFrom:t="checkLockType0"
+      lockCue{
+        stateFrom:t="checkLockTypeCue"
         event:t="designationTypeEquals"
-        stateTo:t="lock"
+        stateTo:t="lockCue"
 
         actions{
 
-          setLockMode{
+          setLockModeCue{
           }
         }
       }
 
-      checkLockType1{
-        stateFrom:t="checkLockType0"
+      checkLockTypeTarget{
+        stateFrom:t="checkLockTypeCue"
         event:t="designationTypeNotEquals"
-        stateTo:t="checkLockType1"
+        stateTo:t="checkLockTypeTarget"
 
         actions{
 
           checkDesignationTypeEquals{
-            value:i=1
+            type:t="target"
           }
         }
       }
 
-      losLock{
-        stateFrom:t="checkLockType1"
+      lockTarget{
+        stateFrom:t="checkLockTypeTarget"
+        event:t="designationTypeEquals"
+        stateTo:t="lockTarget"
+
+        actions{
+
+          setLockModeTarget{
+          }
+        }
+      }
+
+      checkLockTypeLos{
+        stateFrom:t="checkLockTypeTarget"
+        event:t="designationTypeNotEquals"
+        stateTo:t="checkLockTypeLos"
+
+        actions{
+
+          checkDesignationTypeEquals{
+            type:t="los"
+          }
+        }
+      }
+
+      checkLockTypeLos{
+        stateFrom:t="checkLockTypeLos"
+        event:t="designationTypeNotEquals"
+        stateTo:t="checkLockTypeVisual"
+
+        actions{
+
+          checkDesignationTypeEquals{
+            type:t="visual"
+          }
+        }
+      }
+
+      lockLos{
+        stateFrom:t="checkLockTypeLos"
         event:t="designationTypeEquals"
         stateTo:t="losLock"
 
         actions{
-
-          setLosVisualPreLockMode{
-          }
 
           setLosLockMode{
           }
         }
       }
 
-      checkLockType2{
-        stateFrom:t="checkLockType1"
-        event:t="designationTypeNotEquals"
-        stateTo:t="checkLockType2"
-
-        actions{
-
-          checkDesignationTypeEquals{
-            value:i=2
-          }
-        }
-      }
-
-      visualLock{
-        stateFrom:t="checkLockType2"
+      lockVisual{
+        stateFrom:t="checkLockTypeVisual"
         event:t="designationTypeEquals"
         stateTo:t="visualLock"
 
         actions{
-
-          setLosVisualPreLockMode{
-          }
 
           setVisualLockMode{
           }
         }
       }
 
-      finishLockTypeCheck{
-        stateFrom:t="checkLockType2"
+      finishTypeCheck{
+        stateFrom:t="checkLockTypeVisual"
         event:t="designationTypeNotEquals"
         stateTo:t="standby"
       }
 
       track{
-        stateFrom:t="lock"
+        stateFrom:t="lockCue"
+        stateFrom:t="lockTarget"
         stateFrom:t="losLock"
         stateFrom:t="visualLock"
         event:t="targetDetected"
@@ -452,7 +530,8 @@ fsms{
       }
 
       failedLock{
-        stateFrom:t="lock"
+        stateFrom:t="lockCue"
+        stateFrom:t="lockTarget"
         stateFrom:t="losLock"
         stateFrom:t="visualLock"
         event:t="scanFinished"
@@ -516,6 +595,16 @@ fsms{
           }
         }
       }
+
+      aim{
+        command:t="aim"
+
+        actions{
+
+          setCenterToAim{
+          }
+        }
+      }
     }
   }
 
@@ -567,6 +656,11 @@ fsms{
           setDistGatePos{
             source:t="activeTargetOfInterest"
             width:r=0.0
+          }
+
+          setAngularSize{
+            source:t="activeTargetOfInterest"
+            value:r=1.25
           }
         }
       }

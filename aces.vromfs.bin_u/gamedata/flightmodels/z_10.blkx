@@ -12,6 +12,9 @@ haveCCIPForTurret:b=yes
 haveCCRPForGun:b=no
 haveCCRPForTurret:b=yes
 laserDesignator:b=yes
+hasHelmetDesignator:b=yes
+mfdCamTadsApache:b=yes
+hmdTopOwl:b=yes
 gearSinkRangeLR:r=0.216
 gearSinkRangeC:r=0.165
 tpsCameraTargetOffsetAtZoom:p3=-80.0, 60.0, 0.0
@@ -74,6 +77,16 @@ DamageParts{
       genericDamageMult:r=1.6
       hp:r=30.5
     }
+
+    apu1_dm{
+      genericDamageMult:r=1.6
+      hp:r=30.5
+    }
+
+    apu2_dm{
+      genericDamageMult:r=1.6
+      hp:r=30.5
+    }
   }
 
   boron_carbide20{
@@ -129,6 +142,37 @@ DamageParts{
 
     cover4_dm{
       hp:r=19.5
+    }
+  }
+
+  dural5{
+
+    optic_block1_dm{
+      hp:r=35.0
+    }
+
+    cockpit_countrol1_dm{
+      hp:r=60.0
+    }
+
+    cockpit_countrol2_dm{
+      hp:r=60.0
+    }
+
+    electronic_block1_dm{
+      hp:r=60.0
+    }
+
+    electronic_block2_dm{
+      hp:r=60.0
+    }
+
+    electronic_block3_dm{
+      hp:r=60.0
+    }
+
+    electronic_block4_dm{
+      hp:r=60.0
     }
   }
 
@@ -608,6 +652,38 @@ DamageEffects{
 
   part{
     name:t="propeller_shaft2_dm"
+  }
+
+  part{
+    name:t="optic_block1_dm"
+  }
+
+  part{
+    name:t="cockpit_countrol1_dm"
+  }
+
+  part{
+    name:t="electronic_block1_dm"
+  }
+
+  part{
+    name:t="electronic_block2_dm"
+  }
+
+  part{
+    name:t="electronic_block3_dm"
+  }
+
+  part{
+    name:t="electronic_block4_dm"
+  }
+
+  part{
+    name:t="apu1_dm"
+  }
+
+  part{
+    name:t="apu2_dm"
   }
 
   part{
@@ -1114,14 +1190,16 @@ cockpit{
   textToShowInCockpit:t="msg/textToShowInCockpit"
   headPos:p3=1.21, 1.49, 0.0
   headPosOnShooting:p3=1.21, 1.49, 0.0
-  lightPos:p3=1.882572, 0.389432, -0.010049
-  lightColor:p3=0.01, 0.6, 0.1
+  lightPos:p3=1.866, 1.06, 0.0
+  lightColor:p3=0.1, 0.6, 0.1
   lightRadius:r=0.4
+  hmdEnabledByDefault:b=yes
   zoomOutFov:r=18.0
   zoomInFov:r=0.9
   sightFov:r=0.01
   sightInFov:r=0.9
   sightOutFov:r=18.0
+  mfdTextureSize:ip2=1024, 1024
 
   devices{
     speed:p2=0.0, 257.222
@@ -1171,7 +1249,39 @@ cockpit{
       textureArea:p4=0.0, 0.5, 0.5, 1.0
 
       page{
-        type:t="map"
+        type:t="hsd"
+        scale:r=1.0
+        color:c=0, 0, 0, 255
+        font:t="hud"
+        fontSize:i=19
+        lineWidth:r=2.0
+        lineColor:c=0, 255, 0, 255
+        orient:t="northUp"
+        centerMarkType:t="heli"
+        centerMarkFillColor:c=255, 255, 255, 255
+        centerMarkLineColor:c=255, 255, 255, 255
+        centerMarkScale:r=0.05
+        centerMarkSpeed:b=yes
+        spi:b=yes
+        spiColor:c=0, 191, 255, 255
+        spiInfo:b=yes
+        distScale:b=no
+        distScaleBeyondAzScale:b=no
+        distScaleStepSize:r=5000.0
+        distScaleColor:c=255, 255, 255, 255
+        distScaleNumbers:b=no
+        distScaleNumbersAngle:r=45.0
+        distScaleNumbersFillColor:c=0, 0, 0, 255
+        azScaleType:t="dots"
+        azScaleSize:r=12000.0
+        azScaleColor:c=0, 255, 0, 255
+        headingIndFillColor:c=0, 0, 0, 255
+        centerCross:b=no
+        time:b=yes
+        mapBackground:b=yes
+        markers:b=yes
+        extent:r=30000.0
+        metricUnits:b=no
       }
 
       page{
@@ -1463,7 +1573,8 @@ sensors{
 
   sensor{
     blk:t="gameData/sensors/ir_tracker.blk"
-    node:t="optic_gun1"
+    node:t="optic1_gun"
+    powerButtonIdx:i=-1
   }
 
   sensor{
@@ -1472,7 +1583,7 @@ sensors{
 
   sensor{
     blk:t="gameData/sensors/us_flir.blk"
-    node:t="optic_gun1"
+    node:t="optic1_gun"
   }
 
   sensor{
@@ -1547,6 +1658,7 @@ WeaponSlots{
   HideNodes{
     node:t="ch_12_7mm_gunpod_left"
     node:t="ch_12_7mm_gunpod_right"
+    node:t="collimator"
   }
 
   HideDmParts{
@@ -1569,7 +1681,7 @@ WeaponSlots{
         trigger:t="gunner0"
         triggerGroup:t="primary"
         blk:t="gameData/Weapons/dummy_weapon.blk"
-        emitter:t="optic_gun1"
+        emitter:t="optic1_gun"
         parkInDeadzone:b=no
         defaultYaw:r=0.0
         defaultPitch:r=0.0
@@ -1579,7 +1691,7 @@ WeaponSlots{
 
         turret{
           head:t="optic1_turret"
-          gun:t="optic_gun1"
+          gun:t="optic1_gun"
           playerControllable:b=no
           mainTurret:b=yes
         }
@@ -1941,15 +2053,15 @@ fireParams{
 damagePartsToAvionicsPartsMap{
 
   avionics{
-    avionics:t="indicators"
+    avionics:t="guidance"
 
     health{
-      dm:t="fuse_dm"
-      killHp:r=0.0
+      dm:t="cockpit_countrol1_dm"
+      killHp:r=0.01
     }
 
     damage{
-      dm:t="fuse_dm"
+      dm:t="cockpit_countrol1_dm"
 
       damageTypeHitEffect{
         damageType:t="shatter"
@@ -1961,16 +2073,16 @@ damagePartsToAvionicsPartsMap{
 
         hitEffect{
           damage:r=11.0
-          prob:r=0.2
+          prob:r=0.1
         }
 
         hitEffect{
           damage:r=20.0
-          prob:r=0.3
+          prob:r=0.2
         }
 
         hitEffect{
-          damage:r=30.0
+          damage:r=35.0
           prob:r=0.4
         }
       }
@@ -1979,18 +2091,23 @@ damagePartsToAvionicsPartsMap{
         damageType:t="generic"
 
         hitEffect{
-          damage:r=16.0
+          damage:r=5.0
+          prob:r=0.05
+        }
+
+        hitEffect{
+          damage:r=20.0
           prob:r=0.3
         }
 
         hitEffect{
-          damage:r=30.0
-          prob:r=0.4
+          damage:r=35.0
+          prob:r=0.5
         }
 
         hitEffect{
           damage:r=100.0
-          prob:r=0.5
+          prob:r=0.7
         }
       }
 
@@ -1998,13 +2115,23 @@ damagePartsToAvionicsPartsMap{
         damageType:t="explosion"
 
         hitEffect{
-          damage:r=30.0
+          damage:r=5.0
+          prob:r=0.05
+        }
+
+        hitEffect{
+          damage:r=20.0
           prob:r=0.3
         }
 
         hitEffect{
-          damage:r=100.0
+          damage:r=35.0
           prob:r=0.5
+        }
+
+        hitEffect{
+          damage:r=100.0
+          prob:r=0.7
         }
       }
     }
@@ -2014,77 +2141,12 @@ damagePartsToAvionicsPartsMap{
     avionics:t="weaponControls"
 
     health{
-      dm:t="fuse_dm"
-      killHp:r=0.0
+      dm:t="cockpit_countrol1_dm"
+      killHp:r=0.01
     }
 
     damage{
-      dm:t="fuse_dm"
-
-      damageTypeHitEffect{
-        damageType:t="shatter"
-
-        hitEffect{
-          damage:r=11.0
-          prob:r=0.05
-        }
-
-        hitEffect{
-          damage:r=20.0
-          prob:r=0.1
-        }
-
-        hitEffect{
-          damage:r=30.0
-          prob:r=0.2
-        }
-      }
-
-      damageTypeHitEffect{
-        damageType:t="generic"
-
-        hitEffect{
-          damage:r=16.0
-          prob:r=0.3
-        }
-
-        hitEffect{
-          damage:r=30.0
-          prob:r=0.4
-        }
-
-        hitEffect{
-          damage:r=100.0
-          prob:r=0.4
-        }
-      }
-
-      damageTypeHitEffect{
-        damageType:t="explosion"
-
-        hitEffect{
-          damage:r=30.0
-          prob:r=0.2
-        }
-
-        hitEffect{
-          damage:r=100.0
-          prob:r=0.4
-        }
-      }
-    }
-  }
-
-  avionics{
-    avionics:t="optics"
-
-    health{
-      dm:t="fuse_dm"
-      killHp:r=0.0
-    }
-
-    damage{
-      dm:t="fuse_dm"
+      dm:t="cockpit_countrol1_dm"
 
       damageTypeHitEffect{
         damageType:t="shatter"
@@ -2101,11 +2163,11 @@ damagePartsToAvionicsPartsMap{
 
         hitEffect{
           damage:r=20.0
-          prob:r=0.3
+          prob:r=0.2
         }
 
         hitEffect{
-          damage:r=30.0
+          damage:r=35.0
           prob:r=0.4
         }
       }
@@ -2114,13 +2176,188 @@ damagePartsToAvionicsPartsMap{
         damageType:t="generic"
 
         hitEffect{
-          damage:r=16.0
+          damage:r=5.0
+          prob:r=0.05
+        }
+
+        hitEffect{
+          damage:r=20.0
           prob:r=0.3
         }
 
         hitEffect{
-          damage:r=40.0
+          damage:r=35.0
+          prob:r=0.5
+        }
+
+        hitEffect{
+          damage:r=100.0
+          prob:r=0.7
+        }
+      }
+
+      damageTypeHitEffect{
+        damageType:t="explosion"
+
+        hitEffect{
+          damage:r=5.0
+          prob:r=0.05
+        }
+
+        hitEffect{
+          damage:r=20.0
+          prob:r=0.3
+        }
+
+        hitEffect{
+          damage:r=35.0
+          prob:r=0.5
+        }
+
+        hitEffect{
+          damage:r=100.0
+          prob:r=0.7
+        }
+      }
+    }
+  }
+
+  avionics{
+    avionics:t="indicators"
+
+    health{
+      dm:t="cockpit_countrol2_dm"
+      killHp:r=0.01
+    }
+
+    damage{
+      dm:t="cockpit_countrol2_dm"
+
+      damageTypeHitEffect{
+        damageType:t="shatter"
+
+        hitEffect{
+          damage:r=5.0
+          prob:r=0.05
+        }
+
+        hitEffect{
+          damage:r=11.0
+          prob:r=0.1
+        }
+
+        hitEffect{
+          damage:r=20.0
+          prob:r=0.2
+        }
+
+        hitEffect{
+          damage:r=35.0
           prob:r=0.4
+        }
+      }
+
+      damageTypeHitEffect{
+        damageType:t="generic"
+
+        hitEffect{
+          damage:r=5.0
+          prob:r=0.05
+        }
+
+        hitEffect{
+          damage:r=20.0
+          prob:r=0.3
+        }
+
+        hitEffect{
+          damage:r=35.0
+          prob:r=0.5
+        }
+
+        hitEffect{
+          damage:r=100.0
+          prob:r=0.7
+        }
+      }
+
+      damageTypeHitEffect{
+        damageType:t="explosion"
+
+        hitEffect{
+          damage:r=5.0
+          prob:r=0.05
+        }
+
+        hitEffect{
+          damage:r=20.0
+          prob:r=0.3
+        }
+
+        hitEffect{
+          damage:r=35.0
+          prob:r=0.5
+        }
+
+        hitEffect{
+          damage:r=100.0
+          prob:r=0.7
+        }
+      }
+    }
+  }
+
+  avionics{
+    avionics:t="weaponControls"
+
+    health{
+      dm:t="electronic_block1_dm"
+      killHp:r=0.01
+    }
+
+    damage{
+      dm:t="electronic_block1_dm"
+
+      damageTypeHitEffect{
+        damageType:t="shatter"
+
+        hitEffect{
+          damage:r=5.0
+          prob:r=0.05
+        }
+
+        hitEffect{
+          damage:r=11.0
+          prob:r=0.1
+        }
+
+        hitEffect{
+          damage:r=20.0
+          prob:r=0.2
+        }
+
+        hitEffect{
+          damage:r=35.0
+          prob:r=0.4
+        }
+      }
+
+      damageTypeHitEffect{
+        damageType:t="generic"
+
+        hitEffect{
+          damage:r=5.0
+          prob:r=0.05
+        }
+
+        hitEffect{
+          damage:r=20.0
+          prob:r=0.2
+        }
+
+        hitEffect{
+          damage:r=35.0
+          prob:r=0.3
         }
 
         hitEffect{
@@ -2133,7 +2370,17 @@ damagePartsToAvionicsPartsMap{
         damageType:t="explosion"
 
         hitEffect{
-          damage:r=40.0
+          damage:r=5.0
+          prob:r=0.05
+        }
+
+        hitEffect{
+          damage:r=20.0
+          prob:r=0.2
+        }
+
+        hitEffect{
+          damage:r=35.0
           prob:r=0.3
         }
 
@@ -2149,19 +2396,34 @@ damagePartsToAvionicsPartsMap{
     avionics:t="guidance"
 
     health{
-      dm:t="fuse_dm"
-      killHp:r=0.0
+      dm:t="electronic_block2_dm"
+      killHp:r=0.01
     }
 
     damage{
-      dm:t="fuse_dm"
+      dm:t="electronic_block2_dm"
 
       damageTypeHitEffect{
         damageType:t="shatter"
 
         hitEffect{
-          damage:r=30.0
-          prob:r=0.3
+          damage:r=5.0
+          prob:r=0.05
+        }
+
+        hitEffect{
+          damage:r=11.0
+          prob:r=0.1
+        }
+
+        hitEffect{
+          damage:r=20.0
+          prob:r=0.2
+        }
+
+        hitEffect{
+          damage:r=35.0
+          prob:r=0.4
         }
       }
 
@@ -2169,13 +2431,18 @@ damagePartsToAvionicsPartsMap{
         damageType:t="generic"
 
         hitEffect{
-          damage:r=16.0
-          prob:r=0.3
+          damage:r=5.0
+          prob:r=0.05
         }
 
         hitEffect{
-          damage:r=40.0
-          prob:r=0.4
+          damage:r=20.0
+          prob:r=0.2
+        }
+
+        hitEffect{
+          damage:r=35.0
+          prob:r=0.3
         }
 
         hitEffect{
@@ -2188,28 +2455,38 @@ damagePartsToAvionicsPartsMap{
         damageType:t="explosion"
 
         hitEffect{
-          damage:r=40.0
+          damage:r=5.0
+          prob:r=0.05
+        }
+
+        hitEffect{
+          damage:r=20.0
+          prob:r=0.2
+        }
+
+        hitEffect{
+          damage:r=35.0
           prob:r=0.3
         }
 
         hitEffect{
           damage:r=100.0
-          prob:r=0.7
+          prob:r=0.5
         }
       }
     }
   }
 
   avionics{
-    avionics:t="radar"
+    avionics:t="guidance"
 
     health{
-      dm:t="radar_dm"
-      killHp:r=0.09
+      dm:t="optic_block1_dm"
+      killHp:r=0.01
     }
 
     damage{
-      dm:t="radar_dm"
+      dm:t="optic_block1_dm"
 
       damageTypeHitEffect{
         damageType:t="shatter"
@@ -2221,17 +2498,102 @@ damagePartsToAvionicsPartsMap{
 
         hitEffect{
           damage:r=11.0
-          prob:r=0.2
+          prob:r=0.1
         }
 
         hitEffect{
           damage:r=20.0
+          prob:r=0.2
+        }
+
+        hitEffect{
+          damage:r=35.0
+          prob:r=0.4
+        }
+      }
+
+      damageTypeHitEffect{
+        damageType:t="generic"
+
+        hitEffect{
+          damage:r=5.0
+          prob:r=0.05
+        }
+
+        hitEffect{
+          damage:r=20.0
+          prob:r=0.2
+        }
+
+        hitEffect{
+          damage:r=35.0
           prob:r=0.3
         }
 
         hitEffect{
-          damage:r=30.0
+          damage:r=100.0
           prob:r=0.5
+        }
+      }
+
+      damageTypeHitEffect{
+        damageType:t="explosion"
+
+        hitEffect{
+          damage:r=5.0
+          prob:r=0.05
+        }
+
+        hitEffect{
+          damage:r=20.0
+          prob:r=0.2
+        }
+
+        hitEffect{
+          damage:r=35.0
+          prob:r=0.3
+        }
+
+        hitEffect{
+          damage:r=100.0
+          prob:r=0.5
+        }
+      }
+    }
+  }
+
+  avionics{
+    avionics:t="optics"
+
+    health{
+      dm:t="optic_block1_dm"
+      killHp:r=0.01
+    }
+
+    damage{
+      dm:t="optic_block1_dm"
+
+      damageTypeHitEffect{
+        damageType:t="shatter"
+
+        hitEffect{
+          damage:r=5.0
+          prob:r=0.05
+        }
+
+        hitEffect{
+          damage:r=11.0
+          prob:r=0.1
+        }
+
+        hitEffect{
+          damage:r=20.0
+          prob:r=0.2
+        }
+
+        hitEffect{
+          damage:r=35.0
+          prob:r=0.4
         }
       }
 
@@ -2285,146 +2647,6 @@ damagePartsToAvionicsPartsMap{
         hitEffect{
           damage:r=40.0
           prob:r=0.5
-        }
-
-        hitEffect{
-          damage:r=100.0
-          prob:r=0.7
-        }
-      }
-    }
-  }
-
-  avionics{
-    avionics:t="counterMeasures"
-
-    health{
-      dm:t="fuse_dm"
-      killHp:r=0.0
-    }
-
-    damage{
-      dm:t="fuse_dm"
-
-      damageTypeHitEffect{
-        damageType:t="shatter"
-
-        hitEffect{
-          damage:r=5.0
-          prob:r=0.05
-        }
-
-        hitEffect{
-          damage:r=11.0
-          prob:r=0.1
-        }
-
-        hitEffect{
-          damage:r=20.0
-          prob:r=0.2
-        }
-
-        hitEffect{
-          damage:r=30.0
-          prob:r=0.3
-        }
-      }
-
-      damageTypeHitEffect{
-        damageType:t="generic"
-
-        hitEffect{
-          damage:r=16.0
-          prob:r=0.3
-        }
-
-        hitEffect{
-          damage:r=40.0
-          prob:r=0.4
-        }
-
-        hitEffect{
-          damage:r=100.0
-          prob:r=0.7
-        }
-      }
-
-      damageTypeHitEffect{
-        damageType:t="explosion"
-
-        hitEffect{
-          damage:r=40.0
-          prob:r=0.3
-        }
-
-        hitEffect{
-          damage:r=100.0
-          prob:r=0.7
-        }
-      }
-    }
-  }
-
-  avionics{
-    avionics:t="rwr"
-
-    health{
-      dm:t="fuse_dm"
-      killHp:r=0.0
-    }
-
-    damage{
-      dm:t="fuse_dm"
-
-      damageTypeHitEffect{
-        damageType:t="shatter"
-
-        hitEffect{
-          damage:r=5.0
-          prob:r=0.05
-        }
-
-        hitEffect{
-          damage:r=11.0
-          prob:r=0.15
-        }
-
-        hitEffect{
-          damage:r=20.0
-          prob:r=0.25
-        }
-
-        hitEffect{
-          damage:r=30.0
-          prob:r=0.4
-        }
-      }
-
-      damageTypeHitEffect{
-        damageType:t="generic"
-
-        hitEffect{
-          damage:r=16.0
-          prob:r=0.3
-        }
-
-        hitEffect{
-          damage:r=30.0
-          prob:r=0.4
-        }
-
-        hitEffect{
-          damage:r=100.0
-          prob:r=0.7
-        }
-      }
-
-      damageTypeHitEffect{
-        damageType:t="explosion"
-
-        hitEffect{
-          damage:r=30.0
-          prob:r=0.3
         }
 
         hitEffect{
@@ -2439,18 +2661,33 @@ damagePartsToAvionicsPartsMap{
     avionics:t="nightVision"
 
     health{
-      dm:t="fuse_dm"
-      killHp:r=0.0
+      dm:t="electronic_block3_dm"
+      killHp:r=0.01
     }
 
     damage{
-      dm:t="fuse_dm"
+      dm:t="electronic_block3_dm"
 
       damageTypeHitEffect{
         damageType:t="shatter"
 
         hitEffect{
-          damage:r=30.0
+          damage:r=5.0
+          prob:r=0.05
+        }
+
+        hitEffect{
+          damage:r=11.0
+          prob:r=0.1
+        }
+
+        hitEffect{
+          damage:r=20.0
+          prob:r=0.2
+        }
+
+        hitEffect{
+          damage:r=35.0
           prob:r=0.4
         }
       }
@@ -2459,18 +2696,28 @@ damagePartsToAvionicsPartsMap{
         damageType:t="generic"
 
         hitEffect{
-          damage:r=16.0
+          damage:r=5.0
+          prob:r=0.05
+        }
+
+        hitEffect{
+          damage:r=12.0
+          prob:r=0.1
+        }
+
+        hitEffect{
+          damage:r=20.0
           prob:r=0.3
         }
 
         hitEffect{
-          damage:r=30.0
-          prob:r=0.4
+          damage:r=40.0
+          prob:r=0.5
         }
 
         hitEffect{
           damage:r=100.0
-          prob:r=0.5
+          prob:r=0.7
         }
       }
 
@@ -2478,13 +2725,283 @@ damagePartsToAvionicsPartsMap{
         damageType:t="explosion"
 
         hitEffect{
-          damage:r=30.0
+          damage:r=5.0
+          prob:r=0.05
+        }
+
+        hitEffect{
+          damage:r=12.0
+          prob:r=0.1
+        }
+
+        hitEffect{
+          damage:r=20.0
           prob:r=0.3
         }
 
         hitEffect{
-          damage:r=100.0
+          damage:r=40.0
           prob:r=0.5
+        }
+
+        hitEffect{
+          damage:r=100.0
+          prob:r=0.7
+        }
+      }
+    }
+  }
+
+  avionics{
+    avionics:t="indicators"
+
+    health{
+      dm:t="electronic_block4_dm"
+      killHp:r=0.01
+    }
+
+    damage{
+      dm:t="cockpit_countrol4_dm"
+
+      damageTypeHitEffect{
+        damageType:t="shatter"
+
+        hitEffect{
+          damage:r=5.0
+          prob:r=0.05
+        }
+
+        hitEffect{
+          damage:r=11.0
+          prob:r=0.1
+        }
+
+        hitEffect{
+          damage:r=20.0
+          prob:r=0.2
+        }
+
+        hitEffect{
+          damage:r=35.0
+          prob:r=0.4
+        }
+      }
+
+      damageTypeHitEffect{
+        damageType:t="generic"
+
+        hitEffect{
+          damage:r=5.0
+          prob:r=0.05
+        }
+
+        hitEffect{
+          damage:r=20.0
+          prob:r=0.3
+        }
+
+        hitEffect{
+          damage:r=35.0
+          prob:r=0.5
+        }
+
+        hitEffect{
+          damage:r=100.0
+          prob:r=0.7
+        }
+      }
+
+      damageTypeHitEffect{
+        damageType:t="explosion"
+
+        hitEffect{
+          damage:r=5.0
+          prob:r=0.05
+        }
+
+        hitEffect{
+          damage:r=20.0
+          prob:r=0.3
+        }
+
+        hitEffect{
+          damage:r=35.0
+          prob:r=0.5
+        }
+
+        hitEffect{
+          damage:r=100.0
+          prob:r=0.7
+        }
+      }
+    }
+  }
+
+  avionics{
+    avionics:t="sensors"
+
+    health{
+      dm:t="electronic_block3_dm"
+      killHp:r=0.01
+    }
+
+    damage{
+      dm:t="electronic_block3_dm"
+
+      damageTypeHitEffect{
+        damageType:t="shatter"
+
+        hitEffect{
+          damage:r=5.0
+          prob:r=0.05
+        }
+
+        hitEffect{
+          damage:r=11.0
+          prob:r=0.1
+        }
+
+        hitEffect{
+          damage:r=20.0
+          prob:r=0.2
+        }
+
+        hitEffect{
+          damage:r=35.0
+          prob:r=0.4
+        }
+      }
+
+      damageTypeHitEffect{
+        damageType:t="generic"
+
+        hitEffect{
+          damage:r=5.0
+          prob:r=0.05
+        }
+
+        hitEffect{
+          damage:r=20.0
+          prob:r=0.3
+        }
+
+        hitEffect{
+          damage:r=35.0
+          prob:r=0.5
+        }
+
+        hitEffect{
+          damage:r=100.0
+          prob:r=0.7
+        }
+      }
+
+      damageTypeHitEffect{
+        damageType:t="explosion"
+
+        hitEffect{
+          damage:r=5.0
+          prob:r=0.05
+        }
+
+        hitEffect{
+          damage:r=20.0
+          prob:r=0.3
+        }
+
+        hitEffect{
+          damage:r=35.0
+          prob:r=0.5
+        }
+
+        hitEffect{
+          damage:r=100.0
+          prob:r=0.7
+        }
+      }
+    }
+  }
+
+  avionics{
+    avionics:t="rwr"
+
+    health{
+      dm:t="electronic_block4_dm"
+      killHp:r=0.01
+    }
+
+    damage{
+      dm:t="electronic_block4_dm"
+
+      damageTypeHitEffect{
+        damageType:t="shatter"
+
+        hitEffect{
+          damage:r=5.0
+          prob:r=0.05
+        }
+
+        hitEffect{
+          damage:r=11.0
+          prob:r=0.1
+        }
+
+        hitEffect{
+          damage:r=20.0
+          prob:r=0.2
+        }
+
+        hitEffect{
+          damage:r=35.0
+          prob:r=0.4
+        }
+      }
+
+      damageTypeHitEffect{
+        damageType:t="generic"
+
+        hitEffect{
+          damage:r=5.0
+          prob:r=0.05
+        }
+
+        hitEffect{
+          damage:r=20.0
+          prob:r=0.3
+        }
+
+        hitEffect{
+          damage:r=35.0
+          prob:r=0.5
+        }
+
+        hitEffect{
+          damage:r=100.0
+          prob:r=0.7
+        }
+      }
+
+      damageTypeHitEffect{
+        damageType:t="explosion"
+
+        hitEffect{
+          damage:r=5.0
+          prob:r=0.05
+        }
+
+        hitEffect{
+          damage:r=20.0
+          prob:r=0.3
+        }
+
+        hitEffect{
+          damage:r=35.0
+          prob:r=0.5
+        }
+
+        hitEffect{
+          damage:r=100.0
+          prob:r=0.7
         }
       }
     }
@@ -2599,6 +3116,7 @@ modifications{
   }
 
   MAW_system_heli_false_thermal_targets_large{
+    deactivationIsAllowed:b=yes
     modClass:t="weapon"
     turn_it_off:b=no
     tier:i=1
@@ -2610,7 +3128,8 @@ modifications{
 
         sensor{
           blk:t="gameData/sensors/ir_tracker.blk"
-          node:t="optic_gun1"
+          node:t="optic1_gun"
+          powerButtonIdx:i=-1
         }
 
         sensor{
@@ -2623,7 +3142,7 @@ modifications{
 
         sensor{
           blk:t="gameData/sensors/us_flir.blk"
-          node:t="optic_gun1"
+          node:t="optic1_gun"
         }
 
         sensor{
@@ -2634,7 +3153,7 @@ modifications{
   }
 
   heli_night_vision_system{
-    image:t="#ui/gameuiskin#thermal_sight"
+    image:t="!#ui/gameuiskin#thermal_sight.avif"
     prevModification:t="MAW_system_heli_false_thermal_targets_large"
     tier:i=3
     modClass:t="weapon"
@@ -2698,7 +3217,7 @@ cutting{
   _emtr_break_wing0_l_to:p3=0.0, 0.0, 2.73941
   _emtr_break_wing0_r_from:p3=0.0, 0.0, -2.7294
   _emtr_break_wing0_r_to:p3=0.0, 0.0, -2.7394
-  emtr_break_wing_tail:p3=8.53199, 0.0, 0.0
+  emtr_break_wing_tail:p3=-7.32123, 0.0, 0.0
   finCut:b=no
   emtr_break_stab_l_from:p3=-7.32123, -0.0933799, 0.347083
   emtr_break_stab_l_to:p3=-7.32123, -0.0933799, 1.38833

@@ -98,11 +98,13 @@ imports{
     importTriggers:b=yes
     importMissionObjectives:b=yes
     importWayPoints:b=yes
+    importDialogs:b=yes
     showAreas:b=yes
     showUnits:b=yes
     showTriggers:b=yes
     showMissionObjectives:b=yes
     showWayPoints:b=yes
+    showDialogs:b=yes
 
     excludes{
     }
@@ -144,15 +146,15 @@ triggers{
 
       unitSetIndication{
         set:b=yes
-        target_marking:i=0
-        object_var_name:t=""
-        object_var_comp_op:t="equal"
-        object_var_value:i=0
         target:t="structures_00"
         target:t="ai_jet"
         target:t="ai_jet01"
         target:t="structures_04"
         target:t="structures_05"
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
       }
 
       unitSetProperties{
@@ -197,6 +199,17 @@ triggers{
         teleportToStart:b=yes
         object:t="structures_06"
         object:t="structures_07"
+      }
+
+      comment{
+        value:t="restoring enemy units upon death"
+      }
+
+      unitRespawnAfterTime{
+        time_to_respawn:r=120.0
+        object_name:t="enemies_squad"
+        just_restore:b=yes
+        cycle_respawn:b=yes
       }
     }
 
@@ -246,6 +259,7 @@ triggers{
         target_var_name:t=""
         target_var_comp_op:t="equal"
         target_var_value:i=0
+        shouldKeepAirFormation:b=yes
         object:t="ai_jet"
         move_type:t="teleport"
       }
@@ -270,6 +284,7 @@ triggers{
         target_var_name:t=""
         target_var_comp_op:t="equal"
         target_var_value:i=0
+        shouldKeepAirFormation:b=yes
         object:t="ai_jet01"
         move_type:t="teleport"
       }
@@ -2183,6 +2198,21 @@ units{
           canUsePathFinder:b=no
         }
       }
+    }
+  }
+
+  squad{
+    name:t="enemies_squad"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [27629.6, 934.501, 21972.6]]
+
+    props{
+      squad_members:t="ai_jet"
+      squad_members:t="ai_jet01"
+      squad_members:t="structures_00"
+      squad_members:t="structures_04"
+      squad_members:t="structures_05"
+      squad_members:t="structures_06"
+      squad_members:t="structures_07"
     }
   }
 }

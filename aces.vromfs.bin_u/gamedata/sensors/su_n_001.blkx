@@ -3,6 +3,7 @@ name:t="N001"
 weaponTargetsMax:i=1
 showMissileLaunchZone:b=yes
 showMissileDgftLaunchZone:b=yes
+showMissileAimLead:b=yes
 
 transivers{
 
@@ -545,15 +546,13 @@ fsms{
       designatedTargetSearch{
 
         designateTargetUnderCue{
-          type:i=0
+          type:t="cue"
           self:b=yes
-          sensorIndex:i=0
         }
 
         designateActiveDetectedTarget{
-          type:i=0
+          type:t="target"
           self:b=yes
-          sensorIndex:i=0
         }
       }
 
@@ -768,7 +767,7 @@ fsms{
       designatedTargetTws{
 
         designateActiveDetectedTarget{
-          type:i=0
+          type:t="target"
           self:b=yes
           sensorIndex:i=0
         }
@@ -1768,7 +1767,8 @@ fsms{
         actions{
 
           checkDesignationTypeEquals{
-            value:i=0
+            type:t="target"
+            type:t="cue"
           }
         }
       }
@@ -3224,10 +3224,32 @@ fsms{
           }
         }
       }
+
+      centerZone{
+        command:t="directionAxesReset"
+
+        actions{
+
+          setCueToBoresight{
+          }
+
+          setCenterAzimuth{
+            source:t="designationCue"
+          }
+
+          setCenterElevation{
+            source:t="designationCue"
+          }
+
+          updateActiveDetectedTarget{
+          }
+        }
+      }
     }
   }
 
   tws{
+    stateInit:t="search"
     stateInit:t="search"
 
     transitions{
@@ -3299,9 +3321,13 @@ fsms{
 
           updateTargetOfInterest{
             limit:i=10
-            radius:r=2000.0
-            dopplerSpeedGateMaxTime:r=8.0
+            posGateTimeInitial:p2=2.0, 4.0
+            posGateRangeInitial:r=0.0
+            posGateMaxTime:r=2.0
             posGateMaxTime:r=4.0
+            posGateRange:p2=0.0, 2000.0
+            dopplerSpeedGateRange:p2=0.0, 1600.0
+            dopplerSpeedGateMaxTime:r=8.0
           }
 
           updateActiveDetectedTarget{
@@ -3363,19 +3389,23 @@ fsms{
         }
       }
 
-      designateTarget{
-        command:t="selectTarget"
+      centerZone{
+        command:t="directionAxesReset"
 
         actions{
 
-          designateActiveDetectedTarget{
-            type:i=0
-            sensorIndex:i=1
+          setCueToBoresight{
           }
 
-          designateTargetUnderCue{
-            type:i=0
-            sensorIndex:i=1
+          setCenterAzimuth{
+            source:t="designationCue"
+          }
+
+          setCenterElevation{
+            source:t="designationCue"
+          }
+
+          updateActiveDetectedTarget{
           }
         }
       }

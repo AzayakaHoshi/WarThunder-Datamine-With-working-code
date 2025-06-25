@@ -1728,6 +1728,9 @@ Sound{
 }
 
 cockpit{
+  sightInFov:r=0.5
+  sightOutFov:r=7.0
+  sightFov:r=1.0
   mfdTextureSize:ip2=2048, 1024
   headPos:p3=2.57, 0.463, 0.381
   headPosOnShooting:p3=2.57, 0.463, 0.381
@@ -1748,11 +1751,6 @@ cockpit{
   lightPos3:p3=2.95, -0.149, 0.0
   lightColor3:p3=0.01, 0.6, 0.1
   lightRadius3:r=0.2
-  zoomOutFov:r=22.46
-  zoomInFov:r=7.37
-  sightInFov:r=1.2
-  sightOutFov:r=-1.0
-  sightFov:r=0.001
 
   devices{
     stick_ailerons:p2=-1.0, 1.0
@@ -1806,13 +1804,17 @@ cockpit{
       textureArea:p4=0.0, 0.5, 0.25, 1.0
 
       page{
-        type:t="target_tracking"
+        type:t="target_tracking_bw"
         turretIdx:i=0
       }
 
       page{
         type:t="thermal"
         turretIdx:i=0
+      }
+
+      page{
+        type:t="ils_duplicate"
       }
 
       page{
@@ -1903,14 +1905,6 @@ cockpit{
             limits:p4=-180.0, 180.0, -1.0, 1.0
           }
         }
-      }
-
-      page{
-        type:t="ils_duplicate"
-      }
-
-      page{
-        type:t="map"
       }
 
       page{
@@ -2023,7 +2017,7 @@ cockpit{
       }
 
       page{
-        type:t="target_tracking"
+        type:t="target_tracking_bw"
         turretIdx:i=0
       }
 
@@ -2034,10 +2028,6 @@ cockpit{
 
       page{
         type:t="ils_duplicate"
-      }
-
-      page{
-        type:t="map"
       }
 
       page{
@@ -2050,6 +2040,42 @@ cockpit{
       textureArea:p4=0.5, 0.5, 0.75, 1.0
 
       page{
+        type:t="hsd"
+        scale:r=1.0
+        color:c=0, 0, 0, 255
+        font:t="hud"
+        fontSize:i=18
+        lineWidth:r=2.0
+        lineColor:c=30, 90, 255, 255
+        orient:t="hdgUp"
+        centerMarkType:t="cross"
+        centerMarkFillColor:c=255, 255, 255, 255
+        centerMarkLineColor:c=255, 255, 255, 255
+        centerMarkScale:r=0.1
+        centerMarkSpeed:b=no
+        spi:b=yes
+        spiColor:c=255, 255, 255, 255
+        spiInfo:b=yes
+        distScale:b=yes
+        distScaleBeyondAzScale:b=no
+        distScaleStepSize:r=25000.0
+        distScaleColor:c=30, 90, 255, 255
+        distScaleNumbers:b=yes
+        distScaleNumbersAngle:r=45.0
+        distScaleNumbersFillColor:c=0, 0, 0, 255
+        azScaleType:t="lines"
+        azScaleSize:r=50000.0
+        azScaleColor:c=255, 255, 255, 255
+        headingIndFillColor:c=0, 0, 0, 255
+        centerCross:b=no
+        time:b=no
+        mapBackground:b=no
+        extent:r=130000.0
+        markers:b=yes
+        metricUnits:b=yes
+      }
+
+      page{
         type:t="radar"
         scale:r=0.95
       }
@@ -2145,7 +2171,7 @@ cockpit{
       }
 
       page{
-        type:t="target_tracking"
+        type:t="target_tracking_bw"
         turretIdx:i=0
       }
 
@@ -2159,10 +2185,6 @@ cockpit{
       }
 
       page{
-        type:t="map"
-      }
-
-      page{
         type:t="rwr"
         scale:r=0.9
       }
@@ -2172,7 +2194,7 @@ cockpit{
       textureArea:p4=0.75, 0.5, 1.0, 1.0
 
       page{
-        type:t="target_tracking"
+        type:t="target_tracking_bw"
         turretIdx:i=0
       }
 
@@ -2273,10 +2295,6 @@ cockpit{
 
       page{
         type:t="ils_duplicate"
-      }
-
-      page{
-        type:t="map"
       }
 
       page{
@@ -2329,6 +2347,7 @@ sensors{
   sensor{
     blk:t="gameData/sensors/ir_tracker.blk"
     node:t="optic1_gun"
+    powerButtonIdx:i=-1
   }
 
   sensor{
@@ -4910,6 +4929,7 @@ modifications{
   }
 
   MAW_system_heli_false_thermal_targets_large{
+    deactivationIsAllowed:b=yes
     modClass:t="weapon"
     reqModification:t="heli_screen_exhaust_device"
     turn_it_off:b=no
@@ -4938,6 +4958,7 @@ modifications{
         sensor{
           blk:t="gameData/sensors/ir_tracker.blk"
           node:t="optic1_gun"
+          powerButtonIdx:i=-1
         }
 
         sensor{
@@ -4960,7 +4981,7 @@ modifications{
   }
 
   heli_night_vision_system{
-    image:t="#ui/gameuiskin#thermal_sight"
+    image:t="!#ui/gameuiskin#thermal_sight.avif"
     tier:i=3
     prevModification:t="MAW_system_heli_false_thermal_targets_large"
 

@@ -15,12 +15,12 @@ mission_settings{
   mission{
     level:t="levels/arcade_norway_fjords.bin"
     type:t="testFlight"
-    restoreType:t="attempts"
-    optionalTakeOff:b=no
     environment:t="Evening"
     weather:t="hazy"
     windDirection:p3=1.0, 0.0, 0.0
     gt_cooperative:b=no
+    restoreType:t="attempts"
+    optionalTakeOff:b=no
   }
 }
 
@@ -62,6 +62,20 @@ triggers{
         object:t="armada_02"
         target:t="armada_01"
       }
+
+      comment{
+        value:t="restoring enemy units upon death"
+      }
+
+      unitRespawnAfterTime{
+        time_to_respawn:r=120.0
+        object_name:t="enemies_squad"
+        just_restore:b=yes
+        cycle_respawn:b=yes
+      }
+    }
+
+    else_actions{
     }
   }
 }
@@ -88,8 +102,21 @@ units{
   armada{
     name:t="armada_01"
     tm:m=[[-0.999048, -0.04362, 1.50996e-07] [-0.04362, 0.999048, 0.0] [-1.50852e-07, -6.58614e-09, -1.0] [2500.0, 3055.4, 0.0]]
-    closed_waypoints:b=no
     unit_class:t="spitfire_mk5c"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
 
     props{
       army:i=1
@@ -121,9 +148,21 @@ units{
   armada{
     name:t="armada_02"
     tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.8, 1401.1, 30.9]]
-    closed_waypoints:b=yes
     unit_class:t="fiat_cr42"
+    closed_waypoints:b=yes
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
     weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
 
     props{
       army:i=2
@@ -225,9 +264,21 @@ units{
   ships{
     name:t="ships_01"
     tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.0, 0.0, 0.0]]
-    closed_waypoints:b=no
     unit_class:t="uss_cv_lexington"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
     weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
 
     props{
       army:i=2
@@ -244,7 +295,39 @@ units{
     way{
     }
   }
+
+  squad{
+    name:t="enemies_squad"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.4, 700.55, 15.45]]
+
+    props{
+      squad_members:t="armada_02"
+      squad_members:t="ships_01"
+    }
+  }
 }
 
 areas{
+}
+
+objLayers{
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+}
+
+wayPoints{
 }

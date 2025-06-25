@@ -28,6 +28,21 @@ transivers{
 
 scanPatterns{
 
+  lock{
+    type:t="pyramide"
+    azimuthLimits:p2=-180.0, 180.0
+    elevationLimits:p2=-10.0, 80.0
+    yawStabLimit:r=180.0
+    pitchStabLimit:r=80.0
+    rollStabLimit:r=10.0
+    period:r=0.1
+    width:r=45.0
+    barHeight:r=0.5
+    barsCount:i=8
+    rowMajor:b=no
+    indicate:b=yes
+  }
+
   losLock{
     type:t="pyramide"
     azimuthLimits:p2=-20.0, 20.0
@@ -86,6 +101,9 @@ fsms{
           value:b=no
         }
 
+        setTargetDesignationRange{
+        }
+
         setTransiver{
           transiver:t="track"
         }
@@ -106,7 +124,7 @@ fsms{
         }
 
         setScanPattern{
-          scanPattern:t="losLock"
+          scanPattern:t="lock"
         }
 
         setCenterAzimuth{
@@ -133,7 +151,95 @@ fsms{
         }
       }
 
-      setLosVisualPreLockMode{
+      setLockModeCommon1{
+
+        setModeName{
+          name:t="acquisition"
+        }
+
+        setWeaponDetectionAllowance{
+          source:t="const"
+          value:b=yes
+        }
+
+        setDesignatedTarget{
+          set:b=yes
+        }
+
+        setEnabled{
+          value:b=yes
+        }
+      }
+
+      setLockModeCommon2{
+
+        resetScanPhase{
+        }
+
+        setCenterAzimuth{
+          source:t="targetDesignation"
+        }
+
+        clearTargetsOfInterest{
+        }
+
+        setFsmActive{
+          fsm:t="lock"
+          active:b=yes
+        }
+      }
+
+      setLockModeCue{
+
+        setLockModeCommon1{
+        }
+
+        setScanPattern{
+          scanPattern:t="lock"
+        }
+
+        setLockModeCommon2{
+        }
+
+        setCenterElevation{
+          source:t="constant"
+          value:r=22.5
+        }
+
+        setDistGatePos{
+          source:t="targetDesignation"
+          width:r=1000.0
+        }
+      }
+
+      setLockModeTarget{
+
+        setLockModeCommon1{
+        }
+
+        setScanPattern{
+          scanPattern:t="lock"
+        }
+
+        setLockModeCommon2{
+        }
+
+        setCenterElevation{
+          source:t="constant"
+          value:r=22.5
+        }
+
+        setDistGatePos{
+          source:t="targetDesignation"
+          width:r=1000.0
+        }
+      }
+
+      setLosVisualLockModeCommon{
+
+        setEnabled{
+          value:b=yes
+        }
 
         setEnabled{
           value:b=yes
@@ -161,16 +267,15 @@ fsms{
           fsm:t="lock"
           active:b=yes
         }
-      }
-
-      setLosLockMode{
 
         setModeName{
           name:t="acquisition"
         }
+      }
 
-        setEnabled{
-          value:b=yes
+      setLosLockMode{
+
+        setLosVisualLockModeCommon{
         }
 
         setWeaponDetectionAllowance{
@@ -190,12 +295,7 @@ fsms{
 
       setVisualLockMode{
 
-        setModeName{
-          name:t="acquisition"
-        }
-
-        setEnabled{
-          value:b=yes
+        setLosVisualLockModeCommon{
         }
 
         setWeaponDetectionAllowance{
@@ -285,69 +385,115 @@ fsms{
         }
       }
 
-      checkLockType1{
+      checkLockTypeCue{
         stateFrom:t="standby"
         command:t="designateTarget"
-        stateTo:t="checkLockType1"
+        stateTo:t="checkLockTypeCue"
 
         actions{
 
           checkDesignationTypeEquals{
-            value:i=1
+            type:t="cue"
           }
         }
       }
 
-      losLock{
-        stateFrom:t="checkLockType1"
+      lockCue{
+        stateFrom:t="checkLockTypeCue"
+        event:t="designationTypeEquals"
+        stateTo:t="lockCue"
+
+        actions{
+
+          setLockModeCue{
+          }
+        }
+      }
+
+      checkLockTypeTarget{
+        stateFrom:t="checkLockTypeCue"
+        event:t="designationTypeNotEquals"
+        stateTo:t="checkLockTypeTarget"
+
+        actions{
+
+          checkDesignationTypeEquals{
+            type:t="target"
+          }
+        }
+      }
+
+      lockTarget{
+        stateFrom:t="checkLockTypeTarget"
+        event:t="designationTypeEquals"
+        stateTo:t="lockTarget"
+
+        actions{
+
+          setLockModeTarget{
+          }
+        }
+      }
+
+      checkLockTypeLos{
+        stateFrom:t="checkLockTypeTarget"
+        event:t="designationTypeNotEquals"
+        stateTo:t="checkLockTypeLos"
+
+        actions{
+
+          checkDesignationTypeEquals{
+            type:t="los"
+          }
+        }
+      }
+
+      checkLockTypeLos{
+        stateFrom:t="checkLockTypeLos"
+        event:t="designationTypeNotEquals"
+        stateTo:t="checkLockTypeVisual"
+
+        actions{
+
+          checkDesignationTypeEquals{
+            type:t="visual"
+          }
+        }
+      }
+
+      lockLos{
+        stateFrom:t="checkLockTypeLos"
         event:t="designationTypeEquals"
         stateTo:t="losLock"
 
         actions{
-
-          setLosVisualPreLockMode{
-          }
 
           setLosLockMode{
           }
         }
       }
 
-      checkLockType2{
-        stateFrom:t="checkLockType1"
-        event:t="designationTypeNotEquals"
-        stateTo:t="checkLockType2"
-
-        actions{
-
-          checkDesignationTypeEquals{
-            value:i=2
-          }
-        }
-      }
-
-      visualLock{
-        stateFrom:t="checkLockType2"
+      lockVisual{
+        stateFrom:t="checkLockTypeVisual"
         event:t="designationTypeEquals"
         stateTo:t="visualLock"
 
         actions{
-
-          setLosVisualPreLockMode{
-          }
 
           setVisualLockMode{
           }
         }
       }
 
-      finishLockTypeCheck{
-        stateFrom:t="checkLockType2"
+      finishTypeCheck{
+        stateFrom:t="checkLockTypeVisual"
         event:t="designationTypeNotEquals"
         stateTo:t="standby"
       }
 
       track{
+        stateFrom:t="lockCue"
+        stateFrom:t="lockTarget"
         stateFrom:t="losLock"
         stateFrom:t="visualLock"
         event:t="targetDetected"
@@ -366,6 +512,8 @@ fsms{
       }
 
       failedLock{
+        stateFrom:t="lockCue"
+        stateFrom:t="lockTarget"
         stateFrom:t="losLock"
         stateFrom:t="visualLock"
         event:t="scanFinished"

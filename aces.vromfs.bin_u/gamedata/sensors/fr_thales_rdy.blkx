@@ -318,6 +318,7 @@ signals{
     aircraftAsTarget:b=yes
     angularAccuracy:r=0.05
     distanceAccuracy:r=12.0
+    targetId:b=yes
     track:b=yes
 
     distance{
@@ -360,6 +361,7 @@ signals{
     aircraftAsTarget:b=yes
     angularAccuracy:r=0.05
     distanceAccuracy:r=12.0
+    targetId:b=yes
     absDopplerSpeed:b=no
     mainBeamDopplerSpeed:b=no
     track:b=yes
@@ -430,6 +432,7 @@ signals{
     aircraftAsTarget:b=yes
     angularAccuracy:r=0.05
     distanceAccuracy:r=12.0
+    targetId:b=yes
     mainBeamNotchWidth:r=40.0
     mainBeamNotchMaxElevation:r=3.0
     track:b=yes
@@ -628,15 +631,13 @@ fsms{
       designatedTargetSearch{
 
         designateTargetUnderCue{
-          type:i=0
+          type:t="cue"
           self:b=yes
-          sensorIndex:i=0
         }
 
         designateActiveDetectedTarget{
-          type:i=0
+          type:t="target"
           self:b=yes
-          sensorIndex:i=0
         }
       }
 
@@ -874,7 +875,7 @@ fsms{
       designatedTargetTws{
 
         designateActiveDetectedTarget{
-          type:i=0
+          type:t="target"
           self:b=yes
           sensorIndex:i=0
         }
@@ -1462,7 +1463,8 @@ fsms{
         actions{
 
           checkDesignationTypeEquals{
-            value:i=0
+            type:t="target"
+            type:t="cue"
           }
         }
       }
@@ -2075,6 +2077,27 @@ fsms{
         actions{
 
           setDetectedTargetActive{
+          }
+        }
+      }
+
+      centerZone{
+        command:t="directionAxesReset"
+
+        actions{
+
+          setCueToBoresight{
+          }
+
+          setCenterAzimuth{
+            source:t="designationCue"
+          }
+
+          setCenterElevation{
+            source:t="designationCue"
+          }
+
+          updateActiveDetectedTarget{
           }
         }
       }
@@ -2743,7 +2766,7 @@ fsms{
         actions{
 
           matchTargetsOfInterest{
-            limit:i=12
+            limit:i=8
             posGateTimeInitial:p2=2.0, 4.0
             posGateRangeInitial:r=1500.0
             posGateMaxTime:r=2.0
@@ -2781,9 +2804,6 @@ fsms{
 
           setCueDist{
           }
-
-          setCueDopplerSpeed{
-          }
         }
       }
 
@@ -2807,19 +2827,23 @@ fsms{
         }
       }
 
-      designateTarget{
-        command:t="selectTarget"
+      centerZone{
+        command:t="directionAxesReset"
 
         actions{
 
-          designateActiveDetectedTarget{
-            type:i=0
-            sensorIndex:i=1
+          setCueToBoresight{
           }
 
-          designateTargetUnderCue{
-            type:i=0
-            sensorIndex:i=1
+          setCenterAzimuth{
+            source:t="designationCue"
+          }
+
+          setCenterElevation{
+            source:t="designationCue"
+          }
+
+          updateActiveDetectedTarget{
           }
         }
       }
@@ -3371,4 +3395,91 @@ fsms{
       }
     }
   }
+}
+
+targetTypeId{
+  name:t="hud/single prop"
+
+  targetPropulsion{
+    type:t="propellers"
+    num:i=1
+  }
+}
+
+targetTypeId{
+  name:t="hud/multi prop"
+
+  targetPropulsion{
+    type:t="propellers"
+    num:i=2
+  }
+
+  targetPropulsion{
+    type:t="propellers"
+    num:i=3
+  }
+
+  targetPropulsion{
+    type:t="propellers"
+    num:i=4
+  }
+}
+
+targetTypeId{
+  name:t="hud/single jet"
+
+  targetPropulsion{
+    type:t="jet"
+    num:i=1
+  }
+}
+
+targetTypeId{
+  name:t="hud/multi jet"
+
+  targetPropulsion{
+    type:t="jet"
+    num:i=2
+  }
+
+  targetPropulsion{
+    type:t="jet"
+    num:i=3
+  }
+
+  targetPropulsion{
+    type:t="jet"
+    num:i=4
+  }
+}
+
+targetTypeId{
+  name:t="hud/helicopter"
+
+  targetPropulsion{
+    type:t="rotors"
+  }
+}
+
+targetTypeId{
+  name:t="hud/rocket"
+
+  targetPropulsion{
+    type:t="rocket"
+  }
+}
+
+targetTypeId{
+  name:t="hud/small"
+  sizeRange:p2=0.0, 5.0
+}
+
+targetTypeId{
+  name:t="hud/medium"
+  sizeRange:p2=5.0, 25.0
+}
+
+targetTypeId{
+  name:t="hud/large"
+  sizeRange:p2=25.0, 500.0
 }

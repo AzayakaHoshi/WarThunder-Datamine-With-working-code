@@ -6,7 +6,6 @@ vol0virtualvol:r=0.001
 sampleRate:i=48000
 fmodEnableSpatialSound:b=no
 rejectFarOneshots:b=yes
-useNewEngineSound:b=yes
 memoryPc:i=210
 memoryPS4:i=210
 checkMemPS4:b=yes
@@ -39,10 +38,6 @@ event_planes_ai_time_to_live:r=1.0
 event_surface_time_to_live:r=12.0
 event_surface_ai_time_to_live:r=6.0
 event_explosion_time_to_live:r=6.0
-FmEngineAi:t="engine_ai"
-FmBomberEngineAi:t="engine_bomber_ai"
-FmJetEngineAi:t="engine_jet_ai"
-FmHeliEngineAi:t="engine_heli_ai"
 timeToRandomChatMin:r=4.0
 timeToRandomChatMax:r=8.0
 volumeGunDownLimit:r=0.2
@@ -1109,7 +1104,6 @@ misc_effects{
   eventWaveHitBoat:t="collision_wave_boat"
   eventWaveHitShip:t="collision_wave_ship"
   eventWaveHitShip:t="collision_wave_ship"
-  bulletPassByRadius:r=30.0
   rocketPassByRadius:r=50.0
   eventBulletHitShipMgun:t="hit_mgun"
   eventBulletHitShipSmall:t="hit_small"
@@ -1157,6 +1151,13 @@ misc_effects{
   eventControlStick:t="control_stick"
   eventThrustLever:t="thrust_lever"
   eventPedals:t="pedals"
+
+  bulletPassbyRadByCaliber{
+    param:p2=30.0, 20.0
+    param:p2=60.0, 65.0
+    param:p2=90.0, 140.0
+    param:p2=120.0, 1000.0
+  }
 }
 
 explosions{
@@ -1914,6 +1915,46 @@ engine05_snecma_turbomecha_ai{
     eventBack:t="engine05_snecma_turbomecha_ai"
     eventSurround:t=""
     eventLod1:t="engine05_snecma_turbomecha_ai"
+    rpmSmooth:r=0.014
+    loadScale:r=6.0
+    loadSmooth:r=0.05
+    distSmooth:r=0.9
+    distScaleOnNotHero:r=1.0
+  }
+
+  cockpit{
+    path:t="aircraft/engines"
+    event_cockpit_l:t="engine05_cockpit_l"
+    event_cockpit_r:t="engine05_cockpit_r"
+    leftPos:p3=0.5, 1.0, 5.0
+    rightPos:p3=0.5, 1.0, -5.0
+    rpmSmooth:r=0.02
+    loadScale:r=6.0
+    loadSmooth:r=0.05
+    distSmooth:r=0.9
+  }
+}
+
+engine05_ai25tl_ai{
+
+  effects{
+    path:t="aircraft/engines"
+    wep:t="engine_wep"
+    overheatOutside:t="engine_overheat_camera"
+    overheatCockpit:t="engine_overheat_cockpit"
+    dive:t="engine_dive"
+    timeFallingDown:r=2.0
+    engineVolumeOnOverheat:r=0.8
+    eventStart:t="engine_jet_ai_start"
+    eventStop:t="engine_jet_ai_stop"
+  }
+
+  outside{
+    path:t="aircraft/engines"
+    eventFront:t=""
+    eventBack:t="engine05_ai25tl_ai"
+    eventSurround:t=""
+    eventLod1:t="engine05_ai25tl_ai"
     rpmSmooth:r=0.014
     loadScale:r=6.0
     loadSmooth:r=0.05
@@ -6640,7 +6681,7 @@ engine_fokker_d7{
 engine_hp_12{
 
   effects{
-    path:t="event/aircraft/engines"
+    path:t="aircraft/engines"
     wep:t="engine_wep"
     overheatOutside:t="engine_overheat_camera"
     overheatCockpit:t="engine_overheat_cockpit"
@@ -6653,7 +6694,7 @@ engine_hp_12{
   }
 
   outside{
-    path:t="event/aircraft/engines"
+    path:t="aircraft/engines"
     eventFront:t=""
     eventBack:t="engine_hp_12"
     eventSurround:t=""
@@ -6666,7 +6707,7 @@ engine_hp_12{
   }
 
   cockpit{
-    path:t="event/aircraft/engines"
+    path:t="aircraft/engines"
     event_cockpit_l:t="engine_hp_12_cockpit_l"
     event_cockpit_r:t="engine_hp_12_cockpit_r"
     event_start_cockpit_l:t="engine_hp_12_start_cockpit_l"
@@ -6734,7 +6775,7 @@ engine_zeppelin{
 engine_a7v{
 
   effects{
-    path:t="event/ground/engines/a7v"
+    path:t="ground/engines/a7v"
     wep:t=""
     overheatOutside:t=""
     overheatCockpit:t=""
@@ -6746,7 +6787,7 @@ engine_a7v{
   }
 
   outside{
-    path:t="event/ground/engines/a7v"
+    path:t="ground/engines/a7v"
     eventFront:t=""
     eventBack:t="engine"
     eventSurround:t=""
@@ -6760,7 +6801,7 @@ engine_a7v{
   }
 
   cockpit{
-    path:t="event/ground/engines/a7v"
+    path:t="ground/engines/a7v"
     event_cockpit_l:t="engine_interior"
     event_start_cockpit_l:t="engine_start_interior"
     event_stop_cockpit_l:t="engine_stop_interior"
@@ -6770,13 +6811,13 @@ engine_a7v{
   ai{
 
     effects{
-      path:t="event/ground/engines/ai/a7v"
+      path:t="ground/engines/ai/a7v"
       eventStart:t="engine_start"
       eventStop:t="engine_stop"
     }
 
     outside{
-      path:t="event/ground/engines/ai/a7v"
+      path:t="ground/engines/ai/a7v"
       eventBack:t="engine"
       rpmSmooth:r=1.0
       loadScale:r=6.0
@@ -6790,7 +6831,7 @@ engine_a7v{
 engine_saint_chamond{
 
   effects{
-    path:t="event/ground/engines/saint_chamond"
+    path:t="ground/engines/saint_chamond"
     wep:t=""
     overheatOutside:t=""
     overheatCockpit:t=""
@@ -6802,7 +6843,7 @@ engine_saint_chamond{
   }
 
   outside{
-    path:t="event/ground/engines/saint_chamond"
+    path:t="ground/engines/saint_chamond"
     eventFront:t=""
     eventBack:t="engine"
     eventSurround:t=""
@@ -6816,7 +6857,7 @@ engine_saint_chamond{
   }
 
   cockpit{
-    path:t="event/ground/engines/saint_chamond"
+    path:t="ground/engines/saint_chamond"
     event_cockpit_l:t="engine_interior"
     event_start_cockpit_l:t="engine_start_interior"
     event_stop_cockpit_l:t="engine_stop_interior"
@@ -6826,13 +6867,13 @@ engine_saint_chamond{
   ai{
 
     effects{
-      path:t="event/ground/engines/ai/saint_chamond"
+      path:t="ground/engines/ai/saint_chamond"
       eventStart:t="engine_start"
       eventStop:t="engine_stop"
     }
 
     outside{
-      path:t="event/ground/engines/ai/saint_chamond"
+      path:t="ground/engines/ai/saint_chamond"
       eventBack:t="engine"
       rpmSmooth:r=1.0
       loadScale:r=6.0
@@ -6846,7 +6887,7 @@ engine_saint_chamond{
 engine_mark_v{
 
   effects{
-    path:t="event/ground/engines/mark_v"
+    path:t="ground/engines/mark_v"
     wep:t=""
     overheatOutside:t=""
     overheatCockpit:t=""
@@ -6858,7 +6899,7 @@ engine_mark_v{
   }
 
   outside{
-    path:t="event/ground/engines/mark_v"
+    path:t="ground/engines/mark_v"
     eventFront:t=""
     eventBack:t="engine"
     eventSurround:t=""
@@ -6872,7 +6913,7 @@ engine_mark_v{
   }
 
   cockpit{
-    path:t="event/ground/engines/mark_v"
+    path:t="ground/engines/mark_v"
     event_cockpit_l:t="engine_interior"
     event_start_cockpit_l:t="engine_start_interior"
     event_stop_cockpit_l:t="engine_stop_interior"
@@ -6882,13 +6923,13 @@ engine_mark_v{
   ai{
 
     effects{
-      path:t="event/ground/engines/ai/mark_v"
+      path:t="ground/engines/ai/mark_v"
       eventStart:t="engine_start"
       eventStop:t="engine_stop"
     }
 
     outside{
-      path:t="event/ground/engines/ai/mark_v"
+      path:t="ground/engines/ai/mark_v"
       eventBack:t="engine"
       rpmSmooth:r=1.0
       loadScale:r=6.0
@@ -6958,7 +6999,7 @@ engine_fokker_d7_ai{
 engine_hp_12_ai{
 
   effects{
-    path:t="event/aircraft/engines"
+    path:t="aircraft/engines"
     wep:t="engine_wep"
     overheatOutside:t="engine_overheat_camera"
     overheatCockpit:t="engine_overheat_cockpit"
@@ -6970,7 +7011,7 @@ engine_hp_12_ai{
   }
 
   outside{
-    path:t="event/aircraft/engines"
+    path:t="aircraft/engines"
     eventFront:t=""
     eventBack:t="engine_hp_12_ai"
     eventSurround:t=""
@@ -7627,6 +7668,52 @@ engine05_snecma_turbomecha{
     event_start_cockpit_r:t="engine05_snecma_turbomecha_start_cockpit_r"
     event_stop_cockpit_l:t="engine05_snecma_turbomecha_stop_cockpit_l"
     event_stop_cockpit_r:t="engine05_snecma_turbomecha_stop_cockpit_r"
+    leftPos:p3=-0.5, 1.0, 5.0
+    rightPos:p3=-0.5, 1.0, -5.0
+    rpmSmooth:r=0.0015
+    loadScale:r=1.0
+    loadSmooth:r=0.05
+    distSmooth:r=0.9
+  }
+}
+
+engine05_ai25tl{
+  startTimeout:r=13.0
+  stopTimeout:r=0.5
+
+  effects{
+    path:t="aircraft/engines"
+    wep:t="engine_wep"
+    overheatOutside:t="engine_overheat_camera"
+    overheatCockpit:t="engine_overheat_cockpit"
+    dive:t="engine_dive"
+    timeFallingDown:r=2.0
+    engineVolumeOnOverheat:r=0.8
+    eventStart:t="engine05_ai25tl_start"
+    eventStop:t="engine05_ai25tl_stop"
+  }
+
+  outside{
+    path:t="aircraft/engines"
+    eventFront:t=""
+    eventBack:t="engine05_ai25tl"
+    eventSurround:t=""
+    eventLod1:t="engine05_ai25tl"
+    rpmSmooth:r=0.0015
+    loadScale:r=1.0
+    loadSmooth:r=0.005
+    distSmooth:r=0.9
+    distScaleOnNotHero:r=0.8
+  }
+
+  cockpit{
+    path:t="aircraft/engines"
+    event_cockpit_l:t="engine05_ai25tl_cockpit_l"
+    event_cockpit_r:t="engine05_ai25tl_cockpit_r"
+    event_start_cockpit_l:t="engine05_ai25tl_start_cockpit_l"
+    event_start_cockpit_r:t="engine05_ai25tl_start_cockpit_r"
+    event_stop_cockpit_l:t="engine05_ai25tl_stop_cockpit_l"
+    event_stop_cockpit_r:t="engine05_ai25tl_stop_cockpit_r"
     leftPos:p3=-0.5, 1.0, 5.0
     rightPos:p3=-0.5, 1.0, -5.0
     rpmSmooth:r=0.0015
@@ -12228,6 +12315,62 @@ engine_pvrbv551{
   }
 }
 
+engine_pvpjbv2062{
+
+  effects{
+    path:t="ground/engines/pvpjbv2062"
+    wep:t=""
+    overheatOutside:t=""
+    overheatCockpit:t=""
+    dive:t="engine_dive"
+    timeFallingDown:r=2.0
+    engineVolumeOnOverheat:r=0.8
+    eventStart:t="engine_start"
+    eventStop:t="engine_stop"
+  }
+
+  outside{
+    path:t="ground/engines/pvpjbv2062"
+    eventFront:t=""
+    eventBack:t="engine"
+    eventSurround:t=""
+    eventLod1:t="engine"
+    rpmSmooth:r=1.0
+    loadScale:r=6.0
+    loadSmooth:r=0.05
+    distSmooth:r=0.9
+    distScaleOnNotHero:r=1.0
+    offsetPos:p3=-1.5, 1.0, 0.0
+  }
+
+  cockpit{
+    path:t="ground/engines/pvpjbv2062"
+    event_cockpit_l:t="engine_interior"
+    event_start_cockpit_l:t="engine_start_interior"
+    event_stop_cockpit_l:t="engine_stop_interior"
+    leftPos:p3=-1.0, 1.0, 0.0
+  }
+
+  ai{
+
+    effects{
+      path:t="ground/engines/ai/pvpjbv2062"
+      eventStart:t="engine_start"
+      eventStop:t="engine_stop"
+    }
+
+    outside{
+      path:t="ground/engines/ai/pvpjbv2062"
+      eventBack:t="engine"
+      rpmSmooth:r=1.0
+      loadScale:r=6.0
+      loadSmooth:r=0.05
+      distSmooth:r=0.9
+      distScaleOnNotHero:r=1.0
+    }
+  }
+}
+
 engine_strf90{
 
   effects{
@@ -13448,6 +13591,62 @@ engine_panzer6{
 
     outside{
       path:t="ground/engines/ai/panzer6"
+      eventBack:t="engine"
+      rpmSmooth:r=1.0
+      loadScale:r=6.0
+      loadSmooth:r=0.05
+      distSmooth:r=0.9
+      distScaleOnNotHero:r=1.0
+    }
+  }
+}
+
+engine_tiger2{
+
+  effects{
+    path:t="ground/engines/tiger2"
+    wep:t=""
+    overheatOutside:t=""
+    overheatCockpit:t=""
+    dive:t="engine_dive"
+    timeFallingDown:r=2.0
+    engineVolumeOnOverheat:r=0.8
+    eventStart:t="engine_start"
+    eventStop:t="engine_stop"
+  }
+
+  outside{
+    path:t="ground/engines/tiger2"
+    eventFront:t=""
+    eventBack:t="engine"
+    eventSurround:t=""
+    eventLod1:t="engine"
+    rpmSmooth:r=1.0
+    loadScale:r=6.0
+    loadSmooth:r=0.05
+    distSmooth:r=0.9
+    distScaleOnNotHero:r=1.0
+    offsetPos:p3=-1.0, 1.0, 0.0
+  }
+
+  cockpit{
+    path:t="ground/engines/tiger2"
+    event_cockpit_l:t="engine_interior"
+    event_start_cockpit_l:t="engine_start_interior"
+    event_stop_cockpit_l:t="engine_stop_interior"
+    leftPos:p3=-1.0, 1.0, 0.0
+  }
+
+  ai{
+
+    effects{
+      path:t="ground/engines/ai/tiger2"
+      eventStart:t="engine_start"
+      eventStop:t="engine_stop"
+    }
+
+    outside{
+      path:t="ground/engines/ai/tiger2"
       eventBack:t="engine"
       rpmSmooth:r=1.0
       loadScale:r=6.0
@@ -15645,6 +15844,118 @@ engine_mctav6{
   }
 }
 
+engine_fv721{
+
+  effects{
+    path:t="ground/engines/fv721"
+    wep:t=""
+    overheatOutside:t=""
+    overheatCockpit:t=""
+    dive:t="engine_dive"
+    timeFallingDown:r=2.0
+    engineVolumeOnOverheat:r=0.8
+    eventStart:t="engine_start"
+    eventStop:t="engine_stop"
+  }
+
+  outside{
+    path:t="ground/engines/fv721"
+    eventFront:t=""
+    eventBack:t="engine"
+    eventSurround:t=""
+    eventLod1:t="engine"
+    rpmSmooth:r=1.0
+    loadScale:r=6.0
+    loadSmooth:r=0.05
+    distSmooth:r=0.9
+    distScaleOnNotHero:r=1.0
+    offsetPos:p3=1.0, 1.0, 0.0
+  }
+
+  cockpit{
+    path:t="ground/engines/fv721"
+    event_cockpit_l:t="engine_interior"
+    event_start_cockpit_l:t="engine_start_interior"
+    event_stop_cockpit_l:t="engine_stop_interior"
+    leftPos:p3=-1.0, 1.0, 0.0
+  }
+
+  ai{
+
+    effects{
+      path:t="ground/engines/ai/fv721"
+      eventStart:t="engine_start"
+      eventStop:t="engine_stop"
+    }
+
+    outside{
+      path:t="ground/engines/ai/fv721"
+      eventBack:t="engine"
+      rpmSmooth:r=1.0
+      loadScale:r=6.0
+      loadSmooth:r=0.05
+      distSmooth:r=0.9
+      distScaleOnNotHero:r=1.0
+    }
+  }
+}
+
+engine_fv721_rear{
+
+  effects{
+    path:t="ground/engines/fv721"
+    wep:t=""
+    overheatOutside:t=""
+    overheatCockpit:t=""
+    dive:t="engine_dive"
+    timeFallingDown:r=2.0
+    engineVolumeOnOverheat:r=0.8
+    eventStart:t="engine_start"
+    eventStop:t="engine_stop"
+  }
+
+  outside{
+    path:t="ground/engines/fv721"
+    eventFront:t=""
+    eventBack:t="engine"
+    eventSurround:t=""
+    eventLod1:t="engine"
+    rpmSmooth:r=1.0
+    loadScale:r=6.0
+    loadSmooth:r=0.05
+    distSmooth:r=0.9
+    distScaleOnNotHero:r=1.0
+    offsetPos:p3=-1.0, 1.0, 0.0
+  }
+
+  cockpit{
+    path:t="ground/engines/fv721"
+    event_cockpit_l:t="engine_interior"
+    event_start_cockpit_l:t="engine_start_interior"
+    event_stop_cockpit_l:t="engine_stop_interior"
+    leftPos:p3=-1.0, 1.0, 0.0
+  }
+
+  ai{
+
+    effects{
+      path:t="ground/engines/ai/fv721"
+      eventStart:t="engine_start"
+      eventStop:t="engine_stop"
+    }
+
+    outside{
+      path:t="ground/engines/ai/fv721"
+      eventBack:t="engine"
+      rpmSmooth:r=1.0
+      loadScale:r=6.0
+      loadSmooth:r=0.05
+      distSmooth:r=0.9
+      distScaleOnNotHero:r=1.0
+    }
+  }
+}
+
 engine_c1_ariete{
 
   effects{
@@ -15861,6 +16172,62 @@ engine_leclerc{
 
     outside{
       path:t="ground/engines/ai/leclerc"
+      eventBack:t="engine"
+      rpmSmooth:r=1.0
+      loadScale:r=6.0
+      loadSmooth:r=0.05
+      distSmooth:r=0.9
+      distScaleOnNotHero:r=1.0
+    }
+  }
+}
+
+engine_type10{
+
+  effects{
+    path:t="ground/engines/type10"
+    wep:t=""
+    overheatOutside:t=""
+    overheatCockpit:t=""
+    dive:t="engine_dive"
+    timeFallingDown:r=2.0
+    engineVolumeOnOverheat:r=0.8
+    eventStart:t="engine_start"
+    eventStop:t="engine_stop"
+  }
+
+  outside{
+    path:t="ground/engines/type10"
+    eventFront:t=""
+    eventBack:t="engine"
+    eventSurround:t=""
+    eventLod1:t="engine"
+    rpmSmooth:r=1.0
+    loadScale:r=6.0
+    loadSmooth:r=0.05
+    distSmooth:r=0.9
+    distScaleOnNotHero:r=1.0
+    offsetPos:p3=-1.0, 1.0, 0.0
+  }
+
+  cockpit{
+    path:t="ground/engines/type10"
+    event_cockpit_l:t="engine_interior"
+    event_start_cockpit_l:t="engine_start_interior"
+    event_stop_cockpit_l:t="engine_stop_interior"
+    leftPos:p3=-1.0, 1.0, 0.0
+  }
+
+  ai{
+
+    effects{
+      path:t="ground/engines/ai/type10"
+      eventStart:t="engine_start"
+      eventStop:t="engine_stop"
+    }
+
+    outside{
+      path:t="ground/engines/ai/type10"
       eventBack:t="engine"
       rpmSmooth:r=1.0
       loadScale:r=6.0
@@ -16485,6 +16852,106 @@ engine_ah64{
       path:t="aircraft/engines"
       event_1:t="rotor_ah64_cockpit_l"
       event_2:t="rotor_ah64_cockpit_r"
+      pos_1:p3=0.5, 1.5, 4.0
+      pos_2:p3=0.5, 1.5, -4.0
+      propIndex_1:i=1
+      propIndex_2:i=1
+      rpmSmooth:r=0.02
+      loadScale:r=6.0
+      loadSmooth:r=0.05
+      distSmooth:r=0.9
+    }
+  }
+}
+
+engine_rah_66{
+
+  engines{
+
+    effects{
+      path:t="aircraft/engines"
+      wep:t="engine_wep"
+      overheatOutside:t="engine_overheat_camera"
+      overheatCockpit:t="engine_overheat_cockpit"
+      dive:t="engine_dive"
+      timeFallingDown:r=2.0
+      engineVolumeOnOverheat:r=0.8
+      eventStart_1:t="engine_rah_66_start_l"
+      eventStop_1:t="engine_rah_66_stop_l"
+      eventProp_1:t="engine_rah_66_prop_l"
+      eventStart_2:t="engine_rah_66_start_r"
+      eventStop_2:t="engine_rah_66_stop_r"
+      eventProp_2:t="engine_rah_66_prop_r"
+    }
+
+    outside{
+      path:t="aircraft/engines"
+      eventFront:t=""
+      eventBack_1:t="engine_rah_66_l"
+      eventBack_2:t="engine_rah_66_r"
+      eventSurround:t=""
+      rpm2Type:t="jetTrue"
+      rpm2Bias:r=0.0
+      rpm2Scale:r=2700.0
+      rpmSmooth:r=0.02
+      loadScale:r=6.0
+      loadSmooth:r=0.05
+      distSmooth:r=0.9
+      distScaleOnNotHero:r=0.8
+      pos_1:p3=0.5, 1.5, 3.0
+      pos_2:p3=0.5, 1.5, -3.0
+    }
+
+    cockpit{
+      path:t="aircraft/engines"
+      event_cockpit_l:t="engine_rah_66_cockpit_l"
+      event_cockpit_r:t="engine_rah_66_cockpit_r"
+      event_start_cockpit_l:t="engine_rah_66_start_cockpit_l"
+      event_start_cockpit_r:t="engine_rah_66_start_cockpit_r"
+      event_stop_cockpit_l:t="engine_rah_66_stop_cockpit_l"
+      event_stop_cockpit_r:t="engine_rah_66_stop_cockpit_r"
+      event_prop_cockpit_l:t="engine_rah_66_prop_cockpit_l"
+      event_prop_cockpit_r:t="engine_rah_66_prop_cockpit_r"
+      leftPos:p3=-0.5, 1.0, 2.0
+      rightPos:p3=-0.5, 1.0, -2.0
+      rpm2Type:t="jetTrue"
+      rpm2Bias:r=0.0
+      rpm2Scale:r=2700.0
+      rpmSmooth:r=0.02
+      loadScale:r=6.0
+      loadSmooth:r=0.05
+      distSmooth:r=0.9
+    }
+  }
+
+  propellers{
+
+    effects{
+      path:t="aircraft/engines"
+    }
+
+    outside{
+      path:t="aircraft/engines"
+      event_1:t="rotor_rah_66"
+      event_2:t="rotor_rah_66_tail"
+      event_3:t="rotor_echo_rah_66"
+      pos_1:p3=0.5, 1.5, 0.0
+      pos_2:p3=-8.0, 1.2, 0.0
+      pos_3:p3=-6.0, 1.0, 0.0
+      propIndex_1:i=1
+      propIndex_2:i=2
+      propIndex_3:i=1
+      rpmSmooth:r=0.02
+      loadScale:r=6.0
+      loadSmooth:r=0.05
+      distSmooth:r=0.9
+      distScaleOnNotHero:r=0.8
+    }
+
+    cockpit{
+      path:t="aircraft/engines"
+      event_1:t="rotor_rah_66_cockpit_l"
+      event_2:t="rotor_rah_66_cockpit_r"
       pos_1:p3=0.5, 1.5, 4.0
       pos_2:p3=0.5, 1.5, -4.0
       propIndex_1:i=1
@@ -18360,6 +18827,58 @@ engine_ah64_ai{
   }
 }
 
+engine_rah_66_ai{
+
+  engines{
+
+    effects{
+      path:t="aircraft/engines"
+      wep:t="engine_wep"
+      overheatOutside:t="engine_overheat_camera"
+      overheatCockpit:t="engine_overheat_cockpit"
+      dive:t="engine_dive"
+      timeFallingDown:r=2.0
+      engineVolumeOnOverheat:r=0.8
+      eventStart:t="engine_heli_ai_start"
+      eventStop:t="engine_heli_ai_stop"
+    }
+
+    outside{
+      path:t="aircraft/engines"
+      eventFront:t=""
+      eventBack:t="engine_heli_ai"
+      eventSurround:t=""
+      eventLod1:t="engine_heli_ai"
+      rpm2Type:t="jetTrue"
+      rpm2Bias:r=0.0
+      rpm2Scale:r=2700.0
+      rpmSmooth:r=0.014
+      loadScale:r=6.0
+      loadSmooth:r=0.05
+      distSmooth:r=0.9
+      distScaleOnNotHero:r=1.0
+    }
+  }
+
+  propellers{
+
+    effects{
+      path:t="aircraft/engines"
+    }
+
+    outside{
+      path:t="aircraft/engines"
+      event_1:t="rotor_rah_66_ai"
+      pos_1:p3=0.5, 1.5, 0.0
+      rpmSmooth:r=0.02
+      loadScale:r=6.0
+      loadSmooth:r=0.05
+      distSmooth:r=0.9
+      distScaleOnNotHero:r=0.8
+    }
+  }
+}
+
 engine_uh_60_ai{
 
   engines{
@@ -19105,7 +19624,7 @@ reloads{
   grd_cannon_reload_auto{
     path:t="ground/effects"
     event:t="reload_cannon_auto"
-    time:r=3.0
+    time:r=6.0
 
     ship{
       path:t="naval/effects"
@@ -19115,7 +19634,17 @@ reloads{
   grd_cannon_reload_T64{
     path:t="ground/effects"
     event:t="reload_cannon_T64"
-    time:r=7.0
+    time:r=8.0
+
+    ship{
+      path:t="naval/effects"
+    }
+  }
+
+  grd_cannon_reload_T72{
+    path:t="ground/effects"
+    event:t="reload_cannon_T72"
+    time:r=9.0
 
     ship{
       path:t="naval/effects"
@@ -22964,6 +23493,7 @@ operatorCountries{
   country_belgium:t="Belgium"
   country_austria:t="Austria"
   country_colombia:t="Spanish"
+  country_britain:t="English"
 }
 
 radioNoise{

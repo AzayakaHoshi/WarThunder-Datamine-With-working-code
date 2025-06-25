@@ -2357,6 +2357,7 @@ cockpit{
   sightInFov:r=1.32
   sightOutFov:r=6.69
   sightFov:r=1.0
+  mfdTextureSize:ip2=1024, 1024
   headPos:p3=4.2, 1.03, 0.0
   headPosOnShooting:p3=4.3, 1.03, 0.0
   mirror:b=yes
@@ -2447,7 +2448,39 @@ cockpit{
       }
 
       page{
-        type:t="map"
+        type:t="hsd"
+        scale:r=1.0
+        color:c=0, 0, 0, 255
+        font:t="hud"
+        fontSize:i=19
+        lineWidth:r=2.0
+        lineColor:c=255, 255, 255, 255
+        orient:t="northUp"
+        centerMarkType:t="triangle"
+        centerMarkFillColor:c=0, 0, 0, 0
+        centerMarkLineColor:c=255, 255, 255, 255
+        centerMarkScale:r=0.1
+        centerMarkSpeed:b=no
+        spi:b=yes
+        spiColor:c=225, 215, 0, 255
+        spiInfo:b=yes
+        distScale:b=yes
+        distScaleBeyondAzScale:b=yes
+        distScaleStepSize:r=40000.0
+        distScaleColor:c=255, 255, 255, 255
+        distScaleNumbers:b=no
+        distScaleNumbersAngle:r=45.0
+        distScaleNumbersFillColor:c=255, 255, 255, 255
+        azScaleType:t="line"
+        azScaleSize:r=10000.0
+        azScaleColor:c=255, 255, 255, 255
+        headingIndFillColor:c=255, 255, 255, 255
+        centerCross:b=no
+        time:b=no
+        mapBackground:b=yes
+        markers:b=yes
+        extent:r=40000.0
+        metricUnits:b=no
       }
     }
 
@@ -3596,50 +3629,73 @@ user_skin{
 
 modifications{
 
-  cd_98{
-    prevModification:t="hydravlic_power"
-    tier:i=3
-  }
-
-  air_extinguisher{
-    modClass:t="armor"
-    modClass:t="weapon"
-    tier:i=4
-    invertEnableLogic:b=no
-  }
-
-  hp_105_jet{
-    prevModification:t="cd_98"
-    tier:i=4
-  }
-
-  new_cover{
-  }
-
-  f_4c_CdMin_Fuse{
-    tier:i=1
-  }
-
-  structure_str{
-    tier:i=2
-  }
-
-  f_4c_g_suit{
-    tier:i=3
-  }
-
   new_compressor_jet{
     tier:i=1
+    modClass:t="lth"
   }
 
   hydravlic_power{
     prevModification:t="new_compressor_jet"
     tier:i=2
+    modClass:t="lth"
 
     effects{
       aileronBooster:r=1.0
       elevatorBooster:r=0.9
     }
+  }
+
+  cd_98{
+    prevModification:t="hydravlic_power"
+    tier:i=3
+    modClass:t="lth"
+  }
+
+  hp_105_jet{
+    prevModification:t="cd_98"
+    tier:i=4
+    modClass:t="lth"
+  }
+
+  f_4c_CdMin_Fuse{
+    tier:i=1
+    modClass:t="lth"
+  }
+
+  structure_str{
+    prevModification:t="f_4c_CdMin_Fuse"
+    tier:i=2
+    modClass:t="lth"
+  }
+
+  new_cover{
+    prevModification:t="structure_str"
+    tier:i=3
+    modClass:t="lth"
+  }
+
+  countermeasures_launcher_chaff{
+  }
+
+  countermeasures_belt_pack{
+    modClass:t="armor"
+    turn_it_off:b=no
+    invertEnableLogic:b=no
+    tier:i=1
+    group:t="q_5b_group"
+  }
+
+  f_4c_g_suit{
+    modClass:t="armor"
+    prevModification:t="countermeasures_belt_pack"
+    tier:i=3
+  }
+
+  air_extinguisher{
+    modClass:t="armor"
+    prevModification:t="f_4c_g_suit"
+    tier:i=4
+    invertEnableLogic:b=no
   }
 
   aden_air_targets{
@@ -3681,17 +3737,6 @@ modifications{
     tier:i=4
     modClass:t="weapon"
     reqModification:t="uk_mk_n1_540lb"
-  }
-
-  countermeasures_launcher_chaff{
-  }
-
-  countermeasures_belt_pack{
-    modClass:t="armor"
-    turn_it_off:b=no
-    invertEnableLogic:b=no
-    tier:i=1
-    group:t="q_5b_group"
   }
 
   uk_tiald{
@@ -3750,14 +3795,14 @@ cutting{
 AfterBurner0{
 
   volumetricAfterBurner{
-    name:t="jet_orange_flat_ww2"
+    name:t="_jet_jaguar_adour"
     maxHeight:r=7.0
     minHeight:r=5.0
     heightNoiseStrength:r=1.0
     heightNoiseSpeed:r=30.0
     maxRadius:r=0.16
     minRadius:r=0.11
-    maxBaseRadius:r=0.21
+    maxBaseRadius:r=0.18
     minBaseRadius:r=0.15
     relativeCylinderHeightMax:r=0.32
     relativeCylinderHeightMin:r=0.3
@@ -3770,12 +3815,12 @@ AfterBurner0{
     outerCylinderHeightFadeNoiseStrength:r=3.0
     outerCylinderHeightFadeNoiseSpeed:r=10.0
     minOuterCylinderRadius:r=0.24
-    maxOuterCylinderRadius:r=0.27
-    absorption:r=9.0
-    colorIntensityMax:r=8.0
-    colorIntensityMin:r=5.0
-    colorOverHeightMult:r=4.0
-    colorOverDepthMult:r=4.0
+    maxOuterCylinderRadius:r=0.24
+    absorption:r=4.0
+    colorIntensityMax:r=4.0
+    colorIntensityMin:r=2.0
+    colorOverHeightMult:r=2.0
+    colorOverDepthMult:r=2.0
     colorOverRadiusMult:r=1.0
     colorOverRadiusFadeOverHeight:r=1.0
     maxRingOffset:r=0.0
@@ -3783,6 +3828,8 @@ AfterBurner0{
     ringAbsorption:r=0.0
     maxRingCount:i=0
     minRingCount:i=0
+    minStartingRingHeight:r=0.0
+    maxStartingRingHeight:r=0.0
     ringIntensityMin:r=0.0
     ringIntensityMax:r=0.0
     ringIntensityNoiseStrength:r=0.0
@@ -3793,7 +3840,7 @@ AfterBurner0{
     radiusNoiseStrength:r=0.09
     radiusNoiseSpeed:r=20.0
     shakeNoiseStrength:r=0.04
-    shakeNoiseSpeed:r=30.0
+    shakeNoiseSpeed:r=20.0
     ringAngleFadeMult:r=0.0
     colorOverHeightNoiseStrength:r=0.2
     colorOverHeightNoiseSpeed:r=40.0
@@ -3801,30 +3848,77 @@ AfterBurner0{
     colorOverRadiusNoiseSpeed:r=40.0
     colorOverDepthNoiseStrength:r=0.05
     colorOverDepthNoiseSpeed:r=40.0
-    colorIntensityNoiseStrength:r=3.0
+    colorIntensityNoiseStrength:r=2.0
     colorIntensityNoiseSpeed:r=30.0
+    minAoABendingMult:r=0.0
+    maxAoABendingMult:r=1.4
+    minAoSBendingMult:r=0.0
+    maxAoSBendingMult:r=1.4
 
     preNominalEasingParams{
       animationTime:r=2.5
       ascendingSmoothIntensityParams:r=0.8
+      flickerRelativTime:r=0.33
+      flickerSpeed:r=1.0
+      flickerIntensity:r=1.0
     }
 
     postNominalEasingParams{
       animationTime:r=1.0
       ascendingSmoothIntensityParams:r=1.0
+      flickerRelativTime:r=0.0
+      flickerSpeed:r=0.0
+      flickerIntensity:r=0.0
     }
 
     lightProperties{
       color:p3=1.0, 0.339389, 0.22549
       angle:r=1.0
-      brightness:r=17.0
+      brightness:r=10.0
       radius:r=20.0
       attenuation:r=0.8
       brightnessNoiseStrength:r=3.0
       brightnessNoiseSpeed:r=6.0
-      ignitionTextureIntensity:r=0.1
+      ignitionTextureIntensityMin:r=0.01
+      ignitionTextureIntensityMax:r=0.01
       ignitionBrightnessNoiseStrength:r=0.0
       ignitionBrightnessNoiseSpeed:r=16.0
+    }
+
+    NozzleFlames{
+      amountOfFlames:i=6
+      radiusMult:r=1.7
+      startOffset:r=-0.3
+      endOffsetAddition:r=0.5
+      intensityMult:r=6.0
+      innerCircleNoiseScale:r=0.5
+      innerCircleNoiseStrength:r=0.3
+      maskNoiseScale:r=0.0
+      maskNoiseStrength:r=0.0
+      minInnerCircleParamMult:r=1.8
+      maxInnerCircleParamMult:r=1.0
+      lengthNoiseSpeed:r=10.0
+      lengthNoiseStrength:r=0.1
+      uvNoiseMaskScale:r=0.4
+      uvNoiseMaskStrength:r=0.05
+
+      FlameMaskTextureOffset{
+        maskTextureOffset:i=30
+        maskTextureOffset:i=31
+        maskTextureOffset:i=27
+        maskTextureOffset:i=28
+        maskTextureOffset:i=29
+        maskTextureOffset:i=29
+      }
+
+      FlameRampTextureOffset{
+        rampTextureOffset:i=23
+        rampTextureOffset:i=23
+        rampTextureOffset:i=23
+        rampTextureOffset:i=23
+        rampTextureOffset:i=23
+        rampTextureOffset:i=23
+      }
     }
   }
 }

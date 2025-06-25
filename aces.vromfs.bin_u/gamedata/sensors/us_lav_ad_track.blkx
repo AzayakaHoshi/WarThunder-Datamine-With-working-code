@@ -20,7 +20,7 @@ transivers{
     range7:r=0.0
 
     antenna{
-      angleHalfSens:r=0.5
+      angleHalfSens:r=0.4
       sideLobesSensitivity:r=-120.0
     }
   }
@@ -280,21 +280,21 @@ fsms{
         }
       }
 
-      checkLockType1{
+      checkLockTypeLos{
         stateFrom:t="standby"
         command:t="designateTarget"
-        stateTo:t="checkLockType1"
+        stateTo:t="checkLockTypeLos"
 
         actions{
 
           checkDesignationTypeEquals{
-            value:i=1
+            type:t="los"
           }
         }
       }
 
       losLock{
-        stateFrom:t="checkLockType1"
+        stateFrom:t="checkLockTypeLos"
         event:t="designationTypeEquals"
         stateTo:t="losLock"
 
@@ -308,21 +308,21 @@ fsms{
         }
       }
 
-      checkLockType2{
-        stateFrom:t="checkLockType1"
+      checkLockTypeVisual{
+        stateFrom:t="checkLockTypeLos"
         event:t="designationTypeNotEquals"
-        stateTo:t="checkLockType2"
+        stateTo:t="checkLockTypeVisual"
 
         actions{
 
           checkDesignationTypeEquals{
-            value:i=2
+            type:t="visual"
           }
         }
       }
 
       visualLock{
-        stateFrom:t="checkLockType2"
+        stateFrom:t="checkLockTypeVisual"
         event:t="designationTypeEquals"
         stateTo:t="visualLock"
 
@@ -337,7 +337,7 @@ fsms{
       }
 
       finishLockTypeCheck{
-        stateFrom:t="checkLockType2"
+        stateFrom:t="checkLockTypeVisual"
         event:t="designationTypeNotEquals"
         stateTo:t="standby"
       }

@@ -17,7 +17,7 @@ transivers{
     multipathEffect:p4=0.0, 1.0, 60.0, 0.0
 
     antenna{
-      angleHalfSens:r=3.9
+      angleHalfSens:r=3.0
       sideLobesSensitivity:r=-32.0
     }
   }
@@ -32,7 +32,7 @@ transivers{
     multipathEffect:p4=0.0, 1.0, 60.0, 0.0
 
     antenna{
-      angleHalfSens:r=3.9
+      angleHalfSens:r=3.0
       sideLobesSensitivity:r=-32.0
     }
   }
@@ -47,7 +47,7 @@ transivers{
     multipathEffect:p4=0.0, 1.0, 60.0, 0.0
 
     antenna{
-      angleHalfSens:r=3.9
+      angleHalfSens:r=3.0
       sideLobesSensitivity:r=-32.0
     }
   }
@@ -62,7 +62,7 @@ transivers{
     multipathEffect:p4=0.0, 1.0, 60.0, 0.0
 
     antenna{
-      angleHalfSens:r=3.9
+      angleHalfSens:r=3.0
       sideLobesSensitivity:r=-32.0
     }
   }
@@ -77,7 +77,7 @@ transivers{
     multipathEffect:p4=0.0, 1.0, 60.0, 0.0
 
     antenna{
-      angleHalfSens:r=3.9
+      angleHalfSens:r=3.0
       sideLobesSensitivity:r=-32.0
     }
   }
@@ -183,11 +183,11 @@ scanPatterns{
     azimuthLimits:p2=-70.0, 70.0
     elevationLimits:p2=-60.0, 60.0
     period:r=1.2
-    width:r=25.0
-    barHeight:r=3.0
+    width:r=37.0
+    barHeight:r=2.5
     barsCount:i=2
     rowMajor:b=no
-    centerElevation:r=30.0
+    centerElevation:r=23.0
     indicate:b=yes
   }
 
@@ -195,12 +195,12 @@ scanPatterns{
     type:t="pyramide"
     azimuthLimits:p2=-70.0, 70.0
     elevationLimits:p2=-60.0, 60.0
-    period:r=1.2
+    period:r=2.0
     width:r=10.0
-    barHeight:r=4.0
-    barsCount:i=5
+    barHeight:r=2.5
+    barsCount:i=8
     rowMajor:b=yes
-    centerElevation:r=-4.0
+    centerElevation:r=4.0
     indicate:b=yes
   }
 
@@ -208,8 +208,8 @@ scanPatterns{
     type:t="cone"
     azimuthLimits:p2=-70.0, 70.0
     elevationLimits:p2=-60.0, 60.0
-    period:r=0.2
-    width:r=2.0
+    period:r=0.5
+    width:r=0.1
     indicate:b=yes
   }
 
@@ -653,15 +653,13 @@ fsms{
       designatedTargetSearch{
 
         designateTargetUnderCue{
-          type:i=0
+          type:t="cue"
           self:b=yes
-          sensorIndex:i=0
         }
 
         designateActiveDetectedTarget{
-          type:i=0
+          type:t="target"
           self:b=yes
-          sensorIndex:i=0
         }
       }
 
@@ -795,6 +793,10 @@ fsms{
         setModeName{
           name:t="PD ACM"
         }
+
+        setDesignationSourceType{
+          sourceType:t="radar"
+        }
       }
 
       resetAcmLockMode{
@@ -899,7 +901,7 @@ fsms{
       designatedTargetTws{
 
         designateActiveDetectedTarget{
-          type:i=0
+          type:t="target"
           self:b=yes
           sensorIndex:i=0
         }
@@ -1198,6 +1200,10 @@ fsms{
         setModeName{
           name:t="GTM search"
         }
+
+        setDesignationSourceType{
+          sourceType:t="radarSs"
+        }
       }
 
       setGtmTwsSearchMode{
@@ -1215,6 +1221,10 @@ fsms{
 
         setModeName{
           name:t="TWS GTM search"
+        }
+
+        setDesignationSourceType{
+          sourceType:t="radarSs"
         }
       }
 
@@ -1234,6 +1244,10 @@ fsms{
         setModeName{
           name:t="GTM standby"
         }
+
+        setDesignationSourceType{
+          sourceType:t="radarSs"
+        }
       }
 
       setGtmTwsStandbyMode{
@@ -1251,6 +1265,10 @@ fsms{
 
         setModeName{
           name:t="GTM standby"
+        }
+
+        setDesignationSourceType{
+          sourceType:t="radarSs"
         }
       }
 
@@ -1460,7 +1478,8 @@ fsms{
         actions{
 
           checkDesignationTypeEquals{
-            value:i=0
+            type:t="target"
+            type:t="cue"
           }
         }
       }
@@ -2296,6 +2315,10 @@ fsms{
             name:t="resetSearchMode"
           }
 
+          setDesignationSourceType{
+            sourceType:t="radar"
+          }
+
           setFsmActive{
             fsm:t="main"
             active:b=no
@@ -2425,6 +2448,27 @@ fsms{
         actions{
 
           setDetectedTargetActive{
+          }
+        }
+      }
+
+      centerZone{
+        command:t="directionAxesReset"
+
+        actions{
+
+          setCueToBoresight{
+          }
+
+          setCenterAzimuth{
+            source:t="designationCue"
+          }
+
+          setCenterElevation{
+            source:t="designationCue"
+          }
+
+          updateActiveDetectedTarget{
           }
         }
       }
@@ -2562,9 +2606,6 @@ fsms{
 
           setCueDist{
           }
-
-          setCueDopplerSpeed{
-          }
         }
       }
 
@@ -2588,19 +2629,23 @@ fsms{
         }
       }
 
-      designateTarget{
-        command:t="selectTarget"
+      centerZone{
+        command:t="directionAxesReset"
 
         actions{
 
-          designateActiveDetectedTarget{
-            type:i=0
-            sensorIndex:i=1
+          setCueToBoresight{
           }
 
-          designateTargetUnderCue{
-            type:i=0
-            sensorIndex:i=1
+          setCenterAzimuth{
+            source:t="designationCue"
+          }
+
+          setCenterElevation{
+            source:t="designationCue"
+          }
+
+          updateActiveDetectedTarget{
           }
         }
       }

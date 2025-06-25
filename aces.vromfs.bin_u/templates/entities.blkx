@@ -10,12 +10,6 @@ import:t="%wtlibs/templates/grid.blk"
 import:t="%wtlibs/templates/fx.blk"
 import:t="%wtlibs/templates/damage_model.blk"
 import:t="%wtlibs/templates/microdetail.blk"
-import:t="%gameBase/templates/humans.entities.blk"
-
-backmodel_spawn_point{
-  _use:t="spawn_point"
-  forPremiumVehicle:b=no
-}
 
 delayed_action{
   delayed_action__doAtTime:r=-1.0
@@ -925,6 +919,16 @@ game_objects{
   }
 }
 
+game_object_creator{
+  transform:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.0, 0.0, 0.0]]
+
+  "object_creator:tag"{
+  }
+
+  "object_creator__createdEid:eid"{
+  }
+}
+
 ad_water_supply_medium{
   _use:t="ecs_fx"
   ecs_fx__res:t="water_flow_stream_medium_cmps_fx"
@@ -1080,7 +1084,7 @@ sand_worm_render{
 asset_manager{
   _tags:t="render"
   _use:t="base_asset_manager"
-  asset__applicationBlkPath:t="assetsImport/application_wt.blk"
+  asset__applicationBlkPath:t="%gameBase/../../assetsImport/application_wt.blk"
 }
 
 burav{
@@ -1371,6 +1375,10 @@ ship_ext{
   fuel_leak_fx{
     _tags:t="gameClient"
   }
+
+  ship_sinking_fx{
+    _tags:t="gameClient"
+  }
 }
 
 tank_ext{
@@ -1466,6 +1474,9 @@ builder_preview{
     special:t="ammo_box_special"
   }
 
+  "builder_preview__owner:eid"{
+  }
+
   "builder_preview__collObj:CollisionObject"{
   }
 
@@ -1479,6 +1490,16 @@ builder_preview{
   "builder_preview__triggerGrMask:u8"{
     value:i=0
   }
+}
+
+slave_unit_preview{
+  slave_unit__transform:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [0.0, 0.0, 0.0]]
+  slave_unit_preview__radius:r=35.0
+  slave_unit_preview__canSpawn:b=no
+  slave_unit_preview__availableAngles:p2=-30.0, 30.0
+  nextCheckGridObjectsTime:r=0.0
+  checkGridObjectsTimeInterval:r=0.5
+  slave_unit_preview__collObjOffset:r=0.5
 }
 
 ammo_box{
@@ -1510,9 +1531,4 @@ ammo_box_special{
   _use:t="ammo_box"
   ri_extra__name:t="ammunition_box_construction_99x50x27_static"
   ammo_box__triggerGroupNo:i=4
-}
-
-tank{
-  _override:b=yes
-  _use:t="still_obstacle"
 }

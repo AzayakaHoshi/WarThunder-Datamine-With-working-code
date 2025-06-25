@@ -80,9 +80,24 @@ scanPatterns{
     rollStabLimit:r=10.0
   }
 
+  irstLock{
+    type:t="pyramide"
+    azimuthLimits:p2=-20.0, 20.0
+    elevationLimits:p2=-10.0, 80.0
+    yawStabLimit:r=180.0
+    pitchStabLimit:r=80.0
+    rollStabLimit:r=10.0
+    period:r=0.1
+    width:r=22.5
+    barHeight:r=0.4
+    barsCount:i=12
+    rowMajor:b=no
+    indicate:b=yes
+  }
+
   irstLosLock{
     type:t="pyramide"
-    azimuthLimits:p2=-10.0, 10.0
+    azimuthLimits:p2=-20.0, 20.0
     elevationLimits:p2=-10.0, 80.0
     yawStabLimit:r=180.0
     pitchStabLimit:r=80.0
@@ -236,7 +251,7 @@ fsms{
 
         setCenterElevation{
           source:t="constant"
-          value:r=0.0
+          value:r=22.5
         }
       }
 
@@ -271,17 +286,13 @@ fsms{
         }
       }
 
-      setRadarLockMode{
+      setRadarLockModeCommon{
 
         setLockModeCommon{
         }
 
         setModeName{
           name:t="acquisition"
-        }
-
-        setScanPattern{
-          scanPattern:t="radarLock"
         }
 
         setCenterElevation{
@@ -295,7 +306,67 @@ fsms{
         }
       }
 
-      setLosVisualPreLockModeCommon{
+      setIrstLockModeCommon{
+
+        setLockModeCommon{
+        }
+
+        setModeName{
+          name:t="acquisition"
+        }
+
+        setCenterElevation{
+          source:t="constant"
+          value:r=22.5
+        }
+
+        setDistGatePos{
+          source:t="targetDesignation"
+          width:r=100.0
+        }
+      }
+
+      setRadarLockModeCue{
+
+        setRadarLockModeCommon{
+        }
+
+        setScanPattern{
+          scanPattern:t="radarLock"
+        }
+      }
+
+      setIrstLockModeCue{
+
+        setRadarLockModeCommon{
+        }
+
+        setScanPattern{
+          scanPattern:t="irstLock"
+        }
+      }
+
+      setRadarLockModeTarget{
+
+        setRadarLockModeCommon{
+        }
+
+        setScanPattern{
+          scanPattern:t="radarLock"
+        }
+      }
+
+      setIrstLockModeTarget{
+
+        setRadarLockModeCommon{
+        }
+
+        setScanPattern{
+          scanPattern:t="irstLock"
+        }
+      }
+
+      setLosVisualLockModeCommon{
 
         setEnabled{
           value:b=yes
@@ -321,23 +392,23 @@ fsms{
         }
       }
 
-      setRadarLosVisualPreLockMode{
+      setRadarLosVisualLockModeCommon{
 
         setScanPattern{
           scanPattern:t="radarLosLock"
         }
 
-        setLosVisualPreLockModeCommon{
+        setLosVisualLockModeCommon{
         }
       }
 
-      setIrstLosVisualPreLockMode{
+      setIrstLosVisualLockModeCommon{
 
         setScanPattern{
           scanPattern:t="irstLosLock"
         }
 
-        setLosVisualPreLockModeCommon{
+        setLosVisualLockModeCommon{
         }
       }
 
@@ -358,6 +429,9 @@ fsms{
 
       setRadarLosLockMode{
 
+        setRadarLosVisualLockModeCommon{
+        }
+
         setLosLockModeCommon{
         }
 
@@ -373,6 +447,9 @@ fsms{
       }
 
       setIrstLosLockMode{
+
+        setIrstLosVisualLockModeCommon{
+        }
 
         setLosLockModeCommon{
         }
@@ -410,6 +487,9 @@ fsms{
 
       setRadarVisualLockMode{
 
+        setRadarLosVisualLockModeCommon{
+        }
+
         setVisualLockModeCommon{
         }
 
@@ -420,6 +500,9 @@ fsms{
       }
 
       setIrstVisualLockMode{
+
+        setIrstLosVisualLockModeCommon{
+        }
 
         setVisualLockModeCommon{
         }
@@ -555,95 +638,115 @@ fsms{
         }
       }
 
-      radarCheckLockType0{
+      checkRadarLockTypeCue{
         stateFrom:t="radarStandby"
         command:t="designateTarget"
-        stateTo:t="radarCheckLockType0"
+        stateTo:t="checkRadarLockTypeCue"
 
         actions{
 
           checkDesignationTypeEquals{
-            value:i=0
+            type:t="cue"
           }
         }
       }
 
-      radarLock{
-        stateFrom:t="radarCheckLockType0"
+      radarLockCue{
+        stateFrom:t="checkRadarLockTypeCue"
         event:t="designationTypeEquals"
-        stateTo:t="radarLock"
+        stateTo:t="radarLockCue"
 
         actions{
 
-          setRadarLockMode{
+          setRadarLockModeCue{
           }
         }
       }
 
-      radarCheckLockType1{
-        stateFrom:t="radarCheckLockType0"
+      checkRadarLockTypeTarget{
+        stateFrom:t="checkRadarLockTypeCue"
         event:t="designationTypeNotEquals"
-        stateTo:t="radarCheckLockType1"
+        stateTo:t="checkRadarLockTypeTarget"
 
         actions{
 
           checkDesignationTypeEquals{
-            value:i=1
+            type:t="target"
           }
         }
       }
 
-      radarLosLock{
-        stateFrom:t="radarCheckLockType1"
+      lockRadarTarget{
+        stateFrom:t="checkRadarLockTypeTarget"
+        event:t="designationTypeEquals"
+        stateTo:t="radarLockTarget"
+
+        actions{
+
+          setRadarLockModeTarget{
+          }
+        }
+      }
+
+      checkRadarLockTypeLos{
+        stateFrom:t="checkRadarLockTypeTarget"
+        event:t="designationTypeNotEquals"
+        stateTo:t="checkRadarLockTypeLos"
+
+        actions{
+
+          checkDesignationTypeEquals{
+            type:t="los"
+          }
+        }
+      }
+
+      checkRadarLockTypeLos{
+        stateFrom:t="checkRadarLockTypeLos"
+        event:t="designationTypeNotEquals"
+        stateTo:t="checkRadarLockTypeVisual"
+
+        actions{
+
+          checkDesignationTypeEquals{
+            type:t="visual"
+          }
+        }
+      }
+
+      lockRadarLos{
+        stateFrom:t="checkRadarLockTypeLos"
         event:t="designationTypeEquals"
         stateTo:t="radarLosLock"
 
         actions{
-
-          setRadarLosVisualPreLockMode{
-          }
 
           setRadarLosLockMode{
           }
         }
       }
 
-      radarCheckLockType2{
-        stateFrom:t="radarCheckLockType1"
-        event:t="designationTypeNotEquals"
-        stateTo:t="radarCheckLockType2"
-
-        actions{
-
-          checkDesignationTypeEquals{
-            value:i=2
-          }
-        }
-      }
-
-      radarVisualLock{
-        stateFrom:t="radarCheckLockType2"
+      lockRadarVisual{
+        stateFrom:t="checkRadarLockTypeVisual"
         event:t="designationTypeEquals"
         stateTo:t="radarVisualLock"
 
         actions{
-
-          setRadarLosVisualPreLockMode{
-          }
 
           setRadarVisualLockMode{
           }
         }
       }
 
-      radarFinishLockTypeCheck{
-        stateFrom:t="radarCheckLockType2"
+      finishRadarLockTypeCheck{
+        stateFrom:t="checkRadarLockTypeVisual"
         event:t="designationTypeNotEquals"
         stateTo:t="radarStandby"
       }
 
       radarTrack{
-        stateFrom:t="radarLock"
+        stateFrom:t="radarLockCue"
+        stateFrom:t="radarLockTarget"
         stateFrom:t="radarLosLock"
         stateFrom:t="radarVisualLock"
         event:t="targetDetected"
@@ -662,7 +765,8 @@ fsms{
       }
 
       radarFailedLock{
-        stateFrom:t="radarLock"
+        stateFrom:t="radarLockCue"
+        stateFrom:t="radarLockTarget"
         stateFrom:t="radarLosLock"
         stateFrom:t="radarVisualLock"
         event:t="scanFinished"
@@ -697,69 +801,115 @@ fsms{
         }
       }
 
-      irstCheckLockType1{
+      checkIrstLockTypeCue{
         stateFrom:t="irstStandby"
         command:t="designateTarget"
-        stateTo:t="irstCheckLockType1"
+        stateTo:t="checkIrstLockTypeCue"
 
         actions{
 
           checkDesignationTypeEquals{
-            value:i=1
+            type:t="cue"
           }
         }
       }
 
-      irstLosLock{
-        stateFrom:t="irstCheckLockType1"
+      irstLockCue{
+        stateFrom:t="checkIrstLockTypeCue"
+        event:t="designationTypeEquals"
+        stateTo:t="irstLockCue"
+
+        actions{
+
+          setIrstLockModeCue{
+          }
+        }
+      }
+
+      checkIrstLockTypeTarget{
+        stateFrom:t="checkIrstLockTypeCue"
+        event:t="designationTypeNotEquals"
+        stateTo:t="checkIrstLockTypeTarget"
+
+        actions{
+
+          checkDesignationTypeEquals{
+            type:t="target"
+          }
+        }
+      }
+
+      lockIrstTarget{
+        stateFrom:t="checkIrstLockTypeTarget"
+        event:t="designationTypeEquals"
+        stateTo:t="irstLockTarget"
+
+        actions{
+
+          setIrstLockModeTarget{
+          }
+        }
+      }
+
+      checkIrstLockTypeLos{
+        stateFrom:t="checkIrstLockTypeTarget"
+        command:t="designateTarget"
+        stateTo:t="checkIrstLockTypeLos"
+
+        actions{
+
+          checkDesignationTypeEquals{
+            type:t="los"
+          }
+        }
+      }
+
+      checkIrstLockTypeLos{
+        stateFrom:t="checkIrstLockTypeLos"
+        event:t="designationTypeNotEquals"
+        stateTo:t="checkIrstLockTypeVisual"
+
+        actions{
+
+          checkDesignationTypeEquals{
+            type:t="visual"
+          }
+        }
+      }
+
+      lockIrstLos{
+        stateFrom:t="checkIrstLockTypeLos"
         event:t="designationTypeEquals"
         stateTo:t="irstLosLock"
 
         actions{
-
-          setIrstLosVisualPreLockMode{
-          }
 
           setIrstLosLockMode{
           }
         }
       }
 
-      irstCheckLockType2{
-        stateFrom:t="irstCheckLockType1"
-        event:t="designationTypeNotEquals"
-        stateTo:t="irstCheckLockType2"
-
-        actions{
-
-          checkDesignationTypeEquals{
-            value:i=2
-          }
-        }
-      }
-
-      irstVisualLock{
-        stateFrom:t="irstCheckLockType2"
+      lockIrstVisual{
+        stateFrom:t="checkIrstLockTypeVisual"
         event:t="designationTypeEquals"
         stateTo:t="irstVisualLock"
 
         actions{
-
-          setIrstLosVisualPreLockMode{
-          }
 
           setIrstVisualLockMode{
           }
         }
       }
 
-      irstFinishLockTypeCheck{
-        stateFrom:t="irstCheckLockType2"
+      finishIrstLockTypeCheck{
+        stateFrom:t="checkIrstLockTypeVisual"
         event:t="designationTypeNotEquals"
         stateTo:t="irstStandby"
       }
 
       irstTrack{
+        stateFrom:t="irstLockCue"
+        stateFrom:t="irstLockTarget"
         stateFrom:t="irstLosLock"
         stateFrom:t="irstVisualLock"
         event:t="targetDetected"
@@ -778,6 +928,8 @@ fsms{
       }
 
       irstFailedLock{
+        stateFrom:t="irstLockCue"
+        stateFrom:t="irstLockTarget"
         stateFrom:t="irstLosLock"
         stateFrom:t="irstVisualLock"
         event:t="scanFinished"

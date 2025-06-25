@@ -79,6 +79,7 @@ AvailableControls{
   hasChutes:b=no
   hasParkingBrakeControl:b=no
   hasLightsControl:b=no
+  hasManeuverabilityMode:b=no
 
   HasSweepControlMode{
     Manual:b=no
@@ -298,6 +299,8 @@ Aerodynamics{
     Span:r=12.444
     Angle:r=0.0
     Arm:p3=1.0, 0.0, 0.0
+    FlowInertia:r=0.0
+    ClockWiseAOA:b=no
 
     Areas{
       Main:r=26.62
@@ -363,7 +366,7 @@ Aerodynamics{
     Span:r=4.8768
     Angle:r=1.0
     Arm:p3=-6.5177, 0.34, 1.02
-    FlowInertia:r=0.0502
+    FlowInertia:r=0.0503
     ClockWiseAOA:b=no
 
     Areas{
@@ -431,7 +434,7 @@ Aerodynamics{
     Span:r=1.8958
     Angle:r=-0.5
     Arm:p3=-6.5468, 1.13, 0.0
-    FlowInertia:r=0.1003
+    FlowInertia:r=0.1007
     SlipStreamDistance:r=6.6
 
     Areas{
@@ -864,6 +867,30 @@ Engine0{
     VtolToThrust:p2=0.0, 0.0
     ReverseToThrust:p2=0.0, 0.0
     FlapsToThrust:p4=0.0, 1.0, 1.0, 1.0
+
+    NozzleAnglesRanges{
+      Horizontal:p2=-180.0, 180.0
+      Vertical:p2=-180.0, 180.0
+    }
+
+    NozzleAnglesAxesWeights{
+
+      Horizontal{
+        Ailerons:r=1.0
+        Elevator:r=0.0
+        Rudder:r=1.0
+        Vtol:r=0.0
+        Reverse:r=0.0
+      }
+
+      Vertical{
+        Ailerons:r=0.0
+        Elevator:r=1.0
+        Rudder:r=0.0
+        Vtol:r=1.0
+        Reverse:r=1.0
+      }
+    }
   }
 }
 
@@ -998,7 +1025,7 @@ PropellerType0{
 Propeller0{
   Type:i=0
   AxisDirection:p2=-0.0, 0.0
-  CyclicPitchAxisDirectionPitch:p2=0.0, 90.0
+  CyclicPitchAxisDirectionPitch:p2=-180.0, 90.0
   Pos:p3=3.25, 0.0, 0.0
 
   Geometry{
@@ -1125,7 +1152,7 @@ SelfSealingTanks{
 
 Gear{
   SinkFactor:r=1400.0
-  SinkRateMult:r=1.0328
+  SinkRateMult:r=1.0496
   WaterFriction:r=1.0
   WaterFrictionDefault:r=2.5
   GearOffset:r=0.0
@@ -1365,6 +1392,7 @@ Autopilot{
     RateMaxLoadFactorMax:p2=-2147440000.0, 2147440000.0
     AoaLimits:p2=-2147440000.0, 2147440000.0
     AoaLimitsMult:p2=1.0, 1.0
+    AoaLimitsManeuverabilityMult:p2=1.0, 1.0
     AoaLimitsMargin:r=5.0
     AoaLimiterPushBackRateMult:p2=0.0, 0.0
     AoAAntiHangRateDecline:r=-10.0
@@ -1484,6 +1512,7 @@ Autopilot{
   Throttle{
     Limits:p2=0.0, 1.0
     ClimbMax:p2=0.0, 0.0
+    SpeedMult:p2=0.0, 0.0
     ClimbMinLimByHorSpeed:p4=40.0, -3.0, 80.0, -15.0
     ClimbMinLimByRAltitude:p4=15.0, -3.0, 50.0, -15.0
 

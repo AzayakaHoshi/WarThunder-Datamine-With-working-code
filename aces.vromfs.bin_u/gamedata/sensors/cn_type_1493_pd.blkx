@@ -1,7 +1,7 @@
 type:t="radar"
 name:t="Type 1493"
-weaponTargetsMax:i=8
-launchedMissilesPredictedPositionsMax:i=8
+weaponTargetsMax:i=6
+launchedMissilesPredictedPositionsMax:i=6
 showMissileLaunchZone:b=yes
 showMissileDgftLaunchZone:b=yes
 showMissileAimLead:b=yes
@@ -220,6 +220,15 @@ scanPatterns{
     barsCount:i=2
     rowMajor:b=no
     centerElevation:r=15.0
+    indicate:b=yes
+  }
+
+  radarBoresightLock{
+    type:t="cone"
+    azimuthLimits:p2=-70.0, 70.0
+    elevationLimits:p2=-45.0, 60.0
+    period:r=0.5
+    width:r=1.25
     indicate:b=yes
   }
 
@@ -503,8 +512,8 @@ signals{
 
     distance{
       presents:b=yes
-      minValue:r=250.0
-      maxValue:r=10000.0
+      minValue:r=200.0
+      maxValue:r=74000.0
       width:r=250.0
     }
 
@@ -526,8 +535,8 @@ signals{
 
     distance{
       presents:b=yes
-      minValue:r=250.0
-      maxValue:r=20000.0
+      minValue:r=200.0
+      maxValue:r=74000.0
       width:r=250.0
     }
 
@@ -601,6 +610,7 @@ scanPatternSets{
 
   radarAcmLock{
     scanPattern1:t="radarVerticalLock"
+    scanPattern2:t="radarBoresightLock"
   }
 
   irstAcmLock{
@@ -627,7 +637,7 @@ scopeRangeSets{
   }
 
   acm{
-    range1:r=10000.0
+    range1:r=20000.0
   }
 
   hmd{
@@ -728,15 +738,13 @@ fsms{
       designatedTargetSearch{
 
         designateTargetUnderCue{
-          type:i=0
+          type:t="cue"
           self:b=yes
-          sensorIndex:i=0
         }
 
         designateActiveDetectedTarget{
-          type:i=0
+          type:t="target"
           self:b=yes
-          sensorIndex:i=0
         }
       }
 
@@ -987,7 +995,7 @@ fsms{
       designatedTargetTws{
 
         designateActiveDetectedTarget{
-          type:i=0
+          type:t="target"
           self:b=yes
           sensorIndex:i=0
         }
@@ -1987,7 +1995,8 @@ fsms{
         actions{
 
           checkDesignationTypeEquals{
-            value:i=0
+            type:t="target"
+            type:t="cue"
           }
         }
       }
@@ -2849,7 +2858,7 @@ fsms{
           azimuthRange:p2=-70.0, 70.0
           azmithWidth:r=5.0
           elevationRange:p2=-45.0, 60.0
-          distanceRange:p2=0.0, 60000.0
+          distanceRange:p2=0.0, 90000.0
           distanceWidth:r=2000.0
           distanceRelWidthMin:r=0.05
         }
@@ -2861,7 +2870,7 @@ fsms{
           azimuthRange:p2=-70.0, 70.0
           azmithWidth:r=5.0
           elevationRange:p2=-45.0, 60.0
-          distanceRange:p2=0.0, 60000.0
+          distanceRange:p2=0.0, 90000.0
           distanceWidth:r=3000.0
           distanceRelWidthMin:r=0.05
         }
@@ -3512,6 +3521,27 @@ fsms{
           }
         }
       }
+
+      centerZone{
+        command:t="directionAxesReset"
+
+        actions{
+
+          setCueToBoresight{
+          }
+
+          setCenterAzimuth{
+            source:t="designationCue"
+          }
+
+          setCenterElevation{
+            source:t="designationCue"
+          }
+
+          updateActiveDetectedTarget{
+          }
+        }
+      }
     }
   }
 
@@ -3608,7 +3638,7 @@ fsms{
         actions{
 
           matchTargetsOfInterest{
-            limit:i=10
+            limit:i=20
             posGateTimeInitial:p2=2.0, 4.0
             posGateRangeInitial:r=1500.0
             posGateMaxTime:r=2.0
@@ -3646,9 +3676,6 @@ fsms{
 
           setCueDist{
           }
-
-          setCueDopplerSpeed{
-          }
         }
       }
 
@@ -3672,19 +3699,23 @@ fsms{
         }
       }
 
-      designateTarget{
-        command:t="selectTarget"
+      centerZone{
+        command:t="directionAxesReset"
 
         actions{
 
-          designateActiveDetectedTarget{
-            type:i=0
-            sensorIndex:i=1
+          setCueToBoresight{
           }
 
-          designateTargetUnderCue{
-            type:i=0
-            sensorIndex:i=1
+          setCenterAzimuth{
+            source:t="designationCue"
+          }
+
+          setCenterElevation{
+            source:t="designationCue"
+          }
+
+          updateActiveDetectedTarget{
           }
         }
       }

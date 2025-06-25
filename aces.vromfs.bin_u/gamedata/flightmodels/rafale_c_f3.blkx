@@ -2286,9 +2286,9 @@ rwr{
 }
 
 cockpit{
-  targetingPodFov:p2=18.0, 1.0
-  sightInFov:r=1.0
-  sightOutFov:r=18.0
+  targetingPodFov:p2=4.0, 0.75
+  sightInFov:r=0.75
+  sightOutFov:r=4.0
   sightFov:r=1.0
   headPos:p3=4.136, 1.0, 0.0
   headPosOnShooting:p3=4.236, 1.0, 0.0
@@ -2296,7 +2296,7 @@ cockpit{
   isDoubleBulletImpactLine:b=no
   ilsTextureSize:ip2=1024, 1024
   mfdTextureSize:ip2=2024, 2024
-  hmdBlockIlsArea:p4=0.25, -0.4, 0.65, 0.75
+  hmdScreenBlockRad:r=0.06
   hmdEnabledByDefault:b=yes
   mirror:b=yes
   mirrorPos:p3=4.446, 1.0, 0.0
@@ -2307,17 +2307,30 @@ cockpit{
   shadowSphereMultiplier:r=2.0
   gunLightRadiusMul:r=0.05
   lightPos:p3=4.725, 0.682, 0.343
-  lightColor:p3=0.05, 0.51, 0.1
+  lightColor:p3=0.0, 1.51, 0.95
   lightRadius:r=0.2
   lightPos1:p3=4.725, 0.654, -0.33
-  lightColor1:p3=0.05, 0.51, 0.1
+  lightColor1:p3=0.0, 1.51, 0.95
   lightRadius1:r=0.25
   lightPos2:p3=4.647, 0.542, 0.386
-  lightColor2:p3=0.05, 0.51, 0.1
+  lightColor2:p3=0.0, 1.51, 0.95
   lightRadius2:r=0.2
   lightPos3:p3=4.334, 0.446, -0.403
-  lightColor3:p3=0.05, 0.51, 0.1
+  lightColor3:p3=0.0, 1.51, 0.95
   lightRadius3:r=0.25
+
+  hmdBlock{
+
+    ils{
+      pos:p3=5.136, 1.0, 0.0
+      rad:r=0.12
+    }
+
+    full_devices{
+      pos:p3=4.738, 0.483, 0.002
+      rad:r=0.39
+    }
+  }
 
   devices{
     stick_ailerons:p2=-1.0, 1.0
@@ -2345,6 +2358,42 @@ cockpit{
       }
 
       page{
+        type:t="hsd"
+        scale:r=1.0
+        color:c=0, 0, 0, 255
+        font:t="hud"
+        fontSize:i=19
+        lineWidth:r=2.0
+        lineColor:c=105, 105, 105, 255
+        orient:t="northUp"
+        centerMarkType:t="triangle"
+        centerMarkFillColor:c=0, 0, 0, 0
+        centerMarkLineColor:c=0, 200, 0, 255
+        centerMarkScale:r=0.1
+        centerMarkSpeed:b=no
+        spi:b=yes
+        spiColor:c=230, 230, 0, 255
+        spiInfo:b=yes
+        distScale:b=yes
+        distScaleBeyondAzScale:b=yes
+        distScaleStepSize:r=14000.0
+        distScaleColor:c=105, 105, 105, 255
+        distScaleNumbers:b=no
+        distScaleNumbersAngle:r=45.0
+        distScaleNumbersFillColor:c=255, 255, 255, 255
+        azScaleType:t="line"
+        azScaleSize:r=10000.0
+        azScaleColor:c=105, 105, 105, 255
+        headingIndFillColor:c=105, 105, 105, 255
+        centerCross:b=no
+        time:b=no
+        mapBackground:b=yes
+        markers:b=yes
+        extent:r=35000.0
+        metricUnits:b=no
+      }
+
+      page{
         type:t="ils_duplicate"
       }
 
@@ -2362,10 +2411,6 @@ cockpit{
       page{
         type:t="target_tracking"
         turretIdx:i=0
-      }
-
-      page{
-        type:t="map"
       }
     }
 
@@ -2402,10 +2447,6 @@ cockpit{
         type:t="custom"
         pageName:t="rafaleWpn"
       }
-
-      page{
-        type:t="map"
-      }
     }
 
     display{
@@ -2424,10 +2465,6 @@ cockpit{
       page{
         type:t="custom"
         pageName:t="rafaleWpn"
-      }
-
-      page{
-        type:t="map"
       }
 
       page{
@@ -2475,14 +2512,6 @@ cockpit{
             limits:p4=-180.0, 180.0, -1.0, 1.0
           }
         }
-      }
-    }
-
-    display{
-      textureArea:p4=0.5, 0.75, 0.75, 1.0
-
-      page{
-        type:t="map"
       }
     }
 
@@ -4243,6 +4272,7 @@ modifications{
   }
 
   MAW_system_heli_false_thermal_targets_large{
+    deactivationIsAllowed:b=yes
     modClass:t="armor"
     turn_it_off:b=no
     invertEnableLogic:b=no
@@ -4409,7 +4439,7 @@ parachutes{
 AfterBurner0{
 
   volumetricAfterBurner{
-    name:t="jet_orange_ef_2000"
+    name:t="_jet_rafale_m88"
     maxHeight:r=9.0
     minHeight:r=6.0
     heightNoiseStrength:r=0.0
@@ -4429,9 +4459,9 @@ AfterBurner0{
     outerCylinderHeightFadeNoiseStrength:r=2.0
     outerCylinderHeightFadeNoiseSpeed:r=10.0
     minOuterCylinderRadius:r=0.3
-    maxOuterCylinderRadius:r=0.35
+    maxOuterCylinderRadius:r=0.33
     absorption:r=1.0
-    colorIntensityMax:r=10.0
+    colorIntensityMax:r=5.0
     colorIntensityMin:r=2.0
     colorOverHeightMult:r=3.0
     colorOverDepthMult:r=2.0
@@ -4464,12 +4494,17 @@ AfterBurner0{
     colorOverDepthNoiseSpeed:r=10.0
     colorIntensityNoiseStrength:r=2.0
     colorIntensityNoiseSpeed:r=30.0
+    minAoABendingMult:r=0.0
+    maxAoABendingMult:r=1.4
+    minAoSBendingMult:r=0.0
+    maxAoSBendingMult:r=1.4
 
     preNominalEasingParams{
-      animationTime:r=2.0
+      animationTime:r=3.0
       ascendingSmoothIntensityParams:r=3.0
       flickerRelativTime:r=0.2
       flickerSpeed:r=20.0
+      flickerIntensity:r=1.0
     }
 
     postNominalEasingParams{
@@ -4477,19 +4512,61 @@ AfterBurner0{
       ascendingSmoothIntensityParams:r=1.0
       flickerRelativTime:r=0.0
       flickerSpeed:r=0.0
+      flickerIntensity:r=0.0
     }
 
     lightProperties{
-      color:p3=1.0, 0.889273, 0.686275
+      color:p3=1.0, 0.419694, 0.210784
       angle:r=1.0
-      brightness:r=20.0
+      brightness:r=8.0
       radius:r=20.0
       attenuation:r=0.8
       brightnessNoiseStrength:r=3.0
       brightnessNoiseSpeed:r=6.0
-      ignitionTextureIntensity:r=1.0
-      ignitionBrightnessNoiseStrength:r=0.1
+      ignitionTextureIntensityMin:r=0.01
+      ignitionTextureIntensityMax:r=0.01
+      ignitionBrightnessNoiseStrength:r=0.01
       ignitionBrightnessNoiseSpeed:r=16.0
+    }
+
+    NozzleFlames{
+      amountOfFlames:i=8
+      radiusMult:r=1.2
+      startOffset:r=-0.1
+      endOffsetAddition:r=1.3
+      intensityMult:r=4.0
+      innerCircleNoiseScale:r=0.5
+      innerCircleNoiseStrength:r=0.4
+      maskNoiseScale:r=0.0
+      maskNoiseStrength:r=0.0
+      minInnerCircleParamMult:r=1.5
+      maxInnerCircleParamMult:r=1.2
+      lengthNoiseSpeed:r=10.0
+      lengthNoiseStrength:r=0.3
+      uvNoiseMaskScale:r=0.4
+      uvNoiseMaskStrength:r=0.03
+
+      FlameMaskTextureOffset{
+        maskTextureOffset:i=59
+        maskTextureOffset:i=60
+        maskTextureOffset:i=3
+        maskTextureOffset:i=4
+        maskTextureOffset:i=4
+        maskTextureOffset:i=5
+        maskTextureOffset:i=5
+        maskTextureOffset:i=5
+      }
+
+      FlameRampTextureOffset{
+        rampTextureOffset:i=23
+        rampTextureOffset:i=23
+        rampTextureOffset:i=23
+        rampTextureOffset:i=23
+        rampTextureOffset:i=23
+        rampTextureOffset:i=23
+        rampTextureOffset:i=23
+        rampTextureOffset:i=23
+      }
     }
   }
 }

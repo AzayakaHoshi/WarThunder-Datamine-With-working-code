@@ -49,6 +49,25 @@ imports{
     excludes{
     }
   }
+
+  import_record{
+    file:t="gameData/missions/templates/ww_no_attackers_template.blk"
+    importAreas:b=yes
+    importUnits:b=yes
+    importTriggers:b=yes
+    importMissionObjectives:b=yes
+    importWayPoints:b=yes
+    importDialogs:b=yes
+    showAreas:b=yes
+    showUnits:b=yes
+    showTriggers:b=yes
+    showMissionObjectives:b=yes
+    showWayPoints:b=yes
+    showDialogs:b=yes
+
+    excludes{
+    }
+  }
 }
 
 triggers{
@@ -118,6 +137,7 @@ triggers{
         varSetInt{
           value:i=7
           var:t="t1_sam_site_count_initial"
+          var:t="t1_sam_site_count_active"
           fromDescriptor:t="SAMCount"
         }
 
@@ -283,6 +303,103 @@ triggers{
       }
     }
 
+    create_detection_zones{
+      is_enabled:b=yes
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        initMission{
+        }
+      }
+
+      conditions{
+
+        objectExists{
+          target:t="@t1_detection_area_name"
+          type:t="area"
+        }
+
+        objectExists{
+          target:t="@t2_detection_area_name"
+          type:t="area"
+        }
+      }
+
+      actions{
+
+        missionBattleArea{
+          air:b=yes
+          ground:b=no
+          mapArea:b=no
+          airMapArea:b=no
+          killArea:b=no
+          detectionArea:b=yes
+          killOutOfBattleArea:b=no
+          area:t="@t1_detection_area_name"
+          team:t="B"
+        }
+
+        missionBattleArea{
+          air:b=yes
+          ground:b=no
+          mapArea:b=no
+          airMapArea:b=no
+          killArea:b=no
+          detectionArea:b=yes
+          killOutOfBattleArea:b=no
+          area:t="@t2_detection_area_name"
+          team:t="A"
+        }
+      }
+
+      else_actions{
+      }
+    }
+
+    t2_set_initial_mp_score{
+      is_enabled:b=yes
+      comments:t=""
+
+      props{
+        actionsType:t="PERFORM_ONE_BY_ONE"
+        conditionsType:t="ALL"
+        enableAfterComplete:b=no
+      }
+
+      events{
+
+        timeExpires{
+          time:r=3.0
+        }
+      }
+
+      conditions{
+      }
+
+      actions{
+
+        comment{
+          value:t="reduce the attack team~'s score so that the defending team wins by default"
+        }
+
+        gameMPChangeScore{
+          value:i=-1
+          valueSystem:t="amount"
+          team:t="B"
+        }
+      }
+
+      else_actions{
+      }
+    }
+
     spawn_logic{
       isCategory:b=yes
       is_enabled:b=yes
@@ -322,7 +439,8 @@ triggers{
             radius:r=-1.0
             target:t="t1_spawn_area"
             postfix:t=""
-            isStrictSpawn:b=yes
+            isStrictPosAndDir:b=yes
+            shouldSpawnAwayFromOtherPlayers:b=yes
             maxBasesCount:i=3
             createRandomBase:b=yes
             isIndividual:b=yes
@@ -346,7 +464,8 @@ triggers{
             radius:r=-1.0
             target:t="t2_spawn_area"
             postfix:t=""
-            isStrictSpawn:b=yes
+            isStrictPosAndDir:b=yes
+            shouldSpawnAwayFromOtherPlayers:b=yes
             maxBasesCount:i=3
             createRandomBase:b=yes
             isIndividual:b=yes
@@ -370,7 +489,8 @@ triggers{
             radius:r=-1.0
             target:t="t2_helicopter_spawn_area"
             postfix:t=""
-            isStrictSpawn:b=yes
+            isStrictPosAndDir:b=yes
+            shouldSpawnAwayFromOtherPlayers:b=yes
             maxBasesCount:i=4
             createRandomBase:b=yes
             isIndividual:b=yes
@@ -398,7 +518,8 @@ triggers{
             radius:r=-1.0
             target:t="@t1_initial_spawn_name"
             team:t="A"
-            isStrictSpawn:b=yes
+            isStrictPosAndDir:b=yes
+            shouldSpawnAwayFromOtherPlayers:b=yes
             isIndividual:b=yes
             showOnMap:b=no
 
@@ -417,7 +538,8 @@ triggers{
             radius:r=-1.0
             target:t="@t2_initial_spawn_name"
             team:t="B"
-            isStrictSpawn:b=yes
+            isStrictPosAndDir:b=yes
+            shouldSpawnAwayFromOtherPlayers:b=yes
             isIndividual:b=yes
             showOnMap:b=no
 
@@ -436,7 +558,8 @@ triggers{
             radius:r=-1.0
             target:t="@t2_initial_helicopter_spawn_name"
             team:t="B"
-            isStrictSpawn:b=yes
+            isStrictPosAndDir:b=yes
+            shouldSpawnAwayFromOtherPlayers:b=yes
             isIndividual:b=yes
             showOnMap:b=no
 
@@ -537,7 +660,8 @@ triggers{
             radius:r=-1.0
             target:t="t1_spawn_area"
             postfix:t=""
-            isStrictSpawn:b=yes
+            isStrictPosAndDir:b=yes
+            shouldSpawnAwayFromOtherPlayers:b=yes
             maxBasesCount:i=3
             createRandomBase:b=yes
             isIndividual:b=yes
@@ -561,7 +685,8 @@ triggers{
             radius:r=-1.0
             target:t="t2_spawn_area"
             postfix:t=""
-            isStrictSpawn:b=yes
+            isStrictPosAndDir:b=yes
+            shouldSpawnAwayFromOtherPlayers:b=yes
             maxBasesCount:i=3
             createRandomBase:b=yes
             isIndividual:b=yes
@@ -585,7 +710,8 @@ triggers{
             radius:r=-1.0
             target:t="t2_helicopter_spawn_area"
             postfix:t=""
-            isStrictSpawn:b=yes
+            isStrictPosAndDir:b=yes
+            shouldSpawnAwayFromOtherPlayers:b=yes
             maxBasesCount:i=4
             createRandomBase:b=yes
             isIndividual:b=yes
@@ -1347,7 +1473,10 @@ triggers{
           unitSetProperties{
             object:t="t1_sam_tracker_squad"
             object:t="t1_sam_detector_squad"
+            object:t="t1_sam_launcher_squad"
             useSearchRadar:b=yes
+            targetChangeInterval:r=5.0
+            targetChangeProb:r=0.5
           }
 
           varSetInt{
@@ -2124,6 +2253,8 @@ variables{
   t1_exit_zone_squad_name:t="t1_exit_zone_squad"
   t2_exit_zone_squad_name:t="t2_exit_zone_squad"
   t2_exit_zone_helicopter_squad_name:t="t2_exit_zone_helicopter_squad"
+  t1_detection_area_name:t="t1_detection_area"
+  t2_detection_area_name:t="t2_detection_area"
   battle_area_name:t="battle_area"
   t1_sam_site_squad_name:t="t1_sam_site_squad"
   t1_sam_site_area_idx:i=1

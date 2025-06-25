@@ -70,7 +70,7 @@ scanPatterns{
     elevationLimits:p2=-60.0, 60.0
     rollStabLimit:r=70.0
     pitchStabLimit:r=70.0
-    period:r=0.375
+    period:r=0.75
     width:r=7.5
     barHeight:r=1.3
     barsCount:i=4
@@ -83,7 +83,7 @@ scanPatterns{
     elevationLimits:p2=-60.0, 60.0
     rollStabLimit:r=70.0
     pitchStabLimit:r=70.0
-    period:r=3.0
+    period:r=6.0
     width:r=30.0
     barHeight:r=1.3
     barsCount:i=8
@@ -96,7 +96,7 @@ scanPatterns{
     elevationLimits:p2=-60.0, 60.0
     rollStabLimit:r=70.0
     pitchStabLimit:r=70.0
-    period:r=4.5
+    period:r=9.0
     width:r=45.0
     barHeight:r=1.3
     barsCount:i=8
@@ -109,7 +109,7 @@ scanPatterns{
     elevationLimits:p2=-60.0, 60.0
     rollStabLimit:r=70.0
     pitchStabLimit:r=70.0
-    period:r=0.75
+    period:r=1.5
     width:r=7.5
     barHeight:r=1.3
     barsCount:i=8
@@ -124,7 +124,7 @@ scanPatterns{
     elevationLimits:p2=-60.0, 60.0
     rollStabLimit:r=70.0
     pitchStabLimit:r=70.0
-    period:r=1.5
+    period:r=3.0
     width:r=30.0
     barHeight:r=1.3
     barsCount:i=4
@@ -505,15 +505,13 @@ fsms{
       designatedTargetSearch{
 
         designateTargetUnderCue{
-          type:i=0
+          type:t="cue"
           self:b=yes
-          sensorIndex:i=0
         }
 
         designateActiveDetectedTarget{
-          type:i=0
+          type:t="target"
           self:b=yes
-          sensorIndex:i=0
         }
       }
 
@@ -739,7 +737,7 @@ fsms{
       designatedTargetTws{
 
         designateActiveDetectedTarget{
-          type:i=0
+          type:t="target"
           self:b=yes
           sensorIndex:i=0
         }
@@ -1092,7 +1090,8 @@ fsms{
         actions{
 
           checkDesignationTypeEquals{
-            value:i=0
+            type:t="target"
+            type:t="cue"
           }
         }
       }
@@ -1896,6 +1895,27 @@ fsms{
           }
         }
       }
+
+      centerZone{
+        command:t="directionAxesReset"
+
+        actions{
+
+          setCueToBoresight{
+          }
+
+          setCenterAzimuth{
+            source:t="designationCue"
+          }
+
+          setCenterElevation{
+            source:t="designationCue"
+          }
+
+          updateActiveDetectedTarget{
+          }
+        }
+      }
     }
   }
 
@@ -2608,9 +2628,6 @@ fsms{
 
           setCueDist{
           }
-
-          setCueDopplerSpeed{
-          }
         }
       }
 
@@ -2634,19 +2651,23 @@ fsms{
         }
       }
 
-      designateTarget{
-        command:t="selectTarget"
+      centerZone{
+        command:t="directionAxesReset"
 
         actions{
 
-          designateActiveDetectedTarget{
-            type:i=0
-            sensorIndex:i=1
+          setCueToBoresight{
           }
 
-          designateTargetUnderCue{
-            type:i=0
-            sensorIndex:i=1
+          setCenterAzimuth{
+            source:t="designationCue"
+          }
+
+          setCenterElevation{
+            source:t="designationCue"
+          }
+
+          updateActiveDetectedTarget{
           }
         }
       }

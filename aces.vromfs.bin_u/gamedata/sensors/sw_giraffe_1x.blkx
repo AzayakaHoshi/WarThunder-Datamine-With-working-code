@@ -1,0 +1,1021 @@
+type:t="radar"
+name:t="Giraffe 1X"
+weaponTargetsMax:i=4
+launchedMissilesPredictedPositionsMax:i=4
+
+transivers{
+
+  common{
+    power:r=1200.0
+    band:i=8
+    rcs:r=1.0
+    range:r=20000.0
+    rangeMax:r=40000.0
+
+    antenna{
+      angleHalfSens:r=3.0
+      sideLobesSensitivity:r=-30.0
+    }
+  }
+}
+
+scanPatterns{
+
+  search360{
+    type:t="pyramide"
+    azimuthLimits:p2=-180.0, 180.0
+    elevationLimits:p2=0.0, 70.0
+    yawStabLimit:r=180.0
+    pitchStabLimit:r=10.0
+    rollStabLimit:r=10.0
+    period:r=1.0
+    width:r=35.0
+    barHeight:r=2.5
+    barsCount:i=144
+    centerElevation:r=35.0
+    rowMajor:b=no
+    barsOneWay:b=yes
+    isSmoothMajor:b=yes
+    tws:b=yes
+    preciseMinor:b=yes
+  }
+}
+
+signals{
+
+  common{
+    groundClutter:b=no
+    friendFoeId:b=yes
+    angularAccuracy:r=0.005
+    distanceAccuracy:r=3.0
+    targetRadiusMin:r=0.7375
+    targetId:b=yes
+    absDopplerSpeed:b=yes
+
+    distance{
+      presents:b=yes
+      minValue:r=500.0
+      maxValue:r=20000.0
+      width:r=70.0
+    }
+
+    dopplerSpeed{
+      presents:b=yes
+      minValue:r=15.0
+      maxValue:r=1100.0
+      signalWidthMin:r=5.0
+      width:r=0.0
+    }
+  }
+}
+
+scanPatternSets{
+
+  search{
+    scanPattern1:t="search360"
+  }
+}
+
+scopeRangeSets{
+
+  common{
+    range1:r=10000.0
+    range2:r=20000.0
+    range3:r=40000.0
+  }
+}
+
+fsms{
+
+  main{
+    stateInit:t="init"
+
+    actionsTemplates{
+
+      init{
+
+        setEnabled{
+          value:b=no
+        }
+
+        setCenterAzimuth{
+          source:t="constant"
+          value:r=0.0
+        }
+
+        setCenterElevation{
+          source:t="constant"
+          value:r=0.0
+        }
+
+        setScanPatternSet{
+          scanPatternSet:t="search"
+        }
+
+        setScopeRangeSet{
+          scopeRangeSet:t="common"
+        }
+
+        setTransiver{
+          transiver:t="common"
+        }
+
+        setSignal{
+          signal:t="common"
+        }
+
+        setTargetDesignationRange{
+          azimuthRange:p2=-180.0, 180.0
+          azimuthWidth:r=5.0
+          distanceRange:p2=0.0, 20000.0
+        }
+      }
+
+      setStandbyMode{
+
+        setModeName{
+          name:t="standby"
+        }
+
+        setEnabled{
+          value:b=no
+        }
+
+        setCenterElevation{
+          source:t="constant"
+          value:r=35.0
+        }
+
+        setScanPatternSet{
+          scanPatternSet:t="search"
+        }
+      }
+
+      resetStandbyMode{
+      }
+
+      setSearchMode{
+
+        setModeName{
+          name:t="search"
+        }
+
+        setEnabled{
+          value:b=yes
+        }
+
+        setEnabled{
+          value:b=yes
+        }
+
+        setFsmActive{
+          fsm:t="tws"
+          active:b=yes
+        }
+
+        setCenterElevation{
+          source:t="constant"
+          value:r=35.0
+        }
+
+        setScanPatternSet{
+          scanPatternSet:t="search"
+        }
+
+        setCenterAzimuth{
+          source:t="body"
+        }
+
+        setScanDirectionPhase{
+          azimuth:r=0.0
+          elevation:r=0.0
+        }
+      }
+
+      resetSearchMode{
+
+        clearTargets{
+        }
+
+        setFsmActive{
+          fsm:t="tws"
+          active:b=no
+        }
+      }
+    }
+
+    transitions{
+
+      init{
+        stateFrom:t="init"
+        event:t="init"
+        stateTo:t="standby"
+
+        actions{
+
+          init{
+          }
+
+          setStandbyMode{
+          }
+        }
+      }
+
+      switchOn{
+        stateFrom:t="standby"
+        command:t="switch"
+        event:t="enable"
+        stateTo:t="search"
+
+        actions{
+
+          setSearchMode{
+          }
+        }
+      }
+
+      switchOff{
+        stateFrom:t="search"
+        command:t="switch"
+        event:t="disable"
+        stateTo:t="standby"
+
+        actions{
+
+          resetSearchMode{
+          }
+
+          setStandbyMode{
+          }
+        }
+      }
+
+      switchScanPattern{
+        stateFrom:t="standby"
+        stateFrom:t="search"
+        command:t="scanPatternSwitch"
+
+        actions{
+
+          setNextScanPattern{
+          }
+        }
+      }
+
+      switchScopeRange{
+        command:t="rangeSwitch"
+
+        actions{
+
+          setNextScopeRange{
+          }
+        }
+      }
+    }
+  }
+
+  search{
+    stateInit:t="search"
+
+    transitions{
+
+      scan{
+        event:t="update"
+
+        actions{
+
+          scan{
+          }
+        }
+      }
+
+      detect{
+        event:t="targetInSight"
+
+        actions{
+
+          setDistGatePos{
+            source:t="continuousScale"
+            width:r=0.0
+          }
+
+          setRelSpeedGatePos{
+            source:t="continuousScale"
+            width:r=0.0
+          }
+
+          detectTarget{
+          }
+        }
+      }
+
+      addTarget{
+        event:t="targetDetected"
+
+        actions{
+
+          addTarget{
+          }
+        }
+      }
+
+      setCueElevation{
+        command:t="cueAxisZ"
+
+        actions{
+
+          setCueElevation{
+          }
+        }
+      }
+    }
+  }
+
+  tws{
+    stateInit:t="search"
+    stateInit:t="search"
+
+    transitions{
+
+      scan{
+        event:t="update"
+
+        actions{
+
+          scan{
+          }
+
+          scan{
+            ignoreOwnWeapon:b=yes
+          }
+
+          extrapolateTargetsOfInterest{
+          }
+
+          clearTargetsOfInterest{
+            timeOut:r=3.0
+          }
+
+          setCueToActiveTargetOfInterest{
+          }
+
+          setCenterAzimuth{
+            source:t="constant"
+            value:r=0.0
+          }
+
+          setCenterAzimuth{
+            source:t="designationCue"
+          }
+
+          setCenterAzimuth{
+            source:t="activeTargetOfInterest"
+          }
+
+          setCenterElevation{
+            source:t="constant"
+            value:r=0.0
+          }
+
+          setCenterElevation{
+            source:t="designationCue"
+          }
+
+          setCenterElevation{
+            source:t="activeTargetOfInterest"
+          }
+        }
+      }
+
+      detect{
+        event:t="targetInSight"
+
+        actions{
+
+          setDistGatePos{
+            source:t="continuousScale"
+            width:r=0.0
+          }
+
+          setRelSpeedGatePos{
+            source:t="continuousScale"
+            width:r=0.0
+          }
+
+          detectTarget{
+          }
+        }
+      }
+
+      addTarget{
+        event:t="targetDetected"
+
+        actions{
+
+          updateTargetOfInterest{
+            limit:i=40
+            posGateTimeInitial:p2=2.0, 4.0
+            posGateRangeInitial:r=0.0
+            posGateMaxTime:r=2.0
+            posGateRange:p2=0.0, 1000.0
+            dopplerSpeedGateRange:p2=0.0, 1600.0
+            dopplerSpeedGateMaxTime:r=8.0
+
+            dirFilter{
+              alpha:r=0.5
+              betta:r=1.2
+              dt:r=0.0208
+              rateLim:p2=0.5, 0.5
+              limTimeOut:r=3.0
+            }
+
+            distFilter{
+              alpha:r=0.5
+              betta:r=0.05
+              dt:r=0.0208
+              limTimeOut:r=3.0
+            }
+
+            dopplerSpeedFilter{
+              alpha:r=0.25
+              betta:r=0.05
+              dt:r=0.0208
+              limTimeOut:r=3.0
+            }
+          }
+
+          updateActiveDetectedTarget{
+          }
+
+          setCueToActiveTargetOfInterest{
+          }
+        }
+      }
+
+      switchSelectedTarget{
+        command:t="switchTarget"
+
+        actions{
+
+          setNextDetectedTargetActive{
+          }
+        }
+      }
+
+      setCueAzimuth{
+        command:t="cueAxisX"
+
+        actions{
+
+          setCueAzimuth{
+          }
+        }
+      }
+
+      setCueDist{
+        command:t="cueAxisY"
+
+        actions{
+
+          setCueDist{
+          }
+        }
+      }
+
+      setCueElevation{
+        command:t="cueAxisZ"
+
+        actions{
+
+          setCueElevation{
+          }
+        }
+      }
+
+      setSelectedTarget{
+        command:t="switchToTarget"
+
+        actions{
+
+          setDetectedTargetActive{
+          }
+        }
+      }
+
+      centerZone{
+        command:t="directionAxesReset"
+
+        actions{
+
+          setCueToBoresight{
+          }
+
+          setCenterAzimuth{
+            source:t="designationCue"
+          }
+
+          setCenterElevation{
+            source:t="designationCue"
+          }
+
+          updateActiveDetectedTarget{
+          }
+        }
+      }
+    }
+  }
+}
+
+hideInAvailableModeNameIds{
+  mode:t="standby"
+}
+
+targetTypeId{
+  name:t="hud/mig_15"
+  targetType:t="mig-15"
+  targetType:t="mig-15_ns23"
+  targetType:t="mig-15bis_ns23"
+  targetType:t="mig-15bis_nr23_german"
+  targetType:t="mig-15bis_nr23_hungary"
+  targetType:t="mig-15bis_nr23_china"
+  targetType:t="mig-15bis_ish"
+}
+
+targetTypeId{
+  name:t="hud/yak_38"
+  targetType:t="yak-38"
+  targetType:t="yak-38m"
+}
+
+targetTypeId{
+  name:t="hud/yak_141"
+  targetType:t="yak_141"
+}
+
+targetTypeId{
+  name:t="hud/su_17"
+  targetType:t="su_17m2"
+  targetType:t="su_17m4"
+  targetType:t="su_22m3"
+  targetType:t="su_22m3_hungary"
+  targetType:t="su_22um3k"
+  targetType:t="su_22m4"
+  targetType:t="su_22m4_de_wtd61"
+}
+
+targetTypeId{
+  name:t="hud/su_24"
+  targetType:t="su_24m"
+}
+
+targetTypeId{
+  name:t="hud/su_25"
+  targetType:t="su_25"
+  targetType:t="su_25k"
+  targetType:t="su_25t"
+  targetType:t="su_25tm"
+  targetType:t="su_25_558arz"
+  targetType:t="su_25sm3"
+}
+
+targetTypeId{
+  name:t="hud/su_27"
+  targetType:t="su_27"
+  targetType:t="su_27sm"
+  targetType:t="su_33"
+  targetType:t="su_34"
+  targetType:t="su_30sm"
+  targetType:t="j_11"
+  targetType:t="j_11a"
+  targetType:t="j_11b"
+}
+
+targetTypeId{
+  name:t="hud/mig_21"
+  targetType:t="mig-21_bis_lazur"
+  targetType:t="mig-21_bison"
+  targetType:t="mig-21_f13"
+  targetType:t="mig-21_smt"
+  targetType:t="mig-21_bis"
+  targetType:t="mig-21_bis_sau"
+  targetType:t="mig-21_bis_sau_hungary"
+  targetType:t="mig-21_mf"
+  targetType:t="mig-21_mf_hungary"
+  targetType:t="mig-21_sps_k"
+  targetType:t="mig-21_pfm"
+  targetType:t="mig-21_s"
+  targetType:t="mig_21_bis_finland"
+  targetType:t="j_7_mk2"
+  targetType:t="j_7d"
+  targetType:t="j_7e"
+}
+
+targetTypeId{
+  name:t="hud/mig_23"
+  targetType:t="mig_23m"
+  targetType:t="mig_23bn"
+  targetType:t="mig_23mf_germany"
+  targetType:t="mig_23mf_hungary"
+  targetType:t="mig_23ml"
+  targetType:t="mig_23mld"
+  targetType:t="mig_23mla"
+  targetType:t="mig_27m"
+  targetType:t="mig_27k"
+}
+
+targetTypeId{
+  name:t="hud/mig_29"
+  targetType:t="mig_29_9_13"
+  targetType:t="mig_29_9_12g"
+  targetType:t="mig_29_9_12_germany"
+  targetType:t="mig_29_9_12b_hungary"
+  targetType:t="mig_29smt_9_19"
+  targetType:t="mig_29smt_9_19_missile_test"
+}
+
+targetTypeId{
+  name:t="hud/f_4"
+  targetType:t="f-4c"
+  targetType:t="f-4e"
+  targetType:t="f-4j"
+  targetType:t="f-4s"
+  targetType:t="f-4ej"
+  targetType:t="f-4ej_adtw"
+  targetType:t="f-4ej_kai"
+  targetType:t="f-4m_fgr2"
+  targetType:t="f-4jk"
+  targetType:t="f-4k"
+  targetType:t="f-4f"
+  targetType:t="f-4f_late"
+  targetType:t="f-4f_kws_lv"
+  targetType:t="f-4e_iaf"
+  targetType:t="f-4e_kurnass_2000"
+}
+
+targetTypeId{
+  name:t="hud/f_5"
+  targetType:t="f-5a"
+  targetType:t="f-5a_china"
+  targetType:t="f-5ag_norway"
+  targetType:t="f-5e_aidc"
+  targetType:t="f-5e_fcu_thailand"
+  targetType:t="f-5a_thailand"
+  targetType:t="f-5t_thailand"
+  targetType:t="f-5c"
+  targetType:t="f-5e"
+}
+
+targetTypeId{
+  name:t="hud/a_7"
+  targetType:t="a_7d"
+  targetType:t="a_7e"
+  targetType:t="a_7e_thailand"
+  targetType:t="a_7k"
+}
+
+targetTypeId{
+  name:t="hud/f_8"
+  targetType:t="f-8e"
+  targetType:t="f-8e_fn"
+  targetType:t="f8u-2"
+}
+
+targetTypeId{
+  name:t="hud/a_10"
+  targetType:t="a_10a_early"
+  targetType:t="a_10a_late"
+  targetType:t="a_10c"
+}
+
+targetTypeId{
+  name:t="hud/f_104"
+  targetType:t="f-104a"
+  targetType:t="f-104c"
+  targetType:t="f-104g"
+  targetType:t="f-104a_china"
+  targetType:t="f-104g_china"
+  targetType:t="f-104g_italy"
+  targetType:t="f-104j"
+  targetType:t="f-104s"
+  targetType:t="f-104s_cb"
+  targetType:t="f-104s_asa"
+  targetType:t="f-104g_belgium"
+}
+
+targetTypeId{
+  name:t="hud/f_105"
+  targetType:t="f-105d"
+}
+
+targetTypeId{
+  name:t="hud/f_111"
+  targetType:t="f_111a"
+  targetType:t="f_111f"
+  targetType:t="f_111c_raaf"
+}
+
+targetTypeId{
+  name:t="hud/f_14"
+  targetType:t="f_14a_early"
+  targetType:t="f_14a_iriaf"
+  targetType:t="f_14b"
+}
+
+targetTypeId{
+  name:t="hud/f_15"
+  targetType:t="f_15a"
+  targetType:t="f_15a_iaf"
+  targetType:t="f_15j"
+  targetType:t="f_15j_kai"
+  targetType:t="f_15c_msip2"
+  targetType:t="f_15c_baz_msip"
+  targetType:t="f_15e"
+  targetType:t="f_15i_raam"
+}
+
+targetTypeId{
+  name:t="hud/f_16"
+  targetType:t="f_16a_block_10"
+  targetType:t="f_16a_block_15_adf"
+  targetType:t="f_16a_block_15_adf_italy"
+  targetType:t="f_16a_block_15_ocu_thailand"
+  targetType:t="f_16a_block_10_iaf"
+  targetType:t="f_16a_block_10_netz_mod"
+  targetType:t="f_16a_block_15_belgium"
+  targetType:t="f_16am_block_15_mlu_belgium"
+  targetType:t="f_16c_block_40_barak_2"
+  targetType:t="f_16d_block_40_barak_2"
+  targetType:t="f_16d_block_40_barak_2_missile_test"
+  targetType:t="f_16a_block_20_mlu"
+  targetType:t="f_16aj"
+  targetType:t="f_16c_block_50"
+  targetType:t="f_16c_block_50_missile_test"
+}
+
+targetTypeId{
+  name:t="hud/f_18"
+  targetType:t="fa_18a"
+  targetType:t="fa_18c_early"
+  targetType:t="fa_18c_late"
+  targetType:t="fa_18c_finland"
+}
+
+targetTypeId{
+  name:t="hud/f_20"
+  targetType:t="f_20a"
+}
+
+targetTypeId{
+  name:t="hud/harrier"
+  targetType:t="harrier_gr1"
+  targetType:t="harrier_gr3"
+  targetType:t="harrier_frs1_early"
+  targetType:t="harrier_frs1"
+  targetType:t="harrier_gr7"
+  targetType:t="harrier_t10"
+  targetType:t="sea_harrier_fa2"
+  targetType:t="av_8a"
+  targetType:t="av_8b_na"
+  targetType:t="av_8b_plus"
+  targetType:t="av_8b_plus_italy"
+  targetType:t="av_8c"
+  targetType:t="av_8s_thailand"
+  targetType:t="av_8s_late_thailand"
+}
+
+targetTypeId{
+  name:t="hud/jaguar"
+  targetType:t="jaguar_is"
+  targetType:t="jaguar_gr1a"
+  targetType:t="jaguar_gr1"
+  targetType:t="jaguar_e"
+  targetType:t="jaguar_a"
+  targetType:t="jaguar_a_killstreak"
+  targetType:t="jaguar_a_germany_killstreak"
+  targetType:t="jaguar_a_italy_killstreak"
+  targetType:t="jaguar_a_japan_killstreak"
+  targetType:t="jaguar_a_sweden_killstreak"
+  targetType:t="jaguar_a_uk_killstreak"
+  targetType:t="jaguar_a_usa_killstreak"
+  targetType:t="jaguar_a_iaf_killstreak"
+}
+
+targetTypeId{
+  name:t="hud/tornado"
+  targetType:t="tornado_gr1"
+  targetType:t="tornado_gr4"
+  targetType:t="tornado_f3"
+  targetType:t="tornado_f3_late"
+  targetType:t="tornado_ids_de_mfg"
+  targetType:t="tornado_ids_de_assta1"
+  targetType:t="tornado_ids_de_wtd61"
+  targetType:t="tornado_ids_it"
+  targetType:t="tornado_ids_it_mod95"
+  targetType:t="tornado_ids_it_ret8"
+  targetType:t="tornado_adv"
+}
+
+targetTypeId{
+  name:t="hud/buccanier"
+  targetType:t="buccaneer_s1"
+  targetType:t="buccaneer_s2"
+  targetType:t="buccaneer_s2b"
+}
+
+targetTypeId{
+  name:t="hud/typhoon"
+  targetType:t="ef_2000_fgr4"
+  targetType:t="ef_2000a"
+  targetType:t="ef_2000_block_10"
+}
+
+targetTypeId{
+  name:t="hud/q_5"
+  targetType:t="q_5_early"
+  targetType:t="q_5a"
+  targetType:t="q_5l"
+  targetType:t="a_5c"
+}
+
+targetTypeId{
+  name:t="hud/jh_7"
+  targetType:t="jh_7a"
+}
+
+targetTypeId{
+  name:t="hud/j_8"
+  targetType:t="j_8b"
+  targetType:t="j_8f"
+  targetType:t="j_8f_missile_test"
+}
+
+targetTypeId{
+  name:t="hud/j_10"
+  targetType:t="j_10a"
+}
+
+targetTypeId{
+  name:t="hud/jf_17"
+  targetType:t="jf_17"
+}
+
+targetTypeId{
+  name:t="hud/amx"
+  targetType:t="amx_a_1a_brazil"
+  targetType:t="amx"
+}
+
+targetTypeId{
+  name:t="hud/mirage_f1"
+  targetType:t="mirage_f1c_200"
+  targetType:t="mirage_f1c"
+  targetType:t="mirage_f1ct"
+}
+
+targetTypeId{
+  name:t="hud/mirage_3"
+  targetType:t="mirage_3c"
+  targetType:t="mirage_3cj"
+  targetType:t="mirage_3e"
+  targetType:t="mirage_milan"
+  targetType:t="mirage_5ba"
+  targetType:t="kfir_canard"
+  targetType:t="kfir_c2"
+  targetType:t="kfir_c7"
+  targetType:t="kfir_c10_colombia"
+}
+
+targetTypeId{
+  name:t="hud/mirage_2000"
+  targetType:t="mirage_2000_5f"
+  targetType:t="mirage_2000_5f_missile_test"
+  targetType:t="mirage_2000_5ei"
+  targetType:t="mirage_2000c_s4"
+  targetType:t="mirage_2000c_s5"
+  targetType:t="mirage_2000d_r1"
+  targetType:t="mirage_2000d_rmv"
+}
+
+targetTypeId{
+  name:t="hud/mirage_4000"
+  targetType:t="mirage_4000"
+}
+
+targetTypeId{
+  name:t="hud/rafale"
+  targetType:t="rafale_c_f3"
+}
+
+targetTypeId{
+  name:t="hud/draken"
+  targetType:t="saab_j35xs"
+  targetType:t="saab_j35d"
+  targetType:t="saab_j35a"
+}
+
+targetTypeId{
+  name:t="hud/viggen"
+  targetType:t="saab_aj37"
+  targetType:t="saab_ja37"
+  targetType:t="saab_ja37d"
+  targetType:t="saab_ja37di"
+  targetType:t="saab_ja37di_f21"
+  targetType:t="saab_ajs37"
+}
+
+targetTypeId{
+  name:t="hud/gripen"
+  targetType:t="saab_jas39a"
+  targetType:t="saab_jas39c_south_africa"
+  targetType:t="saab_jas39c_south_africa_missile_test"
+  targetType:t="saab_jas39c_hungary"
+  targetType:t="saab_jas39c_thailand"
+  targetType:t="saab_jas39c"
+}
+
+targetTypeId{
+  name:t="hud/single prop"
+
+  targetPropulsion{
+    type:t="propellers"
+    num:i=1
+  }
+}
+
+targetTypeId{
+  name:t="hud/multi prop"
+
+  targetPropulsion{
+    type:t="propellers"
+    num:i=2
+  }
+
+  targetPropulsion{
+    type:t="propellers"
+    num:i=3
+  }
+
+  targetPropulsion{
+    type:t="propellers"
+    num:i=4
+  }
+}
+
+targetTypeId{
+  name:t="hud/single jet"
+
+  targetPropulsion{
+    type:t="jet"
+    num:i=1
+  }
+}
+
+targetTypeId{
+  name:t="hud/multi jet"
+
+  targetPropulsion{
+    type:t="jet"
+    num:i=2
+  }
+
+  targetPropulsion{
+    type:t="jet"
+    num:i=3
+  }
+
+  targetPropulsion{
+    type:t="jet"
+    num:i=4
+  }
+}
+
+targetTypeId{
+  name:t="hud/helicopter"
+
+  targetPropulsion{
+    type:t="rotors"
+  }
+}
+
+targetTypeId{
+  name:t="hud/rocket"
+
+  targetPropulsion{
+    type:t="rocket"
+  }
+}
+
+targetTypeId{
+  name:t="hud/small"
+  sizeRange:p2=0.0, 5.0
+}
+
+targetTypeId{
+  name:t="hud/medium"
+  sizeRange:p2=5.0, 25.0
+}
+
+targetTypeId{
+  name:t="hud/large"
+  sizeRange:p2=25.0, 500.0
+}

@@ -382,13 +382,13 @@ fsms{
           }
 
           designateActiveDetectedTarget{
-            type:i=0
+            type:t="target"
             self:b=yes
             sensorIndex:i=0
           }
 
           designateTargetUnderCue{
-            type:i=0
+            type:t="cue"
             self:b=yes
             sensorIndex:i=0
           }
@@ -403,7 +403,8 @@ fsms{
         actions{
 
           checkDesignationTypeEquals{
-            value:i=0
+            type:t="target"
+            type:t="cue"
           }
         }
       }
@@ -425,21 +426,21 @@ fsms{
         }
       }
 
-      checkLockType1{
+      checkLockTypeLos{
         stateFrom:t="checkLockType0"
         event:t="designationTypeNotEquals"
-        stateTo:t="checkLockType1"
+        stateTo:t="checkLockTypeLos"
 
         actions{
 
           checkDesignationTypeEquals{
-            value:i=1
+            type:t="los"
           }
         }
       }
 
       losLock{
-        stateFrom:t="checkLockType1"
+        stateFrom:t="checkLockTypeLos"
         event:t="designationTypeEquals"
         stateTo:t="losLock"
 
@@ -458,21 +459,21 @@ fsms{
         }
       }
 
-      checkLockType2{
-        stateFrom:t="checkLockType1"
+      checkLockTypeVisual{
+        stateFrom:t="checkLockTypeLos"
         event:t="designationTypeNotEquals"
-        stateTo:t="checkLockType2"
+        stateTo:t="checkLockTypeVisual"
 
         actions{
 
           checkDesignationTypeEquals{
-            value:i=2
+            type:t="visual"
           }
         }
       }
 
       visualLock{
-        stateFrom:t="checkLockType2"
+        stateFrom:t="checkLockTypeVisual"
         event:t="designationTypeEquals"
         stateTo:t="visualLock"
 
@@ -492,7 +493,7 @@ fsms{
       }
 
       finishLockTypeCheck{
-        stateFrom:t="checkLockType2"
+        stateFrom:t="checkLockTypeVisual"
         event:t="designationTypeNotEquals"
         stateTo:t="standbyOrSearch"
       }

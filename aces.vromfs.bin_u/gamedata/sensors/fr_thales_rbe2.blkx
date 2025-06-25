@@ -380,10 +380,10 @@ scanPatterns{
     elevationLimits:p2=-70.0, 70.0
     rollStabLimit:r=90.0
     pitchStabLimit:r=70.0
-    period:r=15.9238
+    period:r=7.9238
     width:r=70.0
     barHeight:r=2.25
-    barsCount:i=14
+    barsCount:i=7
     rowMajor:b=yes
   }
 
@@ -438,10 +438,10 @@ scanPatterns{
     elevationLimits:p2=-70.0, 70.0
     rollStabLimit:r=90.0
     pitchStabLimit:r=70.0
-    period:r=15.9238
+    period:r=7.9238
     width:r=70.0
     barHeight:r=2.25
-    barsCount:i=14
+    barsCount:i=7
     rowMajor:b=yes
   }
 
@@ -763,15 +763,13 @@ fsms{
       designatedTargetSearch{
 
         designateTargetUnderCue{
-          type:i=0
+          type:t="cue"
           self:b=yes
-          sensorIndex:i=0
         }
 
         designateActiveDetectedTarget{
-          type:i=0
+          type:t="target"
           self:b=yes
-          sensorIndex:i=0
         }
       }
 
@@ -987,7 +985,7 @@ fsms{
       designatedTargetTws{
 
         designateActiveDetectedTarget{
-          type:i=0
+          type:t="target"
           self:b=yes
           sensorIndex:i=0
         }
@@ -2027,7 +2025,8 @@ fsms{
         actions{
 
           checkDesignationTypeEquals{
-            value:i=0
+            type:t="target"
+            type:t="cue"
           }
         }
       }
@@ -3419,6 +3418,27 @@ fsms{
           }
         }
       }
+
+      centerZone{
+        command:t="directionAxesReset"
+
+        actions{
+
+          setCueToBoresight{
+          }
+
+          setCenterAzimuth{
+            source:t="designationCue"
+          }
+
+          setCenterElevation{
+            source:t="designationCue"
+          }
+
+          updateActiveDetectedTarget{
+          }
+        }
+      }
     }
   }
 
@@ -3503,7 +3523,11 @@ fsms{
 
           updateTargetOfInterest{
             limit:i=40
-            radius:r=1000.0
+            posGateTimeInitial:p2=2.0, 4.0
+            posGateRangeInitial:r=0.0
+            posGateMaxTime:r=2.0
+            posGateRange:p2=0.0, 1000.0
+            dopplerSpeedGateRange:p2=0.0, 1600.0
             dopplerSpeedGateMaxTime:r=8.0
           }
 
@@ -3542,9 +3566,6 @@ fsms{
 
           setCueDist{
           }
-
-          setCueDopplerSpeed{
-          }
         }
       }
 
@@ -3564,23 +3585,6 @@ fsms{
         actions{
 
           setDetectedTargetActive{
-          }
-        }
-      }
-
-      designateTarget{
-        command:t="selectTarget"
-
-        actions{
-
-          designateActiveDetectedTarget{
-            type:i=0
-            sensorIndex:i=1
-          }
-
-          designateTargetUnderCue{
-            type:i=0
-            sensorIndex:i=1
           }
         }
       }
@@ -3625,6 +3629,27 @@ fsms{
           }
 
           setCueToActiveTargetOfInterest{
+          }
+        }
+      }
+
+      centerZone{
+        command:t="directionAxesReset"
+
+        actions{
+
+          setCueToBoresight{
+          }
+
+          setCenterAzimuth{
+            source:t="designationCue"
+          }
+
+          setCenterElevation{
+            source:t="designationCue"
+          }
+
+          updateActiveDetectedTarget{
           }
         }
       }

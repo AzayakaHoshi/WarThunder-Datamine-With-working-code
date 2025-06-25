@@ -2140,7 +2140,7 @@ cockpit{
   hasAirCannonIlsMode:b=yes
   isDoubleBulletImpactLine:b=yes
   slotCount:i=10
-  hmdBlockIlsArea:p4=0.37, 0.05, 0.63, 0.63
+  hmdScreenBlockRad:r=0.06
   hmdEnabledByDefault:b=yes
   mirror:b=yes
   mirrorPos:p3=8.36, 1.132, 0.0
@@ -2159,6 +2159,19 @@ cockpit{
   lightPos2:p3=8.05, 0.435, -0.4
   lightColor2:p3=0.9, 0.2, 0.0
   lightRadius2:r=0.4
+
+  hmdBlock{
+
+    ils{
+      pos:p3=8.8, 1.08, -0.012
+      rad:r=0.12
+    }
+
+    full_devices{
+      pos:p3=8.431, 0.55, -0.01
+      rad:r=0.39
+    }
+  }
 
   devices{
     stick_ailerons:p2=-1.0, 1.0
@@ -2246,11 +2259,6 @@ cockpit{
       }
 
       page{
-        type:t="map"
-        hideBackground:b=yes
-      }
-
-      page{
         type:t="target_tracking_bw"
         turretIdx:i=0
       }
@@ -2262,6 +2270,43 @@ cockpit{
       page{
         type:t="rwr"
         scale:r=0.75
+      }
+
+      page{
+        type:t="hsd"
+        scale:r=1.0
+        color:c=0, 0, 0, 255
+        font:t="hud"
+        fontSize:i=18
+        lineWidth:r=1.0
+        lineColor:c=211, 211, 211, 120
+        orient:t="hdgUp"
+        centerMarkType:t="plane"
+        centerMarkFillColor:c=0, 255, 0, 255
+        centerMarkLineColor:c=0, 255, 0, 255
+        centerMarkScale:r=0.1
+        centerMarkSpeed:b=no
+        spi:b=yes
+        spiColor:c=0, 255, 0, 255
+        spiInfo:b=yes
+        spiInfoOffset:r=-0.03
+        distScale:b=yes
+        distScaleBeyondAzScale:b=yes
+        distScaleStepSize:r=10000.0
+        distScaleColor:c=211, 211, 211, 120
+        distScaleNumbers:b=yes
+        distScaleNumbersAngle:r=45.0
+        distScaleNumbersFillColor:c=0, 0, 0, 255
+        azScaleType:t="lines"
+        azScaleSize:r=20000.0
+        azScaleColor:c=0, 255, 0, 255
+        headingIndFillColor:c=0, 0, 0, 255
+        centerCross:b=no
+        time:b=no
+        mapBackground:b=no
+        extent:r=55000.0
+        markers:b=yes
+        metricUnits:b=yes
       }
     }
 
@@ -2277,11 +2322,6 @@ cockpit{
       page{
         type:t="target_tracking_bw"
         turretIdx:i=0
-      }
-
-      page{
-        type:t="map"
-        hideBackground:b=yes
       }
 
       page{
@@ -2353,10 +2393,10 @@ flexWing{
 gunnerOpticFps{
 
   TV{
-    pos:p3=2.9, -0.9, 0.0
+    pos:p3=4.2, -0.9, 0.0
     head:t="optic1_turret"
     crosshairPreset:t="test_crosshair"
-    angularLimits:p4=-38.0, 38.0, -55.0, 38.0
+    angularLimits:p4=-30.0, 30.0, -30.0, 30.0
     opticType:t="tv"
     turretNo:i=0
     name:t="KH-29T"
@@ -3224,6 +3264,7 @@ WeaponSlots{
         bullets:i=1
         external:b=yes
         separate:b=yes
+        machLimit:r=1.5
       }
     }
 
@@ -3941,6 +3982,7 @@ WeaponSlots{
         bullets:i=1
         external:b=yes
         separate:b=yes
+        machLimit:r=1.5
       }
     }
 
@@ -4956,6 +4998,7 @@ WeaponSlots{
         bullets:i=1
         external:b=yes
         separate:b=yes
+        machLimit:r=1.5
       }
     }
 
@@ -5645,6 +5688,7 @@ WeaponSlots{
         bullets:i=1
         external:b=yes
         separate:b=yes
+        machLimit:r=1.5
       }
     }
 
@@ -6697,9 +6741,9 @@ lerxVapors{
 AfterBurner0{
 
   volumetricAfterBurner{
-    name:t="jet_blue_blue_modern"
-    maxHeight:r=13.0
-    minHeight:r=9.0
+    name:t="_jet_su_27sm_al_31f_m1"
+    maxHeight:r=12.0
+    minHeight:r=8.0
     heightNoiseStrength:r=0.0
     heightNoiseSpeed:r=20.0
     maxRadius:r=0.38
@@ -6719,28 +6763,30 @@ AfterBurner0{
     minOuterCylinderRadius:r=0.45
     maxOuterCylinderRadius:r=0.5
     absorption:r=1.0
-    colorIntensityMax:r=10.0
+    colorIntensityMax:r=5.0
     colorIntensityMin:r=1.0
     colorOverHeightMult:r=0.7
-    colorOverDepthMult:r=3.5
-    colorOverRadiusMult:r=5.5
+    colorOverDepthMult:r=2.0
+    colorOverRadiusMult:r=3.0
     colorOverRadiusFadeOverHeight:r=2.0
     maxRingOffset:r=0.0
     minRingOffset:r=20.0
     ringAbsorption:r=1.2
     maxRingCount:i=16
     minRingCount:i=13
+    minStartingRingHeight:r=1.677
+    maxStartingRingHeight:r=1.641
     ringIntensityMin:r=0.0
-    ringIntensityMax:r=2.0
+    ringIntensityMax:r=1.2
     ringIntensityNoiseStrength:r=0.0
     ringIntensityNoiseSpeed:r=1.0
     ringOffsetNoiseStrength:r=1.0
     ringOffsetNoiseSpeed:r=20.0
     rampTextureOffset:i=1
-    radiusNoiseStrength:r=0.06
-    radiusNoiseSpeed:r=20.0
-    shakeNoiseStrength:r=0.01
-    shakeNoiseSpeed:r=30.0
+    radiusNoiseStrength:r=0.1
+    radiusNoiseSpeed:r=10.0
+    shakeNoiseStrength:r=0.06
+    shakeNoiseSpeed:r=20.0
     ringAngleFadeMult:r=0.7
     colorOverHeightNoiseStrength:r=0.1
     colorOverHeightNoiseSpeed:r=10.0
@@ -6750,16 +6796,17 @@ AfterBurner0{
     colorOverDepthNoiseSpeed:r=10.0
     colorIntensityNoiseStrength:r=2.0
     colorIntensityNoiseSpeed:r=30.0
-    minStartingRingHeight:r=0.93
-    maxStartingRingHeight:r=0.82
-    ringIntensity:r=2.0
-    ringFrequency:r=11.3097
+    minAoABendingMult:r=0.0
+    maxAoABendingMult:r=1.4
+    minAoSBendingMult:r=0.0
+    maxAoSBendingMult:r=1.4
 
     preNominalEasingParams{
-      animationTime:r=3.0
+      animationTime:r=3.5
       ascendingSmoothIntensityParams:r=0.7
-      flickerRelativTime:r=0.15
-      flickerSpeed:r=20.0
+      flickerRelativTime:r=0.33
+      flickerSpeed:r=10.0
+      flickerIntensity:r=1.0
     }
 
     postNominalEasingParams{
@@ -6767,19 +6814,61 @@ AfterBurner0{
       ascendingSmoothIntensityParams:r=1.0
       flickerRelativTime:r=0.0
       flickerSpeed:r=0.0
+      flickerIntensity:r=0.0
     }
 
     lightProperties{
       color:p3=0.431373, 0.581892, 1.0
       angle:r=1.0
-      brightness:r=20.0
+      brightness:r=10.0
       radius:r=20.0
       attenuation:r=0.8
       brightnessNoiseStrength:r=3.0
       brightnessNoiseSpeed:r=6.0
-      ignitionTextureIntensity:r=1.0
-      ignitionBrightnessNoiseStrength:r=0.1
+      ignitionTextureIntensityMin:r=0.01
+      ignitionTextureIntensityMax:r=0.01
+      ignitionBrightnessNoiseStrength:r=0.01
       ignitionBrightnessNoiseSpeed:r=16.0
+    }
+
+    NozzleFlames{
+      amountOfFlames:i=8
+      radiusMult:r=1.3
+      startOffset:r=0.7
+      endOffsetAddition:r=1.5
+      intensityMult:r=5.0
+      innerCircleNoiseScale:r=0.6
+      innerCircleNoiseStrength:r=0.4
+      maskNoiseScale:r=0.0
+      maskNoiseStrength:r=0.0
+      minInnerCircleParamMult:r=1.8
+      maxInnerCircleParamMult:r=1.0
+      lengthNoiseSpeed:r=10.0
+      lengthNoiseStrength:r=0.3
+      uvNoiseMaskScale:r=0.5
+      uvNoiseMaskStrength:r=0.1
+
+      FlameMaskTextureOffset{
+        maskTextureOffset:i=0
+        maskTextureOffset:i=1
+        maskTextureOffset:i=2
+        maskTextureOffset:i=4
+        maskTextureOffset:i=4
+        maskTextureOffset:i=5
+        maskTextureOffset:i=5
+        maskTextureOffset:i=5
+      }
+
+      FlameRampTextureOffset{
+        rampTextureOffset:i=23
+        rampTextureOffset:i=23
+        rampTextureOffset:i=26
+        rampTextureOffset:i=26
+        rampTextureOffset:i=24
+        rampTextureOffset:i=24
+        rampTextureOffset:i=6
+        rampTextureOffset:i=6
+      }
     }
   }
 }

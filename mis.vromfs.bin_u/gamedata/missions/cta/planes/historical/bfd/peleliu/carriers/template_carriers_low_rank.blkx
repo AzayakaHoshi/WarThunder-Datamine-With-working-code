@@ -12,11 +12,26 @@ mission_settings{
   }
 
   mission{
-    level:t="levels/peleliu.bin"
+    level:t="levels/guadalcanal.bin"
     type:t="domination"
     environment:t="Day"
-    weather:t="clear"
-    deathPenaltyMulRounds:r=0.0
+    weather:t="hazy"
+    locName:t="missions/guadalcanal_BfD_norespawn"
+    locDesc:t="missions/_BfD_norespawn/desc"
+    scoreLimit:i=7600
+    timeLimit:i=25
+    deathPenaltyMul:r=0.4
+    country_axis:t="japan"
+    country_allies:t="usa"
+    restoreType:t="attempts"
+    optionalTakeOff:b=no
+
+    allowedUnitTypes{
+      isAirplanesAllowed:b=yes
+      isTanksAllowed:b=no
+      isShipsAllowed:b=no
+      isHelicoptersAllowed:b=no
+    }
   }
 }
 
@@ -26,100 +41,6 @@ imports{
 triggers{
   isCategory:b=yes
   is_enabled:b=yes
-
-  carriers_init_low{
-    is_enabled:b=yes
-    comments:t=""
-
-    props{
-      actionsType:t="PERFORM_ONE_BY_ONE"
-      conditionsType:t="ALL"
-      enableAfterComplete:b=no
-    }
-
-    events{
-
-      initMission{
-      }
-    }
-
-    conditions{
-    }
-
-    actions{
-
-      missionMarkAsRespawnPoint{
-        loc_name:t="missions/carriers_spawn"
-        spawnEffect:b=no
-        isAirfield:b=yes
-        isUnit:b=no
-        radius:r=-1.0
-        isStrictSpawn:b=no
-        destructionAwardMultiplier:r=1.0
-        useExisting:b=no
-        isIndividual:b=no
-        removeAreas:b=no
-        canSpawnOnNeutral:b=no
-        showOnMap:b=yes
-        onlyOnePlayerPerSpawnPoint:b=no
-        resetStrictSpawnIndex:b=no
-        replaceAreas:b=no
-        forceCreate:b=no
-        target:t="t1_carrier01"
-        target:t="t1_carrier02"
-        team:t="A"
-        object:t="t1_carrier_sq"
-        awardByBodyHp:b=no
-
-        tags{
-          type_assault:b=no
-          type_interceptor:b=no
-          type_aa_fighter:b=no
-          type_frontline_bomber:b=no
-          type_longrange_bomber:b=no
-          carrier_take_off:b=yes
-          tank:b=no
-        }
-      }
-
-      missionMarkAsRespawnPoint{
-        loc_name:t="missions/carriers_spawn"
-        spawnEffect:b=no
-        isAirfield:b=yes
-        isUnit:b=no
-        radius:r=-1.0
-        isStrictSpawn:b=no
-        destructionAwardMultiplier:r=1.0
-        useExisting:b=no
-        isIndividual:b=no
-        removeAreas:b=no
-        canSpawnOnNeutral:b=no
-        showOnMap:b=yes
-        onlyOnePlayerPerSpawnPoint:b=no
-        resetStrictSpawnIndex:b=no
-        replaceAreas:b=no
-        forceCreate:b=no
-        target:t="t2_carrier01"
-        target:t="t2_carrier02"
-        team:t="B"
-        object:t="t2_carrier_sq"
-        awardByBodyHp:b=no
-
-        tags{
-          type_assault:b=no
-          type_interceptor:b=no
-          type_aa_fighter:b=no
-          type_frontline_bomber:b=no
-          type_longrange_bomber:b=no
-          carrier_take_off:b=yes
-          tank:b=no
-        }
-      }
-    }
-
-    else_actions{
-    }
-  }
 }
 
 mission_objectives{
@@ -141,12 +62,57 @@ effects{
 
 units{
 
+  squad{
+    name:t="t2_carriers_squad"
+    tm:m=[[0.468361, 0.0, 0.883537] [0.0, 1.0, 0.0] [-0.883537, 0.0, 0.468361] [-16943.4, -2.97949, 997.164]]
+
+    props{
+      squad_members:t="t2_carrier_01"
+      squad_members:t="t2_carrier_02"
+      object_marking:i=0
+    }
+  }
+
+  squad{
+    name:t="t1_carriers_squad"
+    tm:m=[[0.999346, 0.0, 0.0361562] [0.0, 1.0, 0.0] [-0.0361562, 0.0, 0.999346] [3187.23, 1.01172, -27345.6]]
+
+    props{
+      squad_members:t="t1_carrier_01"
+      squad_members:t="t1_carrier_02"
+      object_marking:i=0
+    }
+  }
+
+  squad{
+    name:t="t1_carrier_destroyers_squad"
+    tm:m=[[0.608764, 0.0, 0.793352] [0.0, 1.0, 0.0] [-0.793352, 0.0, 0.608764] [6692.05, 92.6426, -33152.3]]
+
+    props{
+      squad_members:t="t1_carrier_destroyer_01"
+      squad_members:t="t1_carrier_destroyer_02"
+      squad_members:t="t1_carrier_destroyer_03"
+      squad_members:t="t1_carrier_destroyer_04"
+    }
+  }
+
+  squad{
+    name:t="t2_carrier_destroyers_squad"
+    tm:m=[[0.130525, 0.0, -0.991445] [0.0, 1.0, 0.0] [0.991445, 0.0, 0.130525] [8297.63, 54.998, -37460.3]]
+
+    props{
+      squad_members:t="t2_carrier_destroyer_01"
+      squad_members:t="t2_carrier_destroyer_02"
+      squad_members:t="t2_carrier_destroyer_03"
+    }
+  }
+
   ships{
-    name:t="t1_carrier01"
-    tm:m=[[-0.422618, 0.0, 0.906308] [0.0, 1.0, 0.0] [-0.906308, 0.0, -0.422618] [3203.75, 52.8, -20191.7]]
-    unit_class:t="uss_cv_lexington"
-    closed_waypoints:b=no
-    isShipSpline:b=no
+    name:t="t1_carrier_02"
+    tm:m=[[-0.608763, 0.0, -0.793352] [0.0, 1.0, 0.0] [0.793352, 0.0, -0.608763] [15544.0, 55.002, -18604.3]]
+    unit_class:t="us_aircraftcarrier_lexington"
+    closed_waypoints:b=yes
+    isShipSpline:b=yes
     shipTurnRadius:r=100.0
     weapons:t=""
     bullets0:t=""
@@ -158,6 +124,7 @@ units{
     bulletsCount2:i=0
     bulletsCount3:i=0
     crewSkillK:r=0.0
+    applyAllMods:b=no
 
     props{
       army:i=1
@@ -171,15 +138,45 @@ units{
     }
 
     way{
+
+      t1_carrier_02_wp_01{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [14592.4, 1.00195, -19844.6]]
+
+        props{
+          speed:r=30.0
+          moveType:t="MOVETO_STRAIGHT"
+        }
+      }
+
+      t1_carrier_02_wp_02{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [9934.48, 1.00195, -25914.9]]
+
+        props{
+          speed:r=30.0
+          moveType:t="MOVETO_STRAIGHT"
+        }
+      }
+
+      t1_carrier_02_wp_03{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [10899.2, 1.0039, -27078.6]]
+
+        props{
+          speed:r=30.0
+          moveType:t="MOVETO_STRAIGHT"
+        }
+      }
     }
   }
 
   ships{
-    name:t="t1_carrier02"
-    tm:m=[[-0.34202, 0.0, 0.939693] [0.0, 1.0, 0.0] [-0.939693, 0.0, -0.34202] [3458.33, 52.8, -20055.0]]
-    unit_class:t="uss_cv_enterprise"
-    closed_waypoints:b=no
-    isShipSpline:b=no
+    name:t="t1_carrier_01"
+    tm:m=[[0.965925, 0.0, -0.258821] [0.0, 1.0, 0.0] [0.258821, 0.0, 0.965925] [-1047.41, 167.919, -28804.2]]
+    unit_class:t="jp_aircraftcarrier_shokaku"
+    closed_waypoints:b=yes
+    isShipSpline:b=yes
     shipTurnRadius:r=100.0
     weapons:t=""
     bullets0:t=""
@@ -191,6 +188,7 @@ units{
     bulletsCount2:i=0
     bulletsCount3:i=0
     crewSkillK:r=0.0
+    applyAllMods:b=no
 
     props{
       army:i=1
@@ -204,15 +202,45 @@ units{
     }
 
     way{
+
+      t1_carrier_03_wp_02{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [3294.49, 113.935, -29412.9]]
+
+        props{
+          speed:r=30.0
+          moveType:t="MOVETO_STRAIGHT"
+        }
+      }
+
+      t1_carrier_03_wp_03{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2638.5, 113.921, -30266.8]]
+
+        props{
+          speed:r=30.0
+          moveType:t="MOVETO_STRAIGHT"
+        }
+      }
+
+      t1_carrier_03_wp_01{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-6561.81, 113.921, -27432.2]]
+
+        props{
+          speed:r=30.0
+          moveType:t="MOVETO_STRAIGHT"
+        }
+      }
     }
   }
 
   ships{
-    name:t="t2_carrier01"
-    tm:m=[[0.737277, 0.0, -0.67559] [0.0, 1.0, 0.0] [0.67559, 0.0, 0.737277] [-8018.8, 100.3, -3885.8]]
-    unit_class:t="ijn_cv_hiryu"
-    closed_waypoints:b=no
-    isShipSpline:b=no
+    name:t="t2_carrier_01"
+    tm:m=[[0.707108, 0.0, 0.707105] [0.0, 1.0, 0.0] [-0.707105, 0.0, 0.707108] [-17692.5, 55.0004, -3347.74]]
+    unit_class:t="us_aircraftcarrier_lexington"
+    closed_waypoints:b=yes
+    isShipSpline:b=yes
     shipTurnRadius:r=100.0
     weapons:t=""
     bullets0:t=""
@@ -224,6 +252,7 @@ units{
     bulletsCount2:i=0
     bulletsCount3:i=0
     crewSkillK:r=0.0
+    applyAllMods:b=no
 
     props{
       army:i=2
@@ -237,15 +266,45 @@ units{
     }
 
     way{
+
+      t1_carrier_05_wp_01{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-16405.1, 1.00135, -2060.27]]
+
+        props{
+          speed:r=30.0
+          moveType:t="MOVETO_STRAIGHT"
+        }
+      }
+
+      t1_carrier_05_wp_02{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-9811.95, 1.01545, 4532.89]]
+
+        props{
+          speed:r=30.0
+          moveType:t="MOVETO_STRAIGHT"
+        }
+      }
+
+      t1_carrier_05_wp_03{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-10662.1, 0.998415, 5802.27]]
+
+        props{
+          speed:r=30.0
+          moveType:t="MOVETO_STRAIGHT"
+        }
+      }
     }
   }
 
   ships{
-    name:t="t2_carrier02"
-    tm:m=[[0.67559, 0.0, -0.737278] [0.0, 1.0, 0.0] [0.737278, 0.0, 0.67559] [-8201.69, 100.3, -4109.51]]
-    unit_class:t="ijn_cv_soryu"
-    closed_waypoints:b=no
-    isShipSpline:b=no
+    name:t="t2_carrier_02"
+    tm:m=[[-0.999048, 0.0, 0.0436218] [0.0, 1.0, 0.0] [-0.0436218, 0.0, -0.999048] [-3213.92, 55.0122, 7323.83]]
+    unit_class:t="jp_aircraftcarrier_shokaku"
+    closed_waypoints:b=yes
+    isShipSpline:b=yes
     shipTurnRadius:r=100.0
     weapons:t=""
     bullets0:t=""
@@ -257,6 +316,7 @@ units{
     bulletsCount2:i=0
     bulletsCount3:i=0
     crewSkillK:r=0.0
+    applyAllMods:b=no
 
     props{
       army:i=2
@@ -270,36 +330,581 @@ units{
     }
 
     way{
+
+      t1_carrier_06_wp_02{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-5149.91, 1.01221, 7489.14]]
+
+        props{
+          speed:r=30.0
+          moveType:t="MOVETO_STRAIGHT"
+        }
+      }
+
+      t1_carrier_06_wp_03{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-4561.76, 1.01221, 8335.89]]
+
+        props{
+          speed:r=30.0
+          moveType:t="MOVETO_STRAIGHT"
+        }
+      }
+
+      t1_carrier_06_wp_01{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [4904.86, 6.68213, 6962.01]]
+
+        props{
+          speed:r=30.0
+          moveType:t="MOVETO_STRAIGHT"
+        }
+      }
     }
   }
 
-  squad{
-    name:t="t1_carrier_sq"
-    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [3849.0, 1.0, -20573.3]]
+  ships{
+    name:t="t1_carrier_destroyer_01"
+    tm:m=[[-0.608763, 0.0, -0.793352] [0.0, 1.0, 0.0] [0.793352, 0.0, -0.608763] [15437.2, 55.002, -17763.2]]
+    unit_class:t="us_destroyer_porter_1942"
+    closed_waypoints:b=yes
+    isShipSpline:b=yes
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
 
     props{
-      object_marking:i=0
-      squad_members:t="t1_carrier01"
-      squad_members:t="t1_carrier02"
+      army:i=1
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+
+      t1_carrier_04_wp_07{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [14921.7, 1.00341, -19001.3]]
+
+        props{
+          speed:r=28.0
+          moveType:t="MOVETO_STRAIGHT"
+        }
+      }
+
+      t1_carrier_04_wp_08{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [9361.6, 1.00049, -25570.0]]
+
+        props{
+          speed:r=30.0
+          moveType:t="MOVETO_STRAIGHT"
+        }
+      }
+
+      t1_carrier_04_wp_09{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [11329.8, -126.893, -28052.2]]
+
+        props{
+          speed:r=36.0
+          moveType:t="MOVETO_STRAIGHT"
+        }
+      }
     }
   }
 
-  squad{
-    name:t="t2_carrier_sq"
-    tm:m=[[-0.92388, 0.0, -0.382683] [0.0, 1.0, 0.0] [0.382683, 0.0, -0.92388] [-8760.97, 48.5, -3780.17]]
+  ships{
+    name:t="t1_carrier_destroyer_03"
+    tm:m=[[0.965925, 0.0, -0.258821] [0.0, 1.0, 0.0] [0.258821, 0.0, 0.965925] [-1799.59, 167.919, -28886.6]]
+    unit_class:t="jp_destroyer_fubuki"
+    closed_waypoints:b=yes
+    isShipSpline:b=yes
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
 
     props{
-      object_marking:i=0
-      squad_members:t="t2_carrier01"
-      squad_members:t="t2_carrier02"
+      army:i=1
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+
+      t1_carrier_04_wp_10{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [3680.03, 113.935, -28893.7]]
+
+        props{
+          speed:r=33.0
+          moveType:t="MOVETO_STRAIGHT"
+        }
+      }
+
+      t1_carrier_04_wp_11{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2464.15, 113.92, -30826.2]]
+
+        props{
+          speed:r=29.0
+          moveType:t="MOVETO_STRAIGHT"
+        }
+      }
+
+      t1_carrier_04_wp_12{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-7512.32, 113.917, -27187.8]]
+
+        props{
+          speed:r=32.0
+          moveType:t="MOVETO_STRAIGHT"
+        }
+      }
+    }
+  }
+
+  ships{
+    name:t="t2_carrier_destroyer_02"
+    tm:m=[[-0.999048, 0.0, 0.0436218] [0.0, 1.0, 0.0] [-0.0436218, 0.0, -0.999048] [-2346.82, 55.0122, 6886.42]]
+    unit_class:t="jp_destroyer_fubuki"
+    closed_waypoints:b=yes
+    isShipSpline:b=yes
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+
+      t2_carrier_04_wp_04{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-5255.68, 1.01221, 7007.02]]
+
+        props{
+          speed:r=32.0
+          moveType:t="MOVETO_STRAIGHT"
+        }
+      }
+
+      t2_carrier_04_wp_05{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-4555.75, 1.01221, 8864.13]]
+
+        props{
+          speed:r=29.0
+          moveType:t="MOVETO_STRAIGHT"
+        }
+      }
+
+      t2_carrier_04_wp_06{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [5842.48, 6.68213, 6887.47]]
+
+        props{
+          speed:r=32.0
+          moveType:t="MOVETO_STRAIGHT"
+        }
+      }
+    }
+  }
+
+  ships{
+    name:t="t2_carrier_destroyer_03"
+    tm:m=[[0.707108, 0.0, 0.707105] [0.0, 1.0, 0.0] [-0.707105, 0.0, 0.707108] [-17664.3, 55.0002, -3866.1]]
+    unit_class:t="us_destroyer_porter_1941"
+    closed_waypoints:b=yes
+    isShipSpline:b=yes
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+
+      t2_carrier_04_wp_07{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-17099.1, 1.00135, -2808.41]]
+
+        props{
+          speed:r=29.0
+          moveType:t="MOVETO_STRAIGHT"
+        }
+      }
+
+      t2_carrier_04_wp_08{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-9165.92, -113.649, 4421.43]]
+
+        props{
+          speed:r=36.0
+          moveType:t="MOVETO_STRAIGHT"
+        }
+      }
+
+      t2_carrier_04_wp_09{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-10936.5, 0.998415, 6603.56]]
+
+        props{
+          speed:r=34.0
+          moveType:t="MOVETO_STRAIGHT"
+        }
+      }
+    }
+  }
+
+  ships{
+    name:t="t1_carrier_destroyer_02"
+    tm:m=[[-0.608763, 0.0, -0.793352] [0.0, 1.0, 0.0] [0.793352, 0.0, -0.608763] [16057.7, 55.002, -18462.2]]
+    unit_class:t="us_destroyer_porter_1942"
+    closed_waypoints:b=yes
+    isShipSpline:b=yes
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=1
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+
+      t1_carrier_destroyer_02_wp_01{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [14271.2, 17.1539, -20316.2]]
+
+        props{
+          speed:r=28.0
+          moveType:t="MOVETO_STRAIGHT"
+        }
+      }
+
+      t1_carrier_destroyer_02_wp_02{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [10664.7, 1.00049, -25238.3]]
+
+        props{
+          speed:r=29.0
+          moveType:t="MOVETO_STRAIGHT"
+        }
+      }
+
+      t1_carrier_destroyer_02_wp_03{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [10931.6, -126.893, -26414.4]]
+
+        props{
+          speed:r=32.0
+          moveType:t="MOVETO_STRAIGHT"
+        }
+      }
+    }
+  }
+
+  ships{
+    name:t="t1_carrier_destroyer_04"
+    tm:m=[[0.965925, 0.0, -0.258821] [0.0, 1.0, 0.0] [0.258821, 0.0, 0.965925] [-1605.81, 167.919, -28608.4]]
+    unit_class:t="jp_destroyer_fubuki"
+    closed_waypoints:b=yes
+    isShipSpline:b=yes
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=1
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+
+      t1_carrier_destroyer_04_wp_01{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2764.7, 113.938, -29457.8]]
+
+        props{
+          speed:r=28.0
+          moveType:t="MOVETO_STRAIGHT"
+        }
+      }
+
+      t1_carrier_destroyer_04_wp_02{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [2549.58, 113.919, -29952.6]]
+
+        props{
+          speed:r=29.0
+          moveType:t="MOVETO_STRAIGHT"
+        }
+      }
+
+      t1_carrier_destroyer_04_wp_03{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-5760.43, 113.917, -27662.1]]
+
+        props{
+          speed:r=31.0
+          moveType:t="MOVETO_STRAIGHT"
+        }
+      }
+    }
+  }
+
+  ships{
+    name:t="t2_carrier_destroyer_04"
+    tm:m=[[0.707108, 0.0, 0.707105] [0.0, 1.0, 0.0] [-0.707105, 0.0, 0.707108] [-18182.1, 55.0002, -3348.45]]
+    unit_class:t="us_destroyer_porter_1941"
+    closed_waypoints:b=yes
+    isShipSpline:b=yes
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+
+      t2_carrier_destroyer_04_wp_01{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-16080.5, 1.00232, -1696.55]]
+
+        props{
+          speed:r=29.0
+          moveType:t="MOVETO_STRAIGHT"
+        }
+      }
+
+      t2_carrier_destroyer_04_wp_02{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-10586.9, -113.649, 3878.19]]
+
+        props{
+          speed:r=28.0
+          moveType:t="MOVETO_STRAIGHT"
+        }
+      }
+
+      t2_carrier_destroyer_04_wp_03{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-10882.3, 0.99988, 5034.34]]
+
+        props{
+          speed:r=31.0
+          moveType:t="MOVETO_STRAIGHT"
+        }
+      }
+    }
+  }
+
+  ships{
+    name:t="t2_carrier_destroyer_01"
+    tm:m=[[-0.999048, 0.0, 0.0436218] [0.0, 1.0, 0.0] [-0.0436218, 0.0, -0.999048] [-2315.0, 55.0122, 7616.84]]
+    unit_class:t="jp_destroyer_fubuki"
+    closed_waypoints:b=yes
+    isShipSpline:b=yes
+    shipTurnRadius:r=100.0
+    weapons:t=""
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=2
+      count:i=1
+      formation_type:t="rows"
+      formation_div:i=3
+      formation_step:p2=2.5, 2.0
+      formation_noise:p2=0.1, 0.1
+      uniqueName:t=""
+      attack_type:t="fire_at_will"
+    }
+
+    way{
+
+      t2_carrier_destroyer_05_wp_01{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-4235.34, 1.01318, 7514.3]]
+
+        props{
+          speed:r=32.0
+          moveType:t="MOVETO_STRAIGHT"
+        }
+      }
+
+      t2_carrier_destroyer_05_wp_02{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-3677.85, 1.01172, 8055.72]]
+
+        props{
+          speed:r=29.0
+          moveType:t="MOVETO_STRAIGHT"
+        }
+      }
+
+      t2_carrier_destroyer_05_wp_03{
+        type:t="normal"
+        tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [3828.12, 6.68018, 7056.4]]
+
+        props{
+          speed:r=29.0
+          moveType:t="MOVETO_STRAIGHT"
+        }
+      }
     }
   }
 }
 
 areas{
+
+  carriers_area_low{
+    type:t="Sphere"
+    tm:m=[[29564.1, 0.0, 12245.8] [0.0, 32000.1, 0.0] [-12245.8, 0.0, 29564.1] [-636.0, 49.5117, -10854.4]]
+    objLayer:i=3
+
+    props{
+    }
+  }
 }
 
 objLayers{
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
+
+  layer{
+    enabled:b=yes
+  }
 }
 
 wayPoints{

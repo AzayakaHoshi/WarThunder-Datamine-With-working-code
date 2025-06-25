@@ -42,8 +42,8 @@ transivers{
     power:r=600.0
     band:i=8
     rcs:r=5.0
-    range:r=100000.0
-    rangeMax:r=300000.0
+    range:r=80000.0
+    rangeMax:r=160000.0
     multipathEffect:p4=0.0, 1.0, 60.0, 0.0
 
     antenna{
@@ -57,8 +57,8 @@ transivers{
     power:r=600.0
     band:i=8
     rcs:r=5.0
-    range:r=150000.0
-    rangeMax:r=300000.0
+    range:r=120000.0
+    rangeMax:r=240000.0
     multipathEffect:p4=0.0, 1.0, 60.0, 0.0
 
     antenna{
@@ -73,7 +73,7 @@ transivers{
     band:i=8
     rcs:r=5.0
     range:r=120000.0
-    rangeMax:r=300000.0
+    rangeMax:r=240000.0
     multipathEffect:p4=0.0, 1.0, 60.0, 0.0
 
     antenna{
@@ -279,7 +279,7 @@ signals{
     distance{
       presents:b=yes
       minValue:r=500.0
-      maxValue:r=180000.0
+      maxValue:r=160000.0
       width:r=500.0
     }
 
@@ -318,7 +318,7 @@ signals{
     distance{
       presents:b=yes
       minValue:r=500.0
-      maxValue:r=150000.0
+      maxValue:r=240000.0
       width:r=200.0
     }
   }
@@ -359,7 +359,7 @@ signals{
     distance{
       presents:b=yes
       minValue:r=200.0
-      maxValue:r=180000.0
+      maxValue:r=160000.0
       width:r=150.0
     }
 
@@ -384,7 +384,7 @@ signals{
     distance{
       presents:b=yes
       minValue:r=200.0
-      maxValue:r=200000.0
+      maxValue:r=240000.0
       width:r=150.0
     }
   }
@@ -399,7 +399,7 @@ signals{
     distance{
       presents:b=yes
       minValue:r=5000.0
-      maxValue:r=200000.0
+      maxValue:r=240000.0
       width:r=2000.0
     }
 
@@ -428,7 +428,7 @@ signals{
     distance{
       presents:b=yes
       minValue:r=200.0
-      maxValue:r=200000.0
+      maxValue:r=240000.0
       width:r=500.0
     }
 
@@ -672,15 +672,13 @@ fsms{
       designatedTargetSearch{
 
         designateTargetUnderCue{
-          type:i=0
+          type:t="cue"
           self:b=yes
-          sensorIndex:i=0
         }
 
         designateActiveDetectedTarget{
-          type:i=0
+          type:t="target"
           self:b=yes
-          sensorIndex:i=0
         }
       }
 
@@ -814,6 +812,10 @@ fsms{
         setModeName{
           name:t="PD ACM"
         }
+
+        setDesignationSourceType{
+          sourceType:t="radar"
+        }
       }
 
       resetAcmLockMode{
@@ -918,7 +920,7 @@ fsms{
       designatedTargetTws{
 
         designateActiveDetectedTarget{
-          type:i=0
+          type:t="target"
           self:b=yes
           sensorIndex:i=0
         }
@@ -1520,7 +1522,8 @@ fsms{
         actions{
 
           checkDesignationTypeEquals{
-            value:i=0
+            type:t="target"
+            type:t="cue"
           }
         }
       }
@@ -2452,6 +2455,27 @@ fsms{
           }
         }
       }
+
+      centerZone{
+        command:t="directionAxesReset"
+
+        actions{
+
+          setCueToBoresight{
+          }
+
+          setCenterAzimuth{
+            source:t="designationCue"
+          }
+
+          setCenterElevation{
+            source:t="designationCue"
+          }
+
+          updateActiveDetectedTarget{
+          }
+        }
+      }
     }
   }
 
@@ -2586,9 +2610,6 @@ fsms{
 
           setCueDist{
           }
-
-          setCueDopplerSpeed{
-          }
         }
       }
 
@@ -2612,19 +2633,23 @@ fsms{
         }
       }
 
-      designateTarget{
-        command:t="selectTarget"
+      centerZone{
+        command:t="directionAxesReset"
 
         actions{
 
-          designateActiveDetectedTarget{
-            type:i=0
-            sensorIndex:i=1
+          setCueToBoresight{
           }
 
-          designateTargetUnderCue{
-            type:i=0
-            sensorIndex:i=1
+          setCenterAzimuth{
+            source:t="designationCue"
+          }
+
+          setCenterElevation{
+            source:t="designationCue"
+          }
+
+          updateActiveDetectedTarget{
           }
         }
       }

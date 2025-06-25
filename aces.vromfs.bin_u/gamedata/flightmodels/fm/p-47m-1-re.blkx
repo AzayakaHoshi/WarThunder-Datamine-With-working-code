@@ -79,6 +79,7 @@ AvailableControls{
   hasChutes:b=no
   hasParkingBrakeControl:b=no
   hasLightsControl:b=no
+  hasManeuverabilityMode:b=no
 
   HasSweepControlMode{
     Manual:b=no
@@ -309,6 +310,8 @@ Aerodynamics{
     Span:r=12.444
     Angle:r=0.0
     Arm:p3=1.0, 0.0, 0.0
+    FlowInertia:r=0.0
+    ClockWiseAOA:b=no
 
     Areas{
       Main:r=26.62
@@ -581,12 +584,12 @@ EngineType0{
     EngineInertiaMoment:r=1.0
     RPMAmplitude0:p2=2400.0, 0.0
     RPMAmplitude1:p2=0.0, 5.0
-    ThrottleRPMAuto0:p2=0.0, 1600.0
+    ThrottleRPMAuto0:p2=0.0, 1000.0
     ThrottleRPMAuto1:p2=0.5, 2100.0
     ThrottleRPMAuto2:p2=0.8, 2600.0
     ThrottleRPMAuto3:p2=1.0, 2799.0
     ThrottleRPMAuto4:p2=1.1, 2800.0
-    ShaftRPMMin:r=1600.0
+    ShaftRPMMin:r=1000.0
     ShaftRPMMax:r=2799.0
     ShaftRpmController:b=yes
     Power:r=2060.0
@@ -865,6 +868,30 @@ Engine0{
     VtolToThrust:p2=0.0, 0.0
     ReverseToThrust:p2=0.0, 0.0
     FlapsToThrust:p4=0.0, 1.0, 1.0, 1.0
+
+    NozzleAnglesRanges{
+      Horizontal:p2=-180.0, 180.0
+      Vertical:p2=-180.0, 180.0
+    }
+
+    NozzleAnglesAxesWeights{
+
+      Horizontal{
+        Ailerons:r=1.0
+        Elevator:r=0.0
+        Rudder:r=1.0
+        Vtol:r=0.0
+        Reverse:r=0.0
+      }
+
+      Vertical{
+        Ailerons:r=0.0
+        Elevator:r=1.0
+        Rudder:r=0.0
+        Vtol:r=1.0
+        Reverse:r=1.0
+      }
+    }
   }
 }
 
@@ -975,7 +1002,7 @@ PropellerType0{
     GovernorType:i=1
     GovernorSpeed:r=0.15
     GovernorFast:b=no
-    GovernorMinParam:r=1100.0
+    GovernorMinParam:r=1000.0
     GovernorMaxParam:r=2799.99
     GovernorAfterburnerParam:r=2800.0
     AlwaysEnableTorqueAndGyro:b=no
@@ -999,7 +1026,7 @@ PropellerType0{
 Propeller0{
   Type:i=0
   AxisDirection:p2=-0.0, 0.0
-  CyclicPitchAxisDirectionPitch:p2=-180.0, 90.0
+  CyclicPitchAxisDirectionPitch:p2=-90.0, 90.0
   Pos:p3=3.25, 0.0, 0.0
 
   Geometry{
@@ -1370,6 +1397,7 @@ Autopilot{
     RateMaxLoadFactorMax:p2=-2147440000.0, 2147440000.0
     AoaLimits:p2=-2147440000.0, 2147440000.0
     AoaLimitsMult:p2=1.0, 1.0
+    AoaLimitsManeuverabilityMult:p2=1.0, 1.0
     AoaLimitsMargin:r=5.0
     AoaLimiterPushBackRateMult:p2=0.0, 0.0
     AoAAntiHangRateDecline:r=-10.0

@@ -18,7 +18,7 @@ mission_settings{
     environment:t="Day"
     weather:t="clear"
     gt_cooperative:b=yes
-    restoreType:t="tactical control"
+    restoreType:t="attempts"
     optionalTakeOff:b=no
   }
 
@@ -115,6 +115,10 @@ triggers{
         value:t=""
       }
 
+      comment{
+        value:t=""
+      }
+
       unitLoadBehTree{
         name:t="missionBomber"
         objects:t="luftwaffe_bombers00"
@@ -128,6 +132,7 @@ triggers{
         objects:t="luftwaffe_fighters01"
         objects:t="luftwaffe_fighters02"
         objects:t="ally_planes"
+        objects:t="player_wingmates"
       }
 
       missionMarkAsWaypoint{
@@ -222,9 +227,36 @@ triggers{
         target_var_name:t=""
         target_var_comp_op:t="equal"
         target_var_value:i=0
+        shouldKeepAirFormation:b=yes
         object:t="ally_planes"
         target_type:t="isActive"
         follow_offset:p3=0.0, 250.0, 0.0
+      }
+
+      unitMoveTo{
+        object_marking:i=0
+        target:t="player"
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        follow_target:b=yes
+        teleportHeightType:t="absolute"
+        useUnitHeightForTele:b=yes
+        shouldKeepFormation:b=yes
+        teleportHeightValue:r=1000.0
+        horizontalDirectionForTeleport:b=yes
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        fastClimb:b=no
+        destTimeMode:b=no
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        shouldKeepAirFormation:b=no
+        object:t="player_wingmates"
+        target_type:t="isActive"
+        follow_offset:p3=0.0, 20.0, 0.0
       }
 
       unitAttackTarget{
@@ -235,10 +267,25 @@ triggers{
         fireRandom:b=yes
         targetDistMax:r=4000.0
         maxNumAttackersPerTarget:i=1
-        attackAltRange:p2=250.0, 7000.0
+        attackAltRange:p2=0.0, 7000.0
         keepDeadUnitsInTargetList:b=yes
         anchorTarget:t="player"
         targetToAnchorDist:p2=3000.0, 4000.0
+        resetObjectToFollow:b=no
+      }
+
+      unitAttackTarget{
+        playerAttracted:b=no
+        target_marking:i=0
+        object:t="player_wingmates"
+        target:t="germany_planes"
+        fireRandom:b=yes
+        targetDistMax:r=4000.0
+        maxNumAttackersPerTarget:i=1
+        attackAltRange:p2=0.0, 2500.0
+        keepDeadUnitsInTargetList:b=yes
+        anchorTarget:t="player"
+        targetToAnchorDist:p2=1500.0, 2500.0
         resetObjectToFollow:b=no
       }
     }
@@ -323,13 +370,17 @@ triggers{
 
     conditions{
 
-      unitWhenInArea{
+      unitDistanceBetween{
+        value:r=2500.0
         math:t="2D"
         object_type:t="isAlive"
         object_marking:i=0
-        check_objects:t="any"
         object_var_name:t=""
         object_var_comp_op:t="equal"
+        target_type:t="isAlive"
+        target_marking:i=0
+        check_objects:t="any"
+        check_targets:t="any"
         object:t="player"
         target:t="waypoint00"
       }
@@ -482,6 +533,7 @@ triggers{
         fastClimb:b=no
         destTimeMode:b=no
         horizontalDirectionForTeleport:b=yes
+        shouldKeepAirFormation:b=yes
         object:t="luftwaffe_bombers00"
         speed:r=250.0
       }
@@ -506,6 +558,7 @@ triggers{
         target_var_name:t=""
         target_var_comp_op:t="equal"
         target_var_value:i=0
+        shouldKeepAirFormation:b=yes
         object:t="luftwaffe_fighters00"
         target_type:t="isActive"
         follow_offset:p3=0.0, 250.0, 0.0
@@ -531,6 +584,7 @@ triggers{
         fastClimb:b=no
         destTimeMode:b=no
         horizontalDirectionForTeleport:b=yes
+        shouldKeepAirFormation:b=yes
         object:t="wave02"
       }
 
@@ -554,6 +608,7 @@ triggers{
         target_var_name:t=""
         target_var_comp_op:t="equal"
         target_var_value:i=0
+        shouldKeepAirFormation:b=yes
         object:t="luftwaffe_fighters01"
         target_type:t="isActive"
         follow_offset:p3=0.0, 250.0, 0.0
@@ -579,6 +634,7 @@ triggers{
         fastClimb:b=no
         destTimeMode:b=no
         horizontalDirectionForTeleport:b=yes
+        shouldKeepAirFormation:b=yes
         object:t="wave03"
       }
 
@@ -602,6 +658,7 @@ triggers{
         target_var_name:t=""
         target_var_comp_op:t="equal"
         target_var_value:i=0
+        shouldKeepAirFormation:b=yes
         object:t="luftwaffe_fighters02"
         target_type:t="isActive"
         follow_offset:p3=0.0, 250.0, 0.0
@@ -613,12 +670,12 @@ triggers{
         object:t="luftwaffe_fighters00"
         target:t="british_planes"
         fireRandom:b=yes
-        targetDistMax:r=4000.0
+        targetDistMax:r=3000.0
         maxNumAttackersPerTarget:i=1
-        attackAltRange:p2=250.0, 7000.0
+        attackAltRange:p2=0.0, 3000.0
         keepDeadUnitsInTargetList:b=yes
         anchorTarget:t="luftwaffe_bombers00"
-        targetToAnchorDist:p2=3000.0, 4000.0
+        targetToAnchorDist:p2=1500.0, 3000.0
         resetObjectToFollow:b=no
       }
 
@@ -628,12 +685,12 @@ triggers{
         object:t="luftwaffe_fighters01"
         target:t="british_planes"
         fireRandom:b=yes
-        targetDistMax:r=4000.0
+        targetDistMax:r=3000.0
         maxNumAttackersPerTarget:i=1
-        attackAltRange:p2=250.0, 7000.0
+        attackAltRange:p2=0.0, 3000.0
         keepDeadUnitsInTargetList:b=yes
         anchorTarget:t="luftwaffe_bombers01"
-        targetToAnchorDist:p2=3000.0, 4000.0
+        targetToAnchorDist:p2=1500.0, 3000.0
         resetObjectToFollow:b=no
       }
 
@@ -643,40 +700,40 @@ triggers{
         object:t="luftwaffe_fighters02"
         target:t="british_planes"
         fireRandom:b=yes
-        targetDistMax:r=4000.0
+        targetDistMax:r=3000.0
         maxNumAttackersPerTarget:i=1
-        attackAltRange:p2=250.0, 7000.0
+        attackAltRange:p2=0.0, 3000.0
         keepDeadUnitsInTargetList:b=yes
         anchorTarget:t="luftwaffe_bombers02"
-        targetToAnchorDist:p2=3000.0, 4000.0
+        targetToAnchorDist:p2=1500.0, 3000.0
         resetObjectToFollow:b=no
       }
 
       unitSetIndication{
         set:b=yes
-        target_marking:i=0
-        object_var_name:t=""
-        object_var_comp_op:t="equal"
-        object_var_value:i=0
         target:t="luftwaffe_bombers00"
-      }
-
-      unitSetIndication{
-        set:b=yes
         target_marking:i=0
         object_var_name:t=""
         object_var_comp_op:t="equal"
         object_var_value:i=0
+      }
+
+      unitSetIndication{
+        set:b=yes
         target:t="luftwaffe_bombers01"
-      }
-
-      unitSetIndication{
-        set:b=yes
         target_marking:i=0
         object_var_name:t=""
         object_var_comp_op:t="equal"
         object_var_value:i=0
+      }
+
+      unitSetIndication{
+        set:b=yes
         target:t="luftwaffe_bombers02"
+        target_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
       }
 
       moAddMissionObjective{
@@ -780,16 +837,17 @@ triggers{
         fastClimb:b=no
         destTimeMode:b=no
         horizontalDirectionForTeleport:b=yes
+        shouldKeepAirFormation:b=yes
         object:t="luftwaffe_bombers00"
       }
 
       unitSetIndication{
         set:b=no
+        target:t="luftwaffe_bombers00"
         target_marking:i=0
         object_var_name:t=""
         object_var_comp_op:t="equal"
         object_var_value:i=0
-        target:t="luftwaffe_bombers00"
       }
 
       varModify{
@@ -869,16 +927,17 @@ triggers{
         fastClimb:b=no
         destTimeMode:b=no
         horizontalDirectionForTeleport:b=yes
+        shouldKeepAirFormation:b=yes
         object:t="luftwaffe_bombers01"
       }
 
       unitSetIndication{
         set:b=no
+        target:t="luftwaffe_bombers01"
         target_marking:i=0
         object_var_name:t=""
         object_var_comp_op:t="equal"
         object_var_value:i=0
-        target:t="luftwaffe_bombers01"
       }
 
       varModify{
@@ -958,16 +1017,17 @@ triggers{
         fastClimb:b=no
         destTimeMode:b=no
         horizontalDirectionForTeleport:b=yes
+        shouldKeepAirFormation:b=yes
         object:t="luftwaffe_bombers02"
       }
 
       unitSetIndication{
         set:b=no
+        target:t="luftwaffe_bombers02"
         target_marking:i=0
         object_var_name:t=""
         object_var_comp_op:t="equal"
         object_var_value:i=0
-        target:t="luftwaffe_bombers02"
       }
 
       varModify{
@@ -1044,6 +1104,7 @@ triggers{
         fastClimb:b=no
         destTimeMode:b=no
         horizontalDirectionForTeleport:b=yes
+        shouldKeepAirFormation:b=yes
         object:t="wave01"
       }
 
@@ -1055,11 +1116,11 @@ triggers{
 
       unitSetIndication{
         set:b=no
+        target:t="luftwaffe_bombers00"
         target_marking:i=0
         object_var_name:t=""
         object_var_comp_op:t="equal"
         object_var_value:i=0
-        target:t="luftwaffe_bombers00"
       }
 
       varModify{
@@ -1130,6 +1191,7 @@ triggers{
         fastClimb:b=no
         destTimeMode:b=no
         horizontalDirectionForTeleport:b=yes
+        shouldKeepAirFormation:b=yes
         object:t="wave02"
       }
 
@@ -1141,11 +1203,11 @@ triggers{
 
       unitSetIndication{
         set:b=no
+        target:t="luftwaffe_bombers01"
         target_marking:i=0
         object_var_name:t=""
         object_var_comp_op:t="equal"
         object_var_value:i=0
-        target:t="luftwaffe_bombers01"
       }
 
       varModify{
@@ -1216,6 +1278,7 @@ triggers{
         fastClimb:b=no
         destTimeMode:b=no
         horizontalDirectionForTeleport:b=yes
+        shouldKeepAirFormation:b=yes
         object:t="wave03"
       }
 
@@ -1227,11 +1290,11 @@ triggers{
 
       unitSetIndication{
         set:b=no
+        target:t="luftwaffe_bombers02"
         target_marking:i=0
         object_var_name:t=""
         object_var_comp_op:t="equal"
         object_var_value:i=0
-        target:t="luftwaffe_bombers02"
       }
 
       varModify{
@@ -1316,13 +1379,13 @@ triggers{
 
       unitSetIndication{
         set:b=no
+        target:t="luftwaffe_bombers00"
+        target:t="luftwaffe_bombers01"
+        target:t="luftwaffe_bombers02"
         target_marking:i=0
         object_var_name:t=""
         object_var_comp_op:t="equal"
         object_var_value:i=0
-        target:t="luftwaffe_bombers00"
-        target:t="luftwaffe_bombers01"
-        target:t="luftwaffe_bombers02"
       }
 
       wait{
@@ -1397,13 +1460,13 @@ triggers{
 
       unitSetIndication{
         set:b=no
+        target:t="luftwaffe_bombers00"
+        target:t="luftwaffe_bombers01"
+        target:t="luftwaffe_bombers02"
         target_marking:i=0
         object_var_name:t=""
         object_var_comp_op:t="equal"
         object_var_value:i=0
-        target:t="luftwaffe_bombers00"
-        target:t="luftwaffe_bombers01"
-        target:t="luftwaffe_bombers02"
       }
 
       wait{
@@ -1476,13 +1539,13 @@ triggers{
 
       unitSetIndication{
         set:b=no
+        target:t="luftwaffe_bombers00"
+        target:t="luftwaffe_bombers01"
+        target:t="luftwaffe_bombers02"
         target_marking:i=0
         object_var_name:t=""
         object_var_comp_op:t="equal"
         object_var_value:i=0
-        target:t="luftwaffe_bombers00"
-        target:t="luftwaffe_bombers01"
-        target:t="luftwaffe_bombers02"
       }
 
       wait{
@@ -1549,6 +1612,7 @@ triggers{
         fastClimb:b=no
         destTimeMode:b=no
         horizontalDirectionForTeleport:b=yes
+        shouldKeepAirFormation:b=yes
         object:t="luftwaffe_fighters00"
       }
     }
@@ -1608,6 +1672,7 @@ triggers{
         fastClimb:b=no
         destTimeMode:b=no
         horizontalDirectionForTeleport:b=yes
+        shouldKeepAirFormation:b=yes
         object:t="luftwaffe_fighters01"
       }
     }
@@ -1667,6 +1732,7 @@ triggers{
         fastClimb:b=no
         destTimeMode:b=no
         horizontalDirectionForTeleport:b=yes
+        shouldKeepAirFormation:b=yes
         object:t="luftwaffe_fighters02"
       }
     }
@@ -1925,7 +1991,7 @@ units{
 
     props{
       army:i=1
-      count:i=4
+      count:i=1
       free_distance:r=70.0
       floating_distance:r=50.0
       minimum_distance_to_earth:r=20.0
@@ -1933,7 +1999,7 @@ units{
       attack_type:t="fire_at_will"
       skill:i=4
       player:b=yes
-      numInWing:i=4
+      numInWing:i=1
 
       plane{
         wing_formation:t="Diamond"
@@ -2256,6 +2322,52 @@ units{
       attack_type:t="fire_at_will"
       skill:i=4
       numInWing:i=2
+
+      plane{
+        wing_formation:t="Diamond"
+        row_distances:r=3.0
+        col_distances:r=3.0
+        super_formation:t="Diamond"
+        super_row_distances:r=1.5
+        super_col_distances:r=1.5
+        ai_skill:t="NORMAL"
+        task:t="FLY_WAYPOINT"
+      }
+    }
+
+    way{
+    }
+  }
+
+  armada{
+    name:t="player_wingmates"
+    tm:m=[[-0.0438216, 0.0, -0.99904] [0.0, 1.0, 0.0] [0.99904, 0.0, -0.0438216] [35888.4, 2155.05, 2267.46]]
+    unit_class:t="spitfire_mk1"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
+    weapons:t="spitfire_mk1_default"
+    bullets0:t=""
+    bullets1:t=""
+    bullets2:t=""
+    bullets3:t=""
+    bulletsCount0:i=0
+    bulletsCount1:i=0
+    bulletsCount2:i=0
+    bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
+
+    props{
+      army:i=1
+      count:i=3
+      free_distance:r=70.0
+      floating_distance:r=50.0
+      minimum_distance_to_earth:r=20.0
+      altLimit:r=6000.0
+      attack_type:t="fire_at_will"
+      skill:i=4
+      numInWing:i=3
 
       plane{
         wing_formation:t="Diamond"

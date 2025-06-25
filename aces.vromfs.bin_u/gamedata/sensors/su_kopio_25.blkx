@@ -5,6 +5,7 @@ showMissileDgftLaunchZone:b=yes
 canMoveCamera:b=yes
 weaponTargetsMax:i=2
 launchedMissilesPredictedPositionsMax:i=2
+showMissileAimLead:b=yes
 
 transivers{
 
@@ -44,7 +45,7 @@ transivers{
     band:i=8
     rcs:r=40.0
     range:r=18000.0
-    rangeMax:r=25000.0
+    rangeMax:r=100000.0
     multipathEffect:p4=0.0, 1.0, 60.0, 0.0
 
     antenna{
@@ -67,7 +68,7 @@ transivers{
     band:i=8
     rcs:r=40.0
     range:r=18000.0
-    rangeMax:r=25000.0
+    rangeMax:r=100000.0
     multipathEffect:p4=0.0, 1.0, 60.0, 0.0
 
     antenna{
@@ -267,6 +268,7 @@ signals{
     aircraftAsTarget:b=yes
     angularAccuracy:r=0.05
     distanceAccuracy:r=15.0
+    targetId:b=yes
     mainBeamNotchWidth:r=40.0
     mainBeamNotchMaxElevation:r=3.5
     track:b=yes
@@ -295,6 +297,7 @@ signals{
     aircraftAsTarget:b=yes
     angularAccuracy:r=0.05
     distanceAccuracy:r=15.0
+    targetId:b=yes
     absDopplerSpeed:b=no
     mainBeamDopplerSpeed:b=no
     track:b=yes
@@ -438,14 +441,17 @@ scanPatternSets{
 scopeRangeSets{
 
   common{
-    range1:r=30000.0
+    range1:r=50000.0
     range2:r=100000.0
     range3:r=10000.0
-    range4:r=20000.0
+    range4:r=25000.0
   }
 
   gtm{
-    range1:r=20000.0
+    range1:r=50000.0
+    range2:r=100000.0
+    range3:r=10000.0
+    range4:r=25000.0
   }
 
   acm{
@@ -470,7 +476,7 @@ fsms{
           azimuthRange:p2=-40.0, 40.0
           azimuthWidth:r=5.0
           elevationLimits:p2=-55.0, 25.0
-          distanceRange:p2=0.0, 70000.0
+          distanceRange:p2=0.0, 75000.0
           distanceWidth:r=2000.0
           distanceRelWidthMin:r=0.05
         }
@@ -587,15 +593,13 @@ fsms{
       designatedTargetSearch{
 
         designateTargetUnderCue{
-          type:i=0
+          type:t="cue"
           self:b=yes
-          sensorIndex:i=0
         }
 
         designateActiveDetectedTarget{
-          type:i=0
+          type:t="target"
           self:b=yes
-          sensorIndex:i=0
         }
       }
 
@@ -724,6 +728,10 @@ fsms{
         setModeName{
           name:t="PD ACM"
         }
+
+        setDesignationSourceType{
+          sourceType:t="radar"
+        }
       }
 
       resetAcmLockMode{
@@ -828,7 +836,7 @@ fsms{
       designatedTargetTws{
 
         designateActiveDetectedTarget{
-          type:i=0
+          type:t="target"
           self:b=yes
           sensorIndex:i=0
         }
@@ -961,6 +969,10 @@ fsms{
         setModeName{
           name:t="GTM standby"
         }
+
+        setDesignationSourceType{
+          sourceType:t="radarSs"
+        }
       }
 
       setGtmTwsStandbyMode{
@@ -982,6 +994,10 @@ fsms{
 
         setModeName{
           name:t="GTM standby"
+        }
+
+        setDesignationSourceType{
+          sourceType:t="radarSs"
         }
       }
 
@@ -1077,6 +1093,10 @@ fsms{
         setModeName{
           name:t="GTM search"
         }
+
+        setDesignationSourceType{
+          sourceType:t="radarSs"
+        }
       }
 
       setGtmTwsSearchMode{
@@ -1098,6 +1118,10 @@ fsms{
 
         setModeName{
           name:t="TWS GTM search"
+        }
+
+        setDesignationSourceType{
+          sourceType:t="radarSs"
         }
       }
 
@@ -1321,7 +1345,8 @@ fsms{
         actions{
 
           checkDesignationTypeEquals{
-            value:i=0
+            type:t="target"
+            type:t="cue"
           }
         }
       }
@@ -2105,6 +2130,10 @@ fsms{
             name:t="resetSearchMode"
           }
 
+          setDesignationSourceType{
+            sourceType:t="radar"
+          }
+
           setFsmActive{
             fsm:t="main"
             active:b=no
@@ -2212,9 +2241,6 @@ fsms{
 
           setCueDist{
           }
-
-          setCueDopplerSpeed{
-          }
         }
       }
 
@@ -2234,6 +2260,27 @@ fsms{
         actions{
 
           setDetectedTargetActive{
+          }
+        }
+      }
+
+      centerZone{
+        command:t="directionAxesReset"
+
+        actions{
+
+          setCueToBoresight{
+          }
+
+          setCenterAzimuth{
+            source:t="designationCue"
+          }
+
+          setCenterElevation{
+            source:t="designationCue"
+          }
+
+          updateActiveDetectedTarget{
           }
         }
       }
@@ -2371,9 +2418,6 @@ fsms{
 
           setCueDist{
           }
-
-          setCueDopplerSpeed{
-          }
         }
       }
 
@@ -2397,19 +2441,23 @@ fsms{
         }
       }
 
-      designateTarget{
-        command:t="selectTarget"
+      centerZone{
+        command:t="directionAxesReset"
 
         actions{
 
-          designateActiveDetectedTarget{
-            type:i=0
-            sensorIndex:i=1
+          setCueToBoresight{
           }
 
-          designateTargetUnderCue{
-            type:i=0
-            sensorIndex:i=1
+          setCenterAzimuth{
+            source:t="designationCue"
+          }
+
+          setCenterElevation{
+            source:t="designationCue"
+          }
+
+          updateActiveDetectedTarget{
           }
         }
       }
@@ -2924,4 +2972,19 @@ fsms{
       }
     }
   }
+}
+
+targetTypeId{
+  name:t="hud/small"
+  sizeRange:p2=0.0, 5.0
+}
+
+targetTypeId{
+  name:t="hud/medium"
+  sizeRange:p2=5.0, 25.0
+}
+
+targetTypeId{
+  name:t="hud/large"
+  sizeRange:p2=25.0, 500.0
 }

@@ -13,14 +13,14 @@ mission_settings{
   }
 
   mission{
-    locName:t="missions/testFlight"
     level:t="levels/ruhr.bin"
     type:t="testFlight"
-    restoreType:t="manual"
-    optionalTakeOff:b=no
     environment:t="Day"
     weather:t="good"
     windDirection:p3=1.0, 0.0, 0.0
+    locName:t="missions/testFlight"
+    restoreType:t="manual"
+    optionalTakeOff:b=no
   }
 
   briefing{
@@ -37,6 +37,7 @@ mission_settings{
         map:b=yes
         minTime:i=4
         picture:t=""
+        showAirMap:b=no
 
         icon{
           icontype:t="fighter"
@@ -74,9 +75,15 @@ imports{
     importAreas:b=yes
     importUnits:b=yes
     importTriggers:b=yes
+    importMissionObjectives:b=yes
+    importWayPoints:b=yes
+    importDialogs:b=yes
     showAreas:b=yes
     showUnits:b=yes
     showTriggers:b=yes
+    showMissionObjectives:b=yes
+    showWayPoints:b=yes
+    showDialogs:b=yes
 
     excludes{
     }
@@ -124,6 +131,19 @@ triggers{
         shouldKeepFormation:b=yes
         teleportHeightValue:r=1000.0
         horizontalDirectionForTeleport:b=yes
+        object_marking:i=0
+        object_var_name:t=""
+        object_var_comp_op:t="equal"
+        object_var_value:i=0
+        target_var_name:t=""
+        target_var_comp_op:t="equal"
+        target_var_value:i=0
+        target_marking:i=0
+        waypointReachedDist:r=10.0
+        recalculatePathDist:r=-1.0
+        fastClimb:b=no
+        destTimeMode:b=no
+        shouldKeepAirFormation:b=yes
         object:t="armada_01"
         move_type:t="teleport"
         lookat:t="airfield01"
@@ -134,6 +154,20 @@ triggers{
         set:b=yes
         target:t="structures_00"
       }
+
+      comment{
+        value:t="restoring enemy units upon death"
+      }
+
+      unitRespawnAfterTime{
+        time_to_respawn:r=120.0
+        object_name:t="enemies_squad"
+        just_restore:b=yes
+        cycle_respawn:b=yes
+      }
+    }
+
+    else_actions{
     }
   }
 
@@ -201,8 +235,10 @@ units{
   armada{
     name:t="armada_01"
     tm:m=[[0.67559, 0.0, 0.737277] [0.0, 1.0, 0.0] [-0.737277, 0.0, 0.67559] [830.9, 1476.5, -1784.25]]
-    closed_waypoints:b=no
     unit_class:t="me-163b"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
     weapons:t="ME_163B_default"
     bullets0:t=""
     bullets1:t=""
@@ -212,6 +248,8 @@ units{
     bulletsCount1:i=0
     bulletsCount2:i=0
     bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
 
     props{
       army:i=1
@@ -243,8 +281,10 @@ units{
   structures{
     name:t="structures_01"
     tm:m=[[0.737277, 0.0, -0.67559] [0.0, 1.0, 0.0] [0.67559, 0.0, 0.737277] [1350.7, 59.5, -771.95]]
-    closed_waypoints:b=no
     unit_class:t="germ_50mm_pak38"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
     weapons:t=""
     bullets0:t=""
     bullets1:t=""
@@ -254,6 +294,8 @@ units{
     bulletsCount1:i=0
     bulletsCount2:i=0
     bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
 
     props{
       army:i=1
@@ -273,8 +315,10 @@ units{
   structures{
     name:t="structures_02"
     tm:m=[[-0.766044, 0.0, 0.642788] [0.0, 1.0, 0.0] [-0.642788, 0.0, -0.766044] [1314.85, 76.1, -1987.55]]
-    closed_waypoints:b=no
     unit_class:t="germ_50mm_pak38"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
     weapons:t=""
     bullets0:t=""
     bullets1:t=""
@@ -284,6 +328,8 @@ units{
     bulletsCount1:i=0
     bulletsCount2:i=0
     bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
 
     props{
       army:i=1
@@ -303,8 +349,10 @@ units{
   structures{
     name:t="structures_03"
     tm:m=[[-0.766044, 0.0, 0.642788] [0.0, 1.0, 0.0] [-0.642788, 0.0, -0.766044] [2109.15, 76.1, -364.55]]
-    closed_waypoints:b=no
     unit_class:t="germ_50mm_pak38"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
     weapons:t=""
     bullets0:t=""
     bullets1:t=""
@@ -314,6 +362,8 @@ units{
     bulletsCount1:i=0
     bulletsCount2:i=0
     bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
 
     props{
       army:i=1
@@ -333,8 +383,10 @@ units{
   wheeled_vehicles{
     name:t="structures_00"
     tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-1601.35, 37.5765, 300.65]]
-    closed_waypoints:b=no
     unit_class:t="ussr_zis5_cargo"
+    closed_waypoints:b=no
+    isShipSpline:b=no
+    shipTurnRadius:r=100.0
     weapons:t=""
     bullets0:t=""
     bullets1:t=""
@@ -344,6 +396,8 @@ units{
     bulletsCount1:i=0
     bulletsCount2:i=0
     bulletsCount3:i=0
+    crewSkillK:r=0.0
+    applyAllMods:b=no
 
     props{
       army:i=2
@@ -358,6 +412,15 @@ units{
     }
 
     way{
+    }
+  }
+
+  squad{
+    name:t="enemies_squad"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-2885.89, 37.5776, -2740.68]]
+
+    props{
+      squad_members:t="structures_00"
     }
   }
 }
@@ -398,4 +461,7 @@ areas{
 }
 
 objLayers{
+}
+
+wayPoints{
 }

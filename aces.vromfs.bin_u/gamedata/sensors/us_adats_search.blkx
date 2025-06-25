@@ -47,6 +47,7 @@ signals{
   search{
     groundClutter:b=no
     friendFoeId:b=yes
+    targetId:b=yes
     absDopplerSpeed:b=yes
 
     distance{
@@ -121,7 +122,7 @@ fsms{
         }
 
         setTargetDesignationRange{
-          azimuthRange:p2=-5.0, 5.0
+          azimuthRange:p2=-20.0, 20.0
           distanceRange:p2=0.0, 15000.0
         }
       }
@@ -155,6 +156,10 @@ fsms{
           active:b=yes
         }
 
+        setCueEnabled{
+          value:b=yes
+        }
+
         setScanDirectionPhase{
           azimuth:r=-180.0
           elevation:r=0.0
@@ -169,6 +174,10 @@ fsms{
         setFsmActive{
           fsm:t="search"
           active:b=no
+        }
+
+        setCueEnabled{
+          value:b=no
         }
       }
     }
@@ -306,6 +315,76 @@ fsms{
 
           addTarget{
           }
+
+          updateActiveDetectedTarget{
+          }
+        }
+      }
+
+      switchSelectedTarget{
+        command:t="switchTarget"
+
+        actions{
+
+          setNextDetectedTargetActive{
+          }
+        }
+      }
+
+      setCueAzimuth{
+        command:t="cueAxisX"
+
+        actions{
+
+          setCueAzimuth{
+          }
+        }
+      }
+
+      setCueDist{
+        command:t="cueAxisY"
+
+        actions{
+
+          setCueDist{
+          }
+        }
+      }
+
+      setCueElevation{
+        command:t="cueAxisZ"
+
+        actions{
+
+          setCueElevation{
+          }
+        }
+      }
+
+      setSelectedTarget{
+        command:t="switchToTarget"
+
+        actions{
+
+          setDetectedTargetActive{
+          }
+        }
+      }
+
+      designateTarget{
+        command:t="selectTarget"
+
+        actions{
+
+          designateActiveDetectedTarget{
+            type:t="target"
+            sensorIndex:i=1
+          }
+
+          designateTargetUnderCue{
+            type:t="cue"
+            sensorIndex:i=1
+          }
         }
       }
     }
@@ -329,6 +408,93 @@ fsms{
       }
     }
   }
+}
+
+targetTypeId{
+  name:t="hud/single prop"
+
+  targetPropulsion{
+    type:t="propellers"
+    num:i=1
+  }
+}
+
+targetTypeId{
+  name:t="hud/multi prop"
+
+  targetPropulsion{
+    type:t="propellers"
+    num:i=2
+  }
+
+  targetPropulsion{
+    type:t="propellers"
+    num:i=3
+  }
+
+  targetPropulsion{
+    type:t="propellers"
+    num:i=4
+  }
+}
+
+targetTypeId{
+  name:t="hud/single jet"
+
+  targetPropulsion{
+    type:t="jet"
+    num:i=1
+  }
+}
+
+targetTypeId{
+  name:t="hud/multi jet"
+
+  targetPropulsion{
+    type:t="jet"
+    num:i=2
+  }
+
+  targetPropulsion{
+    type:t="jet"
+    num:i=3
+  }
+
+  targetPropulsion{
+    type:t="jet"
+    num:i=4
+  }
+}
+
+targetTypeId{
+  name:t="hud/helicopter"
+
+  targetPropulsion{
+    type:t="rotors"
+  }
+}
+
+targetTypeId{
+  name:t="hud/rocket"
+
+  targetPropulsion{
+    type:t="rocket"
+  }
+}
+
+targetTypeId{
+  name:t="hud/small"
+  sizeRange:p2=0.0, 5.0
+}
+
+targetTypeId{
+  name:t="hud/medium"
+  sizeRange:p2=5.0, 25.0
+}
+
+targetTypeId{
+  name:t="hud/large"
+  sizeRange:p2=25.0, 500.0
 }
 
 hideInAvailableModeNameIds{
