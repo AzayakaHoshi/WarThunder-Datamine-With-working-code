@@ -277,7 +277,7 @@ triggers{
       }
 
       unitRespawn{
-        delay:r=1.0
+        delay:r=0.0
         offset:p3=0.0, 0.0, 0.0
         object:t="airfield_ship_unit"
         target:t="airfield01ship"
@@ -381,7 +381,7 @@ triggers{
     actions{
 
       unitRespawn{
-        delay:r=1.0
+        delay:r=0.0
         offset:p3=0.0, 0.0, 0.0
         object:t="@ship_destroyer"
         target:t="ship_destroyer_spawn_point"
@@ -902,6 +902,9 @@ triggers{
         time:r=0.1
       }
 
+      waitUnits{
+      }
+
       missionSetFade{
         mode:t="fadeIn"
         color:p3=0.0, 0.0, 0.0
@@ -1150,7 +1153,7 @@ triggers{
       }
 
       varSetString{
-        value:t="unit_mode_move"
+        value:t="unit_mode_attack"
         var:t="mode_trigger"
       }
 
@@ -1171,6 +1174,96 @@ triggers{
         digits:i=0
         var:t="target_tank_status"
         input_var:t="target_rank"
+      }
+
+      varSetBool{
+        value:b=no
+        var:t="is_move_unit"
+      }
+
+      varSetBool{
+        value:b=no
+        var:t="is_attack_unit"
+      }
+
+      triggerEnable{
+        target:t="name_assemble"
+      }
+    }
+
+    else_actions{
+    }
+  }
+
+  unit_mode_attack{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      periodicEvent{
+        time:r=0.01
+      }
+    }
+
+    conditions{
+    }
+
+    actions{
+
+      varSetInt{
+        value:i=1
+        var:t="tank_num"
+      }
+
+      varSetInt{
+        value:i=0
+        var:t="tank_spawn_number"
+      }
+
+      varSetString{
+        value:t="target_tanks_attack_squad_"
+        var:t="target_tanks_squad"
+      }
+
+      varSetString{
+        value:t="target_tank_attack_"
+        var:t="target_tank_status"
+      }
+
+      varSetString{
+        value:t="tank_spawn_attack_area"
+        var:t="target_tank_spawn_status"
+      }
+
+      varSetString{
+        value:t="unit_mode_move"
+        var:t="mode_trigger"
+      }
+
+      varAddString{
+        value:t=""
+        digits:i=0
+        var:t="target_tanks_squad"
+        input_var:t="target_rank"
+      }
+
+      varAddString{
+        value:t=""
+        digits:i=0
+        var:t="target_tank_status"
+        input_var:t="target_rank"
+      }
+
+      varSetBool{
+        value:b=yes
+        var:t="is_attack_unit"
       }
 
       varSetBool{
@@ -1258,6 +1351,11 @@ triggers{
         var:t="is_move_unit"
       }
 
+      varSetBool{
+        value:b=no
+        var:t="is_attack_unit"
+      }
+
       triggerEnable{
         target:t="name_assemble"
       }
@@ -1315,7 +1413,7 @@ triggers{
       }
 
       varSetString{
-        value:t="unit_mode_attack"
+        value:t="tick_killed"
         var:t="mode_trigger"
       }
 
@@ -1338,83 +1436,8 @@ triggers{
         var:t="is_move_unit"
       }
 
-      triggerEnable{
-        target:t="name_assemble"
-      }
-    }
-
-    else_actions{
-    }
-  }
-
-  unit_mode_attack{
-    is_enabled:b=no
-    comments:t=""
-
-    props{
-      actionsType:t="PERFORM_ONE_BY_ONE"
-      conditionsType:t="ALL"
-      enableAfterComplete:b=no
-    }
-
-    events{
-
-      periodicEvent{
-        time:r=0.01
-      }
-    }
-
-    conditions{
-    }
-
-    actions{
-
-      varSetInt{
-        value:i=1
-        var:t="tank_num"
-      }
-
-      varSetInt{
-        value:i=0
-        var:t="tank_spawn_number"
-      }
-
-      varSetString{
-        value:t="target_tanks_attack_squad_"
-        var:t="target_tanks_squad"
-      }
-
-      varSetString{
-        value:t="target_tank_attack_"
-        var:t="target_tank_status"
-      }
-
-      varSetString{
-        value:t="tank_spawn_attack_area"
-        var:t="target_tank_spawn_status"
-      }
-
-      varSetString{
-        value:t="tick_killed"
-        var:t="mode_trigger"
-      }
-
-      varAddString{
-        value:t=""
-        digits:i=0
-        var:t="target_tanks_squad"
-        input_var:t="target_rank"
-      }
-
-      varAddString{
-        value:t=""
-        digits:i=0
-        var:t="target_tank_status"
-        input_var:t="target_rank"
-      }
-
       varSetBool{
-        value:b=yes
+        value:b=no
         var:t="is_attack_unit"
       }
 
@@ -1606,7 +1629,7 @@ triggers{
     actions{
 
       unitRespawn{
-        delay:r=1.0
+        delay:r=0.0
         offset:p3=0.0, 0.0, 0.0
         object:t="@target_tank"
         target:t="@tank_spawn_area"
@@ -1739,7 +1762,7 @@ triggers{
     events{
 
       periodicEvent{
-        time:r=0.01
+        time:r=1.0
       }
     }
 
@@ -1766,20 +1789,22 @@ triggers{
         input_var:t="tank_num"
       }
 
-      wait{
-        time:r=2.0
-      }
-
       unitSetRoute{
         route:t="@way_name"
         object_var_name:t=""
         object_var_comp_op:t="equal"
-        teleportToStart:b=yes
+        teleportToStart:b=no
         object:t="@target_tank"
+        object_type:t="any"
       }
 
       triggerEnable{
         target:t="check_attack_unit"
+      }
+
+      __missionSetTimeSpeed{
+        speed:r=0.0
+        realtimeTriggers:b=no
       }
     }
 
@@ -1885,7 +1910,7 @@ triggers{
     actions{
 
       unitRespawn{
-        delay:r=1.0
+        delay:r=0.0
         offset:p3=0.0, 0.0, 0.0
         object:t="@air_target01"
         target:t="flight_point01"
@@ -1950,7 +1975,7 @@ triggers{
     actions{
 
       unitRespawn{
-        delay:r=1.0
+        delay:r=0.0
         offset:p3=0.0, 0.0, 0.0
         object:t="@air_target02"
         target:t="flight_point02"
@@ -2015,7 +2040,7 @@ triggers{
     actions{
 
       unitRespawn{
-        delay:r=1.0
+        delay:r=0.0
         offset:p3=0.0, 0.0, 0.0
         object:t="@air_target03"
         target:t="flight_point03"
@@ -2080,7 +2105,7 @@ triggers{
     actions{
 
       unitRespawn{
-        delay:r=1.0
+        delay:r=0.0
         offset:p3=0.0, 0.0, 0.0
         object:t="@air_target04"
         target:t="flight_point04"
@@ -2554,7 +2579,7 @@ triggers{
     events{
 
       periodicEvent{
-        time:r=0.01
+        time:r=1.0
       }
     }
 
@@ -2585,7 +2610,7 @@ triggers{
       }
 
       wait{
-        time:r=30.0
+        time:r=10.0
       }
 
       unitRestore{

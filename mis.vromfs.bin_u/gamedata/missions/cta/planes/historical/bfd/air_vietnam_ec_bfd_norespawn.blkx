@@ -125,6 +125,62 @@ mission_settings{
         minTime:i=4
         picture:t=""
         showAirMap:b=no
+
+        icon{
+          icontype:t="tank"
+          side:t="ally"
+          target:t="briefing_t1_atk_point_01"
+        }
+
+        icon{
+          icontype:t="artillery"
+          side:t="ally"
+          target:t="briefing_t1_def_point_01"
+        }
+
+        icon{
+          icontype:t="artillery"
+          side:t="ally"
+          target:t="briefing_t1_def_point_02"
+        }
+
+        icon{
+          icontype:t="artillery"
+          side:t="ally"
+          target:t="briefing_t1_def_point_03"
+        }
+
+        icon{
+          icontype:t="tank"
+          side:t="enemy"
+          target:t="briefing_t2_atk_point_01"
+        }
+
+        icon{
+          icontype:t="artillery"
+          side:t="enemy"
+          target:t="briefing_t2_def_point_01"
+        }
+
+        icon{
+          icontype:t="artillery"
+          side:t="enemy"
+          target:t="briefing_t2_def_point_02"
+        }
+
+        icon{
+          icontype:t="fighter"
+          side:t="ally"
+          target:t="briefing_t1_air_spawn"
+          lookAt:t="briefing_t2_air_spawn"
+        }
+
+        icon{
+          icontype:t="fighter"
+          side:t="enemy"
+          target:t="briefing_t2_air_spawn"
+          lookAt:t="briefing_t1_air_spawn"
+        }
       }
     }
   }
@@ -487,6 +543,171 @@ triggers{
     }
 
     else_actions{
+    }
+  }
+
+  check_top_air_spawn{
+    is_enabled:b=yes
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      initMission{
+      }
+    }
+
+    conditions{
+
+      objectExists{
+        target:t="is_top_air_spawn"
+        type:t="var"
+      }
+    }
+
+    actions{
+
+      varSetBool{
+        value:b=yes
+        var:t="is_air_spawn_close_airfield"
+        input_var:t="is_top_air_spawn"
+      }
+    }
+
+    else_actions{
+
+      triggerEnable{
+        target:t="check_high_air_spawn"
+      }
+    }
+  }
+
+  check_high_air_spawn{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      initMission{
+      }
+    }
+
+    conditions{
+
+      objectExists{
+        target:t="is_high_air_spawn"
+        type:t="var"
+      }
+    }
+
+    actions{
+
+      varSetBool{
+        value:b=yes
+        var:t="is_air_spawn_close_airfield"
+        input_var:t="is_high_air_spawn"
+      }
+    }
+
+    else_actions{
+
+      triggerEnable{
+        target:t="check_mid_air_spawn"
+      }
+    }
+  }
+
+  check_mid_air_spawn{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      initMission{
+      }
+    }
+
+    conditions{
+
+      objectExists{
+        target:t="is_mid_air_spawn"
+        type:t="var"
+      }
+    }
+
+    actions{
+
+      varSetBool{
+        value:b=yes
+        var:t="is_air_spawn_close_airfield"
+        input_var:t="is_mid_air_spawn"
+      }
+    }
+
+    else_actions{
+
+      triggerEnable{
+        target:t="check_low_air_spawn"
+      }
+    }
+  }
+
+  check_low_air_spawn{
+    is_enabled:b=no
+    comments:t=""
+
+    props{
+      actionsType:t="PERFORM_ONE_BY_ONE"
+      conditionsType:t="ALL"
+      enableAfterComplete:b=no
+    }
+
+    events{
+
+      initMission{
+      }
+    }
+
+    conditions{
+
+      objectExists{
+        target:t="is_low_air_spawn"
+        type:t="var"
+      }
+    }
+
+    actions{
+
+      varSetBool{
+        value:b=yes
+        var:t="is_air_spawn_close_airfield"
+        input_var:t="is_low_air_spawn"
+      }
+    }
+
+    else_actions{
+
+      varSetBool{
+        value:b=no
+        var:t="is_air_spawn_close_airfield"
+      }
     }
   }
 }
@@ -4146,6 +4367,87 @@ areas{
   t2_base02{
     type:t="Box"
     tm:m=[[226.79, 0.0, -60.7682] [0.0, 194.28, 0.0] [66.415, 0.0, 247.864] [3124.35, -13.6, 24165.1]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  briefing_t1_air_spawn{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-13171.9, 20.2969, -15134.2]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  briefing_t2_air_spawn{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-5472.9, 28.0273, 13088.6]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  briefing_t1_def_point_01{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [1892.7, 24.6973, -3982.71]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  briefing_t1_def_point_02{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-13446.7, 19.4805, -2810.21]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  briefing_t1_def_point_03{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-5426.4, 17.9726, -3694.61]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  briefing_t2_def_point_01{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-1025.62, 17.9726, 3346.13]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  briefing_t2_def_point_02{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-8011.17, 17.9726, 3571.79]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  briefing_t1_atk_point_01{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-9259.0, 19.4805, -6391.31]]
+    objLayer:i=0
+
+    props{
+    }
+  }
+
+  briefing_t2_atk_point_01{
+    type:t="Point"
+    tm:m=[[1.0, 0.0, 0.0] [0.0, 1.0, 0.0] [0.0, 0.0, 1.0] [-6941.46, 19.4805, 5336.42]]
     objLayer:i=0
 
     props{

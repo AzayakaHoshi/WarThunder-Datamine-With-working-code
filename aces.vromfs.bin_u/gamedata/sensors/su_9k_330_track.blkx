@@ -90,12 +90,30 @@ scanPatterns{
     yawStabLimit:r=180.0
     pitchStabLimit:r=60.0
     rollStabLimit:r=30.0
-    period:r=0.025
+    period:r=1.0
     width:r=7.5
     barHeight:r=0.5
     barsCount:i=30
     rowMajor:b=yes
     preciseMinor:b=yes
+    tws:b=yes
+  }
+
+  radarFastTws{
+    type:t="pyramide"
+    azimuthLimits:p2=-30.0, 30.0
+    elevationLimits:p2=-30.0, 60.0
+    yawStabLimit:r=180.0
+    pitchStabLimit:r=60.0
+    rollStabLimit:r=30.0
+    period:r=0.025
+    period:r=0.05
+    width:r=7.5
+    barHeight:r=0.5
+    barsCount:i=30
+    rowMajor:b=yes
+    preciseMinor:b=yes
+    tws:b=yes
   }
 
   irstLock{
@@ -580,11 +598,6 @@ fsms{
           width:r=0.0
         }
 
-        setFsmActive{
-          fsm:t="track"
-          active:b=yes
-        }
-
         updateActiveDetectedTarget{
         }
       }
@@ -601,6 +614,11 @@ fsms{
         setScanPattern{
           scanPattern:t="radarTrack"
         }
+
+        setFsmActive{
+          fsm:t="radarTrack"
+          active:b=yes
+        }
       }
 
       setIrstTrackMode{
@@ -615,12 +633,22 @@ fsms{
         setScanPattern{
           scanPattern:t="irstTrack"
         }
+
+        setFsmActive{
+          fsm:t="track"
+          active:b=yes
+        }
       }
 
       resetTrackMode{
 
         setFsmActive{
           fsm:t="track"
+          active:b=no
+        }
+
+        setFsmActive{
+          fsm:t="radarTrack"
           active:b=no
         }
       }
@@ -883,26 +911,13 @@ fsms{
 
       checkIrstLockTypeLos{
         stateFrom:t="checkIrstLockTypeTarget"
-        command:t="designateTarget"
+        event:t="designationTypeNotEquals"
         stateTo:t="checkIrstLockTypeLos"
 
         actions{
 
           checkDesignationTypeEquals{
             type:t="los"
-          }
-        }
-      }
-
-      checkIrstLockTypeLos{
-        stateFrom:t="checkIrstLockTypeLos"
-        event:t="designationTypeNotEquals"
-        stateTo:t="checkIrstLockTypeVisual"
-
-        actions{
-
-          checkDesignationTypeEquals{
-            type:t="visual"
           }
         }
       }
@@ -915,6 +930,19 @@ fsms{
         actions{
 
           setIrstLosLockMode{
+          }
+        }
+      }
+
+      checkIrstLockTypeVisual{
+        stateFrom:t="checkIrstLockTypeLos"
+        event:t="designationTypeNotEquals"
+        stateTo:t="checkIrstLockTypeVisual"
+
+        actions{
+
+          checkDesignationTypeEquals{
+            type:t="visual"
           }
         }
       }
@@ -1041,6 +1069,16 @@ fsms{
 
           setIrst{
           }
+
+          setFsmActive{
+            fsm:t="radarTrack"
+            active:b=no
+          }
+
+          setFsmActive{
+            fsm:t="track"
+            active:b=yes
+          }
         }
       }
 
@@ -1060,6 +1098,16 @@ fsms{
           }
 
           setRadar{
+          }
+
+          setFsmActive{
+            fsm:t="track"
+            active:b=no
+          }
+
+          setFsmActive{
+            fsm:t="radarTrack"
+            active:b=yes
           }
         }
       }
@@ -1133,6 +1181,53 @@ fsms{
 
     transitions{
 
+      detect{
+        event:t="update"
+
+        actions{
+
+          detectTarget{
+            ignoreOwnWeapon:b=yes
+            rangeMult:r=1.0
+          }
+        }
+      }
+
+      track{
+        event:t="targetDetected"
+
+        actions{
+
+          updateActiveTargetOfInterest{
+
+            dirFilter{
+              rateLim:p2=0.78, 0.78
+              limTimeOut:r=1.0
+              inertialTimeMax:r=1.0
+            }
+
+            distFilter{
+              accelLim:p2=150.0, 150.0
+              limTimeOut:r=1.0
+              inertialTimeMax:r=1.0
+            }
+          }
+
+          setCenterAzimuth{
+            source:t="activeTargetOfInterest"
+          }
+
+          setCenterElevation{
+            source:t="activeTargetOfInterest"
+          }
+
+          setDistGatePos{
+            source:t="activeTargetOfInterest"
+            width:r=0.0
+          }
+        }
+      }
+
       extrapolate{
         event:t="targetNotDetected"
 
@@ -1160,9 +1255,18 @@ fsms{
           }
         }
       }
+    }
+  }
+
+  radarTrack{
+    stateInit:t="track"
+
+    transitions{
 
       scan{
         event:t="update"
+        stateFrom:t="track"
+        stateTo:t="search"
 
         actions{
 
@@ -1175,6 +1279,42 @@ fsms{
 
           clearTargetsOfInterest{
             timeOut:r=2.0
+          }
+
+          setCueToActiveTargetOfInterest{
+          }
+        }
+      }
+
+      scanTrack{
+        stateFrom:t="search"
+        event:t="update"
+        stateTo:t="track"
+
+        actions{
+
+          scan{
+            scanPattern:t="radarFastTws"
+            ignoreOwnWeapon:b=yes
+          }
+
+          extrapolateTargetsOfInterest{
+          }
+
+          clearTargetsOfInterest{
+            timeOut:r=2.0
+          }
+
+          setCueToActiveTargetOfInterest{
+          }
+
+          setCenterAzimuth{
+            source:t="activeTargetOfInterest"
+          }
+
+          setDistGatePos{
+            source:t="activeTargetOfInterest"
+            width:r=0.0
           }
         }
       }
@@ -1200,52 +1340,109 @@ fsms{
         }
       }
 
-      track{
+      addTarget{
+        stateFrom:t="search"
         event:t="targetDetected"
 
         actions{
 
           updateTargetOfInterest{
             limit:i=10
+            posGateTimeInitial:p2=2.0, 4.0
+            posGateRangeInitial:r=0.0
             posGateMaxTime:r=2.0
-            posGateRange:p2=100.0, 2000.0
-            dopplerSpeedGateMaxTime:r=1.0
+            posGateRange:p2=50.0, 2000.0
             dopplerSpeedGateRange:p2=60.0, 300.0
+            dopplerSpeedGateMaxTime:r=1.0
+          }
 
-            dirFilter{
-              alpha:r=0.8
-              betta:r=0.1
-              dt:r=0.0208
-              rateLim:p2=0.78, 0.78
-              limTimeOut:r=1.0
-            }
+          updateActiveDetectedTarget{
+          }
 
-            distFilter{
-              alpha:r=0.5
-              betta:r=0.05
-              dt:r=0.0208
-              limTimeOut:r=1.0
-            }
+          setCueToActiveTargetOfInterest{
+          }
+        }
+      }
 
-            dopplerSpeedFilter{
-              alpha:r=0.25
-              betta:r=0.05
-              dt:r=0.0208
-              limTimeOut:r=1.0
-            }
+      addTargetTrack{
+        stateFrom:t="track"
+        event:t="targetDetected"
+
+        actions{
+
+          updateTargetOfInterest{
+            limit:i=10
+            onlyExisting:b=yes
+            posGateTimeInitial:p2=2.0, 4.0
+            posGateRangeInitial:r=100.0
+            posGateMaxTime:r=2.0
+            posGateRange:p2=0.0, 1000.0
+            dopplerSpeedGateMaxTime:r=1.0
+          }
+
+          updateActiveDetectedTarget{
+          }
+
+          setCueToActiveTargetOfInterest{
           }
 
           setCenterAzimuth{
             source:t="activeTargetOfInterest"
           }
 
-          setCenterElevation{
-            source:t="activeTargetOfInterest"
-          }
-
           setDistGatePos{
             source:t="activeTargetOfInterest"
-            width:r=20000.0
+            width:r=0.0
+          }
+        }
+      }
+
+      switchSelectedTarget{
+        command:t="switchTarget"
+
+        actions{
+
+          setNextDetectedTargetActive{
+          }
+        }
+      }
+
+      setCueAzimuth{
+        command:t="cueAxisX"
+
+        actions{
+
+          setCueAzimuth{
+          }
+        }
+      }
+
+      setCueDist{
+        command:t="cueAxisY"
+
+        actions{
+
+          setCueDist{
+          }
+        }
+      }
+
+      setCueElevation{
+        command:t="cueAxisZ"
+
+        actions{
+
+          setCueElevation{
+          }
+        }
+      }
+
+      setSelectedTarget{
+        command:t="switchToTarget"
+
+        actions{
+
+          setDetectedTargetActive{
           }
         }
       }
