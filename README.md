@@ -12,3 +12,6 @@ Wiki is currently in work for complete CDK Tutorials you can also give us sugges
 
 
 Thanks to [@Avarik](https://www.youtube.com/channel/UCYGXjAdKYsAXnkt3VDl7PSw) and [@gszabi99](https://github.com/gszabi99/War-Thunder-Datamine) 
+
+# this repository is out of date and will not be updated until further notice.
+internal code was broken by gaijin and i have no interest in fixing it.
